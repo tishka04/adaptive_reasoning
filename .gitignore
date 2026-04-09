@@ -1,0 +1,38 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.eggs/
+*.so
+*.whl
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Checkpoints and data
+checkpoints/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.npy
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
