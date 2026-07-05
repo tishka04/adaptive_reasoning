@@ -1,0 +1,1580 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "candidate_signal_families": [
+    "high_surprise_transitions",
+    "low_surprise_stable_transitions",
+    "action_conditioned_delta_clusters",
+    "terminal_like_latent_neighborhoods",
+    "proxy_completion_gap_candidates"
+  ],
+  "config": {
+    "dataset_path": "training\\m2_arc_lewm_transitions.jsonl",
+    "environment_step_performed": false,
+    "model_config": {
+      "canvas_size": [
+        64,
+        64
+      ],
+      "device": "cuda",
+      "latent_dim": 128,
+      "use_hud": false
+    },
+    "model_path": "models\\m2_arc_lewm_best_val.pt",
+    "output_path": "diagnostics\\m2\\arc_lewm_signal_report.json",
+    "reward_read": false,
+    "rollout_performed": false,
+    "score_policy": "latent_prediction_error_priority_only",
+    "semantic_packet_path": "diagnostics\\m2\\object_world_model_invariant_packet.json",
+    "top_k": 16
+  },
+  "contract": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "controlled_test_required": true,
+    "fusion_score_counted_as_support": false,
+    "ready_for_a32": false,
+    "ready_for_a33": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_counted_as_evidence": false,
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "controlled_test_required": true,
+  "fusion_score_counted_as_support": false,
+  "latent_prediction_quality": {
+    "collapse_detected": false,
+    "latent_cov_rank_proxy": 64,
+    "latent_norm_mean": 11.049375534057617,
+    "latent_std_mean": 0.19527529180049896,
+    "latent_std_min": 0.04737809672951698,
+    "latent_variance_above_min": true,
+    "nan_or_inf_detected": false,
+    "prediction_loss_all": 0.07818831630997625,
+    "prediction_loss_val": 0.15645267933212348
+  },
+  "ready_for_a32": false,
+  "ready_for_a33": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "schema_version": "m2.arc_lewm_signal_report.v1",
+  "semantic_context_summary": {
+    "hud_counted_as_objective_signal": false,
+    "mechanistic_context_candidates": 5,
+    "relation_progress_completion_signal": false,
+    "semantic_packet_loaded": true
+  },
+  "signals": {
+    "action_conditioned_delta_clusters": [
+      {
+        "action": "ACTION1",
+        "cluster_id": "m2_14d::action_delta::ACTION1",
+        "high_surprise_rate": 0.20074812967581046,
+        "latent_delta_norm_mean": 0.0458604854963059,
+        "latent_surprise_mean": 0.07809746396516512,
+        "support": 0,
+        "terminal_rate": 0.0012468827930174563,
+        "transitions": 802,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION2",
+        "cluster_id": "m2_14d::action_delta::ACTION2",
+        "high_surprise_rate": 0.20122574055158324,
+        "latent_delta_norm_mean": 0.05372732601880942,
+        "latent_surprise_mean": 0.07054052471950939,
+        "support": 0,
+        "terminal_rate": 0.0010214504596527069,
+        "transitions": 979,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION3",
+        "cluster_id": "m2_14d::action_delta::ACTION3",
+        "high_surprise_rate": 0.2008879023307436,
+        "latent_delta_norm_mean": 0.0589411449187455,
+        "latent_surprise_mean": 0.0482688806589267,
+        "support": 0,
+        "terminal_rate": 0.0022197558268590455,
+        "transitions": 901,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION4",
+        "cluster_id": "m2_14d::action_delta::ACTION4",
+        "high_surprise_rate": 0.20062047569803515,
+        "latent_delta_norm_mean": 0.058508095121077894,
+        "latent_surprise_mean": 0.06813271463903547,
+        "support": 0,
+        "terminal_rate": 0.002068252326783868,
+        "transitions": 967,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION5",
+        "cluster_id": "m2_14d::action_delta::ACTION5",
+        "high_surprise_rate": 0.20384615384615384,
+        "latent_delta_norm_mean": 0.05442230204308334,
+        "latent_surprise_mean": 0.025640399080629532,
+        "support": 0,
+        "terminal_rate": 0.0038461538461538464,
+        "transitions": 260,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "cluster_id": "m2_14d::action_delta::ACTION6",
+        "high_surprise_rate": 0.2006880733944954,
+        "latent_delta_norm_mean": 0.07072766512880553,
+        "latent_surprise_mean": 0.11133404527876287,
+        "support": 0,
+        "terminal_rate": 0.0040137614678899085,
+        "transitions": 1744,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION7",
+        "cluster_id": "m2_14d::action_delta::ACTION7",
+        "high_surprise_rate": 0.25,
+        "latent_delta_norm_mean": 0.11872351460624486,
+        "latent_surprise_mean": 0.018824648577719927,
+        "support": 0,
+        "terminal_rate": 0.0,
+        "transitions": 8,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "RESET",
+        "cluster_id": "m2_14d::action_delta::RESET",
+        "high_surprise_rate": 0.22,
+        "latent_delta_norm_mean": 4.258911278769374,
+        "latent_surprise_mean": 0.0896372440084815,
+        "support": 0,
+        "terminal_rate": 0.0,
+        "transitions": 50,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      }
+    ],
+    "high_surprise_transitions": [
+      {
+        "action": "RESET",
+        "action_args": {},
+        "available_actions_t": [],
+        "episode_id": "3e97cd4dc956",
+        "game_id": "dc22-4c9bff3e",
+        "latent_delta_norm": 10.528450012207031,
+        "latent_surprise_score": 0.24123261868953705,
+        "level_delta": 0,
+        "signal_id": "m2_14d::dc22-4c9bff3e::3e97cd4dc956::0000",
+        "step": 0,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "RESET",
+        "action_args": {},
+        "available_actions_t": [],
+        "episode_id": "acf499d39b45",
+        "game_id": "dc22-4c9bff3e",
+        "latent_delta_norm": 10.528450012207031,
+        "latent_surprise_score": 0.24123261868953705,
+        "level_delta": 0,
+        "signal_id": "m2_14d::dc22-4c9bff3e::acf499d39b45::0000",
+        "step": 0,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "RESET",
+        "action_args": {},
+        "available_actions_t": [],
+        "episode_id": "3c719b36eb4d",
+        "game_id": "dc22-4c9bff3e",
+        "latent_delta_norm": 10.528450012207031,
+        "latent_surprise_score": 0.24123261868953705,
+        "level_delta": 0,
+        "signal_id": "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0000",
+        "step": 0,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 53,
+          "y": 47
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 4.037397384643555,
+        "latent_surprise_score": 0.2406630516052246,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0004",
+        "step": 4,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 54,
+          "y": 47
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 4.037397384643555,
+        "latent_surprise_score": 0.24062199890613556,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0004",
+        "step": 4,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 28,
+          "y": 49
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.6643368005752563,
+        "latent_surprise_score": 0.22657445073127747,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0012",
+        "step": 12,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 30,
+          "y": 48
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.6643368005752563,
+        "latent_surprise_score": 0.22651219367980957,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0011",
+        "step": 11,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 15,
+          "y": 39
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.035407017916440964,
+        "latent_surprise_score": 0.22350937128067017,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0012",
+        "step": 12,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 23
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.0353965200483799,
+        "latent_surprise_score": 0.2231675684452057,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0013",
+        "step": 13,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 40,
+          "y": 38
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.036149945110082626,
+        "latent_surprise_score": 0.22315549850463867,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0029",
+        "step": 29,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 46,
+          "y": 25
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.036670491099357605,
+        "latent_surprise_score": 0.22286447882652283,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0027",
+        "step": 27,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 19,
+          "y": 13
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.0,
+        "latent_surprise_score": 0.22155612707138062,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0031",
+        "step": 31,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 22,
+          "y": 39
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.03606324642896652,
+        "latent_surprise_score": 0.22137925028800964,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0013",
+        "step": 13,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 30,
+          "y": 31
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.0363672599196434,
+        "latent_surprise_score": 0.22122465074062347,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0028",
+        "step": 28,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 31,
+          "y": 24
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.035356272011995316,
+        "latent_surprise_score": 0.22117295861244202,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0030",
+        "step": 30,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 40,
+          "y": 23
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.036490749567747116,
+        "latent_surprise_score": 0.22110748291015625,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0025",
+        "step": 25,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      }
+    ],
+    "low_surprise_stable_transitions": [
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 22,
+          "y": 55
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.03779613599181175,
+        "latent_surprise_score": 0.011398505419492722,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0229",
+        "step": 229,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 57
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.03779613599181175,
+        "latent_surprise_score": 0.011409899219870567,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0030",
+        "step": 30,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 50
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.0487600602209568,
+        "latent_surprise_score": 0.011418569833040237,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0227",
+        "step": 227,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 22,
+          "y": 52
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.0482228547334671,
+        "latent_surprise_score": 0.01142649445682764,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0228",
+        "step": 228,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 35
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.02807454578578472,
+        "latent_surprise_score": 0.011529452167451382,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0233",
+        "step": 233,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 33,
+          "y": 40
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.03396017476916313,
+        "latent_surprise_score": 0.011566711589694023,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0235",
+        "step": 235,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 32,
+          "y": 50
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.03610960766673088,
+        "latent_surprise_score": 0.011613771319389343,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0237",
+        "step": 237,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 50
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.036115072667598724,
+        "latent_surprise_score": 0.011614279821515083,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0038",
+        "step": 38,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 3,
+          "y": 29
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.4411300718784332,
+        "latent_surprise_score": 0.011687147431075573,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0035",
+        "step": 35,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 33,
+          "y": 38
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.03376857936382294,
+        "latent_surprise_score": 0.011765478178858757,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0036",
+        "step": 36,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 45,
+          "y": 15
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.02851874940097332,
+        "latent_surprise_score": 0.011862378567457199,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0046",
+        "step": 46,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 4,
+          "y": 6
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.3091985285282135,
+        "latent_surprise_score": 0.011863939464092255,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0232",
+        "step": 232,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 3,
+          "y": 12
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.4377586245536804,
+        "latent_surprise_score": 0.011885792016983032,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0242",
+        "step": 242,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 45,
+          "y": 11
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.020263707265257835,
+        "latent_surprise_score": 0.011950851418077946,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0045",
+        "step": 45,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 4,
+          "y": 12
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "73dd8a6e40e1",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.4418156147003174,
+        "latent_surprise_score": 0.012027404271066189,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0043",
+        "step": 43,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 39,
+          "y": 29
+        },
+        "available_actions_t": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "episode_id": "91d75254dd01",
+        "game_id": "bp35-0a0ad940",
+        "latent_delta_norm": 0.03660319745540619,
+        "latent_surprise_score": 0.012040715664625168,
+        "level_delta": 0,
+        "signal_id": "m2_14d::bp35-0a0ad940::91d75254dd01::0239",
+        "step": 239,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      }
+    ],
+    "proxy_completion_gap_candidates": [
+      {
+        "action": "RESET",
+        "action_args": {},
+        "available_actions_t": [],
+        "episode_id": "3e97cd4dc956",
+        "game_id": "dc22-4c9bff3e",
+        "latent_delta_norm": 10.528450012207031,
+        "latent_surprise_score": 0.24123261868953705,
+        "level_delta": 0,
+        "signal_id": "m2_14d::dc22-4c9bff3e::3e97cd4dc956::0000",
+        "step": 0,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "RESET",
+        "action_args": {},
+        "available_actions_t": [],
+        "episode_id": "acf499d39b45",
+        "game_id": "dc22-4c9bff3e",
+        "latent_delta_norm": 10.528450012207031,
+        "latent_surprise_score": 0.24123261868953705,
+        "level_delta": 0,
+        "signal_id": "m2_14d::dc22-4c9bff3e::acf499d39b45::0000",
+        "step": 0,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "RESET",
+        "action_args": {},
+        "available_actions_t": [],
+        "episode_id": "3c719b36eb4d",
+        "game_id": "dc22-4c9bff3e",
+        "latent_delta_norm": 10.528450012207031,
+        "latent_surprise_score": 0.24123261868953705,
+        "level_delta": 0,
+        "signal_id": "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0000",
+        "step": 0,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 53,
+          "y": 47
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 4.037397384643555,
+        "latent_surprise_score": 0.2406630516052246,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0004",
+        "step": 4,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 54,
+          "y": 47
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 4.037397384643555,
+        "latent_surprise_score": 0.24062199890613556,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0004",
+        "step": 4,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 28,
+          "y": 49
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.6643368005752563,
+        "latent_surprise_score": 0.22657445073127747,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0012",
+        "step": 12,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 30,
+          "y": 48
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.6643368005752563,
+        "latent_surprise_score": 0.22651219367980957,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0011",
+        "step": 11,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 15,
+          "y": 39
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.035407017916440964,
+        "latent_surprise_score": 0.22350937128067017,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0012",
+        "step": 12,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 23
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.0353965200483799,
+        "latent_surprise_score": 0.2231675684452057,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0013",
+        "step": 13,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 40,
+          "y": 38
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.036149945110082626,
+        "latent_surprise_score": 0.22315549850463867,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0029",
+        "step": 29,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 46,
+          "y": 25
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.036670491099357605,
+        "latent_surprise_score": 0.22286447882652283,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0027",
+        "step": 27,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 19,
+          "y": 13
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.0,
+        "latent_surprise_score": 0.22155612707138062,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0031",
+        "step": 31,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 22,
+          "y": 39
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "1415edf27a19",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.03606324642896652,
+        "latent_surprise_score": 0.22137925028800964,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::1415edf27a19::0013",
+        "step": 13,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 30,
+          "y": 31
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.0363672599196434,
+        "latent_surprise_score": 0.22122465074062347,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0028",
+        "step": 28,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 31,
+          "y": 24
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.035356272011995316,
+        "latent_surprise_score": 0.22117295861244202,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0030",
+        "step": 30,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      },
+      {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 40,
+          "y": 23
+        },
+        "available_actions_t": [
+          "ACTION6"
+        ],
+        "episode_id": "b9b14d976dcc",
+        "game_id": "ft09-0d8bbf25",
+        "latent_delta_norm": 0.036490749567747116,
+        "latent_surprise_score": 0.22110748291015625,
+        "level_delta": 0,
+        "signal_id": "m2_14d::ft09-0d8bbf25::b9b14d976dcc::0025",
+        "step": 25,
+        "support": 0,
+        "terminal_t1": false,
+        "truth_status": "NOT_EVALUATED_BY_M2",
+        "world_model_score_counted_as_support": false
+      }
+    ],
+    "terminal_like_latent_neighborhoods": {
+      "highest_surprise_terminal_transitions": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 45,
+            "y": 30
+          },
+          "available_actions_t": [
+            "ACTION1",
+            "ACTION2",
+            "ACTION3",
+            "ACTION4",
+            "ACTION6"
+          ],
+          "episode_id": "3c719b36eb4d",
+          "game_id": "dc22-4c9bff3e",
+          "latent_delta_norm": 0.03325895220041275,
+          "latent_surprise_score": 0.15910828113555908,
+          "level_delta": 0,
+          "signal_id": "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0239",
+          "step": 239,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 46,
+            "y": 28
+          },
+          "available_actions_t": [
+            "ACTION1",
+            "ACTION2",
+            "ACTION3",
+            "ACTION4",
+            "ACTION6"
+          ],
+          "episode_id": "3e97cd4dc956",
+          "game_id": "dc22-4c9bff3e",
+          "latent_delta_norm": 0.005208170041441917,
+          "latent_surprise_score": 0.15866738557815552,
+          "level_delta": 0,
+          "signal_id": "m2_14d::dc22-4c9bff3e::3e97cd4dc956::0313",
+          "step": 313,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION5",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION1",
+            "ACTION2",
+            "ACTION3",
+            "ACTION4",
+            "ACTION5",
+            "ACTION6"
+          ],
+          "episode_id": "7dad6c3b911e",
+          "game_id": "cd82-fb555c5d",
+          "latent_delta_norm": 0.0013678253162652254,
+          "latent_surprise_score": 0.02253136597573757,
+          "level_delta": 0,
+          "signal_id": "m2_14d::cd82-fb555c5d::7dad6c3b911e::0188",
+          "step": 188,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION3",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "73dd8a6e40e1",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.4688616394996643,
+          "latent_surprise_score": 0.0223955437541008,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0086",
+          "step": 86,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION4",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "0b0b3abeb8c0",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.3874128460884094,
+          "latent_surprise_score": 0.019340015947818756,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::0b0b3abeb8c0::0246",
+          "step": 246,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION4",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "8d1880545bf1",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.8735730648040771,
+          "latent_surprise_score": 0.018786652013659477,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::8d1880545bf1::0029",
+          "step": 29,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 22,
+            "y": 31
+          },
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "c1d81b2b408a",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.3453620374202728,
+          "latent_surprise_score": 0.017589200288057327,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::c1d81b2b408a::0088",
+          "step": 88,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION2",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION1",
+            "ACTION2",
+            "ACTION3",
+            "ACTION4",
+            "ACTION5",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "f0fe23029ffa",
+          "game_id": "ar25-e3c63847",
+          "latent_delta_norm": 0.09311528503894806,
+          "latent_surprise_score": 0.017200451344251633,
+          "level_delta": 0,
+          "signal_id": "m2_14d::ar25-e3c63847::f0fe23029ffa::0823",
+          "step": 823,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION3",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "f2a11848d51d",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.5996654033660889,
+          "latent_surprise_score": 0.015216558240354061,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::f2a11848d51d::0183",
+          "step": 183,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION1",
+          "action_args": {},
+          "available_actions_t": [
+            "ACTION1",
+            "ACTION2",
+            "ACTION3",
+            "ACTION4",
+            "ACTION5",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "be48a96d70f0",
+          "game_id": "ar25-e3c63847",
+          "latent_delta_norm": 0.0587761290371418,
+          "latent_surprise_score": 0.014482637867331505,
+          "level_delta": 0,
+          "signal_id": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+          "step": 295,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 33
+          },
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "650763c8211f",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.39776188135147095,
+          "latent_surprise_score": 0.013238758780062199,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::650763c8211f::0003",
+          "step": 3,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 22,
+            "y": 32
+          },
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "c55676cc4eb9",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.3979904353618622,
+          "latent_surprise_score": 0.013235660269856453,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::c55676cc4eb9::0002",
+          "step": 2,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 22,
+            "y": 33
+          },
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "182270820f60",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.3979904353618622,
+          "latent_surprise_score": 0.013227514922618866,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::182270820f60::0023",
+          "step": 23,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 35
+          },
+          "available_actions_t": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6",
+            "ACTION7"
+          ],
+          "episode_id": "c2982e04c493",
+          "game_id": "bp35-0a0ad940",
+          "latent_delta_norm": 0.3979904353618622,
+          "latent_surprise_score": 0.013221737928688526,
+          "level_delta": 0,
+          "signal_id": "m2_14d::bp35-0a0ad940::c2982e04c493::0029",
+          "step": 29,
+          "support": 0,
+          "terminal_t1": true,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "world_model_score_counted_as_support": false
+        }
+      ],
+      "support": 0,
+      "terminal_action_histogram": {
+        "ACTION1": 1,
+        "ACTION2": 1,
+        "ACTION3": 2,
+        "ACTION4": 2,
+        "ACTION5": 1,
+        "ACTION6": 7
+      },
+      "terminal_transition_count": 14,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "world_model_score_counted_as_support": false
+    }
+  },
+  "split": {
+    "mode": "by_game",
+    "train_games": [
+      "ar25-e3c63847",
+      "bp35-0a0ad940",
+      "cd82-fb555c5d",
+      "cn04-65d47d14"
+    ],
+    "val_games": [
+      "dc22-4c9bff3e",
+      "ft09-0d8bbf25"
+    ]
+  },
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "adds_signal_beyond_g6_claim": false,
+    "candidate_signal_families": 5,
+    "controlled_test_required": true,
+    "fusion_score_counted_as_support": false,
+    "high_surprise_transitions": 16,
+    "proxy_completion_gap_candidates": 16,
+    "ready_for_a32": false,
+    "ready_for_a33": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_transitions": 5711,
+    "support": 0,
+    "transitions_scored": 5711,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_counted_as_evidence": false,
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false,
+    "world_model_signal_report_built": true
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "world_model_counted_as_evidence": false,
+  "world_model_prediction_counted_as_evidence": false,
+  "world_model_score_counted_as_support": false
+}

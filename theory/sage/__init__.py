@@ -1,0 +1,283 @@
+"""SAGE closed-loop integration scaffolds."""
+
+__all__ = [
+    "DEFAULT_SAGE0_KNOWN_GAME_SCAFFOLD_OUTPUT_PATH",
+    "DEFAULT_SAGE1_KNOWN_GAME_RESULTS_PATH",
+    "DEFAULT_SAGE1B_POLICY_LOOP_GUARD_RESULTS_PATH",
+    "DEFAULT_SAGE2_POLICY_PROBE_RESULTS_PATH",
+    "DEFAULT_SAGE3_SUBGOAL_SWITCH_RESULTS_PATH",
+    "DEFAULT_SAGE4_LONG_HORIZON_RESULTS_PATH",
+    "DEFAULT_SAGE4B_PROGRESS_STALL_RESULTS_PATH",
+    "DEFAULT_SAGE4C_LONG_HORIZON_PROGRESS_STALL_RESULTS_PATH",
+    "DEFAULT_SAGE5_UNKNOWN_GAME_RESULTS_PATH",
+    "DEFAULT_SAGE5B_SWITCH_AUDIT_RESULTS_PATH",
+    "DEFAULT_SAGE5C_LIVE_MINI_FRONTIER_RESULTS_PATH",
+    "DEFAULT_SAGE5D_LIVE_MINI_FRONTIER_M3_RESULTS_PATH",
+    "collect_live_prefix_counterfactual",
+    "decide_subgoal_switch",
+    "evaluate_progress_stall_trigger",
+    "run_sage0_known_game_scaffold",
+    "run_sage1_known_game_closed_loop",
+    "run_sage2_known_game_policy_probe",
+    "run_sage3_subgoal_switch_probe",
+    "run_sage4_long_horizon_transfer",
+    "run_sage4b_progress_stall_trigger_probe",
+    "run_sage4c_long_horizon_progress_stall_transfer",
+    "run_sage5_unknown_game_bounded_probe",
+    "run_sage5b_switch_attribution_placeholder_audit",
+    "run_sage5c_live_mini_frontier_generation",
+    "run_sage5d_live_mini_frontier_m3_execution",
+    "write_sage0_known_game_scaffold",
+    "write_sage1_known_game_results",
+    "write_sage2_policy_probe_results",
+    "write_sage3_subgoal_switch_results",
+    "write_sage4_long_horizon_results",
+    "write_sage4b_progress_stall_results",
+    "write_sage4c_long_horizon_progress_stall_results",
+    "write_sage5_unknown_game_bounded_probe_results",
+    "write_sage5b_switch_attribution_placeholder_audit",
+    "write_sage5c_live_mini_frontier_generation",
+    "write_sage5d_live_mini_frontier_m3_results",
+]
+
+
+def __getattr__(name: str):
+    if name in {
+        "DEFAULT_SAGE0_KNOWN_GAME_SCAFFOLD_OUTPUT_PATH",
+        "run_sage0_known_game_scaffold",
+        "write_sage0_known_game_scaffold",
+    }:
+        from .known_game_closed_loop_scaffold import (
+            DEFAULT_SAGE0_KNOWN_GAME_SCAFFOLD_OUTPUT_PATH,
+            run_sage0_known_game_scaffold,
+            write_sage0_known_game_scaffold,
+        )
+
+        return {
+            "DEFAULT_SAGE0_KNOWN_GAME_SCAFFOLD_OUTPUT_PATH": (
+                DEFAULT_SAGE0_KNOWN_GAME_SCAFFOLD_OUTPUT_PATH
+            ),
+            "run_sage0_known_game_scaffold": run_sage0_known_game_scaffold,
+            "write_sage0_known_game_scaffold": write_sage0_known_game_scaffold,
+        }[name]
+    if name in {
+        "DEFAULT_SAGE1_KNOWN_GAME_RESULTS_PATH",
+        "run_sage1_known_game_closed_loop",
+        "write_sage1_known_game_results",
+    }:
+        from .known_game_closed_loop_runner import (
+            DEFAULT_SAGE1_KNOWN_GAME_RESULTS_PATH,
+            run_sage1_known_game_closed_loop,
+            write_sage1_known_game_results,
+        )
+
+        return {
+            "DEFAULT_SAGE1_KNOWN_GAME_RESULTS_PATH": (
+                DEFAULT_SAGE1_KNOWN_GAME_RESULTS_PATH
+            ),
+            "run_sage1_known_game_closed_loop": run_sage1_known_game_closed_loop,
+            "write_sage1_known_game_results": write_sage1_known_game_results,
+        }[name]
+    if name == "collect_live_prefix_counterfactual":
+        from .live_prefix_counterfactual_collector import (
+            collect_live_prefix_counterfactual,
+        )
+
+        return collect_live_prefix_counterfactual
+    if name == "DEFAULT_SAGE1B_POLICY_LOOP_GUARD_RESULTS_PATH":
+        from .policy_loop_guard import DEFAULT_SAGE1B_POLICY_LOOP_GUARD_RESULTS_PATH
+
+        return DEFAULT_SAGE1B_POLICY_LOOP_GUARD_RESULTS_PATH
+    if name in {
+        "DEFAULT_SAGE2_POLICY_PROBE_RESULTS_PATH",
+        "run_sage2_known_game_policy_probe",
+        "write_sage2_policy_probe_results",
+    }:
+        from .known_game_policy_probe import (
+            DEFAULT_SAGE2_POLICY_PROBE_RESULTS_PATH,
+            run_sage2_known_game_policy_probe,
+            write_sage2_policy_probe_results,
+        )
+
+        return {
+            "DEFAULT_SAGE2_POLICY_PROBE_RESULTS_PATH": (
+                DEFAULT_SAGE2_POLICY_PROBE_RESULTS_PATH
+            ),
+            "run_sage2_known_game_policy_probe": run_sage2_known_game_policy_probe,
+            "write_sage2_policy_probe_results": write_sage2_policy_probe_results,
+        }[name]
+    if name in {
+        "DEFAULT_SAGE3_SUBGOAL_SWITCH_RESULTS_PATH",
+        "decide_subgoal_switch",
+        "run_sage3_subgoal_switch_probe",
+        "write_sage3_subgoal_switch_results",
+    }:
+        from .subgoal_switcher import (
+            DEFAULT_SAGE3_SUBGOAL_SWITCH_RESULTS_PATH,
+            decide_subgoal_switch,
+            run_sage3_subgoal_switch_probe,
+            write_sage3_subgoal_switch_results,
+        )
+
+        return {
+            "DEFAULT_SAGE3_SUBGOAL_SWITCH_RESULTS_PATH": (
+                DEFAULT_SAGE3_SUBGOAL_SWITCH_RESULTS_PATH
+            ),
+            "decide_subgoal_switch": decide_subgoal_switch,
+            "run_sage3_subgoal_switch_probe": run_sage3_subgoal_switch_probe,
+            "write_sage3_subgoal_switch_results": write_sage3_subgoal_switch_results,
+        }[name]
+    if name in {
+        "DEFAULT_SAGE4_LONG_HORIZON_RESULTS_PATH",
+        "run_sage4_long_horizon_transfer",
+        "write_sage4_long_horizon_results",
+    }:
+        from .long_horizon_transfer import (
+            DEFAULT_SAGE4_LONG_HORIZON_RESULTS_PATH,
+            run_sage4_long_horizon_transfer,
+            write_sage4_long_horizon_results,
+        )
+
+        return {
+            "DEFAULT_SAGE4_LONG_HORIZON_RESULTS_PATH": (
+                DEFAULT_SAGE4_LONG_HORIZON_RESULTS_PATH
+            ),
+            "run_sage4_long_horizon_transfer": run_sage4_long_horizon_transfer,
+            "write_sage4_long_horizon_results": write_sage4_long_horizon_results,
+        }[name]
+    if name in {
+        "DEFAULT_SAGE4B_PROGRESS_STALL_RESULTS_PATH",
+        "evaluate_progress_stall_trigger",
+        "run_sage4b_progress_stall_trigger_probe",
+        "write_sage4b_progress_stall_results",
+    }:
+        from .progress_stall_trigger import (
+            DEFAULT_SAGE4B_PROGRESS_STALL_RESULTS_PATH,
+            evaluate_progress_stall_trigger,
+            run_sage4b_progress_stall_trigger_probe,
+            write_sage4b_progress_stall_results,
+        )
+
+        return {
+            "DEFAULT_SAGE4B_PROGRESS_STALL_RESULTS_PATH": (
+                DEFAULT_SAGE4B_PROGRESS_STALL_RESULTS_PATH
+            ),
+            "evaluate_progress_stall_trigger": evaluate_progress_stall_trigger,
+            "run_sage4b_progress_stall_trigger_probe": (
+                run_sage4b_progress_stall_trigger_probe
+            ),
+            "write_sage4b_progress_stall_results": (
+                write_sage4b_progress_stall_results
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE4C_LONG_HORIZON_PROGRESS_STALL_RESULTS_PATH",
+        "run_sage4c_long_horizon_progress_stall_transfer",
+        "write_sage4c_long_horizon_progress_stall_results",
+    }:
+        from .long_horizon_progress_stall_transfer import (
+            DEFAULT_SAGE4C_LONG_HORIZON_PROGRESS_STALL_RESULTS_PATH,
+            run_sage4c_long_horizon_progress_stall_transfer,
+            write_sage4c_long_horizon_progress_stall_results,
+        )
+
+        return {
+            "DEFAULT_SAGE4C_LONG_HORIZON_PROGRESS_STALL_RESULTS_PATH": (
+                DEFAULT_SAGE4C_LONG_HORIZON_PROGRESS_STALL_RESULTS_PATH
+            ),
+            "run_sage4c_long_horizon_progress_stall_transfer": (
+                run_sage4c_long_horizon_progress_stall_transfer
+            ),
+            "write_sage4c_long_horizon_progress_stall_results": (
+                write_sage4c_long_horizon_progress_stall_results
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5_UNKNOWN_GAME_RESULTS_PATH",
+        "run_sage5_unknown_game_bounded_probe",
+        "write_sage5_unknown_game_bounded_probe_results",
+    }:
+        from .unknown_game_bounded_probe import (
+            DEFAULT_SAGE5_UNKNOWN_GAME_RESULTS_PATH,
+            run_sage5_unknown_game_bounded_probe,
+            write_sage5_unknown_game_bounded_probe_results,
+        )
+
+        return {
+            "DEFAULT_SAGE5_UNKNOWN_GAME_RESULTS_PATH": (
+                DEFAULT_SAGE5_UNKNOWN_GAME_RESULTS_PATH
+            ),
+            "run_sage5_unknown_game_bounded_probe": (
+                run_sage5_unknown_game_bounded_probe
+            ),
+            "write_sage5_unknown_game_bounded_probe_results": (
+                write_sage5_unknown_game_bounded_probe_results
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5B_SWITCH_AUDIT_RESULTS_PATH",
+        "run_sage5b_switch_attribution_placeholder_audit",
+        "write_sage5b_switch_attribution_placeholder_audit",
+    }:
+        from .switch_attribution_placeholder_audit import (
+            DEFAULT_SAGE5B_SWITCH_AUDIT_RESULTS_PATH,
+            run_sage5b_switch_attribution_placeholder_audit,
+            write_sage5b_switch_attribution_placeholder_audit,
+        )
+
+        return {
+            "DEFAULT_SAGE5B_SWITCH_AUDIT_RESULTS_PATH": (
+                DEFAULT_SAGE5B_SWITCH_AUDIT_RESULTS_PATH
+            ),
+            "run_sage5b_switch_attribution_placeholder_audit": (
+                run_sage5b_switch_attribution_placeholder_audit
+            ),
+            "write_sage5b_switch_attribution_placeholder_audit": (
+                write_sage5b_switch_attribution_placeholder_audit
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5C_LIVE_MINI_FRONTIER_RESULTS_PATH",
+        "run_sage5c_live_mini_frontier_generation",
+        "write_sage5c_live_mini_frontier_generation",
+    }:
+        from .live_mini_frontier_generation import (
+            DEFAULT_SAGE5C_LIVE_MINI_FRONTIER_RESULTS_PATH,
+            run_sage5c_live_mini_frontier_generation,
+            write_sage5c_live_mini_frontier_generation,
+        )
+
+        return {
+            "DEFAULT_SAGE5C_LIVE_MINI_FRONTIER_RESULTS_PATH": (
+                DEFAULT_SAGE5C_LIVE_MINI_FRONTIER_RESULTS_PATH
+            ),
+            "run_sage5c_live_mini_frontier_generation": (
+                run_sage5c_live_mini_frontier_generation
+            ),
+            "write_sage5c_live_mini_frontier_generation": (
+                write_sage5c_live_mini_frontier_generation
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5D_LIVE_MINI_FRONTIER_M3_RESULTS_PATH",
+        "run_sage5d_live_mini_frontier_m3_execution",
+        "write_sage5d_live_mini_frontier_m3_results",
+    }:
+        from .live_mini_frontier_m3_executor import (
+            DEFAULT_SAGE5D_LIVE_MINI_FRONTIER_M3_RESULTS_PATH,
+            run_sage5d_live_mini_frontier_m3_execution,
+            write_sage5d_live_mini_frontier_m3_results,
+        )
+
+        return {
+            "DEFAULT_SAGE5D_LIVE_MINI_FRONTIER_M3_RESULTS_PATH": (
+                DEFAULT_SAGE5D_LIVE_MINI_FRONTIER_M3_RESULTS_PATH
+            ),
+            "run_sage5d_live_mini_frontier_m3_execution": (
+                run_sage5d_live_mini_frontier_m3_execution
+            ),
+            "write_sage5d_live_mini_frontier_m3_results": (
+                write_sage5d_live_mini_frontier_m3_results
+            ),
+        }[name]
+    raise AttributeError(name)

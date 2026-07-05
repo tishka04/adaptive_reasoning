@@ -1,0 +1,133 @@
+{
+  "candidate_records": [
+    {
+      "contradictions": 0,
+      "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+      "experiments_spent": 3,
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "config": {
+    "planning_result_path": "diagnostics\\m3\\scientific_planning_bp35.json"
+  },
+  "controlled_test_required": true,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "queue_items": [
+    {
+      "a15_a31_candidate": true,
+      "contradictions": 0,
+      "control_evidence": [
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "control_action": "ACTION3",
+          "control_reuse_reason": "",
+          "direction": "support",
+          "effect_size": 1.0,
+          "independent_support_events": 1,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after",
+          "reused_control_support_events": 0,
+          "status": "UNRESOLVED",
+          "support_events": 1,
+          "target_action": "ACTION6"
+        },
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "control_action": "ACTION4",
+          "control_reuse_reason": "",
+          "direction": "support",
+          "effect_size": 1.0,
+          "independent_support_events": 1,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after",
+          "reused_control_support_events": 0,
+          "status": "UNRESOLVED",
+          "support_events": 1,
+          "target_action": "ACTION6"
+        },
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "control_action": "ACTION3",
+          "control_reuse_reason": "no_unused_distinct_control_available",
+          "direction": "support",
+          "effect_size": 1.0,
+          "independent_support_events": 0,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after",
+          "reused_control_support_events": 1,
+          "status": "UNRESOLVED",
+          "support_events": 1,
+          "target_action": "ACTION6"
+        }
+      ],
+      "controlled_test_required": true,
+      "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+      "evidence_summary": {
+        "contradiction_events": 0,
+        "controlled_experiments_run": 3,
+        "independent_support_events": 2,
+        "ready_rule": "independent_support_events>=2 and support_events>=3 and contradiction_events==0",
+        "reused_control_support_events": 1,
+        "support_events": 3
+      },
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "observation_counted_as_confirmation": false,
+      "prior_counted_as_proof": false,
+      "queue_item_id": "m3_6::0001::mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_planning_artifact": "diagnostics\\m3\\scientific_planning_bp35.json",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "scores_by_game": {
+    "bp35-0a0ad940": {
+      "confirmation_precision": 0.0,
+      "correct_confirmations": 0,
+      "correct_refutations": 0,
+      "experiment_actions": 3,
+      "experiment_efficiency": 0.0,
+      "game_id": "bp35-0a0ad940",
+      "human_alignment": 0.0,
+      "hypotheses_confirmed": 0,
+      "hypotheses_refuted": 0,
+      "missed_refutations": 0,
+      "unverifiable": 1,
+      "wrong_confirmations": 0,
+      "wrong_refutations": 0
+    }
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "candidate_records": 1,
+    "contradiction_events": 0,
+    "contradictions": 0,
+    "controlled_test_required": true,
+    "independent_support_events": 2,
+    "observation_counted_as_confirmation": false,
+    "queue_items": 1,
+    "ready_for_a15_revision_candidates": 1,
+    "reused_control_support_events": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "status": "UNRESOLVED",
+    "support": 0,
+    "support_events": 3,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "wrong_confirmations": 0
+}

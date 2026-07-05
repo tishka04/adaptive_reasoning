@@ -1,0 +1,63 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\smoke_hypothesis_anticollapse\task_program_only_memory.pt
+  time_budget=5.0s   mode=development
+  sampler stage: v1
+  planner mode:  prior
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] attached ar25-e3c63847 (family=correspondence, 2 subgoal tests, conf=0.70)
+
+  running agent.main() with 5.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.56 epsilon=0.83 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.62 epsilon=0.81 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] LEVEL-UP iter=3 iter_actions=24 levels_completed=1 state=NOT_FINISHED action=ACTION2
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=1 best_level=1 total_wins=1
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.87 epsilon=0.10 total_wins=1 best_level=1 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-REPLAY LEVEL-UP iter=4 ri=23 levels_completed=1 state=NOT_FINISHED bonus_until=30s
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=1 (our iter_level=1)
+[DIAG ar25-e3c63847] TASK-PROGRAM attach target_level=2 kind=level-specific family=correspondence subgoals=4 conf=0.64
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=1 action=ACTION5 subgoal=[human-program] confirm ACTION5 switches the controlled entity on level 2 source=prior score=-0.5905779576121011 energy=0.6885639131069183 goal_prog=0.2500472692481708 risk=0.15851063829787268 sources={'prior': 1, 'heuristic': 4, 'random': 7} top=[#1 prior ACTION5 s=-0.591, #2 heuristic ACTION5 s=-0.678, #3 heuristic ACTION5 s=-0.694]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=2 action=ACTION5 subgoal=[human-program] confirm ACTION5 switches the controlled entity on level 2 source=prior score=-0.5702653376067854 energy=0.6843602061271667 goal_prog=0.25003659753201646 risk=0.14166666666666677 sources={'prior': 1, 'heuristic': 4, 'random': 7} top=[#1 prior ACTION5 s=-0.57, #2 heuristic ACTION5 s=-0.664, #3 random ACTION4 s=-0.67]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=3 action=ACTION5 subgoal=[human-program] confirm ACTION5 switches the controlled entity on level 2 source=prior score=-0.5507570267221071 energy=0.6807235181331635 goal_prog=0.25003282167745056 risk=0.12551020408163271 sources={'prior': 1, 'heuristic': 4, 'random': 7} top=[#1 prior ACTION5 s=-0.551, #2 random ACTION7 s=-0.625, #3 random ACTION5 s=-0.656]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=4 action=ACTION5 subgoal=[human-program] confirm ACTION5 switches the controlled entity on level 2 source=prior score=-0.5322712306545875 energy=0.6782280206680298 goal_prog=0.2500392338952224 risk=0.11000000000000017 sources={'prior': 1, 'heuristic': 4, 'random': 7} top=[#1 prior ACTION5 s=-0.532, #2 heuristic ACTION5 s=-0.656, #3 heuristic ACTION5 s=-0.664]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=5 action=ACTION5 subgoal=[human-program] confirm ACTION5 switches the controlled entity on level 2 source=prior score=-0.5143272866447162 energy=0.6750203669071198 goal_prog=0.2500368861401512 risk=0.09509803921568641 sources={'prior': 1, 'heuristic': 4, 'random': 7} top=[#1 prior ACTION5 s=-0.514, #2 random ACTION7 s=-0.573, #3 random ACTION7 s=-0.619]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=6 action=ACTION5 subgoal=[human-program] confirm ACTION5 switches the controlled entity on level 2 source=prior score=-0.4972797948005725 energy=0.6731055080890656 goal_prog=0.2500490157508466 risk=0.08076923076923116 sources={'prior': 1, 'heuristic': 4, 'random': 7} top=[#1 prior ACTION5 s=-0.497, #2 heuristic ACTION5 s=-0.58, #3 random ACTION5 s=-0.615]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=9 action=ACTION2 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.44383405827412026 energy=0.6731666028499603 goal_prog=0.25003227231718483 risk=0.026102526505752375 sources={'prior': 5, 'heuristic': 4, 'random': 3} top=[#1 prior ACTION2 s=-0.444, #2 random ACTION3 s=-0.469, #3 prior ACTION3 s=-0.486]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=10 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.486086847541339 energy=0.6791446208953857 goal_prog=0.2500339313992299 risk=0.06250485625485636 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 prior ACTION3 s=-0.486, #2 heuristic ACTION3 s=-0.49, #3 prior ACTION1 s=-0.493]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=11 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=heuristic score=-0.46546529449260576 energy=0.6712890863418579 goal_prog=0.20003732729965124 risk=1.5210235484805495e-16 sources={'prior': 4, 'heuristic': 3, 'random': 5} top=[#1 heuristic ACTION3 s=-0.465, #2 random ACTION4 s=-0.477, #3 prior ACTION3 s=-0.482]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=12 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.4790878203635548 energy=0.67790487408638 goal_prog=0.2500323731401295 risk=0.05662878787878798 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 prior ACTION3 s=-0.479, #2 prior ACTION1 s=-0.486, #3 prior ACTION5 s=-0.49]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=15 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=heuristic score=-0.4592734473742895 energy=0.6649156510829926 goal_prog=0.2000350285336026 risk=1.1826148278111433e-16 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 heuristic ACTION3 s=-0.459, #2 heuristic ACTION5 s=-0.459, #3 heuristic ACTION4 s=-0.464]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=16 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.4663796025031518 energy=0.6758412718772888 goal_prog=0.25003377228131285 risk=0.046092389411355066 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 prior ACTION3 s=-0.466, #2 prior ACTION1 s=-0.474, #3 prior ACTION5 s=-0.477]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=17 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=heuristic score=-0.4628916083645891 energy=0.6682164967060089 goal_prog=0.2000308987873723 risk=7.531709764377852e-17 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 heuristic ACTION3 s=-0.463, #2 prior ACTION3 s=-0.464, #3 prior ACTION1 s=-0.471]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=18 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=random score=-0.45998884872090223 energy=0.6634951829910278 goal_prog=0.20003678918074003 risk=0.002272727272727402 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 random ACTION5 s=-0.46, #2 prior ACTION3 s=-0.461, #3 heuristic ACTION3 s=-0.465]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=19 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.45670943714720597 energy=0.674435019493103 goal_prog=0.2500397171024815 risk=0.03826659451659472 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 prior ACTION3 s=-0.457, #2 heuristic ACTION5 s=-0.465, #3 prior ACTION5 s=-0.467]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=20 action=ACTION3 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.45404854638099396 energy=0.6739419996738434 goal_prog=0.25003845005630865 risk=0.03601249615593888 sources={'prior': 4, 'heuristic': 4, 'random': 4} top=[#1 prior ACTION3 s=-0.454, #2 heuristic ACTION3 s=-0.459, #3 prior ACTION5 s=-0.465]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=36 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.43482775601461826 energy=0.6729525923728943 goal_prog=0.2500393652153434 risk=0.01783802308802325 sources={'prior': 3, 'heuristic': 2, 'random': 7} top=[#1 prior ACTION5 s=-0.435, #2 prior ACTION1 s=-0.435, #3 heuristic ACTION4 s=-0.449]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=40 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.4211032178942673 energy=0.6707337498664856 goal_prog=0.25004225079828757 risk=0.006528499278499537 sources={'prior': 3, 'heuristic': 4, 'random': 5} top=[#1 prior ACTION5 s=-0.421, #2 prior ACTION1 s=-0.435, #3 heuristic ACTION5 s=-0.447]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=60 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.4076067718742707 energy=0.6628159880638123 goal_prog=0.25002944217339973 risk=6.317464211687171e-17 sources={'prior': 3, 'heuristic': 3, 'random': 6} top=[#1 prior ACTION5 s=-0.408, #2 prior ACTION1 s=-0.436, #3 prior ACTION4 s=-0.443]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=80 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.40273042290027666 energy=0.6580058038234711 goal_prog=0.2500302634525724 risk=6.989008475882631e-17 sources={'prior': 3, 'heuristic': 4, 'random': 5} top=[#1 prior ACTION5 s=-0.403, #2 prior ACTION4 s=-0.413, #3 prior ACTION1 s=-0.436]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=81 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=heuristic score=-0.3960678496085166 energy=0.6014513969421387 goal_prog=0.2000315992474498 risk=8.156716185566589e-17 sources={'prior': 3, 'heuristic': 4, 'random': 5} top=[#1 heuristic ACTION5 s=-0.396, #2 prior ACTION5 s=-0.402, #3 prior ACTION4 s=-0.412]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=82 action=ACTION5 subgoal=[human-program] after switching control, chain short lateral repositioning with  source=prior score=-0.40171323587856045 energy=0.6578732430934906 goal_prog=0.25004220649861963 risk=2.3342666309332017e-16 sources={'prior': 3, 'heuristic': 4, 'random': 5} top=[#1 prior ACTION5 s=-0.402, #2 prior ACTION4 s=-0.411, #3 prior ACTION1 s=-0.435]
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=1 deaths_in_iter=1 reached_win=False set_preserve_flag=True trajectory_sources={'prior': 85, 'heuristic': 4, 'random': 1}
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           True
+  max level:     1
+  total actions: 460
+  assoc wins:    1
+  elapsed:       8.4s
+  final goal:    [human] switch control and drive the active shape through the downward corridor until one yellow and one purple shape correspond
+
+  --no-save-memory set; cross-game memory NOT written back

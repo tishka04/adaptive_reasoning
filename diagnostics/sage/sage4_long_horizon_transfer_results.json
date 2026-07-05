@@ -1,0 +1,160 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "comparison": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "all_budgets_gate_passed": false,
+    "any_budget_gate_passed": false,
+    "budgets_evaluated": [
+      50,
+      150,
+      300
+    ],
+    "budgets_gate_passed": 0,
+    "budgets_total": 3,
+    "discovered_new_candidate_targets_beyond_bp35": false,
+    "outcome_status": "SAGE_LOOP_DISCIPLINE_TRANSFER_FAILED_CANDIDATE_ONLY",
+    "outcome_status_is_candidate_only": true,
+    "policy_result_counted_as_confirmation": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_4"
+  },
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "benchmark_run": false,
+    "budgets": [
+      50,
+      150,
+      300
+    ],
+    "game_id": "ar25-e3c63847",
+    "gate_thresholds": {
+      "post_switch_repeat_threshold": 0.5,
+      "repeat_collapse_threshold": 0.5
+    },
+    "inputs_read": [
+      "M2.15",
+      "M3.7e",
+      "M3.7f",
+      "P1"
+    ],
+    "long_horizon_transfer_probe": true,
+    "max_counterfactual_collections": 8,
+    "schema_version": "sage.long_horizon_transfer_results.v1"
+  },
+  "outcome_status": "SAGE_LOOP_DISCIPLINE_TRANSFER_FAILED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "per_budget_results": [
+    {
+      "budget": 50,
+      "gate": {
+        "gate_passed": false,
+        "no_repeat_collapse": false,
+        "post_switch_repeat_discipline": true,
+        "selected_action_always_legal": true,
+        "subgoal_switches_happened": false,
+        "useful_subgoal_capability": false
+      },
+      "metrics": {
+        "active_counterfactuals_after_exhaustion": 0,
+        "env_steps": 50,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 0,
+        "policy_result_counted_as_confirmation": false,
+        "post_switch_repeat_rate": 0.0,
+        "repeated_action_arg_rate": 0.96,
+        "rerun_m2_m3_effective_requests_generated": 0,
+        "rerun_m2_m3_requested": 0,
+        "selected_action_always_legal": true,
+        "subgoal_switch_success_rate": 0.0,
+        "subgoal_switches": 0,
+        "subgoals_used": [],
+        "support": 0,
+        "terminal_rate": 0.0,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_4",
+        "unique_state_signatures": 7
+      },
+      "sage3_outcome_status": "NO_SUBGOAL_SWITCH_TRIGGERED_CANDIDATE_ONLY"
+    },
+    {
+      "budget": 150,
+      "gate": {
+        "gate_passed": false,
+        "no_repeat_collapse": false,
+        "post_switch_repeat_discipline": true,
+        "selected_action_always_legal": true,
+        "subgoal_switches_happened": false,
+        "useful_subgoal_capability": false
+      },
+      "metrics": {
+        "active_counterfactuals_after_exhaustion": 0,
+        "env_steps": 150,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 0,
+        "policy_result_counted_as_confirmation": false,
+        "post_switch_repeat_rate": 0.0,
+        "repeated_action_arg_rate": 0.986667,
+        "rerun_m2_m3_effective_requests_generated": 0,
+        "rerun_m2_m3_requested": 0,
+        "selected_action_always_legal": true,
+        "subgoal_switch_success_rate": 0.0,
+        "subgoal_switches": 0,
+        "subgoals_used": [],
+        "support": 0,
+        "terminal_rate": 0.0,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_4",
+        "unique_state_signatures": 7
+      },
+      "sage3_outcome_status": "NO_SUBGOAL_SWITCH_TRIGGERED_CANDIDATE_ONLY"
+    },
+    {
+      "budget": 300,
+      "gate": {
+        "gate_passed": false,
+        "no_repeat_collapse": false,
+        "post_switch_repeat_discipline": true,
+        "selected_action_always_legal": true,
+        "subgoal_switches_happened": false,
+        "useful_subgoal_capability": false
+      },
+      "metrics": {
+        "active_counterfactuals_after_exhaustion": 0,
+        "env_steps": 300,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 0,
+        "policy_result_counted_as_confirmation": false,
+        "post_switch_repeat_rate": 0.0,
+        "repeated_action_arg_rate": 0.993333,
+        "rerun_m2_m3_effective_requests_generated": 0,
+        "rerun_m2_m3_requested": 0,
+        "selected_action_always_legal": true,
+        "subgoal_switch_success_rate": 0.0,
+        "subgoal_switches": 0,
+        "subgoals_used": [],
+        "support": 0,
+        "terminal_rate": 0.0,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_4",
+        "unique_state_signatures": 7
+      },
+      "sage3_outcome_status": "NO_SUBGOAL_SWITCH_TRIGGERED_CANDIDATE_ONLY"
+    }
+  ],
+  "policy_result_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_4",
+  "wrong_confirmations": 0
+}

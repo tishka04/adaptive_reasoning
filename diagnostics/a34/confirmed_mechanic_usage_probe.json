@@ -1,0 +1,173 @@
+{
+  "config": {
+    "baseline_order": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "registry_path": "diagnostics\\a33\\confirmed_mechanics_registry.json"
+  },
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "summary": {
+    "action_choice_changed": 1,
+    "action_prioritized_from_registry": 1,
+    "contextually_useful": 0,
+    "contradictions": 0,
+    "functional_progress": 1,
+    "mechanics_probed": 1,
+    "not_useful": 0,
+    "truth_status": "NOT_REEVALUATED_BY_A34",
+    "useful": 1,
+    "useful_new_states": 1,
+    "wrong_confirmations": 0
+  },
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_REEVALUATED_BY_A34",
+  "usage_probes": [
+    {
+      "action_choice_changed": true,
+      "action_prioritized_from_registry": true,
+      "baseline_action": "ACTION3",
+      "baseline_measurement": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "contradiction": false,
+      "functional_progress": true,
+      "game_id": "bp35-0a0ad940",
+      "game_score_unchanged_or_improved": true,
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "local_patch_before_after_observed": true,
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "registry_entry": {
+        "action": "ACTION6",
+        "confirmed_support_independent": 2,
+        "control_actions_used": [
+          "ACTION3",
+          "ACTION4"
+        ],
+        "evidence_notes": [
+          "confirmed_support_uses_independent_controls_only",
+          "reused_control_support_excluded_from_independent_support",
+          "trace_and_prior_support_not_counted"
+        ],
+        "experiments_spent": 3,
+        "game_id": "bp35-0a0ad940",
+        "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "known_scope": "local_context",
+        "mechanic_family": "position_effect_candidate",
+        "predicted_metric": "local_patch_before_after",
+        "prior_counted_as_proof": false,
+        "reused_control_support_excluded": 1,
+        "source_artifact": "diagnostics\\a32\\a15_revision_decisions.json",
+        "source_decision": "REVISION_ACCEPTED_AS_CONFIRMED",
+        "status": "confirmed",
+        "support_reused_as_independent": false,
+        "trace_support_counted_as_proof": false,
+        "unresolved_candidates_excluded": true
+      },
+      "revision_performed": false,
+      "trace_support_counted_as_proof": false,
+      "treatment_action": "ACTION6",
+      "treatment_measurement": {
+        "changed": true,
+        "changed_cell_ratio": 0.006348,
+        "changed_pixels": 26,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 1,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "truth_status": "NOT_REEVALUATED_BY_A34",
+      "useful_new_state": true,
+      "utility_assessment": "USEFUL",
+      "wrong_confirmations": 0
+    }
+  ],
+  "wrong_confirmations": 0
+}

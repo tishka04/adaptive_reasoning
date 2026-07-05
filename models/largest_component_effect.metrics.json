@@ -1,0 +1,87 @@
+{
+  "target": "delta_largest_component_size",
+  "n_rows": 21217,
+  "n_train": 16973,
+  "n_test": 4244,
+  "feature_count": 41,
+  "input_mode": "local",
+  "local_feature_count": 18,
+  "missing_local_feature_rows": 0,
+  "overall": {
+    "count": 4244,
+    "r2": -0.0017,
+    "mae": 1.5779,
+    "target_std": 18.7062
+  },
+  "nonzero_target": {
+    "count": 699,
+    "r2": 0.0427,
+    "mae": 7.405,
+    "target_std": 46.0911
+  },
+  "nonzero_target_rate": 0.1633,
+  "baseline_model_a_r2": 0.0466,
+  "r2_delta_vs_baseline": -0.0483,
+  "top_feature_importances": [
+    {
+      "feature": "largest_component_centroid_x",
+      "importance": 0.29747
+    },
+    {
+      "feature": "largest_component_distance_to_nearest",
+      "importance": 0.10689
+    },
+    {
+      "feature": "largest_component_fill_ratio",
+      "importance": 0.09388
+    },
+    {
+      "feature": "is_ACTION4",
+      "importance": 0.07561
+    },
+    {
+      "feature": "largest_component_centroid_y",
+      "importance": 0.07415
+    },
+    {
+      "feature": "cursor_distance_to_largest_centroid",
+      "importance": 0.03173
+    },
+    {
+      "feature": "action_repeat_count",
+      "importance": 0.0268
+    },
+    {
+      "feature": "cursor_x",
+      "importance": 0.02678
+    },
+    {
+      "feature": "is_ACTION3",
+      "importance": 0.02311
+    },
+    {
+      "feature": "cursor_y",
+      "importance": 0.02213
+    },
+    {
+      "feature": "last_action_is_ACTION4",
+      "importance": 0.0209
+    },
+    {
+      "feature": "largest_component_bbox_area",
+      "importance": 0.01964
+    },
+    {
+      "feature": "is_ACTION7",
+      "importance": 0.01878
+    },
+    {
+      "feature": "prev_action_is_ACTION3",
+      "importance": 0.01471
+    },
+    {
+      "feature": "largest_component_nearest_size_ratio",
+      "importance": 0.01437
+    }
+  ]
+}

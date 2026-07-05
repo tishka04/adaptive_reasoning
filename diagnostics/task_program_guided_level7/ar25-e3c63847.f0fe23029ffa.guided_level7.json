@@ -1,0 +1,3795 @@
+{
+  "episode_id": "f0fe23029ffa",
+  "frontier": {
+    "danger_actions": [
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2"
+    ],
+    "immediate_danger_action": "ACTION2",
+    "level_start_index": 486,
+    "terminal_index": 823
+  },
+  "game_id": "ar25-e3c63847",
+  "guided_search": {
+    "action3_contradictions": 0,
+    "beam_width": 48,
+    "best": {
+      "action3_contradiction": false,
+      "action_data": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "actions": [
+        "ACTION5",
+        "ACTION4",
+        "ACTION5",
+        "ACTION2",
+        "ACTION2",
+        "ACTION3",
+        "ACTION3"
+      ],
+      "available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "depth": 7,
+      "died": false,
+      "grid_hash": "b8f02e6aac4f8956",
+      "level": 7,
+      "match_delta_from_parent": 2.8015,
+      "match_delta_from_root": 19.3377,
+      "match_score": {
+        "best_pairs": [
+          {
+            "bbox_iou": 0.1,
+            "centroid_distance": 10.7311,
+            "col_alignment": 0.8722,
+            "first": {
+              "centroid_x": 10.545,
+              "centroid_y": 11.909,
+              "color": 10,
+              "height": 18,
+              "max_x": 17,
+              "max_y": 17,
+              "min_x": 0,
+              "min_y": 0,
+              "size": 88,
+              "width": 18
+            },
+            "row_alignment": 0.8874,
+            "score": 4.2545,
+            "second": {
+              "centroid_x": 18.6,
+              "centroid_y": 19.0,
+              "color": 11,
+              "height": 18,
+              "max_x": 26,
+              "max_y": 26,
+              "min_x": 12,
+              "min_y": 9,
+              "size": 135,
+              "width": 15
+            },
+            "shape_score": 0.9167,
+            "size_score": 0.6519
+          },
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 37.7831,
+            "col_alignment": 0.7079,
+            "first": {
+              "centroid_x": 37.0,
+              "centroid_y": 16.0,
+              "color": 10,
+              "height": 3,
+              "max_x": 53,
+              "max_y": 17,
+              "min_x": 21,
+              "min_y": 15,
+              "size": 88,
+              "width": 33
+            },
+            "row_alignment": 0.4762,
+            "score": 2.6536,
+            "second": {
+              "centroid_x": 18.6,
+              "centroid_y": 49.0,
+              "color": 11,
+              "height": 18,
+              "max_x": 26,
+              "max_y": 59,
+              "min_x": 12,
+              "min_y": 42,
+              "size": 135,
+              "width": 15
+            },
+            "shape_score": 0.3106,
+            "size_score": 0.6519
+          },
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 43.7251,
+            "col_alignment": 0.306,
+            "first": {
+              "centroid_x": 13.0,
+              "centroid_y": 34.0,
+              "color": 10,
+              "height": 15,
+              "max_x": 14,
+              "max_y": 41,
+              "min_x": 12,
+              "min_y": 27,
+              "size": 40,
+              "width": 3
+            },
+            "row_alignment": 0.9972,
+            "score": 2.0303,
+            "second": {
+              "centroid_x": 56.725,
+              "centroid_y": 34.174,
+              "color": 11,
+              "height": 57,
+              "max_x": 63,
+              "max_y": 63,
+              "min_x": 48,
+              "min_y": 7,
+              "size": 327,
+              "width": 16
+            },
+            "shape_score": 0.2253,
+            "size_score": 0.1223
+          }
+        ],
+        "component_counts": {
+          "10": 5,
+          "11": 3,
+          "cursor": 6
+        },
+        "cursor_near_target": 2,
+        "dotted_constraint_violations": 2,
+        "matched_pairs": 1,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "score": -10.7671,
+        "shape_overlap_or_alignment": 1.7877,
+        "unmatched_first": 4,
+        "unmatched_second": 2
+      },
+      "reached_next_level": false,
+      "repeat_penalty": 0.0,
+      "search_score": 2367.3154,
+      "state": "NOT_FINISHED",
+      "submit_not_ready": false
+    },
+    "best_match": {
+      "action3_contradiction": false,
+      "action_data": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "actions": [
+        "ACTION5",
+        "ACTION4",
+        "ACTION5",
+        "ACTION2",
+        "ACTION2",
+        "ACTION3",
+        "ACTION3",
+        "ACTION5"
+      ],
+      "available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "depth": 8,
+      "died": false,
+      "grid_hash": "f3034ab8ad5ae95c",
+      "level": 7,
+      "match_delta_from_parent": 0.0015,
+      "match_delta_from_root": 19.3391,
+      "match_score": {
+        "best_pairs": [
+          {
+            "bbox_iou": 0.1,
+            "centroid_distance": 10.7311,
+            "col_alignment": 0.8722,
+            "first": {
+              "centroid_x": 10.545,
+              "centroid_y": 11.909,
+              "color": 10,
+              "height": 18,
+              "max_x": 17,
+              "max_y": 17,
+              "min_x": 0,
+              "min_y": 0,
+              "size": 88,
+              "width": 18
+            },
+            "row_alignment": 0.8874,
+            "score": 4.2545,
+            "second": {
+              "centroid_x": 18.6,
+              "centroid_y": 19.0,
+              "color": 11,
+              "height": 18,
+              "max_x": 26,
+              "max_y": 26,
+              "min_x": 12,
+              "min_y": 9,
+              "size": 135,
+              "width": 15
+            },
+            "shape_score": 0.9167,
+            "size_score": 0.6519
+          },
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 37.7831,
+            "col_alignment": 0.7079,
+            "first": {
+              "centroid_x": 37.0,
+              "centroid_y": 16.0,
+              "color": 10,
+              "height": 3,
+              "max_x": 53,
+              "max_y": 17,
+              "min_x": 21,
+              "min_y": 15,
+              "size": 88,
+              "width": 33
+            },
+            "row_alignment": 0.4762,
+            "score": 2.6536,
+            "second": {
+              "centroid_x": 18.6,
+              "centroid_y": 49.0,
+              "color": 11,
+              "height": 18,
+              "max_x": 26,
+              "max_y": 59,
+              "min_x": 12,
+              "min_y": 42,
+              "size": 135,
+              "width": 15
+            },
+            "shape_score": 0.3106,
+            "size_score": 0.6519
+          },
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 43.7063,
+            "col_alignment": 0.3063,
+            "first": {
+              "centroid_x": 13.0,
+              "centroid_y": 34.0,
+              "color": 10,
+              "height": 15,
+              "max_x": 14,
+              "max_y": 41,
+              "min_x": 12,
+              "min_y": 27,
+              "size": 40,
+              "width": 3
+            },
+            "row_alignment": 0.9959,
+            "score": 2.0337,
+            "second": {
+              "centroid_x": 56.706,
+              "centroid_y": 34.258,
+              "color": 11,
+              "height": 56,
+              "max_x": 63,
+              "max_y": 63,
+              "min_x": 48,
+              "min_y": 8,
+              "size": 326,
+              "width": 16
+            },
+            "shape_score": 0.2277,
+            "size_score": 0.1227
+          }
+        ],
+        "component_counts": {
+          "10": 5,
+          "11": 3,
+          "cursor": 6
+        },
+        "cursor_near_target": 2,
+        "dotted_constraint_violations": 2,
+        "matched_pairs": 1,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "score": -10.7656,
+        "shape_overlap_or_alignment": 1.7884,
+        "unmatched_first": 4,
+        "unmatched_second": 2
+      },
+      "reached_next_level": false,
+      "repeat_penalty": 0.0,
+      "search_score": 2290.8991,
+      "state": "NOT_FINISHED",
+      "submit_not_ready": false
+    },
+    "evaluated_branches": 1698,
+    "horizon": 8,
+    "improved_match_states": 1373,
+    "include_action6": false,
+    "reaches_level_8": false,
+    "root_match_score": {
+      "best_pairs": [
+        {
+          "bbox_iou": 0.0,
+          "centroid_distance": 47.511,
+          "col_alignment": 0.2508,
+          "first": {
+            "centroid_x": 9.654,
+            "centroid_y": 28.115,
+            "color": 10,
+            "height": 63,
+            "max_x": 17,
+            "max_y": 62,
+            "min_x": 0,
+            "min_y": 0,
+            "size": 208,
+            "width": 18
+          },
+          "row_alignment": 0.9142,
+          "score": 3.8901,
+          "second": {
+            "centroid_x": 56.856,
+            "centroid_y": 33.521,
+            "color": 11,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 48,
+            "min_y": 0,
+            "size": 334,
+            "width": 16
+          },
+          "shape_score": 0.9366,
+          "size_score": 0.6228
+        },
+        {
+          "bbox_iou": 0.0513,
+          "centroid_distance": 19.6493,
+          "col_alignment": 0.696,
+          "first": {
+            "centroid_x": 37.0,
+            "centroid_y": 16.0,
+            "color": 10,
+            "height": 3,
+            "max_x": 53,
+            "max_y": 17,
+            "min_x": 21,
+            "min_y": 15,
+            "size": 88,
+            "width": 33
+          },
+          "row_alignment": 0.9304,
+          "score": 3.2324,
+          "second": {
+            "centroid_x": 17.846,
+            "centroid_y": 20.385,
+            "color": 11,
+            "height": 18,
+            "max_x": 26,
+            "max_y": 26,
+            "min_x": 12,
+            "min_y": 9,
+            "size": 117,
+            "width": 15
+          },
+          "shape_score": 0.3106,
+          "size_score": 0.7521
+        },
+        {
+          "bbox_iou": 0.0,
+          "centroid_distance": 35.0179,
+          "col_alignment": 0.4524,
+          "first": {
+            "centroid_x": 59.5,
+            "centroid_y": 16.0,
+            "color": 10,
+            "height": 3,
+            "max_x": 62,
+            "max_y": 17,
+            "min_x": 57,
+            "min_y": 15,
+            "size": 16,
+            "width": 6
+          },
+          "row_alignment": 0.9048,
+          "score": 1.9576,
+          "second": {
+            "centroid_x": 25.0,
+            "centroid_y": 10.0,
+            "color": 11,
+            "height": 1,
+            "max_x": 25,
+            "max_y": 10,
+            "min_x": 25,
+            "min_y": 10,
+            "size": 1,
+            "width": 1
+          },
+          "shape_score": 0.25,
+          "size_score": 0.0625
+        }
+      ],
+      "component_counts": {
+        "10": 3,
+        "11": 5,
+        "cursor": 4
+      },
+      "cursor_near_target": 1,
+      "dotted_constraint_violations": 2,
+      "matched_pairs": 0,
+      "pair_colors": [
+        10,
+        11
+      ],
+      "score": -30.1048,
+      "shape_overlap_or_alignment": 1.816,
+      "unmatched_first": 3,
+      "unmatched_second": 5
+    },
+    "submit_attempts": 283,
+    "submit_not_ready": 9,
+    "top": [
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION2",
+          "ACTION2",
+          "ACTION3",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 7,
+        "died": false,
+        "grid_hash": "b8f02e6aac4f8956",
+        "level": 7,
+        "match_delta_from_parent": 2.8015,
+        "match_delta_from_root": 19.3377,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7251,
+              "col_alignment": 0.306,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9972,
+              "score": 2.0303,
+              "second": {
+                "centroid_x": 56.725,
+                "centroid_y": 34.174,
+                "color": 11,
+                "height": 57,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 7,
+                "size": 327,
+                "width": 16
+              },
+              "shape_score": 0.2253,
+              "size_score": 0.1223
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7671,
+          "shape_overlap_or_alignment": 1.7877,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2367.3154,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 7,
+        "died": false,
+        "grid_hash": "9974eaecb914700e",
+        "level": 7,
+        "match_delta_from_parent": 2.8015,
+        "match_delta_from_root": 19.3377,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7251,
+              "col_alignment": 0.306,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9972,
+              "score": 2.0303,
+              "second": {
+                "centroid_x": 56.725,
+                "centroid_y": 34.174,
+                "color": 11,
+                "height": 57,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 7,
+                "size": 327,
+                "width": 16
+              },
+              "shape_score": 0.2253,
+              "size_score": 0.1223
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7671,
+          "shape_overlap_or_alignment": 1.7877,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2367.3154,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 7,
+        "died": false,
+        "grid_hash": "9974eaecb914700e",
+        "level": 7,
+        "match_delta_from_parent": 2.8015,
+        "match_delta_from_root": 19.3377,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7251,
+              "col_alignment": 0.306,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9972,
+              "score": 2.0303,
+              "second": {
+                "centroid_x": 56.725,
+                "centroid_y": 34.174,
+                "color": 11,
+                "height": 57,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 7,
+                "size": 327,
+                "width": 16
+              },
+              "shape_score": 0.2253,
+              "size_score": 0.1223
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7671,
+          "shape_overlap_or_alignment": 1.7877,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2367.3154,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 7,
+        "died": false,
+        "grid_hash": "9974eaecb914700e",
+        "level": 7,
+        "match_delta_from_parent": 2.8015,
+        "match_delta_from_root": 19.3377,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7251,
+              "col_alignment": 0.306,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9972,
+              "score": 2.0303,
+              "second": {
+                "centroid_x": 56.725,
+                "centroid_y": 34.174,
+                "color": 11,
+                "height": 57,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 7,
+                "size": 327,
+                "width": 16
+              },
+              "shape_score": 0.2253,
+              "size_score": 0.1223
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7671,
+          "shape_overlap_or_alignment": 1.7877,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2367.3154,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 7,
+        "died": false,
+        "grid_hash": "9974eaecb914700e",
+        "level": 7,
+        "match_delta_from_parent": 2.8015,
+        "match_delta_from_root": 19.3377,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7251,
+              "col_alignment": 0.306,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9972,
+              "score": 2.0303,
+              "second": {
+                "centroid_x": 56.725,
+                "centroid_y": 34.174,
+                "color": 11,
+                "height": 57,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 7,
+                "size": 327,
+                "width": 16
+              },
+              "shape_score": 0.2253,
+              "size_score": 0.1223
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7671,
+          "shape_overlap_or_alignment": 1.7877,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2367.3154,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION2",
+          "ACTION2",
+          "ACTION3",
+          "ACTION3",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "f3034ab8ad5ae95c",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      }
+    ],
+    "top_contradictions": [],
+    "top_match": [
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION2",
+          "ACTION2",
+          "ACTION3",
+          "ACTION3",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "f3034ab8ad5ae95c",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "8cb70f77b96d859b",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2290.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "0edc0c533f36b54f",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2275.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "0edc0c533f36b54f",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2275.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION1",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "0edc0c533f36b54f",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2275.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 8,
+        "died": false,
+        "grid_hash": "0edc0c533f36b54f",
+        "level": 7,
+        "match_delta_from_parent": 0.0015,
+        "match_delta_from_root": 19.3391,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7063,
+              "col_alignment": 0.3063,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9959,
+              "score": 2.0337,
+              "second": {
+                "centroid_x": 56.706,
+                "centroid_y": 34.258,
+                "color": 11,
+                "height": 56,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 8,
+                "size": 326,
+                "width": 16
+              },
+              "shape_score": 0.2277,
+              "size_score": 0.1227
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7656,
+          "shape_overlap_or_alignment": 1.7884,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2275.8991,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION2",
+          "ACTION2",
+          "ACTION3",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "depth": 7,
+        "died": false,
+        "grid_hash": "b8f02e6aac4f8956",
+        "level": 7,
+        "match_delta_from_parent": 2.8015,
+        "match_delta_from_root": 19.3377,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 10.7311,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 11.909,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8874,
+              "score": 4.2545,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 37.7831,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 16.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 17,
+                "min_x": 21,
+                "min_y": 15,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4762,
+              "score": 2.6536,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7251,
+              "col_alignment": 0.306,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9972,
+              "score": 2.0303,
+              "second": {
+                "centroid_x": 56.725,
+                "centroid_y": 34.174,
+                "color": 11,
+                "height": 57,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 7,
+                "size": 327,
+                "width": 16
+              },
+              "shape_score": 0.2253,
+              "size_score": 0.1223
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 2,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -10.7671,
+          "shape_overlap_or_alignment": 1.7877,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 2367.3154,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      }
+    ]
+  },
+  "rule_model": {
+    "expected_matched_pairs": 0,
+    "expected_unmatched_total": 22,
+    "pair_color_candidates": [
+      {
+        "avg_ready_score": -83.8122,
+        "best_ready_score": -25.37,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "q90_ready_score": -27.5772,
+        "selected": true
+      },
+      {
+        "avg_ready_score": 3.844,
+        "best_ready_score": 28.2268,
+        "median_matched_pairs": 1.0,
+        "pair_colors": [
+          4,
+          5
+        ],
+        "q90_ready_score": 25.1383,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -16.4502,
+        "best_ready_score": -3.0488,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          4,
+          10
+        ],
+        "q90_ready_score": -3.2656,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -18.7143,
+        "best_ready_score": -12.4367,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          5,
+          10
+        ],
+        "q90_ready_score": -13.7923,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -81.7245,
+        "best_ready_score": -23.5767,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          4,
+          11
+        ],
+        "q90_ready_score": -25.914,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -76.8386,
+        "best_ready_score": -27.741,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          5,
+          11
+        ],
+        "q90_ready_score": -30.3423,
+        "selected": false
+      }
+    ],
+    "pair_colors": [
+      10,
+      11
+    ],
+    "ready_level_up_actions": {
+      "ACTION2": 5,
+      "ACTION3": 1
+    },
+    "ready_scores": [
+      -25.37,
+      -29.7844,
+      -84.3373,
+      -93.554,
+      -106.972,
+      -162.8557
+    ],
+    "ready_threshold": -27.5772
+  },
+  "rule_report": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\diagnostics\\rule_inference\\ar25-e3c63847.global_rule_inference.json",
+  "target_level": 7
+}

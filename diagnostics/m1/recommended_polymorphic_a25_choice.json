@@ -1,0 +1,251 @@
+{
+  "config": {
+    "candidate_id": null,
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "estimates_path": "diagnostics\\m1\\experiment_value_estimates.json",
+    "game_id": null,
+    "pretest_path": "diagnostics\\m1\\polymorphic_a25_pretest.json"
+  },
+  "executed_experiment": {
+    "action": "ACTION6",
+    "candidate_id": "m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+    "candidate_type": "position_effect_candidate",
+    "changed_pixels": 26,
+    "concrete_action": {
+      "action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "name": "ACTION6",
+      "selection_reason": "polymorphic_adapter:first_matching_position_action"
+    },
+    "env_actions": 1,
+    "error": "",
+    "experiment_status": "UNRESOLVED",
+    "game_id": "bp35-0a0ad940",
+    "game_state_after": "NOT_FINISHED",
+    "game_state_before": "NOT_FINISHED",
+    "hypothesis_status": "UNRESOLVED",
+    "levels_after": 0,
+    "levels_before": 0,
+    "measured_delta": {
+      "changed": true,
+      "changed_cell_ratio": 0.006348,
+      "changed_pixels": 26,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 1,
+      "local_patch_after": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          10
+        ]
+      ],
+      "local_patch_available": true,
+      "local_patch_before": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          3
+        ]
+      ],
+      "measurable": true,
+      "metric": "local_patch_before_after",
+      "patch_bbox": [
+        0,
+        17,
+        1,
+        19
+      ]
+    },
+    "mechanic_experiment_generated": true,
+    "prior_counted_as_proof": false,
+    "required_observation": "local_patch_before_after",
+    "revision_performed": false,
+    "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+    "trace_support_counted_as_proof": false,
+    "wrong_confirmations": 0
+  },
+  "mechanic_hypothesis_candidate": {
+    "action": "ACTION6",
+    "candidate_id": "m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+    "expected_information_gain": 0.8636,
+    "expected_outcome": "local_patch_before_after: estimated before/after delta",
+    "game_id": "bp35-0a0ad940",
+    "mechanic_family": "position_effect_candidate",
+    "observed_delta": {
+      "changed": true,
+      "changed_cell_ratio": 0.006348,
+      "changed_pixels": 26,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 1,
+      "local_patch_after": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          10
+        ]
+      ],
+      "local_patch_available": true,
+      "local_patch_before": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          3
+        ]
+      ],
+      "measurable": true,
+      "metric": "local_patch_before_after",
+      "patch_bbox": [
+        0,
+        17,
+        1,
+        19
+      ]
+    },
+    "predicted_metric": "local_patch_before_after",
+    "prior_counted_as_proof": false,
+    "score": 0.8636,
+    "status": "UNRESOLVED",
+    "trace_support_counted_as_proof": false
+  },
+  "mechanic_observation": {
+    "action": "ACTION6",
+    "candidate_id": "m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+    "changed_pixels": 26,
+    "env_actions": 1,
+    "expected_outcome": "local_patch_before_after: estimated before/after delta",
+    "game_id": "bp35-0a0ad940",
+    "mechanic_experiment_generated": true,
+    "mechanic_family": "position_effect_candidate",
+    "observed_delta": {
+      "changed": true,
+      "changed_cell_ratio": 0.006348,
+      "changed_pixels": 26,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 1,
+      "local_patch_after": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          10
+        ]
+      ],
+      "local_patch_available": true,
+      "local_patch_before": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          3
+        ]
+      ],
+      "measurable": true,
+      "metric": "local_patch_before_after",
+      "patch_bbox": [
+        0,
+        17,
+        1,
+        19
+      ]
+    },
+    "predicted_metric": "local_patch_before_after",
+    "prior_counted_as_proof": false,
+    "revision_performed": false,
+    "status": "UNRESOLVED",
+    "trace_support_counted_as_proof": false,
+    "wrong_confirmations": 0
+  },
+  "polymorphic_a25_choice": {
+    "a25_choice_type": "polymorphic_mechanic_experiment",
+    "action": "ACTION6",
+    "candidate_id": "m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+    "competing_keys": [
+      "m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate"
+    ],
+    "expected_information_gain": 0.8636,
+    "expected_outcome": "local_patch_before_after: estimated before/after delta",
+    "game_id": "bp35-0a0ad940",
+    "mechanic_family": "position_effect_candidate",
+    "predicted_metric": "local_patch_before_after",
+    "predicted_outcomes": [
+      "local_patch_before_after: estimated before/after delta"
+    ],
+    "prediction_families": [
+      "position_effect_candidate"
+    ],
+    "prior_counted_as_proof": false,
+    "score": 0.8636,
+    "selection_reason": "m1_3h_recommended_highest_information_gain",
+    "status": "UNRESOLVED",
+    "trace_support_counted_as_proof": false
+  },
+  "prior_counted_as_proof": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a25_polymorphic_choices": 1,
+    "env_actions": 1,
+    "expected_information_gain": 0.8636,
+    "mechanic_observations": 1,
+    "observable_delta": true,
+    "predicted_metric": "local_patch_before_after",
+    "recommended_choices": 1,
+    "revision_performed": false,
+    "selected_action": "ACTION6",
+    "selected_candidate_id": "m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+    "selected_game_id": "bp35-0a0ad940",
+    "selected_mechanic_family": "position_effect_candidate",
+    "wrong_confirmations": 0
+  },
+  "trace_support_counted_as_proof": false
+}

@@ -1,0 +1,1822 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "blocked_replay_events": [],
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "benchmark_run": false,
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "execution_mode": "live_prefix_replay_context",
+    "inputs_read": [
+      "SAGE.5c"
+    ],
+    "max_requests": 8,
+    "min_requests": 4,
+    "schema_version": "sage.live_mini_frontier_m3_execution.v1",
+    "source_sage5c_path": "diagnostics\\sage\\sage5c_live_mini_frontier_results.json"
+  },
+  "controlled_experiments": [
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "object_delta_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0001",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0001",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0001",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            9,
+            9
+          ],
+          [
+            4,
+            9,
+            9
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0003",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0003",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0003",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            11,
+            11
+          ],
+          [
+            4,
+            11,
+            11
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0005",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0005",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0005",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION5",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 1,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "control_signal": 1.0,
+      "controlled_delta": {
+        "absolute_effect_size": 4.0,
+        "baseline_signal": 1.0,
+        "direction": "support",
+        "effect_size": 4.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0006",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0006",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0006",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0007",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0007",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0007",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION5",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 1,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "control_signal": 1.0,
+      "controlled_delta": {
+        "absolute_effect_size": 4.0,
+        "baseline_signal": 1.0,
+        "direction": "support",
+        "effect_size": 4.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0008",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0008",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0008",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0009",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0009",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0009",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_replay_events": 0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION5",
+      "control_context_signature_verified": true,
+      "control_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 1,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "control_signal": 1.0,
+      "controlled_delta": {
+        "absolute_effect_size": 4.0,
+        "baseline_signal": 1.0,
+        "direction": "support",
+        "effect_size": 4.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "execution_failures": 0,
+      "execution_mode": "live_prefix_replay_context",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "live_prefix_replay_exact": true,
+      "metric": "local_patch_before_after",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0010",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0010",
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0010",
+      "support": 0,
+      "support_events": 1,
+      "support_events_counted_as_support": false,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+      "wrong_confirmations": 0
+    }
+  ],
+  "generated_requests_counted_as_support": false,
+  "mini_frontier_execution_counted_as_evidence": false,
+  "outcome_status": "SAGE_LIVE_MINI_FRONTIER_M3_EXECUTED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "policy_result_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "selected_requests": [
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_object_delta_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "object_delta_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0001",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0001",
+      "source_step": 1,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0001",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0003",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0003",
+      "source_step": 3,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0003",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0005",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0005",
+      "source_step": 5,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0005",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0006",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0006",
+      "source_step": 6,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0006",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0007",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0007",
+      "source_step": 7,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0007",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0008",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0008",
+      "source_step": 8,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0008",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0009",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0009",
+      "source_step": 9,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0009",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0010",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0010",
+      "source_step": 10,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0010",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "source_sage5c_summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "budgets_evaluated": [
+      50,
+      150,
+      300
+    ],
+    "effective_request_ratio": 0.06734,
+    "effective_requests_generated": 20,
+    "generated_requests_counted_as_support": false,
+    "levels_completed_max": 0,
+    "max_generated_requests": 20,
+    "mini_frontier_counted_as_evidence": false,
+    "mini_frontier_hypotheses_generated": 20,
+    "outcome_status": "SAGE_LIVE_MINI_FRONTIER_GENERATED_CANDIDATE_ONLY",
+    "outcome_status_is_candidate_only": true,
+    "policy_result_counted_as_confirmation": false,
+    "rerun_m2_m3_requested": 297,
+    "residual_placeholder_switch_ratio": 0.905229,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_placeholder_switch_ratio": 0.970588,
+    "source_sage5_outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+    "source_sage5b_outcome_status": "SAGE_SWITCH_ATTRIBUTION_PLACEHOLDER_DEPENDENCY_HIGH_CANDIDATE_ONLY",
+    "support": 0,
+    "true_exploratory_or_scientific_switches": 29,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+    "unresolved_placeholder_switches_after_generation": 277
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action5_executed": true,
+    "action6_executed": true,
+    "blocked_replay_events": 0,
+    "context_snapshot_hash_verified_events": 8,
+    "contradiction_events": 0,
+    "execution_failures": 0,
+    "families_executed": {
+      "local_patch_change_candidate": 7,
+      "object_delta_candidate": 1
+    },
+    "gate_passed": true,
+    "live_prefix_replay_exact_events": 8,
+    "local_patch_change_candidate_executed": true,
+    "max_requests": 8,
+    "min_requests": 4,
+    "mini_frontier_execution_counted_as_evidence": false,
+    "neutral_events": 0,
+    "object_delta_candidate_executed": true,
+    "outcome_status": "SAGE_LIVE_MINI_FRONTIER_M3_EXECUTED_CANDIDATE_ONLY",
+    "policy_result_counted_as_confirmation": false,
+    "requests_blocked": 0,
+    "requests_executed": 8,
+    "revision_status": "CANDIDATE_ONLY",
+    "selected_requests": 8,
+    "source_sage5c_effective_requests_generated": 20,
+    "source_sage5c_outcome_status": "SAGE_LIVE_MINI_FRONTIER_GENERATED_CANDIDATE_ONLY",
+    "support": 0,
+    "support_events": 8,
+    "support_events_counted_as_support": false,
+    "target_actions_executed": {
+      "ACTION5": 5,
+      "ACTION6": 3
+    },
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5D"
+  },
+  "support": 0,
+  "support_events_counted_as_support": false,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_5D",
+  "wrong_confirmations": 0
+}

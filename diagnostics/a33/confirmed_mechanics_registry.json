@@ -1,0 +1,49 @@
+{
+  "config": {
+    "decisions_path": "diagnostics\\a32\\a15_revision_decisions.json"
+  },
+  "confirmed_mechanics": [
+    {
+      "action": "ACTION6",
+      "confirmed_support_independent": 2,
+      "control_actions_used": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "evidence_notes": [
+        "confirmed_support_uses_independent_controls_only",
+        "reused_control_support_excluded_from_independent_support",
+        "trace_and_prior_support_not_counted"
+      ],
+      "experiments_spent": 3,
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "known_scope": "local_context",
+      "mechanic_family": "position_effect_candidate",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "reused_control_support_excluded": 1,
+      "source_artifact": "diagnostics\\a32\\a15_revision_decisions.json",
+      "source_decision": "REVISION_ACCEPTED_AS_CONFIRMED",
+      "status": "confirmed",
+      "support_reused_as_independent": false,
+      "trace_support_counted_as_proof": false,
+      "unresolved_candidates_excluded": true
+    }
+  ],
+  "prior_counted_as_proof": false,
+  "registry_stage": "A33",
+  "source_stage": "A32",
+  "summary": {
+    "confirmed_mechanics": 1,
+    "confirmed_support_independent_total": 2,
+    "experiments_spent_total": 3,
+    "known_scope": "local_context",
+    "prior_counted_as_proof": false,
+    "reused_control_support_excluded_total": 1,
+    "trace_support_counted_as_proof": false,
+    "unresolved_candidates_excluded": true
+  },
+  "trace_support_counted_as_proof": false,
+  "unresolved_candidates_excluded": true
+}

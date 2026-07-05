@@ -1,0 +1,1388 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "central_experimental_unit": "safe_stop_state -> candidate_action_or_sequence",
+    "controls": [
+      "hold_or_stop_state",
+      "relation_progress_policy"
+    ],
+    "execution_performed": false,
+    "inputs_read": [
+      "M2.G1"
+    ],
+    "objective_conversion_hypotheses_path": "diagnostics\\m2\\objective_conversion_hypotheses.json",
+    "relation_progress_policy_horizon_rule": "post_stop_horizon = candidate_len",
+    "schema_version": "m3.objective_conversion_experiment_requests.v1"
+  },
+  "controlled_test_required": true,
+  "execution_performed": false,
+  "experiment_result_counted_as_scientific_verdict": false,
+  "m2_hypothesis_counted_as_confirmation": false,
+  "objective_conversion_experiment_requests": [
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "ACTION3_terminal_adjusted_progress <= hold_or_stop_state_terminal_adjusted_progress or ACTION3_terminal_reentry",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "ACTION3_terminal_adjusted_progress > hold_or_stop_state_terminal_adjusted_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "no improvement over hold_or_stop_state or terminal re-entry",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_safe_stop_objective_conversion",
+      "hypothesis_tested": "After terminal-safe stop, ACTION3 may convert relation progress into objective progress without terminal re-entry.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From a replayed P3.G1 safe-stop state, test whether a single post-stop action raises terminal-adjusted progress over hold_or_stop_state without terminal re-entry.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H001::post_safe_stop_objective_conversion",
+      "requested_experiment_style": "stop_state_action_matrix",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H001",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "ACTION4_terminal_adjusted_progress <= hold_or_stop_state_terminal_adjusted_progress or ACTION4_terminal_reentry",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "ACTION4_terminal_adjusted_progress > hold_or_stop_state_terminal_adjusted_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "no improvement over hold_or_stop_state or terminal re-entry",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_safe_stop_objective_conversion",
+      "hypothesis_tested": "After terminal-safe stop, ACTION4 may convert relation progress into objective progress without terminal re-entry.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From a replayed P3.G1 safe-stop state, test whether a single post-stop action raises terminal-adjusted progress over hold_or_stop_state without terminal re-entry.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H002::post_safe_stop_objective_conversion",
+      "requested_experiment_style": "stop_state_action_matrix",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H002",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION6",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "ACTION6_objective_progress <= hold_or_stop_state_objective_progress or ACTION6_terminal_reentry",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "ACTION6_ready_context_objective_progress > hold_or_stop_state_objective_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "ACTION6 gives no objective gain or re-enters terminal risk",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_safe_stop_objective_conversion",
+      "hypothesis_tested": "After terminal-safe stop, ACTION6 may reactivate objective conversion only in specific readiness contexts.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From a replayed P3.G1 safe-stop state, test whether a single post-stop action raises terminal-adjusted progress over hold_or_stop_state without terminal re-entry.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H003::post_safe_stop_objective_conversion",
+      "requested_experiment_style": "stop_state_action_matrix",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H003",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "alternate_relation_target_objective_progress <= nearest_distance_decreases_objective_progress",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "alternate_relation_target_objective_progress > nearest_distance_decreases_objective_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "generic distance_decreases predicts no objective gain after safe stop",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "subgoal_target_reselection",
+      "hypothesis_tested": "After terminal-safe stop, distance_decreases toward E136/E137/E138/E139 may no longer be the right target relation.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether candidate actions targeting a non-closest relation beat generic relation-progress continuation.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H004::subgoal_target_reselection",
+      "requested_experiment_style": "relation_target_ablation_after_safe_stop",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H004",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "non_closest_relation_target_levels_completed <= closest_relation_target_levels_completed",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "non_closest_relation_target_levels_completed > closest_relation_target_levels_completed"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "non-closest relation target fails to improve completion",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "subgoal_target_reselection",
+      "hypothesis_tested": "After terminal-safe stop, the policy may need to select a relation target other than the closest one.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether candidate actions targeting a non-closest relation beat generic relation-progress continuation.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H005::subgoal_target_reselection",
+      "requested_experiment_style": "relation_target_ablation_after_safe_stop",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H005",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION6",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "global_configuration_metric_does_not_predict_non_terminal_objective_progress_better_than_relation_delta",
+          "metric": "final_game_state",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "global_configuration_metric_predicts_non_terminal_objective_progress_better_than_relation_delta"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "global transition does not outperform relation_delta or remains terminal",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "subgoal_target_reselection",
+      "hypothesis_tested": "After terminal-safe stop, a global configuration transition may be a better objective signal than any local relation.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether candidate actions targeting a non-closest relation beat generic relation-progress continuation.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H006::subgoal_target_reselection",
+      "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H006",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION6",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "ready_state_conversion_progress <= non_ready_state_conversion_progress",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "ready_state_conversion_progress > non_ready_state_conversion_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "conversion actions do not differ between ready and non-ready states",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_condition",
+      "hypothesis_tested": "A readiness condition may be required before any post-safe-stop conversion action is useful.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether conversion actions only help when an objective-readiness signature is present, vs hold and relation progress controls.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H007::objective_readiness_condition",
+      "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H007",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "plateau_conditioned_conversion_progress <= immediate_conversion_progress",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "plateau_conditioned_conversion_progress > immediate_conversion_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "plateau-conditioned conversion does not beat immediate conversion",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_condition",
+      "hypothesis_tested": "Readiness after safe stop may depend on a plateau in relation progress.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether conversion actions only help when an objective-readiness signature is present, vs hold and relation progress controls.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H008::objective_readiness_condition",
+      "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H008",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION4"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "candidate_len": 1,
+          "condition_family": "single_step",
+          "condition_id": "candidate_ACTION6",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 1,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h1",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 1,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 1,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "horizon_ready_conversion_terminal_rate >= horizon_unaware_conversion_terminal_rate or no_objective_gain",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "horizon_ready_conversion_terminal_rate < horizon_unaware_conversion_terminal_rate"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "horizon-aware readiness does not reduce terminal re-entry or remains passive",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_condition",
+      "hypothesis_tested": "Readiness after safe stop may depend on HUD/horizon or consumed-action budget.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether conversion actions only help when an objective-readiness signature is present, vs hold and relation progress controls.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H009::objective_readiness_condition",
+      "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H009",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION3",
+            "ACTION4"
+          ],
+          "candidate_len": 2,
+          "condition_family": "short_sequence",
+          "condition_id": "candidate_ACTION3_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 2,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h2",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 2,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 2,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "ACTION3_ACTION4_levels_completed <= best_single_step_levels_completed or sequence_terminal_reentry",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "ACTION3_ACTION4_levels_completed > best_single_step_levels_completed"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "ACTION3_ACTION4 fails to beat single-step controls or re-enters terminal",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "terminal_safe_sequence_search",
+      "hypothesis_tested": "ACTION3,ACTION4 after safe stop may convert better than either single-step action.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether a short post-stop sequence converts better than single steps and horizon-matched relation progress without terminal re-entry.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H010::terminal_safe_sequence_search",
+      "requested_experiment_style": "post_safe_stop_short_sequence_probe",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H010",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION4",
+            "ACTION3"
+          ],
+          "candidate_len": 2,
+          "condition_family": "short_sequence",
+          "condition_id": "candidate_ACTION4_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 2,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h2",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 2,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 2,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "ACTION4_ACTION3_levels_completed <= best_single_step_levels_completed or sequence_terminal_reentry",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "ACTION4_ACTION3_levels_completed > best_single_step_levels_completed"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "ACTION4_ACTION3 fails to beat single-step controls or re-enters terminal",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "terminal_safe_sequence_search",
+      "hypothesis_tested": "ACTION4,ACTION3 after safe stop may convert better than either single-step action.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether a short post-stop sequence converts better than single steps and horizon-matched relation progress without terminal re-entry.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H011::terminal_safe_sequence_search",
+      "requested_experiment_style": "post_safe_stop_short_sequence_probe",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H011",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_conditions": [
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "candidate_len": 2,
+          "condition_family": "short_sequence",
+          "condition_id": "candidate_ACTION6_ACTION3",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 2,
+          "role": "candidate_objective_conversion"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "candidate_len": 2,
+          "condition_family": "short_sequence",
+          "condition_id": "candidate_ACTION6_ACTION4",
+          "condition_kind": "candidate",
+          "post_stop_horizon": 2,
+          "role": "candidate_objective_conversion"
+        }
+      ],
+      "control_conditions": [
+        {
+          "action_or_sequence": [],
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "post_stop_horizon": 0,
+          "role": "zero_action_control",
+          "semantics": "observe_safe_stop_endpoint_without_extra_action"
+        },
+        {
+          "action_or_sequence": null,
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy_h2",
+          "condition_kind": "control",
+          "horizon_matched_to_candidate_len": 2,
+          "policy": "abstract_mechanic_policy_p3g0_style",
+          "post_stop_horizon": 2,
+          "role": "relation_progress_continuation_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+        "secondary": "candidate beats relation_progress_policy"
+      },
+      "diagnostic_metrics": [
+        "relation_delta_after_stop",
+        "changed_pixels",
+        "new_relation_states",
+        "distance_decreases_count",
+        "objective_readiness_signature_delta"
+      ],
+      "execution_performed": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "guarded_ACTION6_sequence_terminal_adjusted_progress <= best_non_ACTION6_sequence_terminal_adjusted_progress or terminal_reentry",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g1_hypothesis",
+          "support_condition": "guarded_ACTION6_sequence_terminal_adjusted_progress > best_non_ACTION6_sequence_terminal_adjusted_progress"
+        },
+        {
+          "failure_condition": "candidate_delta_terminal_adjusted_progress_vs_hold <= 0 or candidate_terminal_reentry == true",
+          "metric": "delta_terminal_adjusted_progress_vs_hold",
+          "minimum_effect_size": 1,
+          "source": "m3_g1_central_decision_guard",
+          "support_condition": "candidate_delta_terminal_adjusted_progress_vs_hold > 0 and candidate_terminal_reentry == false"
+        }
+      ],
+      "falsification_signal": "guarded ACTION6 sequence gives no objective gain or re-enters terminal",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "terminal_safe_sequence_search",
+      "hypothesis_tested": "ACTION6,ACTION3 or ACTION6,ACTION4 after safe stop may convert only with a terminal guard.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "objective_conversion_request_counted_as_support": false,
+      "planning_rationale": "From the safe-stop state, test whether a short post-stop sequence converts better than single steps and horizon-matched relation progress without terminal re-entry.",
+      "primary_metrics": [
+        "delta_terminal_adjusted_progress_vs_hold",
+        "terminal_adjusted_progress_after_stop",
+        "terminal_reentry_rate",
+        "objective_completion_signal",
+        "levels_completed_after_rollout"
+      ],
+      "request_id": "m3_g1::m2g1_bp35-0a0ad940_objective_conversion_H012::terminal_safe_sequence_search",
+      "requested_experiment_style": "post_safe_stop_short_sequence_probe",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_spec": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "policy_condition": "objective_aware_abstract_policy_lambda_0",
+        "source": "P3.G1",
+        "stop_trigger_reason": "objective_aware_terminal_risk_score_stop"
+      },
+      "source_hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H012",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "status": "READY_FOR_M3_OBJECTIVE_CONVERSION_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "objective_conversion_request_counted_as_support": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "skipped_objective_conversion_hypotheses": [],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "all_four_families_covered": true,
+    "candidate_conditions_total": 22,
+    "central_decision_rule": "candidate beats hold_or_stop_state on delta_terminal_adjusted_progress_vs_hold > 0 AND terminal_reentry == false",
+    "controlled_test_required": true,
+    "controls_per_request": [
+      "hold_or_stop_state",
+      "relation_progress_policy"
+    ],
+    "covered_hypothesis_families": [
+      "objective_readiness_condition",
+      "post_safe_stop_objective_conversion",
+      "subgoal_target_reselection",
+      "terminal_safe_sequence_search"
+    ],
+    "diagnostic_metrics": [
+      "relation_delta_after_stop",
+      "changed_pixels",
+      "new_relation_states",
+      "distance_decreases_count",
+      "objective_readiness_signature_delta"
+    ],
+    "execution_performed": false,
+    "experiment_result_counted_as_scientific_verdict": false,
+    "m2_hypothesis_counted_as_confirmation": false,
+    "objective_conversion_experiment_requests_generated": 12,
+    "objective_conversion_hypotheses_consumed": 12,
+    "objective_conversion_request_counted_as_support": false,
+    "primary_metrics": [
+      "delta_terminal_adjusted_progress_vs_hold",
+      "terminal_adjusted_progress_after_stop",
+      "terminal_reentry_rate",
+      "objective_completion_signal",
+      "levels_completed_after_rollout"
+    ],
+    "relation_progress_policy_horizon_rule": "post_stop_horizon = candidate_len",
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "secondary_decision_rule": "candidate beats relation_progress_policy",
+    "skipped_objective_conversion_hypotheses": 0,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

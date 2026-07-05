@@ -1,0 +1,466 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "comparison": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "active_counterfactual_collection_allowed": true,
+    "all_budgets_gate_passed": true,
+    "any_budget_gate_passed": true,
+    "baselines_compared": [
+      "random_legal",
+      "neutral_legal_fallback",
+      "SAGE.4c"
+    ],
+    "budgets_evaluated": [
+      50,
+      150,
+      300
+    ],
+    "budgets_gate_passed": 3,
+    "budgets_terminal_rate_under_threshold": [
+      50,
+      150,
+      300
+    ],
+    "budgets_total": 3,
+    "budgets_with_progress_stall_detected": [],
+    "budgets_with_subgoal_switches": [
+      50,
+      150,
+      300
+    ],
+    "budgets_without_catastrophic_repeat_collapse": [
+      50,
+      150,
+      300
+    ],
+    "game_id": "sb26-7fbdac44",
+    "no_game_specific_prior": true,
+    "no_human_trace_for_game": true,
+    "offline_counterfactual_allowed": false,
+    "outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+    "outcome_status_is_candidate_only": true,
+    "policy_result_counted_as_confirmation": false,
+    "progress_stall_detector_runs": true,
+    "repeat_collapse_threshold": 0.9,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_sage4c_all_budgets_gate_passed": true,
+    "source_sage4c_outcome_status": "SAGE_PROGRESS_STALL_LONG_HORIZON_ALL_BUDGETS_TRANSFER_CANDIDATE_ONLY",
+    "stop_safe_hold_after_terminal": true,
+    "support": 0,
+    "terminal_rate_guarded": true,
+    "terminal_rate_threshold": 0.05,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+    "unknown_game": true
+  },
+  "config": {
+    "active_counterfactual_collection_allowed": true,
+    "artifacts_not_modified": [
+      "M2",
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "baselines_compared": [
+      "random_legal",
+      "neutral_legal_fallback",
+      "SAGE.4c"
+    ],
+    "benchmark_run": false,
+    "budgets": [
+      50,
+      150,
+      300
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "game_id": "sb26-7fbdac44",
+    "gate_thresholds": {
+      "repeat_collapse_threshold": 0.9,
+      "terminal_rate_threshold": 0.05
+    },
+    "human_traces_dir": "human_traces",
+    "inputs_read": [
+      "M2.15",
+      "M3.7e",
+      "M3.7f",
+      "P1",
+      "SAGE.4c"
+    ],
+    "low_state_novelty_threshold": 3,
+    "m2_dataset_manifest_path": "diagnostics\\m2\\arc_lewm_dataset_manifest.json",
+    "max_counterfactual_collections": 8,
+    "offline_counterfactual_allowed": false,
+    "progress_stall_detector_runs": true,
+    "progress_stall_trigger_enabled": true,
+    "progress_stall_window": 8,
+    "repeated_action_arg_rate_threshold": 0.75,
+    "same_action_arg_repeats": 4,
+    "schema_version": "sage.unknown_game_bounded_probe_results.v1",
+    "seed": 0,
+    "source_sage4c_path": "diagnostics\\sage\\sage4c_long_horizon_progress_stall_transfer_results.json",
+    "stop_safe_hold_after_terminal": true,
+    "terminal_rate_guarded": true,
+    "terminal_rate_threshold": 0.05,
+    "unknown_game_bounded_probe": true
+  },
+  "outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "per_budget_results": [
+    {
+      "baselines": {
+        "neutral_legal_fallback": {
+          "policy": "neutral_legal_fallback",
+          "summary": {
+            "invalid_action_selected": false,
+            "levels_completed": 0,
+            "policy": "neutral_legal_fallback",
+            "policy_result_counted_as_confirmation": false,
+            "repeated_action_arg_rate": 0.98,
+            "selected_action_always_legal": true,
+            "state_changed_rate": 1.0,
+            "steps_executed": 50,
+            "support": 0,
+            "terminal_rate": 0.0,
+            "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+            "unique_state_signatures": 51
+          }
+        },
+        "random_legal": {
+          "policy": "random_legal",
+          "summary": {
+            "invalid_action_selected": false,
+            "levels_completed": 0,
+            "policy": "random_legal",
+            "policy_result_counted_as_confirmation": false,
+            "repeated_action_arg_rate": 0.14,
+            "selected_action_always_legal": true,
+            "state_changed_rate": 1.0,
+            "steps_executed": 50,
+            "support": 0,
+            "terminal_rate": 0.0,
+            "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+            "unique_state_signatures": 51
+          }
+        }
+      },
+      "budget": 50,
+      "gate": {
+        "gate_passed": true,
+        "no_catastrophic_repeat_collapse": true,
+        "no_game_specific_prior": true,
+        "no_human_trace_for_game": true,
+        "offline_counterfactual_allowed": false,
+        "progress_stall_detector_runs": true,
+        "repeat_collapse_threshold": 0.9,
+        "selected_action_always_legal": true,
+        "stop_safe_hold_after_terminal": true,
+        "subgoal_switches_happened": true,
+        "terminal_rate_guarded": true,
+        "terminal_rate_threshold": 0.05,
+        "terminal_rate_under_threshold": true,
+        "unknown_game": true
+      },
+      "metrics": {
+        "active_counterfactual_collection_allowed": true,
+        "active_counterfactuals_after_exhaustion": 0,
+        "env_steps": 50,
+        "invalid_action_selected": false,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 3,
+        "offline_counterfactual_allowed": false,
+        "policy_result_counted_as_confirmation": false,
+        "post_switch_repeat_rate": 0.0,
+        "progress_stall_detected": false,
+        "progress_stall_detector_runs": true,
+        "progress_stall_switches": 0,
+        "repeat_collapse_threshold": 0.9,
+        "repeated_action_arg_rate": 0.0,
+        "rerun_m2_m3_effective_requests_generated": 0,
+        "rerun_m2_m3_requested": 47,
+        "selected_action_always_legal": true,
+        "stop_safe_hold_after_terminal": true,
+        "subgoal_switch_success_rate": 1.0,
+        "subgoal_switches": 50,
+        "subgoals_used": [
+          "explore_new_candidate_action6_target",
+          "rerun_m2_m3"
+        ],
+        "support": 0,
+        "terminal_rate": 0.0,
+        "terminal_rate_guarded": true,
+        "terminal_rate_threshold": 0.05,
+        "terminal_rate_under_threshold": true,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+        "unique_state_signatures": 51
+      },
+      "sage_source_outcome_status": "SAGE_SWITCHES_TO_NEW_LEGAL_SUBGOAL_CANDIDATE_ONLY"
+    },
+    {
+      "baselines": {
+        "neutral_legal_fallback": {
+          "policy": "neutral_legal_fallback",
+          "summary": {
+            "invalid_action_selected": false,
+            "levels_completed": 0,
+            "policy": "neutral_legal_fallback",
+            "policy_result_counted_as_confirmation": false,
+            "repeated_action_arg_rate": 0.984375,
+            "selected_action_always_legal": true,
+            "state_changed_rate": 1.0,
+            "steps_executed": 64,
+            "support": 0,
+            "terminal_rate": 0.015625,
+            "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+            "unique_state_signatures": 65
+          }
+        },
+        "random_legal": {
+          "policy": "random_legal",
+          "summary": {
+            "invalid_action_selected": false,
+            "levels_completed": 0,
+            "policy": "random_legal",
+            "policy_result_counted_as_confirmation": false,
+            "repeated_action_arg_rate": 0.119658,
+            "selected_action_always_legal": true,
+            "state_changed_rate": 1.0,
+            "steps_executed": 117,
+            "support": 0,
+            "terminal_rate": 0.008547,
+            "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+            "unique_state_signatures": 118
+          }
+        }
+      },
+      "budget": 150,
+      "gate": {
+        "gate_passed": true,
+        "no_catastrophic_repeat_collapse": true,
+        "no_game_specific_prior": true,
+        "no_human_trace_for_game": true,
+        "offline_counterfactual_allowed": false,
+        "progress_stall_detector_runs": true,
+        "repeat_collapse_threshold": 0.9,
+        "selected_action_always_legal": true,
+        "stop_safe_hold_after_terminal": true,
+        "subgoal_switches_happened": true,
+        "terminal_rate_guarded": true,
+        "terminal_rate_threshold": 0.05,
+        "terminal_rate_under_threshold": true,
+        "unknown_game": true
+      },
+      "metrics": {
+        "active_counterfactual_collection_allowed": true,
+        "active_counterfactuals_after_exhaustion": 0,
+        "env_steps": 128,
+        "invalid_action_selected": false,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 3,
+        "offline_counterfactual_allowed": false,
+        "policy_result_counted_as_confirmation": false,
+        "post_switch_repeat_rate": 0.0,
+        "progress_stall_detected": false,
+        "progress_stall_detector_runs": true,
+        "progress_stall_switches": 0,
+        "repeat_collapse_threshold": 0.9,
+        "repeated_action_arg_rate": 0.0,
+        "rerun_m2_m3_effective_requests_generated": 0,
+        "rerun_m2_m3_requested": 125,
+        "selected_action_always_legal": true,
+        "stop_safe_hold_after_terminal": true,
+        "subgoal_switch_success_rate": 1.0,
+        "subgoal_switches": 128,
+        "subgoals_used": [
+          "explore_new_candidate_action6_target",
+          "rerun_m2_m3"
+        ],
+        "support": 0,
+        "terminal_rate": 0.007812,
+        "terminal_rate_guarded": true,
+        "terminal_rate_threshold": 0.05,
+        "terminal_rate_under_threshold": true,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+        "unique_state_signatures": 129
+      },
+      "sage_source_outcome_status": "SAGE_SWITCHES_TO_NEW_LEGAL_SUBGOAL_CANDIDATE_ONLY"
+    },
+    {
+      "baselines": {
+        "neutral_legal_fallback": {
+          "policy": "neutral_legal_fallback",
+          "summary": {
+            "invalid_action_selected": false,
+            "levels_completed": 0,
+            "policy": "neutral_legal_fallback",
+            "policy_result_counted_as_confirmation": false,
+            "repeated_action_arg_rate": 0.984375,
+            "selected_action_always_legal": true,
+            "state_changed_rate": 1.0,
+            "steps_executed": 64,
+            "support": 0,
+            "terminal_rate": 0.015625,
+            "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+            "unique_state_signatures": 65
+          }
+        },
+        "random_legal": {
+          "policy": "random_legal",
+          "summary": {
+            "invalid_action_selected": false,
+            "levels_completed": 0,
+            "policy": "random_legal",
+            "policy_result_counted_as_confirmation": false,
+            "repeated_action_arg_rate": 0.119658,
+            "selected_action_always_legal": true,
+            "state_changed_rate": 1.0,
+            "steps_executed": 117,
+            "support": 0,
+            "terminal_rate": 0.008547,
+            "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+            "unique_state_signatures": 118
+          }
+        }
+      },
+      "budget": 300,
+      "gate": {
+        "gate_passed": true,
+        "no_catastrophic_repeat_collapse": true,
+        "no_game_specific_prior": true,
+        "no_human_trace_for_game": true,
+        "offline_counterfactual_allowed": false,
+        "progress_stall_detector_runs": true,
+        "repeat_collapse_threshold": 0.9,
+        "selected_action_always_legal": true,
+        "stop_safe_hold_after_terminal": true,
+        "subgoal_switches_happened": true,
+        "terminal_rate_guarded": true,
+        "terminal_rate_threshold": 0.05,
+        "terminal_rate_under_threshold": true,
+        "unknown_game": true
+      },
+      "metrics": {
+        "active_counterfactual_collection_allowed": true,
+        "active_counterfactuals_after_exhaustion": 0,
+        "env_steps": 128,
+        "invalid_action_selected": false,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 3,
+        "offline_counterfactual_allowed": false,
+        "policy_result_counted_as_confirmation": false,
+        "post_switch_repeat_rate": 0.0,
+        "progress_stall_detected": false,
+        "progress_stall_detector_runs": true,
+        "progress_stall_switches": 0,
+        "repeat_collapse_threshold": 0.9,
+        "repeated_action_arg_rate": 0.0,
+        "rerun_m2_m3_effective_requests_generated": 0,
+        "rerun_m2_m3_requested": 125,
+        "selected_action_always_legal": true,
+        "stop_safe_hold_after_terminal": true,
+        "subgoal_switch_success_rate": 1.0,
+        "subgoal_switches": 128,
+        "subgoals_used": [
+          "explore_new_candidate_action6_target",
+          "rerun_m2_m3"
+        ],
+        "support": 0,
+        "terminal_rate": 0.007812,
+        "terminal_rate_guarded": true,
+        "terminal_rate_threshold": 0.05,
+        "terminal_rate_under_threshold": true,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+        "unique_state_signatures": 129
+      },
+      "sage_source_outcome_status": "SAGE_SWITCHES_TO_NEW_LEGAL_SUBGOAL_CANDIDATE_ONLY"
+    }
+  ],
+  "policy_result_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_sage4c_context": {
+    "all_budgets_gate_passed": true,
+    "budgets_gate_passed": 3,
+    "budgets_total": 3,
+    "outcome_status": "SAGE_PROGRESS_STALL_LONG_HORIZON_ALL_BUDGETS_TRANSFER_CANDIDATE_ONLY",
+    "source_artifact": "SAGE.4c",
+    "source_counted_as_unknown_game_evidence": false,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5"
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "active_counterfactual_collection_allowed": true,
+    "all_budgets_gate_passed": true,
+    "any_budget_gate_passed": true,
+    "baselines_compared": [
+      "random_legal",
+      "neutral_legal_fallback",
+      "SAGE.4c"
+    ],
+    "budgets_evaluated": [
+      50,
+      150,
+      300
+    ],
+    "budgets_gate_passed": 3,
+    "budgets_terminal_rate_under_threshold": [
+      50,
+      150,
+      300
+    ],
+    "budgets_total": 3,
+    "budgets_with_progress_stall_detected": [],
+    "budgets_with_subgoal_switches": [
+      50,
+      150,
+      300
+    ],
+    "budgets_without_catastrophic_repeat_collapse": [
+      50,
+      150,
+      300
+    ],
+    "game_id": "sb26-7fbdac44",
+    "no_game_specific_prior": true,
+    "no_human_trace_for_game": true,
+    "offline_counterfactual_allowed": false,
+    "outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+    "outcome_status_is_candidate_only": true,
+    "policy_result_counted_as_confirmation": false,
+    "progress_stall_detector_runs": true,
+    "repeat_collapse_threshold": 0.9,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_sage4c_all_budgets_gate_passed": true,
+    "source_sage4c_outcome_status": "SAGE_PROGRESS_STALL_LONG_HORIZON_ALL_BUDGETS_TRANSFER_CANDIDATE_ONLY",
+    "stop_safe_hold_after_terminal": true,
+    "support": 0,
+    "terminal_rate_guarded": true,
+    "terminal_rate_threshold": 0.05,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+    "unknown_game": true
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+  "unknown_game_identity": {
+    "game_id": "sb26-7fbdac44",
+    "human_trace_matches": [],
+    "no_game_specific_prior": true,
+    "no_game_specific_prior_reason": "no_human_trace_no_m2_trace_public_unseen_or_unregistered",
+    "no_human_trace_for_game": true,
+    "no_m2_arc_lewm_trace_for_game": true,
+    "public_unseen_or_unregistered": true,
+    "short_game_id": "sb26",
+    "split": "unseen",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5",
+    "unknown_game": true
+  },
+  "wrong_confirmations": 0
+}

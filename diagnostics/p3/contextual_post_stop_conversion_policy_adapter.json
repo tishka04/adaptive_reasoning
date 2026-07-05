@@ -1,0 +1,138 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "execution_performed": false,
+    "schema_version": "p3.contextual_post_stop_conversion_policy_probe.v1",
+    "source_m3g4_path": "diagnostics\\m3\\objective_conversion_diverse_safe_stop_validation.json",
+    "stage": "P3.G2.1"
+  },
+  "contextual_post_stop_policy_adapter": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "adapter_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+    "decision_features": [
+      "sampling_family",
+      "terminal_horizon_remaining",
+      "terminal_horizon_band",
+      "hold_baseline_terminal_adjusted_progress",
+      "hold_baseline_band",
+      "relation_progress_control_summary.best_relation_taps",
+      "relation_progress_control_summary.any_relation_control_terminal_reentry",
+      "candidate_record.new_relation_states_when_available",
+      "changed_pixels_when_available"
+    ],
+    "decision_options": [
+      "hold_or_stop_state",
+      "ACTION6",
+      "ACTION6,ACTION3",
+      "ACTION6,ACTION4"
+    ],
+    "extension_sequence_preference": [
+      "ACTION6,ACTION3",
+      "ACTION6,ACTION4"
+    ],
+    "extension_sequences": [
+      [
+        "ACTION6",
+        "ACTION3"
+      ],
+      [
+        "ACTION6",
+        "ACTION4"
+      ]
+    ],
+    "fallback_sequence": [
+      "ACTION6"
+    ],
+    "min_extension_margin_vs_action6": 5.0,
+    "policy_adapter_counted_as_confirmation": false,
+    "policy_adapter_id": "p3g2::bp35::contextual_post_stop_conversion_policy_adapter",
+    "policy_result_counted_as_scientific_verdict": false,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "risk_model": {
+      "blocked_hold_baseline_bands": [
+        "hold_high_ge_120"
+      ],
+      "blocked_sampling_family_horizon_hold_triples": [
+        "base_prefix_truncation|horizon_mid_45_54|hold_high_ge_120"
+      ],
+      "blocked_sampling_family_horizon_pairs": [
+        "base_prefix_truncation|horizon_mid_45_54"
+      ],
+      "revision_status": "CANDIDATE_ONLY",
+      "risk_model_counted_as_confirmation": false,
+      "support": 0,
+      "terminal_extension_records": [
+        {
+          "candidate_terminal_adjusted_progress_after_stop": 0.0,
+          "delta_terminal_adjusted_progress_vs_hold": -140.0,
+          "hold_baseline_band": "hold_high_ge_120",
+          "safe_stop_id": "m3_g3::safe_stop::006",
+          "sampling_family": "base_prefix_truncation",
+          "selected_if_unblocked": "ACTION6,ACTION3",
+          "terminal_horizon_band": "horizon_mid_45_54"
+        },
+        {
+          "candidate_terminal_adjusted_progress_after_stop": 0.0,
+          "delta_terminal_adjusted_progress_vs_hold": -140.0,
+          "hold_baseline_band": "hold_high_ge_120",
+          "safe_stop_id": "m3_g3::safe_stop::006",
+          "sampling_family": "base_prefix_truncation",
+          "selected_if_unblocked": "ACTION6,ACTION4",
+          "terminal_horizon_band": "horizon_mid_45_54"
+        }
+      ],
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_observed": 2
+    },
+    "selector_rule": {
+      "default": "use ACTION6 if it is nonterminal and beats hold",
+      "extension_gate": "allow ACTION6,ACTION3/ACTION6,ACTION4 only when the sampling_family+terminal_horizon_band scope and hold_baseline_band did not show terminal re-entry in M3.G4",
+      "fallback_if_blocked": "ACTION6, otherwise hold_or_stop_state",
+      "margin_rule": "extension terminal_adjusted_progress must exceed ACTION6 by at least 5.0"
+    },
+    "source_m3g4_counted_as_mechanic_confirmation": false,
+    "source_m3g4_path": "diagnostics\\m3\\objective_conversion_diverse_safe_stop_validation.json",
+    "source_m3g4_validation_outcome_status": "MIXED_BY_SAFE_STOP_FAMILY_CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "policy_adapter_counted_as_confirmation": false,
+  "policy_result_counted_as_scientific_verdict": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "blocked_hold_baseline_bands": 1,
+    "blocked_sampling_family_horizon_pairs": 1,
+    "extension_sequences": [
+      [
+        "ACTION6",
+        "ACTION3"
+      ],
+      [
+        "ACTION6",
+        "ACTION4"
+      ]
+    ],
+    "fallback_sequence": [
+      "ACTION6"
+    ],
+    "policy_adapter_counted_as_confirmation": false,
+    "policy_result_counted_as_scientific_verdict": false,
+    "ready_for_contextual_policy_probe": true,
+    "revision_status": "CANDIDATE_ONLY",
+    "safe_stops_available": 13,
+    "source_m3g4_counted_as_mechanic_confirmation": false,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+    "unsafe_extension_options_observed": 2
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

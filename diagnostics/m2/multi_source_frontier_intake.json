@@ -1,0 +1,93 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "A32",
+      "A33",
+      "A34",
+      "A35",
+      "A36",
+      "A37",
+      "A38",
+      "A39",
+      "A40",
+      "M3"
+    ],
+    "input_frontier_path": "diagnostics\\a40\\frontier_handoff_requests.json",
+    "inputs_read": [
+      "A40"
+    ],
+    "schema_version": "m2.intake.v1"
+  },
+  "frontier_requests": [
+    {
+      "blocked_skill": "",
+      "context_signature": [
+        "ACTION6"
+      ],
+      "failed_precondition": "",
+      "fallback_action": "ACTION3",
+      "fallback_progress": false,
+      "frontier_context_id": "after_ACTION6",
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "live_state_signature": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+      "post_action_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+      "ready_for_m1_or_m3": true,
+      "reason": "context_not_covered_by_scope",
+      "reason_categories": [
+        "uncovered_context",
+        "fallback_no_progress"
+      ],
+      "recommended_next_scientific_action": "generate_new_candidate_mechanics_from_current_state",
+      "request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+      "revision_performed": false,
+      "selected_signal": 0.0,
+      "source_step": 1,
+      "status": "OPEN",
+      "truth_status": "NOT_REEVALUATED_BY_A40",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_skill": "ACTION6",
+      "context_signature": [
+        "ACTION3"
+      ],
+      "failed_precondition": "target_patch_not_already_saturated=true",
+      "fallback_action": "ACTION4",
+      "fallback_progress": false,
+      "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "live_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+      "post_action_state_signature": "(64, 64):463e80161779d559:0:NOT_FINISHED",
+      "ready_for_m1_or_m3": true,
+      "reason": "confirmed_skill_blocked_by_failed_precondition",
+      "reason_categories": [
+        "blocked_skill",
+        "fallback_no_progress"
+      ],
+      "recommended_next_scientific_action": "generate_new_candidate_mechanics_from_current_state",
+      "request_id": "frontier::after_ACTION3_live_after_ACTION6::step_2::confirmed_skill_blocked_by_failed_precondition",
+      "revision_performed": false,
+      "selected_signal": 0.0,
+      "source_step": 2,
+      "status": "OPEN",
+      "truth_status": "NOT_REEVALUATED_BY_A40",
+      "wrong_confirmations": 0
+    }
+  ],
+  "invalid_frontiers": [],
+  "revision_performed": false,
+  "summary": {
+    "closed_or_invalid_frontiers": 0,
+    "frontier_requests_consumed": 2,
+    "input_frontier_path": "diagnostics\\a40\\frontier_handoff_requests.json",
+    "open_frontiers": 2,
+    "ready_for_generation": true,
+    "revision_performed": false,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "wrong_confirmations": 0
+}

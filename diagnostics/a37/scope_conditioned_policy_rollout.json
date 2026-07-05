@@ -1,0 +1,318 @@
+{
+  "config": {
+    "artifacts_not_read": [
+      "M3",
+      "A32",
+      "A34",
+      "A36"
+    ],
+    "baseline_order": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "budget": 4,
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "inputs_read": [
+      "A33",
+      "A35"
+    ],
+    "registry_path": "diagnostics\\a33\\confirmed_mechanics_registry.json",
+    "scope_map_path": "diagnostics\\a35\\confirmed_mechanic_scope_map.json"
+  },
+  "revision_performed": false,
+  "rollout_steps": [
+    {
+      "action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "context_id": "reset_exact",
+      "context_match": true,
+      "context_match_reason": "covered_context_exact",
+      "context_signature": [],
+      "dead_end_or_cycle": false,
+      "decision_reason": "covered_scope_prioritize_confirmed_mechanic",
+      "env_actions": 1,
+      "error": "",
+      "fallback_action": "ACTION3",
+      "functional_progress": true,
+      "game_id": "bp35-0a0ad940",
+      "game_state_after": "NOT_FINISHED",
+      "game_state_before": "NOT_FINISHED",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "levels_after": 0,
+      "levels_before": 0,
+      "measurement": {
+        "changed": true,
+        "changed_cell_ratio": 0.006348,
+        "changed_pixels": 26,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 1,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "policy_selected_action": "ACTION6",
+      "predicted_metric": "local_patch_before_after",
+      "repeated_usefulness": false,
+      "revision_performed": false,
+      "scope_used": "CONTEXTUALLY_STABLE",
+      "selected_from_confirmed_mechanic": true,
+      "selected_signal": 1.0,
+      "state_signature_after": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+      "state_signature_before": "(64, 64):752864a23f2c738f:0:NOT_FINISHED",
+      "step": 0,
+      "truth_status": "NOT_REEVALUATED_BY_A37",
+      "usage_contradiction": false,
+      "useful_new_state": true,
+      "wrong_confirmations": 0
+    },
+    {
+      "action_args": {},
+      "context_id": "after_ACTION6",
+      "context_match": false,
+      "context_match_reason": "no_covered_rollout_context",
+      "context_signature": [
+        "ACTION6"
+      ],
+      "dead_end_or_cycle": false,
+      "decision_reason": "fallback_neutral_exploration",
+      "env_actions": 1,
+      "error": "",
+      "fallback_action": "ACTION3",
+      "functional_progress": false,
+      "game_id": "bp35-0a0ad940",
+      "game_state_after": "NOT_FINISHED",
+      "game_state_before": "NOT_FINISHED",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "levels_after": 0,
+      "levels_before": 0,
+      "measurement": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after"
+      },
+      "policy_selected_action": "ACTION3",
+      "predicted_metric": "local_patch_before_after",
+      "repeated_usefulness": false,
+      "revision_performed": false,
+      "scope_used": "CONTEXTUALLY_STABLE",
+      "selected_from_confirmed_mechanic": false,
+      "selected_signal": 0.0,
+      "state_signature_after": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+      "state_signature_before": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+      "step": 1,
+      "truth_status": "NOT_REEVALUATED_BY_A37",
+      "usage_contradiction": false,
+      "useful_new_state": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "context_id": "after_ACTION3",
+      "context_match": true,
+      "context_match_reason": "covered_context_exact",
+      "context_signature": [
+        "ACTION3"
+      ],
+      "dead_end_or_cycle": false,
+      "decision_reason": "covered_scope_prioritize_confirmed_mechanic",
+      "env_actions": 1,
+      "error": "",
+      "fallback_action": "ACTION4",
+      "functional_progress": false,
+      "game_id": "bp35-0a0ad940",
+      "game_state_after": "NOT_FINISHED",
+      "game_state_before": "NOT_FINISHED",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "levels_after": 0,
+      "levels_before": 0,
+      "measurement": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "policy_selected_action": "ACTION6",
+      "predicted_metric": "local_patch_before_after",
+      "repeated_usefulness": false,
+      "revision_performed": false,
+      "scope_used": "CONTEXTUALLY_STABLE",
+      "selected_from_confirmed_mechanic": true,
+      "selected_signal": 0.0,
+      "state_signature_after": "(64, 64):503cfab224fc8c3f:0:NOT_FINISHED",
+      "state_signature_before": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+      "step": 2,
+      "truth_status": "NOT_REEVALUATED_BY_A37",
+      "usage_contradiction": true,
+      "useful_new_state": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "action_args": {},
+      "context_id": "after_ACTION3_then_ACTION6",
+      "context_match": false,
+      "context_match_reason": "no_covered_rollout_context",
+      "context_signature": [
+        "ACTION3",
+        "ACTION6"
+      ],
+      "dead_end_or_cycle": false,
+      "decision_reason": "fallback_neutral_exploration",
+      "env_actions": 1,
+      "error": "",
+      "fallback_action": "ACTION4",
+      "functional_progress": false,
+      "game_id": "bp35-0a0ad940",
+      "game_state_after": "NOT_FINISHED",
+      "game_state_before": "NOT_FINISHED",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "levels_after": 0,
+      "levels_before": 0,
+      "measurement": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after"
+      },
+      "policy_selected_action": "ACTION4",
+      "predicted_metric": "local_patch_before_after",
+      "repeated_usefulness": false,
+      "revision_performed": false,
+      "scope_used": "CONTEXTUALLY_STABLE",
+      "selected_from_confirmed_mechanic": false,
+      "selected_signal": 0.0,
+      "state_signature_after": "(64, 64):c92ef9033f54fe43:0:NOT_FINISHED",
+      "state_signature_before": "(64, 64):503cfab224fc8c3f:0:NOT_FINISHED",
+      "step": 3,
+      "truth_status": "NOT_REEVALUATED_BY_A37",
+      "usage_contradiction": false,
+      "useful_new_state": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "cycle_or_dead_end_detected": false,
+    "dead_end_or_cycle_steps": 0,
+    "errors": 0,
+    "fallback_steps": 2,
+    "functional_progress_steps": 1,
+    "live_env_actions": 4,
+    "policy_steps": 4,
+    "policy_steps_from_confirmed_mechanic": 2,
+    "repeated_usefulness": 0,
+    "revision_performed": false,
+    "truth_status": "NOT_REEVALUATED_BY_A37",
+    "usage_contradictions": 1,
+    "useful_new_states": 1,
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_REEVALUATED_BY_A37",
+  "wrong_confirmations": 0
+}

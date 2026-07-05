@@ -1,0 +1,468 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "M2 source artifacts",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "environment_step_performed": false,
+    "generator_mode": "llm_wm_m3_grounding_fusion_candidate_only",
+    "inputs_read": [
+      "M2.13a",
+      "M2.14",
+      "M3.7c",
+      "M3.7d",
+      "M3.G6"
+    ],
+    "m2_schema_version": "m2.v1",
+    "policy_rollout_performed": false,
+    "schema_version": "m2.fused_llm_wm_hypotheses.v1",
+    "source_input_packet_path": "diagnostics\\m2\\fused_llm_wm_input_packet.json"
+  },
+  "contract": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "controlled_test_required": true,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  },
+  "controlled_test_required": true,
+  "fused_hypothesis_batches": [
+    {
+      "allowed_hypothesis_families": [
+        "terminal_risk_precondition",
+        "terminal_safe_alternative_action",
+        "wm_llm_disagreement_frontier",
+        "objective_completion_vs_terminal_risk_tradeoff"
+      ],
+      "candidate_hypotheses": [
+        {
+          "candidate_action": "ACTION1",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "frame_before_hash": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+            "live_state_signature": "m2_15_fused:terminal_risk_precondition:m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": true
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_terminal_rate <= matched_control_terminal_rate",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_terminal_rate > matched_control_terminal_rate"
+          },
+          "frontier_context_id": "m2_15_fused::terminal_risk_precondition",
+          "frontier_reason": "LLM_WM_M3_GROUNDED_CONTEXT_FUSION_CANDIDATE_ONLY",
+          "frontier_step": 295,
+          "fused_score_counted_as_support": false,
+          "game_id": "ar25-e3c63847",
+          "hypothesis_family": "terminal_risk_precondition",
+          "hypothesis_id": "m2_15_fused::terminal_risk_precondition::001",
+          "llm_output_counted_as_evidence": false,
+          "m3_observation_counted_as_confirmation": false,
+          "predicted_effect": "A specific action/context/action-set precondition marks a terminal-risk transition selected by ARC-LeWM.",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": true,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "llm_not_counted_as_evidence",
+              "world_model_score_not_counted_as_support",
+              "m3_support_events_not_counted_as_support"
+            ],
+            "priority_score": 4.232,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof."
+            ],
+            "raw_proposal_ids": [
+              "m2_15::llm::m2::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+              "m2_15::wm::m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+              "m2m3::m2_14_lewm::terminal_risk_replication::010"
+            ],
+            "sources": [
+              "llm",
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_15::llm_wm_grounding_fusion",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "terminal_risk_support_events_counted_as_support": false,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "terminal_risk_precondition_exceeds_matched_controls",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "offline_trace_context_controlled_candidate",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION2",
+              "ACTION5",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "target_action": "ACTION1",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        },
+        {
+          "candidate_action": "ACTION3",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "frame_before_hash": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+            "live_state_signature": "m2_15_fused:terminal_safe_alternative_action:m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": true
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "alternative_terminal_rate >= risk_target_terminal_rate",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "alternative_terminal_rate < risk_target_terminal_rate"
+          },
+          "frontier_context_id": "m2_15_fused::terminal_safe_alternative_action",
+          "frontier_reason": "LLM_WM_M3_GROUNDED_CONTEXT_FUSION_CANDIDATE_ONLY",
+          "frontier_step": 295,
+          "fused_score_counted_as_support": false,
+          "game_id": "ar25-e3c63847",
+          "hypothesis_family": "terminal_safe_alternative_action",
+          "hypothesis_id": "m2_15_fused::terminal_safe_alternative_action::002",
+          "llm_output_counted_as_evidence": false,
+          "m3_observation_counted_as_confirmation": false,
+          "predicted_effect": "A matched dynamic control may be a terminal-safe alternative inside the same risk context while preserving future testability.",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": false,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "llm_not_counted_as_evidence",
+              "world_model_score_not_counted_as_support",
+              "m3_support_events_not_counted_as_support"
+            ],
+            "priority_score": 3.232,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof."
+            ],
+            "raw_proposal_ids": [
+              "m2_15::llm::m2::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+              "m2_15::wm::m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+              "m2m3::m2_14_lewm::terminal_risk_replication::010"
+            ],
+            "sources": [
+              "llm",
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_15::llm_wm_grounding_fusion",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "terminal_risk_support_events_counted_as_support": false,
+          "testability": {
+            "blocking_reason": "BLOCKED_REQUIRES_COUNTERFACTUAL_ENV_REPLAY_FROM_OFFLINE_FRAME",
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "alternative_action_terminal_rate_below_risk_target",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "offline_trace_context_controlled_candidate",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION1",
+              "ACTION2",
+              "ACTION5",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "target_action": "ACTION3",
+            "testable": false
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        },
+        {
+          "candidate_action": "ACTION3",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "frame_before_hash": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0086",
+            "live_state_signature": "m2_15_fused:wm_llm_disagreement_frontier:m2_14d::bp35-0a0ad940::73dd8a6e40e1::0086",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": true
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "wm_terminal_risk_signal_does_not_reproduce_for_llm_action",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "wm_terminal_risk_signal_reproduces_for_llm_action"
+          },
+          "frontier_context_id": "m2_15_fused::wm_llm_disagreement_frontier",
+          "frontier_reason": "LLM_WM_M3_GROUNDED_CONTEXT_FUSION_CANDIDATE_ONLY",
+          "frontier_step": 86,
+          "fused_score_counted_as_support": false,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "wm_llm_disagreement_frontier",
+          "hypothesis_id": "m2_15_fused::wm_llm_disagreement_frontier::003",
+          "llm_output_counted_as_evidence": false,
+          "m3_observation_counted_as_confirmation": false,
+          "predicted_effect": "An action proposed or favored by the LLM may be useful in one objective context yet terminal-risk under a different WM/M3 grounded context.",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": true,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "llm_not_counted_as_evidence",
+              "world_model_score_not_counted_as_support",
+              "m3_support_events_not_counted_as_support"
+            ],
+            "priority_score": 3.798,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof."
+            ],
+            "raw_proposal_ids": [
+              "m2_15::llm::m2::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+              "m2_15::wm::m2_14d::bp35-0a0ad940::73dd8a6e40e1::0086",
+              "m2m3::m2_14_lewm::terminal_risk_replication::004"
+            ],
+            "sources": [
+              "llm",
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_15::llm_wm_grounding_fusion",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "terminal_risk_support_events_counted_as_support": false,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "llm_useful_action_overlaps_wm_terminal_risk_context",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "offline_trace_context_controlled_candidate",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        },
+        {
+          "candidate_action": "ACTION6",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6",
+              "ACTION7"
+            ],
+            "frame_before_hash": "m2_14d::bp35-0a0ad940::182270820f60::0023",
+            "live_state_signature": "m2_15_fused:objective_completion_vs_terminal_risk_tradeoff:m2_14d::bp35-0a0ad940::182270820f60::0023",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": true
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "terminal_risk_rate_not_above_controls_in_proxy_context",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "terminal_risk_rate_exceeds_controls_in_proxy_context"
+          },
+          "frontier_context_id": "m2_15_fused::objective_completion_vs_terminal_risk_tradeoff",
+          "frontier_reason": "LLM_WM_M3_GROUNDED_CONTEXT_FUSION_CANDIDATE_ONLY",
+          "frontier_step": 23,
+          "fused_score_counted_as_support": false,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_completion_vs_terminal_risk_tradeoff",
+          "hypothesis_id": "m2_15_fused::objective_completion_vs_terminal_risk_tradeoff::004",
+          "llm_output_counted_as_evidence": false,
+          "m3_observation_counted_as_confirmation": false,
+          "predicted_effect": "Proxy progress and objective-completion attempts may be contaminated by actions that ARC-LeWM marks as terminal-risk.",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": true,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "llm_not_counted_as_evidence",
+              "world_model_score_not_counted_as_support",
+              "m3_support_events_not_counted_as_support"
+            ],
+            "priority_score": 4.004,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "Fused candidate from LLM abductive context plus ARC-LeWM/M3.7d terminal-risk observations. These observations are grounding context only and are not counted as support or proof."
+            ],
+            "raw_proposal_ids": [
+              "m2_15::llm::m2::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+              "m2_15::wm::m2_14d::bp35-0a0ad940::182270820f60::0023",
+              "m2m3::m2_14_lewm::terminal_risk_replication::013"
+            ],
+            "sources": [
+              "llm",
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_15::llm_wm_grounding_fusion",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "terminal_risk_support_events_counted_as_support": false,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "proxy_completion_candidates_overlap_terminal_risk",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "offline_trace_context_controlled_candidate",
+            "required_action_args": [
+              {
+                "x": 22,
+                "y": 33
+              }
+            ],
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION7"
+            ],
+            "target_action": "ACTION6",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        }
+      ],
+      "forbidden_hypothesis_families": [
+        "general_terminal_predictor",
+        "universal_action_safety_model",
+        "confirmed_goal_representation"
+      ]
+    }
+  ],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "blocked_by_reason": {
+      "BLOCKED_REQUIRES_COUNTERFACTUAL_ENV_REPLAY_FROM_OFFLINE_FRAME": 1
+    },
+    "blocked_not_testable_hypotheses": 1,
+    "confirmed_goal_representation_generated": false,
+    "controlled_test_required": true,
+    "general_terminal_predictor_generated": false,
+    "hypotheses_generated": 4,
+    "hypothesis_families_covered": [
+      "objective_completion_vs_terminal_risk_tradeoff",
+      "terminal_risk_precondition",
+      "terminal_safe_alternative_action",
+      "wm_llm_disagreement_frontier"
+    ],
+    "input_packet_consumed": true,
+    "llm_output_counted_as_evidence": false,
+    "m3_observation_counted_as_confirmation": false,
+    "policy_generated": false,
+    "ready_for_m3_candidate_experiment_request": 3,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "terminal_risk_support_events_counted_as_support": false,
+    "terminal_risk_support_events_read": 14,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "universal_action_safety_model_generated": false,
+    "world_model_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "wrong_confirmations": 0
+}

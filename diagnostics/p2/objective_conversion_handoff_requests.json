@@ -1,0 +1,156 @@
+{
+  "a32_write_performed": false,
+  "a33_ready": false,
+  "a33_write_performed": false,
+  "a40_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "direct_downstream_write_performed": false,
+    "handoff_target": "M2_OR_M3",
+    "handoff_type": "OBJECTIVE_CONVERSION_FRONTIER_REQUEST",
+    "inputs_read": [
+      "P2.G2"
+    ],
+    "objective_conversion_frontier_validation_path": "diagnostics\\p2\\objective_conversion_frontier_validation.json",
+    "ready_for_direct_downstream_write": false,
+    "schema_version": "p2.objective_conversion_handoff_requests.v1",
+    "target_modules": [
+      "M2.G1",
+      "M3.G1"
+    ]
+  },
+  "handoff_request_counted_as_confirmation": false,
+  "m2_write_performed": false,
+  "m3_write_performed": false,
+  "objective_conversion_handoff_requests": [
+    {
+      "a33_ready": false,
+      "blocked_capability": "objective_conversion_after_safe_stop",
+      "candidate_problem_statement": "terminal_safe_policy_state_does_not_convert_to_objective_completion",
+      "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+      "frontier_type": "OBJECTIVE_CONVERSION_FRONTIER",
+      "game_id": "bp35-0a0ad940",
+      "handoff_request_counted_as_confirmation": false,
+      "handoff_type": "OBJECTIVE_CONVERSION_FRONTIER_REQUEST",
+      "objective_conversion_review_accepted": true,
+      "policy_result_counted_as_scientific_verdict": false,
+      "ready_for_direct_downstream_write": false,
+      "ready_for_m2_or_m3_objective_conversion_branch": true,
+      "ready_for_objective_conversion_hypothesis_generation": true,
+      "request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "requested_experiment_styles": [
+        "stop_state_action_matrix",
+        "post_safe_stop_short_sequence_probe",
+        "relation_target_ablation_after_safe_stop",
+        "objective_completion_vs_relation_progress_discriminator"
+      ],
+      "requested_hypothesis_families": [
+        "post_safe_stop_objective_conversion",
+        "subgoal_target_reselection",
+        "objective_readiness_condition",
+        "terminal_safe_sequence_search"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "scientific_questions": [
+        "After terminal-safe stop/avoidance, which action converts relation progress into objective completion?",
+        "Which target relation should replace generic distance_decreases when objective completion remains false?",
+        "Does a specific post-safe-stop ACTION3, ACTION4, or ACTION6 sequence create objective progress without re-entering terminal risk?",
+        "Which objective-readiness signal is missing from the abstract symbolic model?"
+      ],
+      "source_frontier_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+      "source_validation_path": "diagnostics\\p2\\objective_conversion_frontier_validation.json",
+      "status": "UNRESOLVED",
+      "suggested_initial_experiment_matrix": {
+        "base_state_family": "terminal_safe_stop_or_avoidance_state",
+        "controls": [
+          "hold_or_stop_state",
+          "relation_progress_policy"
+        ],
+        "diagnostic_metrics": [
+          "relation_delta_after_stop",
+          "terminal_reentry_rate",
+          "changed_pixels"
+        ],
+        "short_sequences": [
+          [
+            "ACTION3",
+            "ACTION4"
+          ],
+          [
+            "ACTION4",
+            "ACTION3"
+          ],
+          [
+            "ACTION6",
+            "ACTION3"
+          ],
+          [
+            "ACTION6",
+            "ACTION4"
+          ]
+        ],
+        "single_step_actions": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6"
+        ],
+        "success_metrics": [
+          "objective_completion_signal",
+          "levels_completed_after_rollout",
+          "terminal_adjusted_progress_after_stop"
+        ]
+      },
+      "support": 0,
+      "target": "M2_OR_M3",
+      "target_modules": [
+        "M2.G1",
+        "M3.G1"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "policy_result_counted_as_scientific_verdict": false,
+  "ready_for_direct_downstream_write": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_ready": false,
+    "a33_write_performed": false,
+    "a40_write_performed": false,
+    "handoff_type": "OBJECTIVE_CONVERSION_FRONTIER_REQUEST",
+    "m2_write_performed": false,
+    "m3_write_performed": false,
+    "objective_conversion_handoff_requests": 1,
+    "ready_for_direct_downstream_write": false,
+    "ready_for_m2_or_m3_objective_conversion_branch": true,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_objective_conversion_reviews_accepted": 1,
+    "support": 0,
+    "target": "M2_OR_M3",
+    "target_modules": [
+      "M2.G1",
+      "M3.G1"
+    ],
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

@@ -1,0 +1,1099 @@
+{
+  "blocked_experiments": [],
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3.8",
+      "M3.9",
+      "A32",
+      "A33"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "followup_requests_path": "diagnostics\\m3\\refined_followup_experiment_requests.json",
+    "inputs_read": [
+      "M3.9"
+    ],
+    "schema_version": "m3.refined_followup_results.v1",
+    "target_action_arg_policy": "same_args_as_previous_skill_occurrence"
+  },
+  "controlled_experiments": [
+    {
+      "baseline_signal": 0.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 0,
+      "control_action": "ACTION3",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 0.0,
+        "counted_as_contradiction": false,
+        "counted_as_support": false,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 0.0,
+        "predicted_metric": "local_patch_before_after",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "local_patch_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "perturbation_signal": 0.0,
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 0.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 0,
+      "control_action": "ACTION4",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 0.0,
+        "counted_as_contradiction": false,
+        "counted_as_support": false,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 0.0,
+        "predicted_metric": "local_patch_before_after",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "local_patch_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "perturbation_signal": 0.0,
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 47.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 1,
+      "control_action": "ACTION3",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 46.0,
+        "baseline_signal": 47.0,
+        "counted_as_contradiction": true,
+        "counted_as_support": false,
+        "direction": "contradiction",
+        "effect_size": -46.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "raw_changed_pixels_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "changed_pixels",
+      "metric_grounding_status": "grounded_raw_signal",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels"
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels"
+      },
+      "perturbation_signal": 1.0,
+      "predicted_metric": "changed_pixels",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "raw_changed_pixels",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 47.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 1,
+      "control_action": "ACTION4",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 46.0,
+        "baseline_signal": 47.0,
+        "counted_as_contradiction": true,
+        "counted_as_support": false,
+        "direction": "contradiction",
+        "effect_size": -46.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "raw_changed_pixels_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "changed_pixels",
+      "metric_grounding_status": "grounded_raw_signal",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels"
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels"
+      },
+      "perturbation_signal": 1.0,
+      "predicted_metric": "changed_pixels",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "raw_changed_pixels",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 5.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 1,
+      "control_action": "ACTION3",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 3.0,
+        "baseline_signal": 5.0,
+        "counted_as_contradiction": true,
+        "counted_as_support": false,
+        "direction": "contradiction",
+        "effect_size": -3.0,
+        "perturbation_signal": 2.0,
+        "predicted_metric": "object_positions_before_after",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "object_positions_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "matched_component_count": 187,
+        "measurable": true,
+        "metric": "object_positions_before_after",
+        "motion_vectors": [
+          {
+            "color": 10,
+            "dx": 0.0903,
+            "dy": 0.0,
+            "size": 1529
+          },
+          {
+            "color": 9,
+            "dx": -5.3334,
+            "dy": 0.0,
+            "size": 6
+          },
+          {
+            "color": 11,
+            "dx": -8.0,
+            "dy": 0.0,
+            "size": 2
+          },
+          {
+            "color": 15,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 3
+          },
+          {
+            "color": 0,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 61
+          }
+        ],
+        "moved_component_count": 5
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "matched_component_count": 187,
+        "measurable": true,
+        "metric": "object_positions_before_after",
+        "motion_vectors": [
+          {
+            "color": 15,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 3
+          },
+          {
+            "color": 0,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 61
+          }
+        ],
+        "moved_component_count": 2
+      },
+      "perturbation_signal": 2.0,
+      "predicted_metric": "object_positions_before_after",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 5.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 1,
+      "control_action": "ACTION4",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 3.0,
+        "baseline_signal": 5.0,
+        "counted_as_contradiction": true,
+        "counted_as_support": false,
+        "direction": "contradiction",
+        "effect_size": -3.0,
+        "perturbation_signal": 2.0,
+        "predicted_metric": "object_positions_before_after",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "object_positions_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "matched_component_count": 187,
+        "measurable": true,
+        "metric": "object_positions_before_after",
+        "motion_vectors": [
+          {
+            "color": 10,
+            "dx": -0.0903,
+            "dy": 0.0,
+            "size": 1529
+          },
+          {
+            "color": 9,
+            "dx": 6.0,
+            "dy": 0.0,
+            "size": 6
+          },
+          {
+            "color": 11,
+            "dx": 6.0,
+            "dy": 0.0,
+            "size": 2
+          },
+          {
+            "color": 15,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 3
+          },
+          {
+            "color": 0,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 61
+          }
+        ],
+        "moved_component_count": 5
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "matched_component_count": 187,
+        "measurable": true,
+        "metric": "object_positions_before_after",
+        "motion_vectors": [
+          {
+            "color": 15,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 3
+          },
+          {
+            "color": 0,
+            "dx": 0.5,
+            "dy": 0.0,
+            "size": 61
+          }
+        ],
+        "moved_component_count": 2
+      },
+      "perturbation_signal": 2.0,
+      "predicted_metric": "object_positions_before_after",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 0.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 0,
+      "control_action": "ACTION3",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 0.0,
+        "counted_as_contradiction": false,
+        "counted_as_support": false,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 0.0,
+        "predicted_metric": "contact_graph_before_after",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "contact_graph_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "contact_graph_changed": false,
+        "contact_pair_count_after": 4,
+        "contact_pair_count_before": 4,
+        "contact_pairs_added": [],
+        "contact_pairs_removed": [],
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "contact_graph_before_after"
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "contact_graph_changed": false,
+        "contact_pair_count_after": 4,
+        "contact_pair_count_before": 4,
+        "contact_pairs_added": [],
+        "contact_pairs_removed": [],
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "contact_graph_before_after"
+      },
+      "perturbation_signal": 0.0,
+      "predicted_metric": "contact_graph_before_after",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_signal": 0.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "contradiction_events": 0,
+      "control_action": "ACTION4",
+      "control_action_args": {},
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 0.0,
+        "counted_as_contradiction": false,
+        "counted_as_support": false,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 0.0,
+        "predicted_metric": "contact_graph_before_after",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "env_actions": 8,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "exact_replay": true,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metric": "contact_graph_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "contact_graph_changed": false,
+        "contact_pair_count_after": 4,
+        "contact_pair_count_before": 4,
+        "contact_pairs_added": [],
+        "contact_pairs_removed": [],
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "contact_graph_before_after"
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.000244,
+        "changed_pixels": 1,
+        "contact_graph_changed": false,
+        "contact_pair_count_after": 4,
+        "contact_pair_count_before": 4,
+        "contact_pairs_added": [],
+        "contact_pairs_removed": [],
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "measurable": true,
+        "metric": "contact_graph_before_after"
+      },
+      "perturbation_signal": 0.0,
+      "predicted_metric": "contact_graph_before_after",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "target_action_args_resolved": true,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "controlled_test_required": true,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "blocked_experiments": 0,
+    "contradiction_events": 4,
+    "controlled_experiments_run": 8,
+    "controlled_test_required": true,
+    "controls_executed": 2,
+    "diagnostic_only_experiments": 0,
+    "followup_requests_consumed": 1,
+    "followup_requests_executed": 1,
+    "metrics_executed": 4,
+    "neutral_events": 4,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "status": "UNRESOLVED",
+    "support": 0,
+    "support_events": 0,
+    "target_action_arg_policy": "same_args_as_previous_skill_occurrence",
+    "target_action_args_resolved": true,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "updated_candidate_records": [
+    {
+      "contradiction_events": 4,
+      "contradictions": 0,
+      "controlled_experiments_run": 8,
+      "controlled_test_required": true,
+      "game_id": "bp35-0a0ad940",
+      "key": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "neutral_events": 4,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "wrong_confirmations": 0
+}

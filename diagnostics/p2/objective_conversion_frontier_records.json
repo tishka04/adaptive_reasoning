@@ -1,0 +1,110 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "a40_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "direct_downstream_write_performed": false,
+    "inputs_read": [
+      "P3.G1"
+    ],
+    "p3_objective_aware_consolidation_path": "diagnostics\\p3\\objective_aware_abstract_policy_utility_consolidation.json",
+    "schema_version": "p2.objective_conversion_frontier_records.v1"
+  },
+  "m2_write_performed": false,
+  "m3_write_performed": false,
+  "objective_conversion_frontier_counted_as_confirmation": false,
+  "objective_conversion_frontier_records": [
+    {
+      "a33_ready": false,
+      "blocked_capability": "objective_conversion_after_safe_stop",
+      "candidate_policy_state": "terminal_safe_relation_policy_stops_or_avoids_terminal_but_does_not_complete_objective",
+      "desired_hypothesis_families": [
+        "post_safe_stop_objective_conversion",
+        "subgoal_target_reselection",
+        "objective_readiness_condition",
+        "terminal_safe_sequence_search"
+      ],
+      "evidence": {
+        "best_objective_aware_condition": "objective_aware_abstract_policy_lambda_0",
+        "best_objective_aware_lambda_terminal_risk": 0.0,
+        "best_objective_mean_progress_proxy": 132.5,
+        "best_objective_terminal_adjusted_progress": 132.5,
+        "best_objective_terminal_rate": 0.0,
+        "objective_completion_signal": false,
+        "p3g0_mean_progress_proxy": 140.0,
+        "p3g0_terminal_adjusted_progress": 20.0,
+        "p3g0_terminal_rate": 0.75,
+        "progress_proxy_preserved_vs_p3g0": false,
+        "terminal_rate_reduced_vs_p3g0": true
+      },
+      "frontier_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+      "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+      "frontier_type": "OBJECTIVE_CONVERSION_FRONTIER",
+      "game_id": "bp35-0a0ad940",
+      "objective_conversion_frontier_counted_as_confirmation": false,
+      "policy_result_counted_as_scientific_verdict": false,
+      "ready_for_m2_or_m3": false,
+      "ready_for_objective_conversion_review": true,
+      "ready_for_saturation_handoff": false,
+      "requested_experiment_styles": [
+        "stop_state_action_matrix",
+        "post_safe_stop_short_sequence_probe",
+        "relation_target_ablation_after_safe_stop",
+        "objective_completion_vs_relation_progress_discriminator"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "scientific_questions": [
+        "After terminal-safe stop/avoidance, which action converts relation progress into objective completion?",
+        "Which target relation should replace generic distance_decreases when objective completion remains false?",
+        "Does a specific post-safe-stop ACTION3, ACTION4, or ACTION6 sequence create objective progress without re-entering terminal risk?",
+        "Which objective-readiness signal is missing from the abstract symbolic model?"
+      ],
+      "source": "P3.G1",
+      "source_p3_objective_aware_consolidation_path": "diagnostics\\p3\\objective_aware_abstract_policy_utility_consolidation.json",
+      "source_policy_utility_status": "POLICY_TERMINAL_SAFE_BUT_PASSIVE_CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "policy_result_counted_as_scientific_verdict": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "a40_write_performed": false,
+    "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+    "frontier_records": 1,
+    "frontier_type": "OBJECTIVE_CONVERSION_FRONTIER",
+    "m2_write_performed": false,
+    "m3_write_performed": false,
+    "ready_for_m2_or_m3": false,
+    "ready_for_objective_conversion_review": true,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_policy_utility_status": "POLICY_TERMINAL_SAFE_BUT_PASSIVE_CANDIDATE_ONLY",
+    "support": 0,
+    "terminal_safe_but_passive_frontiers": 1,
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

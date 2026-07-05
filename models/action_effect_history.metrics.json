@@ -1,0 +1,89 @@
+{
+  "per_target": {
+    "delta_largest_component_size": {
+      "r2": 0.0466,
+      "mae": 1.7443,
+      "target_std": 18.7062
+    },
+    "delta_component_count": {
+      "r2": 0.4501,
+      "mae": 0.3021,
+      "target_std": 2.2386
+    },
+    "delta_top_pair_0_global_correspondence": {
+      "r2": 0.5618,
+      "mae": 0.3009,
+      "target_std": 2.8732
+    },
+    "delta_fragmentation_ratio": {
+      "r2": 0.4203,
+      "mae": 0.0038,
+      "target_std": 0.0244
+    }
+  },
+  "n_train": 16973,
+  "n_test": 4244,
+  "mean_r2": 0.3697,
+  "top_feature_importances": [
+    {
+      "feature": "color_0_centroid_y",
+      "importance": 0.08191
+    },
+    {
+      "feature": "is_ACTION4",
+      "importance": 0.06572
+    },
+    {
+      "feature": "size_entropy",
+      "importance": 0.04512
+    },
+    {
+      "feature": "mean_component_size",
+      "importance": 0.04447
+    },
+    {
+      "feature": "top_pair_1_global_correspondence",
+      "importance": 0.04023
+    },
+    {
+      "feature": "color_3_size_mean",
+      "importance": 0.03709
+    },
+    {
+      "feature": "centroid_spread_x",
+      "importance": 0.03624
+    },
+    {
+      "feature": "top_pair_1_nearest_dist",
+      "importance": 0.03571
+    },
+    {
+      "feature": "top_pair_0_nearest_dist",
+      "importance": 0.03217
+    },
+    {
+      "feature": "color_3_largest_component",
+      "importance": 0.03171
+    },
+    {
+      "feature": "nearest_distance_mean",
+      "importance": 0.02934
+    },
+    {
+      "feature": "centroid_spread_y",
+      "importance": 0.02764
+    },
+    {
+      "feature": "color_0_centroid_x",
+      "importance": 0.02197
+    },
+    {
+      "feature": "color_1_centroid_x",
+      "importance": 0.02042
+    },
+    {
+      "feature": "color_0_size_std",
+      "importance": 0.02005
+    }
+  ]
+}

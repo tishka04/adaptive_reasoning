@@ -1,0 +1,176 @@
+{
+  "config": {
+    "schema_version": "m2.multi_source_collision.v1"
+  },
+  "frontier": {
+    "available_actions": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION6"
+    ],
+    "context_signature": [
+      "ACTION6"
+    ],
+    "fallback_action": "ACTION3",
+    "frontier_context_id": "after_ACTION6",
+    "game_id": "bp35-0a0ad940",
+    "live_state_signature": "fixture:after_ACTION6",
+    "ready_for_m1_or_m3": true,
+    "reason": "context_not_covered_by_scope",
+    "request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+    "source_step": 1,
+    "status": "OPEN"
+  },
+  "merged_hypotheses": [
+    {
+      "candidate_action": "ACTION4",
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6"
+        ],
+        "frame_before_hash": null,
+        "live_state_signature": "fixture:after_ACTION6",
+        "local_patch": null,
+        "replay_action_args": null,
+        "replay_actions": [
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "falsification": {
+        "failure_condition": "target_action_signal <= best_control_signal",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "frontier_context_id": "after_ACTION6",
+      "frontier_reason": "context_not_covered_by_scope",
+      "frontier_step": 1,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_consumption_transition",
+      "hypothesis_id": "m2::after_ACTION6::raw::after_ACTION6::heuristic::collision",
+      "predicted_effect": "ACTION4 may prepare a new target after ACTION6.",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "Heuristic collision fixture.",
+      "revision_performed": false,
+      "source_generation": {
+        "normalization_warnings": [],
+        "priority_score": 3.5,
+        "priority_score_counted_as_support": false,
+        "rationales": [
+          "Heuristic collision fixture.",
+          "Mock LLM collision fixture."
+        ],
+        "raw_proposal_ids": [
+          "raw::after_ACTION6::heuristic::collision",
+          "raw::after_ACTION6::llm::collision"
+        ],
+        "sources": [
+          "heuristic",
+          "llm"
+        ]
+      },
+      "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "testability": {
+        "blocking_reason": null,
+        "control_policy": "m3_dynamic_available_controls",
+        "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+        "measurable_by_existing_extractor": true,
+        "metric": "local_patch_before_after",
+        "recommended_test_type": "controlled_action_vs_alternative",
+        "required_action_args": null,
+        "required_context_replay": [
+          "ACTION6"
+        ],
+        "suggested_control_actions": [
+          "ACTION3"
+        ],
+        "target_action": "ACTION4",
+        "testable": true
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "raw_proposals": [
+    {
+      "candidate_action": "ACTION4",
+      "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+      "frontier_context_id": "after_ACTION6",
+      "frontier_reason": "context_not_covered_by_scope",
+      "frontier_step": 1,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_consumption_transition",
+      "predicted_effect": "ACTION4 may prepare a new target after ACTION6.",
+      "predicted_metric": "local_patch_before_after",
+      "priority_hint": 0.0,
+      "proposal_id": "raw::after_ACTION6::heuristic::collision",
+      "rationale": "Heuristic collision fixture.",
+      "raw_payload": {},
+      "raw_revision_performed": null,
+      "raw_status": "",
+      "raw_support": null,
+      "raw_truth_status": "",
+      "required_action_args": null,
+      "required_context_replay": [
+        "ACTION6"
+      ],
+      "source": "heuristic",
+      "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+      "suggested_control_actions": [
+        "ACTION3"
+      ],
+      "test_hint": "",
+      "world_model_uncertainty": null
+    },
+    {
+      "candidate_action": "ACTION4",
+      "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+      "frontier_context_id": "after_ACTION6",
+      "frontier_reason": "context_not_covered_by_scope",
+      "frontier_step": 1,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_consumption_transition",
+      "predicted_effect": "ACTION4 may prepare a new target after ACTION6.",
+      "predicted_metric": "local_patch_before_after",
+      "priority_hint": 0.0,
+      "proposal_id": "raw::after_ACTION6::llm::collision",
+      "rationale": "Mock LLM collision fixture.",
+      "raw_payload": {},
+      "raw_revision_performed": null,
+      "raw_status": "",
+      "raw_support": null,
+      "raw_truth_status": "",
+      "required_action_args": null,
+      "required_context_replay": [
+        "ACTION6"
+      ],
+      "source": "llm",
+      "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+      "suggested_control_actions": [
+        "ACTION3"
+      ],
+      "test_hint": "",
+      "world_model_uncertainty": null
+    }
+  ],
+  "rejected_proposals": [],
+  "summary": {
+    "deduplicated_hypotheses": 1,
+    "merged_sources_recorded": true,
+    "normalized_hypotheses": 2,
+    "priority_score_counted_as_support": false,
+    "raw_proposals_seen": 2,
+    "revision_performed": false,
+    "support_unchanged_at_zero": true,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  }
+}

@@ -1,0 +1,774 @@
+{
+  "game_id": "ar25-e3c63847",
+  "episode_id": "f0fe23029ffa",
+  "pair_colors": [
+    10,
+    11
+  ],
+  "audited_steps": 337,
+  "level_transitions": [
+    {
+      "step_index": 15,
+      "from_level": 0,
+      "to_level": 1,
+      "action_that_caused": "ACTION2",
+      "state_after": "NOT_FINISHED"
+    },
+    {
+      "step_index": 29,
+      "from_level": 1,
+      "to_level": 2,
+      "action_that_caused": "ACTION2",
+      "state_after": "NOT_FINISHED"
+    },
+    {
+      "step_index": 121,
+      "from_level": 2,
+      "to_level": 3,
+      "action_that_caused": "ACTION2",
+      "state_after": "NOT_FINISHED"
+    },
+    {
+      "step_index": 146,
+      "from_level": 3,
+      "to_level": 4,
+      "action_that_caused": "ACTION2",
+      "state_after": "NOT_FINISHED"
+    },
+    {
+      "step_index": 205,
+      "from_level": 4,
+      "to_level": 5,
+      "action_that_caused": "ACTION3",
+      "state_after": "NOT_FINISHED"
+    },
+    {
+      "step_index": 349,
+      "from_level": 5,
+      "to_level": 6,
+      "action_that_caused": "ACTION2",
+      "state_after": "NOT_FINISHED"
+    }
+  ],
+  "submit_actions": 116,
+  "zero_violation_states": 0,
+  "zero_violation_details": [],
+  "pre_submit_analysis": [
+    {
+      "submit_step": 1,
+      "preceding": {
+        "step_index": 0,
+        "level": 0,
+        "action_taken": "RESET",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 189,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 64,
+            "min_y": 0,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 31.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 189,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 64,
+            "min_y": 0,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 31.5,
+            "centroid_x": 63.0
+          },
+          {
+            "color": 11,
+            "size": 45,
+            "min_y": 45,
+            "min_x": 51,
+            "max_y": 53,
+            "max_x": 59,
+            "centroid_y": 47.8,
+            "centroid_x": 53.8
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.7302,
+        "state_after": "UNKNOWN"
+      },
+      "submit_action": {
+        "step_index": 10,
+        "level": 0,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 189,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 54,
+            "min_y": 10,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 36.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 189,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 54,
+            "min_y": 10,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 36.5,
+            "centroid_x": 63.0
+          },
+          {
+            "color": 11,
+            "size": 45,
+            "min_y": 45,
+            "min_x": 51,
+            "max_y": 53,
+            "max_x": 59,
+            "centroid_y": 47.8,
+            "centroid_x": 53.8
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -12.0377,
+        "state_after": "UNKNOWN"
+      }
+    },
+    {
+      "submit_step": 5,
+      "preceding": {
+        "step_index": 17,
+        "level": 1,
+        "action_taken": "ACTION5",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 36,
+            "max_y": 62,
+            "max_x": 38,
+            "centroid_y": 31.0,
+            "centroid_x": 37.0
+          },
+          {
+            "color": 11,
+            "size": 62,
+            "min_y": 2,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 32.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 36,
+            "max_y": 62,
+            "max_x": 38,
+            "centroid_y": 31.0,
+            "centroid_x": 37.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 62,
+            "min_y": 2,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 32.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.6512,
+        "state_after": "UNKNOWN"
+      },
+      "submit_action": {
+        "step_index": 18,
+        "level": 1,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 36,
+            "max_y": 62,
+            "max_x": 38,
+            "centroid_y": 31.0,
+            "centroid_x": 37.0
+          },
+          {
+            "color": 11,
+            "size": 62,
+            "min_y": 2,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 32.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 36,
+            "max_y": 62,
+            "max_x": 38,
+            "centroid_y": 31.0,
+            "centroid_x": 37.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 62,
+            "min_y": 2,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 32.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.6512,
+        "state_after": "UNKNOWN"
+      }
+    },
+    {
+      "submit_step": 9,
+      "preceding": {
+        "step_index": 21,
+        "level": 1,
+        "action_taken": "ACTION5",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 59,
+            "min_y": 5,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 34.0,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 59,
+            "min_y": 5,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 34.0,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.8074,
+        "state_after": "UNKNOWN"
+      },
+      "submit_action": {
+        "step_index": 22,
+        "level": 1,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 58,
+            "min_y": 6,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 34.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 58,
+            "min_y": 6,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 34.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.8423,
+        "state_after": "UNKNOWN"
+      }
+    },
+    {
+      "submit_step": 10,
+      "preceding": {
+        "step_index": 22,
+        "level": 1,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 58,
+            "min_y": 6,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 34.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 58,
+            "min_y": 6,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 34.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.8423,
+        "state_after": "UNKNOWN"
+      },
+      "submit_action": {
+        "step_index": 23,
+        "level": 1,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 57,
+            "min_y": 7,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 35.0,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 57,
+            "min_y": 7,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 35.0,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.8773,
+        "state_after": "UNKNOWN"
+      }
+    },
+    {
+      "submit_step": 11,
+      "preceding": {
+        "step_index": 23,
+        "level": 1,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 57,
+            "min_y": 7,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 35.0,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 57,
+            "min_y": 7,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 35.0,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.8773,
+        "state_after": "UNKNOWN"
+      },
+      "submit_action": {
+        "step_index": 24,
+        "level": 1,
+        "action_taken": "ACTION2",
+        "dotted_constraint_violations": 2,
+        "boundary_violation_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 56,
+            "min_y": 8,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 35.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "all_components_count": 3,
+        "all_components": [
+          {
+            "color": 10,
+            "size": 168,
+            "min_y": 0,
+            "min_x": 30,
+            "max_y": 62,
+            "max_x": 32,
+            "centroid_y": 31.0,
+            "centroid_x": 31.0
+          },
+          {
+            "color": 11,
+            "size": 72,
+            "min_y": 42,
+            "min_x": 3,
+            "max_y": 53,
+            "max_x": 17,
+            "centroid_y": 47.5,
+            "centroid_x": 10.0
+          },
+          {
+            "color": 11,
+            "size": 56,
+            "min_y": 8,
+            "min_x": 63,
+            "max_y": 63,
+            "max_x": 63,
+            "centroid_y": 35.5,
+            "centroid_x": 63.0
+          }
+        ],
+        "grid_shape": [
+          64,
+          64
+        ],
+        "matched_pairs": 0,
+        "unmatched_first": 1,
+        "unmatched_second": 2,
+        "match_score": -11.9124,
+        "state_after": "UNKNOWN"
+      }
+    }
+  ],
+  "key_finding": "ALL 6 transitions happened WITH violations (avg=2.0) - detector is WRONG"
+}

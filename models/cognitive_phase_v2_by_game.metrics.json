@@ -1,0 +1,728 @@
+{
+  "dataset": "training/cognitive_trace_dataset.jsonl",
+  "taxonomy": "v2",
+  "target_column": "cognitive_phase_v2",
+  "rows": 5541,
+  "games": [
+    "ar25-e3c63847",
+    "bp35-0a0ad940",
+    "cd82-fb555c5d",
+    "cn04-65d47d14",
+    "dc22-4c9bff3e",
+    "ft09-0d8bbf25"
+  ],
+  "group_by": "game",
+  "groups": 6,
+  "n_splits": 6,
+  "with_history": false,
+  "label_counts": {
+    "explore_movement": 254,
+    "explore_click": 6,
+    "explore_boundary": 42,
+    "explore_object": 161,
+    "explore_global_rule": 49,
+    "test_move": 596,
+    "test_control_or_activation": 238,
+    "test_object_interaction": 586,
+    "probe_control_object": 189,
+    "probe_color_object": 113,
+    "probe_hazard_object": 3,
+    "probe_bridge_or_path": 126,
+    "probe_matching_object": 221,
+    "reach_target": 664,
+    "avoid_danger": 275,
+    "repeat_success": 1909,
+    "recover_after_failure": 109
+  },
+  "cv": {
+    "accuracy": {
+      "mean": 0.2205,
+      "std": 0.1641
+    },
+    "balanced_accuracy": {
+      "mean": 0.0897,
+      "std": 0.0466
+    },
+    "macro_f1": {
+      "mean": 0.0397,
+      "std": 0.0292
+    },
+    "weighted_f1": {
+      "mean": 0.1432,
+      "std": 0.1118
+    }
+  },
+  "baseline": {
+    "accuracy": {
+      "mean": 0.3147,
+      "std": 0.1639
+    },
+    "balanced_accuracy": {
+      "mean": 0.1104,
+      "std": 0.0214
+    },
+    "macro_f1": {
+      "mean": 0.0483,
+      "std": 0.0261
+    },
+    "weighted_f1": {
+      "mean": 0.1779,
+      "std": 0.1113
+    }
+  },
+  "oof": {
+    "accuracy": 0.1855,
+    "balanced_accuracy": 0.0376,
+    "macro_f1": 0.0332,
+    "weighted_f1": 0.1515
+  },
+  "oof_baseline": {
+    "accuracy": 0.3445,
+    "balanced_accuracy": 0.0588,
+    "macro_f1": 0.0301,
+    "weighted_f1": 0.1766
+  },
+  "per_class": {
+    "explore_movement": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 254
+    },
+    "explore_click": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 6
+    },
+    "explore_boundary": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 42
+    },
+    "explore_object": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 161
+    },
+    "explore_global_rule": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 49
+    },
+    "test_move": {
+      "precision": 0.1271,
+      "recall": 0.1124,
+      "f1": 0.1193,
+      "support": 596
+    },
+    "test_control_or_activation": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 238
+    },
+    "test_object_interaction": {
+      "precision": 0.274,
+      "recall": 0.0341,
+      "f1": 0.0607,
+      "support": 586
+    },
+    "probe_control_object": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 189
+    },
+    "probe_color_object": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 113
+    },
+    "probe_hazard_object": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 3
+    },
+    "probe_bridge_or_path": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 126
+    },
+    "probe_matching_object": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 221
+    },
+    "reach_target": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 664
+    },
+    "avoid_danger": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 275
+    },
+    "repeat_success": {
+      "precision": 0.3144,
+      "recall": 0.4929,
+      "f1": 0.3839,
+      "support": 1909
+    },
+    "recover_after_failure": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 109
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "explore_movement",
+      "explore_click",
+      "explore_boundary",
+      "explore_object",
+      "explore_global_rule",
+      "test_move",
+      "test_control_or_activation",
+      "test_object_interaction",
+      "probe_control_object",
+      "probe_color_object",
+      "probe_hazard_object",
+      "probe_bridge_or_path",
+      "probe_matching_object",
+      "reach_target",
+      "avoid_danger",
+      "repeat_success",
+      "recover_after_failure"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        64,
+        185
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        37
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        154
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        35,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0
+      ],
+      [
+        0,
+        27,
+        0,
+        0,
+        0,
+        67,
+        1,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        480,
+        1
+      ],
+      [
+        0,
+        21,
+        0,
+        0,
+        0,
+        30,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        182,
+        0
+      ],
+      [
+        0,
+        48,
+        0,
+        0,
+        0,
+        81,
+        10,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        331,
+        96
+      ],
+      [
+        0,
+        67,
+        0,
+        0,
+        0,
+        13,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        109,
+        0
+      ],
+      [
+        0,
+        102,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        11,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        102,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        126,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        95,
+        0
+      ],
+      [
+        0,
+        150,
+        0,
+        0,
+        0,
+        30,
+        1,
+        18,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        339,
+        123
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        274,
+        0
+      ],
+      [
+        0,
+        438,
+        0,
+        0,
+        0,
+        143,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        6,
+        941,
+        370
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        109,
+        0
+      ]
+    ]
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "n_train": 3621,
+      "n_test": 1920,
+      "test_groups": 1,
+      "metrics": {
+        "accuracy": 0.0,
+        "balanced_accuracy": 0.0,
+        "macro_f1": 0.0,
+        "weighted_f1": 0.0
+      },
+      "baseline": {
+        "accuracy": 0.4208,
+        "balanced_accuracy": 0.0909,
+        "macro_f1": 0.0539,
+        "weighted_f1": 0.2493
+      }
+    },
+    {
+      "fold": 2,
+      "n_train": 4485,
+      "n_test": 1056,
+      "test_groups": 1,
+      "metrics": {
+        "accuracy": 0.4233,
+        "balanced_accuracy": 0.1228,
+        "macro_f1": 0.0611,
+        "weighted_f1": 0.2631
+      },
+      "baseline": {
+        "accuracy": 0.4309,
+        "balanced_accuracy": 0.125,
+        "macro_f1": 0.0753,
+        "weighted_f1": 0.2595
+      }
+    },
+    {
+      "fold": 3,
+      "n_train": 4591,
+      "n_test": 950,
+      "test_groups": 1,
+      "metrics": {
+        "accuracy": 0.3589,
+        "balanced_accuracy": 0.0714,
+        "macro_f1": 0.0377,
+        "weighted_f1": 0.1896
+      },
+      "baseline": {
+        "accuracy": 0.3589,
+        "balanced_accuracy": 0.0714,
+        "macro_f1": 0.0377,
+        "weighted_f1": 0.1896
+      }
+    },
+    {
+      "fold": 4,
+      "n_train": 4790,
+      "n_test": 751,
+      "test_groups": 1,
+      "metrics": {
+        "accuracy": 0.0107,
+        "balanced_accuracy": 0.125,
+        "macro_f1": 0.0026,
+        "weighted_f1": 0.0002
+      },
+      "baseline": {
+        "accuracy": 0.0107,
+        "balanced_accuracy": 0.125,
+        "macro_f1": 0.0026,
+        "weighted_f1": 0.0002
+      }
+    },
+    {
+      "fold": 5,
+      "n_train": 5078,
+      "n_test": 463,
+      "test_groups": 1,
+      "metrics": {
+        "accuracy": 0.3132,
+        "balanced_accuracy": 0.082,
+        "macro_f1": 0.0641,
+        "weighted_f1": 0.2752
+      },
+      "baseline": {
+        "accuracy": 0.4773,
+        "balanced_accuracy": 0.125,
+        "macro_f1": 0.0808,
+        "weighted_f1": 0.3084
+      }
+    },
+    {
+      "fold": 6,
+      "n_train": 5140,
+      "n_test": 401,
+      "test_groups": 1,
+      "metrics": {
+        "accuracy": 0.217,
+        "balanced_accuracy": 0.1372,
+        "macro_f1": 0.0728,
+        "weighted_f1": 0.1309
+      },
+      "baseline": {
+        "accuracy": 0.1895,
+        "balanced_accuracy": 0.125,
+        "macro_f1": 0.0398,
+        "weighted_f1": 0.0604
+      }
+    }
+  ],
+  "top_feature_importances": [
+    {
+      "feature": "nonzero_density",
+      "importance": 0.03666
+    },
+    {
+      "feature": "color_1_centroid_x",
+      "importance": 0.03362
+    },
+    {
+      "feature": "centroid_spread_x",
+      "importance": 0.03208
+    },
+    {
+      "feature": "size_entropy",
+      "importance": 0.03017
+    },
+    {
+      "feature": "mean_component_size",
+      "importance": 0.02877
+    },
+    {
+      "feature": "centroid_spread_y",
+      "importance": 0.02725
+    },
+    {
+      "feature": "nearest_distance_mean",
+      "importance": 0.02542
+    },
+    {
+      "feature": "color_3_total_size",
+      "importance": 0.02504
+    },
+    {
+      "feature": "color_0_centroid_x",
+      "importance": 0.02369
+    },
+    {
+      "feature": "size_bin_2_frac",
+      "importance": 0.0236
+    },
+    {
+      "feature": "top_pair_0_global_correspondence",
+      "importance": 0.02238
+    },
+    {
+      "feature": "color_2_centroid_y",
+      "importance": 0.02197
+    },
+    {
+      "feature": "top_pair_1_size_sim",
+      "importance": 0.02166
+    },
+    {
+      "feature": "top_pair_1_nearest_dist",
+      "importance": 0.02134
+    },
+    {
+      "feature": "nearest_distance_max",
+      "importance": 0.02122
+    },
+    {
+      "feature": "size_bin_1_frac",
+      "importance": 0.01938
+    },
+    {
+      "feature": "color_2_centroid_x",
+      "importance": 0.01928
+    },
+    {
+      "feature": "dominant_color_fraction",
+      "importance": 0.01883
+    },
+    {
+      "feature": "color_2_total_size",
+      "importance": 0.01842
+    },
+    {
+      "feature": "color_0_total_size",
+      "importance": 0.0183
+    }
+  ],
+  "model_out": "models\\cognitive_phase_v2_by_game.joblib"
+}

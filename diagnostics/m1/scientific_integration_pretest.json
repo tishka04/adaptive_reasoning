@@ -1,0 +1,59 @@
+{
+  "config": {
+    "revision_candidates_path": "diagnostics\\m1\\mechanic_revision_candidates.json"
+  },
+  "ledger_entries": [
+    {
+      "contradictions": 0,
+      "controlled_test_required": true,
+      "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+      "entered_scientific_ledger": true,
+      "experiments_spent": 0,
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "observation_counted_as_confirmation": false,
+      "prior_counted_as_proof": false,
+      "revision_candidate_id": "revision::m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+      "status": "unresolved",
+      "support": 0,
+      "trace_support_counted_as_proof": false
+    }
+  ],
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "scores_by_game": {
+    "bp35-0a0ad940": {
+      "confirmation_precision": 0.0,
+      "correct_confirmations": 0,
+      "correct_refutations": 0,
+      "experiment_actions": 0,
+      "experiment_efficiency": 0.0,
+      "game_id": "bp35-0a0ad940",
+      "human_alignment": 0.0,
+      "hypotheses_confirmed": 0,
+      "hypotheses_refuted": 0,
+      "missed_refutations": 0,
+      "unverifiable": 1,
+      "wrong_confirmations": 0,
+      "wrong_refutations": 0
+    }
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "confirmed_records": 0,
+    "contradictions_total": 0,
+    "controlled_tests_required": 1,
+    "entered_scientific_ledger": 1,
+    "experiments_spent_total": 0,
+    "observation_counted_as_confirmation": false,
+    "prior_counted_as_proof": false,
+    "refuted_records": 0,
+    "revision_candidates_total": 1,
+    "revision_performed": false,
+    "support_total": 0,
+    "trace_support_counted_as_proof": false,
+    "unresolved_records": 1,
+    "wrong_confirmations": 0
+  },
+  "trace_support_counted_as_proof": false
+}

@@ -1,0 +1,6965 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "conditions_source": "M3.O3.recommended_conditions",
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "execution_performed": true,
+    "inputs_read": [
+      "M3.O3",
+      "M3.24"
+    ],
+    "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+    "prefixes_source": "M3.O3.recommended_refined_prefixes",
+    "schema_version": "m3.objective_refined_window_results.v1",
+    "scope_consolidation_path": "diagnostics\\m3\\a32_requested_patch_similarity_scope_consolidation.json",
+    "threshold_consolidation_path": "diagnostics\\m3\\objective_threshold_consolidation.json"
+  },
+  "execution_cells": [
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"continue_action6\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION6\",\"post_prefix_policy\":\"continue_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":50,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "continue_local_affordance",
+      "condition_id": "continue_action6",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 51,
+        "repeated_action6_count": 45,
+        "useful_action6_steps": 51
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 408.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION6",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "continue_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 50,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 50,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"stop_policy\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":null,\"post_prefix_policy\":\"stop_or_hold_if_available\",\"prefix_action\":\"ACTION6\",\"prefix_length\":50,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "stop_or_noop",
+      "condition_id": "stop_policy",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 50,
+        "repeated_action6_count": 44,
+        "useful_action6_steps": 50
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 400.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": null,
+      "post_prefix_action_executed": false,
+      "post_prefix_policy": "stop_or_hold_if_available",
+      "prefix_action": "ACTION6",
+      "prefix_length": 50,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 50,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+      "stop_or_hold_semantics": "observe_prefix_endpoint_without_extra_action",
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION3\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION3\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":50,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION3",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 50,
+        "repeated_action6_count": 44,
+        "useful_action6_steps": 50
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 400.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION3",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 50,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 50,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION4\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION4\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":50,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION4",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 51,
+        "repeated_action6_count": 44,
+        "useful_action6_steps": 50
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 407.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION4",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 50,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 50,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"continue_action6\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION6\",\"post_prefix_policy\":\"continue_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":54,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "continue_local_affordance",
+      "condition_id": "continue_action6",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 55,
+        "repeated_action6_count": 49,
+        "useful_action6_steps": 55
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 440.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION6",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "continue_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 54,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 54,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"stop_policy\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":null,\"post_prefix_policy\":\"stop_or_hold_if_available\",\"prefix_action\":\"ACTION6\",\"prefix_length\":54,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "stop_or_noop",
+      "condition_id": "stop_policy",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 54,
+        "repeated_action6_count": 48,
+        "useful_action6_steps": 54
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 432.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": null,
+      "post_prefix_action_executed": false,
+      "post_prefix_policy": "stop_or_hold_if_available",
+      "prefix_action": "ACTION6",
+      "prefix_length": 54,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 54,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+      "stop_or_hold_semantics": "observe_prefix_endpoint_without_extra_action",
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION3\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION3\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":54,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION3",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 54,
+        "repeated_action6_count": 48,
+        "useful_action6_steps": 54
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 432.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION3",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 54,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 54,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION4\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION4\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":54,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION4",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 55,
+        "repeated_action6_count": 48,
+        "useful_action6_steps": 54
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 439.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION4",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 54,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 54,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"continue_action6\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION6\",\"post_prefix_policy\":\"continue_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":58,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "continue_local_affordance",
+      "condition_id": "continue_action6",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 59,
+        "repeated_action6_count": 53,
+        "useful_action6_steps": 59
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 472.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION6",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "continue_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 58,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 58,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"stop_policy\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":null,\"post_prefix_policy\":\"stop_or_hold_if_available\",\"prefix_action\":\"ACTION6\",\"prefix_length\":58,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "stop_or_noop",
+      "condition_id": "stop_policy",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 58,
+        "repeated_action6_count": 52,
+        "useful_action6_steps": 58
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 464.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": null,
+      "post_prefix_action_executed": false,
+      "post_prefix_policy": "stop_or_hold_if_available",
+      "prefix_action": "ACTION6",
+      "prefix_length": 58,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 58,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+      "stop_or_hold_semantics": "observe_prefix_endpoint_without_extra_action",
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION3\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION3\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":58,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION3",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 58,
+        "repeated_action6_count": 52,
+        "useful_action6_steps": 58
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 464.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION3",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 58,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 58,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION4\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION4\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":58,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION4",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 59,
+        "repeated_action6_count": 52,
+        "useful_action6_steps": 58
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 471.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION4",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 58,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 58,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"continue_action6\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION6\",\"post_prefix_policy\":\"continue_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":60,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "continue_local_affordance",
+      "condition_id": "continue_action6",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 61,
+        "repeated_action6_count": 55,
+        "useful_action6_steps": 61
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 488.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION6",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "continue_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 60,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 60,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"stop_policy\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":null,\"post_prefix_policy\":\"stop_or_hold_if_available\",\"prefix_action\":\"ACTION6\",\"prefix_length\":60,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "stop_or_noop",
+      "condition_id": "stop_policy",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 60,
+        "repeated_action6_count": 54,
+        "useful_action6_steps": 60
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 480.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": null,
+      "post_prefix_action_executed": false,
+      "post_prefix_policy": "stop_or_hold_if_available",
+      "prefix_action": "ACTION6",
+      "prefix_length": 60,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 60,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+      "stop_or_hold_semantics": "observe_prefix_endpoint_without_extra_action",
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION3\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION3\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":60,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION3",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 60,
+        "repeated_action6_count": 54,
+        "useful_action6_steps": 60
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 480.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION3",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 60,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 60,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION4\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION4\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":60,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION4",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 61,
+        "repeated_action6_count": 54,
+        "useful_action6_steps": 60
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 487.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION4",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 60,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 60,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"continue_action6\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION6\",\"post_prefix_policy\":\"continue_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":62,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "continue_local_affordance",
+      "condition_id": "continue_action6",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 63,
+        "repeated_action6_count": 57,
+        "useful_action6_steps": 63
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 504.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION6",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "continue_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 62,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 62,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"stop_policy\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":null,\"post_prefix_policy\":\"stop_or_hold_if_available\",\"prefix_action\":\"ACTION6\",\"prefix_length\":62,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "stop_or_noop",
+      "condition_id": "stop_policy",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 62,
+        "repeated_action6_count": 56,
+        "useful_action6_steps": 62
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 496.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": null,
+      "post_prefix_action_executed": false,
+      "post_prefix_policy": "stop_or_hold_if_available",
+      "prefix_action": "ACTION6",
+      "prefix_length": 62,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 62,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+      "stop_or_hold_semantics": "observe_prefix_endpoint_without_extra_action",
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION3\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION3\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":62,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION3",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 62,
+        "repeated_action6_count": 56,
+        "useful_action6_steps": 62
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 496.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION3",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 62,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 62,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION4\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION4\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":62,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION4",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 63,
+        "repeated_action6_count": 56,
+        "useful_action6_steps": 62
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 503.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": "ACTION4",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 62,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 62,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"continue_action6\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION6\",\"post_prefix_policy\":\"continue_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":63,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "continue_local_affordance",
+      "condition_id": "continue_action6",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 64,
+        "repeated_action6_count": 58,
+        "useful_action6_steps": 64
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "GAME_OVER",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 512.0,
+        "terminal_state_after_rollout": true
+      },
+      "post_prefix_action": "ACTION6",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "continue_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 63,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 63,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"stop_policy\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":null,\"post_prefix_policy\":\"stop_or_hold_if_available\",\"prefix_action\":\"ACTION6\",\"prefix_length\":63,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "stop_or_noop",
+      "condition_id": "stop_policy",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 63,
+        "repeated_action6_count": 57,
+        "useful_action6_steps": 63
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "NOT_FINISHED",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 504.0,
+        "terminal_state_after_rollout": false
+      },
+      "post_prefix_action": null,
+      "post_prefix_action_executed": false,
+      "post_prefix_policy": "stop_or_hold_if_available",
+      "prefix_action": "ACTION6",
+      "prefix_length": 63,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 63,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+      "stop_or_hold_semantics": "observe_prefix_endpoint_without_extra_action",
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION3\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION3\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":63,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION3",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 63,
+        "repeated_action6_count": 57,
+        "useful_action6_steps": 63
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "GAME_OVER",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 504.0,
+        "terminal_state_after_rollout": true
+      },
+      "post_prefix_action": "ACTION3",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 63,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 63,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_reason": null,
+      "cell_result_counted_as_confirmation": false,
+      "cell_signature": "m3_o2::{\"condition_id\":\"switch_ACTION4\",\"game_id\":\"bp35-0a0ad940\",\"post_prefix_action\":\"ACTION4\",\"post_prefix_policy\":\"switch_to_action\",\"prefix_action\":\"ACTION6\",\"prefix_length\":63,\"prefix_policy\":\"patch_similarity_soft_stale_action6_prefix\",\"tie_break_seed\":0}",
+      "condition_family": "switch_subgoal",
+      "condition_id": "switch_ACTION4",
+      "contradiction_events": 0,
+      "early_terminal_during_prefix": false,
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "local_diagnostic_metrics": {
+        "local_effect_metric": 64,
+        "repeated_action6_count": 57,
+        "useful_action6_steps": 63
+      },
+      "neutral_events": 1,
+      "objective_metrics": {
+        "final_game_state": "GAME_OVER",
+        "levels_completed_after_rollout": 0,
+        "objective_progress_proxy": 511.0,
+        "terminal_state_after_rollout": true
+      },
+      "post_prefix_action": "ACTION4",
+      "post_prefix_action_executed": true,
+      "post_prefix_policy": "switch_to_action",
+      "prefix_action": "ACTION6",
+      "prefix_length": 63,
+      "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+      "prefix_steps_executed": 63,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "status": "EXECUTED",
+      "stop_or_hold_semantics": null,
+      "support": 0,
+      "support_events": 0,
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "execution_performed": true,
+  "objective_outcome_table": [
+    {
+      "conditions": {
+        "continue_action6": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 408.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "stop_policy": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 400.0,
+          "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION3": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 400.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION4": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 407.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        }
+      },
+      "prefix_length": 50,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "conditions": {
+        "continue_action6": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 440.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "stop_policy": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 432.0,
+          "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION3": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 432.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION4": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 439.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        }
+      },
+      "prefix_length": 54,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "conditions": {
+        "continue_action6": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 472.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "stop_policy": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 464.0,
+          "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION3": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 464.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION4": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 471.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        }
+      },
+      "prefix_length": 58,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "conditions": {
+        "continue_action6": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 488.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "stop_policy": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 480.0,
+          "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION3": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 480.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION4": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 487.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        }
+      },
+      "prefix_length": 60,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "conditions": {
+        "continue_action6": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 504.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "stop_policy": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 496.0,
+          "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION3": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 496.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION4": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 503.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": false
+        }
+      },
+      "prefix_length": 62,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "conditions": {
+        "continue_action6": {
+          "final_game_state": "GAME_OVER",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 512.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": true
+        },
+        "stop_policy": {
+          "final_game_state": "NOT_FINISHED",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 504.0,
+          "status": "STOP_PREFIX_ENDPOINT_OBSERVED",
+          "terminal_state_after_rollout": false
+        },
+        "switch_ACTION3": {
+          "final_game_state": "GAME_OVER",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 504.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": true
+        },
+        "switch_ACTION4": {
+          "final_game_state": "GAME_OVER",
+          "levels_completed_after_rollout": 0,
+          "objective_progress_proxy": 511.0,
+          "status": "EXECUTED",
+          "terminal_state_after_rollout": true
+        }
+      },
+      "prefix_length": 63,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    }
+  ],
+  "prefix_comparisons": [
+    {
+      "continue_terminal": false,
+      "interpretation": "pre_terminal_no_terminal_separation",
+      "nonterminal_alternative_conditions": [
+        "stop_policy",
+        "switch_ACTION3",
+        "switch_ACTION4"
+      ],
+      "prefix_length": 50,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_alternative_conditions": [],
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "continue_terminal": false,
+      "interpretation": "pre_terminal_no_terminal_separation",
+      "nonterminal_alternative_conditions": [
+        "stop_policy",
+        "switch_ACTION3",
+        "switch_ACTION4"
+      ],
+      "prefix_length": 54,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_alternative_conditions": [],
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "continue_terminal": false,
+      "interpretation": "pre_terminal_no_terminal_separation",
+      "nonterminal_alternative_conditions": [
+        "stop_policy",
+        "switch_ACTION3",
+        "switch_ACTION4"
+      ],
+      "prefix_length": 58,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_alternative_conditions": [],
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "continue_terminal": false,
+      "interpretation": "pre_terminal_no_terminal_separation",
+      "nonterminal_alternative_conditions": [
+        "stop_policy",
+        "switch_ACTION3",
+        "switch_ACTION4"
+      ],
+      "prefix_length": 60,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_alternative_conditions": [],
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "continue_terminal": false,
+      "interpretation": "pre_terminal_no_terminal_separation",
+      "nonterminal_alternative_conditions": [
+        "stop_policy",
+        "switch_ACTION3",
+        "switch_ACTION4"
+      ],
+      "prefix_length": 62,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_alternative_conditions": [],
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    {
+      "continue_terminal": true,
+      "interpretation": "stop_or_switch_avoids_terminal_candidate_only",
+      "nonterminal_alternative_conditions": [
+        "stop_policy"
+      ],
+      "prefix_length": 63,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_alternative_conditions": [
+        "switch_ACTION3",
+        "switch_ACTION4"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    }
+  ],
+  "refined_window_result_counted_as_confirmation": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_threshold_candidate": {
+    "critical_window": [
+      49,
+      64
+    ],
+    "early_terminal_prefix_min": 64,
+    "revision_status": "CANDIDATE_ONLY",
+    "safe_tested_prefix_max": 48,
+    "support": 0,
+    "threshold_consolidation_id": "m3_o3::bp35-0a0ad940::objective_threshold",
+    "threshold_type": "PRE_TERMINAL_PREFIX_WINDOW",
+    "truth_status": "NOT_EVALUATED_BY_M3"
+  },
+  "status": "UNRESOLVED",
+  "stop_switch_effectiveness_counted_as_verdict": false,
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "blocked_cells": 0,
+    "blocked_cells_counted_as_contradictions": false,
+    "blocked_control_unavailable_cells": 0,
+    "contradiction_events": 0,
+    "early_terminal_prefix_cells": 0,
+    "execution_performed": true,
+    "neutral_events": 24,
+    "objective_cells_executed": 24,
+    "planned_refined_cells": 24,
+    "prefixes_all_conditions_terminal_or_too_late": [],
+    "prefixes_with_candidate_terminal_avoidance": [
+      63
+    ],
+    "prefixes_without_terminal_separation": [
+      50,
+      54,
+      58,
+      60,
+      62
+    ],
+    "refined_conditions": [
+      "continue_action6",
+      "stop_policy",
+      "switch_ACTION3",
+      "switch_ACTION4"
+    ],
+    "refined_prefixes": [
+      50,
+      54,
+      58,
+      60,
+      62,
+      63
+    ],
+    "refined_window_result_counted_as_confirmation": false,
+    "result_interpretation": "At least one refined prefix has terminal continue-ACTION6 while a stop/switch alternative remains non-terminal; candidate-only.",
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_critical_window": [
+      49,
+      64
+    ],
+    "source_threshold_type": "PRE_TERMINAL_PREFIX_WINDOW",
+    "stop_switch_effectiveness_counted_as_verdict": false,
+    "stop_switch_effectiveness_status": "CANDIDATE_TERMINAL_AVOIDANCE_OBSERVED",
+    "support": 0,
+    "support_events": 0,
+    "threshold_consolidations_consumed": 1,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "unique_execution_cells": 24,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

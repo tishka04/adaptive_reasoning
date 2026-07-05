@@ -1,0 +1,143 @@
+{
+  "config": {
+    "schema_version": "m2_to_m3.v1",
+    "source_hypothesis_path": "diagnostics\\m2\\frontier_conditioned_hypotheses.json"
+  },
+  "experiment_requests": [
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "context_replay_args": null,
+      "context_snapshot_hash": null,
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_changes_local_patch_more_than_control",
+      "falsification_criterion": {
+        "failure_condition": "target_action_signal <= best_control_signal",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "local_patch_before_after",
+      "request_id": "m2m3::after_ACTION3_live_after_ACTION6::h001",
+      "revision_performed": false,
+      "source_hypothesis_id": "m2::after_ACTION3_live_after_ACTION6::h001",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION4",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "context_replay_args": null,
+      "context_snapshot_hash": null,
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_changes_local_patch_more_than_control",
+      "falsification_criterion": {
+        "failure_condition": "target_action_signal <= best_control_signal",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "local_patch_before_after",
+      "request_id": "m2m3::after_ACTION3_live_after_ACTION6::h002",
+      "revision_performed": false,
+      "source_hypothesis_id": "m2::after_ACTION3_live_after_ACTION6::h002",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION4",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "context_snapshot_hash": null,
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_changes_local_patch_more_than_control",
+      "falsification_criterion": {
+        "failure_condition": "target_action_signal <= best_control_signal",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "local_patch_before_after",
+      "request_id": "m2m3::after_ACTION6::h001",
+      "revision_performed": false,
+      "source_hypothesis_id": "m2::after_ACTION6::h001",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION4",
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION3",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "context_snapshot_hash": null,
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_changes_local_patch_more_than_control",
+      "falsification_criterion": {
+        "failure_condition": "target_action_signal <= best_control_signal",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "local_patch_before_after",
+      "request_id": "m2m3::after_ACTION6::h002",
+      "revision_performed": false,
+      "source_hypothesis_id": "m2::after_ACTION6::h002",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION4",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "blocked_not_testable": 0,
+    "experiment_requests": 4,
+    "ready_for_m3": 4,
+    "revision_performed": false,
+    "source_hypotheses": 4,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  }
+}

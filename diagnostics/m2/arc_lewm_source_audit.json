@@ -1,0 +1,21 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "accepted_source_types": [
+    "human_traces_steps_jsonl"
+  ],
+  "config": {
+    "schema_version": "m2.arc_lewm_source_audit.v1"
+  },
+  "rejected_source_types": [
+    "m1_observation_dataset_jsonl",
+    "m3_experiment_logs",
+    "p1_policy_logs",
+    "p3_policy_logs"
+  ],
+  "rejection_reason": "raw_grid_t_grid_t1_not_verified_for_foundation_pass",
+  "revision_status": "CANDIDATE_ONLY",
+  "silent_ingestion_performed": false,
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2"
+}

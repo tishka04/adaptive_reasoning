@@ -1,0 +1,71 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "P1",
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "inputs_read": [
+      "P1.11"
+    ],
+    "p1_frontier_trigger_path": "diagnostics\\p1\\bp35_movement_policy_frontier_trigger.json",
+    "schema_version": "p2.policy_frontier_record.v1",
+    "source": "P1.11"
+  },
+  "frontier_records_counted_as_confirmation": false,
+  "real_frontier_records": [],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "ready_for_m2_or_m3_records": 0,
+    "real_frontier_records": 0,
+    "real_handoffs_produced": 0,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "synthetic_frontier_records": 1,
+    "synthetic_records_counted_as_handoff": false,
+    "synthetic_records_for_schema_validation_only": 1,
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "synthetic_frontier_records": [
+    {
+      "exhausted_policy": "conditional_movement_refresh",
+      "frontier_context_id": "after_soft_stale_and_conditional_movement_refresh_exhaustion",
+      "frontier_id": "p1::bp35::conditional_movement_refresh::exhausted_refresh::synthetic_fixture",
+      "frontier_reason": "NO_EFFECTIVE_ACTION6_AFTER_SOFT_STALE_AND_CONDITIONAL_MOVEMENT_REFRESH",
+      "frontier_trigger_counted_as_confirmation": false,
+      "game_id": "bp35-0a0ad940",
+      "policy_result_counted_as_scientific_verdict": false,
+      "ready_for_m2_or_m3": false,
+      "refresh_candidates": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION1",
+        "ACTION2"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source": "P1.11.synthetic_fixture",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "synthetic_fixture": true,
+      "synthetic_fixture_not_for_scientific_handoff": true,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

@@ -1,0 +1,76 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\ar25_fixed_counters\baseline_memory.pt
+  time_budget=60.0s   mode=development
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] disabled via --no-task-program
+
+  running agent.main() with 60.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.60 epsilon=0.82 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.66 epsilon=0.80 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.75 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=1 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] ITER-START iter=5 knowledge=0.54 epsilon=0.16 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=5 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=5 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=5 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] ITER-START iter=6 knowledge=0.54 epsilon=0.16 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=6 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=6 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=6 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=7 knowledge=0.54 epsilon=0.15 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=7 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=7 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=7 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] ITER-START iter=8 knowledge=0.54 epsilon=0.14 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=8 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=8 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=8 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] ITER-START iter=9 knowledge=0.58 epsilon=0.10 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=9 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=9 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=9 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=10 knowledge=0.62 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=10 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=10 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=10 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] ITER-START iter=11 knowledge=0.62 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=11 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=11 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=11 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] ITER-START iter=12 knowledge=0.62 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=12 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=12 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=12 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=13 knowledge=0.62 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=13 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=13 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=13 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 778
+  assoc wins:    0
+  elapsed:       64.2s
+  final goal:    Collect all target items on the grid
+
+  --no-save-memory set; cross-game memory NOT written back

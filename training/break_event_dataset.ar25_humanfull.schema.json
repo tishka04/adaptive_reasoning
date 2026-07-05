@@ -1,0 +1,28 @@
+{
+  "source_dataset": "training/abstraction_dataset.ar25_humanfull.jsonl",
+  "out": "training\\break_event_dataset.ar25_humanfull.jsonl",
+  "natural_out": "training\\break_event_dataset.ar25_humanfull.natural.jsonl",
+  "games": "ar25",
+  "seed": 0,
+  "thresholds": {
+    "big_break_lte": -50.0,
+    "small_change_abs_lt": 5.0
+  },
+  "classes": [
+    "BIG_BREAK",
+    "SMALL_CHANGE",
+    "OTHER_CHANGE"
+  ],
+  "natural_rows": 3669,
+  "oversampled_rows": 6033,
+  "natural_counts": {
+    "BIG_BREAK": 483,
+    "SMALL_CHANGE": 2011,
+    "OTHER_CHANGE": 1175
+  },
+  "oversampled_counts": {
+    "BIG_BREAK": 2011,
+    "SMALL_CHANGE": 2011,
+    "OTHER_CHANGE": 2011
+  }
+}

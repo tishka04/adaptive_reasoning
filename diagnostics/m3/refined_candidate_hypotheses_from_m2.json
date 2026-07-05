@@ -1,0 +1,608 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "experiment_results_path": "diagnostics\\m3\\m2_candidate_experiment_results.json",
+    "grouping_policy": {
+      "experimental_signature": [
+        "game_id",
+        "context_replay",
+        "context_replay_args",
+        "target_action",
+        "control_action",
+        "metric",
+        "signal_source"
+      ],
+      "mechanistic_signature": [
+        "game_id",
+        "context_replay",
+        "target_action",
+        "observed_effect_family"
+      ]
+    },
+    "inputs_read": [
+      "M3.7b"
+    ],
+    "schema_version": "m3.m2_observation_refinement.v1"
+  },
+  "controlled_test_required": true,
+  "experimental_observation_groups": [
+    {
+      "baseline_signal": 0.0,
+      "contradiction_events": 0,
+      "diagnostic_only": false,
+      "effect_size": 0.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          },
+          {}
+        ],
+        "control_action": "ACTION3",
+        "game_id": "bp35-0a0ad940",
+        "metric": "local_patch_before_after",
+        "signal_source": "metric_extractor",
+        "target_action": "ACTION4"
+      },
+      "metric": "local_patch_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "perturbation_signal": 0.0,
+      "raw_support_events": 0,
+      "request_ids": [
+        "m2m3::after_ACTION3_live_after_ACTION6::h001",
+        "m2m3::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "role": "neutral",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "support_events": 0
+    },
+    {
+      "baseline_signal": 0.0,
+      "contradiction_events": 0,
+      "diagnostic_only": false,
+      "effect_size": 0.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          }
+        ],
+        "control_action": "ACTION3",
+        "game_id": "bp35-0a0ad940",
+        "metric": "local_patch_before_after",
+        "signal_source": "metric_extractor",
+        "target_action": "ACTION4"
+      },
+      "metric": "local_patch_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "perturbation_signal": 0.0,
+      "raw_support_events": 0,
+      "request_ids": [
+        "m2m3::after_ACTION6::h002"
+      ],
+      "role": "neutral",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION6::h002"
+      ],
+      "support_events": 0
+    },
+    {
+      "baseline_signal": 0.0,
+      "contradiction_events": 0,
+      "diagnostic_only": false,
+      "effect_size": 0.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          }
+        ],
+        "control_action": "ACTION4",
+        "game_id": "bp35-0a0ad940",
+        "metric": "local_patch_before_after",
+        "signal_source": "metric_extractor",
+        "target_action": "ACTION3"
+      },
+      "metric": "local_patch_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "perturbation_signal": 0.0,
+      "raw_support_events": 0,
+      "request_ids": [
+        "m2m3::after_ACTION6::h001"
+      ],
+      "role": "neutral",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION6::h001"
+      ],
+      "support_events": 0
+    },
+    {
+      "baseline_signal": 1.0,
+      "contradiction_events": 0,
+      "diagnostic_only": false,
+      "effect_size": 46.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          },
+          {}
+        ],
+        "control_action": "ACTION3",
+        "game_id": "bp35-0a0ad940",
+        "metric": "changed_pixels",
+        "signal_source": "raw_changed_pixels",
+        "target_action": "ACTION4"
+      },
+      "metric": "changed_pixels",
+      "metric_grounding_status": "grounded_raw_signal",
+      "neutral_events": 0,
+      "perturbation_signal": 47.0,
+      "raw_support_events": 0,
+      "request_ids": [
+        "m2m3::after_ACTION3_live_after_ACTION6::h001",
+        "m2m3::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "role": "positive",
+      "signal_source": "raw_changed_pixels",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "support_events": 1
+    },
+    {
+      "baseline_signal": 2.0,
+      "contradiction_events": 0,
+      "diagnostic_only": false,
+      "effect_size": 3.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          },
+          {}
+        ],
+        "control_action": "ACTION3",
+        "game_id": "bp35-0a0ad940",
+        "metric": "object_positions_before_after",
+        "signal_source": "metric_extractor",
+        "target_action": "ACTION4"
+      },
+      "metric": "object_positions_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 0,
+      "perturbation_signal": 5.0,
+      "raw_support_events": 0,
+      "request_ids": [
+        "m2m3::after_ACTION3_live_after_ACTION6::h001",
+        "m2m3::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "role": "positive",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "support_events": 1
+    },
+    {
+      "baseline_signal": 0.0,
+      "contradiction_events": 0,
+      "diagnostic_only": false,
+      "effect_size": 0.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          },
+          {}
+        ],
+        "control_action": "ACTION3",
+        "game_id": "bp35-0a0ad940",
+        "metric": "contact_graph_before_after",
+        "signal_source": "metric_extractor",
+        "target_action": "ACTION4"
+      },
+      "metric": "contact_graph_before_after",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "neutral_events": 1,
+      "perturbation_signal": 0.0,
+      "raw_support_events": 0,
+      "request_ids": [
+        "m2m3::after_ACTION3_live_after_ACTION6::h001",
+        "m2m3::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "role": "neutral",
+      "signal_source": "metric_extractor",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "support_events": 0
+    },
+    {
+      "baseline_signal": 1.0,
+      "contradiction_events": 0,
+      "diagnostic_only": true,
+      "effect_size": 46.0,
+      "experimental_signature": {
+        "context_replay": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "context_replay_args": [
+          {
+            "x": 18,
+            "y": 0
+          },
+          {}
+        ],
+        "control_action": "ACTION3",
+        "game_id": "bp35-0a0ad940",
+        "metric": "topology_before_after",
+        "signal_source": "ungrounded_metric",
+        "target_action": "ACTION4"
+      },
+      "metric": "topology_before_after",
+      "metric_grounding_status": "diagnostic_only",
+      "neutral_events": 1,
+      "perturbation_signal": 47.0,
+      "raw_support_events": 1,
+      "request_ids": [
+        "m2m3::after_ACTION3_live_after_ACTION6::h001",
+        "m2m3::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "role": "diagnostic_only",
+      "signal_source": "ungrounded_metric",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "support_events": 0
+    }
+  ],
+  "input_support_events_counted_as_support": false,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "refined_candidate_hypotheses": [
+    {
+      "candidate_mechanic": "global_object_repositioning_after_consumption",
+      "context_replay": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {}
+      ],
+      "control_actions": [
+        "ACTION3"
+      ],
+      "controlled_test_required": true,
+      "derived_from_observations": [
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "diagnostic_only": false,
+          "effect_size": 0.0,
+          "experimental_signature": {
+            "context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "context_replay_args": [
+              {
+                "x": 18,
+                "y": 0
+              },
+              {}
+            ],
+            "control_action": "ACTION3",
+            "game_id": "bp35-0a0ad940",
+            "metric": "local_patch_before_after",
+            "signal_source": "metric_extractor",
+            "target_action": "ACTION4"
+          },
+          "metric": "local_patch_before_after",
+          "metric_grounding_status": "grounded_metric_extractor",
+          "neutral_events": 1,
+          "perturbation_signal": 0.0,
+          "raw_support_events": 0,
+          "request_ids": [
+            "m2m3::after_ACTION3_live_after_ACTION6::h001",
+            "m2m3::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "role": "neutral",
+          "signal_source": "metric_extractor",
+          "source_hypothesis_ids": [
+            "m2::after_ACTION3_live_after_ACTION6::h001",
+            "m2::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "support_events": 0
+        },
+        {
+          "baseline_signal": 1.0,
+          "contradiction_events": 0,
+          "diagnostic_only": false,
+          "effect_size": 46.0,
+          "experimental_signature": {
+            "context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "context_replay_args": [
+              {
+                "x": 18,
+                "y": 0
+              },
+              {}
+            ],
+            "control_action": "ACTION3",
+            "game_id": "bp35-0a0ad940",
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels",
+            "target_action": "ACTION4"
+          },
+          "metric": "changed_pixels",
+          "metric_grounding_status": "grounded_raw_signal",
+          "neutral_events": 0,
+          "perturbation_signal": 47.0,
+          "raw_support_events": 0,
+          "request_ids": [
+            "m2m3::after_ACTION3_live_after_ACTION6::h001",
+            "m2m3::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "role": "positive",
+          "signal_source": "raw_changed_pixels",
+          "source_hypothesis_ids": [
+            "m2::after_ACTION3_live_after_ACTION6::h001",
+            "m2::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "support_events": 1
+        },
+        {
+          "baseline_signal": 2.0,
+          "contradiction_events": 0,
+          "diagnostic_only": false,
+          "effect_size": 3.0,
+          "experimental_signature": {
+            "context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "context_replay_args": [
+              {
+                "x": 18,
+                "y": 0
+              },
+              {}
+            ],
+            "control_action": "ACTION3",
+            "game_id": "bp35-0a0ad940",
+            "metric": "object_positions_before_after",
+            "signal_source": "metric_extractor",
+            "target_action": "ACTION4"
+          },
+          "metric": "object_positions_before_after",
+          "metric_grounding_status": "grounded_metric_extractor",
+          "neutral_events": 0,
+          "perturbation_signal": 5.0,
+          "raw_support_events": 0,
+          "request_ids": [
+            "m2m3::after_ACTION3_live_after_ACTION6::h001",
+            "m2m3::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "role": "positive",
+          "signal_source": "metric_extractor",
+          "source_hypothesis_ids": [
+            "m2::after_ACTION3_live_after_ACTION6::h001",
+            "m2::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "support_events": 1
+        },
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "diagnostic_only": false,
+          "effect_size": 0.0,
+          "experimental_signature": {
+            "context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "context_replay_args": [
+              {
+                "x": 18,
+                "y": 0
+              },
+              {}
+            ],
+            "control_action": "ACTION3",
+            "game_id": "bp35-0a0ad940",
+            "metric": "contact_graph_before_after",
+            "signal_source": "metric_extractor",
+            "target_action": "ACTION4"
+          },
+          "metric": "contact_graph_before_after",
+          "metric_grounding_status": "grounded_metric_extractor",
+          "neutral_events": 1,
+          "perturbation_signal": 0.0,
+          "raw_support_events": 0,
+          "request_ids": [
+            "m2m3::after_ACTION3_live_after_ACTION6::h001",
+            "m2m3::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "role": "neutral",
+          "signal_source": "metric_extractor",
+          "source_hypothesis_ids": [
+            "m2::after_ACTION3_live_after_ACTION6::h001",
+            "m2::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "support_events": 0
+        },
+        {
+          "baseline_signal": 1.0,
+          "contradiction_events": 0,
+          "diagnostic_only": true,
+          "effect_size": 46.0,
+          "experimental_signature": {
+            "context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "context_replay_args": [
+              {
+                "x": 18,
+                "y": 0
+              },
+              {}
+            ],
+            "control_action": "ACTION3",
+            "game_id": "bp35-0a0ad940",
+            "metric": "topology_before_after",
+            "signal_source": "ungrounded_metric",
+            "target_action": "ACTION4"
+          },
+          "metric": "topology_before_after",
+          "metric_grounding_status": "diagnostic_only",
+          "neutral_events": 1,
+          "perturbation_signal": 47.0,
+          "raw_support_events": 1,
+          "request_ids": [
+            "m2m3::after_ACTION3_live_after_ACTION6::h001",
+            "m2m3::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "role": "diagnostic_only",
+          "signal_source": "ungrounded_metric",
+          "source_hypothesis_ids": [
+            "m2::after_ACTION3_live_after_ACTION6::h001",
+            "m2::after_ACTION3_live_after_ACTION6::h002"
+          ],
+          "support_events": 0
+        }
+      ],
+      "diagnostic_only_observations": [
+        "topology_before_after"
+      ],
+      "evidence_summary": {
+        "diagnostic_only_observations": 1,
+        "grounded_positive_observations": 2,
+        "input_support_events": 2,
+        "input_support_events_counted_as_support": false,
+        "neutral_observations": 2,
+        "unique_grounded_positive_signatures": 2
+      },
+      "game_id": "bp35-0a0ad940",
+      "input_support_events_counted_as_support": false,
+      "mechanistic_signature": {
+        "context_replay": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "game_id": "bp35-0a0ad940",
+        "observed_effect_family": "global_motion",
+        "target_action": "ACTION4"
+      },
+      "neutral_observations": [
+        "local_patch_before_after_neutral",
+        "contact_graph_before_after_neutral"
+      ],
+      "observation_counted_as_confirmation": false,
+      "observed_effect_family": "global_motion",
+      "positive_observations": [
+        "changed_pixels_support",
+        "object_positions_before_after_support"
+      ],
+      "prior_counted_as_proof": false,
+      "refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "status": "UNRESOLVED",
+      "support": 0,
+      "target_action": "ACTION4",
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "controlled_test_required": true,
+    "duplicate_source_hypotheses_merged": true,
+    "experimental_signature_groups": 7,
+    "input_contradiction_events": 0,
+    "input_support_events": 4,
+    "input_support_events_after_signature_dedup": 2,
+    "input_support_events_counted_as_support": false,
+    "mechanistic_signature_groups": 1,
+    "merged_source_hypotheses": 2,
+    "refined_candidate_hypotheses": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_experiments": 12,
+    "source_hypotheses_consumed": 4,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "unique_diagnostic_only_signatures": 1,
+    "unique_grounded_positive_signatures": 2,
+    "unique_neutral_signatures": 4,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

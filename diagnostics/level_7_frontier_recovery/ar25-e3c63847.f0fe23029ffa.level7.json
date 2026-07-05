@@ -1,0 +1,5163 @@
+{
+  "action3_precondition_matrix": {
+    "ACTION3_safe_distinct_bbox_count": 0,
+    "best": {
+      "bbox_after_ACTION3": {
+        "changed_cells": 321,
+        "height": 52,
+        "max_x": 63,
+        "max_y": 63,
+        "min_x": 9,
+        "min_y": 12,
+        "width": 55
+      },
+      "bbox_after_ACTION3_distinct_from_ACTION6": true,
+      "bucket": "fatal_distinct_bbox",
+      "death": true,
+      "delta_vs_after_ACTION6": {
+        "bounding_box_of_diff": {
+          "changed_cells": 411,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "changed_cells": 411,
+        "changed_values": {
+          "after_values": [
+            0,
+            4,
+            5,
+            9,
+            10
+          ],
+          "before_values": [
+            0,
+            4,
+            5,
+            9,
+            11,
+            14
+          ],
+          "transitions": {
+            "0->9": 7,
+            "11->4": 16,
+            "11->5": 16,
+            "14->5": 1,
+            "4->10": 8,
+            "4->9": 91,
+            "5->10": 8,
+            "5->9": 48,
+            "9->0": 5,
+            "9->4": 171,
+            "9->5": 40
+          }
+        },
+        "component_delta": 37,
+        "distance_to_center": {
+          "bbox_center_x": 36.0,
+          "bbox_center_y": 37.5,
+          "euclidean": 7.5,
+          "grid_center_x": 31.5,
+          "grid_center_y": 31.5,
+          "normalized": 0.0842
+        },
+        "histogram_delta": 210,
+        "symmetry_score": {
+          "horizontal": 0.5109,
+          "rotational": 0.4039,
+          "vertical": 0.7689
+        }
+      },
+      "k_action7_before_ACTION3": 5,
+      "level_after_ACTION3": 7,
+      "new_components_changed_after_ACTION3": 51,
+      "sequence": [
+        "ACTION6",
+        "ACTION7",
+        "ACTION7",
+        "ACTION7",
+        "ACTION7",
+        "ACTION7",
+        "ACTION3"
+      ],
+      "state_after_ACTION3": "GAME_OVER",
+      "target_coord": {
+        "x": 13,
+        "y": 28
+      },
+      "target_rank": 2
+    },
+    "candidate_count": 48,
+    "center": {
+      "x": 31,
+      "y": 31
+    },
+    "evaluated_trials": 91,
+    "fatal_distinct_bbox": [
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 190,
+          "height": 37,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 27,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 190,
+            "height": 37,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 27,
+            "width": 55
+          },
+          "changed_cells": 190,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              14
+            ],
+            "transitions": {
+              "0->9": 5,
+              "10->4": 8,
+              "10->5": 8,
+              "14->5": 1,
+              "4->0": 1,
+              "4->10": 8,
+              "4->5": 8,
+              "4->9": 37,
+              "5->10": 8,
+              "5->9": 32,
+              "9->0": 4,
+              "9->4": 46,
+              "9->5": 24
+            }
+          },
+          "component_delta": 28,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 45.0,
+            "euclidean": 14.23,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.1597
+          },
+          "histogram_delta": 2,
+          "symmetry_score": {
+            "horizontal": 0.4421,
+            "rotational": 0.3684,
+            "vertical": 0.7263
+          }
+        },
+        "k_action7_before_ACTION3": 0,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 28,
+        "sequence": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 249,
+          "height": 40,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 24,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 281,
+            "height": 40,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 24,
+            "width": 55
+          },
+          "changed_cells": 281,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 6,
+              "10->4": 8,
+              "10->5": 8,
+              "11->4": 48,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 64,
+              "5->10": 8,
+              "5->9": 40,
+              "9->0": 4,
+              "9->4": 46,
+              "9->5": 24
+            }
+          },
+          "component_delta": 48,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 43.5,
+            "euclidean": 12.816,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.1438
+          },
+          "histogram_delta": 134,
+          "symmetry_score": {
+            "horizontal": 0.4199,
+            "rotational": 0.3986,
+            "vertical": 0.7758
+          }
+        },
+        "k_action7_before_ACTION3": 1,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 46,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 319,
+          "height": 43,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 21,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 321,
+            "height": 43,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 21,
+            "width": 55
+          },
+          "changed_cells": 321,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 6,
+              "10->4": 8,
+              "10->5": 8,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 64,
+              "5->10": 8,
+              "5->9": 40,
+              "9->0": 4,
+              "9->4": 118,
+              "9->5": 24
+            }
+          },
+          "component_delta": 44,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 42.0,
+            "euclidean": 11.424,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.1282
+          },
+          "histogram_delta": 142,
+          "symmetry_score": {
+            "horizontal": 0.4361,
+            "rotational": 0.4174,
+            "vertical": 0.7788
+          }
+        },
+        "k_action7_before_ACTION3": 2,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 48,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 353,
+          "height": 46,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 18,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 337,
+            "height": 46,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 18,
+            "width": 55
+          },
+          "changed_cells": 337,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 6,
+              "11->4": 24,
+              "11->5": 24,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 64,
+              "5->10": 8,
+              "5->9": 40,
+              "9->0": 3,
+              "9->4": 135,
+              "9->5": 24
+            }
+          },
+          "component_delta": 47,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 40.5,
+            "euclidean": 10.062,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.1129
+          },
+          "histogram_delta": 208,
+          "symmetry_score": {
+            "horizontal": 0.4095,
+            "rotational": 0.362,
+            "vertical": 0.7478
+          }
+        },
+        "k_action7_before_ACTION3": 3,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 48,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 323,
+          "height": 49,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 15,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 339,
+            "height": 49,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 15,
+            "width": 55
+          },
+          "changed_cells": 339,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 6,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 64,
+              "5->10": 8,
+              "5->9": 40,
+              "9->0": 4,
+              "9->4": 144,
+              "9->5": 32
+            }
+          },
+          "component_delta": 41,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 39.0,
+            "euclidean": 8.746,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0982
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.413,
+            "rotational": 0.3363,
+            "vertical": 0.7198
+          }
+        },
+        "k_action7_before_ACTION3": 4,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 47,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 891,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 891,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 163,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 128,
+              "9->4": 243,
+              "9->5": 40
+            }
+          },
+          "component_delta": 100,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5253,
+            "rotational": 0.2402,
+            "vertical": 0.3277
+          }
+        },
+        "k_action7_before_ACTION3": 7,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 49,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 255,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 667,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 667,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 145,
+              "5->10": 40,
+              "5->9": 16,
+              "9->0": 5,
+              "9->10": 32,
+              "9->4": 117,
+              "9->5": 40
+            }
+          },
+          "component_delta": 85,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 270,
+          "symmetry_score": {
+            "horizontal": 0.5247,
+            "rotational": 0.2219,
+            "vertical": 0.3178
+          }
+        },
+        "k_action7_before_ACTION3": 9,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 49,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 6,
+          "min_y": 12,
+          "width": 58
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 719,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 719,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 157,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 64,
+              "9->4": 117,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 310,
+          "symmetry_score": {
+            "horizontal": 0.6398,
+            "rotational": 0.1975,
+            "vertical": 0.2949
+          }
+        },
+        "k_action7_before_ACTION3": 11,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 42,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      }
+    ],
+    "fatal_distinct_bbox_count": 78,
+    "fatal_no_distinct_bbox_count": 0,
+    "k_range": [
+      0,
+      12
+    ],
+    "prefix_actions": [
+      "ACTION7",
+      "ACTION7",
+      "ACTION7"
+    ],
+    "safe_distinct_bbox": [],
+    "safe_no_distinct_bbox": [
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": null,
+          "changed_cells": 0,
+          "changed_values": {
+            "after_values": [],
+            "before_values": [],
+            "transitions": {}
+          },
+          "component_delta": 0,
+          "distance_to_center": null,
+          "histogram_delta": 0,
+          "symmetry_score": {
+            "horizontal": 1.0,
+            "rotational": 1.0,
+            "vertical": 1.0
+          }
+        },
+        "k_action7_before_ACTION3": 0,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 179,
+            "height": 21,
+            "max_x": 50,
+            "max_y": 44,
+            "min_x": 12,
+            "min_y": 24,
+            "width": 39
+          },
+          "changed_cells": 179,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              11
+            ],
+            "transitions": {
+              "11->4": 40,
+              "11->5": 24,
+              "4->9": 54,
+              "5->4": 8,
+              "5->9": 16,
+              "9->4": 37
+            }
+          },
+          "component_delta": 39,
+          "distance_to_center": {
+            "bbox_center_x": 31.0,
+            "bbox_center_y": 34.0,
+            "euclidean": 2.55,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0286
+          },
+          "histogram_delta": 128,
+          "symmetry_score": {
+            "horizontal": 0.1676,
+            "rotational": 0.1564,
+            "vertical": 0.7933
+          }
+        },
+        "k_action7_before_ACTION3": 1,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 225,
+            "height": 27,
+            "max_x": 50,
+            "max_y": 47,
+            "min_x": 12,
+            "min_y": 21,
+            "width": 39
+          },
+          "changed_cells": 225,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              11
+            ],
+            "transitions": {
+              "11->4": 24,
+              "11->5": 24,
+              "4->9": 54,
+              "5->4": 16,
+              "5->9": 16,
+              "9->4": 83,
+              "9->5": 8
+            }
+          },
+          "component_delta": 39,
+          "distance_to_center": {
+            "bbox_center_x": 31.0,
+            "bbox_center_y": 34.0,
+            "euclidean": 2.55,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0286
+          },
+          "histogram_delta": 138,
+          "symmetry_score": {
+            "horizontal": 0.3644,
+            "rotational": 0.3467,
+            "vertical": 0.7467
+          }
+        },
+        "k_action7_before_ACTION3": 2,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 274,
+            "height": 33,
+            "max_x": 50,
+            "max_y": 50,
+            "min_x": 12,
+            "min_y": 18,
+            "width": 39
+          },
+          "changed_cells": 274,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              11
+            ],
+            "transitions": {
+              "11->4": 40,
+              "11->5": 40,
+              "4->10": 8,
+              "4->9": 54,
+              "5->10": 8,
+              "5->4": 16,
+              "5->9": 16,
+              "9->4": 92
+            }
+          },
+          "component_delta": 45,
+          "distance_to_center": {
+            "bbox_center_x": 31.0,
+            "bbox_center_y": 34.0,
+            "euclidean": 2.55,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0286
+          },
+          "histogram_delta": 204,
+          "symmetry_score": {
+            "horizontal": 0.2555,
+            "rotational": 0.2409,
+            "vertical": 0.708
+          }
+        },
+        "k_action7_before_ACTION3": 3,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 309,
+            "height": 39,
+            "max_x": 50,
+            "max_y": 53,
+            "min_x": 12,
+            "min_y": 15,
+            "width": 39
+          },
+          "changed_cells": 309,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              11
+            ],
+            "transitions": {
+              "11->4": 24,
+              "11->5": 24,
+              "4->10": 8,
+              "4->5": 8,
+              "4->9": 72,
+              "5->10": 8,
+              "5->4": 8,
+              "5->9": 32,
+              "9->4": 109,
+              "9->5": 16
+            }
+          },
+          "component_delta": 45,
+          "distance_to_center": {
+            "bbox_center_x": 31.0,
+            "bbox_center_y": 34.0,
+            "euclidean": 2.55,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0286
+          },
+          "histogram_delta": 138,
+          "symmetry_score": {
+            "horizontal": 0.3754,
+            "rotational": 0.3042,
+            "vertical": 0.6861
+          }
+        },
+        "k_action7_before_ACTION3": 4,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 368,
+            "height": 45,
+            "max_x": 50,
+            "max_y": 56,
+            "min_x": 12,
+            "min_y": 12,
+            "width": 39
+          },
+          "changed_cells": 368,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              11
+            ],
+            "transitions": {
+              "11->4": 32,
+              "11->5": 32,
+              "4->10": 8,
+              "4->5": 8,
+              "4->9": 90,
+              "5->10": 8,
+              "5->9": 48,
+              "9->4": 126,
+              "9->5": 16
+            }
+          },
+          "component_delta": 50,
+          "distance_to_center": {
+            "bbox_center_x": 31.0,
+            "bbox_center_y": 34.0,
+            "euclidean": 2.55,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0286
+          },
+          "histogram_delta": 136,
+          "symmetry_score": {
+            "horizontal": 0.4946,
+            "rotational": 0.3533,
+            "vertical": 0.7174
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 828,
+            "height": 63,
+            "max_x": 50,
+            "max_y": 62,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 48
+          },
+          "changed_cells": 828,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "transitions": {
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 32,
+              "4->10": 8,
+              "4->11": 32,
+              "4->5": 8,
+              "4->9": 126,
+              "5->10": 8,
+              "5->9": 48,
+              "9->10": 160,
+              "9->4": 198,
+              "9->5": 16
+            }
+          },
+          "component_delta": 101,
+          "distance_to_center": {
+            "bbox_center_x": 26.5,
+            "bbox_center_y": 31.0,
+            "euclidean": 5.025,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0564
+          },
+          "histogram_delta": 144,
+          "symmetry_score": {
+            "horizontal": 0.5749,
+            "rotational": 0.2512,
+            "vertical": 0.3478
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 806,
+            "height": 63,
+            "max_x": 50,
+            "max_y": 62,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 51
+          },
+          "changed_cells": 806,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "transitions": {
+              "10->4": 80,
+              "10->9": 80,
+              "11->4": 32,
+              "11->5": 32,
+              "4->10": 8,
+              "4->11": 32,
+              "4->5": 8,
+              "4->9": 162,
+              "5->10": 8,
+              "5->9": 48,
+              "9->10": 128,
+              "9->4": 172,
+              "9->5": 16
+            }
+          },
+          "component_delta": 103,
+          "distance_to_center": {
+            "bbox_center_x": 25.0,
+            "bbox_center_y": 31.0,
+            "euclidean": 6.519,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0732
+          },
+          "histogram_delta": 148,
+          "symmetry_score": {
+            "horizontal": 0.4938,
+            "rotational": 0.2258,
+            "vertical": 0.3077
+          }
+        },
+        "k_action7_before_ACTION3": 7,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 836,
+            "height": 63,
+            "max_x": 50,
+            "max_y": 62,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 51
+          },
+          "changed_cells": 836,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "transitions": {
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 48,
+              "11->5": 32,
+              "4->10": 40,
+              "4->11": 32,
+              "4->5": 8,
+              "4->9": 148,
+              "5->10": 8,
+              "5->9": 48,
+              "9->10": 96,
+              "9->4": 200,
+              "9->5": 16
+            }
+          },
+          "component_delta": 101,
+          "distance_to_center": {
+            "bbox_center_x": 25.0,
+            "bbox_center_y": 31.0,
+            "euclidean": 6.519,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0732
+          },
+          "histogram_delta": 128,
+          "symmetry_score": {
+            "horizontal": 0.5646,
+            "rotational": 0.1866,
+            "vertical": 0.2679
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 574,
+            "height": 63,
+            "max_x": 50,
+            "max_y": 62,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 42
+          },
+          "changed_cells": 574,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "transitions": {
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 32,
+              "4->10": 8,
+              "4->11": 32,
+              "4->5": 8,
+              "4->9": 162,
+              "5->10": 40,
+              "5->9": 16,
+              "9->10": 32,
+              "9->4": 36,
+              "9->5": 16
+            }
+          },
+          "component_delta": 76,
+          "distance_to_center": {
+            "bbox_center_x": 29.5,
+            "bbox_center_y": 31.0,
+            "euclidean": 2.062,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0231
+          },
+          "histogram_delta": 508,
+          "symmetry_score": {
+            "horizontal": 0.5401,
+            "rotational": 0.2334,
+            "vertical": 0.3415
+          }
+        },
+        "k_action7_before_ACTION3": 9,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 688,
+            "height": 63,
+            "max_x": 50,
+            "max_y": 62,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 42
+          },
+          "changed_cells": 688,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "transitions": {
+              "10->9": 160,
+              "11->4": 80,
+              "11->5": 32,
+              "4->10": 32,
+              "4->11": 32,
+              "4->5": 8,
+              "4->9": 156,
+              "5->10": 16,
+              "5->9": 40,
+              "9->10": 80,
+              "9->4": 36,
+              "9->5": 16
+            }
+          },
+          "component_delta": 102,
+          "distance_to_center": {
+            "bbox_center_x": 29.5,
+            "bbox_center_y": 31.0,
+            "euclidean": 2.062,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0231
+          },
+          "histogram_delta": 448,
+          "symmetry_score": {
+            "horizontal": 0.6512,
+            "rotational": 0.2326,
+            "vertical": 0.2849
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      },
+      {
+        "bbox_after_ACTION3": null,
+        "bbox_after_ACTION3_distinct_from_ACTION6": false,
+        "bucket": "safe_no_distinct_bbox",
+        "death": false,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 714,
+            "height": 63,
+            "max_x": 50,
+            "max_y": 62,
+            "min_x": 6,
+            "min_y": 0,
+            "width": 45
+          },
+          "changed_cells": 714,
+          "changed_values": {
+            "after_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "transitions": {
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 32,
+              "4->10": 32,
+              "4->11": 32,
+              "4->5": 8,
+              "4->9": 156,
+              "5->10": 16,
+              "5->9": 40,
+              "9->10": 64,
+              "9->4": 126,
+              "9->5": 16
+            }
+          },
+          "component_delta": 90,
+          "distance_to_center": {
+            "bbox_center_x": 28.0,
+            "bbox_center_y": 31.0,
+            "euclidean": 3.536,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0397
+          },
+          "histogram_delta": 300,
+          "symmetry_score": {
+            "horizontal": 0.5854,
+            "rotational": 0.1933,
+            "vertical": 0.2745
+          }
+        },
+        "k_action7_before_ACTION3": 11,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 0,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "NOT_FINISHED",
+        "target_coord": {
+          "x": 31,
+          "y": 34
+        },
+        "target_rank": 1
+      }
+    ],
+    "safe_no_distinct_bbox_count": 13,
+    "target_roots": 7,
+    "targets": [
+      {
+        "bbox": {
+          "changed_cells": 40,
+          "height": 61,
+          "max_x": 61,
+          "max_y": 61,
+          "min_x": 1,
+          "min_y": 1,
+          "width": 61
+        },
+        "changed_cells": 40,
+        "coord": {
+          "x": 31,
+          "y": 34
+        },
+        "death": false,
+        "histogram_delta": 2,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 41,
+        "reversible_or_repeatable_effect": false,
+        "score": 5020.02,
+        "state": "NOT_FINISHED"
+      },
+      {
+        "bbox": {
+          "changed_cells": 28,
+          "height": 61,
+          "max_x": 31,
+          "max_y": 61,
+          "min_x": 13,
+          "min_y": 1,
+          "width": 19
+        },
+        "changed_cells": 28,
+        "coord": {
+          "x": 13,
+          "y": 28
+        },
+        "death": false,
+        "histogram_delta": 28,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 28,
+        "reversible_or_repeatable_effect": false,
+        "score": 3460.28,
+        "state": "NOT_FINISHED"
+      },
+      {
+        "bbox": {
+          "changed_cells": 28,
+          "height": 61,
+          "max_x": 31,
+          "max_y": 61,
+          "min_x": 13,
+          "min_y": 1,
+          "width": 19
+        },
+        "changed_cells": 28,
+        "coord": {
+          "x": 16,
+          "y": 28
+        },
+        "death": false,
+        "histogram_delta": 28,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 28,
+        "reversible_or_repeatable_effect": false,
+        "score": 3460.28,
+        "state": "NOT_FINISHED"
+      },
+      {
+        "bbox": {
+          "changed_cells": 28,
+          "height": 61,
+          "max_x": 31,
+          "max_y": 61,
+          "min_x": 13,
+          "min_y": 1,
+          "width": 19
+        },
+        "changed_cells": 28,
+        "coord": {
+          "x": 19,
+          "y": 28
+        },
+        "death": false,
+        "histogram_delta": 28,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 28,
+        "reversible_or_repeatable_effect": false,
+        "score": 3460.28,
+        "state": "NOT_FINISHED"
+      },
+      {
+        "bbox": {
+          "changed_cells": 28,
+          "height": 61,
+          "max_x": 31,
+          "max_y": 61,
+          "min_x": 13,
+          "min_y": 1,
+          "width": 19
+        },
+        "changed_cells": 28,
+        "coord": {
+          "x": 19,
+          "y": 34
+        },
+        "death": false,
+        "histogram_delta": 28,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 28,
+        "reversible_or_repeatable_effect": false,
+        "score": 3460.28,
+        "state": "NOT_FINISHED"
+      },
+      {
+        "bbox": {
+          "changed_cells": 28,
+          "height": 61,
+          "max_x": 31,
+          "max_y": 61,
+          "min_x": 13,
+          "min_y": 1,
+          "width": 19
+        },
+        "changed_cells": 28,
+        "coord": {
+          "x": 19,
+          "y": 37
+        },
+        "death": false,
+        "histogram_delta": 28,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 28,
+        "reversible_or_repeatable_effect": false,
+        "score": 3460.28,
+        "state": "NOT_FINISHED"
+      },
+      {
+        "bbox": {
+          "changed_cells": 28,
+          "height": 61,
+          "max_x": 31,
+          "max_y": 61,
+          "min_x": 13,
+          "min_y": 1,
+          "width": 19
+        },
+        "changed_cells": 28,
+        "coord": {
+          "x": 19,
+          "y": 40
+        },
+        "death": false,
+        "histogram_delta": 28,
+        "level": 7,
+        "level_up": false,
+        "new_safe_state": true,
+        "no_op_loop": false,
+        "persistent_component_change": 28,
+        "reversible_or_repeatable_effect": false,
+        "score": 3460.28,
+        "state": "NOT_FINISHED"
+      }
+    ],
+    "top": [
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 16,
+          "y": 28
+        },
+        "target_rank": 3
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 28
+        },
+        "target_rank": 4
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 34
+        },
+        "target_rank": 5
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 37
+        },
+        "target_rank": 6
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 321,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 411,
+            "height": 52,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 12,
+            "width": 55
+          },
+          "changed_cells": 411,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->9": 91,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->4": 171,
+              "9->5": 40
+            }
+          },
+          "component_delta": 37,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 37.5,
+            "euclidean": 7.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0842
+          },
+          "histogram_delta": 210,
+          "symmetry_score": {
+            "horizontal": 0.5109,
+            "rotational": 0.4039,
+            "vertical": 0.7689
+          }
+        },
+        "k_action7_before_ACTION3": 5,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 51,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 40
+        },
+        "target_rank": 7
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 16,
+          "y": 28
+        },
+        "target_rank": 3
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 28
+        },
+        "target_rank": 4
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 34
+        },
+        "target_rank": 5
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 37
+        },
+        "target_rank": 6
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 320,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 833,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 3,
+            "min_y": 0,
+            "width": 61
+          },
+          "changed_cells": 833,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 8,
+              "4->11": 48,
+              "4->9": 127,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 160,
+              "9->4": 189,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 33.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 1.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0168
+          },
+          "histogram_delta": 110,
+          "symmetry_score": {
+            "horizontal": 0.5426,
+            "rotational": 0.2209,
+            "vertical": 0.2977
+          }
+        },
+        "k_action7_before_ACTION3": 6,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 40
+        },
+        "target_rank": 7
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 16,
+          "y": 28
+        },
+        "target_rank": 3
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 28
+        },
+        "target_rank": 4
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 34
+        },
+        "target_rank": 5
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 37
+        },
+        "target_rank": 6
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 345,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 879,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 0,
+            "min_y": 0,
+            "width": 64
+          },
+          "changed_cells": 879,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->4": 16,
+              "10->9": 144,
+              "11->4": 16,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 40,
+              "4->11": 48,
+              "4->9": 149,
+              "5->10": 8,
+              "5->9": 48,
+              "9->0": 5,
+              "9->10": 96,
+              "9->4": 245,
+              "9->5": 40
+            }
+          },
+          "component_delta": 97,
+          "distance_to_center": {
+            "bbox_center_x": 31.5,
+            "bbox_center_y": 31.5,
+            "euclidean": 0.0,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0
+          },
+          "histogram_delta": 114,
+          "symmetry_score": {
+            "horizontal": 0.5802,
+            "rotational": 0.2093,
+            "vertical": 0.314
+          }
+        },
+        "k_action7_before_ACTION3": 8,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 40
+        },
+        "target_rank": 7
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 13,
+          "y": 28
+        },
+        "target_rank": 2
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 16,
+          "y": 28
+        },
+        "target_rank": 3
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 28
+        },
+        "target_rank": 4
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 34
+        },
+        "target_rank": 5
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 37
+        },
+        "target_rank": 6
+      },
+      {
+        "bbox_after_ACTION3": {
+          "changed_cells": 243,
+          "height": 52,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 9,
+          "min_y": 12,
+          "width": 55
+        },
+        "bbox_after_ACTION3_distinct_from_ACTION6": true,
+        "bucket": "fatal_distinct_bbox",
+        "death": true,
+        "delta_vs_after_ACTION6": {
+          "bounding_box_of_diff": {
+            "changed_cells": 629,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 9,
+            "min_y": 0,
+            "width": 55
+          },
+          "changed_cells": 629,
+          "changed_values": {
+            "after_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11
+            ],
+            "before_values": [
+              0,
+              4,
+              5,
+              9,
+              10,
+              11,
+              14
+            ],
+            "transitions": {
+              "0->9": 7,
+              "10->9": 160,
+              "11->4": 32,
+              "11->5": 16,
+              "14->5": 1,
+              "4->10": 32,
+              "4->11": 48,
+              "4->9": 139,
+              "5->10": 16,
+              "5->9": 40,
+              "9->0": 5,
+              "9->10": 48,
+              "9->4": 45,
+              "9->5": 40
+            }
+          },
+          "component_delta": 86,
+          "distance_to_center": {
+            "bbox_center_x": 36.0,
+            "bbox_center_y": 31.5,
+            "euclidean": 4.5,
+            "grid_center_x": 31.5,
+            "grid_center_y": 31.5,
+            "normalized": 0.0505
+          },
+          "histogram_delta": 418,
+          "symmetry_score": {
+            "horizontal": 0.6041,
+            "rotational": 0.2289,
+            "vertical": 0.337
+          }
+        },
+        "k_action7_before_ACTION3": 10,
+        "level_after_ACTION3": 7,
+        "new_components_changed_after_ACTION3": 50,
+        "sequence": [
+          "ACTION6",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION7",
+          "ACTION3"
+        ],
+        "state_after_ACTION3": "GAME_OVER",
+        "target_coord": {
+          "x": 19,
+          "y": 40
+        },
+        "target_rank": 7
+      }
+    ],
+    "viable_candidate_count": 7,
+    "what_changed_after_ACTION6_center": {
+      "bounding_box_of_diff": {
+        "changed_cells": 28,
+        "height": 61,
+        "max_x": 31,
+        "max_y": 61,
+        "min_x": 13,
+        "min_y": 1,
+        "width": 19
+      },
+      "changed_cells": 28,
+      "changed_values": {
+        "after_values": [
+          0,
+          9
+        ],
+        "before_values": [
+          0,
+          9
+        ],
+        "transitions": {
+          "0->9": 7,
+          "9->0": 21
+        }
+      },
+      "component_delta": 28,
+      "distance_to_center": {
+        "bbox_center_x": 22.0,
+        "bbox_center_y": 31.0,
+        "euclidean": 9.513,
+        "grid_center_x": 31.5,
+        "grid_center_y": 31.5,
+        "normalized": 0.1068
+      },
+      "histogram_delta": 28,
+      "symmetry_score": {
+        "horizontal": 0.0,
+        "rotational": 0.0,
+        "vertical": 0.0
+      }
+    }
+  },
+  "episode_id": "f0fe23029ffa",
+  "frontier": {
+    "danger_actions": [
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2"
+    ],
+    "danger_state_hashes": [
+      "bc894195e49ed081"
+    ],
+    "frontier_hash": "29bdd0b16ff79963",
+    "frontier_index": 823,
+    "immediate_danger_action": "ACTION2",
+    "level_start_index": 486,
+    "target_level": 7,
+    "terminal_index": 823,
+    "visited_safe_states": 320
+  },
+  "game": "ar25-e3c63847",
+  "level_7_hypothesis_extraction": {
+    "danger": {
+      "danger_actions": [
+        "ACTION2",
+        "ACTION2",
+        "ACTION2",
+        "ACTION2",
+        "ACTION2",
+        "ACTION2",
+        "ACTION2",
+        "ACTION2"
+      ],
+      "danger_state_hashes": [
+        "bc894195e49ed081"
+      ],
+      "immediate_action": "ACTION2",
+      "trace_index": 823,
+      "trace_step": 823
+    },
+    "frontier_to_death": {
+      "after": {
+        "hash": "bc894195e49ed081",
+        "hist": {
+          "0": 3,
+          "10": 328,
+          "11": 412,
+          "4": 359,
+          "5": 247,
+          "9": 2747
+        },
+        "shape": [
+          64,
+          64
+        ]
+      },
+      "after_components": [
+        {
+          "color": 9,
+          "max_x": 29,
+          "max_y": 32,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 774
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 32,
+          "min_x": 33,
+          "min_y": 0,
+          "size": 612
+        },
+        {
+          "color": 9,
+          "max_x": 29,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 36,
+          "size": 594
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 33,
+          "min_y": 36,
+          "size": 432
+        },
+        {
+          "color": 10,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 328
+        },
+        {
+          "color": 5,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 127
+        },
+        {
+          "color": 9,
+          "max_x": 53,
+          "max_y": 26,
+          "min_x": 42,
+          "min_y": 12,
+          "size": 126
+        },
+        {
+          "color": 9,
+          "max_x": 53,
+          "max_y": 56,
+          "min_x": 42,
+          "min_y": 42,
+          "size": 126
+        },
+        {
+          "color": 4,
+          "max_x": 53,
+          "max_y": 29,
+          "min_x": 39,
+          "min_y": 9,
+          "size": 124
+        },
+        {
+          "color": 4,
+          "max_x": 23,
+          "max_y": 29,
+          "min_x": 9,
+          "min_y": 9,
+          "size": 120
+        },
+        {
+          "color": 11,
+          "max_x": 62,
+          "max_y": 26,
+          "min_x": 48,
+          "min_y": 9,
+          "size": 117
+        },
+        {
+          "color": 11,
+          "max_x": 62,
+          "max_y": 59,
+          "min_x": 48,
+          "min_y": 42,
+          "size": 117
+        }
+      ],
+      "before": {
+        "hash": "29bdd0b16ff79963",
+        "hist": {
+          "0": 4,
+          "10": 328,
+          "11": 412,
+          "14": 1,
+          "4": 394,
+          "5": 246,
+          "9": 2711
+        },
+        "shape": [
+          64,
+          64
+        ]
+      },
+      "before_components": [
+        {
+          "color": 9,
+          "max_x": 29,
+          "max_y": 32,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 765
+        },
+        {
+          "color": 9,
+          "max_x": 29,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 36,
+          "size": 585
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 32,
+          "min_x": 33,
+          "min_y": 0,
+          "size": 513
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 33,
+          "min_y": 36,
+          "size": 333
+        },
+        {
+          "color": 10,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 328
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 32,
+          "min_x": 42,
+          "min_y": 12,
+          "size": 216
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 56,
+          "min_x": 42,
+          "min_y": 36,
+          "size": 216
+        },
+        {
+          "color": 4,
+          "max_x": 53,
+          "max_y": 32,
+          "min_x": 39,
+          "min_y": 9,
+          "size": 133
+        },
+        {
+          "color": 4,
+          "max_x": 23,
+          "max_y": 32,
+          "min_x": 9,
+          "min_y": 9,
+          "size": 129
+        },
+        {
+          "color": 11,
+          "max_x": 62,
+          "max_y": 26,
+          "min_x": 48,
+          "min_y": 9,
+          "size": 117
+        },
+        {
+          "color": 11,
+          "max_x": 62,
+          "max_y": 59,
+          "min_x": 48,
+          "min_y": 42,
+          "size": 117
+        },
+        {
+          "color": 4,
+          "max_x": 23,
+          "max_y": 59,
+          "min_x": 9,
+          "min_y": 51,
+          "size": 69
+        }
+      ],
+      "changed_cells": 189,
+      "label": "frontier_to_death"
+    },
+    "level_start_to_frontier": {
+      "after": {
+        "hash": "29bdd0b16ff79963",
+        "hist": {
+          "0": 4,
+          "10": 328,
+          "11": 412,
+          "14": 1,
+          "4": 394,
+          "5": 246,
+          "9": 2711
+        },
+        "shape": [
+          64,
+          64
+        ]
+      },
+      "after_components": [
+        {
+          "color": 9,
+          "max_x": 29,
+          "max_y": 32,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 765
+        },
+        {
+          "color": 9,
+          "max_x": 29,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 36,
+          "size": 585
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 32,
+          "min_x": 33,
+          "min_y": 0,
+          "size": 513
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 33,
+          "min_y": 36,
+          "size": 333
+        },
+        {
+          "color": 10,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 328
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 32,
+          "min_x": 42,
+          "min_y": 12,
+          "size": 216
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 56,
+          "min_x": 42,
+          "min_y": 36,
+          "size": 216
+        },
+        {
+          "color": 4,
+          "max_x": 53,
+          "max_y": 32,
+          "min_x": 39,
+          "min_y": 9,
+          "size": 133
+        },
+        {
+          "color": 4,
+          "max_x": 23,
+          "max_y": 32,
+          "min_x": 9,
+          "min_y": 9,
+          "size": 129
+        },
+        {
+          "color": 11,
+          "max_x": 62,
+          "max_y": 26,
+          "min_x": 48,
+          "min_y": 9,
+          "size": 117
+        },
+        {
+          "color": 11,
+          "max_x": 62,
+          "max_y": 59,
+          "min_x": 48,
+          "min_y": 42,
+          "size": 117
+        },
+        {
+          "color": 4,
+          "max_x": 23,
+          "max_y": 59,
+          "min_x": 9,
+          "min_y": 51,
+          "size": 69
+        }
+      ],
+      "before": {
+        "hash": "549d73e0a63c40ae",
+        "hist": {
+          "0": 19,
+          "10": 312,
+          "11": 588,
+          "4": 52,
+          "5": 183,
+          "9": 2942
+        },
+        "shape": [
+          64,
+          64
+        ]
+      },
+      "before_components": [
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 62,
+          "min_x": 12,
+          "min_y": 18,
+          "size": 1674
+        },
+        {
+          "color": 9,
+          "max_x": 62,
+          "max_y": 14,
+          "min_x": 21,
+          "min_y": 0,
+          "size": 486
+        },
+        {
+          "color": 9,
+          "max_x": 8,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 18,
+          "size": 405
+        },
+        {
+          "color": 11,
+          "max_x": 63,
+          "max_y": 63,
+          "min_x": 48,
+          "min_y": 0,
+          "size": 334
+        },
+        {
+          "color": 10,
+          "max_x": 17,
+          "max_y": 62,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 208
+        },
+        {
+          "color": 9,
+          "max_x": 26,
+          "max_y": 14,
+          "min_x": 12,
+          "min_y": 0,
+          "size": 171
+        },
+        {
+          "color": 11,
+          "max_x": 26,
+          "max_y": 59,
+          "min_x": 12,
+          "min_y": 42,
+          "size": 135
+        },
+        {
+          "color": 9,
+          "max_x": 8,
+          "max_y": 14,
+          "min_x": 0,
+          "min_y": 0,
+          "size": 135
+        },
+        {
+          "color": 11,
+          "max_x": 26,
+          "max_y": 26,
+          "min_x": 12,
+          "min_y": 9,
+          "size": 117
+        },
+        {
+          "color": 10,
+          "max_x": 53,
+          "max_y": 17,
+          "min_x": 21,
+          "min_y": 15,
+          "size": 88
+        },
+        {
+          "color": 5,
+          "max_x": 53,
+          "max_y": 47,
+          "min_x": 39,
+          "min_y": 39,
+          "size": 64
+        },
+        {
+          "color": 5,
+          "max_x": 62,
+          "max_y": 63,
+          "min_x": 0,
+          "min_y": 63,
+          "size": 63
+        }
+      ],
+      "changed_cells": 1298,
+      "label": "level_start_to_frontier"
+    }
+  },
+  "resolved_game_id": "ar25-e3c63847",
+  "selected_reason": "best_progress_no_win_trace",
+  "trace_final_state": "GAME_OVER",
+  "trace_levels_completed": 7
+}

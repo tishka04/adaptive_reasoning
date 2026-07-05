@@ -1,0 +1,89 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "A33",
+      "A35",
+      "A38",
+      "A39"
+    ],
+    "inputs_read": [
+      "A39"
+    ],
+    "no_environment_execution": true,
+    "no_scientific_revision": true,
+    "policy_rollout_path": "diagnostics\\a39\\precondition_aware_policy_rollout.json"
+  },
+  "frontier_requests": [
+    {
+      "blocked_skill": "",
+      "context_signature": [
+        "ACTION6"
+      ],
+      "failed_precondition": "",
+      "fallback_action": "ACTION3",
+      "fallback_progress": false,
+      "frontier_context_id": "after_ACTION6",
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "live_state_signature": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+      "post_action_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+      "ready_for_m1_or_m3": true,
+      "reason": "context_not_covered_by_scope",
+      "reason_categories": [
+        "uncovered_context",
+        "fallback_no_progress"
+      ],
+      "recommended_next_scientific_action": "generate_new_candidate_mechanics_from_current_state",
+      "request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+      "revision_performed": false,
+      "selected_signal": 0.0,
+      "source_step": 1,
+      "status": "OPEN",
+      "truth_status": "NOT_REEVALUATED_BY_A40",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_skill": "ACTION6",
+      "context_signature": [
+        "ACTION3"
+      ],
+      "failed_precondition": "target_patch_not_already_saturated=true",
+      "fallback_action": "ACTION4",
+      "fallback_progress": false,
+      "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "live_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+      "post_action_state_signature": "(64, 64):463e80161779d559:0:NOT_FINISHED",
+      "ready_for_m1_or_m3": true,
+      "reason": "confirmed_skill_blocked_by_failed_precondition",
+      "reason_categories": [
+        "blocked_skill",
+        "fallback_no_progress"
+      ],
+      "recommended_next_scientific_action": "generate_new_candidate_mechanics_from_current_state",
+      "request_id": "frontier::after_ACTION3_live_after_ACTION6::step_2::confirmed_skill_blocked_by_failed_precondition",
+      "revision_performed": false,
+      "selected_signal": 0.0,
+      "source_step": 2,
+      "status": "OPEN",
+      "truth_status": "NOT_REEVALUATED_BY_A40",
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": false,
+  "summary": {
+    "blocked_skill_frontiers": 1,
+    "cycle_or_dead_end_frontiers": 0,
+    "fallback_no_progress_frontiers": 2,
+    "frontier_requests_created": 2,
+    "ready_for_m1_or_m3": true,
+    "revision_performed": false,
+    "rollout_error_frontiers": 0,
+    "truth_status": "NOT_REEVALUATED_BY_A40",
+    "uncovered_context_frontiers": 1,
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_REEVALUATED_BY_A40",
+  "wrong_confirmations": 0
+}

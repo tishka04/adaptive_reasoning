@@ -1,0 +1,48 @@
+{
+  "config": {
+    "schema_version": "m2_to_m3.v1",
+    "source_hypothesis_path": "diagnostics\\m2\\state_conditioned_llm_hypotheses.json"
+  },
+  "experiment_requests": [
+    {
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "context_snapshot_hash": null,
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "readiness_feature_predicts_completion_more_than_controls",
+      "falsification_criterion": {
+        "failure_condition": "no_completed_level_delta_vs_matched_controls",
+        "metric": "objective_completion_signal",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "objective_completion_signal",
+      "request_id": "m2m3::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+      "revision_performed": false,
+      "source_hypothesis_id": "m2::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION4",
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION3",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "blocked_not_testable": 0,
+    "experiment_requests": 1,
+    "ready_for_m3": 1,
+    "revision_performed": false,
+    "source_hypotheses": 1,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  }
+}

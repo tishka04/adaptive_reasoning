@@ -1,0 +1,1018 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3.8",
+      "M3.9",
+      "M3.10",
+      "M3.11",
+      "M3.12",
+      "M3.13",
+      "M3.14",
+      "A32",
+      "A33"
+    ],
+    "execution_performed": false,
+    "inputs_read": [
+      "M3.14"
+    ],
+    "max_followup_requests": 8,
+    "request_truncation_policy": "deterministic_priority_order",
+    "schema_version": "m3.dynamic_retarget_selection_followups.v1",
+    "selection_rules_path": "diagnostics\\m3\\dynamic_retarget_selection_rules.json"
+  },
+  "controlled_test_required": true,
+  "followup_experiment_requests": [
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "row_or_band_dependent_retarget",
+        "local_patch_transformability"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "same_x_new_band_probe_separates_band_rule_from_patch_rule",
+      "falsification_criterion": "New y-band probes at the mixed x do not follow any stable band relation on grounded success metrics.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "row_or_band_dependent_retarget explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.14 observed the same x with both success and failure; new y bands test whether the band relation explains the contrast.",
+      "prior_counted_as_proof": false,
+      "probe_family": "same_x_different_band_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::same_x_different_band_probe::x30_y6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "row_or_band_dependent_retarget",
+      "seed_failed_args": [],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "explicit_selection_rule_probe_args",
+      "target_action_args": {
+        "x": 30,
+        "y": 6
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "row_or_band_dependent_retarget",
+        "local_patch_transformability"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "same_x_new_band_probe_separates_band_rule_from_patch_rule",
+      "falsification_criterion": "New y-band probes at the mixed x do not follow any stable band relation on grounded success metrics.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "row_or_band_dependent_retarget explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.14 observed the same x with both success and failure; new y bands test whether the band relation explains the contrast.",
+      "prior_counted_as_proof": false,
+      "probe_family": "same_x_different_band_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::same_x_different_band_probe::x30_y18",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "row_or_band_dependent_retarget",
+      "seed_failed_args": [],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "explicit_selection_rule_probe_args",
+      "target_action_args": {
+        "x": 30,
+        "y": 18
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "row_or_band_dependent_retarget",
+        "local_patch_transformability"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "same_x_new_band_probe_separates_band_rule_from_patch_rule",
+      "falsification_criterion": "New y-band probes at the mixed x do not follow any stable band relation on grounded success metrics.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "row_or_band_dependent_retarget explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.14 observed the same x with both success and failure; new y bands test whether the band relation explains the contrast.",
+      "prior_counted_as_proof": false,
+      "probe_family": "same_x_different_band_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::same_x_different_band_probe::x30_y24",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "row_or_band_dependent_retarget",
+      "seed_failed_args": [],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "explicit_selection_rule_probe_args",
+      "target_action_args": {
+        "x": 30,
+        "y": 24
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "row_or_band_dependent_retarget",
+        "local_patch_transformability"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "same_y_neighbor_probe_separates_spatial_boundary_from_patch_rule",
+      "falsification_criterion": "Neighbor x probes on the mixed y band do not reveal a stable boundary or local-patch contrast.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "row_or_band_dependent_retarget explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.14 observed y=0 with both success and failure; neighbor x probes test whether x=30 is a spatial boundary or a local-patch outlier.",
+      "prior_counted_as_proof": false,
+      "probe_family": "same_y_neighbor_x_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::same_y_neighbor_x_probe::x6_y0",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "row_or_band_dependent_retarget",
+      "seed_failed_args": [],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "explicit_selection_rule_probe_args",
+      "target_action_args": {
+        "x": 6,
+        "y": 0
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "row_or_band_dependent_retarget",
+        "local_patch_transformability"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "same_y_neighbor_probe_separates_spatial_boundary_from_patch_rule",
+      "falsification_criterion": "Neighbor x probes on the mixed y band do not reveal a stable boundary or local-patch contrast.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "row_or_band_dependent_retarget explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.14 observed y=0 with both success and failure; neighbor x probes test whether x=30 is a spatial boundary or a local-patch outlier.",
+      "prior_counted_as_proof": false,
+      "probe_family": "same_y_neighbor_x_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::same_y_neighbor_x_probe::x18_y0",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "row_or_band_dependent_retarget",
+      "seed_failed_args": [],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "explicit_selection_rule_probe_args",
+      "target_action_args": {
+        "x": 18,
+        "y": 0
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "row_or_band_dependent_retarget",
+        "local_patch_transformability"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "same_y_neighbor_probe_separates_spatial_boundary_from_patch_rule",
+      "falsification_criterion": "Neighbor x probes on the mixed y band do not reveal a stable boundary or local-patch contrast.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "row_or_band_dependent_retarget explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.14 observed y=0 with both success and failure; neighbor x probes test whether x=30 is a spatial boundary or a local-patch outlier.",
+      "prior_counted_as_proof": false,
+      "probe_family": "same_y_neighbor_x_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::same_y_neighbor_x_probe::x36_y0",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "row_or_band_dependent_retarget",
+      "seed_failed_args": [],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "explicit_selection_rule_probe_args",
+      "target_action_args": {
+        "x": 36,
+        "y": 0
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "local_patch_transformability",
+        "row_or_band_dependent_retarget"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "success_patch_similar_targets_match_grounded_success_metrics",
+      "falsification_criterion": "Targets selected as similar to successful local patches fail on local_patch/object_positions metrics.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "local_patch_transformability explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.15 should ask M3.16 to resolve targets with local patches similar to successful retargets under the same causal replay.",
+      "prior_counted_as_proof": false,
+      "probe_family": "local_patch_success_similarity_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::local_patch_success_similarity_probe::dynamic_06",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "local_patch_transformability",
+      "seed_failed_args": [],
+      "seed_successful_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::local_patch_transformability",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "local_patch_similarity_after_repositioning",
+      "target_action_args": null,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "discriminates_rule_families": [
+        "local_patch_transformability",
+        "row_or_band_dependent_retarget"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "failure_patch_similar_targets_fail_grounded_success_metrics",
+      "falsification_criterion": "Targets selected as similar to the failed local patch succeed on local_patch/object_positions metrics.",
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "local_patch_transformability explains which ACTION6 retargets are valid after repositioning",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.15 should ask M3.16 to resolve targets with local patches similar to the failed retarget under the same causal replay.",
+      "prior_counted_as_proof": false,
+      "probe_family": "local_patch_failure_similarity_probe",
+      "request_id": "m3_15::m3_14_bp35_ACTION4_ACTION6_retarget_selection_rule::local_patch_failure_similarity_probe::dynamic_07",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "rule_family": "local_patch_transformability",
+      "seed_failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "seed_successful_args": [],
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "source_rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::local_patch_transformability",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "READY_FOR_M3_SELECTION_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "local_patch_similarity_after_repositioning",
+      "target_action_args": null,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "followup_request_counted_as_support": false,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rule_counted_as_confirmation": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "candidate_followup_requests": 8,
+    "controlled_test_required": true,
+    "dynamic_arg_resolution_requests": 2,
+    "execution_performed": false,
+    "explicit_arg_requests": 6,
+    "followup_request_counted_as_support": false,
+    "followup_requests_generated": 8,
+    "max_followup_requests": 8,
+    "probe_families": {
+      "local_patch_failure_similarity_probe": 1,
+      "local_patch_success_similarity_probe": 1,
+      "same_x_different_band_probe": 3,
+      "same_y_neighbor_x_probe": 3
+    },
+    "request_budget_respected": true,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "selection_rule_sets_consumed": 1,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truncated_followup_requests": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truncated_followup_experiment_requests": [],
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

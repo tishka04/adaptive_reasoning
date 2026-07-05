@@ -1,0 +1,303 @@
+{
+  "accepted_invariants_path": "diagnostics\\m1\\accepted_invariants.json",
+  "anchor_expansion_enabled": true,
+  "averages": {
+    "candidate_pairs_per_trace": {
+      "delta": 2.6667,
+      "off": 77.0,
+      "on": 79.6667
+    },
+    "relation_candidates_generated": {
+      "delta": 435.3333,
+      "off": 341.3333,
+      "on": 776.6667
+    },
+    "unique_predicates_per_trace": {
+      "delta": 10.0,
+      "off": 4.6667,
+      "on": 14.6667
+    }
+  },
+  "comparisons": [
+    {
+      "deltas": {
+        "candidate_pairs_per_trace": 8,
+        "relation_candidates_generated": 174,
+        "unique_predicates_per_trace": 10
+      },
+      "game_id": "bp35-0a0ad940",
+      "off": {
+        "candidate_count": 31,
+        "candidate_pairs_per_trace": 31,
+        "game_id": "bp35-0a0ad940",
+        "m1_predicates_per_trace": 0,
+        "mode": "m1_off",
+        "relation_candidates_generated": 122,
+        "source_target_predicates": [
+          "source_target_color_transform",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "unique_predicates_per_trace": 4
+      },
+      "on": {
+        "candidate_count": 39,
+        "candidate_pairs_per_trace": 39,
+        "game_id": "bp35-0a0ad940",
+        "m1_predicates_per_trace": 10,
+        "mode": "m1_on",
+        "relation_candidates_generated": 296,
+        "source_target_predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "m1_anchor_motion",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_motion_appears",
+          "m1_adjacency_preserved",
+          "m1_object_removal_appears",
+          "m1_object_creation_appears",
+          "m1_anchor_created_removed",
+          "m1_object_count_preserved",
+          "m1_adjacency_modified",
+          "m1_anchor_contact"
+        ],
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "unique_predicates_per_trace": 14
+      },
+      "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl"
+    },
+    {
+      "deltas": {
+        "candidate_pairs_per_trace": 0,
+        "relation_candidates_generated": 553,
+        "unique_predicates_per_trace": 10
+      },
+      "game_id": "cd82-fb555c5d",
+      "off": {
+        "candidate_count": 100,
+        "candidate_pairs_per_trace": 100,
+        "game_id": "cd82-fb555c5d",
+        "m1_predicates_per_trace": 0,
+        "mode": "m1_off",
+        "relation_candidates_generated": 449,
+        "source_target_predicates": [
+          "source_target_color_transform",
+          "paired_with",
+          "same_shape",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "unique_predicates_per_trace": 5
+      },
+      "on": {
+        "candidate_count": 100,
+        "candidate_pairs_per_trace": 100,
+        "game_id": "cd82-fb555c5d",
+        "m1_predicates_per_trace": 10,
+        "mode": "m1_on",
+        "relation_candidates_generated": 1002,
+        "source_target_predicates": [
+          "paired_with",
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_anchor_created_removed",
+          "m1_object_count_preserved",
+          "m1_adjacency_preserved",
+          "m1_object_removal_appears",
+          "m1_object_creation_appears",
+          "m1_object_motion_appears",
+          "m1_adjacency_modified",
+          "m1_anchor_contact",
+          "m1_anchor_motion"
+        ],
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "unique_predicates_per_trace": 15
+      },
+      "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl"
+    },
+    {
+      "deltas": {
+        "candidate_pairs_per_trace": 0,
+        "relation_candidates_generated": 579,
+        "unique_predicates_per_trace": 10
+      },
+      "game_id": "dc22-4c9bff3e",
+      "off": {
+        "candidate_count": 100,
+        "candidate_pairs_per_trace": 100,
+        "game_id": "dc22-4c9bff3e",
+        "m1_predicates_per_trace": 0,
+        "mode": "m1_off",
+        "relation_candidates_generated": 453,
+        "source_target_predicates": [
+          "source_target_color_transform",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "same_shape"
+        ],
+        "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+        "unique_predicates_per_trace": 5
+      },
+      "on": {
+        "candidate_count": 100,
+        "candidate_pairs_per_trace": 100,
+        "game_id": "dc22-4c9bff3e",
+        "m1_predicates_per_trace": 10,
+        "mode": "m1_on",
+        "relation_candidates_generated": 1032,
+        "source_target_predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_adjacency_preserved",
+          "m1_object_motion_appears",
+          "same_shape",
+          "m1_object_count_preserved",
+          "m1_anchor_created_removed",
+          "m1_anchor_motion",
+          "m1_object_creation_appears",
+          "m1_object_removal_appears",
+          "m1_adjacency_modified",
+          "m1_anchor_contact"
+        ],
+        "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+        "unique_predicates_per_trace": 15
+      },
+      "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl"
+    }
+  ],
+  "min_pixel_support": 1,
+  "prior_counted_as_proof": false,
+  "rule_count": 7,
+  "rules": [
+    {
+      "attribute": "color_pair_change",
+      "cross_game_score": 1.785972,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e",
+        "ft09-0d8bbf25"
+      ],
+      "invariant_name": "color_pair_change_appears",
+      "novelty_score": 0.333333,
+      "outcome": "appears",
+      "predicate_name": "m1_color_pair_change_appears",
+      "support": 5122
+    },
+    {
+      "attribute": "object_removal",
+      "cross_game_score": 1.785972,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e",
+        "ft09-0d8bbf25"
+      ],
+      "invariant_name": "object_removal_appears",
+      "novelty_score": 0.833333,
+      "outcome": "appears",
+      "predicate_name": "m1_object_removal_appears",
+      "support": 4840
+    },
+    {
+      "attribute": "object_creation",
+      "cross_game_score": 1.769009,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e",
+        "ft09-0d8bbf25"
+      ],
+      "invariant_name": "object_creation_appears",
+      "novelty_score": 0.5,
+      "outcome": "appears",
+      "predicate_name": "m1_object_creation_appears",
+      "support": 4839
+    },
+    {
+      "attribute": "adjacency",
+      "cross_game_score": 1.349956,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e"
+      ],
+      "invariant_name": "adjacency_modified",
+      "novelty_score": 0.666667,
+      "outcome": "modified",
+      "predicate_name": "m1_adjacency_modified",
+      "support": 3354
+    },
+    {
+      "attribute": "object_motion",
+      "cross_game_score": 1.326757,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e",
+        "ft09-0d8bbf25"
+      ],
+      "invariant_name": "object_motion_appears",
+      "novelty_score": 0.5,
+      "outcome": "appears",
+      "predicate_name": "m1_object_motion_appears",
+      "support": 3849
+    },
+    {
+      "attribute": "object_count",
+      "cross_game_score": 1.218109,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e",
+        "ft09-0d8bbf25"
+      ],
+      "invariant_name": "object_count_preserved",
+      "novelty_score": 0.8,
+      "outcome": "preserved",
+      "predicate_name": "m1_object_count_preserved",
+      "support": 2740
+    },
+    {
+      "attribute": "adjacency",
+      "cross_game_score": 0.899218,
+      "games_supporting": [
+        "ar25-e3c63847",
+        "cn04-65d47d14",
+        "ft09-0d8bbf25"
+      ],
+      "invariant_name": "adjacency_preserved",
+      "novelty_score": 0.333333,
+      "outcome": "preserved",
+      "predicate_name": "m1_adjacency_preserved",
+      "support": 386
+    }
+  ],
+  "top_k": 100,
+  "trace_count": 3,
+  "trace_support_counted_as_proof": false
+}

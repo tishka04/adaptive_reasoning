@@ -1,0 +1,42 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\human_traces   memory=diagnostics\sampling_setup_compare\smoke_ar25\human_and_task_program_memory.pt
+  time_budget=0.2s   mode=development
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] pack: 1124 steps, 4 eps, 4 goal hints, 2 failure hints, 21 hypotheses
+  [cross-game] fresh memory
+  [cross-game] human seeding: +4 hints, +2 failures
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [game-memory] human replay: 1120 steps, 1 clicks, 21 hypotheses, human_hit_level=7 (counter reset → agent max_level now measures agent only)
+     ACTION1: tries=241 chg=96% die=1 mv=208
+     ACTION2: tries=346 chg=92% die=1 mv=281
+     ACTION3: tries=214 chg=94% die=0 mv=194
+     ACTION4: tries=185 chg=95% die=0 mv=162
+     ACTION5: tries=133 chg=100% die=0 mv=70
+     ACTION6: tries=  1 chg=0% die=0 mv=0
+     hypotheses: 16 keys
+  [task-program] attached ar25-e3c63847 (family=correspondence, 2 subgoal tests, conf=0.70)
+
+  running agent.main() with 0.2s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.58 epsilon=0.83 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.71 epsilon=0.79 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.75 epsilon=0.78 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE START attempt=1/2 target_level=1 device=cpu (this will block ~30-90s on CPU)
+[DIAG ar25-e3c63847] LIVE-REVISE compile failed after 0.5s: RuntimeError: Could not load LLM 'Qwen/Qwen2.5-3B-Instruct'. Install transformers / check HF cache.
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 1414
+  assoc wins:    0
+  elapsed:       5.1s
+  final goal:    None
+
+  --no-save-memory set; cross-game memory NOT written back

@@ -1,0 +1,172 @@
+{
+  "blocked_experiments": [],
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "inputs_read": [
+      "M2"
+    ],
+    "m2_requests_path": "diagnostics\\m2\\arc_lewm_m3_candidate_requests_v2.json",
+    "offline_trace_dataset_path": "training\\m2_arc_lewm_transitions.jsonl",
+    "schema_version": "m3.m2_candidate_experiment_results.v1",
+    "secondary_metrics": [
+      "changed_pixels",
+      "object_positions_before_after",
+      "contact_graph_before_after",
+      "topology_before_after"
+    ]
+  },
+  "controlled_experiments": [
+    {
+      "baseline_sequence": [
+        "OFFLINE_TRACE_MATCHED::ACTION3"
+      ],
+      "baseline_signal": 0.0,
+      "context_replay": [],
+      "context_replay_args": null,
+      "context_state_origin": "human_trace_frame_before",
+      "contradiction_events": 0,
+      "contradictions": 0,
+      "control_action": "ACTION3",
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 1.0,
+        "baseline_signal": 0.0,
+        "counted_as_contradiction": false,
+        "counted_as_support": true,
+        "direction": "support",
+        "effect_size": 1.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "terminal_state_after_rollout",
+        "signal_source": "metric_extractor"
+      },
+      "diagnostic_only": false,
+      "dynamic_available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "env_actions": 0,
+      "event_counting_policy": "grounded_metric_can_count_events",
+      "execution_mode": "offline_trace_context",
+      "game_id": "dc22-4c9bff3e",
+      "hypothesis_key": "m2_14_lewm::terminal_like_latent_neighborhoods::004",
+      "matched_control_policy": "same_game_same_available_actions",
+      "matched_control_samples": 195,
+      "mechanic_family": "frontier_conditioned_candidate",
+      "metric": "terminal_state_after_rollout",
+      "metric_grounding_status": "grounded_metric_extractor",
+      "metric_role": "primary",
+      "neutral_events": 0,
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed_pixels": 16.097435897435897,
+        "measurable": true,
+        "metric": "terminal_state_after_rollout",
+        "samples": 195,
+        "signal_source": "offline_trace_matched_dynamic_controls",
+        "terminal_count": 0,
+        "terminal_rate": 0.0,
+        "terminal_state_after_rollout": null
+      },
+      "observed_perturbation": {
+        "changed_pixels": 48.0,
+        "measurable": true,
+        "metric": "terminal_state_after_rollout",
+        "samples": 1,
+        "signal_source": "offline_trace_source_transition",
+        "terminal_count": 1,
+        "terminal_rate": 1.0,
+        "terminal_state_after_rollout": true
+      },
+      "offline_trace_dataset_path": "training\\m2_arc_lewm_transitions.jsonl",
+      "perturbation_sequence": [
+        "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0239",
+        "ACTION6"
+      ],
+      "perturbation_signal": 1.0,
+      "predicted_metric": "terminal_state_after_rollout",
+      "prior_counted_as_proof": false,
+      "replayability": "OFFLINE_TRACE_CONTEXT_ONLY",
+      "request_id": "m2m3::m2_14_lewm::terminal_like_latent_neighborhoods::004",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "signal_source": "metric_extractor",
+      "source_episode_id": "3c719b36eb4d",
+      "source_hypothesis_id": "m2_14_lewm::terminal_like_latent_neighborhoods::004",
+      "source_step": 239,
+      "source_transition_id": "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0239",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 45,
+        "y": 30
+      },
+      "target_context_signature": "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0239",
+      "target_trace_samples": 1,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "blocked_experiments": 0,
+    "contradiction_events": 0,
+    "controlled_experiments_run": 1,
+    "diagnostic_only_experiments": 0,
+    "grounded_metric_experiments": 1,
+    "grounding_suppressed_contradiction_events": 0,
+    "grounding_suppressed_support_events": 0,
+    "m2_artifacts_mutated_by_m3": false,
+    "m2_requests_executed": 1,
+    "m2_requests_ready_for_m3": 1,
+    "metric_escalations": 0,
+    "neutral_events": 0,
+    "primary_metric_experiments": 1,
+    "raw_changed_pixels_experiments": 0,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "secondary_metric_experiments": 0,
+    "support": 0,
+    "support_events": 1,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "updated_candidate_records": [
+    {
+      "contradiction_events": 0,
+      "contradictions": 0,
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "game_id": "dc22-4c9bff3e",
+      "key": "m2_14_lewm::terminal_like_latent_neighborhoods::004",
+      "neutral_events": 0,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "wrong_confirmations": 0
+}

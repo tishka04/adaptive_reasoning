@@ -1,0 +1,190 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "candidate_model_counted_as_confirmed_mechanic": false,
+  "config": {
+    "abstract_adapter_path": "diagnostics\\p3\\abstract_mechanic_policy_adapter.json",
+    "execution_performed": false,
+    "hud_policy_probe_path": "diagnostics\\p3\\bp35_terminal_horizon_hud_policy_probe.json",
+    "schema_version": "p3.objective_aware_abstract_policy_probe.v1",
+    "stage": "P3.G1.1",
+    "symbolic_model_path": "diagnostics\\m3\\generic_candidate_symbolic_mechanism_model.json"
+  },
+  "objective_aware_policy_adapter": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_candidates": [
+      {
+        "action": "ACTION3",
+        "candidate_effects": [
+          "move_entity",
+          "transform_entity"
+        ],
+        "model_status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "relation_effects": [
+          "distance_decreases"
+        ],
+        "revision_status": "CANDIDATE_ONLY",
+        "score_weights": {
+          "actor_effect_score": 2.0,
+          "novelty_score": 1.0,
+          "relation_progress_score": 3.0,
+          "repetition_penalty": -0.75,
+          "terminal_risk_penalty": -999.0
+        },
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      {
+        "action": "ACTION4",
+        "candidate_effects": [
+          "move_entity",
+          "transform_entity"
+        ],
+        "model_status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "relation_effects": [
+          "distance_decreases"
+        ],
+        "revision_status": "CANDIDATE_ONLY",
+        "score_weights": {
+          "actor_effect_score": 2.0,
+          "novelty_score": 1.0,
+          "relation_progress_score": 3.0,
+          "repetition_penalty": -0.75,
+          "terminal_risk_penalty": -999.0
+        },
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      }
+    ],
+    "actor_candidates": [
+      "E182"
+    ],
+    "adapter_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+    "candidate_model_counted_as_confirmed_mechanic": false,
+    "dynamic_invariants_observed_not_semantic": [
+      "E193"
+    ],
+    "ignored_or_caveated_entities": [
+      {
+        "entity_id": "E001",
+        "family": "monotone_counter",
+        "reason": "symbolic_model_caveat_not_policy_signal",
+        "semantic_interpretation": "unknown"
+      }
+    ],
+    "k_stop": 1,
+    "lambda_terminal_risk_values": [
+      0.0,
+      1.0,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "objective_aware_scoring": {
+      "actor_effect_weight": 2.0,
+      "novelty_weight": 1.0,
+      "objective_progress_proxy_weight": 2.0,
+      "relation_progress_weight": 3.0,
+      "repetition_penalty": -0.75,
+      "terminal_adjusted_progress_metric": "progress_proxy if not terminal else 0",
+      "terminal_risk_weight": "lambda_terminal_risk"
+    },
+    "policy_adapter_counted_as_confirmation": false,
+    "policy_adapter_id": "p3g1_1::bp35::objective_aware_abstract_policy_adapter",
+    "policy_variants": [
+      {
+        "condition": "objective_aware_abstract_policy_lambda_0",
+        "k_stop": 1,
+        "lambda_terminal_risk": 0.0,
+        "revision_status": "CANDIDATE_ONLY",
+        "score_formula": "3*relation_progress + 2*actor_effect + novelty + 2*objective_progress_proxy - lambda_terminal_risk*terminal_risk - 0.75*repetition",
+        "support": 0,
+        "terminal_risk_window": 8,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      {
+        "condition": "objective_aware_abstract_policy_lambda_1",
+        "k_stop": 1,
+        "lambda_terminal_risk": 1.0,
+        "revision_status": "CANDIDATE_ONLY",
+        "score_formula": "3*relation_progress + 2*actor_effect + novelty + 2*objective_progress_proxy - lambda_terminal_risk*terminal_risk - 0.75*repetition",
+        "support": 0,
+        "terminal_risk_window": 8,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      {
+        "condition": "objective_aware_abstract_policy_lambda_3",
+        "k_stop": 1,
+        "lambda_terminal_risk": 3.0,
+        "revision_status": "CANDIDATE_ONLY",
+        "score_formula": "3*relation_progress + 2*actor_effect + novelty + 2*objective_progress_proxy - lambda_terminal_risk*terminal_risk - 0.75*repetition",
+        "support": 0,
+        "terminal_risk_window": 8,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      {
+        "condition": "objective_aware_abstract_policy_lambda_10",
+        "k_stop": 1,
+        "lambda_terminal_risk": 10.0,
+        "revision_status": "CANDIDATE_ONLY",
+        "score_formula": "3*relation_progress + 2*actor_effect + novelty + 2*objective_progress_proxy - lambda_terminal_risk*terminal_risk - 0.75*repetition",
+        "support": 0,
+        "terminal_risk_window": 8,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      {
+        "condition": "objective_aware_abstract_policy_lambda_30",
+        "k_stop": 1,
+        "lambda_terminal_risk": 30.0,
+        "revision_status": "CANDIDATE_ONLY",
+        "score_formula": "3*relation_progress + 2*actor_effect + novelty + 2*objective_progress_proxy - lambda_terminal_risk*terminal_risk - 0.75*repetition",
+        "support": 0,
+        "terminal_risk_window": 8,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      }
+    ],
+    "relation_targets": [
+      "E136",
+      "E137",
+      "E138",
+      "E139"
+    ],
+    "revision_status": "CANDIDATE_ONLY",
+    "source_abstract_policy_adapter_path": "diagnostics\\p3\\abstract_mechanic_policy_adapter.json",
+    "source_hud_policy_probe_path": "diagnostics\\p3\\bp35_terminal_horizon_hud_policy_probe.json",
+    "source_symbolic_model_path": "diagnostics\\m3\\generic_candidate_symbolic_mechanism_model.json",
+    "support": 0,
+    "terminal_horizon_source": "hud_bar_with_empirical_warmup_fallback",
+    "terminal_horizon_source_counted_as_confirmation": false,
+    "terminal_risk_window": 8,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "policy_adapter_counted_as_confirmation": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_candidates": 2,
+    "actor_candidates": 1,
+    "candidate_model_counted_as_confirmed_mechanic": false,
+    "lambda_terminal_risk_values": [
+      0.0,
+      1.0,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "policy_adapter_counted_as_confirmation": false,
+    "policy_variants": 5,
+    "ready_for_objective_aware_policy_probe": true,
+    "relation_targets": 4,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

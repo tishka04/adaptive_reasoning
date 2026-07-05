@@ -1,0 +1,130 @@
+{
+  "config": {
+    "queue_path": "diagnostics\\m3\\a15_revision_queue.json"
+  },
+  "decision_records": [
+    {
+      "contradictions": 0,
+      "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+      "experiments_spent": 3,
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "status": "confirmed",
+      "support": 2
+    }
+  ],
+  "decision_scope": "A32_ONLY",
+  "input_records": [
+    {
+      "contradictions": 0,
+      "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+      "experiments_spent": 3,
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "m3_artifacts_mutated": false,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_decisions": [
+    {
+      "control_evidence": [
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "control_action": "ACTION3",
+          "control_reuse_reason": "",
+          "direction": "support",
+          "effect_size": 1.0,
+          "independent_support_events": 1,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after",
+          "reused_control_support_events": 0,
+          "status": "UNRESOLVED",
+          "support_events": 1,
+          "target_action": "ACTION6"
+        },
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "control_action": "ACTION4",
+          "control_reuse_reason": "",
+          "direction": "support",
+          "effect_size": 1.0,
+          "independent_support_events": 1,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after",
+          "reused_control_support_events": 0,
+          "status": "UNRESOLVED",
+          "support_events": 1,
+          "target_action": "ACTION6"
+        },
+        {
+          "baseline_signal": 0.0,
+          "contradiction_events": 0,
+          "control_action": "ACTION3",
+          "control_reuse_reason": "no_unused_distinct_control_available",
+          "direction": "support",
+          "effect_size": 1.0,
+          "independent_support_events": 0,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after",
+          "reused_control_support_events": 1,
+          "status": "UNRESOLVED",
+          "support_events": 1,
+          "target_action": "ACTION6"
+        }
+      ],
+      "decision": "REVISION_ACCEPTED_AS_CONFIRMED",
+      "decision_record": {
+        "contradictions": 0,
+        "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+        "experiments_spent": 3,
+        "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "status": "confirmed",
+        "support": 2
+      },
+      "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+      "evidence_summary": {
+        "contradiction_events": 0,
+        "controlled_experiments_run": 3,
+        "independent_support_events": 2,
+        "ready_rule": "independent_support_events>=2 and support_events>=3 and contradiction_events==0",
+        "reused_control_support_events": 1,
+        "support_events": 3
+      },
+      "game_id": "bp35-0a0ad940",
+      "input_record": {
+        "contradictions": 0,
+        "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+        "experiments_spent": 3,
+        "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "status": "unresolved",
+        "support": 0
+      },
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "observation_counted_as_confirmation": false,
+      "prior_counted_as_proof": false,
+      "queue_item_id": "m3_6::0001::mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "reasons": [
+        "a32_revision_criteria_satisfied"
+      ],
+      "revision_performed": true,
+      "trace_support_counted_as_proof": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "contradiction_events": 0,
+    "followup_required": 0,
+    "independent_support_events": 2,
+    "m3_artifacts_mutated": false,
+    "queue_items_consumed": 1,
+    "reused_control_support_events": 1,
+    "revision_accepted_as_confirmed": 1,
+    "revision_rejected_as_insufficient": 0,
+    "support_events": 3,
+    "wrong_confirmations": 0
+  },
+  "trace_support_counted_as_proof": false
+}

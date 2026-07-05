@@ -1,0 +1,37 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\smoke_ar25\task_program_only_memory.pt
+  time_budget=0.2s   mode=development
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] attached ar25-e3c63847 (family=correspondence, 2 subgoal tests, conf=0.70)
+
+  running agent.main() with 0.2s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.71 epsilon=0.79 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.62 epsilon=0.81 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE START attempt=1/2 target_level=1 device=cpu (this will block ~30-90s on CPU)
+[DIAG ar25-e3c63847] LIVE-REVISE compile failed after 0.0s: RuntimeError: Could not load LLM 'Qwen/Qwen2.5-3B-Instruct'. Install transformers / check HF cache.
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.66 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 296
+  assoc wins:    0
+  elapsed:       4.9s
+  final goal:    None
+
+  --no-save-memory set; cross-game memory NOT written back

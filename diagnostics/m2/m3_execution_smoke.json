@@ -1,0 +1,142 @@
+{
+  "config": {
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "m3_requests_path": "diagnostics\\m2\\m3_candidate_experiment_requests.json",
+    "schema_version": "m2.m3_execution_smoke.v1"
+  },
+  "controlled_experiment": {
+    "baseline_sequence": [
+      "RESET",
+      "ACTION6",
+      "ACTION3",
+      "ACTION3"
+    ],
+    "baseline_signal": 0.0,
+    "context_replay": [
+      "ACTION6",
+      "ACTION3"
+    ],
+    "context_replay_args": [
+      {
+        "x": 18,
+        "y": 0
+      },
+      {}
+    ],
+    "contradiction_events": 0,
+    "control_action": "ACTION3",
+    "controlled_experiments_run": 1,
+    "controlled_test_required": true,
+    "delta": {
+      "absolute_effect_size": 0.0,
+      "baseline_signal": 0.0,
+      "direction": "neutral",
+      "effect_size": 0.0,
+      "perturbation_signal": 0.0,
+      "predicted_metric": "local_patch_before_after"
+    },
+    "env_actions": 6,
+    "game_id": "bp35-0a0ad940",
+    "hypothesis_key": "m2::after_ACTION3_live_after_ACTION6::h001",
+    "mechanic_family": "frontier_conditioned_candidate",
+    "observation_counted_as_confirmation": false,
+    "observed_baseline": {
+      "changed": true,
+      "changed_cell_ratio": 0.000244,
+      "changed_pixels": 1,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 0,
+      "local_patch_available": false,
+      "measurable": true,
+      "metric": "local_patch_before_after"
+    },
+    "observed_perturbation": {
+      "changed": true,
+      "changed_cell_ratio": 0.011475,
+      "changed_pixels": 47,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 0,
+      "local_patch_available": false,
+      "measurable": true,
+      "metric": "local_patch_before_after"
+    },
+    "perturbation_sequence": [
+      "RESET",
+      "ACTION6",
+      "ACTION3",
+      "ACTION4"
+    ],
+    "perturbation_signal": 0.0,
+    "predicted_metric": "local_patch_before_after",
+    "prior_counted_as_proof": false,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "status": "UNRESOLVED",
+    "support": 0,
+    "support_events": 0,
+    "target_action": "ACTION4",
+    "target_context_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+    "trace_support_counted_as_proof": false,
+    "wrong_confirmations": 0
+  },
+  "revision_performed": false,
+  "selected_request": {
+    "context_replay": [
+      "ACTION6",
+      "ACTION3"
+    ],
+    "context_replay_args": null,
+    "context_snapshot_hash": null,
+    "control_policy": "m3_dynamic_available_controls",
+    "controlled_test_required": true,
+    "expected_signal": "target_action_changes_local_patch_more_than_control",
+    "falsification_criterion": {
+      "failure_condition": "target_action_signal <= best_control_signal",
+      "metric": "local_patch_before_after",
+      "minimum_effect_size": 1,
+      "support_condition": "target_action_signal > best_control_signal"
+    },
+    "game_id": "bp35-0a0ad940",
+    "metric": "local_patch_before_after",
+    "request_id": "m2m3::after_ACTION3_live_after_ACTION6::h001",
+    "revision_performed": false,
+    "source_hypothesis_id": "m2::after_ACTION3_live_after_ACTION6::h001",
+    "status": "READY_FOR_M3",
+    "suggested_control_actions": [
+      "ACTION3",
+      "ACTION6"
+    ],
+    "support": 0,
+    "target_action": "ACTION4",
+    "target_action_args": null,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  },
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "contradiction_events": 0,
+    "m2_artifacts_mutated_by_m3": false,
+    "m2_truth_status_unchanged": "NOT_EVALUATED_BY_M2",
+    "m3_context_replay_exact": true,
+    "m3_executed_target_vs_control": true,
+    "revision_performed": false,
+    "support_events": 0,
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "wrong_confirmations": 0
+}

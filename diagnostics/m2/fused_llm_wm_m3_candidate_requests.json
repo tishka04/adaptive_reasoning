@@ -1,0 +1,184 @@
+{
+  "config": {
+    "base_schema_version": "m2_to_m3.v1",
+    "handoff_validator": "fused_llm_wm_candidate_handoff_v1",
+    "schema_version": "m2.fused_llm_wm_to_m3.v1",
+    "source_hypothesis_path": "diagnostics\\m2\\fused_llm_wm_hypotheses.json"
+  },
+  "experiment_requests": [
+    {
+      "blocking_reason": null,
+      "context_replay": [],
+      "context_replay_args": null,
+      "context_snapshot_hash": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+      "context_state_origin": "human_trace_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "terminal_risk_precondition_exceeds_matched_controls",
+      "falsification_criterion": {
+        "failure_condition": "target_action_terminal_rate <= matched_control_terminal_rate",
+        "metric": "terminal_state_after_rollout",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_terminal_rate > matched_control_terminal_rate"
+      },
+      "game_id": "ar25-e3c63847",
+      "metric": "terminal_state_after_rollout",
+      "replayability": "OFFLINE_TRACE_CONTEXT_ONLY",
+      "request_id": "m2m3::m2_15_fused::terminal_risk_precondition::001",
+      "revision_performed": false,
+      "source_episode_id": "be48a96d70f0",
+      "source_hypothesis_id": "m2_15_fused::terminal_risk_precondition::001",
+      "source_step": 295,
+      "source_transition_id": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION2",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "support": 0,
+      "target_action": "ACTION1",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": "BLOCKED_REQUIRES_COUNTERFACTUAL_ENV_REPLAY_FROM_OFFLINE_FRAME",
+      "context_replay": [],
+      "context_replay_args": null,
+      "context_snapshot_hash": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+      "context_state_origin": "human_trace_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "alternative_action_terminal_rate_below_risk_target",
+      "falsification_criterion": {
+        "failure_condition": "alternative_terminal_rate >= risk_target_terminal_rate",
+        "metric": "terminal_state_after_rollout",
+        "minimum_effect_size": 1,
+        "support_condition": "alternative_terminal_rate < risk_target_terminal_rate"
+      },
+      "game_id": "ar25-e3c63847",
+      "metric": "terminal_state_after_rollout",
+      "replayability": "OFFLINE_TRACE_CONTEXT_ONLY",
+      "request_id": "m2m3::m2_15_fused::terminal_safe_alternative_action::002",
+      "revision_performed": false,
+      "source_episode_id": "be48a96d70f0",
+      "source_hypothesis_id": "m2_15_fused::terminal_safe_alternative_action::002",
+      "source_step": 295,
+      "source_transition_id": "m2_14d::ar25-e3c63847::be48a96d70f0::0295",
+      "status": "BLOCKED_NOT_TESTABLE",
+      "suggested_control_actions": [
+        "ACTION4",
+        "ACTION1",
+        "ACTION2",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "support": 0,
+      "target_action": "ACTION3",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [],
+      "context_replay_args": null,
+      "context_snapshot_hash": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0086",
+      "context_state_origin": "human_trace_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "llm_useful_action_overlaps_wm_terminal_risk_context",
+      "falsification_criterion": {
+        "failure_condition": "wm_terminal_risk_signal_does_not_reproduce_for_llm_action",
+        "metric": "terminal_state_after_rollout",
+        "minimum_effect_size": 1,
+        "support_condition": "wm_terminal_risk_signal_reproduces_for_llm_action"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "terminal_state_after_rollout",
+      "replayability": "OFFLINE_TRACE_CONTEXT_ONLY",
+      "request_id": "m2m3::m2_15_fused::wm_llm_disagreement_frontier::003",
+      "revision_performed": false,
+      "source_episode_id": "73dd8a6e40e1",
+      "source_hypothesis_id": "m2_15_fused::wm_llm_disagreement_frontier::003",
+      "source_step": 86,
+      "source_transition_id": "m2_14d::bp35-0a0ad940::73dd8a6e40e1::0086",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION4",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "support": 0,
+      "target_action": "ACTION3",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [],
+      "context_replay_args": null,
+      "context_snapshot_hash": "m2_14d::bp35-0a0ad940::182270820f60::0023",
+      "context_state_origin": "human_trace_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "proxy_completion_candidates_overlap_terminal_risk",
+      "falsification_criterion": {
+        "failure_condition": "terminal_risk_rate_not_above_controls_in_proxy_context",
+        "metric": "terminal_state_after_rollout",
+        "minimum_effect_size": 1,
+        "support_condition": "terminal_risk_rate_exceeds_controls_in_proxy_context"
+      },
+      "game_id": "bp35-0a0ad940",
+      "metric": "terminal_state_after_rollout",
+      "replayability": "OFFLINE_TRACE_CONTEXT_ONLY",
+      "request_id": "m2m3::m2_15_fused::objective_completion_vs_terminal_risk_tradeoff::004",
+      "revision_performed": false,
+      "source_episode_id": "182270820f60",
+      "source_hypothesis_id": "m2_15_fused::objective_completion_vs_terminal_risk_tradeoff::004",
+      "source_step": 23,
+      "source_transition_id": "m2_14d::bp35-0a0ad940::182270820f60::0023",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION7"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 22,
+        "y": 33
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "blocked_by_reason": {
+      "BLOCKED_REQUIRES_COUNTERFACTUAL_ENV_REPLAY_FROM_OFFLINE_FRAME": 1
+    },
+    "blocked_not_testable": 1,
+    "experiment_requests": 4,
+    "llm_output_counted_as_evidence": false,
+    "m3_observation_counted_as_confirmation": false,
+    "offline_trace_context_requests": 3,
+    "ready_for_m3": 3,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_hypotheses": 4,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false,
+    "wrong_confirmations": 0
+  }
+}

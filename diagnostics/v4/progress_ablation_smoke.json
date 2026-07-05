@@ -1,0 +1,818 @@
+{
+  "time_budget": 1,
+  "games": [
+    "ar25-e3c63847",
+    "bp35-0a0ad940"
+  ],
+  "profiles": {
+    "strict": {
+      "profile": "strict",
+      "games": 2,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 281,
+      "avg_pred_acc": 0.5,
+      "avg_ctrl_suc": 0.5,
+      "avg_lp": 0.5,
+      "avg_sp": 0.1885,
+      "avg_tp": 0.0,
+      "avg_knowledge": 0.4035,
+      "wall_clock": 4.5,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 89,
+          "meaningful_grid_change": 6,
+          "player_displacement": 1,
+          "effective_click": 86
+        },
+        "sp": {
+          "novel_state": 84,
+          "new_rules": 8,
+          "structural_change": 6,
+          "object_change": 89,
+          "class_depletion": 6
+        },
+        "tp": {
+          "narrowing_targets": 40,
+          "speculative_teleology": 60,
+          "closure_signal_speculative": 2
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 89,
+          "meaningful_grid_change": 6,
+          "player_displacement": 1,
+          "effective_click": 86
+        },
+        "sp": {
+          "novel_state": 84,
+          "new_rules": 8,
+          "class_depletion": 4
+        },
+        "tp": {
+          "speculative_teleology": 60
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "structural_change": 6,
+          "object_change": 89,
+          "class_depletion": 2,
+          "grid_change_without_sp": 4
+        },
+        "tp": {
+          "narrowing_targets": 40,
+          "closure_signal_speculative": 2
+        }
+      },
+      "results": [
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 193,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 1,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 153,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 192,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1
+              },
+              "tp": {
+                "speculative_teleology": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "closure_signal_speculative": 2
+              }
+            }
+          },
+          "branch": 153,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 153
+          },
+          "phases": {
+            "sensory_ignorance": 5,
+            "mechanical_stabilization": 188
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 192,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_smoke\\strict\\01_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 1.0
+        },
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 88,
+          "operators": 3,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.687,
+          "pred_acc": 1.0,
+          "ctrl_suc": 1.0,
+          "lp": 1.0,
+          "sp": 0.377,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict",
+            "lp": 1.0,
+            "sp": 0.377,
+            "tp": 0.0,
+            "branch_id": 0,
+            "sterile_repeats": 2,
+            "terminal_stall_steps": 22,
+            "recent_unique_states": 40,
+            "num_updates": 86,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 86,
+                "effective_click": 86,
+                "meaningful_grid_change": 3
+              },
+              "sp": {
+                "novel_state": 81,
+                "new_rules": 7,
+                "object_change": 86,
+                "class_depletion": 6,
+                "structural_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 58
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 86,
+                "effective_click": 86,
+                "meaningful_grid_change": 3
+              },
+              "sp": {
+                "novel_state": 81,
+                "new_rules": 7,
+                "class_depletion": 4
+              },
+              "tp": {
+                "speculative_teleology": 58
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "object_change": 86,
+                "structural_change": 3,
+                "class_depletion": 2,
+                "grid_change_without_sp": 4
+              },
+              "tp": {}
+            }
+          },
+          "branch": 0,
+          "states": 82,
+          "minds": {
+            "click": 8,
+            "closure": 1
+          },
+          "intents": {
+            "click": 31,
+            "dissent": 10,
+            "closure": 6,
+            "reactive": 40
+          },
+          "phases": {
+            "sensory_ignorance": 4,
+            "project_emergence": 83
+          },
+          "learning": {
+            "world_reliability": 0.372,
+            "sterility_risk": 0.175,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 86,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_smoke\\strict\\02_bp35-0a0ad940.json"
+          },
+          "ontology": "click_world",
+          "time": 1.0
+        }
+      ]
+    },
+    "relaxed_sp": {
+      "profile": "relaxed_sp",
+      "games": 2,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 284,
+      "avg_pred_acc": 0.5,
+      "avg_ctrl_suc": 0.5,
+      "avg_lp": 0.5,
+      "avg_sp": 0.3825,
+      "avg_tp": 0.0,
+      "avg_knowledge": 0.4135,
+      "wall_clock": 2.2,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 90,
+          "meaningful_grid_change": 6,
+          "player_displacement": 1,
+          "effective_click": 87
+        },
+        "sp": {
+          "novel_state": 85,
+          "new_rules": 8,
+          "structural_change": 6,
+          "object_change": 90,
+          "class_depletion": 6
+        },
+        "tp": {
+          "narrowing_targets": 40,
+          "speculative_teleology": 60,
+          "closure_signal_speculative": 2
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 90,
+          "meaningful_grid_change": 6,
+          "player_displacement": 1,
+          "effective_click": 87
+        },
+        "sp": {
+          "novel_state": 85,
+          "new_rules": 8,
+          "structural_change": 6,
+          "object_change": 90,
+          "class_depletion": 4
+        },
+        "tp": {
+          "speculative_teleology": 60
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "class_depletion": 2
+        },
+        "tp": {
+          "narrowing_targets": 40,
+          "closure_signal_speculative": 2
+        }
+      },
+      "results": [
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 195,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_sp",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 155,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 194,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {},
+              "tp": {
+                "narrowing_targets": 40,
+                "closure_signal_speculative": 2
+              }
+            }
+          },
+          "branch": 155,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 155
+          },
+          "phases": {
+            "sensory_ignorance": 5,
+            "mechanical_stabilization": 185,
+            "project_emergence": 5
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 9,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 194,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_smoke\\relaxed_sp\\01_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 1.0
+        },
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 89,
+          "operators": 3,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.707,
+          "pred_acc": 1.0,
+          "ctrl_suc": 1.0,
+          "lp": 1.0,
+          "sp": 0.765,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_sp",
+            "lp": 1.0,
+            "sp": 0.765,
+            "tp": 0.0,
+            "branch_id": 0,
+            "sterile_repeats": 2,
+            "terminal_stall_steps": 23,
+            "recent_unique_states": 40,
+            "num_updates": 87,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 87,
+                "effective_click": 87,
+                "meaningful_grid_change": 3
+              },
+              "sp": {
+                "novel_state": 82,
+                "new_rules": 7,
+                "object_change": 87,
+                "class_depletion": 6,
+                "structural_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 58
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 87,
+                "effective_click": 87,
+                "meaningful_grid_change": 3
+              },
+              "sp": {
+                "novel_state": 82,
+                "new_rules": 7,
+                "object_change": 87,
+                "class_depletion": 4,
+                "structural_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 58
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 2
+              },
+              "tp": {}
+            }
+          },
+          "branch": 0,
+          "states": 83,
+          "minds": {
+            "click": 8,
+            "closure": 1
+          },
+          "intents": {
+            "click": 31,
+            "dissent": 10,
+            "closure": 6,
+            "reactive": 41
+          },
+          "phases": {
+            "sensory_ignorance": 2,
+            "project_emergence": 86
+          },
+          "learning": {
+            "world_reliability": 0.48,
+            "sterility_risk": 0.175,
+            "frame_embeddings": 7,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 87,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_smoke\\relaxed_sp\\02_bp35-0a0ad940.json"
+          },
+          "ontology": "click_world",
+          "time": 1.0
+        }
+      ]
+    },
+    "relaxed_tp": {
+      "profile": "relaxed_tp",
+      "games": 2,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 283,
+      "avg_pred_acc": 0.5,
+      "avg_ctrl_suc": 0.5,
+      "avg_lp": 0.5,
+      "avg_sp": 0.189,
+      "avg_tp": 0.0,
+      "avg_knowledge": 0.4035,
+      "wall_clock": 2.2,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 92,
+          "meaningful_grid_change": 6,
+          "player_displacement": 1,
+          "effective_click": 89
+        },
+        "sp": {
+          "novel_state": 87,
+          "new_rules": 8,
+          "structural_change": 6,
+          "object_change": 92,
+          "class_depletion": 6
+        },
+        "tp": {
+          "narrowing_targets": 17,
+          "speculative_teleology": 57,
+          "closure_signal_speculative": 2
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 92,
+          "meaningful_grid_change": 6,
+          "player_displacement": 1,
+          "effective_click": 89
+        },
+        "sp": {
+          "novel_state": 87,
+          "new_rules": 8,
+          "class_depletion": 4
+        },
+        "tp": {
+          "narrowing_targets": 1,
+          "speculative_teleology": 57,
+          "closure_signal_speculative": 2
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "structural_change": 6,
+          "object_change": 92,
+          "class_depletion": 2,
+          "grid_change_without_sp": 4
+        },
+        "tp": {
+          "narrowing_targets": 16
+        }
+      },
+      "results": [
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 192,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_tp",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 152,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 191,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 17,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1
+              },
+              "tp": {
+                "narrowing_targets": 1,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 16
+              }
+            }
+          },
+          "branch": 152,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 152
+          },
+          "phases": {
+            "sensory_ignorance": 5,
+            "mechanical_stabilization": 187
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 191,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_smoke\\relaxed_tp\\01_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 1.1
+        },
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 91,
+          "operators": 3,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.687,
+          "pred_acc": 1.0,
+          "ctrl_suc": 1.0,
+          "lp": 1.0,
+          "sp": 0.378,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_tp",
+            "lp": 1.0,
+            "sp": 0.378,
+            "tp": 0.0,
+            "branch_id": 0,
+            "sterile_repeats": 2,
+            "terminal_stall_steps": 25,
+            "recent_unique_states": 40,
+            "num_updates": 89,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 89,
+                "effective_click": 89,
+                "meaningful_grid_change": 3
+              },
+              "sp": {
+                "novel_state": 84,
+                "new_rules": 7,
+                "object_change": 89,
+                "class_depletion": 6,
+                "structural_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 55
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 89,
+                "effective_click": 89,
+                "meaningful_grid_change": 3
+              },
+              "sp": {
+                "novel_state": 84,
+                "new_rules": 7,
+                "class_depletion": 4
+              },
+              "tp": {
+                "speculative_teleology": 55
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "object_change": 89,
+                "structural_change": 3,
+                "class_depletion": 2,
+                "grid_change_without_sp": 4
+              },
+              "tp": {}
+            }
+          },
+          "branch": 0,
+          "states": 85,
+          "minds": {
+            "click": 11,
+            "closure": 1
+          },
+          "intents": {
+            "click": 47,
+            "dissent": 10,
+            "closure": 6,
+            "reactive": 27
+          },
+          "phases": {
+            "sensory_ignorance": 4,
+            "project_emergence": 73,
+            "closure_pressure": 13
+          },
+          "learning": {
+            "world_reliability": 0.372,
+            "sterility_risk": 0.166,
+            "frame_embeddings": 9,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 89,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_smoke\\relaxed_tp\\02_bp35-0a0ad940.json"
+          },
+          "ontology": "click_world",
+          "time": 1.0
+        }
+      ]
+    }
+  },
+  "saved_at": "2026-04-20 09:45:52"
+}

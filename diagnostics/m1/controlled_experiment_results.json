@@ -1,0 +1,174 @@
+{
+  "config": {
+    "control_actions": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "scientific_integration_path": "diagnostics\\m1\\scientific_integration_pretest.json"
+  },
+  "controlled_experiments": [
+    {
+      "baseline_sequence": [
+        "RESET",
+        "ACTION3"
+      ],
+      "contradiction_events": 0,
+      "control_action": "ACTION3",
+      "controlled_experiments_run": 1,
+      "delta": {
+        "absolute_effect_size": 1.0,
+        "baseline_signal": 0.0,
+        "direction": "support",
+        "effect_size": 1.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "env_actions": 2,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "mechanic_family": "position_effect_candidate",
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.006348,
+        "changed_pixels": 26,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 1,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "perturbation_sequence": [
+        "RESET",
+        "ACTION6"
+      ],
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "revision_performed": false,
+      "status": "UNRESOLVED",
+      "support_events": 1,
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "contradiction_events": 0,
+    "controlled_experiments_run": 1,
+    "env_actions": 2,
+    "hypotheses_tested": 1,
+    "observation_counted_as_confirmation": false,
+    "revision_performed": false,
+    "support_events": 1,
+    "unresolved_hypotheses": 1,
+    "wrong_confirmations": 0
+  },
+  "trace_support_counted_as_proof": false,
+  "updated_ledger_entries": [
+    {
+      "contradiction_events": 0,
+      "contradictions": 0,
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "observation_counted_as_confirmation": false,
+      "prior_counted_as_proof": false,
+      "revision_performed": false,
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 1,
+      "trace_support_counted_as_proof": false
+    }
+  ]
+}

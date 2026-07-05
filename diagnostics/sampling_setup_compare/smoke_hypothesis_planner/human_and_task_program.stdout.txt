@@ -1,0 +1,49 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\human_traces   memory=diagnostics\sampling_setup_compare\smoke_hypothesis_planner\human_and_task_program_memory.pt
+  time_budget=1.0s   mode=development
+  sampler stage: v1
+  planner mode:  prior
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] pack: 1124 steps, 4 eps, 4 goal hints, 2 failure hints, 21 hypotheses
+  [human] runtime trace memory: 4 reusable traces
+  [cross-game] fresh memory
+  [cross-game] human seeding: +4 hints, +2 failures
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [game-memory] human replay: 1120 steps, 1 clicks, 21 hypotheses, human_hit_level=7 seeded_actions=1120 (online counters reset → agent actions/max_level now measure agent only)
+     ACTION1: tries=241 chg=96% die=1 mv=136
+     ACTION2: tries=346 chg=92% die=1 mv=198
+     ACTION3: tries=214 chg=94% die=0 mv=143
+     ACTION4: tries=185 chg=95% die=0 mv=99
+     ACTION5: tries=133 chg=100% die=0 mv=0
+     ACTION6: tries=  1 chg=0% die=0 mv=0
+     hypotheses: 16 keys
+  [task-program] attached ar25-e3c63847 (family=correspondence, 2 subgoal tests, conf=0.70)
+
+  running agent.main() with 1.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.58 epsilon=0.83 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.75 epsilon=0.78 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.75 epsilon=0.78 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE START attempt=1/2 target_level=1 device=cpu (this will block ~30-90s on CPU)
+[DIAG ar25-e3c63847] LIVE-REVISE compile failed after 0.7s: RuntimeError: Could not load LLM 'Qwen/Qwen2.5-3B-Instruct'. Install transformers / check HF cache.
+[DIAG ar25-e3c63847] LIVE-REVISE disabled for this run: runtime unavailable (RuntimeError)
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.75 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False trajectory_sources={}
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 294
+  assoc wins:    0
+  elapsed:       5.2s
+  final goal:    None
+
+  --no-save-memory set; cross-game memory NOT written back

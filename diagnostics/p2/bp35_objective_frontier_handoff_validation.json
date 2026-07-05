@@ -1,0 +1,119 @@
+{
+  "a32_write_performed": false,
+  "a40_write_performed": false,
+  "accepted_objective_reviews": [
+    {
+      "a32_write_performed": false,
+      "a40_write_performed": false,
+      "frontier_id": "p2_terminal::bp35::conditional_movement_refresh::local_affordance_productive_but_terminal",
+      "frontier_reason": "LOCAL_AFFORDANCE_PRODUCTIVE_BUT_TERMINAL_OBJECTIVE_FAILED",
+      "frontier_type": "OBJECTIVE_ALIGNMENT_FRONTIER",
+      "game_id": "bp35-0a0ad940",
+      "m2_write_performed": false,
+      "m3_write_performed": false,
+      "objective_review_accepted": true,
+      "objective_review_target": "objective_frontier_review",
+      "ready_for_objective_frontier_review": true,
+      "ready_for_p2_4_saturation_handoff": false,
+      "rejection_reasons": [],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "saturation_handoff_accepted": false,
+      "source": "P2.3",
+      "support": 0,
+      "terminal_budgets": [
+        64,
+        96,
+        128,
+        192,
+        256
+      ],
+      "terminal_runs": 15,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "inputs_read": [
+      "P2.4-terminal"
+    ],
+    "saturation_handoff_allowed": false,
+    "schema_version": "p2.objective_frontier_handoff_validation.v1",
+    "terminal_outcome_frontier_path": "diagnostics\\p2\\bp35_terminal_outcome_frontier.json",
+    "validation_mode": "objective_frontier_review_no_write"
+  },
+  "frontier_evaluations": [
+    {
+      "a32_write_performed": false,
+      "a40_write_performed": false,
+      "frontier_id": "p2_terminal::bp35::conditional_movement_refresh::local_affordance_productive_but_terminal",
+      "frontier_reason": "LOCAL_AFFORDANCE_PRODUCTIVE_BUT_TERMINAL_OBJECTIVE_FAILED",
+      "frontier_type": "OBJECTIVE_ALIGNMENT_FRONTIER",
+      "game_id": "bp35-0a0ad940",
+      "m2_write_performed": false,
+      "m3_write_performed": false,
+      "objective_review_accepted": true,
+      "objective_review_target": "objective_frontier_review",
+      "ready_for_objective_frontier_review": true,
+      "ready_for_p2_4_saturation_handoff": false,
+      "rejection_reasons": [],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "saturation_handoff_accepted": false,
+      "source": "P2.3",
+      "support": 0,
+      "terminal_budgets": [
+        64,
+        96,
+        128,
+        192,
+        256
+      ],
+      "terminal_runs": 15,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "m2_write_performed": false,
+  "m3_write_performed": false,
+  "objective_handoff_validation_counted_as_confirmation": false,
+  "policy_result_counted_as_scientific_verdict": false,
+  "rejected_objective_reviews": [],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a40_write_performed": false,
+    "m2_write_performed": false,
+    "m3_write_performed": false,
+    "objective_frontiers_seen": 1,
+    "objective_review_no_write": true,
+    "objective_reviews_accepted": 1,
+    "objective_reviews_rejected": 0,
+    "ready_for_objective_frontier_review": true,
+    "ready_for_p2_4_saturation_handoff": false,
+    "rejection_reasons": [],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "saturation_handoffs_accepted": 0,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

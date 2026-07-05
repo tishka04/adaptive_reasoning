@@ -1,0 +1,214 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "consolidation_policy": "threshold_window_candidate_only",
+    "execution_performed": false,
+    "inputs_read": [
+      "M3.O2"
+    ],
+    "objective_results_path": "diagnostics\\m3\\objective_stop_switch_experiment_results.json",
+    "schema_version": "m3.objective_threshold_consolidation.v1"
+  },
+  "execution_performed": false,
+  "objective_threshold_candidate": {
+    "blocked_controls_not_contradictions": true,
+    "condition_availability_summary": {
+      "continue_action6": {
+        "blocked_control_unavailable_cells": 0,
+        "condition_id": "continue_action6",
+        "early_terminal_cells": 1,
+        "executed_or_observed_cells": 4,
+        "revision_status": "CANDIDATE_ONLY",
+        "safe_nonterminal_cells": 4,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      },
+      "stop_policy": {
+        "blocked_control_unavailable_cells": 0,
+        "condition_id": "stop_policy",
+        "early_terminal_cells": 1,
+        "executed_or_observed_cells": 4,
+        "revision_status": "CANDIDATE_ONLY",
+        "safe_nonterminal_cells": 4,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      },
+      "switch_ACTION1": {
+        "blocked_control_unavailable_cells": 4,
+        "condition_id": "switch_ACTION1",
+        "early_terminal_cells": 1,
+        "executed_or_observed_cells": 0,
+        "revision_status": "CANDIDATE_ONLY",
+        "safe_nonterminal_cells": 4,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      },
+      "switch_ACTION2": {
+        "blocked_control_unavailable_cells": 4,
+        "condition_id": "switch_ACTION2",
+        "early_terminal_cells": 1,
+        "executed_or_observed_cells": 0,
+        "revision_status": "CANDIDATE_ONLY",
+        "safe_nonterminal_cells": 4,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      },
+      "switch_ACTION3": {
+        "blocked_control_unavailable_cells": 0,
+        "condition_id": "switch_ACTION3",
+        "early_terminal_cells": 1,
+        "executed_or_observed_cells": 4,
+        "revision_status": "CANDIDATE_ONLY",
+        "safe_nonterminal_cells": 4,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      },
+      "switch_ACTION4": {
+        "blocked_control_unavailable_cells": 0,
+        "condition_id": "switch_ACTION4",
+        "early_terminal_cells": 1,
+        "executed_or_observed_cells": 4,
+        "revision_status": "CANDIDATE_ONLY",
+        "safe_nonterminal_cells": 4,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      }
+    },
+    "contradiction_events_counted_as_refutation": false,
+    "critical_window": [
+      49,
+      64
+    ],
+    "early_terminal_prefix_cells_not_stop_switch_tests": true,
+    "early_terminal_prefix_min": 64,
+    "early_terminal_prefixes": [
+      64
+    ],
+    "excluded_conditions": [
+      {
+        "blocked_control_unavailable_cells": 4,
+        "condition_id": "switch_ACTION1",
+        "reason": "blocked_control_unavailable_in_safe_prefixes",
+        "revision_status": "CANDIDATE_ONLY",
+        "support": 0
+      },
+      {
+        "blocked_control_unavailable_cells": 4,
+        "condition_id": "switch_ACTION2",
+        "reason": "blocked_control_unavailable_in_safe_prefixes",
+        "revision_status": "CANDIDATE_ONLY",
+        "support": 0
+      }
+    ],
+    "execution_performed": false,
+    "game_id": "bp35-0a0ad940",
+    "interpretation": "ACTION6 remains post-prefix testable through prefix 48, but prefix 64 reaches terminality before stop/switch can be evaluated.",
+    "next_experiment_recommendation": "REFINE_PREFIX_WINDOW",
+    "prefix_action": "ACTION6",
+    "prefix_policy": "patch_similarity_soft_stale_action6_prefix",
+    "recommended_conditions": [
+      "continue_action6",
+      "stop_policy",
+      "switch_ACTION3",
+      "switch_ACTION4"
+    ],
+    "recommended_refined_prefixes": [
+      50,
+      54,
+      58,
+      60,
+      62,
+      63
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "safe_tested_prefix_max": 48,
+    "safe_tested_prefixes": [
+      6,
+      12,
+      24,
+      48
+    ],
+    "status": "UNRESOLVED",
+    "stop_switch_effectiveness_rationale": "No post-prefix stop/switch condition established level completion or terminal avoidance as a verdict; prefix 64 is early-terminal, so post-prefix intervention is too late there.",
+    "stop_switch_effectiveness_status": "NOT_ESTABLISHED",
+    "support": 0,
+    "support_events_counted_as_proof": false,
+    "threshold_consolidation_counted_as_confirmation": false,
+    "threshold_consolidation_id": "m3_o3::bp35-0a0ad940::objective_threshold",
+    "threshold_type": "PRE_TERMINAL_PREFIX_WINDOW",
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "stop_switch_effectiveness_counted_as_verdict": false,
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "critical_window": [
+      49,
+      64
+    ],
+    "early_terminal_prefix_min": 64,
+    "excluded_conditions": [
+      {
+        "blocked_control_unavailable_cells": 4,
+        "condition_id": "switch_ACTION1",
+        "reason": "blocked_control_unavailable_in_safe_prefixes",
+        "revision_status": "CANDIDATE_ONLY",
+        "support": 0
+      },
+      {
+        "blocked_control_unavailable_cells": 4,
+        "condition_id": "switch_ACTION2",
+        "reason": "blocked_control_unavailable_in_safe_prefixes",
+        "revision_status": "CANDIDATE_ONLY",
+        "support": 0
+      }
+    ],
+    "execution_performed": false,
+    "next_experiment_recommendation": "REFINE_PREFIX_WINDOW",
+    "objective_threshold_consolidations": 1,
+    "recommended_conditions": [
+      "continue_action6",
+      "stop_policy",
+      "switch_ACTION3",
+      "switch_ACTION4"
+    ],
+    "recommended_refined_prefixes": [
+      50,
+      54,
+      58,
+      60,
+      62,
+      63
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "safe_tested_prefix_max": 48,
+    "source_blocked_cells": 14,
+    "source_early_terminal_prefix_cells": 6,
+    "source_objective_cells_executed": 16,
+    "source_objective_requests_consumed": 4,
+    "source_planned_condition_cells": 120,
+    "source_unique_execution_cells": 30,
+    "status": "UNRESOLVED",
+    "stop_switch_effectiveness_counted_as_verdict": false,
+    "stop_switch_effectiveness_status": "NOT_ESTABLISHED",
+    "support": 0,
+    "threshold_consolidation_counted_as_confirmation": false,
+    "threshold_type": "PRE_TERMINAL_PREFIX_WINDOW",
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "threshold_consolidation_counted_as_confirmation": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

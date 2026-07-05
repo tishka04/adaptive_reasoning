@@ -1,0 +1,177 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "A33"
+    ],
+    "artifacts_not_read_for_truth": [
+      "M3",
+      "A32",
+      "A34",
+      "A36"
+    ],
+    "inputs_read": [
+      "A33",
+      "A35",
+      "A37"
+    ],
+    "registry_path": "diagnostics\\a33\\confirmed_mechanics_registry.json",
+    "rollout_path": "diagnostics\\a37\\scope_conditioned_policy_rollout.json",
+    "scope_map_path": "diagnostics\\a35\\confirmed_mechanic_scope_map.json"
+  },
+  "revision_performed": false,
+  "scope_refinements": [
+    {
+      "blocked_context_details": [
+        {
+          "blocked_context_id": "after_ACTION3_live_after_ACTION6",
+          "context_id": "after_ACTION3",
+          "local_patch_before_equals_after": true,
+          "reason": "target_patch_already_saturated",
+          "selected_signal": 0.0,
+          "step": 2
+        }
+      ],
+      "blocked_contexts": [
+        "after_ACTION3_live_after_ACTION6"
+      ],
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "mechanic": {
+        "action": "ACTION6",
+        "mechanic_family": "position_effect_candidate",
+        "predicted_metric": "local_patch_before_after"
+      },
+      "negative_usage_contexts": [
+        {
+          "blocked_context_id": "after_ACTION3_live_after_ACTION6",
+          "context_id": "after_ACTION3",
+          "context_signature": [
+            "ACTION3"
+          ],
+          "functional_progress": false,
+          "live_action_history_before": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "local_patch_before_equals_after": true,
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ],
+          "policy_selected_action": "ACTION6",
+          "probable_blocker": "target_patch_already_saturated",
+          "selected_signal": 0.0,
+          "step": 2,
+          "target_patch_already_saturated": true,
+          "usage_contradiction": true,
+          "useful_new_state": false
+        }
+      ],
+      "positive_usage_contexts": [
+        {
+          "context_id": "reset_exact",
+          "context_signature": [],
+          "functional_progress": true,
+          "local_changed_pixels": 1,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ],
+          "policy_selected_action": "ACTION6",
+          "selected_signal": 1.0,
+          "step": 0,
+          "target_patch_not_already_saturated": true,
+          "usage_contradiction": false,
+          "useful_new_state": true
+        }
+      ],
+      "refined_scope_assessment": "CONTEXTUALLY_STABLE_WITH_PRECONDITIONS",
+      "refinement_notes": [
+        "truth_not_reevaluated",
+        "a33_registry_not_modified",
+        "rollout_usage_updates_applicability_scope_only",
+        "effect_saturation_detected",
+        "avoid_reusing_action_when_target_patch_already_transformed",
+        "positive_rollout_usage_retained_as_policy_evidence"
+      ],
+      "revision_performed": false,
+      "source_scope_assessment": "CONTEXTUALLY_STABLE",
+      "truth_status": "NOT_REEVALUATED_BY_A38",
+      "usage_preconditions": [
+        "local_patch_available=true",
+        "predicted_metric_signal_available=true",
+        "selected_signal_expected=1",
+        "target_patch_not_already_saturated=true"
+      ],
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "blocked_contexts": 1,
+    "effect_saturation_detected": true,
+    "mechanics_refined": 1,
+    "negative_usage_contexts": 1,
+    "positive_usage_contexts": 1,
+    "refinements_with_preconditions": 1,
+    "revision_performed": false,
+    "truth_status": "NOT_REEVALUATED_BY_A38",
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_REEVALUATED_BY_A38",
+  "wrong_confirmations": 0
+}

@@ -1,0 +1,180 @@
+{
+  "game_id": "ar25-e3c63847",
+  "goal_family": "correspondence",
+  "macro_goal": "correspond_shapes",
+  "level_hypotheses": [
+    "shapes_mirrored_by_doted_lines",
+    "doted_line_act_as_miror",
+    "you_need_to_match_at_least_one_shape"
+  ],
+  "entities": [
+    {
+      "name": "black_doted_shape",
+      "role": "player",
+      "notes": null,
+      "color_value": null
+    },
+    {
+      "name": "gray_shape",
+      "role": "controller",
+      "notes": null,
+      "color_value": null
+    }
+  ],
+  "win_condition_hypotheses": [
+    "match_shapes",
+    "avoid_deadly_shapes"
+  ],
+  "constraints": [
+    {
+      "type": "can_exit_grid",
+      "description": "shapes_can_cross_doted_line",
+      "applies_to": [
+        "gray_shape",
+        "black_doted_shape"
+      ]
+    },
+    {
+      "type": "only_subset_matters",
+      "description": "all_shapes_do_not_must_match",
+      "applies_to": [
+        "gray_shape",
+        "black_doted_shape"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "do not assume all shapes must match"
+  ],
+  "action_roles": [
+    {
+      "action": "ACTION1",
+      "role": "movement",
+      "evidence": "moves_left_sideline",
+      "confidence": 0.7,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION2",
+      "role": "movement",
+      "evidence": "moves_left_sideline",
+      "confidence": 0.7,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION3",
+      "role": "movement",
+      "evidence": "moves_left_sideline",
+      "confidence": 0.7,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION4",
+      "role": "movement",
+      "evidence": "moves_left_sideline",
+      "confidence": 0.7,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION5",
+      "role": "movement",
+      "evidence": "change_player_action5",
+      "confidence": 0.7,
+      "changes_semantics_of": []
+    }
+  ],
+  "subgoal_tests": [
+    {
+      "id": "probe_ACTION1",
+      "description": "use ACTION1 to move left",
+      "verification": "object moved left",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION1"
+      ]
+    },
+    {
+      "id": "probe_ACTION2",
+      "description": "use ACTION2 to move down",
+      "verification": "object moved down",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION2"
+      ]
+    },
+    {
+      "id": "probe_ACTION3",
+      "description": "use ACTION3 to move left",
+      "verification": "object moved left",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION3"
+      ]
+    },
+    {
+      "id": "probe_ACTION4",
+      "description": "use ACTION4 to move right",
+      "verification": "object moved right",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION4"
+      ]
+    },
+    {
+      "id": "probe_ACTION5",
+      "description": "use ACTION5 to switch controlled entity",
+      "verification": "controlled entity switched",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "role_switch",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION5"
+      ]
+    },
+    {
+      "id": "achieve_correspond_shapes",
+      "description": "match shapes",
+      "verification": "match shapes or avoid deadly shapes",
+      "max_actions": 60,
+      "preconditions": [],
+      "expected_signal": "level_advance",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5"
+      ]
+    }
+  ],
+  "belief_revisions": [],
+  "confidence": 0.7,
+  "source_episodes": [
+    "be48a96d70f0",
+    "7494c064eea1",
+    "f0fe23029ffa",
+    "dbe63878c448"
+  ],
+  "compiler_model": "Qwen/Qwen2.5-3B-Instruct",
+  "compiled_at": "2026-04-26T15:51:31.686481+00:00"
+}

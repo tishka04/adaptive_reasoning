@@ -1,0 +1,230 @@
+{
+  "game_id": "ar25-e3c63847",
+  "goal_family": "correspondence",
+  "macro_goal": "infer and apply the global colored-shape correspondence rule; use local search only to test rule-consistent transformations",
+  "level_hypotheses": [
+    "task is a correspondence puzzle over colored shapes",
+    "gray shape acts as a controller for other shapes",
+    "dotted lines behave like cursor/mirror constraints",
+    "some shapes may legally leave the grid",
+    "only a subset of shape matches is required",
+    "ACTION3 distinct geometry at level 7 is a contradiction signal",
+    "level 7 likely requires the same global rule, not wider local search"
+  ],
+  "entities": [
+    {
+      "name": "gray_shape",
+      "role": "controller",
+      "notes": "changes which shape motion controls",
+      "color_value": null
+    },
+    {
+      "name": "yellow_shape",
+      "role": "movable",
+      "notes": "can sometimes leave the grid",
+      "color_value": null
+    },
+    {
+      "name": "purple_shape",
+      "role": "reference",
+      "notes": "correspondence/match target",
+      "color_value": null
+    },
+    {
+      "name": "dotted_lines",
+      "role": "cursor",
+      "notes": "act as cursor or mirror constraints",
+      "color_value": null
+    },
+    {
+      "name": "action6_bbox_target",
+      "role": "click_target",
+      "notes": "bbox/center click can toggle masks",
+      "color_value": null
+    }
+  ],
+  "win_condition_hypotheses": [
+    "advance level when required colored-shape correspondence is satisfied",
+    "structured grid changes are useful only if they preserve the global rule"
+  ],
+  "constraints": [
+    {
+      "type": "cursor_mediated_control",
+      "description": "dotted lines/cursors mediate which shape is affected",
+      "applies_to": [
+        "dotted_lines",
+        "gray_shape"
+      ]
+    },
+    {
+      "type": "only_subset_matters",
+      "description": "not every visible shape must be matched",
+      "applies_to": [
+        "yellow_shape",
+        "purple_shape"
+      ]
+    },
+    {
+      "type": "can_exit_grid",
+      "description": "yellow shapes can legally leave the grid",
+      "applies_to": [
+        "yellow_shape"
+      ]
+    },
+    {
+      "type": "click_requires_setup",
+      "description": "ACTION6 clicks should be tested after geometry is prepared",
+      "applies_to": [
+        "action6_bbox_target"
+      ]
+    },
+    {
+      "type": "movement_limited",
+      "description": "sidebar/trace evidence suggests remaining moves matter",
+      "applies_to": []
+    }
+  ],
+  "anti_patterns": [
+    "do not assume all shapes must match",
+    "do not optimize local ACTION7 cycles as progress",
+    "avoid ACTION2 danger suffix at the level-7 frontier",
+    "treat ACTION3 distinct bbox at level 7 as contradiction/failure"
+  ],
+  "action_roles": [
+    {
+      "action": "ACTION1",
+      "role": "movement",
+      "evidence": "used repeatedly inside successful pre-level-7 segments",
+      "confidence": 0.68,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION2",
+      "role": "movement",
+      "evidence": "used repeatedly inside successful pre-level-7 segments",
+      "confidence": 0.68,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION3",
+      "role": "movement",
+      "evidence": "used repeatedly inside successful pre-level-7 segments",
+      "confidence": 0.68,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION4",
+      "role": "movement",
+      "evidence": "used repeatedly inside successful pre-level-7 segments",
+      "confidence": 0.68,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION5",
+      "role": "control_switch",
+      "evidence": "human mechanics identify gray_shape as controlling shapes",
+      "confidence": 0.78,
+      "changes_semantics_of": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4"
+      ]
+    },
+    {
+      "action": "ACTION6",
+      "role": "click_select",
+      "evidence": "level7 diagnostics show coordinate clicks trigger geometric toggles",
+      "confidence": 0.62,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION7",
+      "role": "undo",
+      "evidence": "frontier diagnostics show safe reversible cycling after transformations",
+      "confidence": 0.58,
+      "changes_semantics_of": []
+    }
+  ],
+  "subgoal_tests": [
+    {
+      "id": "probe_control_switch",
+      "description": "confirm ACTION5 switches which shape movement controls",
+      "verification": "controlled object or movement effect changes",
+      "max_actions": 10,
+      "preconditions": [],
+      "expected_signal": "role_switch",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION5"
+      ]
+    },
+    {
+      "id": "align_shape_correspondence",
+      "description": "move controlled shapes until yellow/purple correspondence improves",
+      "verification": "level advances or overlap/correspondence score improves",
+      "max_actions": 80,
+      "preconditions": [],
+      "expected_signal": "level_advance",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5"
+      ]
+    },
+    {
+      "id": "probe_mask_toggle",
+      "description": "click geometric bbox/center candidates only after movement setup",
+      "verification": "persistent structured grid change without GAME_OVER",
+      "max_actions": 20,
+      "preconditions": [
+        "movement alignment has stalled",
+        "candidate target is geometrically motivated"
+      ],
+      "expected_signal": "click_triggered_change",
+      "click_target_xy": [
+        31,
+        31
+      ],
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION6"
+      ]
+    },
+    {
+      "id": "validate_without_contradiction",
+      "description": "test ACTION3 only when current geometry is aligned enough",
+      "verification": "ACTION3 does not create a distinct fatal bbox",
+      "max_actions": 12,
+      "preconditions": [
+        "avoid known ACTION3 fatal-distinct pattern"
+      ],
+      "expected_signal": "grid_change",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION3",
+        "ACTION7"
+      ]
+    }
+  ],
+  "belief_revisions": [
+    {
+      "at_step": null,
+      "was": "all visible shapes must match",
+      "now": "only a constrained subset of shape correspondences matters",
+      "cause": "human discovered mistake: all_shapes_do_not_must_match"
+    }
+  ],
+  "confidence": 0.86,
+  "source_episodes": [
+    "f0fe23029ffa"
+  ],
+  "compiler_model": "deterministic_trace_rule_inference",
+  "compiled_at": "2026-06-08T14:16:31.096467+00:00"
+}

@@ -1,0 +1,37 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\smoke_ar25\baseline_memory.pt
+  time_budget=0.2s   mode=development
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] disabled via --no-task-program
+
+  running agent.main() with 0.2s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.51 epsilon=0.85 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.60 epsilon=0.82 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.60 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 299
+  assoc wins:    0
+  elapsed:       4.0s
+  final goal:    None
+
+  --no-save-memory set; cross-game memory NOT written back

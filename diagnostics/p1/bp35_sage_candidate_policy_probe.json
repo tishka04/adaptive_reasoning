@@ -1,0 +1,3219 @@
+{
+  "candidate_policy_counted_as_confirmation": false,
+  "candidate_policy_memory": {
+    "a33_ready": false,
+    "alternate_context_success_args": [
+      {
+        "x": 12,
+        "y": 0
+      },
+      {
+        "x": 24,
+        "y": 0
+      }
+    ],
+    "candidate_rule_family": "local_patch_transformability",
+    "diagnostic_metrics": [
+      "changed_pixels",
+      "contact_graph_before_after"
+    ],
+    "enabled": true,
+    "game_id": "bp35-0a0ad940",
+    "known_failed_args": [
+      {
+        "x": 30,
+        "y": 0
+      }
+    ],
+    "known_success_args": [
+      {
+        "x": 12,
+        "y": 0
+      },
+      {
+        "x": 24,
+        "y": 0
+      },
+      {
+        "x": 30,
+        "y": 12
+      },
+      {
+        "x": 36,
+        "y": 12
+      },
+      {
+        "x": 42,
+        "y": 12
+      },
+      {
+        "x": 48,
+        "y": 12
+      }
+    ],
+    "outside_boundary_args": [
+      {
+        "x": 18,
+        "y": 0
+      },
+      {
+        "x": 30,
+        "y": 0
+      }
+    ],
+    "ready_for_agent_policy_probe": true,
+    "repositioning_action": "ACTION4",
+    "rule_counted_as_confirmation": false,
+    "source_revision_status": "CANDIDATE_ONLY",
+    "source_scope_consolidation_id": "m3_24::bp35-0a0ad940::patch_similarity_scope::ACTION6",
+    "source_status": "UNRESOLVED",
+    "source_truth_status": "NOT_EVALUATED_BY_M3",
+    "success_metrics": [
+      "local_patch_before_after",
+      "object_positions_before_after"
+    ],
+    "support": 0,
+    "target_action": "ACTION6"
+  },
+  "comparison": {
+    "candidate_failure_like_selection_delta": -2,
+    "candidate_policy_better_than_baseline_on_any_axis": true,
+    "candidate_policy_counted_as_confirmation": false,
+    "candidate_policy_improved_axes": [
+      "progress_proxy",
+      "useful_action6_steps",
+      "failure_like_action6_args_selected",
+      "success_like_action6_args_selected"
+    ],
+    "candidate_policy_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+    "candidate_progress_proxy_delta": 27.0,
+    "candidate_useful_action6_delta": 2,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "condition_summaries": [
+    {
+      "action4_repositioning_steps": 3,
+      "action6_steps": 2,
+      "actions_before_stagnation_proxy": 8,
+      "best_level_reached": 0,
+      "candidate_policy_used_steps": 0,
+      "condition": "baseline_no_m3_candidate_rule",
+      "dead_end_or_cycle_steps": 0,
+      "failure_like_action6_args_selected": 2,
+      "final_game_state": "NOT_FINISHED",
+      "final_levels_completed": 0,
+      "neutral_or_unhelpful_action6_steps": 0,
+      "policy_steps": 8,
+      "progress_proxy": 33.0,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "selected_failure_like_action6_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "selected_success_like_action6_args": [],
+      "success_like_action6_args_selected": 0,
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+      "useful_action6_steps": 2,
+      "useful_new_states": 5,
+      "useful_repositioning_steps": 3,
+      "wrong_confirmations": 0
+    },
+    {
+      "action4_repositioning_steps": 4,
+      "action6_steps": 4,
+      "actions_before_stagnation_proxy": 8,
+      "best_level_reached": 0,
+      "candidate_policy_used_steps": 8,
+      "condition": "candidate_policy_from_m3_24",
+      "dead_end_or_cycle_steps": 0,
+      "failure_like_action6_args_selected": 0,
+      "final_game_state": "NOT_FINISHED",
+      "final_levels_completed": 0,
+      "neutral_or_unhelpful_action6_steps": 0,
+      "policy_steps": 8,
+      "progress_proxy": 60.0,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "selected_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        }
+      ],
+      "selected_failure_like_action6_args": [],
+      "selected_success_like_action6_args": [
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        },
+        {
+          "x": 30,
+          "y": 12
+        }
+      ],
+      "success_like_action6_args_selected": 4,
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+      "useful_action6_steps": 4,
+      "useful_new_states": 8,
+      "useful_repositioning_steps": 4,
+      "wrong_confirmations": 0
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "budget": 8,
+    "candidate_policy_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+    "conditions": [
+      "baseline_no_m3_candidate_rule",
+      "candidate_policy_from_m3_24"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "game_id": "bp35-0a0ad940",
+    "inputs_read": [
+      "M3.24"
+    ],
+    "schema_version": "p1.bp35_sage_candidate_policy_probe.v1",
+    "scope_consolidation_path": "diagnostics\\m3\\a32_requested_patch_similarity_scope_consolidation.json"
+  },
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rollout_steps": {
+    "baseline_no_m3_candidate_rule": [
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 1.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": true,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 3,
+            "contact_pairs_added": [
+              [
+                0,
+                15
+              ]
+            ],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 190,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": 0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": -5.3334,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": -8.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 64
+              }
+            ],
+            "moved_component_count": 4
+          }
+        },
+        "object_positions_signal": 4.0,
+        "policy_selected_action": "ACTION3",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):f71d7a95f22aff22:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):752864a23f2c738f:0:NOT_FINISHED",
+        "step": 0,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": false,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 191,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": -0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": 5.3334,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": 8.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 63
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):cf32dcdd32e30285:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):f71d7a95f22aff22:0:NOT_FINISHED",
+        "step": 1,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "outside_boundary",
+        "action_args": {
+          "x": 18,
+          "y": 0
+        },
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 26.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": true,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 1.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 26,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 1,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 186,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 6.0,
+                "dy": 12.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 1.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 5.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -3.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -3.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              }
+            ],
+            "moved_component_count": 108
+          }
+        },
+        "object_positions_signal": 108.0,
+        "policy_selected_action": "ACTION6",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):463e80161779d559:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):cf32dcdd32e30285:0:NOT_FINISHED",
+        "step": 2,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": true,
+        "useful_new_state": true,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 187,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": 0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": -5.3334,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": -8.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 3
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 61
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION3",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):1d532ee1308a1526:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):463e80161779d559:0:NOT_FINISHED",
+        "step": 3,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": false,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 187,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": -0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": 5.3334,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": 8.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 4
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 60
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):b9b5367457bc415e:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):1d532ee1308a1526:0:NOT_FINISHED",
+        "step": 4,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "outside_boundary",
+        "action_args": {
+          "x": 18,
+          "y": 0
+        },
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 1.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": true,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 1,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.000244,
+            "changed_pixels": 1,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.000244,
+            "changed_pixels": 1,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.000244,
+            "changed_pixels": 1,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 187,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 5
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 59
+              }
+            ],
+            "moved_component_count": 2
+          }
+        },
+        "object_positions_signal": 2.0,
+        "policy_selected_action": "ACTION6",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):81ce993656f1748d:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):b9b5367457bc415e:0:NOT_FINISHED",
+        "step": 5,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": true,
+        "useful_new_state": true,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 187,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": 0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": -5.3334,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": -8.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 58
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION3",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):9def7143b7254346:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):81ce993656f1748d:0:NOT_FINISHED",
+        "step": 6,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": false,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": false,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "baseline_no_m3_candidate_rule",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "baseline_round_robin_neutral_exploration",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 187,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": -0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": 5.3334,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": 8.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 7
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 57
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):df5c1aab0f90fc07:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):9def7143b7254346:0:NOT_FINISHED",
+        "step": 7,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      }
+    ],
+    "candidate_policy_from_m3_24": [
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": true,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 1.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_reposition_before_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": true,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 3,
+            "contact_pairs_added": [
+              [
+                0,
+                15
+              ]
+            ],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 190,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": -0.0903,
+                "dy": 0.0,
+                "size": 1529
+              },
+              {
+                "color": 9,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 64
+              }
+            ],
+            "moved_component_count": 4
+          }
+        },
+        "object_positions_signal": 4.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):34a7868ce9044615:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):752864a23f2c738f:0:NOT_FINISHED",
+        "step": 0,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "known_success",
+        "action_args": {
+          "x": 36,
+          "y": 12
+        },
+        "candidate_policy_used": true,
+        "candidate_score": -23.5,
+        "candidate_score_details": {
+          "action_args": {
+            "x": 36,
+            "y": 12
+          },
+          "candidate_rule_family": "local_patch_transformability",
+          "exact_known_failure": false,
+          "exact_known_success": true,
+          "exact_outside_boundary": false,
+          "failure_patch_distance": 7.0,
+          "previously_used": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "score": -23.5,
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE"
+        },
+        "changed_pixels": 36.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_patch_similarity_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 2.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 36,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.008789,
+            "changed_pixels": 36,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.008789,
+            "changed_pixels": 36,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 2,
+            "local_patch_after": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                5,
+                5,
+                10
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              11,
+              35,
+              13,
+              37
+            ]
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.008789,
+            "changed_pixels": 36,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 185,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": -7.2326,
+                "dy": 30.313,
+                "size": 276
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 2.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 4.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 10.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 8.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 15.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 9.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 5.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 9.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              }
+            ],
+            "moved_component_count": 57
+          }
+        },
+        "object_positions_signal": 57.0,
+        "policy_selected_action": "ACTION6",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):86a1ef542e04a78e:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):34a7868ce9044615:0:NOT_FINISHED",
+        "step": 1,
+        "success_like_action6_arg": true,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": true,
+        "useful_new_state": true,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": true,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_reposition_before_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 185,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 10,
+                "dx": -0.075,
+                "dy": 0.0,
+                "size": 1840
+              },
+              {
+                "color": 9,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 62
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):95e83803595c31a9:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):86a1ef542e04a78e:0:NOT_FINISHED",
+        "step": 2,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "known_success",
+        "action_args": {
+          "x": 42,
+          "y": 12
+        },
+        "candidate_policy_used": true,
+        "candidate_score": -23.5,
+        "candidate_score_details": {
+          "action_args": {
+            "x": 42,
+            "y": 12
+          },
+          "candidate_rule_family": "local_patch_transformability",
+          "exact_known_failure": false,
+          "exact_known_success": true,
+          "exact_outside_boundary": false,
+          "failure_patch_distance": 7.0,
+          "previously_used": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "score": -23.5,
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE"
+        },
+        "changed_pixels": 43.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 7.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_patch_similarity_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 4.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 43,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.010498,
+            "changed_pixels": 43,
+            "contact_graph_changed": true,
+            "contact_pair_count_after": 9,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [
+              [
+                0,
+                5
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                5,
+                9
+              ],
+              [
+                5,
+                11
+              ],
+              [
+                5,
+                14
+              ],
+              [
+                5,
+                15
+              ]
+            ],
+            "contact_pairs_removed": [
+              [
+                0,
+                10
+              ]
+            ],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.010498,
+            "changed_pixels": 43,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 4,
+            "local_patch_after": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                10,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                5,
+                5
+              ],
+              [
+                10,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              11,
+              41,
+              13,
+              43
+            ]
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.010498,
+            "changed_pixels": 43,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 179,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 15.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 9.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 5.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 9.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              }
+            ],
+            "moved_component_count": 51
+          }
+        },
+        "object_positions_signal": 51.0,
+        "policy_selected_action": "ACTION6",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):c6f885bbb3ea53d0:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):95e83803595c31a9:0:NOT_FINISHED",
+        "step": 3,
+        "success_like_action6_arg": true,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": true,
+        "useful_new_state": true,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": true,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 47.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_reposition_before_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 47,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 9,
+            "contact_pair_count_before": 9,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 181,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 5,
+                "dx": 0.073,
+                "dy": 0.0,
+                "size": 1233
+              },
+              {
+                "color": 9,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 6
+              },
+              {
+                "color": 11,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 2
+              },
+              {
+                "color": 15,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 4
+              },
+              {
+                "color": 0,
+                "dx": 0.5,
+                "dy": 0.0,
+                "size": 60
+              }
+            ],
+            "moved_component_count": 5
+          }
+        },
+        "object_positions_signal": 5.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):c33d43e7142b0ba5:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):c6f885bbb3ea53d0:0:NOT_FINISHED",
+        "step": 4,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "known_success",
+        "action_args": {
+          "x": 48,
+          "y": 12
+        },
+        "candidate_policy_used": true,
+        "candidate_score": -23.5,
+        "candidate_score_details": {
+          "action_args": {
+            "x": 48,
+            "y": 12
+          },
+          "candidate_rule_family": "local_patch_transformability",
+          "exact_known_failure": false,
+          "exact_known_success": true,
+          "exact_outside_boundary": false,
+          "failure_patch_distance": 7.0,
+          "previously_used": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "score": -23.5,
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE"
+        },
+        "changed_pixels": 43.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_patch_similarity_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 4.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 43,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.010498,
+            "changed_pixels": 43,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 9,
+            "contact_pair_count_before": 9,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.010498,
+            "changed_pixels": 43,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 4,
+            "local_patch_after": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                10,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                10,
+                5,
+                5
+              ],
+              [
+                10,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              11,
+              47,
+              13,
+              49
+            ]
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.010498,
+            "changed_pixels": 43,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 176,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 5,
+                "dx": 0.2208,
+                "dy": 0.4319,
+                "size": 634
+              },
+              {
+                "color": 3,
+                "dx": 7.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 2.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 7.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 2.0,
+                "dy": 5.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              }
+            ],
+            "moved_component_count": 49
+          }
+        },
+        "object_positions_signal": 49.0,
+        "policy_selected_action": "ACTION6",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):948ea75adef541f1:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):c33d43e7142b0ba5:0:NOT_FINISHED",
+        "step": 5,
+        "success_like_action6_arg": true,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": true,
+        "useful_new_state": true,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "",
+        "action_args": {},
+        "candidate_policy_used": true,
+        "candidate_score": null,
+        "candidate_score_details": {},
+        "changed_pixels": 996.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 7.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_reposition_before_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 0.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 996,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.243164,
+            "changed_pixels": 996,
+            "contact_graph_changed": true,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 9,
+            "contact_pairs_added": [
+              [
+                0,
+                10
+              ]
+            ],
+            "contact_pairs_removed": [
+              [
+                0,
+                5
+              ],
+              [
+                3,
+                5
+              ],
+              [
+                5,
+                9
+              ],
+              [
+                5,
+                11
+              ],
+              [
+                5,
+                14
+              ],
+              [
+                5,
+                15
+              ]
+            ],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.243164,
+            "changed_pixels": 996,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_available": false,
+            "measurable": true,
+            "metric": "local_patch_before_after"
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.243164,
+            "changed_pixels": 996,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 174,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 3,
+                "dx": -3.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 12.0,
+                "dy": 12.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": -10.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -11.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 12.0,
+                "dy": 12.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 2.0,
+                "dy": 12.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 4.0,
+                "dy": 12.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 12.0,
+                "dy": 12.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 2.0,
+                "dy": 12.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -3.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -6.0,
+                "dy": 5.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -9.0,
+                "dy": 8.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 12.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 12.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 10.0,
+                "dy": 8.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 2.0,
+                "dy": 12.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -4.0,
+                "dy": 4.0,
+                "size": 1
+              }
+            ],
+            "moved_component_count": 143
+          }
+        },
+        "object_positions_signal": 143.0,
+        "policy_selected_action": "ACTION4",
+        "repositioning_action": true,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):e90d94aab0a2589e:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):948ea75adef541f1:0:NOT_FINISHED",
+        "step": 6,
+        "success_like_action6_arg": false,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": false,
+        "useful_new_state": true,
+        "useful_repositioning": true,
+        "wrong_confirmations": 0
+      },
+      {
+        "action6_arg_class": "known_success",
+        "action_args": {
+          "x": 30,
+          "y": 12
+        },
+        "candidate_policy_used": true,
+        "candidate_score": -24.5,
+        "candidate_score_details": {
+          "action_args": {
+            "x": 30,
+            "y": 12
+          },
+          "candidate_rule_family": "local_patch_transformability",
+          "exact_known_failure": false,
+          "exact_known_success": true,
+          "exact_outside_boundary": false,
+          "failure_patch_distance": 9.0,
+          "previously_used": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "score": -24.5,
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE"
+        },
+        "changed_pixels": 36.0,
+        "condition": "candidate_policy_from_m3_24",
+        "contact_graph_signal": 0.0,
+        "dead_end_or_cycle": false,
+        "decision_reason": "candidate_policy_patch_similarity_retarget",
+        "env_actions": 1,
+        "error": "",
+        "failure_like_action6_arg": false,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "levels_after": 0,
+        "levels_before": 0,
+        "local_patch_signal": 2.0,
+        "measurements": {
+          "changed_pixels": {
+            "changed": true,
+            "changed_pixels": 36,
+            "measurable": true,
+            "metric": "changed_pixels",
+            "signal_source": "raw_changed_pixels"
+          },
+          "contact_graph_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.008789,
+            "changed_pixels": 36,
+            "contact_graph_changed": false,
+            "contact_pair_count_after": 4,
+            "contact_pair_count_before": 4,
+            "contact_pairs_added": [],
+            "contact_pairs_removed": [],
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "measurable": true,
+            "metric": "contact_graph_before_after"
+          },
+          "local_patch_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.008789,
+            "changed_pixels": 36,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 2,
+            "local_patch_after": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                5,
+                5,
+                10
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                10,
+                10,
+                10
+              ],
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              11,
+              29,
+              13,
+              31
+            ]
+          },
+          "object_positions_before_after": {
+            "changed": true,
+            "changed_cell_ratio": 0.008789,
+            "changed_pixels": 36,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "matched_component_count": 210,
+            "measurable": true,
+            "metric": "object_positions_before_after",
+            "motion_vectors": [
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": -12.0,
+                "dy": 18.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 4.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 1.0,
+                "dy": 14.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 14.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 0.0,
+                "dy": 17.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 17.0,
+                "dy": 0.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 3.0,
+                "dy": 1.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": -2.0,
+                "dy": 2.0,
+                "size": 1
+              },
+              {
+                "color": 14,
+                "dx": 0.0,
+                "dy": 6.0,
+                "size": 21
+              },
+              {
+                "color": 3,
+                "dx": -1.0,
+                "dy": 3.0,
+                "size": 1
+              },
+              {
+                "color": 3,
+                "dx": 6.0,
+                "dy": 0.0,
+                "size": 1
+              }
+            ],
+            "moved_component_count": 77
+          }
+        },
+        "object_positions_signal": 77.0,
+        "policy_selected_action": "ACTION6",
+        "repositioning_action": false,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "state_signature_after": "(64, 64):02860e5d4d462980:0:NOT_FINISHED",
+        "state_signature_before": "(64, 64):e90d94aab0a2589e:0:NOT_FINISHED",
+        "step": 7,
+        "success_like_action6_arg": true,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+        "useful_action6": true,
+        "useful_new_state": true,
+        "useful_repositioning": false,
+        "wrong_confirmations": 0
+      }
+    ]
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a33_ready": false,
+    "budget_per_condition": 8,
+    "candidate_policy_counted_as_confirmation": false,
+    "candidate_policy_probe_ready": true,
+    "candidate_policy_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+    "conditions_run": 2,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

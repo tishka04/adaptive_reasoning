@@ -1,0 +1,108 @@
+{
+  "accepted_handoffs": [],
+  "config": {
+    "artifacts_not_modified": [
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "inputs_read": [
+      "P2.1"
+    ],
+    "policy_frontier_records_path": "diagnostics\\p2\\bp35_policy_frontier_records.json",
+    "schema_version": "p2.policy_frontier_handoff_validation.v1"
+  },
+  "handoff_validation_counted_as_confirmation": false,
+  "record_evaluations": [
+    {
+      "a40_write_performed": false,
+      "exhausted_policy": "conditional_movement_refresh",
+      "frontier_id": "p1::bp35::conditional_movement_refresh::exhausted_refresh::synthetic_fixture",
+      "frontier_reason": "NO_EFFECTIVE_ACTION6_AFTER_SOFT_STALE_AND_CONDITIONAL_MOVEMENT_REFRESH",
+      "game_id": "bp35-0a0ad940",
+      "handoff_accepted": false,
+      "m2_write_performed": false,
+      "m3_write_performed": false,
+      "ready_for_m2_or_m3": false,
+      "refresh_candidates": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION1",
+        "ACTION2"
+      ],
+      "rejection_reasons": [
+        "NOT_READY_FOR_M2_OR_M3",
+        "SYNTHETIC_FIXTURE_NOT_FOR_SCIENTIFIC_HANDOFF"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source": "P1.11.synthetic_fixture",
+      "support": 0,
+      "synthetic_fixture": true,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "rejected_handoffs": [
+    {
+      "a40_write_performed": false,
+      "exhausted_policy": "conditional_movement_refresh",
+      "frontier_id": "p1::bp35::conditional_movement_refresh::exhausted_refresh::synthetic_fixture",
+      "frontier_reason": "NO_EFFECTIVE_ACTION6_AFTER_SOFT_STALE_AND_CONDITIONAL_MOVEMENT_REFRESH",
+      "game_id": "bp35-0a0ad940",
+      "handoff_accepted": false,
+      "m2_write_performed": false,
+      "m3_write_performed": false,
+      "ready_for_m2_or_m3": false,
+      "refresh_candidates": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION1",
+        "ACTION2"
+      ],
+      "rejection_reasons": [
+        "NOT_READY_FOR_M2_OR_M3",
+        "SYNTHETIC_FIXTURE_NOT_FOR_SCIENTIFIC_HANDOFF"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source": "P1.11.synthetic_fixture",
+      "support": 0,
+      "synthetic_fixture": true,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a40_write_performed": false,
+    "handoffs_accepted": 0,
+    "handoffs_rejected": 1,
+    "m2_write_performed": false,
+    "m3_write_performed": false,
+    "real_records_seen": 0,
+    "records_seen": 1,
+    "rejection_reasons": [
+      "NOT_READY_FOR_M2_OR_M3",
+      "SYNTHETIC_FIXTURE_NOT_FOR_SCIENTIFIC_HANDOFF"
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "synthetic_records_seen": 1,
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

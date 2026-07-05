@@ -1,0 +1,671 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "candidate_arg_groups": [
+    {
+      "candidate_args": [
+        {
+          "action_args": {
+            "x": 12,
+            "y": 0
+          },
+          "generation_sources": [
+            "live_available_target_after_replay",
+            "object_motion_offset_hint",
+            "changed_pixels_effect_present"
+          ],
+          "nearest_motion_hint": {
+            "distance": 0.0,
+            "dx": 6.0,
+            "dy": 0.0,
+            "predicted_args": {
+              "x": 12,
+              "y": 0
+            },
+            "sign": -1,
+            "source_color": 9,
+            "source_control_action": "ACTION4",
+            "source_metric": "object_positions_before_after",
+            "source_side": "observed_baseline",
+            "source_size": 6
+          },
+          "rank": 1,
+          "score": 0.0
+        },
+        {
+          "action_args": {
+            "x": 24,
+            "y": 0
+          },
+          "generation_sources": [
+            "live_available_target_after_replay",
+            "object_motion_offset_hint",
+            "changed_pixels_effect_present"
+          ],
+          "nearest_motion_hint": {
+            "distance": 0.0,
+            "dx": 6.0,
+            "dy": 0.0,
+            "predicted_args": {
+              "x": 24,
+              "y": 0
+            },
+            "sign": 1,
+            "source_color": 9,
+            "source_control_action": "ACTION4",
+            "source_metric": "object_positions_before_after",
+            "source_side": "observed_baseline",
+            "source_size": 6
+          },
+          "rank": 2,
+          "score": 0.0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 0
+          },
+          "generation_sources": [
+            "live_available_target_after_replay",
+            "object_motion_offset_hint",
+            "changed_pixels_effect_present"
+          ],
+          "nearest_motion_hint": {
+            "distance": 4.0,
+            "dx": -8.0,
+            "dy": 0.0,
+            "predicted_args": {
+              "x": 26,
+              "y": 0
+            },
+            "sign": -1,
+            "source_color": 11,
+            "source_control_action": "ACTION3",
+            "source_metric": "object_positions_before_after",
+            "source_side": "observed_baseline",
+            "source_size": 2
+          },
+          "rank": 3,
+          "score": 4.0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 12
+          },
+          "generation_sources": [
+            "live_available_target_after_replay",
+            "changed_pixels_effect_present"
+          ],
+          "nearest_motion_hint": {
+            "distance": 16.0,
+            "dx": -8.0,
+            "dy": 0.0,
+            "predicted_args": {
+              "x": 26,
+              "y": 0
+            },
+            "sign": -1,
+            "source_color": 11,
+            "source_control_action": "ACTION3",
+            "source_metric": "object_positions_before_after",
+            "source_side": "observed_baseline",
+            "source_size": 2
+          },
+          "rank": 4,
+          "score": 16.0
+        },
+        {
+          "action_args": {
+            "x": 36,
+            "y": 12
+          },
+          "generation_sources": [
+            "live_available_target_after_replay",
+            "changed_pixels_effect_present"
+          ],
+          "nearest_motion_hint": {
+            "distance": 22.0,
+            "dx": -8.0,
+            "dy": 0.0,
+            "predicted_args": {
+              "x": 26,
+              "y": 0
+            },
+            "sign": -1,
+            "source_color": 11,
+            "source_control_action": "ACTION3",
+            "source_metric": "object_positions_before_after",
+            "source_side": "observed_baseline",
+            "source_size": 2
+          },
+          "rank": 5,
+          "score": 22.0
+        }
+      ],
+      "excluded_args": [
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "source_followup_request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "CANDIDATE_ARGS_GENERATED"
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3.8",
+      "M3.9",
+      "M3.10",
+      "A32",
+      "A33"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "execution_performed": false,
+    "followup_results_path": "diagnostics\\m3\\refined_followup_experiment_results.json",
+    "inputs_read": [
+      "M3.10"
+    ],
+    "max_candidate_args": 5,
+    "schema_version": "m3.dynamic_retarget_followup_requests.v1"
+  },
+  "controlled_test_required": true,
+  "followup_experiment_requests": [
+    {
+      "candidate_arg_generation_sources": [
+        "live_available_target_after_replay",
+        "object_motion_offset_hint",
+        "changed_pixels_effect_present"
+      ],
+      "candidate_arg_rank": 1,
+      "candidate_arg_score": 0.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "excluded_args": [
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "expected_signal": "dynamic_retargeted_action_signal_exceeds_controls",
+      "falsification_criteria": [
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "local_patch_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "object_positions_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        }
+      ],
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 may create a new ACTION6 target after repositioning",
+      "metrics": [
+        "local_patch_before_after",
+        "changed_pixels",
+        "object_positions_before_after",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.10 did not support reusing the consumed ACTION6 args; M3.11 therefore proposes bounded new ACTION6 args available after the repositioning context.",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_11::m3_8_bp35_A6_A3_ACTION4_global_motion::retarget_ACTION6_01_x12_y0",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_followup_request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "READY_FOR_M3_FOLLOWUP",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "dynamic_retarget_after_repositioning",
+      "target_action_args": {
+        "x": 12,
+        "y": 0
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_arg_generation_sources": [
+        "live_available_target_after_replay",
+        "object_motion_offset_hint",
+        "changed_pixels_effect_present"
+      ],
+      "candidate_arg_rank": 2,
+      "candidate_arg_score": 0.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "excluded_args": [
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "expected_signal": "dynamic_retargeted_action_signal_exceeds_controls",
+      "falsification_criteria": [
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "local_patch_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "object_positions_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        }
+      ],
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 may create a new ACTION6 target after repositioning",
+      "metrics": [
+        "local_patch_before_after",
+        "changed_pixels",
+        "object_positions_before_after",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.10 did not support reusing the consumed ACTION6 args; M3.11 therefore proposes bounded new ACTION6 args available after the repositioning context.",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_11::m3_8_bp35_A6_A3_ACTION4_global_motion::retarget_ACTION6_02_x24_y0",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_followup_request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "READY_FOR_M3_FOLLOWUP",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "dynamic_retarget_after_repositioning",
+      "target_action_args": {
+        "x": 24,
+        "y": 0
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_arg_generation_sources": [
+        "live_available_target_after_replay",
+        "object_motion_offset_hint",
+        "changed_pixels_effect_present"
+      ],
+      "candidate_arg_rank": 3,
+      "candidate_arg_score": 4.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "excluded_args": [
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "expected_signal": "dynamic_retargeted_action_signal_exceeds_controls",
+      "falsification_criteria": [
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "local_patch_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "object_positions_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        }
+      ],
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 may create a new ACTION6 target after repositioning",
+      "metrics": [
+        "local_patch_before_after",
+        "changed_pixels",
+        "object_positions_before_after",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.10 did not support reusing the consumed ACTION6 args; M3.11 therefore proposes bounded new ACTION6 args available after the repositioning context.",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_11::m3_8_bp35_A6_A3_ACTION4_global_motion::retarget_ACTION6_03_x30_y0",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_followup_request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "READY_FOR_M3_FOLLOWUP",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "dynamic_retarget_after_repositioning",
+      "target_action_args": {
+        "x": 30,
+        "y": 0
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_arg_generation_sources": [
+        "live_available_target_after_replay",
+        "changed_pixels_effect_present"
+      ],
+      "candidate_arg_rank": 4,
+      "candidate_arg_score": 16.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "excluded_args": [
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "expected_signal": "dynamic_retargeted_action_signal_exceeds_controls",
+      "falsification_criteria": [
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "local_patch_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "object_positions_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        }
+      ],
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 may create a new ACTION6 target after repositioning",
+      "metrics": [
+        "local_patch_before_after",
+        "changed_pixels",
+        "object_positions_before_after",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.10 did not support reusing the consumed ACTION6 args; M3.11 therefore proposes bounded new ACTION6 args available after the repositioning context.",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_11::m3_8_bp35_A6_A3_ACTION4_global_motion::retarget_ACTION6_04_x30_y12",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_followup_request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "READY_FOR_M3_FOLLOWUP",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "dynamic_retarget_after_repositioning",
+      "target_action_args": {
+        "x": 30,
+        "y": 12
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_arg_generation_sources": [
+        "live_available_target_after_replay",
+        "changed_pixels_effect_present"
+      ],
+      "candidate_arg_rank": 5,
+      "candidate_arg_score": 22.0,
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "excluded_args": [
+        {
+          "x": 18,
+          "y": 0
+        }
+      ],
+      "expected_signal": "dynamic_retargeted_action_signal_exceeds_controls",
+      "falsification_criteria": [
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "local_patch_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "object_positions_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        }
+      ],
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 may create a new ACTION6 target after repositioning",
+      "metrics": [
+        "local_patch_before_after",
+        "changed_pixels",
+        "object_positions_before_after",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.10 did not support reusing the consumed ACTION6 args; M3.11 therefore proposes bounded new ACTION6 args available after the repositioning context.",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_11::m3_8_bp35_A6_A3_ACTION4_global_motion::retarget_ACTION6_05_x36_y12",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_followup_request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "READY_FOR_M3_FOLLOWUP",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "dynamic_retarget_after_repositioning",
+      "target_action_args": {
+        "x": 36,
+        "y": 12
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "followup_request_counted_as_support": false,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "skipped_retarget_groups": [],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "candidate_args_generated": 5,
+    "controlled_test_required": true,
+    "excluded_args_count": 1,
+    "execution_performed": false,
+    "followup_request_counted_as_support": false,
+    "followup_requests_generated": 5,
+    "followup_results_consumed": 1,
+    "max_candidate_args": 5,
+    "retarget_groups": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "skipped_retarget_groups": 0,
+    "source_experiments_consumed": 8,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

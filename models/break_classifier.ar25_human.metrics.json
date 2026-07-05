@@ -1,0 +1,94 @@
+{
+  "dataset": "training/break_event_dataset.ar25_humanfull.natural.jsonl",
+  "train_games": "ar25",
+  "n_rows": 3669,
+  "n_train_natural": 2935,
+  "n_train_oversampled": 4827,
+  "n_test_natural": 734,
+  "feature_count": 41,
+  "class_counts_natural": {
+    "BIG_BREAK": 483,
+    "SMALL_CHANGE": 2011,
+    "OTHER_CHANGE": 1175
+  },
+  "class_counts_train_natural": {
+    "BIG_BREAK": 386,
+    "SMALL_CHANGE": 1609,
+    "OTHER_CHANGE": 940
+  },
+  "class_counts_train_oversampled": {
+    "BIG_BREAK": 1609,
+    "SMALL_CHANGE": 1609,
+    "OTHER_CHANGE": 1609
+  },
+  "class_counts_test": {
+    "BIG_BREAK": 97,
+    "SMALL_CHANGE": 402,
+    "OTHER_CHANGE": 235
+  },
+  "classifier": {
+    "roc_auc": 0.9916,
+    "pr_auc": 0.9802,
+    "positive_rate_test": 0.1322,
+    "top_k": {
+      "10": {
+        "k_effective": 10,
+        "hits": 10,
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.1031,
+        "top_k_hit": true,
+        "mean_true_delta": -83.7,
+        "min_true_delta": -117.0
+      },
+      "25": {
+        "k_effective": 25,
+        "hits": 25,
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.2577,
+        "top_k_hit": true,
+        "mean_true_delta": -103.32,
+        "min_true_delta": -189.0
+      },
+      "50": {
+        "k_effective": 50,
+        "hits": 50,
+        "precision_at_k": 1.0,
+        "recall_at_k": 0.5155,
+        "top_k_hit": true,
+        "mean_true_delta": -103.5,
+        "min_true_delta": -432.0
+      },
+      "100": {
+        "k_effective": 100,
+        "hits": 94,
+        "precision_at_k": 0.94,
+        "recall_at_k": 0.9691,
+        "top_k_hit": true,
+        "mean_true_delta": -107.46,
+        "min_true_delta": -459.0
+      },
+      "250": {
+        "k_effective": 250,
+        "hits": 94,
+        "precision_at_k": 0.376,
+        "recall_at_k": 0.9691,
+        "top_k_hit": true,
+        "mean_true_delta": -18.072,
+        "min_true_delta": -459.0
+      }
+    },
+    "best_f1_threshold": {
+      "threshold": 0.770806,
+      "precision": 1.0,
+      "recall": 0.9691,
+      "f1": 0.9843
+    }
+  },
+  "regressor_on_true_big_breaks": {
+    "count": 97,
+    "mae": 6.6693,
+    "bias": -0.3953,
+    "target_mean": -112.3608,
+    "pred_mean": -112.7561
+  }
+}

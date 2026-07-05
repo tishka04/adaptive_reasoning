@@ -13,6 +13,8 @@ Usage:
 import sys
 import os
 import time
+from dotenv import load_dotenv
+load_dotenv()
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -31,8 +33,9 @@ from v4_1_reasoning_system.training.train_router import train_router_from_buffer
 
 LATENT_DIM = 64
 ACTION_DIM = 16
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
+print(f"Using device: {DEVICE}")
 
 def main():
     t0 = time.time()

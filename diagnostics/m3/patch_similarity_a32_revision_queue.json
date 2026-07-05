@@ -1,0 +1,197 @@
+{
+  "candidate_records": [
+    {
+      "contradictions": 0,
+      "description": "ACTION4 after ACTION6/ACTION3 may open patch-similar ACTION6 affordances selected by local_patch_transformability.",
+      "experiments_spent": 8,
+      "key": "patch_similarity_rule::bp35-0a0ad940::ACTION4_ACTION6::local_patch_transformability",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "A32",
+      "A33"
+    ],
+    "bridge_policy": {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "diagnostic_contradictions_do_not_refute_queue_item": true,
+      "execution_performed": false,
+      "ready_for_a32_revision_is_not_verdict": true,
+      "success_metric_contradictions_reject_queue_item": true,
+      "support_forced_to_zero": true
+    },
+    "generativity_consolidation_path": "diagnostics\\m3\\dynamic_retarget_patch_similarity_generativity_consolidation.json",
+    "inputs_read": [
+      "M3.20"
+    ],
+    "schema_version": "m3.patch_similarity_a32_revision_queue.v1"
+  },
+  "controlled_test_required": true,
+  "diagnostic_contradictions_counted_as_refutation": false,
+  "generative_sequence_counted_as_confirmation": false,
+  "observation_counted_as_confirmation": false,
+  "queue_items": [
+    {
+      "a32_queue_item_is_not_verdict": true,
+      "candidate_generativity": "SUPPORTED_BY_SEQUENTIAL_PATCH_SIMILAR_EXPANSION_CANDIDATE_ONLY",
+      "candidate_mechanic": "repositioning_opens_patch_similar_action6_affordances",
+      "candidate_record": {
+        "contradictions": 0,
+        "description": "ACTION4 after ACTION6/ACTION3 may open patch-similar ACTION6 affordances selected by local_patch_transformability.",
+        "experiments_spent": 8,
+        "key": "patch_similarity_rule::bp35-0a0ad940::ACTION4_ACTION6::local_patch_transformability",
+        "status": "unresolved",
+        "support": 0
+      },
+      "candidate_rule_family": "local_patch_transformability",
+      "changed_pixels_role": "effect_radar_not_success_metric",
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "controlled_test_required": true,
+      "description": "ACTION4 after ACTION6/ACTION3 may open patch-similar ACTION6 affordances selected by local_patch_transformability.",
+      "diagnostic_contradictions_counted_as_refutation": false,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "evidence_summary": {
+        "candidate_generativity": "SUPPORTED_BY_SEQUENTIAL_PATCH_SIMILAR_EXPANSION_CANDIDATE_ONLY",
+        "changed_pixels_role": "effect_radar_not_success_metric",
+        "controlled_experiments_run": 8,
+        "diagnostic_contradictions_counted_as_refutation": false,
+        "diagnostic_metrics": [
+          "changed_pixels",
+          "contact_graph_before_after"
+        ],
+        "failed_args_count": 1,
+        "new_expansion_successes_count": 2,
+        "ready_rule": "ready_for_a32_revision_queue and source_success_metric_contradiction_events==0",
+        "revision_status": "CANDIDATE_ONLY",
+        "source_artifact": "diagnostics\\m3\\dynamic_retarget_patch_similarity_generativity_consolidation.json",
+        "source_diagnostic_contradiction_events": 2,
+        "source_success_metric_contradiction_events": 0,
+        "source_success_metric_support_events": 4,
+        "success_metrics": [
+          "local_patch_before_after",
+          "object_positions_before_after"
+        ],
+        "successful_args_total_count": 6,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3",
+        "wrong_confirmations": 0
+      },
+      "failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "generative_sequence_counted_as_confirmation": false,
+      "hypothesis_key": "patch_similarity_rule::bp35-0a0ad940::ACTION4_ACTION6::local_patch_transformability",
+      "new_expansion_successes": [
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "observation_counted_as_confirmation": false,
+      "pattern_hypothesis": "success_like_patch_line_or_region_after_repositioning",
+      "queue_item_id": "m3_21::bp35::ACTION4_ACTION6::local_patch_transformability",
+      "ready_for_a32_revision": true,
+      "ready_for_a32_revision_is_not_verdict": true,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "source_generativity_consolidation_id": "m3_20::bp35::ACTION4_ACTION6::patch_similarity_generativity",
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "source_selection_rule_consolidation_id": "m3_17::bp35::ACTION4_ACTION6::selection_rule_consolidation",
+      "status": "UNRESOLVED",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "successful_args_total": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "rejected_queue_items": [],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rule_counted_as_confirmation": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "candidate_records": 1,
+    "changed_pixels_kept_diagnostic": true,
+    "controlled_test_required": true,
+    "diagnostic_contradiction_events": 2,
+    "diagnostic_contradictions_counted_as_refutation": false,
+    "generative_sequence_counted_as_confirmation": false,
+    "generativity_consolidations_consumed": 1,
+    "queue_items": 1,
+    "ready_for_a32_revision_candidates": 1,
+    "ready_for_a32_revision_is_not_verdict": true,
+    "rejected_queue_items": 0,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "status": "UNRESOLVED",
+    "success_metric_contradiction_events": 0,
+    "success_metric_support_events": 4,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

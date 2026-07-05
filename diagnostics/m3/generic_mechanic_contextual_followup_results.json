@@ -1,0 +1,3755 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "cell_result_counted_as_confirmation": false,
+  "cell_results": [
+    {
+      "action": "ACTION4",
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E136": {
+          "after_bbox": [
+            40,
+            1,
+            40,
+            1
+          ],
+          "after_centroid": [
+            40.0,
+            1.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            1,
+            40,
+            1
+          ],
+          "before_centroid": [
+            40.0,
+            1.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E137": {
+          "after_bbox": [
+            40,
+            7,
+            40,
+            7
+          ],
+          "after_centroid": [
+            40.0,
+            7.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            7,
+            40,
+            7
+          ],
+          "before_centroid": [
+            40.0,
+            7.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182": {
+          "after_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "after_centroid": [
+            41.7613,
+            33.4552
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "before_centroid": [
+            41.7613,
+            33.5455
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            -0.0903
+          ],
+          "centroid_distance": 0.0903,
+          "changed": true,
+          "effect_families": [
+            "move_entity",
+            "transform_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": true,
+          "shape_signature_after": "05e2cbe3cdb07404",
+          "shape_signature_before": "ebf27f4cb8129bcc",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 47,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E136": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E137": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E182": {
+          "centroid_delta": [
+            0.0,
+            -0.0903
+          ],
+          "direction": "left",
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {
+        "E182::E136": {
+          "after": {
+            "bbox_distance": 11.0,
+            "centroid_distance": 32.502955,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 11.0,
+            "centroid_distance": 32.593078,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [
+            "distance_decreases"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182::E137": {
+          "after": {
+            "bbox_distance": 5.0,
+            "centroid_distance": 26.513764,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 5.0,
+            "centroid_distance": 26.603821,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [
+            "distance_decreases"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "replay_policy": "contextual_prefix_replay",
+      "replay_trace": [
+        {
+          "action": "ACTION3",
+          "action_args": {}
+        }
+      ],
+      "requested_entities": [
+        "E136",
+        "E137",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E136"
+        ],
+        [
+          "E182",
+          "E137"
+        ]
+      ],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_args": {
+        "x": 12,
+        "y": 0
+      },
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E136": {
+          "after_bbox": [
+            40,
+            1,
+            40,
+            1
+          ],
+          "after_centroid": [
+            40.0,
+            1.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            1,
+            40,
+            1
+          ],
+          "before_centroid": [
+            40.0,
+            1.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E137": {
+          "after_bbox": [
+            40,
+            7,
+            40,
+            7
+          ],
+          "after_centroid": [
+            40.0,
+            7.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            7,
+            40,
+            7
+          ],
+          "before_centroid": [
+            40.0,
+            7.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182": {
+          "after_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "after_centroid": [
+            41.7613,
+            33.5455
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "before_centroid": [
+            41.7613,
+            33.5455
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "ebf27f4cb8129bcc",
+          "shape_signature_before": "ebf27f4cb8129bcc",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 26,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E136": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E137": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E182": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {
+        "E182::E136": {
+          "after": {
+            "bbox_distance": 11.0,
+            "centroid_distance": 32.593078,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 11.0,
+            "centroid_distance": 32.593078,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182::E137": {
+          "after": {
+            "bbox_distance": 5.0,
+            "centroid_distance": 26.603821,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 5.0,
+            "centroid_distance": 26.603821,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "replay_policy": "contextual_prefix_replay",
+      "replay_trace": [
+        {
+          "action": "ACTION3",
+          "action_args": {}
+        }
+      ],
+      "requested_entities": [
+        "E136",
+        "E137",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E136"
+        ],
+        [
+          "E182",
+          "E137"
+        ]
+      ],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E138": {
+          "after_bbox": [
+            40,
+            55,
+            40,
+            55
+          ],
+          "after_centroid": [
+            40.0,
+            55.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            55,
+            40,
+            55
+          ],
+          "before_centroid": [
+            40.0,
+            55.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E139": {
+          "after_bbox": [
+            40,
+            61,
+            40,
+            61
+          ],
+          "after_centroid": [
+            40.0,
+            61.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            61,
+            40,
+            61
+          ],
+          "before_centroid": [
+            40.0,
+            61.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182": {
+          "after_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "after_centroid": [
+            41.7613,
+            33.4552
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "before_centroid": [
+            41.7613,
+            33.3649
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0903
+          ],
+          "centroid_distance": 0.0903,
+          "changed": true,
+          "effect_families": [
+            "move_entity",
+            "transform_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": true,
+          "shape_signature_after": "05e2cbe3cdb07404",
+          "shape_signature_before": "77a253adb5f947df",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 47,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E138": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E139": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E182": {
+          "centroid_delta": [
+            0.0,
+            0.0903
+          ],
+          "direction": "right",
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {
+        "E182::E138": {
+          "after": {
+            "bbox_distance": 1.0,
+            "centroid_distance": 21.616673,
+            "contains": false,
+            "left_present": true,
+            "near": true,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 1.0,
+            "centroid_distance": 21.706629,
+            "contains": false,
+            "left_present": true,
+            "near": true,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [
+            "distance_decreases"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182::E139": {
+          "after": {
+            "bbox_distance": 7.0,
+            "centroid_distance": 27.601053,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 7.0,
+            "centroid_distance": 27.691125,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [
+            "distance_decreases"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "replay_policy": "contextual_prefix_replay",
+      "replay_trace": [
+        {
+          "action": "ACTION4",
+          "action_args": {}
+        }
+      ],
+      "requested_entities": [
+        "E138",
+        "E139",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E138"
+        ],
+        [
+          "E182",
+          "E139"
+        ]
+      ],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_args": {
+        "x": 12,
+        "y": 0
+      },
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E138": {
+          "after_bbox": [
+            40,
+            55,
+            40,
+            55
+          ],
+          "after_centroid": [
+            40.0,
+            55.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            55,
+            40,
+            55
+          ],
+          "before_centroid": [
+            40.0,
+            55.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E139": {
+          "after_bbox": [
+            40,
+            61,
+            40,
+            61
+          ],
+          "after_centroid": [
+            40.0,
+            61.0
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            40,
+            61,
+            40,
+            61
+          ],
+          "before_centroid": [
+            40.0,
+            61.0
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "5c91e1d2f1faeb75",
+          "shape_signature_before": "5c91e1d2f1faeb75",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182": {
+          "after_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "after_centroid": [
+            41.7613,
+            33.3649
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "before_centroid": [
+            41.7613,
+            33.3649
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "centroid_distance": 0.0,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": false,
+          "shape_signature_after": "77a253adb5f947df",
+          "shape_signature_before": "77a253adb5f947df",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 26,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E138": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E139": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E182": {
+          "centroid_delta": [
+            0.0,
+            0.0
+          ],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {
+        "E182::E138": {
+          "after": {
+            "bbox_distance": 1.0,
+            "centroid_distance": 21.706629,
+            "contains": false,
+            "left_present": true,
+            "near": true,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 1.0,
+            "centroid_distance": 21.706629,
+            "contains": false,
+            "left_present": true,
+            "near": true,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E182::E139": {
+          "after": {
+            "bbox_distance": 7.0,
+            "centroid_distance": 27.691125,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "before": {
+            "bbox_distance": 7.0,
+            "centroid_distance": 27.691125,
+            "contains": false,
+            "left_present": true,
+            "near": false,
+            "right_present": true,
+            "touches": false
+          },
+          "delta_types": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "replay_policy": "contextual_prefix_replay",
+      "replay_trace": [
+        {
+          "action": "ACTION4",
+          "action_args": {}
+        }
+      ],
+      "requested_entities": [
+        "E138",
+        "E139",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E138"
+        ],
+        [
+          "E182",
+          "E139"
+        ]
+      ],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION6::action_ACTION3::seed_0",
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E182": {
+          "after_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "after_centroid": [
+            41.7613,
+            33.5455
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "before_centroid": [
+            41.7613,
+            33.4552
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            0.0903
+          ],
+          "centroid_distance": 0.0903,
+          "changed": true,
+          "effect_families": [
+            "move_entity",
+            "transform_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": true,
+          "shape_signature_after": "ebf27f4cb8129bcc",
+          "shape_signature_before": "05e2cbe3cdb07404",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 47,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E182": {
+          "centroid_delta": [
+            0.0,
+            0.0903
+          ],
+          "direction": "right",
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {},
+      "replay_policy": "contextual_prefix_replay",
+      "replay_trace": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 12,
+            "y": 0
+          }
+        }
+      ],
+      "requested_entities": [
+        "E182"
+      ],
+      "requested_relation_pairs": [],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION4",
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION6::action_ACTION4::seed_0",
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E182": {
+          "after_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "after_centroid": [
+            41.7613,
+            33.3649
+          ],
+          "after_present": true,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "before_bbox": [
+            19,
+            13,
+            62,
+            53
+          ],
+          "before_centroid": [
+            41.7613,
+            33.4552
+          ],
+          "before_present": true,
+          "centroid_delta": [
+            0.0,
+            -0.0903
+          ],
+          "centroid_distance": 0.0903,
+          "changed": true,
+          "effect_families": [
+            "move_entity",
+            "transform_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "shape_changed": true,
+          "shape_signature_after": "77a253adb5f947df",
+          "shape_signature_before": "05e2cbe3cdb07404",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 47,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E182": {
+          "centroid_delta": [
+            0.0,
+            -0.0903
+          ],
+          "direction": "left",
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {},
+      "replay_policy": "contextual_prefix_replay",
+      "replay_trace": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 12,
+            "y": 0
+          }
+        }
+      ],
+      "requested_entities": [
+        "E182"
+      ],
+      "requested_relation_pairs": [],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION3,ACTION4,ACTION6::seed_0",
+      "context_replay": [],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E001": {
+          "after_present": false,
+          "before_present": false,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E193": {
+          "after_bbox": [
+            63,
+            0,
+            63,
+            2
+          ],
+          "after_centroid": [
+            63.0,
+            1.0
+          ],
+          "after_present": true,
+          "after_size": 3,
+          "before_present": false,
+          "changed": true,
+          "effect_families": [
+            "create_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 28,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E001": {
+          "centroid_delta": [],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E193": {
+          "centroid_delta": [],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {},
+      "replay_policy": "contextual_temporal_sequence",
+      "replay_trace": [],
+      "requested_entities": [
+        "E001",
+        "E193"
+      ],
+      "requested_relation_pairs": [],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "temporal_regularities": {
+        "E001": {
+          "action_correlation": false,
+          "changed_count": 0,
+          "direction": null,
+          "monotonicity": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "steps_observed": 3,
+          "support": 0,
+          "terminal_correlation": "unknown",
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_delta_per_action": [
+            false,
+            false,
+            false
+          ]
+        },
+        "E193": {
+          "action_correlation": true,
+          "changed_count": 3,
+          "direction": "increasing",
+          "monotonicity": true,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "steps_observed": 3,
+          "support": 0,
+          "terminal_correlation": "unknown",
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_delta_per_action": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "temporal_transition_rows": [
+        {
+          "action": "ACTION3",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                0
+              ],
+              "after_centroid": [
+                63.0,
+                0.0
+              ],
+              "after_present": true,
+              "after_size": 1,
+              "before_present": false,
+              "changed": true,
+              "effect_families": [
+                "create_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        },
+        {
+          "action": "ACTION4",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                1
+              ],
+              "after_centroid": [
+                63.0,
+                0.5
+              ],
+              "after_present": true,
+              "bbox_delta": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "before_bbox": [
+                63,
+                0,
+                63,
+                0
+              ],
+              "before_centroid": [
+                63.0,
+                0.0
+              ],
+              "before_present": true,
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "centroid_distance": 0.5,
+              "changed": true,
+              "effect_families": [
+                "move_entity",
+                "transform_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "shape_changed": true,
+              "shape_signature_after": "b9a70a5f5f2f429d",
+              "shape_signature_before": "5c91e1d2f1faeb75",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "direction": "increasing",
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 12,
+            "y": 0
+          },
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                2
+              ],
+              "after_centroid": [
+                63.0,
+                1.0
+              ],
+              "after_present": true,
+              "bbox_delta": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "before_bbox": [
+                63,
+                0,
+                63,
+                1
+              ],
+              "before_centroid": [
+                63.0,
+                0.5
+              ],
+              "before_present": true,
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "centroid_distance": 0.5,
+              "changed": true,
+              "effect_families": [
+                "move_entity",
+                "transform_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "shape_changed": true,
+              "shape_signature_after": "54c87e492a07a095",
+              "shape_signature_before": "b9a70a5f5f2f429d",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 26,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "direction": "increasing",
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        }
+      ],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION6,ACTION3,ACTION4::seed_0",
+      "context_replay": [],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E001": {
+          "after_present": false,
+          "before_present": false,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E193": {
+          "after_bbox": [
+            63,
+            0,
+            63,
+            2
+          ],
+          "after_centroid": [
+            63.0,
+            1.0
+          ],
+          "after_present": true,
+          "after_size": 3,
+          "before_present": false,
+          "changed": true,
+          "effect_families": [
+            "create_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 28,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E001": {
+          "centroid_delta": [],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E193": {
+          "centroid_delta": [],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {},
+      "replay_policy": "contextual_temporal_sequence",
+      "replay_trace": [],
+      "requested_entities": [
+        "E001",
+        "E193"
+      ],
+      "requested_relation_pairs": [],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "temporal_regularities": {
+        "E001": {
+          "action_correlation": false,
+          "changed_count": 0,
+          "direction": null,
+          "monotonicity": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "steps_observed": 3,
+          "support": 0,
+          "terminal_correlation": "unknown",
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_delta_per_action": [
+            false,
+            false,
+            false
+          ]
+        },
+        "E193": {
+          "action_correlation": true,
+          "changed_count": 3,
+          "direction": "increasing",
+          "monotonicity": true,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "steps_observed": 3,
+          "support": 0,
+          "terminal_correlation": "unknown",
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_delta_per_action": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "temporal_transition_rows": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 12,
+            "y": 0
+          },
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                0
+              ],
+              "after_centroid": [
+                63.0,
+                0.0
+              ],
+              "after_present": true,
+              "after_size": 1,
+              "before_present": false,
+              "changed": true,
+              "effect_families": [
+                "create_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 26,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        },
+        {
+          "action": "ACTION3",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                1
+              ],
+              "after_centroid": [
+                63.0,
+                0.5
+              ],
+              "after_present": true,
+              "bbox_delta": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "before_bbox": [
+                63,
+                0,
+                63,
+                0
+              ],
+              "before_centroid": [
+                63.0,
+                0.0
+              ],
+              "before_present": true,
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "centroid_distance": 0.5,
+              "changed": true,
+              "effect_families": [
+                "move_entity",
+                "transform_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "shape_changed": true,
+              "shape_signature_after": "b9a70a5f5f2f429d",
+              "shape_signature_before": "5c91e1d2f1faeb75",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "direction": "increasing",
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        },
+        {
+          "action": "ACTION4",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                2
+              ],
+              "after_centroid": [
+                63.0,
+                1.0
+              ],
+              "after_present": true,
+              "bbox_delta": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "before_bbox": [
+                63,
+                0,
+                63,
+                1
+              ],
+              "before_centroid": [
+                63.0,
+                0.5
+              ],
+              "before_present": true,
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "centroid_distance": 0.5,
+              "changed": true,
+              "effect_families": [
+                "move_entity",
+                "transform_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "shape_changed": true,
+              "shape_signature_after": "54c87e492a07a095",
+              "shape_signature_before": "b9a70a5f5f2f429d",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "direction": "increasing",
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        }
+      ],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_args": {},
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION4,ACTION4,ACTION3::seed_0",
+      "context_replay": [],
+      "context_replay_args": null,
+      "contradiction_events": 0,
+      "controlled_experiments_run": 1,
+      "entity_delta": {
+        "E001": {
+          "after_present": false,
+          "before_present": false,
+          "changed": false,
+          "effect_families": [],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        "E193": {
+          "after_bbox": [
+            63,
+            0,
+            63,
+            2
+          ],
+          "after_centroid": [
+            63.0,
+            1.0
+          ],
+          "after_present": true,
+          "after_size": 3,
+          "before_present": false,
+          "changed": true,
+          "effect_families": [
+            "create_entity"
+          ],
+          "revision_status": "CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      },
+      "execution_performed": true,
+      "game_id": "bp35-0a0ad940",
+      "global_delta": {
+        "changed_pixels": 49,
+        "game_state_after": "NOT_FINISHED",
+        "game_state_before": "NOT_FINISHED",
+        "level_completed": false,
+        "levels_completed_after": 0,
+        "levels_completed_before": 0,
+        "terminal_state": false
+      },
+      "invariant_delta": {
+        "E001": {
+          "centroid_delta": [],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": false
+        },
+        "E193": {
+          "centroid_delta": [],
+          "direction": null,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "size_delta": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_changed": true
+        }
+      },
+      "neutral_events": 1,
+      "relation_delta": {},
+      "replay_policy": "contextual_temporal_sequence",
+      "replay_trace": [],
+      "requested_entities": [
+        "E001",
+        "E193"
+      ],
+      "requested_relation_pairs": [],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "status": "EXECUTED",
+      "support": 0,
+      "support_events": 0,
+      "temporal_action_sequence": [
+        "ACTION4",
+        "ACTION4",
+        "ACTION3"
+      ],
+      "temporal_regularities": {
+        "E001": {
+          "action_correlation": false,
+          "changed_count": 0,
+          "direction": null,
+          "monotonicity": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "steps_observed": 3,
+          "support": 0,
+          "terminal_correlation": "unknown",
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_delta_per_action": [
+            false,
+            false,
+            false
+          ]
+        },
+        "E193": {
+          "action_correlation": true,
+          "changed_count": 3,
+          "direction": "increasing",
+          "monotonicity": true,
+          "revision_status": "CANDIDATE_ONLY",
+          "semantic_interpretation": "unknown",
+          "steps_observed": 3,
+          "support": 0,
+          "terminal_correlation": "unknown",
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "value_delta_per_action": [
+            true,
+            true,
+            true
+          ]
+        }
+      },
+      "temporal_transition_rows": [
+        {
+          "action": "ACTION4",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                0
+              ],
+              "after_centroid": [
+                63.0,
+                0.0
+              ],
+              "after_present": true,
+              "after_size": 1,
+              "before_present": false,
+              "changed": true,
+              "effect_families": [
+                "create_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        },
+        {
+          "action": "ACTION4",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                1
+              ],
+              "after_centroid": [
+                63.0,
+                0.5
+              ],
+              "after_present": true,
+              "bbox_delta": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "before_bbox": [
+                63,
+                0,
+                63,
+                0
+              ],
+              "before_centroid": [
+                63.0,
+                0.0
+              ],
+              "before_present": true,
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "centroid_distance": 0.5,
+              "changed": true,
+              "effect_families": [
+                "move_entity",
+                "transform_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "shape_changed": true,
+              "shape_signature_after": "b9a70a5f5f2f429d",
+              "shape_signature_before": "5c91e1d2f1faeb75",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "direction": "increasing",
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        },
+        {
+          "action": "ACTION3",
+          "action_args": {},
+          "entity_delta": {
+            "E001": {
+              "after_present": false,
+              "before_present": false,
+              "changed": false,
+              "effect_families": [],
+              "revision_status": "CANDIDATE_ONLY",
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            },
+            "E193": {
+              "after_bbox": [
+                63,
+                0,
+                63,
+                2
+              ],
+              "after_centroid": [
+                63.0,
+                1.0
+              ],
+              "after_present": true,
+              "bbox_delta": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "before_bbox": [
+                63,
+                0,
+                63,
+                1
+              ],
+              "before_centroid": [
+                63.0,
+                0.5
+              ],
+              "before_present": true,
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "centroid_distance": 0.5,
+              "changed": true,
+              "effect_families": [
+                "move_entity",
+                "transform_entity"
+              ],
+              "revision_status": "CANDIDATE_ONLY",
+              "shape_changed": true,
+              "shape_signature_after": "54c87e492a07a095",
+              "shape_signature_before": "b9a70a5f5f2f429d",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3"
+            }
+          },
+          "global_delta": {
+            "changed_pixels": 47,
+            "level_completed": false,
+            "terminal_state": false
+          },
+          "invariant_delta": {
+            "E001": {
+              "centroid_delta": [],
+              "direction": null,
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 0,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": false
+            },
+            "E193": {
+              "centroid_delta": [
+                0.0,
+                0.5
+              ],
+              "direction": "increasing",
+              "revision_status": "CANDIDATE_ONLY",
+              "semantic_interpretation": "unknown",
+              "size_delta": 1,
+              "support": 0,
+              "truth_status": "NOT_EVALUATED_BY_M3",
+              "value_changed": true
+            }
+          },
+          "relation_delta": {},
+          "semantic_interpretation": "unknown"
+        }
+      ],
+      "tie_break_seed": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "M1",
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "contextual_requests_path": "diagnostics\\m3\\generic_mechanic_contextual_followup_requests.json",
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "inputs_read": [
+      "M3.G0.4",
+      "M1.G0 entity profiles"
+    ],
+    "m1_candidates_path": "diagnostics\\m1\\general_mechanic_candidates.json",
+    "replay_policy": "contextual_prefix_replay",
+    "schema_version": "m3.generic_mechanic_contextual_followup_results.v1",
+    "temporal_sequence_policy": "contextual_temporal_sequence"
+  },
+  "contextual_signal_counted_as_scientific_support": false,
+  "execution_cells": [
+    {
+      "action": "ACTION4",
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_prefix_replay",
+      "requested_entities": [
+        "E136",
+        "E137",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E136"
+        ],
+        [
+          "E182",
+          "E137"
+        ]
+      ],
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0
+    },
+    {
+      "action": "ACTION6",
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_prefix_replay",
+      "requested_entities": [
+        "E136",
+        "E137",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E136"
+        ],
+        [
+          "E182",
+          "E137"
+        ]
+      ],
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0
+    },
+    {
+      "action": "ACTION3",
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_prefix_replay",
+      "requested_entities": [
+        "E138",
+        "E139",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E138"
+        ],
+        [
+          "E182",
+          "E139"
+        ]
+      ],
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0
+    },
+    {
+      "action": "ACTION6",
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_prefix_replay",
+      "requested_entities": [
+        "E138",
+        "E139",
+        "E182"
+      ],
+      "requested_relation_pairs": [
+        [
+          "E182",
+          "E138"
+        ],
+        [
+          "E182",
+          "E139"
+        ]
+      ],
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0
+    },
+    {
+      "action": "ACTION3",
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION6::action_ACTION3::seed_0",
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_prefix_replay",
+      "requested_entities": [
+        "E182"
+      ],
+      "requested_relation_pairs": [],
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0
+    },
+    {
+      "action": "ACTION4",
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION6::action_ACTION4::seed_0",
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_prefix_replay",
+      "requested_entities": [
+        "E182"
+      ],
+      "requested_relation_pairs": [],
+      "temporal_action_sequence": [],
+      "tie_break_seed": 0
+    },
+    {
+      "action": null,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION3,ACTION4,ACTION6::seed_0",
+      "context_replay": [],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_temporal_sequence",
+      "requested_entities": [
+        "E001",
+        "E193"
+      ],
+      "requested_relation_pairs": [],
+      "temporal_action_sequence": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "tie_break_seed": 0
+    },
+    {
+      "action": null,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION6,ACTION3,ACTION4::seed_0",
+      "context_replay": [],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_temporal_sequence",
+      "requested_entities": [
+        "E001",
+        "E193"
+      ],
+      "requested_relation_pairs": [],
+      "temporal_action_sequence": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "tie_break_seed": 0
+    },
+    {
+      "action": null,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION4,ACTION4,ACTION3::seed_0",
+      "context_replay": [],
+      "context_replay_args": null,
+      "game_id": "bp35-0a0ad940",
+      "replay_policy": "contextual_temporal_sequence",
+      "requested_entities": [
+        "E001",
+        "E193"
+      ],
+      "requested_relation_pairs": [],
+      "temporal_action_sequence": [
+        "ACTION4",
+        "ACTION4",
+        "ACTION3"
+      ],
+      "tie_break_seed": 0
+    }
+  ],
+  "execution_performed": true,
+  "hypothesis_observation_links": [
+    {
+      "action": "ACTION4",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "actor_persistence_outside_reset",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::001::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "actor_persistence_outside_reset",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::001::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "actor_persistence_outside_reset",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::002::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "actor_persistence_outside_reset",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::002::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION6::action_ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION6",
+      "context_replay": [
+        "ACTION6"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "actor_persistence_outside_reset",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::003::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION4",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION6::action_ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION6",
+      "context_replay": [
+        "ACTION6"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "actor_persistence_outside_reset",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::003::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::004::m3g0_1_action_effect_003_action_effect_ACTION3_move_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION3::move_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::004::m3g0_1_action_effect_003_action_effect_ACTION3_move_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION3::move_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::005::m3g0_1_action_effect_004_action_effect_ACTION3_transform_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION3::transform_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::005::m3g0_1_action_effect_004_action_effect_ACTION3_transform_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION3::transform_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION4",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::006::m3g0_1_action_effect_005_action_effect_ACTION4_move_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION4::move_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::006::m3g0_1_action_effect_005_action_effect_ACTION4_move_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION4::move_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION4",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::007::m3g0_1_action_effect_006_action_effect_ACTION4_transform_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION4::transform_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "action_effect_stability",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::action_effect_stability::007::m3g0_1_action_effect_006_action_effect_ACTION4_transform_entity",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION4::transform_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::008::m3g0_1_relation_change_007_relation_change_ACTION3_E182_E138_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E138::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::008::m3g0_1_relation_change_007_relation_change_ACTION3_E182_E138_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E138::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION4",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::009::m3g0_1_relation_change_008_relation_change_ACTION4_E182_E136_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E136::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::009::m3g0_1_relation_change_008_relation_change_ACTION4_E182_E136_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E136::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION4",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::010::m3g0_1_relation_change_009_relation_change_ACTION4_E182_E137_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E137::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION3::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION3",
+      "context_replay": [
+        "ACTION3"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::010::m3g0_1_relation_change_009_relation_change_ACTION4_E182_E137_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E137::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION3",
+      "action_role": "target_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::011::m3g0_1_relation_change_011_relation_change_ACTION3_E182_E139_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E139::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": "ACTION6",
+      "action_role": "control_action",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_prefix_replay::context_ACTION4::action_ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "prefix::ACTION4",
+      "context_replay": [
+        "ACTION4"
+      ],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "relation_change_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::relation_change_recurrence::011::m3g0_1_relation_change_011_relation_change_ACTION3_E182_E139_distance_distance_decreases",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E139::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "temporal_action_sequence": [],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_role": "temporal_sequence",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION3,ACTION4,ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "temporal::ACTION3,ACTION4,ACTION6",
+      "context_replay": [],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "dynamic_invariant_temporal",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::dynamic_invariant_temporal::012::m3g0_1_dynamic_invariant_013_dynamic_invariant_E001_monotone_counter",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E001::monotone_counter",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "temporal_action_sequence": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_role": "temporal_sequence",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION6,ACTION3,ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "temporal::ACTION6,ACTION3,ACTION4",
+      "context_replay": [],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "dynamic_invariant_temporal",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::dynamic_invariant_temporal::012::m3g0_1_dynamic_invariant_013_dynamic_invariant_E001_monotone_counter",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E001::monotone_counter",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "temporal_action_sequence": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_role": "temporal_sequence",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION4,ACTION4,ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "temporal::ACTION4,ACTION4,ACTION3",
+      "context_replay": [],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "dynamic_invariant_temporal",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::dynamic_invariant_temporal::012::m3g0_1_dynamic_invariant_013_dynamic_invariant_E001_monotone_counter",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E001::monotone_counter",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "temporal_action_sequence": [
+        "ACTION4",
+        "ACTION4",
+        "ACTION3"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_role": "temporal_sequence",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION3,ACTION4,ACTION6::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "temporal::ACTION3,ACTION4,ACTION6",
+      "context_replay": [],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "exogenous_motion_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::exogenous_motion_recurrence::013::m3g0_1_dynamic_invariant_014_dynamic_invariant_E193_exogenous_motion",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E193::exogenous_motion",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "temporal_action_sequence": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_role": "temporal_sequence",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION6,ACTION3,ACTION4::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "temporal::ACTION6,ACTION3,ACTION4",
+      "context_replay": [],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "exogenous_motion_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::exogenous_motion_recurrence::013::m3g0_1_dynamic_invariant_014_dynamic_invariant_E193_exogenous_motion",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E193::exogenous_motion",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "temporal_action_sequence": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "action": null,
+      "action_role": "temporal_sequence",
+      "cell_executed": true,
+      "cell_signature": "m3g0_5::bp35-0a0ad940::contextual_temporal_sequence::context_reset::action_seq:ACTION4,ACTION4,ACTION3::seed_0",
+      "cell_status": "EXECUTED",
+      "context_key": "temporal::ACTION4,ACTION4,ACTION3",
+      "context_replay": [],
+      "duplicate_contextual_cell_counted_as_independent": false,
+      "followup_family": "exogenous_motion_recurrence",
+      "observation_counted_as_confirmation": false,
+      "request_id": "m3g0_4::exogenous_motion_recurrence::013::m3g0_1_dynamic_invariant_014_dynamic_invariant_E193_exogenous_motion",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E193::exogenous_motion",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "temporal_action_sequence": [
+        "ACTION4",
+        "ACTION4",
+        "ACTION3"
+      ],
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "request_result_counted_as_confirmation": false,
+  "request_results": [
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION3"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "actor_persistence_outside_reset",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "actor_candidate_trackable_and_action_affected_outside_reset",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::001::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "actor_persistence_outside_reset",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "actor_candidate_trackable_and_action_affected_outside_reset",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::002::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION6"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "actor_persistence_outside_reset",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "actor_candidate_trackable_and_action_affected_outside_reset",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::actor_persistence_outside_reset::003::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::entity_role::E182::controllable_actor",
+      "source_mechanic_family": "entity_role",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "action_effect_stability",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "action_effect_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::action_effect_stability::004::m3g0_1_action_effect_003_action_effect_ACTION3_move_entity",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION3::move_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "action_effect_stability",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "action_effect_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::action_effect_stability::005::m3g0_1_action_effect_004_action_effect_ACTION3_transform_entity",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION3::transform_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION3"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "action_effect_stability",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "action_effect_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::action_effect_stability::006::m3g0_1_action_effect_005_action_effect_ACTION4_move_entity",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION4::move_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION3"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "action_effect_stability",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "action_effect_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::action_effect_stability::007::m3g0_1_action_effect_006_action_effect_ACTION4_transform_entity",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::action_effect::ACTION4::transform_entity",
+      "source_mechanic_family": "action_effect",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "relation_change_recurrence",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "relation_delta_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::relation_change_recurrence::008::m3g0_1_relation_change_007_relation_change_ACTION3_E182_E138_distance_distance_decreases",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E138::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION3"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "relation_change_recurrence",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "relation_delta_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::relation_change_recurrence::009::m3g0_1_relation_change_008_relation_change_ACTION4_E182_E136_distance_distance_decreases",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E136::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION3"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "relation_change_recurrence",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "relation_delta_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::relation_change_recurrence::010::m3g0_1_relation_change_009_relation_change_ACTION4_E182_E137_distance_distance_decreases",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E137::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_REPRODUCED_CANDIDATE_ONLY",
+      "cells_linked": 2,
+      "context_keys": [
+        "prefix::ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 2,
+      "followup_family": "relation_change_recurrence",
+      "independent_contexts": 1,
+      "neutral_events": 0,
+      "observation_interpretation": "relation_delta_reproduced_after_non_reset_prefix",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::relation_change_recurrence::011::m3g0_1_relation_change_011_relation_change_ACTION3_E182_E139_distance_distance_decreases",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E139::distance::distance_decreases",
+      "source_mechanic_family": "relation_change",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "CONTEXT_FAILED_CANDIDATE_ONLY",
+      "cells_linked": 3,
+      "context_keys": [
+        "temporal::ACTION3,ACTION4,ACTION6",
+        "temporal::ACTION4,ACTION4,ACTION3",
+        "temporal::ACTION6,ACTION3,ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 1,
+      "executed_cells": 3,
+      "followup_family": "dynamic_invariant_temporal",
+      "independent_contexts": 3,
+      "neutral_events": 0,
+      "observation_interpretation": "dynamic_invariant_not_observed_across_contextual_temporal_sequences",
+      "remaining_semantics_unknown": true,
+      "request_id": "m3g0_4::dynamic_invariant_temporal::012::m3g0_1_dynamic_invariant_013_dynamic_invariant_E001_monotone_counter",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E001::monotone_counter",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "support_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocked_cells": 0,
+      "candidate_status": "TEMPORAL_REGULARITY_OBSERVED_CANDIDATE_ONLY",
+      "cells_linked": 3,
+      "context_keys": [
+        "temporal::ACTION3,ACTION4,ACTION6",
+        "temporal::ACTION4,ACTION4,ACTION3",
+        "temporal::ACTION6,ACTION3,ACTION4"
+      ],
+      "contextual_signal_counted_as_scientific_support": false,
+      "contradiction_events": 0,
+      "executed_cells": 3,
+      "followup_family": "exogenous_motion_recurrence",
+      "independent_contexts": 3,
+      "neutral_events": 0,
+      "observation_interpretation": "dynamic_invariant_regular_across_contextual_temporal_sequences",
+      "remaining_semantics_unknown": null,
+      "request_id": "m3g0_4::exogenous_motion_recurrence::013::m3g0_1_dynamic_invariant_014_dynamic_invariant_E193_exogenous_motion",
+      "request_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m1g0::dynamic_invariant::E193::exogenous_motion",
+      "source_mechanic_family": "dynamic_invariant",
+      "support": 0,
+      "support_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "semantic_interpretation_counted_as_confirmation": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "blocked_contexts": 0,
+    "context_diversity_assessment": "MULTI_PREFIX_CONTEXTS",
+    "contextual_followup_requests_consumed": 13,
+    "contradiction_events": 1,
+    "controlled_experiments_run": 9,
+    "duplicate_contextual_cells": 19,
+    "duplicate_contextual_cells_counted_as_independent": false,
+    "independent_contexts": 6,
+    "neutral_events": 0,
+    "planned_contextual_cells": 28,
+    "request_status_counts": {
+      "CONTEXT_FAILED_CANDIDATE_ONLY": 1,
+      "CONTEXT_REPRODUCED_CANDIDATE_ONLY": 11,
+      "TEMPORAL_REGULARITY_OBSERVED_CANDIDATE_ONLY": 1
+    },
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "semantic_interpretation": "unknown",
+    "semantic_interpretation_counted_as_confirmation": false,
+    "support": 0,
+    "support_events": 12,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "unique_contextual_execution_cells": 9,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

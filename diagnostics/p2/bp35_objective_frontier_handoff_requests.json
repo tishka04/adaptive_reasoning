@@ -1,0 +1,120 @@
+{
+  "a32_write_performed": false,
+  "a33_ready": false,
+  "a40_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "direct_downstream_write_performed": false,
+    "handoff_target": "M2_OR_M3",
+    "handoff_type": "OBJECTIVE_ALIGNMENT_FRONTIER_REQUEST",
+    "inputs_read": [
+      "P2.5"
+    ],
+    "objective_frontier_handoff_validation_path": "diagnostics\\p2\\bp35_objective_frontier_handoff_validation.json",
+    "schema_version": "p2.objective_frontier_handoff_requests.v1"
+  },
+  "m2_write_performed": false,
+  "m3_write_performed": false,
+  "objective_frontier_request_counted_as_confirmation": false,
+  "objective_frontier_requests": [
+    {
+      "a33_ready": false,
+      "desired_hypothesis_families": [
+        "stop_switch_criterion",
+        "terminal_risk_predictor",
+        "subgoal_switch_after_local_affordance",
+        "global_objective_alignment_metric"
+      ],
+      "frontier_reason": "LOCAL_AFFORDANCE_PRODUCTIVE_BUT_TERMINAL_OBJECTIVE_FAILED",
+      "frontier_type": "OBJECTIVE_ALIGNMENT_FRONTIER",
+      "game_id": "bp35-0a0ad940",
+      "handoff_type": "OBJECTIVE_ALIGNMENT_FRONTIER_REQUEST",
+      "objective_frontier_request_counted_as_confirmation": false,
+      "objective_review_accepted": true,
+      "observed_pattern": {
+        "known_failure_state": "GAME_OVER",
+        "known_levels_completed": 0,
+        "known_target_action": "ACTION6",
+        "local_affordance_productive": true,
+        "movement_refresh_triggers": 0,
+        "saturation_handoff_ready": false,
+        "terminal_objective_failed": true
+      },
+      "policy_result_counted_as_scientific_verdict": false,
+      "ready_for_m2_or_m3_objective_branch": true,
+      "ready_for_objective_hypothesis_generation": true,
+      "ready_for_saturation_handoff": false,
+      "request_id": "p2_o1::bp35-0a0ad940::objective_alignment::001",
+      "requested_experiment_styles": [
+        "compare_continue_action6_vs_stop_or_switch",
+        "prefix_length_terminal_risk_probe",
+        "alternative_subgoal_after_productive_action6_probe",
+        "global_outcome_metric_vs_local_effect_metric_probe"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "scientific_questions": [
+        "When should ACTION6 be stopped despite useful local effects?",
+        "Which signals predict GAME_OVER during repeated ACTION6 exploitation?",
+        "Which subgoal should replace repeated patch-similar ACTION6 exploitation?",
+        "Which stop-switch condition can be tested by M3 without confirming it?"
+      ],
+      "source_frontier_id": "p2_terminal::bp35::conditional_movement_refresh::local_affordance_productive_but_terminal",
+      "source_validation_path": "diagnostics\\p2\\bp35_objective_frontier_handoff_validation.json",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "target": "M2_OR_M3",
+      "target_modules": [
+        "M2.O1",
+        "M3.O1"
+      ],
+      "terminal_budgets": [
+        64,
+        96,
+        128,
+        192,
+        256
+      ],
+      "terminal_runs": 15,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "policy_result_counted_as_scientific_verdict": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_ready": false,
+    "a40_write_performed": false,
+    "handoff_type": "OBJECTIVE_ALIGNMENT_FRONTIER_REQUEST",
+    "m2_write_performed": false,
+    "m3_write_performed": false,
+    "objective_frontier_requests": 1,
+    "ready_for_m2_or_m3_objective_branch": true,
+    "ready_for_saturation_handoff": false,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "saturation_handoff_requests": 0,
+    "source_objective_reviews_accepted": 1,
+    "support": 0,
+    "target": "M2_OR_M3",
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

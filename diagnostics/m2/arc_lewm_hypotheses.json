@@ -1,0 +1,412 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "arc_lewm_hypothesis_batches": [
+    {
+      "candidate_hypotheses": [
+        {
+          "arc_lewm_hypothesis_counted_as_confirmation": false,
+          "candidate_action": "RESET",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": "m2_14d::dc22-4c9bff3e::3e97cd4dc956::0000",
+            "live_state_signature": "arc_lewm_signal:high_surprise_transitions:dc22-4c9bff3e:3e97cd4dc956:0:surprise=0.241233",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_grounded_local_effect does not differ from matched controls",
+            "metric": "local_patch_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_grounded_local_effect differs from matched controls"
+          },
+          "frontier_context_id": "arc_lewm::high_surprise_transitions",
+          "frontier_reason": "ARC_LEWM_LATENT_SIGNAL_CANDIDATE_ONLY",
+          "frontier_step": 0,
+          "game_id": "dc22-4c9bff3e",
+          "hypothesis_family": "latent_surprise_frontier",
+          "hypothesis_id": "m2_14_lewm::high_surprise_transitions::001",
+          "predicted_effect": "High ARC-LeWM latent prediction error marks a transition family whose observed local effect should be tested against controls.",
+          "predicted_metric": "local_patch_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "ARC-LeWM high_surprise_transitions produced priority score 0.241233; this score is a candidate priority only, not evidence or support.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": false,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "arc_lewm_score_not_counted_as_support",
+              "world_model_signal_not_counted_as_evidence"
+            ],
+            "priority_score": 0.2412,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "ARC-LeWM high_surprise_transitions produced priority score 0.241233; this score is a candidate priority only, not evidence or support."
+            ],
+            "raw_proposal_ids": [
+              "raw::arc_lewm::high_surprise_transitions::001"
+            ],
+            "sources": [
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_14d::high_surprise_transitions",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": "BLOCKED_RESET_BOUNDARY",
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "high_surprise_action_context_produces_distinct_grounded_local_effect",
+            "measurable_by_existing_extractor": true,
+            "metric": "local_patch_before_after",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4"
+            ],
+            "target_action": "RESET",
+            "testable": false
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        },
+        {
+          "arc_lewm_hypothesis_counted_as_confirmation": false,
+          "candidate_action": "RESET",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": "m2_14d::dc22-4c9bff3e::3e97cd4dc956::0000",
+            "live_state_signature": "arc_lewm_signal:proxy_completion_gap_candidates:dc22-4c9bff3e:3e97cd4dc956:0:surprise=0.241233",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_context_levels_completed_after_rollout <= controls",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "target_context_levels_completed_after_rollout > controls"
+          },
+          "frontier_context_id": "arc_lewm::proxy_completion_gap_candidates",
+          "frontier_reason": "ARC_LEWM_LATENT_SIGNAL_CANDIDATE_ONLY",
+          "frontier_step": 0,
+          "game_id": "dc22-4c9bff3e",
+          "hypothesis_family": "proxy_completion_gap_candidate",
+          "hypothesis_id": "m2_14_lewm::proxy_completion_gap_candidates::002",
+          "predicted_effect": "High latent surprise without level completion may identify a proxy/completion gap that needs grounded M3 testing.",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "ARC-LeWM proxy_completion_gap_candidates produced priority score 0.241233; this score is a candidate priority only, not evidence or support.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": false,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "arc_lewm_score_not_counted_as_support",
+              "world_model_signal_not_counted_as_evidence"
+            ],
+            "priority_score": 0.2412,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "ARC-LeWM proxy_completion_gap_candidates produced priority score 0.241233; this score is a candidate priority only, not evidence or support."
+            ],
+            "raw_proposal_ids": [
+              "raw::arc_lewm::proxy_completion_gap_candidates::002"
+            ],
+            "sources": [
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_14d::proxy_completion_gap_candidates",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": "BLOCKED_RESET_BOUNDARY",
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "candidate_context_improves_completion_metric_over_dynamic_controls",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4"
+            ],
+            "target_action": "RESET",
+            "testable": false
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        },
+        {
+          "arc_lewm_hypothesis_counted_as_confirmation": false,
+          "candidate_action": "RESET",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6",
+              "RESET"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "arc_lewm_signal:action_conditioned_delta_clusters:unknown_game:action_cluster_summary:0:surprise=0.089637",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_contact_graph_delta <= best_control_contact_graph_delta",
+            "metric": "contact_graph_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_contact_graph_delta > best_control_contact_graph_delta"
+          },
+          "frontier_context_id": "arc_lewm::action_conditioned_delta_clusters",
+          "frontier_reason": "ARC_LEWM_LATENT_SIGNAL_CANDIDATE_ONLY",
+          "frontier_step": 0,
+          "game_id": "unknown_game",
+          "hypothesis_family": "action_conditioned_delta_cluster",
+          "hypothesis_id": "m2_14_lewm::action_conditioned_delta_clusters::003",
+          "predicted_effect": "An action-conditioned latent delta cluster may correspond to a grounded relation/contact change rather than raw pixel change.",
+          "predicted_metric": "contact_graph_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "ARC-LeWM action_conditioned_delta_clusters produced priority score 4.258911; this score is a candidate priority only, not evidence or support.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": false,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "arc_lewm_score_not_counted_as_support",
+              "world_model_signal_not_counted_as_evidence"
+            ],
+            "priority_score": 4.2589,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "ARC-LeWM action_conditioned_delta_clusters produced priority score 4.258911; this score is a candidate priority only, not evidence or support."
+            ],
+            "raw_proposal_ids": [
+              "raw::arc_lewm::action_conditioned_delta_clusters::003"
+            ],
+            "sources": [
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_14d::action_conditioned_delta_clusters",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": "DIAGNOSTIC_ONLY_AGGREGATE",
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "target_action_contact_graph_change_exceeds_dynamic_controls",
+            "measurable_by_existing_extractor": true,
+            "metric": "contact_graph_before_after",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "RESET",
+            "testable": false
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        },
+        {
+          "arc_lewm_hypothesis_counted_as_confirmation": false,
+          "candidate_action": "ACTION6",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": "m2_14d::dc22-4c9bff3e::3c719b36eb4d::0239",
+            "live_state_signature": "arc_lewm_signal:terminal_like_latent_neighborhoods:dc22-4c9bff3e:3c719b36eb4d:239:surprise=0.159108",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": true
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_terminal_rate <= best_control_terminal_rate",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_terminal_rate > best_control_terminal_rate"
+          },
+          "frontier_context_id": "arc_lewm::terminal_like_latent_neighborhoods",
+          "frontier_reason": "ARC_LEWM_LATENT_SIGNAL_CANDIDATE_ONLY",
+          "frontier_step": 239,
+          "game_id": "dc22-4c9bff3e",
+          "hypothesis_family": "terminal_like_latent_neighborhood",
+          "hypothesis_id": "m2_14_lewm::terminal_like_latent_neighborhoods::004",
+          "predicted_effect": "A terminal-like latent neighborhood may identify action contexts that re-enter terminal risk under grounded replay.",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "ARC-LeWM terminal_like_latent_neighborhoods produced priority score 0.159108; this score is a candidate priority only, not evidence or support.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_candidate_experiment_request": true,
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "arc_lewm_score_not_counted_as_support",
+              "world_model_signal_not_counted_as_evidence"
+            ],
+            "priority_score": 0.1591,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "ARC-LeWM terminal_like_latent_neighborhoods produced priority score 0.159108; this score is a candidate priority only, not evidence or support."
+            ],
+            "raw_proposal_ids": [
+              "raw::arc_lewm::terminal_like_latent_neighborhoods::004"
+            ],
+            "sources": [
+              "world_model"
+            ]
+          },
+          "source_request_id": "m2_14d::terminal_like_latent_neighborhoods",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "target_action_terminal_rate_exceeds_matched_dynamic_controls",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": [
+              {
+                "x": 45,
+                "y": 30
+              }
+            ],
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION1",
+              "ACTION2"
+            ],
+            "target_action": "ACTION6",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "unlock_target_actions": [],
+          "world_model_counted_as_evidence": false,
+          "world_model_score_counted_as_support": false,
+          "wrong_confirmations": 0
+        }
+      ],
+      "candidate_signal_families": [
+        "high_surprise_transitions",
+        "low_surprise_stable_transitions",
+        "action_conditioned_delta_clusters",
+        "terminal_like_latent_neighborhoods",
+        "proxy_completion_gap_candidates"
+      ],
+      "source_signal_report_path": "diagnostics\\m2\\arc_lewm_signal_report.json"
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "base_m2_schema_version": "m2.v1",
+    "environment_step_performed": false,
+    "generator_mode": "arc_lewm_signal_adapter_candidate_only",
+    "inputs_read": [
+      "diagnostics/m2/arc_lewm_signal_report.json",
+      "diagnostics/m2/object_world_model_invariant_packet.json"
+    ],
+    "policy_rollout_performed": false,
+    "schema_version": "m2.arc_lewm_hypotheses.v1",
+    "source_signal_report_path": "diagnostics\\m2\\arc_lewm_signal_report.json"
+  },
+  "contract": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "controlled_test_required": true,
+    "fusion_score_counted_as_support": false,
+    "ready_for_a32": false,
+    "ready_for_a33": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_counted_as_evidence": false,
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "controlled_test_required": true,
+  "fusion_score_counted_as_support": false,
+  "ready_for_a32": false,
+  "ready_for_a33": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "controlled_test_required": true,
+    "fusion_score_counted_as_support": false,
+    "hypotheses_generated": 4,
+    "ready_for_a32": false,
+    "ready_for_a33": false,
+    "ready_for_m3_candidate_experiment_request": 1,
+    "revision_status": "CANDIDATE_ONLY",
+    "signal_report_consumed": true,
+    "support": 0,
+    "testable_hypotheses": 1,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_counted_as_evidence": false,
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "world_model_counted_as_evidence": false,
+  "world_model_prediction_counted_as_evidence": false,
+  "world_model_score_counted_as_support": false
+}

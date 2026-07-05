@@ -1,0 +1,128 @@
+{
+  "game_id": "ar25-e3c63847",
+  "goal_family": "correspondence",
+  "macro_goal": "switch into the correct branch, ramp with ACTION4, then finish with an ACTION2 run to unlock the next correspondence level",
+  "level_hypotheses": [
+    "level 4 begins with a control switch and short reposition before a long ACTION4 ramp",
+    "after the ramp, another switch plus repeated ACTION2 completes the level transition",
+    "ACTION4 is the dominant progress primitive on this level"
+  ],
+  "entities": [
+    {
+      "name": "gray_shape",
+      "role": "controller",
+      "notes": "switch state gates whether ACTION4 or ACTION2 affects the intended branch",
+      "color_value": null
+    },
+    {
+      "name": "yellow_shape",
+      "role": "movable",
+      "notes": "advanced by a long ACTION4 ramp before the finishing burst",
+      "color_value": null
+    },
+    {
+      "name": "purple_shape",
+      "role": "reference",
+      "notes": "final correspondence anchor after the ramp",
+      "color_value": null
+    }
+  ],
+  "win_condition_hypotheses": [
+    "switch-reposition-ramp-finish is the main level 4 solve pattern",
+    "repeated ACTION4 is the key mid-level progress primitive"
+  ],
+  "constraints": [
+    {
+      "type": "cursor_mediated_control",
+      "description": "ACTION5 must bracket the ACTION4 ramp and ACTION2 finish",
+      "applies_to": [
+        "gray_shape",
+        "yellow_shape"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "do not treat ACTION4 as a one-off probe; it needs a sustained burst",
+    "do not jump into ACTION2 finishing bursts before the ACTION4 ramp is established"
+  ],
+  "action_roles": [
+    {
+      "action": "ACTION5",
+      "role": "control_switch",
+      "evidence": "level4_switch_before_and_after_ramp",
+      "confidence": 0.8,
+      "changes_semantics_of": [
+        "ACTION2",
+        "ACTION3",
+        "ACTION4"
+      ]
+    },
+    {
+      "action": "ACTION4",
+      "role": "movement",
+      "evidence": "level4_long_action4_ramp",
+      "confidence": 0.82,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION2",
+      "role": "movement",
+      "evidence": "level4_final_action2_finish",
+      "confidence": 0.74,
+      "changes_semantics_of": []
+    }
+  ],
+  "subgoal_tests": [
+    {
+      "id": "probe_level4_action4_ramp",
+      "description": "confirm repeated ACTION4 creates the main ramp on level 4",
+      "verification": "sustained ACTION4 moves the active branch through the ramp corridor",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION4"
+      ]
+    },
+    {
+      "id": "probe_level4_action2_finish",
+      "description": "confirm ACTION2 is the best finishing burst after the ramp",
+      "verification": "repeated ACTION2 closes the remaining gap after the ramp",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION2"
+      ]
+    },
+    {
+      "id": "achieve_level4_correspondence",
+      "description": "use ACTION5 to enter the correct branch, ramp with repeated ACTION4, then switch and finish with repeated ACTION2 until the level advances",
+      "verification": "level advances after the switch-ramp-finish composition",
+      "max_actions": 70,
+      "preconditions": [],
+      "expected_signal": "level_advance",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION4",
+        "ACTION2",
+        "ACTION5",
+        "ACTION3",
+        "ACTION1"
+      ]
+    }
+  ],
+  "belief_revisions": [],
+  "confidence": 0.68,
+  "source_episodes": [
+    "be48a96d70f0",
+    "f0fe23029ffa"
+  ],
+  "compiler_model": "manual_from_human_trace_stats",
+  "compiled_at": "2026-05-30T00:00:00+00:00"
+}

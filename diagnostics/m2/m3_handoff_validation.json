@@ -1,0 +1,49 @@
+{
+  "config": {
+    "live_available_actions": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION6"
+    ],
+    "m3_requests_path": "diagnostics\\m2\\m3_candidate_experiment_requests.json",
+    "schema_version": "m2.m3_handoff.v1"
+  },
+  "invalid_request_ids": [],
+  "revision_performed": false,
+  "selected_plan": {
+    "control_action": "ACTION3",
+    "game_id": "bp35-0a0ad940",
+    "hypothesis_key": "m2::after_ACTION3_live_after_ACTION6::h001",
+    "mechanic_family": "frontier_conditioned_candidate",
+    "open_questions": [],
+    "predicted_metric": "local_patch_before_after",
+    "priority": 3.0,
+    "reason": "m3_priority_v1:tested=0;support_events=0;available_controls=ACTION3,ACTION6",
+    "skipped_controls": [
+      {
+        "action": "ACTION1",
+        "hypothesis_key": "m2::after_ACTION3_live_after_ACTION6::h001",
+        "reason": "action_not_available_at_reset"
+      },
+      {
+        "action": "ACTION2",
+        "hypothesis_key": "m2::after_ACTION3_live_after_ACTION6::h001",
+        "reason": "action_not_available_at_reset"
+      }
+    ],
+    "status": "PLANNED",
+    "target_action": "ACTION4"
+  },
+  "summary": {
+    "invalid_m3_requests": 0,
+    "m2_artifacts_mutated_by_m3": false,
+    "m2_truth_status_unchanged": "NOT_EVALUATED_BY_M2",
+    "m3_can_execute_at_least_one_request": true,
+    "m3_requests_loadable": true,
+    "m3_selector_can_rank_m2_requests": true,
+    "revision_performed": false,
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "wrong_confirmations": 0
+}

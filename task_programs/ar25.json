@@ -1,0 +1,105 @@
+{
+  "game_id": "ar25-e3c63847",
+  "goal_family": "correspondence",
+  "macro_goal": "match yellow and purple shapes",
+  "level_hypotheses": [
+    "mirrored shapes",
+    "doted lines act as mirrors",
+    "at least one shape must be matched"
+  ],
+  "entities": [
+    {
+      "name": "black_doted_shape",
+      "role": "player",
+      "notes": null,
+      "color_value": null
+    },
+    {
+      "name": "gray_shape",
+      "role": "controller",
+      "notes": null,
+      "color_value": null
+    },
+    {
+      "name": "yellow_shape",
+      "role": "unknown",
+      "notes": "auto-injected from macro_goal phrase 'yellow shapes'",
+      "color_value": null
+    },
+    {
+      "name": "purple_shape",
+      "role": "unknown",
+      "notes": "auto-injected from macro_goal phrase 'purple shapes'",
+      "color_value": null
+    }
+  ],
+  "win_condition_hypotheses": [
+    "level advance",
+    "grid cell change",
+    "unique states increasing"
+  ],
+  "constraints": [
+    {
+      "type": "can_exit_grid",
+      "description": "yellow_shapes_can_go_out_the_grid",
+      "applies_to": [
+        "yellow_shapes",
+        "purple_shapes",
+        "gray_shape"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "do not assume all shapes must match"
+  ],
+  "action_roles": [
+    {
+      "action": "ACTION5",
+      "role": "control_switch",
+      "evidence": "change_player_action5",
+      "confidence": 0.7,
+      "changes_semantics_of": []
+    }
+  ],
+  "subgoal_tests": [
+    {
+      "id": "probe_change_player_action5",
+      "description": "confirm ACTION5 switches controlled entity",
+      "verification": "controlled entity changes",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "role_switch",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION5"
+      ]
+    },
+    {
+      "id": "achieve_match_shapes",
+      "description": "match yellow and purple shapes until level advances",
+      "verification": "level advances after matching shapes",
+      "max_actions": 60,
+      "preconditions": [],
+      "expected_signal": "level_advance",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4"
+      ]
+    }
+  ],
+  "belief_revisions": [],
+  "confidence": 0.7,
+  "source_episodes": [
+    "be48a96d70f0",
+    "7494c064eea1",
+    "f0fe23029ffa",
+    "dbe63878c448"
+  ],
+  "compiler_model": "Qwen/Qwen2.5-3B-Instruct",
+  "compiled_at": "2026-04-26T13:27:25.398516+00:00"
+}

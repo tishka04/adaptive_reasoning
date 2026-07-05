@@ -1,0 +1,535 @@
+{
+  "config": {
+    "baseline_order": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "context_sequences": [
+      [],
+      [
+        "ACTION3"
+      ],
+      [
+        "ACTION4"
+      ],
+      [
+        "ACTION3",
+        "ACTION4"
+      ]
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "registry_path": "diagnostics\\a33\\confirmed_mechanics_registry.json",
+    "usage_probe_path": "diagnostics\\a34\\confirmed_mechanic_usage_probe.json"
+  },
+  "revision_performed": false,
+  "scope_maps": [
+    {
+      "a34_functional_progress": true,
+      "a34_usage_reference_loaded": true,
+      "a34_utility_assessment": "USEFUL",
+      "context_probes": [
+        {
+          "baseline_action": "ACTION3",
+          "baseline_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "baseline_signal": 0.0,
+          "context_id": "reset_exact",
+          "context_sequence": [],
+          "env_actions": 2,
+          "error": "",
+          "functional_progress": true,
+          "game_id": "bp35-0a0ad940",
+          "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "local_patch_before_after_observed": true,
+          "predicted_metric": "local_patch_before_after",
+          "revision_performed": false,
+          "score_or_level_unchanged_or_improved": true,
+          "treatment_action": "ACTION6",
+          "treatment_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 1,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "treatment_signal": 1.0,
+          "truth_status": "NOT_REEVALUATED_BY_A35",
+          "usage_contradiction": false,
+          "useful_new_state": true,
+          "utility_assessment": "USEFUL",
+          "wrong_confirmations": 0
+        },
+        {
+          "baseline_action": "ACTION3",
+          "baseline_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.000244,
+            "changed_pixels": 1,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "baseline_signal": 0.0,
+          "context_id": "after_ACTION3",
+          "context_sequence": [
+            "ACTION3"
+          ],
+          "env_actions": 4,
+          "error": "",
+          "functional_progress": true,
+          "game_id": "bp35-0a0ad940",
+          "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "local_patch_before_after_observed": true,
+          "predicted_metric": "local_patch_before_after",
+          "revision_performed": false,
+          "score_or_level_unchanged_or_improved": true,
+          "treatment_action": "ACTION6",
+          "treatment_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 1,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "treatment_signal": 1.0,
+          "truth_status": "NOT_REEVALUATED_BY_A35",
+          "usage_contradiction": false,
+          "useful_new_state": true,
+          "utility_assessment": "USEFUL",
+          "wrong_confirmations": 0
+        },
+        {
+          "baseline_action": "ACTION3",
+          "baseline_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "baseline_signal": 0.0,
+          "context_id": "after_ACTION4",
+          "context_sequence": [
+            "ACTION4"
+          ],
+          "env_actions": 4,
+          "error": "",
+          "functional_progress": true,
+          "game_id": "bp35-0a0ad940",
+          "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "local_patch_before_after_observed": true,
+          "predicted_metric": "local_patch_before_after",
+          "revision_performed": false,
+          "score_or_level_unchanged_or_improved": true,
+          "treatment_action": "ACTION6",
+          "treatment_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 1,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "treatment_signal": 1.0,
+          "truth_status": "NOT_REEVALUATED_BY_A35",
+          "usage_contradiction": false,
+          "useful_new_state": true,
+          "utility_assessment": "USEFUL",
+          "wrong_confirmations": 0
+        },
+        {
+          "baseline_action": "ACTION3",
+          "baseline_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.011475,
+            "changed_pixels": 47,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 0,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "baseline_signal": 0.0,
+          "context_id": "after_ACTION3_then_ACTION4",
+          "context_sequence": [
+            "ACTION3",
+            "ACTION4"
+          ],
+          "env_actions": 6,
+          "error": "",
+          "functional_progress": true,
+          "game_id": "bp35-0a0ad940",
+          "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "local_patch_before_after_observed": true,
+          "predicted_metric": "local_patch_before_after",
+          "revision_performed": false,
+          "score_or_level_unchanged_or_improved": true,
+          "treatment_action": "ACTION6",
+          "treatment_measurement": {
+            "changed": true,
+            "changed_cell_ratio": 0.006348,
+            "changed_pixels": 26,
+            "grid_shape_after": [
+              64,
+              64
+            ],
+            "grid_shape_before": [
+              64,
+              64
+            ],
+            "local_changed_pixels": 1,
+            "local_patch_after": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                10
+              ]
+            ],
+            "local_patch_available": true,
+            "local_patch_before": [
+              [
+                5,
+                5,
+                5
+              ],
+              [
+                3,
+                5,
+                3
+              ]
+            ],
+            "measurable": true,
+            "metric": "local_patch_before_after",
+            "patch_bbox": [
+              0,
+              17,
+              1,
+              19
+            ]
+          },
+          "treatment_signal": 1.0,
+          "truth_status": "NOT_REEVALUATED_BY_A35",
+          "usage_contradiction": false,
+          "useful_new_state": true,
+          "utility_assessment": "USEFUL",
+          "wrong_confirmations": 0
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "mechanic": {
+        "action": "ACTION6",
+        "known_scope_from_a33": "local_context",
+        "mechanic_family": "position_effect_candidate",
+        "predicted_metric": "local_patch_before_after"
+      },
+      "revision_performed": false,
+      "scope_assessment": "CONTEXTUALLY_STABLE",
+      "truth_status": "NOT_REEVALUATED_BY_A35",
+      "wrong_confirmations": 0
+    }
+  ],
+  "summary": {
+    "contexts_tested": 4,
+    "errors": 0,
+    "functional_progress_contexts": 4,
+    "mechanics_mapped": 1,
+    "revision_performed": false,
+    "scope_assessments": {
+      "CONTEXTUALLY_STABLE": 1
+    },
+    "truth_status": "NOT_REEVALUATED_BY_A35",
+    "usage_contradictions": 0,
+    "useful_new_state_contexts": 4,
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_REEVALUATED_BY_A35",
+  "wrong_confirmations": 0
+}

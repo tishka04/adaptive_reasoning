@@ -10,7 +10,10 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+try:
+    from pydantic import BaseModel, Field
+except ImportError:
+    from adaptive_reasoning_compat.pydantic import BaseModel, Field
 
 
 # ------------------------------------------------------------------

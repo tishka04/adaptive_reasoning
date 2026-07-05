@@ -1,0 +1,28 @@
+{
+  "source_dataset": "training/abstraction_dataset.jsonl",
+  "out": "training\\break_event_dataset.jsonl",
+  "natural_out": "training\\break_event_dataset.natural.jsonl",
+  "games": "all",
+  "seed": 0,
+  "thresholds": {
+    "big_break_lte": -50.0,
+    "small_change_abs_lt": 5.0
+  },
+  "classes": [
+    "BIG_BREAK",
+    "SMALL_CHANGE",
+    "OTHER_CHANGE"
+  ],
+  "natural_rows": 28535,
+  "oversampled_rows": 80871,
+  "natural_counts": {
+    "BIG_BREAK": 105,
+    "SMALL_CHANGE": 26957,
+    "OTHER_CHANGE": 1473
+  },
+  "oversampled_counts": {
+    "BIG_BREAK": 26957,
+    "SMALL_CHANGE": 26957,
+    "OTHER_CHANGE": 26957
+  }
+}

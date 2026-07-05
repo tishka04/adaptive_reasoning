@@ -1,0 +1,67 @@
+{
+  "replayed_prefix": [
+    {
+      "action": "RESET",
+      "action_args": null,
+      "idx": 0,
+      "levels": 0,
+      "state": "NOT_FINISHED",
+      "trace_step": 0
+    }
+  ],
+  "report": {
+    "agent_policy": null,
+    "episode_id": "13b274c3dd23",
+    "exact_replay_ok": false,
+    "first_mismatch": {
+      "action": "RESET",
+      "actual": {
+        "hash": "a2c1e0e8a5f01b1c",
+        "hist": {
+          "0": 164,
+          "15": 143,
+          "2": 30,
+          "3": 359,
+          "4": 164,
+          "5": 3236
+        },
+        "shape": [
+          64,
+          64
+        ]
+      },
+      "detail": "{\"y\": 2, \"x\": 32, \"expected\": 4, \"actual\": 3, \"num_diff_cells\": 175}",
+      "expected": {
+        "hash": "b1bca161750121dc",
+        "hist": {
+          "0": 124,
+          "12": 64,
+          "15": 128,
+          "2": 30,
+          "3": 334,
+          "4": 180,
+          "5": 3236
+        },
+        "shape": [
+          64,
+          64
+        ]
+      },
+      "kind": "frame_after_mismatch",
+      "step_index": 0,
+      "trace_step": 0
+    },
+    "game": "cd82-fb555c5d",
+    "memory_ranker": null,
+    "replay_final_state": "NOT_FINISHED",
+    "replay_levels_completed": 0,
+    "replay_won": false,
+    "replayed_steps": 1,
+    "resolved_game_id": "cd82-fb555c5d",
+    "selected_reason": "best_progress_no_win_trace",
+    "trace_final_state": "QUIT",
+    "trace_levels_completed": 2,
+    "trace_steps": 236,
+    "warnings": []
+  }
+}

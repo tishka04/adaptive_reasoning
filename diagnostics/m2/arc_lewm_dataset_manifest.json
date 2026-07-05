@@ -1,0 +1,104 @@
+{
+  "alignment_policy": {
+    "continuity_checked_pairs": 5620,
+    "continuity_checks_enabled": true,
+    "continuity_mismatches": 0,
+    "continuity_skipped_pairs": 73,
+    "off_by_one_pairing_used": false,
+    "transition_alignment_policy": "row_local_frame_before_action_frame_after"
+  },
+  "candidate_only_metadata": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "trace_support_counted_as_proof": false,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "config": {
+    "dataset_schema_version": "m2.arc_lewm_transitions.v1",
+    "schema_version": "m2.arc_lewm_dataset_manifest.v1",
+    "source_adapter": "human_traces_steps_jsonl",
+    "source_paths": [
+      "human_traces\\ar25-e3c63847.20260420-163550.steps.jsonl",
+      "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+      "human_traces\\ar25-e3c63847.20260617-160929.steps.jsonl",
+      "human_traces\\bp35-0a0ad940.20260615-174132.steps.jsonl",
+      "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+      "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+      "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+      "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+      "human_traces\\cd82-fb555c5d.20260615-211618.steps.jsonl",
+      "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+      "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+      "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+      "human_traces\\dc22-4c9bff3e.20260616-134833.steps.jsonl",
+      "human_traces\\dc22-4c9bff3e.20260616-145945.steps.jsonl",
+      "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+      "human_traces\\ft09-0d8bbf25.20260617-142254.steps.jsonl",
+      "human_traces\\ft09-0d8bbf25.20260617-142428.steps.jsonl",
+      "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl"
+    ],
+    "split_mode": "by_game"
+  },
+  "continuity_checks": {
+    "continuity_checked_pairs": 5620,
+    "continuity_checks_enabled": true,
+    "continuity_mismatches": 0,
+    "continuity_skipped_pairs": 73,
+    "mismatch_examples": [],
+    "skipped_episode_boundaries": 20,
+    "skipped_reset_boundaries": 53,
+    "skipped_terminal_or_truncated_boundaries": 0
+  },
+  "per_game_counts": {
+    "ar25-e3c63847": 1161,
+    "bp35-0a0ad940": 986,
+    "cd82-fb555c5d": 761,
+    "cn04-65d47d14": 406,
+    "dc22-4c9bff3e": 1926,
+    "ft09-0d8bbf25": 471
+  },
+  "rejected_rows": [],
+  "split": {
+    "mode": "by_game",
+    "train_games": [
+      "ar25-e3c63847",
+      "bp35-0a0ad940",
+      "cd82-fb555c5d",
+      "cn04-65d47d14"
+    ],
+    "val_games": [
+      "dc22-4c9bff3e",
+      "ft09-0d8bbf25"
+    ]
+  },
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "games_total": 6,
+    "revision_status": "CANDIDATE_ONLY",
+    "rows_rejected_missing_grid_t1": 0,
+    "split_mode": "by_game",
+    "support": 0,
+    "trace_support_counted_as_proof": false,
+    "train_games": 4,
+    "transitions_written": 5711,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "val_games": 2,
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "transition_type_histogram": {
+    "global": 2296,
+    "level-up": 0,
+    "local": 2572,
+    "motion": 305,
+    "no-op": 538,
+    "object-delta": 4409,
+    "relation-delta": 3651,
+    "terminal": 14
+  }
+}

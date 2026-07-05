@@ -1,0 +1,164 @@
+{
+  "game_id": "ar25-e3c63847",
+  "goal_family": "correspondence",
+  "macro_goal": "switch control and drive the active shape through the downward corridor until one yellow and one purple shape correspond",
+  "level_hypotheses": [
+    "ACTION5 still switches which shape is currently controlled",
+    "repeated downward movement is the main progress primitive on level 2",
+    "short lateral repositioning is needed before or after the downward run",
+    "one valid correspondence is enough; not every shape must match"
+  ],
+  "entities": [
+    {
+      "name": "black_doted_shape",
+      "role": "player",
+      "notes": "movable cursor-like shape visible on the board",
+      "color_value": null
+    },
+    {
+      "name": "gray_shape",
+      "role": "controller",
+      "notes": "switching control changes which shape movement affects",
+      "color_value": null
+    },
+    {
+      "name": "yellow_shape",
+      "role": "movable",
+      "notes": "one side of the correspondence pair",
+      "color_value": null
+    },
+    {
+      "name": "purple_shape",
+      "role": "reference",
+      "notes": "matching anchor for the movable yellow shape",
+      "color_value": null
+    }
+  ],
+  "win_condition_hypotheses": [
+    "level advances after one correct yellow-purple correspondence",
+    "progress comes from repeating the successful downward corridor pattern after switching control"
+  ],
+  "constraints": [
+    {
+      "type": "cursor_mediated_control",
+      "description": "ACTION5 changes which entity subsequent movement controls",
+      "applies_to": [
+        "gray_shape",
+        "black_doted_shape"
+      ]
+    },
+    {
+      "type": "crossing_allowed",
+      "description": "selected shapes can cross dotted guide lines while progressing downward",
+      "applies_to": [
+        "yellow_shape",
+        "purple_shape"
+      ]
+    },
+    {
+      "type": "can_exit_grid",
+      "description": "yellow shapes may leave the grid boundary during the successful pattern",
+      "applies_to": [
+        "yellow_shape"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "do not spam ACTION5 without following it with movement",
+    "do not assume every visible shape must be matched before the level can advance"
+  ],
+  "action_roles": [
+    {
+      "action": "ACTION5",
+      "role": "control_switch",
+      "evidence": "change_player_action5",
+      "confidence": 0.78,
+      "changes_semantics_of": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4"
+      ]
+    },
+    {
+      "action": "ACTION2",
+      "role": "movement",
+      "evidence": "level2_repeat_success_uses_action2_runs",
+      "confidence": 0.72,
+      "changes_semantics_of": []
+    },
+    {
+      "action": "ACTION3",
+      "role": "movement",
+      "evidence": "level2_reposition_after_switch",
+      "confidence": 0.62,
+      "changes_semantics_of": []
+    }
+  ],
+  "subgoal_tests": [
+    {
+      "id": "probe_level2_action5_switch",
+      "description": "confirm ACTION5 switches the controlled entity on level 2",
+      "verification": "controlled entity changes after ACTION5",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "role_switch",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION5"
+      ]
+    },
+    {
+      "id": "probe_level2_action2_descent",
+      "description": "probe repeated ACTION2 as the main downward corridor move",
+      "verification": "the active shape moves through the corridor or crosses a dotted guide line",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION2"
+      ]
+    },
+    {
+      "id": "probe_level2_action3_reposition",
+      "description": "probe ACTION3 as a lateral reposition before the descent run",
+      "verification": "the active shape repositions sideways without immediate failure",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION3"
+      ]
+    },
+    {
+      "id": "achieve_level2_correspondence",
+      "description": "after switching control, chain short lateral repositioning with repeated ACTION2 descent until the level advances",
+      "verification": "level advances after a switch-plus-move correspondence sequence",
+      "max_actions": 60,
+      "preconditions": [],
+      "expected_signal": "level_advance",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION1"
+      ]
+    }
+  ],
+  "belief_revisions": [],
+  "confidence": 0.64,
+  "source_episodes": [
+    "be48a96d70f0",
+    "f0fe23029ffa"
+  ],
+  "compiler_model": "manual_from_human_trace_stats",
+  "compiled_at": "2026-05-30T00:00:00+00:00"
+}

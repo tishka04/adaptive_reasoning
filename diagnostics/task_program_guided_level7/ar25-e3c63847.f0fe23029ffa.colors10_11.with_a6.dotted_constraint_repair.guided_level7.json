@@ -1,0 +1,6715 @@
+{
+  "action6_targets": [
+    {
+      "x": 9,
+      "y": 0
+    },
+    {
+      "x": 10,
+      "y": 0
+    },
+    {
+      "x": 11,
+      "y": 0
+    },
+    {
+      "x": 0,
+      "y": 15
+    },
+    {
+      "x": 0,
+      "y": 16
+    },
+    {
+      "x": 0,
+      "y": 17
+    },
+    {
+      "x": 63,
+      "y": 17
+    },
+    {
+      "x": 63,
+      "y": 18
+    }
+  ],
+  "episode_id": "f0fe23029ffa",
+  "frontier": {
+    "danger_actions": [
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2"
+    ],
+    "immediate_danger_action": "ACTION2",
+    "level_start_index": 486,
+    "terminal_index": 823
+  },
+  "game_id": "ar25-e3c63847",
+  "guided_search": {
+    "action3_contradictions": 0,
+    "action6_branches": 6618,
+    "action6_transforming_branches": 6094,
+    "beam_width": 64,
+    "best": {
+      "action3_contradiction": false,
+      "action6_transform_count": 1,
+      "action_data": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        {
+          "x": 10,
+          "y": 0
+        }
+      ],
+      "action_responsible": "ACTION6",
+      "actions": [
+        "ACTION1",
+        "ACTION1",
+        "ACTION1",
+        "ACTION1",
+        "ACTION1",
+        "ACTION6"
+      ],
+      "available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "consecutive_submit": 0,
+      "cursor_near_dotted_violation": false,
+      "danger_prefix_len": 0,
+      "depth": 6,
+      "died": false,
+      "distance_action6_to_violation": 19.584,
+      "dotted_delta_from_root": 0,
+      "grid_hash": "ffb132aa5364c4c2",
+      "level": 7,
+      "match_delta_from_parent": 0.0,
+      "match_delta_from_root": 13.4351,
+      "match_score": {
+        "best_pairs": [
+          {
+            "bbox_iou": 0.2152,
+            "centroid_distance": 40.0931,
+            "col_alignment": 0.4285,
+            "first": {
+              "centroid_x": 20.756,
+              "centroid_y": 16.366,
+              "color": 10,
+              "height": 63,
+              "max_x": 62,
+              "max_y": 62,
+              "min_x": 0,
+              "min_y": 0,
+              "size": 328,
+              "width": 63
+            },
+            "row_alignment": 0.7201,
+            "score": 3.8595,
+            "second": {
+              "centroid_x": 56.763,
+              "centroid_y": 34.0,
+              "color": 11,
+              "height": 59,
+              "max_x": 63,
+              "max_y": 63,
+              "min_x": 48,
+              "min_y": 5,
+              "size": 329,
+              "width": 16
+            },
+            "shape_score": 0.5952,
+            "size_score": 0.997
+          }
+        ],
+        "component_counts": {
+          "10": 1,
+          "11": 3,
+          "cursor": 3
+        },
+        "cursor_near_target": 0,
+        "dotted_constraint_violations": 2,
+        "matched_pairs": 0,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "score": -16.6697,
+        "shape_overlap_or_alignment": 1.2865,
+        "unmatched_first": 1,
+        "unmatched_second": 3
+      },
+      "max_action6_spatial_change": 40,
+      "reached_next_level": false,
+      "repeat_penalty": 0.0,
+      "search_score": 361.0517,
+      "spatial_operator_change": 40,
+      "state": "NOT_FINISHED",
+      "submit_gate_passed": false,
+      "submit_not_ready": false,
+      "unmatched_delta_from_root": 4,
+      "violation_components_after": [
+        {
+          "centroid_x": 20.75609756097561,
+          "centroid_y": 16.365853658536587,
+          "color": 10,
+          "size": 328
+        },
+        {
+          "centroid_x": 56.7629179331307,
+          "centroid_y": 34.0,
+          "color": 11,
+          "size": 329
+        }
+      ],
+      "violation_components_before": [
+        {
+          "centroid_x": 20.75609756097561,
+          "centroid_y": 16.365853658536587,
+          "color": 10,
+          "size": 328
+        },
+        {
+          "centroid_x": 56.7629179331307,
+          "centroid_y": 34.0,
+          "color": 11,
+          "size": 329
+        }
+      ]
+    },
+    "best_match": {
+      "action3_contradiction": false,
+      "action6_transform_count": 0,
+      "action_data": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "action_responsible": "ACTION5",
+      "actions": [
+        "ACTION1",
+        "ACTION5",
+        "ACTION4",
+        "ACTION5",
+        "ACTION5"
+      ],
+      "available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "consecutive_submit": 0,
+      "cursor_near_dotted_violation": false,
+      "danger_prefix_len": 0,
+      "depth": 5,
+      "died": false,
+      "distance_action6_to_violation": -1.0,
+      "dotted_delta_from_root": 0,
+      "grid_hash": "ed2286d171ce6be7",
+      "level": 7,
+      "match_delta_from_parent": 0.0026,
+      "match_delta_from_root": 16.515,
+      "match_score": {
+        "best_pairs": [
+          {
+            "bbox_iou": 0.1,
+            "centroid_distance": 11.6771,
+            "col_alignment": 0.8722,
+            "first": {
+              "centroid_x": 10.545,
+              "centroid_y": 10.545,
+              "color": 10,
+              "height": 18,
+              "max_x": 17,
+              "max_y": 17,
+              "min_x": 0,
+              "min_y": 0,
+              "size": 88,
+              "width": 18
+            },
+            "row_alignment": 0.8658,
+            "score": 4.2302,
+            "second": {
+              "centroid_x": 18.6,
+              "centroid_y": 19.0,
+              "color": 11,
+              "height": 18,
+              "max_x": 26,
+              "max_y": 26,
+              "min_x": 12,
+              "min_y": 9,
+              "size": 135,
+              "width": 15
+            },
+            "shape_score": 0.9167,
+            "size_score": 0.6519
+          },
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 40.4297,
+            "col_alignment": 0.7079,
+            "first": {
+              "centroid_x": 37.0,
+              "centroid_y": 13.0,
+              "color": 10,
+              "height": 3,
+              "max_x": 53,
+              "max_y": 14,
+              "min_x": 21,
+              "min_y": 12,
+              "size": 88,
+              "width": 33
+            },
+            "row_alignment": 0.4286,
+            "score": 2.6328,
+            "second": {
+              "centroid_x": 18.6,
+              "centroid_y": 49.0,
+              "color": 11,
+              "height": 18,
+              "max_x": 26,
+              "max_y": 59,
+              "min_x": 12,
+              "min_y": 42,
+              "size": 135,
+              "width": 15
+            },
+            "shape_score": 0.3106,
+            "size_score": 0.6519
+          },
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 43.7629,
+            "col_alignment": 0.3054,
+            "first": {
+              "centroid_x": 13.0,
+              "centroid_y": 34.0,
+              "color": 10,
+              "height": 15,
+              "max_x": 14,
+              "max_y": 41,
+              "min_x": 12,
+              "min_y": 27,
+              "size": 40,
+              "width": 3
+            },
+            "row_alignment": 1.0,
+            "score": 2.0239,
+            "second": {
+              "centroid_x": 56.763,
+              "centroid_y": 34.0,
+              "color": 11,
+              "height": 59,
+              "max_x": 63,
+              "max_y": 63,
+              "min_x": 48,
+              "min_y": 5,
+              "size": 329,
+              "width": 16
+            },
+            "shape_score": 0.2209,
+            "size_score": 0.1216
+          }
+        ],
+        "component_counts": {
+          "10": 5,
+          "11": 3,
+          "cursor": 6
+        },
+        "cursor_near_target": 0,
+        "dotted_constraint_violations": 2,
+        "matched_pairs": 1,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "score": -13.5898,
+        "shape_overlap_or_alignment": 1.7774,
+        "unmatched_first": 4,
+        "unmatched_second": 2
+      },
+      "max_action6_spatial_change": 0,
+      "reached_next_level": false,
+      "repeat_penalty": 0.0,
+      "search_score": -119.5106,
+      "spatial_operator_change": 0,
+      "state": "NOT_FINISHED",
+      "submit_gate_passed": false,
+      "submit_not_ready": false,
+      "unmatched_delta_from_root": 2,
+      "violation_components_after": [
+        {
+          "centroid_x": 10.545454545454545,
+          "centroid_y": 10.545454545454545,
+          "color": 10,
+          "size": 88
+        },
+        {
+          "centroid_x": 56.7629179331307,
+          "centroid_y": 34.0,
+          "color": 11,
+          "size": 329
+        }
+      ],
+      "violation_components_before": [
+        {
+          "centroid_x": 10.545454545454545,
+          "centroid_y": 10.545454545454545,
+          "color": 10,
+          "size": 88
+        },
+        {
+          "centroid_x": 56.78181818181818,
+          "centroid_y": 33.90909090909091,
+          "color": 11,
+          "size": 330
+        }
+      ]
+    },
+    "evaluated_branches": 6838,
+    "gated_submit_skips": 526,
+    "horizon": 10,
+    "improved_match_states": 6122,
+    "include_action6": true,
+    "known_danger_actions": [
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2"
+    ],
+    "max_action6_spatial_change": 40,
+    "reaches_level_8": false,
+    "root_match_score": {
+      "best_pairs": [
+        {
+          "bbox_iou": 0.0,
+          "centroid_distance": 47.511,
+          "col_alignment": 0.2508,
+          "first": {
+            "centroid_x": 9.654,
+            "centroid_y": 28.115,
+            "color": 10,
+            "height": 63,
+            "max_x": 17,
+            "max_y": 62,
+            "min_x": 0,
+            "min_y": 0,
+            "size": 208,
+            "width": 18
+          },
+          "row_alignment": 0.9142,
+          "score": 3.8901,
+          "second": {
+            "centroid_x": 56.856,
+            "centroid_y": 33.521,
+            "color": 11,
+            "height": 64,
+            "max_x": 63,
+            "max_y": 63,
+            "min_x": 48,
+            "min_y": 0,
+            "size": 334,
+            "width": 16
+          },
+          "shape_score": 0.9366,
+          "size_score": 0.6228
+        },
+        {
+          "bbox_iou": 0.0513,
+          "centroid_distance": 19.6493,
+          "col_alignment": 0.696,
+          "first": {
+            "centroid_x": 37.0,
+            "centroid_y": 16.0,
+            "color": 10,
+            "height": 3,
+            "max_x": 53,
+            "max_y": 17,
+            "min_x": 21,
+            "min_y": 15,
+            "size": 88,
+            "width": 33
+          },
+          "row_alignment": 0.9304,
+          "score": 3.2324,
+          "second": {
+            "centroid_x": 17.846,
+            "centroid_y": 20.385,
+            "color": 11,
+            "height": 18,
+            "max_x": 26,
+            "max_y": 26,
+            "min_x": 12,
+            "min_y": 9,
+            "size": 117,
+            "width": 15
+          },
+          "shape_score": 0.3106,
+          "size_score": 0.7521
+        },
+        {
+          "bbox_iou": 0.0,
+          "centroid_distance": 35.0179,
+          "col_alignment": 0.4524,
+          "first": {
+            "centroid_x": 59.5,
+            "centroid_y": 16.0,
+            "color": 10,
+            "height": 3,
+            "max_x": 62,
+            "max_y": 17,
+            "min_x": 57,
+            "min_y": 15,
+            "size": 16,
+            "width": 6
+          },
+          "row_alignment": 0.9048,
+          "score": 1.9576,
+          "second": {
+            "centroid_x": 25.0,
+            "centroid_y": 10.0,
+            "color": 11,
+            "height": 1,
+            "max_x": 25,
+            "max_y": 10,
+            "min_x": 25,
+            "min_y": 10,
+            "size": 1,
+            "width": 1
+          },
+          "shape_score": 0.25,
+          "size_score": 0.0625
+        }
+      ],
+      "component_counts": {
+        "10": 3,
+        "11": 5,
+        "cursor": 4
+      },
+      "cursor_near_target": 1,
+      "dotted_constraint_violations": 2,
+      "matched_pairs": 0,
+      "pair_colors": [
+        10,
+        11
+      ],
+      "score": -30.1048,
+      "shape_overlap_or_alignment": 1.816,
+      "unmatched_first": 3,
+      "unmatched_second": 5
+    },
+    "scoring_mode": "dotted_constraint_repair",
+    "submit_attempts": 0,
+    "submit_not_ready": 0,
+    "top": [
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "distance_action6_to_violation": 19.584,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ffb132aa5364c4c2",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4351,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 40.0931,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7201,
+              "score": 3.8595,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.6697,
+          "shape_overlap_or_alignment": 1.2865,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 361.0517,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "distance_action6_to_violation": 19.0532,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ffb132aa5364c4c2",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4351,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 40.0931,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7201,
+              "score": 3.8595,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.6697,
+          "shape_overlap_or_alignment": 1.2865,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 361.0517,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 19.584,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9e983faee6ef5ee8",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4238,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2115,
+              "centroid_distance": 40.115,
+              "col_alignment": 0.4288,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7187,
+              "score": 3.8441,
+              "second": {
+                "centroid_x": 56.744,
+                "centroid_y": 34.088,
+                "color": 11,
+                "height": 58,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 6,
+                "size": 328,
+                "width": 16
+              },
+              "shape_score": 0.5873,
+              "size_score": 1.0
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.681,
+          "shape_overlap_or_alignment": 1.2814,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 358.7129,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 19.0532,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9e983faee6ef5ee8",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4238,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2115,
+              "centroid_distance": 40.115,
+              "col_alignment": 0.4288,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7187,
+              "score": 3.8441,
+              "second": {
+                "centroid_x": 56.744,
+                "centroid_y": 34.088,
+                "color": 11,
+                "height": 58,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 6,
+                "size": 328,
+                "width": 16
+              },
+              "shape_score": 0.5873,
+              "size_score": 1.0
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.681,
+          "shape_overlap_or_alignment": 1.2814,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 358.7129,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.5923,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.0885,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 21.6192,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.5923,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.0885,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 21.6192,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      }
+    ],
+    "top_action6": [
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "distance_action6_to_violation": 19.584,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ffb132aa5364c4c2",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4351,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 40.0931,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7201,
+              "score": 3.8595,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.6697,
+          "shape_overlap_or_alignment": 1.2865,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 361.0517,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "distance_action6_to_violation": 19.0532,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ffb132aa5364c4c2",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4351,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 40.0931,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7201,
+              "score": 3.8595,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.6697,
+          "shape_overlap_or_alignment": 1.2865,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 361.0517,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 19.584,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9e983faee6ef5ee8",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4238,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2115,
+              "centroid_distance": 40.115,
+              "col_alignment": 0.4288,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7187,
+              "score": 3.8441,
+              "second": {
+                "centroid_x": 56.744,
+                "centroid_y": 34.088,
+                "color": 11,
+                "height": 58,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 6,
+                "size": 328,
+                "width": 16
+              },
+              "shape_score": 0.5873,
+              "size_score": 1.0
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.681,
+          "shape_overlap_or_alignment": 1.2814,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 358.7129,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 19.0532,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9e983faee6ef5ee8",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4238,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2115,
+              "centroid_distance": 40.115,
+              "col_alignment": 0.4288,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7187,
+              "score": 3.8441,
+              "second": {
+                "centroid_x": 56.744,
+                "centroid_y": 34.088,
+                "color": 11,
+                "height": 58,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 6,
+                "size": 328,
+                "width": 16
+              },
+              "shape_score": 0.5873,
+              "size_score": 1.0
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.681,
+          "shape_overlap_or_alignment": 1.2814,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 358.7129,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.5923,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.0885,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 21.6192,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.5923,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.0885,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 21.6192,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      }
+    ],
+    "top_contradictions": [],
+    "top_match": [
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 0,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION5",
+        "actions": [
+          "ACTION1",
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ed2286d171ce6be7",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.515,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7629,
+              "col_alignment": 0.3054,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 1.0,
+              "score": 2.0239,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.2209,
+              "size_score": 0.1216
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5898,
+          "shape_overlap_or_alignment": 1.7774,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 0,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -119.5106,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 0,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION1",
+        "actions": [
+          "ACTION1",
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9f15471b65bed776",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.515,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7629,
+              "col_alignment": 0.3054,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 1.0,
+              "score": 2.0239,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.2209,
+              "size_score": 0.1216
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5898,
+          "shape_overlap_or_alignment": 1.7774,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 0,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -134.5106,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 0,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION4",
+        "actions": [
+          "ACTION1",
+          "ACTION5",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "a6788fbf5027d487",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.515,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7629,
+              "col_alignment": 0.3054,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 1.0,
+              "score": 2.0239,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.2209,
+              "size_score": 0.1216
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5898,
+          "shape_overlap_or_alignment": 1.7774,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 0,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -134.5106,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 0,
+        "action_data": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION5",
+        "actions": [
+          "ACTION1",
+          "ACTION5",
+          "ACTION4",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 4,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "11d23c6c388d1955",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 0,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -117.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION5",
+        "actions": [
+          "ACTION1",
+          "ACTION6",
+          "ACTION4",
+          "ACTION5",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "35f9871d694234cb",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 38,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -119.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION5",
+        "actions": [
+          "ACTION1",
+          "ACTION6",
+          "ACTION4",
+          "ACTION5",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "35f9871d694234cb",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 38,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -119.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          {
+            "x": 11,
+            "y": 0
+          },
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION5",
+        "actions": [
+          "ACTION1",
+          "ACTION6",
+          "ACTION4",
+          "ACTION5",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "35f9871d694234cb",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 38,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -119.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION1",
+        "actions": [
+          "ACTION1",
+          "ACTION6",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "0f069742d5a9f483",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 38,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -134.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION4",
+        "actions": [
+          "ACTION1",
+          "ACTION6",
+          "ACTION4",
+          "ACTION5",
+          "ACTION4"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "acb8be27e928a477",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 38,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -134.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          null
+        ],
+        "action_responsible": "ACTION1",
+        "actions": [
+          "ACTION1",
+          "ACTION6",
+          "ACTION4",
+          "ACTION5",
+          "ACTION1"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 5,
+        "died": false,
+        "distance_action6_to_violation": -1.0,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "0f069742d5a9f483",
+        "level": 7,
+        "match_delta_from_parent": 0.0026,
+        "match_delta_from_root": 16.5124,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.1,
+              "centroid_distance": 11.6771,
+              "col_alignment": 0.8722,
+              "first": {
+                "centroid_x": 10.545,
+                "centroid_y": 10.545,
+                "color": 10,
+                "height": 18,
+                "max_x": 17,
+                "max_y": 17,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 88,
+                "width": 18
+              },
+              "row_alignment": 0.8658,
+              "score": 4.2302,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 19.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 26,
+                "min_x": 12,
+                "min_y": 9,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.9167,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 40.4297,
+              "col_alignment": 0.7079,
+              "first": {
+                "centroid_x": 37.0,
+                "centroid_y": 13.0,
+                "color": 10,
+                "height": 3,
+                "max_x": 53,
+                "max_y": 14,
+                "min_x": 21,
+                "min_y": 12,
+                "size": 88,
+                "width": 33
+              },
+              "row_alignment": 0.4286,
+              "score": 2.6328,
+              "second": {
+                "centroid_x": 18.6,
+                "centroid_y": 49.0,
+                "color": 11,
+                "height": 18,
+                "max_x": 26,
+                "max_y": 59,
+                "min_x": 12,
+                "min_y": 42,
+                "size": 135,
+                "width": 15
+              },
+              "shape_score": 0.3106,
+              "size_score": 0.6519
+            },
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 43.7819,
+              "col_alignment": 0.3051,
+              "first": {
+                "centroid_x": 13.0,
+                "centroid_y": 34.0,
+                "color": 10,
+                "height": 15,
+                "max_x": 14,
+                "max_y": 41,
+                "min_x": 12,
+                "min_y": 27,
+                "size": 40,
+                "width": 3
+              },
+              "row_alignment": 0.9986,
+              "score": 2.0179,
+              "second": {
+                "centroid_x": 56.782,
+                "centroid_y": 33.909,
+                "color": 11,
+                "height": 60,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 4,
+                "size": 330,
+                "width": 16
+              },
+              "shape_score": 0.2188,
+              "size_score": 0.1212
+            }
+          ],
+          "component_counts": {
+            "10": 5,
+            "11": 3,
+            "cursor": 6
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -13.5924,
+          "shape_overlap_or_alignment": 1.7762,
+          "unmatched_first": 4,
+          "unmatched_second": 2
+        },
+        "max_action6_spatial_change": 38,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": -134.5898,
+        "spatial_operator_change": 0,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 2,
+        "violation_components_after": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.78181818181818,
+            "centroid_y": 33.90909090909091,
+            "color": 11,
+            "size": 330
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 10.545454545454545,
+            "centroid_y": 10.545454545454545,
+            "color": 10,
+            "size": 88
+          },
+          {
+            "centroid_x": 56.80060422960725,
+            "centroid_y": 33.81570996978852,
+            "color": 11,
+            "size": 331
+          }
+        ]
+      }
+    ],
+    "top_transforming_action6": [
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "distance_action6_to_violation": 19.584,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ffb132aa5364c4c2",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4351,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 40.0931,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7201,
+              "score": 3.8595,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.6697,
+          "shape_overlap_or_alignment": 1.2865,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 361.0517,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "distance_action6_to_violation": 19.0532,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "ffb132aa5364c4c2",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4351,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 40.0931,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7201,
+              "score": 3.8595,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.6697,
+          "shape_overlap_or_alignment": 1.2865,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 361.0517,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 19.584,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9e983faee6ef5ee8",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4238,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2115,
+              "centroid_distance": 40.115,
+              "col_alignment": 0.4288,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7187,
+              "score": 3.8441,
+              "second": {
+                "centroid_x": 56.744,
+                "centroid_y": 34.088,
+                "color": 11,
+                "height": 58,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 6,
+                "size": 328,
+                "width": 16
+              },
+              "shape_score": 0.5873,
+              "size_score": 1.0
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.681,
+          "shape_overlap_or_alignment": 1.2814,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 358.7129,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 1,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 19.0532,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "9e983faee6ef5ee8",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 13.4238,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2115,
+              "centroid_distance": 40.115,
+              "col_alignment": 0.4288,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 16.366,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7187,
+              "score": 3.8441,
+              "second": {
+                "centroid_x": 56.744,
+                "centroid_y": 34.088,
+                "color": 11,
+                "height": 58,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 6,
+                "size": 328,
+                "width": 16
+              },
+              "shape_score": 0.5873,
+              "size_score": 1.0
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 0,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -16.681,
+          "shape_overlap_or_alignment": 1.2814,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 358.7129,
+        "spatial_operator_change": 40,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 16.365853658536587,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.74390243902439,
+            "centroid_y": 34.08841463414634,
+            "color": 11,
+            "size": 328
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.5923,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.0885,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 21.6192,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 9,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.5923,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 22.0885,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      },
+      {
+        "action3_contradiction": false,
+        "action6_transform_count": 2,
+        "action_data": [
+          null,
+          null,
+          null,
+          {
+            "x": 10,
+            "y": 0
+          },
+          null,
+          null,
+          {
+            "x": 11,
+            "y": 0
+          }
+        ],
+        "action_responsible": "ACTION6",
+        "actions": [
+          "ACTION1",
+          "ACTION1",
+          "ACTION1",
+          "ACTION6",
+          "ACTION5",
+          "ACTION1",
+          "ACTION6"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "cursor_near_dotted_violation": false,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "distance_action6_to_violation": 21.6192,
+        "dotted_delta_from_root": 0,
+        "grid_hash": "470942299db7ae9f",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 14.8794,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.2152,
+              "centroid_distance": 38.8947,
+              "col_alignment": 0.4285,
+              "first": {
+                "centroid_x": 20.756,
+                "centroid_y": 19.293,
+                "color": 10,
+                "height": 63,
+                "max_x": 62,
+                "max_y": 62,
+                "min_x": 0,
+                "min_y": 0,
+                "size": 328,
+                "width": 63
+              },
+              "row_alignment": 0.7666,
+              "score": 3.92,
+              "second": {
+                "centroid_x": 56.763,
+                "centroid_y": 34.0,
+                "color": 11,
+                "height": 59,
+                "max_x": 63,
+                "max_y": 63,
+                "min_x": 48,
+                "min_y": 5,
+                "size": 329,
+                "width": 16
+              },
+              "shape_score": 0.5952,
+              "size_score": 0.997
+            }
+          ],
+          "component_counts": {
+            "10": 1,
+            "11": 3,
+            "cursor": 3
+          },
+          "cursor_near_target": 1,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 0,
+          "pair_colors": [
+            10,
+            11
+          ],
+          "score": -15.2253,
+          "shape_overlap_or_alignment": 1.3067,
+          "unmatched_first": 1,
+          "unmatched_second": 3
+        },
+        "max_action6_spatial_change": 40,
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 341.1827,
+        "spatial_operator_change": 28,
+        "state": "NOT_FINISHED",
+        "submit_gate_passed": false,
+        "submit_not_ready": false,
+        "unmatched_delta_from_root": 4,
+        "violation_components_after": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ],
+        "violation_components_before": [
+          {
+            "centroid_x": 20.75609756097561,
+            "centroid_y": 19.29268292682927,
+            "color": 10,
+            "size": 328
+          },
+          {
+            "centroid_x": 56.7629179331307,
+            "centroid_y": 34.0,
+            "color": 11,
+            "size": 329
+          }
+        ]
+      }
+    ]
+  },
+  "rule_model": {
+    "expected_matched_pairs": 0,
+    "expected_unmatched_total": 22,
+    "pair_color_candidates": [
+      {
+        "avg_ready_score": -83.8122,
+        "best_ready_score": -25.37,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "q90_ready_score": -27.5772,
+        "selected": true
+      },
+      {
+        "avg_ready_score": 3.844,
+        "best_ready_score": 28.2268,
+        "median_matched_pairs": 1.0,
+        "pair_colors": [
+          4,
+          5
+        ],
+        "q90_ready_score": 25.1383,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -16.4502,
+        "best_ready_score": -3.0488,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          4,
+          10
+        ],
+        "q90_ready_score": -3.2656,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -18.7143,
+        "best_ready_score": -12.4367,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          5,
+          10
+        ],
+        "q90_ready_score": -13.7923,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -81.7245,
+        "best_ready_score": -23.5767,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          4,
+          11
+        ],
+        "q90_ready_score": -25.914,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -76.8386,
+        "best_ready_score": -27.741,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          5,
+          11
+        ],
+        "q90_ready_score": -30.3423,
+        "selected": false
+      }
+    ],
+    "pair_colors": [
+      10,
+      11
+    ],
+    "ready_level_up_actions": {
+      "ACTION2": 5,
+      "ACTION3": 1
+    },
+    "ready_scores": [
+      -25.37,
+      -29.7844,
+      -84.3373,
+      -93.554,
+      -106.972,
+      -162.8557
+    ],
+    "ready_threshold": -27.5772
+  },
+  "rule_report": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\diagnostics\\rule_inference\\ar25-e3c63847.global_rule_inference.json",
+  "target_level": 7
+}

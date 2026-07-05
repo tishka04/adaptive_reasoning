@@ -1,0 +1,163 @@
+{
+  "config": {
+    "artifacts_not_read": [
+      "M3",
+      "A32",
+      "A34"
+    ],
+    "baseline_order": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "inputs_read": [
+      "A33",
+      "A35"
+    ],
+    "live_context_sequence": [
+      "ACTION3",
+      "ACTION4"
+    ],
+    "registry_path": "diagnostics\\a33\\confirmed_mechanics_registry.json",
+    "scope_map_path": "diagnostics\\a35\\confirmed_mechanic_scope_map.json"
+  },
+  "policy_probe": {
+    "context_match": true,
+    "context_match_reason": "covered_context_exact",
+    "decision_reason": "stable_scope_context_match_prioritize_confirmed_mechanic",
+    "env_actions": 6,
+    "error": "",
+    "fallback_action": "ACTION3",
+    "fallback_measurement": {
+      "changed": true,
+      "changed_cell_ratio": 0.011475,
+      "changed_pixels": 47,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 0,
+      "local_patch_after": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          3
+        ]
+      ],
+      "local_patch_available": true,
+      "local_patch_before": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          3
+        ]
+      ],
+      "measurable": true,
+      "metric": "local_patch_before_after",
+      "patch_bbox": [
+        0,
+        17,
+        1,
+        19
+      ]
+    },
+    "fallback_signal": 0.0,
+    "functional_progress": true,
+    "game_id": "bp35-0a0ad940",
+    "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+    "live_context_id": "after_ACTION3_then_ACTION4",
+    "live_context_sequence": [
+      "ACTION3",
+      "ACTION4"
+    ],
+    "policy_selected_action": "ACTION6",
+    "predicted_metric": "local_patch_before_after",
+    "revision_performed": false,
+    "scope_used": "CONTEXTUALLY_STABLE",
+    "score_or_level_unchanged_or_improved": true,
+    "selected_from_confirmed_mechanic": true,
+    "selected_measurement": {
+      "changed": true,
+      "changed_cell_ratio": 0.006348,
+      "changed_pixels": 26,
+      "grid_shape_after": [
+        64,
+        64
+      ],
+      "grid_shape_before": [
+        64,
+        64
+      ],
+      "local_changed_pixels": 1,
+      "local_patch_after": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          10
+        ]
+      ],
+      "local_patch_available": true,
+      "local_patch_before": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          3,
+          5,
+          3
+        ]
+      ],
+      "measurable": true,
+      "metric": "local_patch_before_after",
+      "patch_bbox": [
+        0,
+        17,
+        1,
+        19
+      ]
+    },
+    "selected_signal": 1.0,
+    "truth_status": "NOT_REEVALUATED_BY_A36",
+    "usage_contradiction": false,
+    "useful_new_state": true,
+    "wrong_confirmations": 0
+  },
+  "revision_performed": false,
+  "summary": {
+    "context_match": true,
+    "functional_progress": true,
+    "policy_selected_action": "ACTION6",
+    "revision_performed": false,
+    "scope_used": "CONTEXTUALLY_STABLE",
+    "selected_from_confirmed_mechanic": true,
+    "truth_status": "NOT_REEVALUATED_BY_A36",
+    "usage_contradiction": false,
+    "useful_new_state": true,
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_REEVALUATED_BY_A36",
+  "wrong_confirmations": 0
+}

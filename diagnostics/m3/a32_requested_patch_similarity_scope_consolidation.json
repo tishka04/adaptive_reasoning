@@ -1,0 +1,240 @@
+{
+  "config": {
+    "a32_followup_results_path": "diagnostics\\m3\\a32_requested_patch_similarity_followup_results.json",
+    "artifacts_not_modified": [
+      "A32",
+      "A33"
+    ],
+    "consolidation_policy": {
+      "a33_ready_forced_false": true,
+      "diagnostic_contradictions_do_not_refute_success": true,
+      "outside_boundary_failures_are_not_global_refutation": true,
+      "scope_expansion_is_candidate_only": true
+    },
+    "execution_performed": false,
+    "inputs_read": [
+      "M3.23"
+    ],
+    "schema_version": "m3.a32_requested_patch_similarity_scope_consolidation.v1"
+  },
+  "controlled_test_required": true,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rule_counted_as_confirmation": false,
+  "scope_consolidations": [
+    {
+      "a32_decision_counted_as_confirmation": false,
+      "a33_ready": false,
+      "agent_policy_probe_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+      "alternate_context_success_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "alternate_context_supported": true,
+      "boundary_contexts": [
+        {
+          "context_replay": [
+            "ACTION6",
+            "ACTION3",
+            "ACTION4"
+          ],
+          "context_replay_args": [
+            {
+              "x": 18,
+              "y": 0
+            },
+            {},
+            {}
+          ],
+          "scope_interpretation": "outside_region_boundary_reinforced_candidate_only",
+          "target_action_args": {
+            "x": 18,
+            "y": 0
+          }
+        },
+        {
+          "context_replay": [
+            "ACTION6",
+            "ACTION3",
+            "ACTION4"
+          ],
+          "context_replay_args": [
+            {
+              "x": 18,
+              "y": 0
+            },
+            {},
+            {}
+          ],
+          "scope_interpretation": "outside_region_boundary_reinforced_candidate_only",
+          "target_action_args": {
+            "x": 30,
+            "y": 0
+          }
+        }
+      ],
+      "candidate_rule_family": "local_patch_transformability",
+      "changed_pixels_role": "effect_radar_not_success_metric",
+      "controlled_test_required": true,
+      "diagnostic_contradictions_counted_as_refutation": false,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "game_id": "bp35-0a0ad940",
+      "initial_context_support_source": "carried_from_m3_20_seed_successful_args",
+      "initial_context_supported": true,
+      "known_failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_success_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "observation_counted_as_confirmation": false,
+      "outside_boundary_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "outside_boundary_failures_counted_as_rule_refutation": false,
+      "outside_region_boundary_reinforced": true,
+      "prior_counted_as_proof": false,
+      "ready_for_agent_policy_probe": true,
+      "recommended_agent_policy_probe": {
+        "avoid_known_failure_like_args": [
+          {
+            "x": 30,
+            "y": 0
+          }
+        ],
+        "do_not_treat_candidate_as_confirmed_skill": true,
+        "prefer_patch_similar_success_like_args": true,
+        "select_target_action": "ACTION6",
+        "use_repositioning_action": "ACTION4"
+      },
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "scope_assessment": "SCOPE_EXPANDED_CANDIDATE_ONLY",
+      "scope_consolidation_id": "m3_24::bp35-0a0ad940::patch_similarity_scope::ACTION6",
+      "scope_expansion_counted_as_confirmation": false,
+      "source_a32_decision": "SCOPE_LIMITED_CANDIDATE_ONLY",
+      "source_a32_queue_item_id": "m3_21::bp35::ACTION4_ACTION6::local_patch_transformability",
+      "source_a32_recommended_next_step": "REQUEST_MORE_TESTS_WITH_SCOPE_LIMITS",
+      "source_diagnostic_contradiction_events": 8,
+      "source_success_metric_contradiction_events": 4,
+      "source_success_metric_support_events": 8,
+      "status": "UNRESOLVED",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "support": 0,
+      "supported_contexts": [
+        {
+          "context_replay": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "context_replay_args": [
+            {
+              "x": 18,
+              "y": 0
+            },
+            {}
+          ],
+          "scope_interpretation": "alternate_context_scope_expanded_candidate_only",
+          "target_action_args": {
+            "x": 12,
+            "y": 0
+          }
+        },
+        {
+          "context_replay": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "context_replay_args": [
+            {
+              "x": 18,
+              "y": 0
+            },
+            {}
+          ],
+          "scope_interpretation": "alternate_context_scope_expanded_candidate_only",
+          "target_action_args": {
+            "x": 24,
+            "y": 0
+          }
+        }
+      ],
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "scope_expansion_counted_as_confirmation": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_ready": false,
+    "a33_write_performed": false,
+    "controlled_test_required": true,
+    "ready_for_agent_policy_probe": true,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "scope_assessments": [
+      "SCOPE_EXPANDED_CANDIDATE_ONLY"
+    ],
+    "scope_consolidations": 1,
+    "scope_expanded_candidate_only": 1,
+    "scope_expansion_counted_as_confirmation": false,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

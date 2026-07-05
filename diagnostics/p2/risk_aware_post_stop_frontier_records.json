@@ -1,0 +1,255 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "a40_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "A40",
+      "M2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "direct_downstream_write_performed": false,
+    "inputs_read": [
+      "P3.G4"
+    ],
+    "p3_risk_targeted_validation_path": "diagnostics\\p3\\risk_targeted_contextual_post_stop_policy_validation.json",
+    "schema_version": "p2.risk_aware_post_stop_frontier_records.v1"
+  },
+  "m2_write_performed": false,
+  "m3_write_performed": false,
+  "policy_result_counted_as_scientific_verdict": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "risk_aware_frontier_counted_as_confirmation": false,
+  "risk_aware_post_stop_frontier_records": [
+    {
+      "a33_ready": false,
+      "blocked_capability": "objective_completion_after_risk_aware_safe_conversion",
+      "blocked_capability_hypotheses": [
+        "proxy_progress_not_completion_condition",
+        "objective_readiness_detector_missing",
+        "terminal_commit_or_submit_action_missing",
+        "goal_representation_missing_beyond_safe_progress",
+        "conversion_state_useful_but_not_completion_trigger"
+      ],
+      "candidate_policy_state": "risk_aware_terminal_safe_post_stop_selector_improves_proxy_progress_without_objective_completion",
+      "desired_hypothesis_families": [
+        "objective_readiness_detection",
+        "post_conversion_commit_action_search",
+        "goal_state_representation_beyond_safe_progress",
+        "proxy_progress_vs_completion_discriminator",
+        "risk_aware_selector_completion_gap"
+      ],
+      "evidence": {
+        "accepted_risk_targeted_safe_stops": 7,
+        "adapter_relearned": false,
+        "improvement_over_action6_only": true,
+        "mean_delta_vs_action6_only": 2.857143,
+        "mean_delta_vs_hold": 7.857143,
+        "mean_terminal_adjusted_progress": 142.857143,
+        "objective_completion_runs": 0,
+        "objective_completion_signal": false,
+        "selected_action6_only_count": 5,
+        "selected_extension_count": 2,
+        "selection_uses_risk_targeted_candidate_outcomes": false,
+        "source_cells_rerun": true,
+        "static_extension_terminal_options": 4,
+        "static_extension_terminal_safe_stops": 2,
+        "terminal_rate": 0.0,
+        "unsafe_extension_options_avoided": 4
+      },
+      "frontier_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+      "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+      "frontier_record_status": "RISK_AWARE_POST_STOP_FRONTIER_RECORDED_CANDIDATE_ONLY",
+      "frontier_type": "RISK_AWARE_POST_STOP_NO_OBJECTIVE_COMPLETION_FRONTIER",
+      "game_id": "bp35-0a0ad940",
+      "policy_aggregate_snapshot": {
+        "ACTION6": {
+          "condition": "ACTION6",
+          "mean_delta_vs_hold": 5.0,
+          "mean_terminal_adjusted_progress": 140.0,
+          "objective_completion_runs": 0,
+          "revision_status": "CANDIDATE_ONLY",
+          "runs": 7,
+          "support": 0,
+          "terminal_rate": 0.0,
+          "truth_status": "NOT_EVALUATED_BY_P2"
+        },
+        "ACTION6,ACTION3": {
+          "condition": "ACTION6,ACTION3",
+          "mean_delta_vs_hold": -30.714286,
+          "mean_terminal_adjusted_progress": 104.285714,
+          "objective_completion_runs": 0,
+          "revision_status": "CANDIDATE_ONLY",
+          "runs": 7,
+          "support": 0,
+          "terminal_rate": 0.285714,
+          "truth_status": "NOT_EVALUATED_BY_P2"
+        },
+        "ACTION6,ACTION4": {
+          "condition": "ACTION6,ACTION4",
+          "mean_delta_vs_hold": -30.714286,
+          "mean_terminal_adjusted_progress": 104.285714,
+          "objective_completion_runs": 0,
+          "revision_status": "CANDIDATE_ONLY",
+          "runs": 7,
+          "support": 0,
+          "terminal_rate": 0.285714,
+          "truth_status": "NOT_EVALUATED_BY_P2"
+        },
+        "contextual_policy": {
+          "condition": "contextual_post_stop_conversion_policy",
+          "mean_delta_vs_hold": 7.857143,
+          "mean_terminal_adjusted_progress": 142.857143,
+          "objective_completion_runs": 0,
+          "revision_status": "CANDIDATE_ONLY",
+          "runs": 7,
+          "support": 0,
+          "terminal_rate": 0.0,
+          "truth_status": "NOT_EVALUATED_BY_P2"
+        },
+        "hold_or_stop_state": {
+          "condition": "hold_or_stop_state",
+          "mean_delta_vs_hold": 0.0,
+          "mean_terminal_adjusted_progress": 135.0,
+          "objective_completion_runs": 0,
+          "revision_status": "CANDIDATE_ONLY",
+          "runs": 7,
+          "support": 0,
+          "terminal_rate": 0.0,
+          "truth_status": "NOT_EVALUATED_BY_P2"
+        }
+      },
+      "policy_result_counted_as_scientific_verdict": false,
+      "ready_for_direct_downstream_write": false,
+      "ready_for_m2_or_m3": false,
+      "ready_for_risk_aware_objective_frontier_review": true,
+      "ready_for_saturation_handoff": false,
+      "requested_experiment_styles": [
+        "post_selector_objective_readiness_probe",
+        "post_conversion_commit_action_matrix",
+        "terminal_safe_progress_vs_completion_discriminator",
+        "horizon_conditioned_completion_trigger_search",
+        "risk_aware_policy_ablation_with_completion_metrics"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "risk_aware_frontier_counted_as_confirmation": false,
+      "risk_aware_policy_counted_as_objective_solution": false,
+      "risk_region_snapshot": {
+        "action6_action3_terminal_rate": 0.285714,
+        "action6_action4_terminal_rate": 0.285714,
+        "static_extension_terminal_options": 4,
+        "static_extension_terminal_safe_stops": 2,
+        "terminal_extension_records": [
+          {
+            "action_or_sequence": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "candidate_terminal_adjusted_progress_after_stop": 0.0,
+            "hold_baseline_band": "hold_high_ge_120",
+            "revision_status": "CANDIDATE_ONLY",
+            "safe_stop_id": "p3_g4::risk_oos_safe_stop::004",
+            "sampling_family": "base_tail_action6_action3",
+            "support": 0,
+            "terminal_horizon_band": "horizon_mid_45_54",
+            "truth_status": "NOT_EVALUATED_BY_P2"
+          },
+          {
+            "action_or_sequence": [
+              "ACTION6",
+              "ACTION4"
+            ],
+            "candidate_terminal_adjusted_progress_after_stop": 0.0,
+            "hold_baseline_band": "hold_high_ge_120",
+            "revision_status": "CANDIDATE_ONLY",
+            "safe_stop_id": "p3_g4::risk_oos_safe_stop::004",
+            "sampling_family": "base_tail_action6_action3",
+            "support": 0,
+            "terminal_horizon_band": "horizon_mid_45_54",
+            "truth_status": "NOT_EVALUATED_BY_P2"
+          },
+          {
+            "action_or_sequence": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "candidate_terminal_adjusted_progress_after_stop": 0.0,
+            "hold_baseline_band": "hold_high_ge_120",
+            "revision_status": "CANDIDATE_ONLY",
+            "safe_stop_id": "p3_g4::risk_oos_safe_stop::006",
+            "sampling_family": "base_tail_action3_action6",
+            "support": 0,
+            "terminal_horizon_band": "horizon_mid_45_54",
+            "truth_status": "NOT_EVALUATED_BY_P2"
+          },
+          {
+            "action_or_sequence": [
+              "ACTION6",
+              "ACTION4"
+            ],
+            "candidate_terminal_adjusted_progress_after_stop": 0.0,
+            "hold_baseline_band": "hold_high_ge_120",
+            "revision_status": "CANDIDATE_ONLY",
+            "safe_stop_id": "p3_g4::risk_oos_safe_stop::006",
+            "sampling_family": "base_tail_action3_action6",
+            "support": 0,
+            "terminal_horizon_band": "horizon_mid_45_54",
+            "truth_status": "NOT_EVALUATED_BY_P2"
+          }
+        ],
+        "unsafe_extension_options_avoided_by_selector": 4
+      },
+      "scientific_questions": [
+        "Which signal marks a post-stop state as ready for objective completion rather than more relation progress?",
+        "Does a terminal-safe conversion require a distinct commit/submit action after ACTION6-led movement?",
+        "Which objective feature should replace terminal-adjusted relation progress as the selector target?",
+        "Do ACTION6-led extensions move into a useful pre-completion zone without triggering level change?",
+        "Can a completion discriminator separate safe progress from objective readiness before terminal risk rises?"
+      ],
+      "source": "P3.G4",
+      "source_p3_risk_targeted_validation_path": "diagnostics\\p3\\risk_targeted_contextual_post_stop_policy_validation.json",
+      "source_policy_utility_status": "RISK_AWARE_OOS_POLICY_UTILITY_CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_P2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "a40_write_performed": false,
+    "blocked_capability": "objective_completion_after_risk_aware_safe_conversion",
+    "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+    "frontier_record_status": "RISK_AWARE_POST_STOP_FRONTIER_RECORDED_CANDIDATE_ONLY",
+    "frontier_records": 1,
+    "frontier_type": "RISK_AWARE_POST_STOP_NO_OBJECTIVE_COMPLETION_FRONTIER",
+    "m2_write_performed": false,
+    "m3_write_performed": false,
+    "objective_completion_signal": false,
+    "oos_utility_observed": true,
+    "ready_for_m2_or_m3": false,
+    "ready_for_risk_aware_objective_frontier_review": true,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "risk_aware_selection_observed": true,
+    "source_policy_utility_status": "RISK_AWARE_OOS_POLICY_UTILITY_CANDIDATE_ONLY",
+    "support": 0,
+    "terminal_safety_observed": true,
+    "truth_status": "NOT_EVALUATED_BY_P2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P2",
+  "wrong_confirmations": 0
+}

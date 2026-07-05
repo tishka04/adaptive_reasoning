@@ -1,0 +1,245 @@
+{
+  "config": {
+    "action_effect": "models/action_effect.joblib",
+    "value": "models/value_history.joblib",
+    "macro_scores": "models/macro_scores_history.joblib",
+    "with_break_expert": true,
+    "break_classifier": "models/break_classifier.joblib",
+    "break_bonus_weight": 2.0,
+    "break_noop_threshold": 0.7,
+    "break_danger_threshold": 0.25,
+    "action6_break_threshold": 0.85,
+    "macro_score_weight": 0.05
+  },
+  "aggregate": {
+    "games": 0,
+    "mean_agreement_rate": 0.0,
+    "mean_rank_correlation": 0.0,
+    "mean_learned_prefers_worse": 0.0,
+    "branch_summary": {
+      "count": 0,
+      "big_break_rate": 0.0,
+      "no_op_rate": 0.0,
+      "game_over_rate": 0.0,
+      "break_bonus_applied_rate": 0.0
+    },
+    "top_learned_summary": {
+      "count": 0,
+      "big_break_rate": 0.0,
+      "no_op_rate": 0.0,
+      "game_over_rate": 0.0,
+      "break_bonus_applied_rate": 0.0
+    },
+    "ranking_by_final_score": {},
+    "ranking_by_general_score": {},
+    "ranking_by_break_probability": {},
+    "ranking_by_break_bonus": {}
+  },
+  "dataset_eval": {
+    "dataset": "training/abstraction_dataset.ar25_humanfull.jsonl",
+    "games": "ar25",
+    "sources": [
+      "human_replay"
+    ],
+    "branch_summary": {
+      "count": 2469,
+      "big_break_rate": 0.0,
+      "no_op_rate": 0.0437,
+      "game_over_rate": 0.0012,
+      "break_bonus_applied_rate": 0.5371
+    },
+    "ranking_by_final_score": {
+      "score_key": "learned_score",
+      "branch_count": 2469,
+      "positive_count": 0,
+      "base_rate": 0.0,
+      "top_k": {
+        "10": {
+          "k_effective": 10,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0972,
+          "break_bonus_applied_rate": 1.0
+        },
+        "25": {
+          "k_effective": 25,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0663,
+          "break_bonus_applied_rate": 1.0
+        },
+        "50": {
+          "k_effective": 50,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0779,
+          "break_bonus_applied_rate": 0.82
+        },
+        "100": {
+          "k_effective": 100,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.06,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0585,
+          "break_bonus_applied_rate": 0.69
+        }
+      }
+    },
+    "ranking_by_general_score": {
+      "score_key": "general_score",
+      "branch_count": 2469,
+      "positive_count": 0,
+      "base_rate": 0.0,
+      "top_k": {
+        "10": {
+          "k_effective": 10,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.1,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0013,
+          "break_bonus_applied_rate": 0.4
+        },
+        "25": {
+          "k_effective": 25,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.36,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0033,
+          "break_bonus_applied_rate": 0.76
+        },
+        "50": {
+          "k_effective": 50,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.24,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0034,
+          "break_bonus_applied_rate": 0.72
+        },
+        "100": {
+          "k_effective": 100,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.22,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.0051,
+          "break_bonus_applied_rate": 0.48
+        }
+      }
+    },
+    "ranking_by_break_probability": {
+      "score_key": "break_probability",
+      "branch_count": 2469,
+      "positive_count": 0,
+      "base_rate": 0.0,
+      "top_k": {
+        "10": {
+          "k_effective": 10,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1686,
+          "break_bonus_applied_rate": 0.6
+        },
+        "25": {
+          "k_effective": 25,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.12,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1602,
+          "break_bonus_applied_rate": 0.48
+        },
+        "50": {
+          "k_effective": 50,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.06,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1548,
+          "break_bonus_applied_rate": 0.64
+        },
+        "100": {
+          "k_effective": 100,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.03,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1421,
+          "break_bonus_applied_rate": 0.71
+        }
+      }
+    },
+    "ranking_by_break_bonus": {
+      "score_key": "break_bonus",
+      "branch_count": 2469,
+      "positive_count": 0,
+      "base_rate": 0.0,
+      "top_k": {
+        "10": {
+          "k_effective": 10,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.157,
+          "break_bonus_applied_rate": 1.0
+        },
+        "25": {
+          "k_effective": 25,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1534,
+          "break_bonus_applied_rate": 1.0
+        },
+        "50": {
+          "k_effective": 50,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.0,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1467,
+          "break_bonus_applied_rate": 1.0
+        },
+        "100": {
+          "k_effective": 100,
+          "hits": 0,
+          "precision_at_k": 0.0,
+          "recall_at_k": null,
+          "no_op_rate": 0.03,
+          "game_over_rate": 0.0,
+          "mean_break_probability": 0.1322,
+          "break_bonus_applied_rate": 1.0
+        }
+      }
+    }
+  },
+  "per_game": []
+}

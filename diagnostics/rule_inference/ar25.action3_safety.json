@@ -1,0 +1,253 @@
+{
+  "experiment": "action3_productivity_level7",
+  "game_id": "ar25",
+  "pair_colors": [
+    10,
+    11
+  ],
+  "sources": [
+    "human_trace"
+  ],
+  "total_action3_analyzed": 52,
+  "classification": {
+    "fatal": 0,
+    "safe_noop_or_cycle": 4,
+    "safe_productive": 48
+  },
+  "feature_comparison": {
+    "had_action6_before": {
+      "fatal": 0.0,
+      "safe_noop": 0.0,
+      "productive": 0.0
+    },
+    "small_11_count": {
+      "fatal": 0.0,
+      "safe_noop": 10.5,
+      "productive": 14.8125
+    },
+    "match_score_before": {
+      "fatal": 0.0,
+      "safe_noop": -75.53962207017544,
+      "productive": -85.0845777714502
+    }
+  },
+  "productive_effect_types": [
+    "component_rewrite"
+  ],
+  "predictive_rule_hypothesis": "ACTION3 productive iff (state \u2208 human_manifold AND action3_count < 50) [productive avg count: 23.5, noop avg count: 49.5]",
+  "examples": {
+    "fatal": [],
+    "safe_noop": [
+      {
+        "source": "human_trace",
+        "step_index": 777,
+        "level": 7,
+        "pre_state": {
+          "cursor": {
+            "y": 20.21518987341772,
+            "x": 9.20253164556962
+          },
+          "match_score": -84.9634,
+          "matched_pairs": 1,
+          "unmatched_total": 24,
+          "small_11_count": 12,
+          "bbox": [
+            0,
+            0,
+            63,
+            63
+          ]
+        },
+        "history": {
+          "previous_action": "ACTION3",
+          "previous_action_sequence_3": [
+            "ACTION3",
+            "ACTION3",
+            "ACTION3"
+          ],
+          "had_action6_before": false,
+          "steps_since_action6": -1,
+          "action3_count_in_level": 48
+        },
+        "manifold": {
+          "grid_hash_seen_in_human_trace": true,
+          "distance_to_human_level7_manifold": 0.0
+        },
+        "outcome": {
+          "class": "safe_noop_or_cycle",
+          "died": false,
+          "level_after": 7,
+          "match_score_after": -84.9634
+        },
+        "effect": {
+          "type": "no_op",
+          "changed_cells": 0,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "source": "human_trace",
+        "step_index": 778,
+        "level": 7,
+        "pre_state": {
+          "cursor": {
+            "y": 20.21518987341772,
+            "x": 9.20253164556962
+          },
+          "match_score": -84.9634,
+          "matched_pairs": 1,
+          "unmatched_total": 24,
+          "small_11_count": 12,
+          "bbox": [
+            0,
+            0,
+            63,
+            63
+          ]
+        },
+        "history": {
+          "previous_action": "ACTION3",
+          "previous_action_sequence_3": [
+            "ACTION3",
+            "ACTION3",
+            "ACTION3"
+          ],
+          "had_action6_before": false,
+          "steps_since_action6": -1,
+          "action3_count_in_level": 49
+        },
+        "manifold": {
+          "grid_hash_seen_in_human_trace": true,
+          "distance_to_human_level7_manifold": 0.0
+        },
+        "outcome": {
+          "class": "safe_noop_or_cycle",
+          "died": false,
+          "level_after": 7,
+          "match_score_after": -84.9634
+        },
+        "effect": {
+          "type": "no_op",
+          "changed_cells": 0,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    "productive": [
+      {
+        "source": "human_trace",
+        "step_index": 499,
+        "level": 7,
+        "pre_state": {
+          "cursor": {
+            "y": 44.125,
+            "x": 29.875
+          },
+          "match_score": -39.7857,
+          "matched_pairs": 0,
+          "unmatched_total": 10,
+          "small_11_count": 4,
+          "bbox": [
+            0,
+            0,
+            63,
+            63
+          ]
+        },
+        "history": {
+          "previous_action": "ACTION5",
+          "previous_action_sequence_3": [
+            "ACTION1",
+            "ACTION5",
+            "ACTION5"
+          ],
+          "had_action6_before": false,
+          "steps_since_action6": -1,
+          "action3_count_in_level": 0
+        },
+        "manifold": {
+          "grid_hash_seen_in_human_trace": true,
+          "distance_to_human_level7_manifold": 0.0
+        },
+        "outcome": {
+          "class": "safe_productive",
+          "died": false,
+          "level_after": 7,
+          "match_score_after": -43.2597
+        },
+        "effect": {
+          "type": "component_rewrite",
+          "changed_cells": 82,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "source": "human_trace",
+        "step_index": 500,
+        "level": 7,
+        "pre_state": {
+          "cursor": {
+            "y": 26.285714285714285,
+            "x": 47.285714285714285
+          },
+          "match_score": -43.2597,
+          "matched_pairs": 0,
+          "unmatched_total": 11,
+          "small_11_count": 4,
+          "bbox": [
+            0,
+            0,
+            63,
+            63
+          ]
+        },
+        "history": {
+          "previous_action": "ACTION3",
+          "previous_action_sequence_3": [
+            "ACTION5",
+            "ACTION5",
+            "ACTION3"
+          ],
+          "had_action6_before": false,
+          "steps_since_action6": -1,
+          "action3_count_in_level": 1
+        },
+        "manifold": {
+          "grid_hash_seen_in_human_trace": true,
+          "distance_to_human_level7_manifold": 0.0
+        },
+        "outcome": {
+          "class": "safe_productive",
+          "died": false,
+          "level_after": 7,
+          "match_score_after": -43.5522
+        },
+        "effect": {
+          "type": "component_rewrite",
+          "changed_cells": 73,
+          "bbox_delta": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ]
+  }
+}

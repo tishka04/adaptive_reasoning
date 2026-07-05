@@ -1,0 +1,276 @@
+{
+  "game_id": "ar25-e3c63847",
+  "episode_id": "f0fe23029ffa",
+  "pair_colors": [
+    10,
+    11
+  ],
+  "total_analyzed": 267,
+  "success_count": 6,
+  "failed_count": 261,
+  "success_examples": [
+    {
+      "step_index": 14,
+      "level": 0,
+      "action2_succeeded": true,
+      "cursor": {
+        "y": 41.7,
+        "x": 53.84
+      },
+      "nearest_target": {
+        "color": 11,
+        "size": 1,
+        "area": 1,
+        "centroid": {
+          "y": 46.0,
+          "x": 52.0
+        },
+        "bbox": [
+          46,
+          52,
+          46,
+          52
+        ],
+        "distance_from_cursor": 4.67
+      },
+      "pair_context": {
+        "is_in_best_pair": false,
+        "best_pair_score": 2.8268,
+        "pair_rank": 0,
+        "is_unmatched": true,
+        "is_matched": false
+      },
+      "global_context": {
+        "unmatched_first": 0,
+        "unmatched_second": 3,
+        "matched_pairs": 1,
+        "match_score": -20.7953
+      }
+    },
+    {
+      "step_index": 28,
+      "level": 1,
+      "action2_succeeded": true,
+      "cursor": {
+        "y": 41.41,
+        "x": 10.0
+      },
+      "nearest_target": {
+        "color": 11,
+        "size": 1,
+        "area": 1,
+        "centroid": {
+          "y": 43.0,
+          "x": 10.0
+        },
+        "bbox": [
+          43,
+          10,
+          43,
+          10
+        ],
+        "distance_from_cursor": 1.59
+      },
+      "pair_context": {
+        "is_in_best_pair": false,
+        "best_pair_score": 2.9383,
+        "pair_rank": 0,
+        "is_unmatched": true,
+        "is_matched": false
+      },
+      "global_context": {
+        "unmatched_first": 0,
+        "unmatched_second": 4,
+        "matched_pairs": 1,
+        "match_score": -25.3071
+      }
+    },
+    {
+      "step_index": 120,
+      "level": 2,
+      "action2_succeeded": true,
+      "cursor": {
+        "y": 12.61,
+        "x": 36.66
+      },
+      "nearest_target": {
+        "color": 11,
+        "size": 1,
+        "area": 1,
+        "centroid": {
+          "y": 13.0,
+          "x": 34.0
+        },
+        "bbox": [
+          13,
+          34,
+          13,
+          34
+        ],
+        "distance_from_cursor": 2.68
+      },
+      "pair_context": {
+        "is_in_best_pair": false,
+        "best_pair_score": 2.4902,
+        "pair_rank": 0,
+        "is_unmatched": true,
+        "is_matched": false
+      },
+      "global_context": {
+        "unmatched_first": 0,
+        "unmatched_second": 17,
+        "matched_pairs": 1,
+        "match_score": -75.8456
+      }
+    }
+  ],
+  "failed_examples": [
+    {
+      "step_index": 5,
+      "level": 0,
+      "action2_succeeded": false,
+      "cursor": {
+        "y": 17.8,
+        "x": 50.8
+      },
+      "nearest_target": {
+        "color": 11,
+        "size": 60,
+        "area": 60,
+        "centroid": {
+          "y": 33.5,
+          "x": 63.0
+        },
+        "bbox": [
+          4,
+          63,
+          63,
+          63
+        ],
+        "distance_from_cursor": 19.88
+      },
+      "pair_context": {
+        "is_in_best_pair": true,
+        "best_pair_score": 3.1058,
+        "pair_rank": 1,
+        "is_unmatched": false,
+        "is_matched": true
+      },
+      "global_context": {
+        "unmatched_first": 0,
+        "unmatched_second": 1,
+        "matched_pairs": 1,
+        "match_score": -11.8336
+      }
+    },
+    {
+      "step_index": 6,
+      "level": 0,
+      "action2_succeeded": false,
+      "cursor": {
+        "y": 17.8,
+        "x": 53.8
+      },
+      "nearest_target": {
+        "color": 11,
+        "size": 59,
+        "area": 59,
+        "centroid": {
+          "y": 34.0,
+          "x": 63.0
+        },
+        "bbox": [
+          5,
+          63,
+          63,
+          63
+        ],
+        "distance_from_cursor": 18.63
+      },
+      "pair_context": {
+        "is_in_best_pair": true,
+        "best_pair_score": 3.075,
+        "pair_rank": 1,
+        "is_unmatched": false,
+        "is_matched": true
+      },
+      "global_context": {
+        "unmatched_first": 0,
+        "unmatched_second": 1,
+        "matched_pairs": 1,
+        "match_score": -11.8675
+      }
+    },
+    {
+      "step_index": 7,
+      "level": 0,
+      "action2_succeeded": false,
+      "cursor": {
+        "y": 20.8,
+        "x": 53.8
+      },
+      "nearest_target": {
+        "color": 11,
+        "size": 58,
+        "area": 58,
+        "centroid": {
+          "y": 34.5,
+          "x": 63.0
+        },
+        "bbox": [
+          6,
+          63,
+          63,
+          63
+        ],
+        "distance_from_cursor": 16.5
+      },
+      "pair_context": {
+        "is_in_best_pair": true,
+        "best_pair_score": 3.0442,
+        "pair_rank": 1,
+        "is_unmatched": false,
+        "is_matched": true
+      },
+      "global_context": {
+        "unmatched_first": 0,
+        "unmatched_second": 1,
+        "matched_pairs": 1,
+        "match_score": -11.9014
+      }
+    }
+  ],
+  "pattern_comparison": {
+    "distance_to_nearest": {
+      "success": 1.5857,
+      "failed": 0.0,
+      "discriminates": "True"
+    },
+    "is_in_best_pair": {
+      "success": 0.0,
+      "failed": 0.1686,
+      "discriminates": "True"
+    },
+    "pair_rank": {
+      "success": 0.0,
+      "failed": 0.8391,
+      "discriminates": "True"
+    },
+    "is_unmatched": {
+      "success": 1.0,
+      "failed": 0.636,
+      "discriminates": "True"
+    },
+    "nearest_target_color": {
+      "success": 11,
+      "failed": 11,
+      "discriminates": false
+    },
+    "best_pair_score": {
+      "success": 2.4902,
+      "failed": 1.8383,
+      "discriminates": true
+    }
+  },
+  "suggested_rule": "cursor must be near component in BEST pair (highest alignment)"
+}

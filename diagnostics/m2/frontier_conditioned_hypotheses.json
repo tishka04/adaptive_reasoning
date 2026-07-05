@@ -1,0 +1,341 @@
+{
+  "config": {
+    "generator_mode": "heuristic_only",
+    "input_frontier_path": "diagnostics\\a40\\frontier_handoff_requests.json",
+    "llm_enabled": false,
+    "schema_version": "m2.v1",
+    "world_model_enabled": false
+  },
+  "hypothesis_batches": [
+    {
+      "candidate_hypotheses": [
+        {
+          "candidate_action": "ACTION3",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [
+              "ACTION6"
+            ],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_signal <= best_control_signal",
+            "metric": "local_patch_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_signal > best_control_signal"
+          },
+          "frontier_context_id": "after_ACTION6",
+          "frontier_reason": "context_not_covered_by_scope",
+          "frontier_step": 1,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_consumption_transition",
+          "hypothesis_id": "m2::after_ACTION6::h001",
+          "predicted_effect": "ACTION3 may expose or prepare a new local target after the frontier context consumed the previous effect",
+          "predicted_metric": "local_patch_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "Uncovered context after a consumed or scoped skill.",
+          "revision_performed": false,
+          "source_generation": {
+            "normalization_warnings": [],
+            "priority_score": 3.0,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "Uncovered context after a consumed or scoped skill."
+            ],
+            "raw_proposal_ids": [
+              "raw::after_ACTION6::heuristic::001"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+            "measurable_by_existing_extractor": true,
+            "metric": "local_patch_before_after",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [
+              "ACTION6"
+            ],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "candidate_action": "ACTION4",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [
+              "ACTION6"
+            ],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_signal <= best_control_signal",
+            "metric": "local_patch_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_signal > best_control_signal"
+          },
+          "frontier_context_id": "after_ACTION6",
+          "frontier_reason": "context_not_covered_by_scope",
+          "frontier_step": 1,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "new_target_patch_exposure",
+          "hypothesis_id": "m2::after_ACTION6::h002",
+          "predicted_effect": "ACTION4 may reveal a new target patch from the uncovered frontier state",
+          "predicted_metric": "local_patch_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "A different available action should be tested as a target revealer.",
+          "revision_performed": false,
+          "source_generation": {
+            "normalization_warnings": [],
+            "priority_score": 3.0,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "A different available action should be tested as a target revealer."
+            ],
+            "raw_proposal_ids": [
+              "raw::after_ACTION6::heuristic::002"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+            "measurable_by_existing_extractor": true,
+            "metric": "local_patch_before_after",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [
+              "ACTION6"
+            ],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION6"
+            ],
+            "target_action": "ACTION4",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        }
+      ],
+      "frontier_context_id": "after_ACTION6",
+      "frontier_reason": "context_not_covered_by_scope",
+      "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope"
+    },
+    {
+      "candidate_hypotheses": [
+        {
+          "candidate_action": "ACTION4",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_signal <= best_control_signal",
+            "metric": "local_patch_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_signal > best_control_signal"
+          },
+          "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+          "frontier_reason": "confirmed_skill_blocked_by_failed_precondition",
+          "frontier_step": 2,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "saturation_escape_action",
+          "hypothesis_id": "m2::after_ACTION3_live_after_ACTION6::h001",
+          "predicted_effect": "ACTION4 may move the system away from the saturated local patch and expose a new target",
+          "predicted_metric": "local_patch_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "The confirmed skill is blocked by an active precondition.",
+          "revision_performed": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "context_replay_canonicalized"
+            ],
+            "priority_score": 6.5,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "The confirmed skill is blocked by an active precondition."
+            ],
+            "raw_proposal_ids": [
+              "raw::after_ACTION3_live_after_ACTION6::heuristic::001"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "frontier::after_ACTION3_live_after_ACTION6::step_2::confirmed_skill_blocked_by_failed_precondition",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+            "measurable_by_existing_extractor": true,
+            "metric": "local_patch_before_after",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION6"
+            ],
+            "target_action": "ACTION4",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "candidate_action": "ACTION4",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "target_action_signal <= best_control_signal",
+            "metric": "local_patch_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "target_action_signal > best_control_signal"
+          },
+          "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+          "frontier_reason": "confirmed_skill_blocked_by_failed_precondition",
+          "frontier_step": 2,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "skill_sequence_continuation",
+          "hypothesis_id": "m2::after_ACTION3_live_after_ACTION6::h002",
+          "predicted_effect": "Alternating the consumed context with ACTION4 may expose a new target for the blocked skill",
+          "predicted_metric": "local_patch_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "A post-consumption sequence may be needed after saturation.",
+          "revision_performed": false,
+          "source_generation": {
+            "normalization_warnings": [],
+            "priority_score": 6.5,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "A post-consumption sequence may be needed after saturation."
+            ],
+            "raw_proposal_ids": [
+              "raw::after_ACTION3_live_after_ACTION6::heuristic::002"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "frontier::after_ACTION3_live_after_ACTION6::step_2::confirmed_skill_blocked_by_failed_precondition",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "target_action_changes_local_patch_more_than_control",
+            "measurable_by_existing_extractor": true,
+            "metric": "local_patch_before_after",
+            "recommended_test_type": "controlled_action_vs_alternative",
+            "required_action_args": null,
+            "required_context_replay": [
+              "ACTION6",
+              "ACTION3"
+            ],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION6"
+            ],
+            "target_action": "ACTION4",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        }
+      ],
+      "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+      "frontier_reason": "confirmed_skill_blocked_by_failed_precondition",
+      "source_request_id": "frontier::after_ACTION3_live_after_ACTION6::step_2::confirmed_skill_blocked_by_failed_precondition"
+    }
+  ],
+  "summary": {
+    "blocked_not_testable_hypotheses": 0,
+    "experiment_requests_ready_for_m3": 4,
+    "final_invalid_hypotheses": 0,
+    "frontier_requests_consumed": 2,
+    "hypotheses_generated": 4,
+    "hypothesis_batches": 2,
+    "raw_proposals_generated": 4,
+    "rejected_raw_proposals": 0,
+    "revision_performed": false,
+    "testable_hypotheses": 4,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  }
+}

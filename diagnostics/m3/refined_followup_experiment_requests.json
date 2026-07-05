@@ -1,0 +1,130 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3.8",
+      "A32",
+      "A33"
+    ],
+    "execution_performed": false,
+    "inputs_read": [
+      "M3.8"
+    ],
+    "refined_hypotheses_path": "diagnostics\\m3\\refined_candidate_hypotheses_from_m2.json",
+    "schema_version": "m3.refined_followup_requests.v1"
+  },
+  "controlled_test_required": true,
+  "followup_experiment_requests": [
+    {
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "discriminates_between": [
+        "ACTION4_repositions_objects_and_reactivates_ACTION6",
+        "ACTION4_causes_visual_motion_without_reactivation",
+        "ACTION4_prepares_nonlocal_state_not_captured_by_current_metrics"
+      ],
+      "expected_signal": "reactivated_target_action_signal_exceeds_dynamic_controls",
+      "falsification_criteria": [
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "local_patch_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "object_positions_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        },
+        {
+          "failure_condition": "target_action_signal_after_repositioning <= best_control_signal",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "support_condition": "target_action_signal_after_repositioning > best_control_signal"
+        }
+      ],
+      "followup_request_counted_as_support": false,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_tested": "ACTION4 is a global repositioning/reset operator that re-enables ACTION6 after consumption",
+      "metrics": [
+        "local_patch_before_after",
+        "changed_pixels",
+        "object_positions_before_after",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "M3.8 observed grounded global motion without local patch or contact graph change; the discriminating follow-up retests the consumed skill after the repositioning action.",
+      "prior_counted_as_proof": false,
+      "request_id": "m3_9::m3_8_bp35_A6_A3_ACTION4_global_motion::retest_ACTION6",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_candidate_mechanic": "global_object_repositioning_after_consumption",
+      "source_hypothesis_ids": [
+        "m2::after_ACTION3_live_after_ACTION6::h001",
+        "m2::after_ACTION3_live_after_ACTION6::h002"
+      ],
+      "source_observed_effect_family": "global_motion",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "READY_FOR_M3_FOLLOWUP",
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": null,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "followup_request_counted_as_support": false,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "skipped_refined_hypotheses": [],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "controlled_test_required": true,
+    "execution_performed": false,
+    "followup_request_counted_as_support": false,
+    "followup_requests_generated": 1,
+    "multi_metric_requests": 1,
+    "reactivation_tests_generated": 1,
+    "refined_hypotheses_consumed": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "skipped_refined_hypotheses": 0,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

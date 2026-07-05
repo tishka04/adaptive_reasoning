@@ -1,0 +1,662 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "condition_policy": "continue_vs_stop_vs_switch",
+    "execution_performed": false,
+    "inputs_read": [
+      "M2.O1"
+    ],
+    "objective_hypotheses_path": "diagnostics\\m2\\objective_conditioned_hypotheses.json",
+    "prefix_lengths": [
+      6,
+      12,
+      24,
+      48,
+      64
+    ],
+    "schema_version": "m3.objective_stop_switch_requests.v1"
+  },
+  "controlled_test_required": true,
+  "execution_performed": false,
+  "hypothesis_counted_as_confirmation": false,
+  "objective_request_counted_as_support": false,
+  "objective_stop_switch_experiment_requests": [
+    {
+      "a32_remains_only_verdict_location": true,
+      "controlled_comparison": "same_prefix_length_compare_continue_stop_switch",
+      "controlled_test_required": true,
+      "execution_performed": false,
+      "expected_signal": "continue_action6_produces_more_terminal_outcomes_than_switch_control",
+      "experimental_conditions": [
+        {
+          "condition_family": "continue_local_affordance",
+          "condition_id": "continue_action6",
+          "post_prefix_action": "ACTION6",
+          "post_prefix_policy": "continue_action",
+          "role": "target_or_risk_condition"
+        },
+        {
+          "condition_family": "stop_or_noop",
+          "condition_id": "stop_policy",
+          "post_prefix_action": null,
+          "post_prefix_policy": "stop_or_hold_if_available",
+          "role": "stop_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION3",
+          "post_prefix_action": "ACTION3",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION4",
+          "post_prefix_action": "ACTION4",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION1",
+          "post_prefix_action": "ACTION1",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION2",
+          "post_prefix_action": "ACTION2",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        }
+      ],
+      "falsification_criteria": [
+        {
+          "failure_condition": "continue_action6_terminal_rate <= stop_or_switch_terminal_rate",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_o1_hypothesis",
+          "support_condition": "continue_action6_terminal_rate > stop_or_switch_terminal_rate"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "final_game_state",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "local_effect_metric",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "repeated_action6_count",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "useful_action6_steps",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_counted_as_confirmation": false,
+      "hypothesis_family": "stop_switch_criterion",
+      "hypothesis_tested": "Continuing repeated ACTION6 after local affordance exploitation may increase terminal outcome risk compared with stopping or switching.",
+      "local_diagnostic_metrics": [
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy",
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "objective_request_counted_as_support": false,
+      "planning_rationale": "Compare continued ACTION6 exploitation against stop and switch controls at matched prefix lengths to test terminal risk from continuing.",
+      "policy_result_counted_as_scientific_verdict": false,
+      "prefix_action": "ACTION6",
+      "prefix_lengths": [
+        6,
+        12,
+        24,
+        48,
+        64
+      ],
+      "primary_objective_metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy"
+      ],
+      "request_id": "m3_o1::m2_o1_p2_o1_bp35-0a0ad940_objective_alignment_001_h001::stop_switch_criterion",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m2_o1::p2_o1::bp35-0a0ad940::objective_alignment::001::h001",
+      "source_request_id": "p2_o1::bp35-0a0ad940::objective_alignment::001",
+      "status": "READY_FOR_M3_OBJECTIVE_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "controlled_comparison": "same_prefix_length_compare_continue_stop_switch",
+      "controlled_test_required": true,
+      "execution_performed": false,
+      "expected_signal": "longer_action6_prefix_increases_game_over_rate",
+      "experimental_conditions": [
+        {
+          "condition_family": "continue_local_affordance",
+          "condition_id": "continue_action6",
+          "post_prefix_action": "ACTION6",
+          "post_prefix_policy": "continue_action",
+          "role": "target_or_risk_condition"
+        },
+        {
+          "condition_family": "stop_or_noop",
+          "condition_id": "stop_policy",
+          "post_prefix_action": null,
+          "post_prefix_policy": "stop_or_hold_if_available",
+          "role": "stop_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION3",
+          "post_prefix_action": "ACTION3",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION4",
+          "post_prefix_action": "ACTION4",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION1",
+          "post_prefix_action": "ACTION1",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION2",
+          "post_prefix_action": "ACTION2",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        }
+      ],
+      "falsification_criteria": [
+        {
+          "failure_condition": "long_action6_prefix_game_over_rate <= short_action6_prefix_game_over_rate",
+          "metric": "final_game_state",
+          "minimum_effect_size": 1,
+          "source": "m2_o1_hypothesis",
+          "support_condition": "long_action6_prefix_game_over_rate > short_action6_prefix_game_over_rate"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "local_effect_metric",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "repeated_action6_count",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "useful_action6_steps",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_counted_as_confirmation": false,
+      "hypothesis_family": "terminal_risk_predictor",
+      "hypothesis_tested": "GAME_OVER risk may rise after a long prefix of productive repeated ACTION6 even while local metrics remain positive.",
+      "local_diagnostic_metrics": [
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy",
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "objective_request_counted_as_support": false,
+      "planning_rationale": "Vary ACTION6 prefix length to test whether terminal outcome risk grows while local effects remain productive.",
+      "policy_result_counted_as_scientific_verdict": false,
+      "prefix_action": "ACTION6",
+      "prefix_lengths": [
+        6,
+        12,
+        24,
+        48,
+        64
+      ],
+      "primary_objective_metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy"
+      ],
+      "request_id": "m3_o1::m2_o1_p2_o1_bp35-0a0ad940_objective_alignment_001_h002::terminal_risk_predictor",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m2_o1::p2_o1::bp35-0a0ad940::objective_alignment::001::h002",
+      "source_request_id": "p2_o1::bp35-0a0ad940::objective_alignment::001",
+      "status": "READY_FOR_M3_OBJECTIVE_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "controlled_comparison": "same_prefix_length_compare_continue_stop_switch",
+      "controlled_test_required": true,
+      "execution_performed": false,
+      "expected_signal": "switch_action_after_productive_action6_improves_level_completion",
+      "experimental_conditions": [
+        {
+          "condition_family": "continue_local_affordance",
+          "condition_id": "continue_action6",
+          "post_prefix_action": "ACTION6",
+          "post_prefix_policy": "continue_action",
+          "role": "target_or_risk_condition"
+        },
+        {
+          "condition_family": "stop_or_noop",
+          "condition_id": "stop_policy",
+          "post_prefix_action": null,
+          "post_prefix_policy": "stop_or_hold_if_available",
+          "role": "stop_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION3",
+          "post_prefix_action": "ACTION3",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION4",
+          "post_prefix_action": "ACTION4",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION1",
+          "post_prefix_action": "ACTION1",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION2",
+          "post_prefix_action": "ACTION2",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        }
+      ],
+      "falsification_criteria": [
+        {
+          "failure_condition": "switch_policy_levels_completed <= continue_action6_levels_completed",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_o1_hypothesis",
+          "support_condition": "switch_policy_levels_completed > continue_action6_levels_completed"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "final_game_state",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "local_effect_metric",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "repeated_action6_count",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "useful_action6_steps",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_counted_as_confirmation": false,
+      "hypothesis_family": "subgoal_switch_after_local_affordance",
+      "hypothesis_tested": "Switching to a non-ACTION6 subgoal after productive ACTION6 may improve level completion compared with continuing ACTION6.",
+      "local_diagnostic_metrics": [
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy",
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "objective_request_counted_as_support": false,
+      "planning_rationale": "Test whether switching to ACTION3/ACTION4/ACTION1/ACTION2 after local ACTION6 exploitation improves objective metrics.",
+      "policy_result_counted_as_scientific_verdict": false,
+      "prefix_action": "ACTION6",
+      "prefix_lengths": [
+        6,
+        12,
+        24,
+        48,
+        64
+      ],
+      "primary_objective_metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy"
+      ],
+      "request_id": "m3_o1::m2_o1_p2_o1_bp35-0a0ad940_objective_alignment_001_h003::subgoal_switch_after_local_affordance",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m2_o1::p2_o1::bp35-0a0ad940::objective_alignment::001::h003",
+      "source_request_id": "p2_o1::bp35-0a0ad940::objective_alignment::001",
+      "status": "READY_FOR_M3_OBJECTIVE_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "controlled_comparison": "same_prefix_length_compare_continue_stop_switch",
+      "controlled_test_required": true,
+      "execution_performed": false,
+      "expected_signal": "objective_metric_predicts_terminal_failure_better_than_local_metric",
+      "experimental_conditions": [
+        {
+          "condition_family": "continue_local_affordance",
+          "condition_id": "continue_action6",
+          "post_prefix_action": "ACTION6",
+          "post_prefix_policy": "continue_action",
+          "role": "target_or_risk_condition"
+        },
+        {
+          "condition_family": "stop_or_noop",
+          "condition_id": "stop_policy",
+          "post_prefix_action": null,
+          "post_prefix_policy": "stop_or_hold_if_available",
+          "role": "stop_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION3",
+          "post_prefix_action": "ACTION3",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION4",
+          "post_prefix_action": "ACTION4",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION1",
+          "post_prefix_action": "ACTION1",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        },
+        {
+          "condition_family": "switch_subgoal",
+          "condition_id": "switch_ACTION2",
+          "post_prefix_action": "ACTION2",
+          "post_prefix_policy": "switch_to_action",
+          "role": "switch_control"
+        }
+      ],
+      "falsification_criteria": [
+        {
+          "failure_condition": "objective_aligned_metric_does_not_select_safer_policy_than_local_effect_metric",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_o1_hypothesis",
+          "support_condition": "objective_aligned_metric_selects_safer_policy_than_local_effect_metric"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "final_game_state",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "local_effect_metric",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "repeated_action6_count",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        },
+        {
+          "failure_condition": "candidate_condition_signal <= best_control_condition_signal",
+          "metric": "useful_action6_steps",
+          "minimum_effect_size": 1,
+          "source": "m3_o1_default_metric_guard",
+          "support_condition": "candidate_condition_signal > best_control_condition_signal"
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_counted_as_confirmation": false,
+      "hypothesis_family": "global_objective_alignment_metric",
+      "hypothesis_tested": "Local patch/object-position effects may be insufficient as a success metric; objective progress must penalize GAME_OVER and reward level completion.",
+      "local_diagnostic_metrics": [
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy",
+        "local_effect_metric",
+        "repeated_action6_count",
+        "useful_action6_steps"
+      ],
+      "objective_request_counted_as_support": false,
+      "planning_rationale": "Compare local-effect diagnostics to objective metrics so M3 can test whether local productivity predicts or hides terminal failure.",
+      "policy_result_counted_as_scientific_verdict": false,
+      "prefix_action": "ACTION6",
+      "prefix_lengths": [
+        6,
+        12,
+        24,
+        48,
+        64
+      ],
+      "primary_objective_metrics": [
+        "final_game_state",
+        "terminal_state_after_rollout",
+        "levels_completed_after_rollout",
+        "objective_progress_proxy"
+      ],
+      "request_id": "m3_o1::m2_o1_p2_o1_bp35-0a0ad940_objective_alignment_001_h004::global_objective_alignment_metric",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_hypothesis_id": "m2_o1::p2_o1::bp35-0a0ad940::objective_alignment::001::h004",
+      "source_request_id": "p2_o1::bp35-0a0ad940::objective_alignment::001",
+      "status": "READY_FOR_M3_OBJECTIVE_EXPERIMENT",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "policy_result_counted_as_scientific_verdict": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "skipped_objective_hypotheses": [],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "conditions_per_request": 6,
+    "continue_conditions": 4,
+    "controlled_test_required": true,
+    "execution_performed": false,
+    "hypothesis_counted_as_confirmation": false,
+    "local_diagnostic_metrics": [
+      "local_effect_metric",
+      "repeated_action6_count",
+      "useful_action6_steps"
+    ],
+    "objective_experiment_requests_generated": 4,
+    "objective_hypotheses_consumed": 4,
+    "objective_request_counted_as_support": false,
+    "planned_condition_cells": 120,
+    "policy_result_counted_as_scientific_verdict": false,
+    "prefix_lengths": [
+      6,
+      12,
+      24,
+      48,
+      64
+    ],
+    "primary_objective_metrics": [
+      "final_game_state",
+      "terminal_state_after_rollout",
+      "levels_completed_after_rollout",
+      "objective_progress_proxy"
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "skipped_objective_hypotheses": 0,
+    "status": "UNRESOLVED",
+    "stop_conditions": 4,
+    "support": 0,
+    "switch_conditions": 16,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

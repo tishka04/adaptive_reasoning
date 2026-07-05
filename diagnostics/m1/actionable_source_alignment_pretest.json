@@ -1,0 +1,607 @@
+{
+  "config": {
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "max_branching": 4,
+    "max_depth": 3,
+    "max_nodes_per_problem": 85,
+    "source_reachability_path": "diagnostics\\m1\\source_reachability_problems.json",
+    "source_scope": "ranked_new_pairs"
+  },
+  "preconditions": [],
+  "prior_counted_as_proof": false,
+  "results": [
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION4",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION4",
+          9,
+          11
+        ],
+        "desired_source_color": 9,
+        "game_id": "bp35-0a0ad940",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "m1_anchor_motion",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 24,
+        "target_color": 11,
+        "target_live_present": true,
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 4
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION4",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION4",
+          11,
+          9
+        ],
+        "desired_source_color": 11,
+        "game_id": "bp35-0a0ad940",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "m1_anchor_motion",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 8,
+        "target_color": 9,
+        "target_live_present": true,
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 4
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION3",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION3",
+          11,
+          9
+        ],
+        "desired_source_color": 11,
+        "game_id": "bp35-0a0ad940",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "m1_anchor_motion",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 8,
+        "target_color": 9,
+        "target_live_present": true,
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 4
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION3",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION3",
+          9,
+          11
+        ],
+        "desired_source_color": 9,
+        "game_id": "bp35-0a0ad940",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "m1_anchor_motion",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 18,
+        "target_color": 11,
+        "target_live_present": true,
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 3
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION4",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION4",
+          14,
+          3
+        ],
+        "desired_source_color": 14,
+        "game_id": "bp35-0a0ad940",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "m1_anchor_motion",
+          "paired_with",
+          "aligned_with",
+          "adjacent_to"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 105,
+        "target_color": 3,
+        "target_live_present": true,
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 1
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION5",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION5",
+          12,
+          0
+        ],
+        "desired_source_color": 12,
+        "game_id": "cd82-fb555c5d",
+        "live_preferred_predicates": [],
+        "predicates": [
+          "paired_with",
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "m1_anchor_created_removed",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_removal_appears",
+          "m1_adjacency_modified"
+        ],
+        "preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 34,
+        "target_color": 0,
+        "target_live_present": true,
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 3
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION5",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION5",
+          8,
+          0
+        ],
+        "desired_source_color": 8,
+        "game_id": "cd82-fb555c5d",
+        "live_preferred_predicates": [],
+        "predicates": [
+          "paired_with",
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "m1_anchor_created_removed",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_removal_appears",
+          "m1_adjacency_preserved"
+        ],
+        "preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 49,
+        "target_color": 0,
+        "target_live_present": true,
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 2
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION2",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION2",
+          0,
+          2
+        ],
+        "desired_source_color": 0,
+        "game_id": "cd82-fb555c5d",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "m1_anchor_contact",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_creation_appears",
+          "m1_adjacency_preserved"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 44,
+        "target_color": 2,
+        "target_live_present": true,
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 37
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION1",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION1",
+          0,
+          2
+        ],
+        "desired_source_color": 0,
+        "game_id": "cd82-fb555c5d",
+        "live_preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "m1_anchor_contact",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_creation_appears",
+          "m1_adjacency_preserved"
+        ],
+        "preferred_predicates": [
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 43,
+        "target_color": 2,
+        "target_live_present": true,
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 36
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION1",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION1",
+          2,
+          9
+        ],
+        "desired_source_color": 2,
+        "game_id": "dc22-4c9bff3e",
+        "live_preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "same_shape",
+          "m1_anchor_created_removed",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_creation_appears",
+          "m1_object_motion_appears",
+          "m1_adjacency_preserved",
+          "m1_anchor_motion",
+          "m1_anchor_contact"
+        ],
+        "preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 155,
+        "target_color": 9,
+        "target_live_present": true,
+        "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 12
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION1",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION1",
+          9,
+          2
+        ],
+        "desired_source_color": 9,
+        "game_id": "dc22-4c9bff3e",
+        "live_preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "m1_anchor_created_removed",
+          "same_shape",
+          "m1_anchor_motion"
+        ],
+        "preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 126,
+        "target_color": 2,
+        "target_live_present": true,
+        "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 11
+      }
+    },
+    {
+      "error": "",
+      "evaluated_nodes": 85,
+      "exhausted": true,
+      "found": false,
+      "precondition": null,
+      "problem": {
+        "action": "ACTION2",
+        "available_live_sources": [],
+        "block_reason": "source_not_selectable_for_action",
+        "candidate_pair": [
+          "ACTION2",
+          2,
+          9
+        ],
+        "desired_source_color": 2,
+        "game_id": "dc22-4c9bff3e",
+        "live_preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "predicates": [
+          "paired_with",
+          "aligned_with",
+          "adjacent_to",
+          "same_shape",
+          "m1_anchor_created_removed",
+          "m1_anchor_motion",
+          "m1_anchor_contact",
+          "source_target_color_transform",
+          "m1_color_pair_change_appears",
+          "m1_object_creation_appears",
+          "m1_adjacency_modified",
+          "m1_object_motion_appears"
+        ],
+        "preferred_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "prior_counted_as_proof": false,
+        "source_scope": "ranked_new_pairs",
+        "status": "UNRESOLVED",
+        "support": 110,
+        "target_color": 9,
+        "target_live_present": true,
+        "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "transition_support": 10
+      }
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "mean_prep_length": 0.0,
+    "per_game": {
+      "bp35-0a0ad940": {
+        "preconditions_found": 0,
+        "problems_total": 5,
+        "source_becomes_actionable": 0,
+        "target_still_present": 0
+      },
+      "cd82-fb555c5d": {
+        "preconditions_found": 0,
+        "problems_total": 4,
+        "source_becomes_actionable": 0,
+        "target_still_present": 0
+      },
+      "dc22-4c9bff3e": {
+        "preconditions_found": 0,
+        "problems_total": 3,
+        "source_becomes_actionable": 0,
+        "target_still_present": 0
+      }
+    },
+    "preconditions_found": 0,
+    "problems_total": 12,
+    "source_becomes_actionable": 0,
+    "target_still_present": 0
+  },
+  "trace_support_counted_as_proof": false
+}

@@ -1,0 +1,113 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "execution_performed": false,
+    "schema_version": "p3.abstract_mechanic_policy_probe.v1",
+    "stage": "P3.G0.1",
+    "symbolic_model_path": "diagnostics\\m3\\generic_candidate_symbolic_mechanism_model.json"
+  },
+  "policy_adapter": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_candidates": [
+      {
+        "action": "ACTION3",
+        "candidate_effects": [
+          "move_entity",
+          "transform_entity"
+        ],
+        "model_status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "relation_effects": [
+          "distance_decreases"
+        ],
+        "revision_status": "CANDIDATE_ONLY",
+        "score_weights": {
+          "actor_effect_score": 2.0,
+          "novelty_score": 1.0,
+          "relation_progress_score": 3.0,
+          "repetition_penalty": -0.75,
+          "terminal_risk_penalty": -999.0
+        },
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      {
+        "action": "ACTION4",
+        "candidate_effects": [
+          "move_entity",
+          "transform_entity"
+        ],
+        "model_status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "relation_effects": [
+          "distance_decreases"
+        ],
+        "revision_status": "CANDIDATE_ONLY",
+        "score_weights": {
+          "actor_effect_score": 2.0,
+          "novelty_score": 1.0,
+          "relation_progress_score": 3.0,
+          "repetition_penalty": -0.75,
+          "terminal_risk_penalty": -999.0
+        },
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      }
+    ],
+    "actor_candidates": [
+      "E182"
+    ],
+    "adapter_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+    "candidate_model_counted_as_confirmed_mechanic": false,
+    "dynamic_invariants_observed_not_semantic": [
+      "E193"
+    ],
+    "ignored_or_caveated_entities": [
+      {
+        "entity_id": "E001",
+        "family": "monotone_counter",
+        "reason": "symbolic_model_caveat_not_policy_signal",
+        "semantic_interpretation": "unknown"
+      }
+    ],
+    "policy_adapter_counted_as_confirmation": false,
+    "policy_adapter_id": "p3g0_1::bp35::abstract_mechanic_policy_adapter",
+    "policy_scoring": {
+      "actor_effect_score": "candidate action affects actor candidate",
+      "novelty_score": "lower action count preferred",
+      "relation_progress_score": "candidate action has distance_decreases relation effect",
+      "repetition_penalty": "repeated action penalized but not banned",
+      "terminal_risk_penalty": "estimated terminal horizon may stop risky action"
+    },
+    "relation_targets": [
+      "E136",
+      "E137",
+      "E138",
+      "E139"
+    ],
+    "revision_status": "CANDIDATE_ONLY",
+    "source_symbolic_model_id": "m3g0_7::bp35::generic_symbolic_mechanism_model",
+    "source_symbolic_model_path": "diagnostics\\m3\\generic_candidate_symbolic_mechanism_model.json",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "policy_adapter_counted_as_confirmation": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_candidates": 2,
+    "actor_candidates": 1,
+    "candidate_model_counted_as_confirmed_mechanic": false,
+    "ignored_or_caveated_entities": 1,
+    "ready_for_abstract_policy_probe": true,
+    "relation_targets": 4,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

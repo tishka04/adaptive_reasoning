@@ -1,0 +1,47 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\smoke_v1_stage\baseline_memory.pt
+  time_budget=1.0s   mode=development
+  sampler stage: v0
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] disabled via --no-task-program
+
+  running agent.main() with 1.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.51 epsilon=0.85 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.60 epsilon=0.82 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.71 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=1 action=ACTION1 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.7305936617723621 energy=0.6307531595230103 goal_prog=3.474597178865224e-05 risk=0.10546955624355012 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION1 s=-0.731, #2 random ACTION7 s=-0.767, #3 heuristic ACTION3 s=-0.773]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=2 action=ACTION2 subgoal=Try every available action at least 2x and observe effects source=random score=-0.7310163396411369 energy=0.6319840848445892 goal_prog=3.9058886613929644e-05 risk=0.10497076023391828 sources={'heuristic': 7, 'random': 5} top=[#1 random ACTION2 s=-0.731, #2 heuristic ACTION6 s=-0.743, #3 heuristic ACTION2 s=-0.764]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=3 action=ACTION2 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.7528692120557775 energy=0.6573581397533417 goal_prog=3.424611350055784e-05 risk=0.10110294117647067 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION2 s=-0.753, #2 random ACTION2 s=-0.761, #3 random ACTION5 s=-0.781]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=4 action=ACTION2 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.6558723942402639 energy=0.5879234969615936 goal_prog=3.414873208384961e-05 risk=0.07353291038858056 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION2 s=-0.656, #2 random ACTION2 s=-0.712, #3 heuristic ACTION1 s=-0.753]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=5 action=ACTION2 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.7118039556006526 energy=0.6365432441234589 goal_prog=3.766283407458104e-05 risk=0.08109911324197054 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION2 s=-0.712, #2 heuristic ACTION1 s=-0.757, #3 heuristic ACTION5 s=-0.777]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=6 action=ACTION3 subgoal=Try every available action at least 2x and observe effects source=random score=-0.7105266602795586 energy=0.6382923424243927 goal_prog=3.749268944375217e-05 risk=0.07806458247634733 sources={'heuristic': 7, 'random': 5} top=[#1 random ACTION3 s=-0.711, #2 heuristic ACTION4 s=-0.72, #3 heuristic ACTION2 s=-0.741]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=7 action=ACTION2 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.6850974629017887 energy=0.6236257553100586 goal_prog=4.077463745488785e-05 risk=0.06753246753246776 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION2 s=-0.685, #2 heuristic ACTION7 s=-0.745, #3 random ACTION1 s=-0.745]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=8 action=ACTION6 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.6860939352466422 energy=0.6122276782989502 goal_prog=3.9057471440173686e-05 risk=0.07980769230769243 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION6 s=-0.686, #2 heuristic ACTION2 s=-0.694, #3 random ACTION2 s=-0.72]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=9 action=ACTION2 subgoal=Try every available action at least 2x and observe effects source=heuristic score=-0.7391322684683305 energy=0.6586321592330933 goal_prog=3.755058423848823e-05 risk=0.08633633633633646 sources={'heuristic': 7, 'random': 5} top=[#1 heuristic ACTION2 s=-0.739, #2 random ACTION2 s=-0.74, #3 random ACTION7 s=-0.76]
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False trajectory_sources={'heuristic': 8, 'random': 2}
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 320
+  assoc wins:    0
+  elapsed:       6.8s
+  final goal:    Explore and discover the win condition
+
+  --no-save-memory set; cross-game memory NOT written back

@@ -1,0 +1,348 @@
+{
+  "game_id": "ar25-e3c63847",
+  "episode_id": "f0fe23029ffa",
+  "pair_colors": [
+    10,
+    11
+  ],
+  "total_states_analyzed": 824,
+  "level_transitions": [
+    {
+      "step_index": 15,
+      "from_level": 0,
+      "to_level": 1,
+      "action_that_caused": "ACTION2"
+    },
+    {
+      "step_index": 29,
+      "from_level": 1,
+      "to_level": 2,
+      "action_that_caused": "ACTION2"
+    },
+    {
+      "step_index": 121,
+      "from_level": 2,
+      "to_level": 3,
+      "action_that_caused": "ACTION2"
+    },
+    {
+      "step_index": 146,
+      "from_level": 3,
+      "to_level": 4,
+      "action_that_caused": "ACTION2"
+    },
+    {
+      "step_index": 205,
+      "from_level": 4,
+      "to_level": 5,
+      "action_that_caused": "ACTION3"
+    },
+    {
+      "step_index": 349,
+      "from_level": 5,
+      "to_level": 6,
+      "action_that_caused": "ACTION2"
+    },
+    {
+      "step_index": 485,
+      "from_level": 6,
+      "to_level": 7,
+      "action_that_caused": "ACTION1"
+    }
+  ],
+  "pre_action2_analysis": {
+    "total_pre_action2": 267,
+    "successful_pre_states": 6,
+    "failed_pre_states": 261,
+    "successful_examples": [
+      {
+        "step_index": 14,
+        "level": 0,
+        "action_next": "ACTION2",
+        "action2_succeeded": true,
+        "matched_pairs": 0,
+        "unmatched_total": 5,
+        "match_score": -20.7953,
+        "best_pair_score": 2.8268,
+        "mean_pair_score": 2.8268,
+        "min_pair_score": 2.8268,
+        "component_counts": {
+          "first_color": 1,
+          "second_color": 4,
+          "total": 5
+        },
+        "shape_features": {
+          "mean_size_ratio": 3.7059,
+          "mean_bbox_iou": 0.0,
+          "mean_centroid_distance": 32.7567,
+          "mean_row_alignment": 0.8906,
+          "mean_col_alignment": 0.5
+        },
+        "cursor_near_target": 1
+      },
+      {
+        "step_index": 28,
+        "level": 1,
+        "action_next": "ACTION2",
+        "action2_succeeded": true,
+        "matched_pairs": 0,
+        "unmatched_total": 6,
+        "match_score": -25.3071,
+        "best_pair_score": 2.9383,
+        "mean_pair_score": 2.9383,
+        "min_pair_score": 2.9383,
+        "component_counts": {
+          "first_color": 1,
+          "second_color": 5,
+          "total": 6
+        },
+        "shape_features": {
+          "mean_size_ratio": 3.1698,
+          "mean_bbox_iou": 0.0,
+          "mean_centroid_distance": 32.5576,
+          "mean_row_alignment": 0.9062,
+          "mean_col_alignment": 0.5
+        },
+        "cursor_near_target": 1
+      },
+      {
+        "step_index": 120,
+        "level": 2,
+        "action_next": "ACTION2",
+        "action2_succeeded": true,
+        "matched_pairs": 0,
+        "unmatched_total": 19,
+        "match_score": -75.8456,
+        "best_pair_score": 2.4902,
+        "mean_pair_score": 2.4902,
+        "min_pair_score": 2.4902,
+        "component_counts": {
+          "first_color": 1,
+          "second_color": 18,
+          "total": 19
+        },
+        "shape_features": {
+          "mean_size_ratio": 3.7333,
+          "mean_bbox_iou": 0.0,
+          "mean_centroid_distance": 24.313,
+          "mean_row_alignment": 0.6344,
+          "mean_col_alignment": 0.8969
+        },
+        "cursor_near_target": 4
+      }
+    ],
+    "failed_examples": [
+      {
+        "step_index": 5,
+        "level": 0,
+        "action_next": "ACTION2",
+        "action2_succeeded": false,
+        "matched_pairs": 0,
+        "unmatched_total": 3,
+        "match_score": -11.8336,
+        "best_pair_score": 3.1058,
+        "mean_pair_score": 3.1058,
+        "min_pair_score": 3.1058,
+        "component_counts": {
+          "first_color": 1,
+          "second_color": 2,
+          "total": 3
+        },
+        "shape_features": {
+          "mean_size_ratio": 3.15,
+          "mean_bbox_iou": 0.0,
+          "mean_centroid_distance": 32.0975,
+          "mean_row_alignment": 0.9609,
+          "mean_col_alignment": 0.5
+        },
+        "cursor_near_target": 0
+      },
+      {
+        "step_index": 6,
+        "level": 0,
+        "action_next": "ACTION2",
+        "action2_succeeded": false,
+        "matched_pairs": 0,
+        "unmatched_total": 3,
+        "match_score": -11.8675,
+        "best_pair_score": 3.075,
+        "mean_pair_score": 3.075,
+        "min_pair_score": 3.075,
+        "component_counts": {
+          "first_color": 1,
+          "second_color": 2,
+          "total": 3
+        },
+        "shape_features": {
+          "mean_size_ratio": 3.2034,
+          "mean_bbox_iou": 0.0,
+          "mean_centroid_distance": 32.1403,
+          "mean_row_alignment": 0.9531,
+          "mean_col_alignment": 0.5
+        },
+        "cursor_near_target": 0
+      },
+      {
+        "step_index": 7,
+        "level": 0,
+        "action_next": "ACTION2",
+        "action2_succeeded": false,
+        "matched_pairs": 0,
+        "unmatched_total": 3,
+        "match_score": -11.9014,
+        "best_pair_score": 3.0442,
+        "mean_pair_score": 3.0442,
+        "min_pair_score": 3.0442,
+        "component_counts": {
+          "first_color": 1,
+          "second_color": 2,
+          "total": 3
+        },
+        "shape_features": {
+          "mean_size_ratio": 3.2586,
+          "mean_bbox_iou": 0.0,
+          "mean_centroid_distance": 32.1908,
+          "mean_row_alignment": 0.9453,
+          "mean_col_alignment": 0.5
+        },
+        "cursor_near_target": 0
+      }
+    ]
+  },
+  "learned_thresholds": {
+    "feature_thresholds": {
+      "matched_pairs": {
+        "threshold": 0,
+        "success_range": [
+          0,
+          0
+        ],
+        "failed_range": [
+          0,
+          5
+        ],
+        "perfectly_discriminating": false
+      },
+      "unmatched_total": {
+        "threshold": 43,
+        "success_range": [
+          5,
+          43
+        ],
+        "failed_range": [
+          3,
+          53
+        ],
+        "perfectly_discriminating": false
+      },
+      "match_score": {
+        "threshold": -159.9087,
+        "success_range": [
+          -159.9087,
+          -20.7953
+        ],
+        "failed_range": [
+          -213.5716,
+          -5.7171
+        ],
+        "perfectly_discriminating": false
+      },
+      "best_pair_score": {
+        "threshold": 2.4902,
+        "success_range": [
+          2.4902,
+          3.9494
+        ],
+        "failed_range": [
+          1.8383,
+          4.8209
+        ],
+        "perfectly_discriminating": false
+      },
+      "mean_pair_score": {
+        "threshold": 2.4902,
+        "success_range": [
+          2.4902,
+          3.2807
+        ],
+        "failed_range": [
+          1.8383,
+          4.3003
+        ],
+        "perfectly_discriminating": "False"
+      },
+      "min_pair_score": {
+        "threshold": 2.4902,
+        "success_range": [
+          2.4902,
+          2.9383
+        ],
+        "failed_range": [
+          1.8383,
+          3.885
+        ],
+        "perfectly_discriminating": false
+      },
+      "mean_bbox_iou": {
+        "threshold": 0.0,
+        "success_range": [
+          0.0,
+          0.0
+        ],
+        "failed_range": [
+          0.0,
+          0.2667
+        ],
+        "perfectly_discriminating": "False"
+      },
+      "mean_centroid_distance": {
+        "threshold": 32.7567,
+        "success_range": [
+          14.2276,
+          32.7567
+        ],
+        "failed_range": [
+          1.7356,
+          35.9868
+        ],
+        "perfectly_discriminating": "False"
+      }
+    },
+    "perfect_discriminators": [],
+    "suggested_rule": "match_score >= -159.9087"
+  },
+  "recalibrated_model": {
+    "old_method": {
+      "expected_matched_pairs": "median of all ready states",
+      "ready_threshold": "p25 of match scores"
+    },
+    "new_method": {
+      "expected_matched_pairs_min": 0,
+      "expected_matched_pairs_mean": 0.0,
+      "match_score_min": -159.9087,
+      "match_score_p25": -92.1273,
+      "match_score_mean": -77.2097,
+      "margin": 0.5,
+      "suggested_ready_threshold": -160.4087
+    },
+    "calibration_notes": [
+      "Use MIN of successful states as threshold, not median",
+      "This ensures gate passes ALL states that led to success",
+      "Margin allows for slight variations"
+    ]
+  },
+  "success_manifold_summary": {
+    "count": 6,
+    "matched_pairs_distribution": {
+      "values": [
+        0
+      ],
+      "mode": 0
+    },
+    "key_invariants": [
+      "All successful states have specific matched_pairs count",
+      "Unmatched_total tends to be low",
+      "Pair quality (score) is above threshold"
+    ]
+  }
+}

@@ -1,0 +1,1175 @@
+{
+  "rows": 5605,
+  "state_metrics": "models/cognitive_phase.metrics.json",
+  "by_game_metrics": "models/cognitive_phase_by_game.metrics.json",
+  "phases": [
+    {
+      "phase": "explore_unknown",
+      "support": 512,
+      "games_n": 6,
+      "episodes_n": 12,
+      "top_game": [
+        "dc22-4c9bff3e",
+        376
+      ],
+      "top_game_share": 0.734,
+      "games": {
+        "dc22-4c9bff3e": 376,
+        "ft09-0d8bbf25": 54,
+        "cd82-fb555c5d": 37,
+        "bp35-0a0ad940": 23,
+        "ar25-e3c63847": 21,
+        "cn04-65d47d14": 1
+      },
+      "state_f1": 0.0483,
+      "state_precision": 0.106,
+      "state_recall": 0.0312,
+      "by_game_f1": 0.0,
+      "by_game_precision": 0.0,
+      "by_game_recall": 0.0,
+      "state_confusions": [
+        [
+          440,
+          "repeat_success",
+          0.859
+        ],
+        [
+          26,
+          "test_click",
+          0.051
+        ],
+        [
+          20,
+          "test_move",
+          0.039
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          485,
+          "repeat_success",
+          0.947
+        ],
+        [
+          12,
+          "avoid_danger",
+          0.023
+        ],
+        [
+          8,
+          "test_move",
+          0.016
+        ]
+      ],
+      "hypotheses_n": 10,
+      "hypothesis_entropy": 1.811,
+      "top_hypotheses": [
+        [
+          "__none__",
+          293
+        ],
+        [
+          "fancy_colors_squares_are_teleporters",
+          125
+        ],
+        [
+          "colors_must_differ_is_shape_to_reproduce_says_so",
+          47
+        ],
+        [
+          "doted_line_act_as_miror",
+          18
+        ],
+        [
+          "black_and_green_squares_expand_into_4_new_pieces",
+          8
+        ]
+      ],
+      "actions_n": 7,
+      "action_entropy": 2.152,
+      "top_actions": [
+        [
+          "ACTION6",
+          222
+        ],
+        [
+          "ACTION4",
+          86
+        ],
+        [
+          "ACTION2",
+          86
+        ],
+        [
+          "ACTION1",
+          63
+        ],
+        [
+          "ACTION3",
+          51
+        ]
+      ],
+      "click_share": 0.434,
+      "noop_share": 0.285,
+      "levelup_share": 0.002,
+      "win_count": 0,
+      "gameover_count": 0,
+      "game_types": {
+        "transform_puzzle": 406,
+        "color_matching": 48,
+        "move": 21,
+        "__unknown__": 13,
+        "navigate_exit": 10,
+        "shape_matching": 7,
+        "click_move_game": 6,
+        "matching_shapes": 1
+      },
+      "flags": [
+        "game-concentrated",
+        "hypothesis-heterogeneous",
+        "no-cross-game-generalization",
+        "weak-even-in-episode-cv"
+      ],
+      "verdict": "meta-class probable: split into more specific exploration phases"
+    },
+    {
+      "phase": "test_move",
+      "support": 596,
+      "games_n": 5,
+      "episodes_n": 13,
+      "top_game": [
+        "ar25-e3c63847",
+        326
+      ],
+      "top_game_share": 0.547,
+      "games": {
+        "ar25-e3c63847": 326,
+        "cd82-fb555c5d": 151,
+        "cn04-65d47d14": 73,
+        "dc22-4c9bff3e": 27,
+        "bp35-0a0ad940": 19
+      },
+      "state_f1": 0.1922,
+      "state_precision": 0.1899,
+      "state_recall": 0.1946,
+      "by_game_f1": 0.1146,
+      "by_game_precision": 0.147,
+      "by_game_recall": 0.094,
+      "state_confusions": [
+        [
+          151,
+          "recover_after_failure",
+          0.253
+        ],
+        [
+          78,
+          "explore_unknown",
+          0.131
+        ],
+        [
+          76,
+          "none",
+          0.128
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          518,
+          "repeat_success",
+          0.869
+        ],
+        [
+          12,
+          "test_interaction",
+          0.02
+        ],
+        [
+          7,
+          "explore_unknown",
+          0.012
+        ]
+      ],
+      "hypotheses_n": 22,
+      "hypothesis_entropy": 2.989,
+      "top_hypotheses": [
+        [
+          "__none__",
+          176
+        ],
+        [
+          "you_need_to_match_at_least_one_shape",
+          157
+        ],
+        [
+          "which_action_correspond_to_which_move",
+          77
+        ],
+        [
+          "action5_rotates_cursor",
+          43
+        ],
+        [
+          "action1_moves_red_linned_black_sqaure_left",
+          32
+        ]
+      ],
+      "actions_n": 7,
+      "action_entropy": 2.433,
+      "top_actions": [
+        [
+          "ACTION2",
+          168
+        ],
+        [
+          "ACTION1",
+          122
+        ],
+        [
+          "ACTION3",
+          112
+        ],
+        [
+          "ACTION4",
+          109
+        ],
+        [
+          "ACTION5",
+          53
+        ]
+      ],
+      "click_share": 0.052,
+      "noop_share": 0.141,
+      "levelup_share": 0.007,
+      "win_count": 0,
+      "gameover_count": 1,
+      "game_types": {
+        "move": 326,
+        "shape_matching": 135,
+        "transform_puzzle": 80,
+        "matching_shapes": 36,
+        "navigate_exit": 9,
+        "escape_labyrinth": 6,
+        "click_move_game": 4
+      },
+      "flags": [
+        "hypothesis-heterogeneous"
+      ],
+      "verdict": "relatively atomic, but confused with exploration/recovery"
+    },
+    {
+      "phase": "test_click",
+      "support": 238,
+      "games_n": 5,
+      "episodes_n": 12,
+      "top_game": [
+        "cd82-fb555c5d",
+        150
+      ],
+      "top_game_share": 0.63,
+      "games": {
+        "cd82-fb555c5d": 150,
+        "cn04-65d47d14": 27,
+        "bp35-0a0ad940": 25,
+        "dc22-4c9bff3e": 21,
+        "ft09-0d8bbf25": 15
+      },
+      "state_f1": 0.0749,
+      "state_precision": 0.0787,
+      "state_recall": 0.0714,
+      "by_game_f1": 0.0,
+      "by_game_precision": 0.0,
+      "by_game_recall": 0.0,
+      "state_confusions": [
+        [
+          105,
+          "test_interaction",
+          0.441
+        ],
+        [
+          56,
+          "test_move",
+          0.235
+        ],
+        [
+          25,
+          "explore_unknown",
+          0.105
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          199,
+          "repeat_success",
+          0.836
+        ],
+        [
+          37,
+          "test_move",
+          0.155
+        ],
+        [
+          2,
+          "test_interaction",
+          0.008
+        ]
+      ],
+      "hypotheses_n": 19,
+      "hypothesis_entropy": 3.497,
+      "top_hypotheses": [
+        [
+          "actions_6_click_on_colored_box_to_select_color",
+          46
+        ],
+        [
+          "click_on_the_top_cursor_to_enable_it",
+          44
+        ],
+        [
+          "action_5_to_apply_color_on_central_shape_from_point_of_view_of_the_cursor",
+          32
+        ],
+        [
+          "click_on_yellow_black square_moves_black_line_below",
+          24
+        ],
+        [
+          "action6_click_on_shapes_in_grey_area_to_open_barriers",
+          14
+        ]
+      ],
+      "actions_n": 6,
+      "action_entropy": 2.368,
+      "top_actions": [
+        [
+          "ACTION6",
+          83
+        ],
+        [
+          "ACTION1",
+          50
+        ],
+        [
+          "ACTION3",
+          34
+        ],
+        [
+          "ACTION2",
+          30
+        ],
+        [
+          "ACTION4",
+          29
+        ]
+      ],
+      "click_share": 0.349,
+      "noop_share": 0.223,
+      "levelup_share": 0.008,
+      "win_count": 0,
+      "gameover_count": 1,
+      "game_types": {
+        "shape_matching": 106,
+        "transform_puzzle": 81,
+        "navigate_exit": 22,
+        "matching_shapes": 11,
+        "color_matching": 9,
+        "__unknown__": 6,
+        "click_move_game": 3
+      },
+      "flags": [
+        "hypothesis-heterogeneous",
+        "no-cross-game-generalization",
+        "weak-even-in-episode-cv"
+      ],
+      "verdict": "plausible concept, but undercovered and mixed with interaction"
+    },
+    {
+      "phase": "test_interaction",
+      "support": 586,
+      "games_n": 6,
+      "episodes_n": 15,
+      "top_game": [
+        "cd82-fb555c5d",
+        171
+      ],
+      "top_game_share": 0.292,
+      "games": {
+        "cd82-fb555c5d": 171,
+        "dc22-4c9bff3e": 144,
+        "bp35-0a0ad940": 127,
+        "cn04-65d47d14": 111,
+        "ar25-e3c63847": 19,
+        "ft09-0d8bbf25": 14
+      },
+      "state_f1": 0.0332,
+      "state_precision": 0.0341,
+      "state_recall": 0.0324,
+      "by_game_f1": 0.0693,
+      "by_game_precision": 0.449,
+      "by_game_recall": 0.0375,
+      "state_confusions": [
+        [
+          147,
+          "repeat_success",
+          0.251
+        ],
+        [
+          138,
+          "test_move",
+          0.235
+        ],
+        [
+          101,
+          "reach_target",
+          0.172
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          479,
+          "repeat_success",
+          0.817
+        ],
+        [
+          85,
+          "test_move",
+          0.145
+        ]
+      ],
+      "hypotheses_n": 19,
+      "hypothesis_entropy": 3.364,
+      "top_hypotheses": [
+        [
+          "find_way_via_removing_bleu_cells",
+          98
+        ],
+        [
+          "shapes_can_overlap",
+          96
+        ],
+        [
+          "use_clamp_to_move_colored_bridges",
+          92
+        ],
+        [
+          "how_to_use_the_upper_cursor",
+          80
+        ],
+        [
+          "action_5_to_apply_color_on_central_shape_from_point_of_view_of_the_cursor",
+          74
+        ]
+      ],
+      "actions_n": 6,
+      "action_entropy": 2.48,
+      "top_actions": [
+        [
+          "ACTION6",
+          171
+        ],
+        [
+          "ACTION4",
+          110
+        ],
+        [
+          "ACTION3",
+          96
+        ],
+        [
+          "ACTION2",
+          90
+        ],
+        [
+          "ACTION1",
+          70
+        ]
+      ],
+      "click_share": 0.292,
+      "noop_share": 0.191,
+      "levelup_share": 0.014,
+      "win_count": 0,
+      "gameover_count": 2,
+      "game_types": {
+        "shape_matching": 171,
+        "transform_puzzle": 152,
+        "matching_shapes": 103,
+        "escape_labyrinth": 102,
+        "navigate_exit": 22,
+        "move": 19,
+        "color_matching": 14,
+        "click_move_game": 3
+      },
+      "flags": [
+        "hypothesis-heterogeneous",
+        "weak-even-in-episode-cv"
+      ],
+      "verdict": "plausible concept, but too broad/mixed"
+    },
+    {
+      "phase": "probe_object",
+      "support": 652,
+      "games_n": 5,
+      "episodes_n": 11,
+      "top_game": [
+        "dc22-4c9bff3e",
+        271
+      ],
+      "top_game_share": 0.416,
+      "games": {
+        "dc22-4c9bff3e": 271,
+        "ft09-0d8bbf25": 148,
+        "bp35-0a0ad940": 88,
+        "cn04-65d47d14": 80,
+        "ar25-e3c63847": 65
+      },
+      "state_f1": 0.1835,
+      "state_precision": 0.2217,
+      "state_recall": 0.1564,
+      "by_game_f1": 0.0031,
+      "by_game_precision": 1.0,
+      "by_game_recall": 0.0015,
+      "state_confusions": [
+        [
+          363,
+          "repeat_success",
+          0.557
+        ],
+        [
+          85,
+          "test_move",
+          0.13
+        ],
+        [
+          35,
+          "reach_target",
+          0.054
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          550,
+          "repeat_success",
+          0.844
+        ],
+        [
+          81,
+          "test_move",
+          0.124
+        ],
+        [
+          20,
+          "reach_target",
+          0.031
+        ]
+      ],
+      "hypotheses_n": 16,
+      "hypothesis_entropy": 3.307,
+      "top_hypotheses": [
+        [
+          "__none__",
+          152
+        ],
+        [
+          "change_color_of_shapes_to_move_in_them",
+          102
+        ],
+        [
+          "match_centered_shapes_with_colors",
+          75
+        ],
+        [
+          "colors_must_differ_is_shape_to_reproduce_says_so",
+          73
+        ],
+        [
+          "click_ongrey_side_colored_shapes_to_move_objects_in_yellow_pane",
+          67
+        ]
+      ],
+      "actions_n": 6,
+      "action_entropy": 2.224,
+      "top_actions": [
+        [
+          "ACTION6",
+          269
+        ],
+        [
+          "ACTION3",
+          105
+        ],
+        [
+          "ACTION4",
+          99
+        ],
+        [
+          "ACTION2",
+          91
+        ],
+        [
+          "ACTION1",
+          77
+        ]
+      ],
+      "click_share": 0.413,
+      "noop_share": 0.078,
+      "levelup_share": 0.012,
+      "win_count": 1,
+      "gameover_count": 3,
+      "game_types": {
+        "transform_puzzle": 271,
+        "color_matching": 148,
+        "matching_shapes": 80,
+        "move": 65,
+        "navigate_exit": 61,
+        "click_move_game": 27
+      },
+      "flags": [
+        "hypothesis-heterogeneous",
+        "no-cross-game-generalization"
+      ],
+      "verdict": "meta-class probable: split by object/probe type"
+    },
+    {
+      "phase": "reach_target",
+      "support": 664,
+      "games_n": 6,
+      "episodes_n": 15,
+      "top_game": [
+        "dc22-4c9bff3e",
+        273
+      ],
+      "top_game_share": 0.411,
+      "games": {
+        "dc22-4c9bff3e": 273,
+        "bp35-0a0ad940": 159,
+        "ar25-e3c63847": 140,
+        "cd82-fb555c5d": 55,
+        "cn04-65d47d14": 33,
+        "ft09-0d8bbf25": 4
+      },
+      "state_f1": 0.1311,
+      "state_precision": 0.1622,
+      "state_recall": 0.1099,
+      "by_game_f1": 0.0,
+      "by_game_precision": 0.0,
+      "by_game_recall": 0.0,
+      "state_confusions": [
+        [
+          301,
+          "repeat_success",
+          0.453
+        ],
+        [
+          95,
+          "test_interaction",
+          0.143
+        ],
+        [
+          65,
+          "test_move",
+          0.098
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          616,
+          "repeat_success",
+          0.928
+        ],
+        [
+          33,
+          "test_move",
+          0.05
+        ],
+        [
+          11,
+          "test_interaction",
+          0.017
+        ]
+      ],
+      "hypotheses_n": 20,
+      "hypothesis_entropy": 3.301,
+      "top_hypotheses": [
+        [
+          "__none__",
+          141
+        ],
+        [
+          "fancy_colors_squares_are_teleporters",
+          121
+        ],
+        [
+          "action3_left_action4_right",
+          98
+        ],
+        [
+          "use_brdiges_to_reach_target",
+          91
+        ],
+        [
+          "doted_line_act_as_miror",
+          53
+        ]
+      ],
+      "actions_n": 6,
+      "action_entropy": 2.402,
+      "top_actions": [
+        [
+          "ACTION6",
+          193
+        ],
+        [
+          "ACTION4",
+          124
+        ],
+        [
+          "ACTION2",
+          119
+        ],
+        [
+          "ACTION3",
+          116
+        ],
+        [
+          "ACTION1",
+          92
+        ]
+      ],
+      "click_share": 0.291,
+      "noop_share": 0.161,
+      "levelup_share": 0.026,
+      "win_count": 0,
+      "gameover_count": 2,
+      "game_types": {
+        "transform_puzzle": 338,
+        "move": 140,
+        "click_move_game": 98,
+        "navigate_exit": 61,
+        "matching_shapes": 23,
+        "__unknown__": 3,
+        "color_matching": 1
+      },
+      "flags": [
+        "hypothesis-heterogeneous",
+        "no-cross-game-generalization"
+      ],
+      "verdict": "global intent, probably not readable from state-only features"
+    },
+    {
+      "phase": "avoid_danger",
+      "support": 275,
+      "games_n": 3,
+      "episodes_n": 5,
+      "top_game": [
+        "cd82-fb555c5d",
+        179
+      ],
+      "top_game_share": 0.651,
+      "games": {
+        "cd82-fb555c5d": 179,
+        "bp35-0a0ad940": 89,
+        "ft09-0d8bbf25": 7
+      },
+      "state_f1": 0.0,
+      "state_precision": 0.0,
+      "state_recall": 0.0,
+      "by_game_f1": 0.0,
+      "by_game_precision": 0.0,
+      "by_game_recall": 0.0,
+      "state_confusions": [
+        [
+          152,
+          "test_interaction",
+          0.553
+        ],
+        [
+          39,
+          "test_move",
+          0.142
+        ],
+        [
+          25,
+          "reach_target",
+          0.091
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          275,
+          "repeat_success",
+          1.0
+        ]
+      ],
+      "hypotheses_n": 6,
+      "hypothesis_entropy": 1.569,
+      "top_hypotheses": [
+        [
+          "yelow_bar_bellow_represents_the_moves_and_clicks_left_before_game_over",
+          179
+        ],
+        [
+          "action3_left_action4_right",
+          48
+        ],
+        [
+          "use_clicks_to_find_way_using_gravity",
+          22
+        ],
+        [
+          "find_way_via_removing_bleu_cells",
+          17
+        ],
+        [
+          "match_centered_shapes_with_colors",
+          7
+        ]
+      ],
+      "actions_n": 6,
+      "action_entropy": 2.438,
+      "top_actions": [
+        [
+          "ACTION6",
+          67
+        ],
+        [
+          "ACTION4",
+          67
+        ],
+        [
+          "ACTION3",
+          59
+        ],
+        [
+          "ACTION2",
+          34
+        ],
+        [
+          "ACTION1",
+          33
+        ]
+      ],
+      "click_share": 0.244,
+      "noop_share": 0.2,
+      "levelup_share": 0.015,
+      "win_count": 0,
+      "gameover_count": 0,
+      "game_types": {
+        "transform_puzzle": 179,
+        "click_move_game": 48,
+        "navigate_exit": 24,
+        "escape_labyrinth": 17,
+        "color_matching": 7
+      },
+      "flags": [
+        "no-cross-game-generalization",
+        "weak-even-in-episode-cv"
+      ],
+      "verdict": "undercovered and game-dependent semantics"
+    },
+    {
+      "phase": "repeat_success",
+      "support": 1909,
+      "games_n": 6,
+      "episodes_n": 14,
+      "top_game": [
+        "dc22-4c9bff3e",
+        808
+      ],
+      "top_game_share": 0.423,
+      "games": {
+        "dc22-4c9bff3e": 808,
+        "ar25-e3c63847": 455,
+        "bp35-0a0ad940": 341,
+        "ft09-0d8bbf25": 221,
+        "cn04-65d47d14": 76,
+        "cd82-fb555c5d": 8
+      },
+      "state_f1": 0.4597,
+      "state_precision": 0.4216,
+      "state_recall": 0.5055,
+      "by_game_f1": 0.5081,
+      "by_game_precision": 0.3498,
+      "by_game_recall": 0.9282,
+      "state_confusions": [
+        [
+          241,
+          "recover_after_failure",
+          0.126
+        ],
+        [
+          173,
+          "probe_object",
+          0.091
+        ],
+        [
+          150,
+          "reach_target",
+          0.079
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          81,
+          "test_move",
+          0.042
+        ],
+        [
+          37,
+          "reach_target",
+          0.019
+        ],
+        [
+          13,
+          "avoid_danger",
+          0.007
+        ]
+      ],
+      "hypotheses_n": 17,
+      "hypothesis_entropy": 3.081,
+      "top_hypotheses": [
+        [
+          "__none__",
+          691
+        ],
+        [
+          "shapes_mirrored_by_doted_lines",
+          269
+        ],
+        [
+          "use_brdiges_to_reach_target",
+          193
+        ],
+        [
+          "use_combination_of_clicks_and_moves_to_reach_orange_cross",
+          165
+        ],
+        [
+          "click_based_game",
+          134
+        ]
+      ],
+      "actions_n": 7,
+      "action_entropy": 2.376,
+      "top_actions": [
+        [
+          "ACTION6",
+          651
+        ],
+        [
+          "ACTION2",
+          331
+        ],
+        [
+          "ACTION4",
+          318
+        ],
+        [
+          "ACTION1",
+          279
+        ],
+        [
+          "ACTION3",
+          261
+        ]
+      ],
+      "click_share": 0.341,
+      "noop_share": 0.101,
+      "levelup_share": 0.015,
+      "win_count": 4,
+      "gameover_count": 4,
+      "game_types": {
+        "transform_puzzle": 892,
+        "move": 455,
+        "color_matching": 221,
+        "navigate_exit": 202,
+        "escape_labyrinth": 83,
+        "click_move_game": 56
+      },
+      "flags": [
+        "hypothesis-heterogeneous",
+        "dominant/stable-signal"
+      ],
+      "verdict": "fairly coherent, but dominant"
+    },
+    {
+      "phase": "recover_after_failure",
+      "support": 109,
+      "games_n": 2,
+      "episodes_n": 3,
+      "top_game": [
+        "bp35-0a0ad940",
+        79
+      ],
+      "top_game_share": 0.725,
+      "games": {
+        "bp35-0a0ad940": 79,
+        "ar25-e3c63847": 30
+      },
+      "state_f1": 0.2395,
+      "state_precision": 0.1442,
+      "state_recall": 0.7064,
+      "by_game_f1": 0.0,
+      "by_game_precision": 0.0,
+      "by_game_recall": 0.0,
+      "state_confusions": [
+        [
+          31,
+          "probe_object",
+          0.284
+        ],
+        [
+          1,
+          "repeat_success",
+          0.009
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          108,
+          "repeat_success",
+          0.991
+        ],
+        [
+          1,
+          "reach_target",
+          0.009
+        ]
+      ],
+      "hypotheses_n": 2,
+      "hypothesis_entropy": 0.849,
+      "top_hypotheses": [
+        [
+          "black_and_green_squares_expand_into_4_new_pieces",
+          79
+        ],
+        [
+          "doted_line_act_as_miror",
+          30
+        ]
+      ],
+      "actions_n": 6,
+      "action_entropy": 2.116,
+      "top_actions": [
+        [
+          "ACTION6",
+          49
+        ],
+        [
+          "ACTION3",
+          19
+        ],
+        [
+          "ACTION4",
+          18
+        ],
+        [
+          "ACTION5",
+          12
+        ],
+        [
+          "ACTION2",
+          10
+        ]
+      ],
+      "click_share": 0.45,
+      "noop_share": 0.064,
+      "levelup_share": 0.0,
+      "win_count": 0,
+      "gameover_count": 1,
+      "game_types": {
+        "navigate_exit": 79,
+        "move": 30
+      },
+      "flags": [
+        "rare",
+        "undercovered",
+        "game-concentrated"
+      ],
+      "verdict": "possible coherent concept, but too little coverage"
+    },
+    {
+      "phase": "none",
+      "support": 64,
+      "games_n": 1,
+      "episodes_n": 1,
+      "top_game": [
+        "ar25-e3c63847",
+        64
+      ],
+      "top_game_share": 1.0,
+      "games": {
+        "ar25-e3c63847": 64
+      },
+      "state_f1": 0.0,
+      "state_precision": 0.0,
+      "state_recall": 0.0,
+      "by_game_f1": 0.0,
+      "by_game_precision": 0.0,
+      "by_game_recall": 0.0,
+      "state_confusions": [
+        [
+          58,
+          "probe_object",
+          0.906
+        ],
+        [
+          6,
+          "repeat_success",
+          0.094
+        ]
+      ],
+      "by_game_confusions": [
+        [
+          64,
+          "repeat_success",
+          1.0
+        ]
+      ],
+      "hypotheses_n": 1,
+      "hypothesis_entropy": -0.0,
+      "top_hypotheses": [
+        [
+          "doted_line_act_as_miror",
+          64
+        ]
+      ],
+      "actions_n": 5,
+      "action_entropy": 2.029,
+      "top_actions": [
+        [
+          "ACTION3",
+          24
+        ],
+        [
+          "ACTION5",
+          18
+        ],
+        [
+          "ACTION1",
+          12
+        ],
+        [
+          "ACTION2",
+          8
+        ],
+        [
+          "ACTION4",
+          2
+        ]
+      ],
+      "click_share": 0.0,
+      "noop_share": 0.062,
+      "levelup_share": 0.0,
+      "win_count": 0,
+      "gameover_count": 0,
+      "game_types": {
+        "move": 64
+      },
+      "flags": [
+        "rare",
+        "undercovered",
+        "game-concentrated"
+      ],
+      "verdict": "technical/noise label: exclude or handle separately"
+    }
+  ]
+}

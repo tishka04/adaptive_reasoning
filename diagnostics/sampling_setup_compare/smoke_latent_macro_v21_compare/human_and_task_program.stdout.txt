@@ -1,0 +1,73 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\human_traces   memory=diagnostics\sampling_setup_compare\smoke_latent_macro_v21_compare\human_and_task_program_memory.pt
+  time_budget=3.0s   mode=development
+  sampler stage: v1
+  planner mode:  prior
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] pack: 1124 steps, 4 eps, 4 goal hints, 2 failure hints, 21 hypotheses
+  [human] runtime trace memory: 4 reusable traces
+  [cross-game] fresh memory
+  [cross-game] human seeding: +4 hints, +2 failures
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [game-memory] human replay: 1120 steps, 1 clicks, 21 hypotheses, human_hit_level=7 seeded_actions=1120 (online counters reset → agent actions/max_level now measure agent only)
+     ACTION1: tries=241 chg=96% die=1 mv=136
+     ACTION2: tries=346 chg=92% die=1 mv=198
+     ACTION3: tries=214 chg=94% die=0 mv=143
+     ACTION4: tries=185 chg=95% die=0 mv=99
+     ACTION5: tries=133 chg=100% die=0 mv=0
+     ACTION6: tries=  1 chg=0% die=0 mv=0
+     hypotheses: 16 keys
+  [task-program] attached ar25-e3c63847 (family=correspondence, 2 subgoal tests, conf=0.70)
+
+  running agent.main() with 3.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.58 epsilon=0.83 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.75 epsilon=0.78 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.75 epsilon=0.78 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE START attempt=1/2 target_level=1 device=cpu (this will block ~30-90s on CPU)
+[DIAG ar25-e3c63847] LIVE-REVISE compile failed after 0.5s: RuntimeError: Could not load LLM 'Qwen/Qwen2.5-3B-Instruct'. Install transformers / check HF cache.
+[DIAG ar25-e3c63847] LIVE-REVISE disabled for this run: runtime unavailable (RuntimeError)
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.75 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=1 action=ACTION6 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.3592498722544404 energy=-0.053253382444381714 goal_prog=0.05003980184555985 risk=1.8970720310457727e-16 sources={'prior': 6, 'heuristic': 4, 'random': 2} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION6 s=0.359, #2 prior ACTION2 s=0.359, #3 prior ACTION1 s=0.112]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=2 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.3427164454122247 energy=-0.0368674099445343 goal_prog=0.05003773301068577 risk=1.5741685131736525e-16 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.343, #2 prior ACTION1 s=0.103, #3 prior ACTION4 s=0.051]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=3 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.34254319569736236 energy=-0.0367162823677063 goal_prog=0.05003741639375221 risk=1.526551497252568e-16 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.343, #2 prior ACTION1 s=0.103, #3 prior ACTION4 s=0.051]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=4 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.35630027797815256 energy=-0.050367116928100586 goal_prog=0.05003897554051946 risk=1.73196201621986e-16 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.356, #2 prior ACTION1 s=0.11, #3 prior ACTION4 s=0.058]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=5 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.302515475553082 energy=0.0028979480266571045 goal_prog=0.050031967934774005 risk=8.545849738980115e-17 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.303, #2 prior ACTION1 s=0.084, #3 prior ACTION2 s=0.036]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=6 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.32334174127099674 energy=-0.017698824405670166 goal_prog=0.05003491793540889 risk=1.1906404649863778e-16 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.323, #2 prior ACTION1 s=0.093, #3 prior ACTION2 s=0.044]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=13 action=ACTION1 subgoal=[human-program] confirm ACTION5 switches controlled entity source=prior score=0.10263777308209668 energy=0.20316165685653687 goal_prog=0.05003715416460182 risk=1.4667043843643153e-16 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION1 s=0.103, #2 prior ACTION6 s=0.07, #3 prior ACTION2 s=0.036]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=20 action=ACTION1 subgoal=[human-program] confirm ACTION5 switches controlled entity source=prior score=0.09862164024234502 energy=0.2071084976196289 goal_prog=0.05003614013985498 risk=1.325668766435044e-16 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION1 s=0.099, #2 prior ACTION6 s=0.049, #3 prior ACTION2 s=0.034]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=21 action=ACTION6 subgoal=[human-program] match yellow and purple shapes until level advances source=prior score=0.35205873637096363 energy=0.059706419706344604 goal_prog=0.20003332947017044 risk=9.947642944571679e-17 sources={'prior': 4, 'heuristic': 4, 'random': 4} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION6 s=0.352, #2 prior ACTION2 s=0.128, #3 heuristic ACTION3 s=0.11]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=22 action=ACTION2 subgoal=[human-program] match yellow and purple shapes until level advances source=prior score=0.128417796800204 energy=0.3271014094352722 goal_prog=0.20003341638512212 risk=9.975572532518409e-17 sources={'prior': 3, 'heuristic': 3, 'random': 6} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.128, #2 prior ACTION1 s=0.039, #3 prior ACTION5 s=-0.033]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=23 action=ACTION1 subgoal=[human-program] match yellow and purple shapes until level advances source=random score=0.1330805692843568 energy=0.07252386212348938 goal_prog=0.20003444347748883 risk=1.121806332527757e-16 sources={'prior': 3, 'heuristic': 3, 'random': 6} latent=[] macro=[] lat_conf=None top=[#1 random ACTION1 s=0.133, #2 prior ACTION2 s=0.13, #3 heuristic ACTION1 s=0.058]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=24 action=ACTION2 subgoal=[human-program] match yellow and purple shapes until level advances source=prior score=0.13841706277817123 energy=0.31750309467315674 goal_prog=0.20003867611303577 risk=1.7088220025431586e-16 sources={'prior': 3, 'heuristic': 3, 'random': 6} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.138, #2 heuristic ACTION2 s=0.107, #3 prior ACTION1 s=0.056]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=28 action=ACTION3 subgoal=[human-program] match yellow and purple shapes until level advances source=heuristic score=0.14031598575384108 energy=0.06563135981559753 goal_prog=0.20003917904541596 risk=1.7684680774553363e-16 sources={'prior': 3, 'heuristic': 4, 'random': 5} latent=[] macro=[] lat_conf=None top=[#1 heuristic ACTION3 s=0.14, #2 random ACTION3 s=0.139, #3 prior ACTION2 s=0.13]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=29 action=ACTION1 subgoal=[human-program] match yellow and purple shapes until level advances source=heuristic score=0.1819919476831272 energy=0.023902446031570435 goal_prog=0.20003837101030514 risk=1.6681805676405093e-16 sources={'prior': 3, 'heuristic': 4, 'random': 5} latent=[] macro=[] lat_conf=None top=[#1 heuristic ACTION1 s=0.182, #2 prior ACTION2 s=0.123, #3 prior ACTION1 s=0.056]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=30 action=ACTION2 subgoal=[human-program] match yellow and purple shapes until level advances source=heuristic score=0.20927879250957607 energy=-0.0031028687953948975 goal_prog=0.20004243440344 risk=2.38755347364497e-16 sources={'prior': 3, 'heuristic': 4, 'random': 5} latent=[] macro=[] lat_conf=None top=[#1 heuristic ACTION2 s=0.209, #2 prior ACTION2 s=0.127, #3 random ACTION2 s=0.126]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=31 action=ACTION2 subgoal=[human-program] match yellow and purple shapes until level advances source=random score=0.16389844681834792 energy=0.041739076375961304 goal_prog=0.20003493012627588 risk=1.1733175824238433e-16 sources={'prior': 3, 'heuristic': 3, 'random': 6} latent=[] macro=[] lat_conf=None top=[#1 random ACTION2 s=0.164, #2 random ACTION2 s=0.155, #3 prior ACTION2 s=0.106]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=32 action=ACTION1 subgoal=[human-program] match yellow and purple shapes until level advances source=random score=0.1868307426986574 energy=0.0191134512424469 goal_prog=0.20003908727740055 risk=1.796152819940751e-16 sources={'prior': 3, 'heuristic': 4, 'random': 5} latent=[] macro=[] lat_conf=None top=[#1 random ACTION1 s=0.187, #2 prior ACTION2 s=0.11, #3 prior ACTION1 s=0.06]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=33 action=ACTION2 subgoal=[human-program] match yellow and purple shapes until level advances source=prior score=0.09726673070239471 energy=0.3234366178512573 goal_prog=0.20003569003092708 risk=1.2784919429487357e-16 sources={'prior': 3, 'heuristic': 4, 'random': 5} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.097, #2 prior ACTION1 s=0.045, #3 heuristic ACTION4 s=0.014]
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False trajectory_sources={'prior': 30, 'random': 3, 'heuristic': 3}
+[DIAG ar25-e3c63847] ITER-START iter=5 knowledge=0.75 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=5 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=5 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] PLAN iter=5 plan_step=1 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=prior score=0.30256590072967804 energy=0.0028547346591949463 goal_prog=0.050032105417631104 risk=8.688145980162917e-17 sources={'prior': 5, 'heuristic': 4, 'random': 3} latent=[] macro=[] lat_conf=None top=[#1 prior ACTION2 s=0.303, #2 prior ACTION1 s=0.083, #3 prior ACTION2 s=0.036]
+[DIAG ar25-e3c63847] STRAT-EXIT iter=5 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False trajectory_sources={'prior': 1}
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 359
+  assoc wins:    0
+  elapsed:       7.3s
+  final goal:    [human] match yellow and purple shapes
+
+  --no-save-memory set; cross-game memory NOT written back

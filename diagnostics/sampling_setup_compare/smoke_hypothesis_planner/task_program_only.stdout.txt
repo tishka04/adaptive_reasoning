@@ -1,0 +1,52 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\smoke_hypothesis_planner\task_program_only_memory.pt
+  time_budget=1.0s   mode=development
+  sampler stage: v1
+  planner mode:  prior
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] attached ar25-e3c63847 (family=correspondence, 2 subgoal tests, conf=0.70)
+
+  running agent.main() with 1.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.56 epsilon=0.83 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.71 epsilon=0.79 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE START attempt=1/2 target_level=1 device=cpu (this will block ~30-90s on CPU)
+[DIAG ar25-e3c63847] LIVE-REVISE compile failed after 0.0s: RuntimeError: Could not load LLM 'Qwen/Qwen2.5-3B-Instruct'. Install transformers / check HF cache.
+[DIAG ar25-e3c63847] LIVE-REVISE disabled for this run: runtime unavailable (RuntimeError)
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.66 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] TASK-PROGRAM attach target_level=1 kind=generic family=correspondence subgoals=2 conf=0.70
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=1 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.7139676828237507 energy=0.6114883124828339 goal_prog=3.3405074645997956e-05 risk=0.1080086580086581 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION2 s=-0.714, #2 random ACTION6 s=-0.714, #3 random ACTION2 s=-0.724]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=2 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.7055156997482149 energy=0.6492040157318115 goal_prog=3.9683334762230515e-05 risk=0.062295664534470684 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION2 s=-0.706, #2 heuristic ACTION3 s=-0.717, #3 random ACTION5 s=-0.742]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=3 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.697634100958549 energy=0.6422277987003326 goal_prog=3.813891453319229e-05 risk=0.06127819548872198 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION2 s=-0.698, #2 random ACTION5 s=-0.713, #3 random ACTION3 s=-0.717]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=4 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.6991128505561417 energy=0.5983865261077881 goal_prog=3.853374801110476e-05 risk=0.10663314176245225 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION2 s=-0.699, #2 heuristic ACTION4 s=-0.74, #3 heuristic ACTION3 s=-0.745]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=5 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.6680773925558077 energy=0.6083793342113495 goal_prog=3.275670314906165e-05 risk=0.06517352703793387 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION2 s=-0.668, #2 random ACTION2 s=-0.729, #3 random ACTION2 s=-0.738]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=6 action=ACTION3 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=random score=-0.7311168562787888 energy=0.6510920226573944 goal_prog=3.967076918343082e-05 risk=0.08600598199478811 sources={'heuristic': 4, 'random': 8} top=[#1 random ACTION3 s=-0.731, #2 random ACTION2 s=-0.754, #3 heuristic ACTION2 s=-0.757]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=7 action=ACTION3 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.7074688039779838 energy=0.6413425207138062 goal_prog=4.6347860916284844e-05 risk=0.07254901960784343 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION3 s=-0.707, #2 random ACTION4 s=-0.725, #3 heuristic ACTION2 s=-0.727]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=8 action=ACTION5 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=random score=-0.7144425073831675 energy=0.6437608599662781 goal_prog=4.5790009608026594e-05 risk=0.07706766917293265 sources={'heuristic': 4, 'random': 8} top=[#1 random ACTION5 s=-0.714, #2 heuristic ACTION2 s=-0.73, #3 random ACTION4 s=-0.736]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=9 action=ACTION1 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.7825447795490995 energy=0.6545161008834839 goal_prog=3.714612466865219e-05 risk=0.13383659469185796 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION1 s=-0.783, #2 random ACTION2 s=-0.785, #3 random ACTION7 s=-0.785]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=10 action=ACTION2 subgoal=[human-program] Probe: try each available action at least once to confirm the pr source=heuristic score=-0.7432245206453051 energy=0.6394495964050293 goal_prog=3.9916601963341236e-05 risk=0.1097813025714974 sources={'heuristic': 4, 'random': 8} top=[#1 heuristic ACTION2 s=-0.743, #2 random ACTION1 s=-0.763, #3 random ACTION5 s=-0.807]
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False trajectory_sources={'heuristic': 9, 'random': 2}
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 322
+  assoc wins:    0
+  elapsed:       5.0s
+  final goal:    [human] match yellow and purple shapes
+
+  --no-save-memory set; cross-game memory NOT written back

@@ -1,0 +1,87 @@
+{
+  "game_id": "ar25-e3c63847",
+  "goal_family": "correspondence",
+  "macro_goal": "Match yellow and purple shapes to ensure they correspond.",
+  "level_hypotheses": [],
+  "entities": [
+    {
+      "name": "black_doted_shape",
+      "role": "player",
+      "notes": "The player shape that can move around the grid.",
+      "color_value": null
+    },
+    {
+      "name": "gray_shape",
+      "role": "controller",
+      "notes": "The shape controlling other shapes.",
+      "color_value": null
+    }
+  ],
+  "win_condition_hypotheses": [
+    "All yellow shapes are matched with purple shapes."
+  ],
+  "constraints": [
+    {
+      "type": "only_subset_matters",
+      "description": "All shapes do not have to match, only the subset that corresponds matters.",
+      "applies_to": [
+        "yellow_shapes",
+        "purple_shapes"
+      ]
+    }
+  ],
+  "anti_patterns": [
+    "do not assume all shapes must match"
+  ],
+  "subgoal_tests": [
+    {
+      "id": "probe_change_player_action5",
+      "description": "Use ACTION5 to switch controlled entity",
+      "verification": "The controlled entity changes as expected.",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "role_switch",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION5"
+      ]
+    },
+    {
+      "id": "probe_shapes_can_cross_doted_line",
+      "description": "Shapes can cross dotted lines",
+      "verification": "Shapes can move across dotted lines as intended.",
+      "max_actions": 8,
+      "preconditions": [],
+      "expected_signal": "object_moved",
+      "click_target_xy": null,
+      "click_target_color": null,
+      "prefer_actions": [
+        "ACTION2"
+      ]
+    }
+  ],
+  "belief_revisions": [
+    {
+      "at_step": 55,
+      "was": "doted_line_act_as_miror",
+      "now": "shapes_mirrored_by_doted_lines",
+      "cause": "Observation of mirrored shapes behavior."
+    },
+    {
+      "at_step": 322,
+      "was": "shapes_mirrored_by_doted_lines",
+      "now": "you_need_to_match_at_least_one_shape",
+      "cause": "Realization that at least one shape needs to be matched."
+    }
+  ],
+  "confidence": 0.7,
+  "source_episodes": [
+    "be48a96d70f0",
+    "7494c064eea1",
+    "f0fe23029ffa",
+    "dbe63878c448"
+  ],
+  "compiler_model": "Qwen/Qwen2.5-3B-Instruct",
+  "compiled_at": "2026-04-21T12:45:11.673398+00:00"
+}

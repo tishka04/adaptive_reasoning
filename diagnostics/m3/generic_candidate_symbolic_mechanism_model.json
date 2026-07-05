@@ -1,0 +1,240 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "candidate_symbolic_model": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_models": {
+      "ACTION3": {
+        "candidate_effects": [
+          "move_entity",
+          "transform_entity"
+        ],
+        "relation_effects": [
+          "distance_decreases"
+        ],
+        "revision_status": "CANDIDATE_ONLY",
+        "semantic_interpretation": "unknown",
+        "source_hypothesis_ids": [
+          "m1g0::entity_role::E182::controllable_actor",
+          "m1g0::action_effect::ACTION3::move_entity",
+          "m1g0::action_effect::ACTION3::transform_entity",
+          "m1g0::relation_change::ACTION3::E182::E138::distance::distance_decreases",
+          "m1g0::relation_change::ACTION3::E182::E139::distance::distance_decreases"
+        ],
+        "source_request_ids": [
+          "m3g0_4::actor_persistence_outside_reset::002::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+          "m3g0_4::actor_persistence_outside_reset::003::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+          "m3g0_4::action_effect_stability::004::m3g0_1_action_effect_003_action_effect_ACTION3_move_entity",
+          "m3g0_4::action_effect_stability::005::m3g0_1_action_effect_004_action_effect_ACTION3_transform_entity",
+          "m3g0_4::relation_change_recurrence::008::m3g0_1_relation_change_007_relation_change_ACTION3_E182_E138_distance_distance_decreases",
+          "m3g0_4::relation_change_recurrence::011::m3g0_1_relation_change_011_relation_change_ACTION3_E182_E139_distance_distance_decreases"
+        ],
+        "status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      },
+      "ACTION4": {
+        "candidate_effects": [
+          "move_entity",
+          "transform_entity"
+        ],
+        "relation_effects": [
+          "distance_decreases"
+        ],
+        "revision_status": "CANDIDATE_ONLY",
+        "semantic_interpretation": "unknown",
+        "source_hypothesis_ids": [
+          "m1g0::entity_role::E182::controllable_actor",
+          "m1g0::action_effect::ACTION4::move_entity",
+          "m1g0::action_effect::ACTION4::transform_entity",
+          "m1g0::relation_change::ACTION4::E182::E136::distance::distance_decreases",
+          "m1g0::relation_change::ACTION4::E182::E137::distance::distance_decreases"
+        ],
+        "source_request_ids": [
+          "m3g0_4::actor_persistence_outside_reset::001::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+          "m3g0_4::action_effect_stability::006::m3g0_1_action_effect_005_action_effect_ACTION4_move_entity",
+          "m3g0_4::action_effect_stability::007::m3g0_1_action_effect_006_action_effect_ACTION4_transform_entity",
+          "m3g0_4::relation_change_recurrence::009::m3g0_1_relation_change_008_relation_change_ACTION4_E182_E136_distance_distance_decreases",
+          "m3g0_4::relation_change_recurrence::010::m3g0_1_relation_change_009_relation_change_ACTION4_E182_E137_distance_distance_decreases"
+        ],
+        "status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      }
+    },
+    "actor_candidates": [
+      {
+        "basis": "CONTEXT_STABLE_CANDIDATE_ONLY",
+        "entity_id": "E182",
+        "observed_contextual_tests": 3,
+        "revision_status": "CANDIDATE_ONLY",
+        "role": "controllable_actor_candidate",
+        "semantic_interpretation": "unknown",
+        "source_hypothesis_ids": [
+          "m1g0::entity_role::E182::controllable_actor"
+        ],
+        "source_request_ids": [
+          "m3g0_4::actor_persistence_outside_reset::001::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+          "m3g0_4::actor_persistence_outside_reset::002::m3g0_1_entity_role_001_entity_role_E182_controllable_actor",
+          "m3g0_4::actor_persistence_outside_reset::003::m3g0_1_entity_role_001_entity_role_E182_controllable_actor"
+        ],
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      }
+    ],
+    "candidate_symbolic_model_id": "m3g0_7::bp35::generic_symbolic_mechanism_model",
+    "caveats": [
+      {
+        "candidate_status": "TEMPORAL_REGULARITY_FAILED_CANDIDATE_ONLY",
+        "contradiction_counted_as_refutation": false,
+        "entity_id": "E001",
+        "family": "monotone_counter",
+        "followup_required": true,
+        "revision_status": "CANDIDATE_ONLY",
+        "semantic_interpretation": "unknown",
+        "source_hypothesis_id": "m1g0::dynamic_invariant::E001::monotone_counter",
+        "source_request_id": "m3g0_4::dynamic_invariant_temporal::012::m3g0_1_dynamic_invariant_013_dynamic_invariant_E001_monotone_counter",
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      }
+    ],
+    "dynamic_invariants": {
+      "E193": {
+        "entity_id": "E193",
+        "family": "exogenous_motion",
+        "invariant_id": "m1g0::invariant::E193::exogenous_motion",
+        "revision_status": "CANDIDATE_ONLY",
+        "semantic_interpretation": "unknown",
+        "source_hypothesis_id": "m1g0::dynamic_invariant::E193::exogenous_motion",
+        "source_request_id": "m3g0_4::exogenous_motion_recurrence::013::m3g0_1_dynamic_invariant_014_dynamic_invariant_E193_exogenous_motion",
+        "status": "TEMPORAL_REGULARITY_OBSERVED_CANDIDATE_ONLY",
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_M3"
+      }
+    },
+    "model_counted_as_confirmation": false,
+    "model_kind": "generic_symbolic_mechanism_model",
+    "model_status": "CANDIDATE_ONLY",
+    "relation_model": {
+      "actor_relation_effects": [
+        {
+          "action": "ACTION3",
+          "relation_delta_type": "distance_decreases",
+          "revision_status": "CANDIDATE_ONLY",
+          "source_entity": "E182",
+          "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E138::distance::distance_decreases",
+          "source_request_id": "m3g0_4::relation_change_recurrence::008::m3g0_1_relation_change_007_relation_change_ACTION3_E182_E138_distance_distance_decreases",
+          "status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+          "support": 0,
+          "target_entity": "E138",
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        {
+          "action": "ACTION4",
+          "relation_delta_type": "distance_decreases",
+          "revision_status": "CANDIDATE_ONLY",
+          "source_entity": "E182",
+          "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E136::distance::distance_decreases",
+          "source_request_id": "m3g0_4::relation_change_recurrence::009::m3g0_1_relation_change_008_relation_change_ACTION4_E182_E136_distance_distance_decreases",
+          "status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+          "support": 0,
+          "target_entity": "E136",
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        {
+          "action": "ACTION4",
+          "relation_delta_type": "distance_decreases",
+          "revision_status": "CANDIDATE_ONLY",
+          "source_entity": "E182",
+          "source_hypothesis_id": "m1g0::relation_change::ACTION4::E182::E137::distance::distance_decreases",
+          "source_request_id": "m3g0_4::relation_change_recurrence::010::m3g0_1_relation_change_009_relation_change_ACTION4_E182_E137_distance_distance_decreases",
+          "status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+          "support": 0,
+          "target_entity": "E137",
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        },
+        {
+          "action": "ACTION3",
+          "relation_delta_type": "distance_decreases",
+          "revision_status": "CANDIDATE_ONLY",
+          "source_entity": "E182",
+          "source_hypothesis_id": "m1g0::relation_change::ACTION3::E182::E139::distance::distance_decreases",
+          "source_request_id": "m3g0_4::relation_change_recurrence::011::m3g0_1_relation_change_011_relation_change_ACTION3_E182_E139_distance_distance_decreases",
+          "status": "CONTEXT_STABLE_CANDIDATE_ONLY",
+          "support": 0,
+          "target_entity": "E139",
+          "truth_status": "NOT_EVALUATED_BY_M3"
+        }
+      ],
+      "revision_status": "CANDIDATE_ONLY",
+      "semantic_interpretation": "unknown",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3"
+    },
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "semantic_interpretation": "unknown",
+    "source_contextual_consolidation_path": "diagnostics\\m3\\generic_mechanic_contextual_evidence_consolidation.json",
+    "source_contextual_requests_path": "diagnostics\\m3\\generic_mechanic_contextual_followup_requests.json",
+    "support": 0,
+    "symbolic_model_induction_counted_as_verdict": false,
+    "symbolic_model_induction_performed": true,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "config": {
+    "artifacts_not_modified": [
+      "M1",
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "contextual_consolidation_path": "diagnostics\\m3\\generic_mechanic_contextual_evidence_consolidation.json",
+    "contextual_requests_path": "diagnostics\\m3\\generic_mechanic_contextual_followup_requests.json",
+    "execution_performed": false,
+    "induction_policy": {
+      "caveats_are_preserved": true,
+      "dynamic_invariant_semantics_remain_unknown": true,
+      "model_parts_are_not_scientific_truth": true,
+      "stable_contextual_candidates_become_model_parts": true
+    },
+    "inputs_read": [
+      "M3.G0.6",
+      "M3.G0.4"
+    ],
+    "schema_version": "m3.generic_candidate_symbolic_mechanism_model.v1"
+  },
+  "model_counted_as_confirmation": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "semantic_interpretation_counted_as_confirmation": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_models": 2,
+    "actor_candidates": 1,
+    "caveats": 1,
+    "dynamic_invariants": 1,
+    "model_counted_as_confirmation": false,
+    "model_status": "CANDIDATE_ONLY",
+    "ready_for_policy_probe_candidate_only": true,
+    "relation_effects": 4,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_context_diversity_assessment": "MULTI_PREFIX_CONTEXTS",
+    "source_hypothesis_consolidations": 13,
+    "source_independent_contexts": 6,
+    "support": 0,
+    "symbolic_model_induction_counted_as_verdict": false,
+    "symbolic_model_induction_performed": true,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "symbolic_model_induction_counted_as_verdict": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

@@ -13,8 +13,29 @@ from __future__ import annotations
 import time
 from typing import Any, Dict, List, Optional
 
-from rich.console import Console
-from rich.progress import Progress
+try:
+    from rich.console import Console
+    from rich.progress import Progress
+except ImportError:
+    class Console:  # type: ignore[override]
+        def print(self, *args: Any, **kwargs: Any) -> None:
+            print(*args)
+
+    class Progress:  # type: ignore[override]
+        def __init__(self, disable: bool = False):
+            self.disable = disable
+
+        def __enter__(self) -> "Progress":
+            return self
+
+        def __exit__(self, exc_type, exc, tb) -> None:
+            return None
+
+        def add_task(self, _description: str, total: int = 0) -> int:
+            return total
+
+        def advance(self, _task: int, advance: int = 1) -> None:
+            return None
 
 from ..memory.replay import ReplayBuffer
 from ..orchestration.controller import ReasoningController

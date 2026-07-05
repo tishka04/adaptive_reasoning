@@ -1,0 +1,2486 @@
+{
+  "time_budget": 3,
+  "games": [
+    "bp35-0a0ad940",
+    "vc33-9851e02b",
+    "cn04-65d47d14",
+    "ar25-e3c63847"
+  ],
+  "profiles": {
+    "strict": {
+      "profile": "strict",
+      "games": 4,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 1522,
+      "avg_pred_acc": 0.33325,
+      "avg_ctrl_suc": 0.35525,
+      "avg_lp": 0.5,
+      "avg_sp": 0.0895,
+      "avg_tp": 0.07225000000000001,
+      "avg_knowledge": 0.431,
+      "wall_clock": 14.9,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 670,
+          "effective_click": 672,
+          "meaningful_grid_change": 101,
+          "player_displacement": 63
+        },
+        "sp": {
+          "novel_state": 370,
+          "new_rules": 28,
+          "object_change": 675,
+          "class_depletion": 42,
+          "structural_change": 101,
+          "region_unlock": 40
+        },
+        "tp": {
+          "speculative_teleology": 502,
+          "narrowing_targets": 73,
+          "closure_signal_speculative": 426,
+          "validated_teleology": 13,
+          "closure_signal_validated": 13
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 670,
+          "effective_click": 672,
+          "meaningful_grid_change": 101,
+          "player_displacement": 63
+        },
+        "sp": {
+          "novel_state": 370,
+          "new_rules": 28,
+          "class_depletion": 7,
+          "region_unlock": 40
+        },
+        "tp": {
+          "speculative_teleology": 502,
+          "narrowing_targets": 2,
+          "validated_teleology": 13,
+          "closure_signal_validated": 13
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "object_change": 675,
+          "structural_change": 101,
+          "class_depletion": 35,
+          "grid_change_without_sp": 282
+        },
+        "tp": {
+          "closure_signal_speculative": 426,
+          "narrowing_targets": 71
+        }
+      },
+      "results": [
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 196,
+          "operators": 3,
+          "rules": 6,
+          "teleology": 0,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.739,
+          "pred_acc": 1.0,
+          "ctrl_suc": 1.0,
+          "lp": 1.0,
+          "sp": 0.318,
+          "tp": 0.03,
+          "progress_detail": {
+            "profile": "strict",
+            "lp": 1.0,
+            "sp": 0.318,
+            "tp": 0.03,
+            "branch_id": 0,
+            "sterile_repeats": 2,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 40,
+            "num_updates": 192,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 192,
+                "effective_click": 192,
+                "meaningful_grid_change": 12,
+                "player_displacement": 4
+              },
+              "sp": {
+                "novel_state": 162,
+                "new_rules": 9,
+                "object_change": 192,
+                "class_depletion": 8,
+                "structural_change": 12
+              },
+              "tp": {
+                "speculative_teleology": 61
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 192,
+                "effective_click": 192,
+                "meaningful_grid_change": 12,
+                "player_displacement": 4
+              },
+              "sp": {
+                "novel_state": 162,
+                "new_rules": 9,
+                "class_depletion": 4
+              },
+              "tp": {
+                "speculative_teleology": 61
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "object_change": 192,
+                "structural_change": 12,
+                "class_depletion": 4,
+                "grid_change_without_sp": 28
+              },
+              "tp": {}
+            }
+          },
+          "branch": 0,
+          "states": 155,
+          "minds": {
+            "click": 20,
+            "closure": 1
+          },
+          "intents": {
+            "click": 70,
+            "dissent": 21,
+            "closure": 6,
+            "reactive": 87
+          },
+          "phases": {
+            "sensory_ignorance": 4,
+            "project_emergence": 156,
+            "mechanical_stabilization": 24
+          },
+          "learning": {
+            "world_reliability": 0.36,
+            "sterility_risk": 0.167,
+            "frame_embeddings": 12,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 192,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict\\01_bp35-0a0ad940.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "vc33-9851e02b",
+          "won": false,
+          "levels": 0,
+          "actions": 416,
+          "operators": 4,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.383,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 1.0,
+          "sp": 0.04,
+          "tp": 0.259,
+          "progress_detail": {
+            "profile": "strict",
+            "lp": 1.0,
+            "sp": 0.04,
+            "tp": 0.259,
+            "branch_id": 0,
+            "sterile_repeats": 5,
+            "terminal_stall_steps": 1,
+            "recent_unique_states": 39,
+            "num_updates": 407,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 407,
+                "effective_click": 407,
+                "player_displacement": 57,
+                "meaningful_grid_change": 20
+              },
+              "sp": {
+                "novel_state": 148,
+                "region_unlock": 17,
+                "new_rules": 12,
+                "object_change": 407,
+                "structural_change": 20,
+                "class_depletion": 8
+              },
+              "tp": {
+                "narrowing_targets": 33,
+                "speculative_teleology": 372,
+                "closure_signal_speculative": 372,
+                "validated_teleology": 13,
+                "closure_signal_validated": 13
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 407,
+                "effective_click": 407,
+                "player_displacement": 57,
+                "meaningful_grid_change": 20
+              },
+              "sp": {
+                "novel_state": 148,
+                "region_unlock": 17,
+                "new_rules": 12,
+                "class_depletion": 1
+              },
+              "tp": {
+                "narrowing_targets": 2,
+                "speculative_teleology": 372,
+                "validated_teleology": 13,
+                "closure_signal_validated": 13
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "object_change": 407,
+                "structural_change": 20,
+                "grid_change_without_sp": 245,
+                "class_depletion": 7
+              },
+              "tp": {
+                "closure_signal_speculative": 372,
+                "narrowing_targets": 31
+              }
+            }
+          },
+          "branch": 0,
+          "states": 149,
+          "minds": {
+            "closure": 140
+          },
+          "intents": {
+            "closure": 321,
+            "dissent": 46,
+            "reactive": 36
+          },
+          "phases": {
+            "closure_pressure": 42,
+            "mechanical_stabilization": 124,
+            "project_emergence": 34
+          },
+          "learning": {
+            "world_reliability": 0.343,
+            "sterility_risk": 0.16,
+            "frame_embeddings": 13,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 407,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict\\02_vc33-9851e02b.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "cn04-65d47d14",
+          "won": false,
+          "levels": 0,
+          "actions": 489,
+          "operators": 4,
+          "rules": 4,
+          "teleology": 0,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.482,
+          "pred_acc": 0.333,
+          "ctrl_suc": 0.421,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 370,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 488,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 68,
+                "effective_click": 73,
+                "meaningful_grid_change": 66,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 57,
+                "new_rules": 6,
+                "structural_change": 66,
+                "object_change": 73,
+                "region_unlock": 23,
+                "class_depletion": 26
+              },
+              "tp": {
+                "speculative_teleology": 67,
+                "closure_signal_speculative": 52
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 68,
+                "effective_click": 73,
+                "meaningful_grid_change": 66,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 57,
+                "new_rules": 6,
+                "region_unlock": 23,
+                "class_depletion": 2
+              },
+              "tp": {
+                "speculative_teleology": 67
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "structural_change": 66,
+                "object_change": 73,
+                "class_depletion": 24,
+                "grid_change_without_sp": 9
+              },
+              "tp": {
+                "closure_signal_speculative": 52
+              }
+            }
+          },
+          "branch": 370,
+          "states": 44,
+          "minds": {
+            "closure": 3,
+            "transform": 18,
+            "click": 2
+          },
+          "intents": {
+            "closure": 13,
+            "dissent": 11,
+            "transform": 72,
+            "click": 6,
+            "reset": 370
+          },
+          "phases": {
+            "mechanical_stabilization": 200
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.673,
+            "frame_embeddings": 6,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 488,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict\\03_cn04-65d47d14.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 421,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 1,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 380,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 419,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1
+              },
+              "tp": {
+                "speculative_teleology": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "closure_signal_speculative": 2
+              }
+            }
+          },
+          "branch": 380,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 380
+          },
+          "phases": {
+            "mechanical_stabilization": 200
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 419,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict\\04_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 3.0
+        }
+      ]
+    },
+    "strict_plus": {
+      "profile": "strict_plus",
+      "games": 4,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 1525,
+      "avg_pred_acc": 0.349,
+      "avg_ctrl_suc": 0.3745,
+      "avg_lp": 0.63425,
+      "avg_sp": 0.16025,
+      "avg_tp": 0.0375,
+      "avg_knowledge": 0.43325,
+      "wall_clock": 12.6,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 919,
+          "effective_click": 937,
+          "meaningful_grid_change": 257,
+          "player_displacement": 46
+        },
+        "sp": {
+          "novel_state": 406,
+          "new_rules": 27,
+          "class_depletion": 124,
+          "structural_change": 257,
+          "object_change": 531,
+          "region_unlock": 114
+        },
+        "tp": {
+          "speculative_teleology": 713,
+          "validated_teleology": 6,
+          "narrowing_targets": 73,
+          "closure_signal_speculative": 588,
+          "closure_signal_validated": 5
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 919,
+          "effective_click": 937,
+          "meaningful_grid_change": 257,
+          "player_displacement": 46
+        },
+        "sp": {
+          "novel_state": 406,
+          "new_rules": 27,
+          "class_depletion": 8,
+          "structural_change": 257,
+          "object_change": 531,
+          "region_unlock": 114
+        },
+        "tp": {
+          "speculative_teleology": 713,
+          "validated_teleology": 6,
+          "narrowing_targets": 2,
+          "closure_signal_validated": 5
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "class_depletion": 116,
+          "grid_change_without_sp": 82
+        },
+        "tp": {
+          "closure_signal_speculative": 588,
+          "narrowing_targets": 71
+        }
+      },
+      "results": [
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 205,
+          "operators": 3,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.72,
+          "pred_acc": 1.0,
+          "ctrl_suc": 1.0,
+          "lp": 0.993,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict_plus",
+            "lp": 0.993,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 1,
+            "sterile_repeats": 4,
+            "terminal_stall_steps": 24,
+            "recent_unique_states": 24,
+            "num_updates": 202,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 201,
+                "effective_click": 201,
+                "meaningful_grid_change": 5,
+                "player_displacement": 2
+              },
+              "sp": {
+                "novel_state": 122,
+                "new_rules": 8,
+                "class_depletion": 7,
+                "structural_change": 5,
+                "object_change": 4
+              },
+              "tp": {
+                "speculative_teleology": 59,
+                "validated_teleology": 1
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 201,
+                "effective_click": 201,
+                "meaningful_grid_change": 5,
+                "player_displacement": 2
+              },
+              "sp": {
+                "novel_state": 122,
+                "new_rules": 8,
+                "class_depletion": 4,
+                "structural_change": 5,
+                "object_change": 4
+              },
+              "tp": {
+                "speculative_teleology": 59,
+                "validated_teleology": 1
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 3,
+                "grid_change_without_sp": 77
+              },
+              "tp": {}
+            }
+          },
+          "branch": 1,
+          "states": 122,
+          "minds": {
+            "click": 24,
+            "closure": 1
+          },
+          "intents": {
+            "click": 75,
+            "dissent": 22,
+            "closure": 6,
+            "reactive": 98,
+            "reset": 1
+          },
+          "phases": {
+            "sensory_ignorance": 2,
+            "project_emergence": 129,
+            "mechanical_stabilization": 68,
+            "crisis": 1
+          },
+          "learning": {
+            "world_reliability": 0.261,
+            "sterility_risk": 0.263,
+            "frame_embeddings": 11,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 202,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict_plus\\01_bp35-0a0ad940.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "vc33-9851e02b",
+          "won": false,
+          "levels": 0,
+          "actions": 460,
+          "operators": 4,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.388,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 1.0,
+          "sp": 0.25,
+          "tp": 0.15,
+          "progress_detail": {
+            "profile": "strict_plus",
+            "lp": 1.0,
+            "sp": 0.25,
+            "tp": 0.15,
+            "branch_id": 0,
+            "sterile_repeats": 100,
+            "terminal_stall_steps": 230,
+            "recent_unique_states": 1,
+            "num_updates": 455,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 455,
+                "effective_click": 455,
+                "player_displacement": 32,
+                "meaningful_grid_change": 13
+              },
+              "sp": {
+                "novel_state": 115,
+                "region_unlock": 9,
+                "new_rules": 10,
+                "object_change": 455,
+                "structural_change": 13,
+                "class_depletion": 4
+              },
+              "tp": {
+                "narrowing_targets": 33,
+                "speculative_teleology": 414,
+                "closure_signal_speculative": 414,
+                "validated_teleology": 5,
+                "closure_signal_validated": 5
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 455,
+                "effective_click": 455,
+                "player_displacement": 32,
+                "meaningful_grid_change": 13
+              },
+              "sp": {
+                "novel_state": 115,
+                "region_unlock": 9,
+                "new_rules": 10,
+                "object_change": 455,
+                "structural_change": 13,
+                "class_depletion": 1
+              },
+              "tp": {
+                "narrowing_targets": 2,
+                "speculative_teleology": 414,
+                "validated_teleology": 5,
+                "closure_signal_validated": 5
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 3
+              },
+              "tp": {
+                "closure_signal_speculative": 414,
+                "narrowing_targets": 31
+              }
+            }
+          },
+          "branch": 0,
+          "states": 116,
+          "minds": {
+            "closure": 65
+          },
+          "intents": {
+            "closure": 152,
+            "dissent": 26,
+            "reactive": 40
+          },
+          "phases": {
+            "project_emergence": 169,
+            "closure_pressure": 31
+          },
+          "learning": {
+            "world_reliability": 0.082,
+            "sterility_risk": 0.503,
+            "frame_embeddings": 9,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 455,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict_plus\\02_vc33-9851e02b.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "cn04-65d47d14",
+          "won": false,
+          "levels": 0,
+          "actions": 444,
+          "operators": 4,
+          "rules": 6,
+          "teleology": 0,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.505,
+          "pred_acc": 0.396,
+          "ctrl_suc": 0.498,
+          "lp": 0.544,
+          "sp": 0.391,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict_plus",
+            "lp": 0.544,
+            "sp": 0.391,
+            "tp": 0.0,
+            "branch_id": 0,
+            "sterile_repeats": 10,
+            "terminal_stall_steps": 1,
+            "recent_unique_states": 20,
+            "num_updates": 441,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 260,
+                "effective_click": 281,
+                "meaningful_grid_change": 236,
+                "player_displacement": 11
+              },
+              "sp": {
+                "novel_state": 166,
+                "new_rules": 8,
+                "structural_change": 236,
+                "region_unlock": 105,
+                "class_depletion": 113,
+                "object_change": 69
+              },
+              "tp": {
+                "speculative_teleology": 238,
+                "closure_signal_speculative": 172
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 260,
+                "effective_click": 281,
+                "meaningful_grid_change": 236,
+                "player_displacement": 11
+              },
+              "sp": {
+                "novel_state": 166,
+                "new_rules": 8,
+                "structural_change": 236,
+                "region_unlock": 105,
+                "class_depletion": 3,
+                "object_change": 69
+              },
+              "tp": {
+                "speculative_teleology": 238
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 110,
+                "grid_change_without_sp": 5
+              },
+              "tp": {
+                "closure_signal_speculative": 172
+              }
+            }
+          },
+          "branch": 0,
+          "states": 154,
+          "minds": {
+            "closure": 23,
+            "transform": 69,
+            "click": 1
+          },
+          "intents": {
+            "closure": 96,
+            "dissent": 46,
+            "transform": 273,
+            "click": 5,
+            "reactive": 2
+          },
+          "phases": {
+            "project_emergence": 199,
+            "closure_pressure": 1
+          },
+          "learning": {
+            "world_reliability": 0.273,
+            "sterility_risk": 0.221,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 441,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict_plus\\03_cn04-65d47d14.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 416,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "strict_plus",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 376,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 415,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {},
+              "tp": {
+                "narrowing_targets": 40,
+                "closure_signal_speculative": 2
+              }
+            }
+          },
+          "branch": 376,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 376
+          },
+          "phases": {
+            "mechanical_stabilization": 200
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 9,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 415,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\strict_plus\\04_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 3.0
+        }
+      ]
+    },
+    "relaxed_sp": {
+      "profile": "relaxed_sp",
+      "games": 4,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 1444,
+      "avg_pred_acc": 0.33325,
+      "avg_ctrl_suc": 0.35425,
+      "avg_lp": 0.71375,
+      "avg_sp": 0.46,
+      "avg_tp": 0.08249999999999999,
+      "avg_knowledge": 0.46925,
+      "wall_clock": 13.0,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 1030,
+          "effective_click": 1029,
+          "meaningful_grid_change": 404,
+          "player_displacement": 75
+        },
+        "sp": {
+          "novel_state": 472,
+          "new_rules": 31,
+          "object_change": 1032,
+          "class_depletion": 208,
+          "structural_change": 522,
+          "region_unlock": 192
+        },
+        "tp": {
+          "speculative_teleology": 341,
+          "narrowing_targets": 73,
+          "closure_signal_speculative": 282,
+          "validated_teleology": 218,
+          "closure_signal_validated": 159
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 1030,
+          "effective_click": 1029,
+          "meaningful_grid_change": 404,
+          "player_displacement": 75
+        },
+        "sp": {
+          "novel_state": 472,
+          "new_rules": 31,
+          "object_change": 1032,
+          "class_depletion": 8,
+          "structural_change": 522,
+          "region_unlock": 192
+        },
+        "tp": {
+          "speculative_teleology": 341,
+          "narrowing_targets": 2,
+          "validated_teleology": 218,
+          "closure_signal_validated": 159
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "class_depletion": 200
+        },
+        "tp": {
+          "closure_signal_speculative": 282,
+          "narrowing_targets": 71
+        }
+      },
+      "results": [
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 208,
+          "operators": 3,
+          "rules": 6,
+          "teleology": 0,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.74,
+          "pred_acc": 1.0,
+          "ctrl_suc": 1.0,
+          "lp": 0.995,
+          "sp": 0.371,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_sp",
+            "lp": 0.995,
+            "sp": 0.371,
+            "tp": 0.0,
+            "branch_id": 1,
+            "sterile_repeats": 3,
+            "terminal_stall_steps": 27,
+            "recent_unique_states": 27,
+            "num_updates": 205,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 204,
+                "effective_click": 204,
+                "meaningful_grid_change": 5,
+                "player_displacement": 2
+              },
+              "sp": {
+                "novel_state": 122,
+                "new_rules": 8,
+                "object_change": 204,
+                "class_depletion": 7,
+                "structural_change": 5
+              },
+              "tp": {
+                "speculative_teleology": 59
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 204,
+                "effective_click": 204,
+                "meaningful_grid_change": 5,
+                "player_displacement": 2
+              },
+              "sp": {
+                "novel_state": 122,
+                "new_rules": 8,
+                "object_change": 204,
+                "class_depletion": 4,
+                "structural_change": 5
+              },
+              "tp": {
+                "speculative_teleology": 59
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 3
+              },
+              "tp": {}
+            }
+          },
+          "branch": 1,
+          "states": 122,
+          "minds": {
+            "click": 13,
+            "closure": 1
+          },
+          "intents": {
+            "click": 51,
+            "dissent": 25,
+            "closure": 6,
+            "reactive": 122,
+            "reset": 1
+          },
+          "phases": {
+            "project_emergence": 199,
+            "crisis": 1
+          },
+          "learning": {
+            "world_reliability": 0.365,
+            "sterility_risk": 0.204,
+            "frame_embeddings": 7,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 205,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_sp\\01_bp35-0a0ad940.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "vc33-9851e02b",
+          "won": false,
+          "levels": 0,
+          "actions": 443,
+          "operators": 4,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 4,
+          "rituals": 0,
+          "knowledge": 0.434,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 1.0,
+          "sp": 0.672,
+          "tp": 0.09,
+          "progress_detail": {
+            "profile": "relaxed_sp",
+            "lp": 1.0,
+            "sp": 0.672,
+            "tp": 0.09,
+            "branch_id": 0,
+            "sterile_repeats": 10,
+            "terminal_stall_steps": 6,
+            "recent_unique_states": 37,
+            "num_updates": 434,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 434,
+                "effective_click": 434,
+                "player_displacement": 60,
+                "meaningful_grid_change": 21
+              },
+              "sp": {
+                "novel_state": 156,
+                "region_unlock": 17,
+                "new_rules": 11,
+                "object_change": 434,
+                "structural_change": 139,
+                "class_depletion": 8
+              },
+              "tp": {
+                "narrowing_targets": 33,
+                "speculative_teleology": 271,
+                "closure_signal_speculative": 271,
+                "validated_teleology": 13,
+                "closure_signal_validated": 13
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 434,
+                "effective_click": 434,
+                "player_displacement": 60,
+                "meaningful_grid_change": 21
+              },
+              "sp": {
+                "novel_state": 156,
+                "region_unlock": 17,
+                "new_rules": 11,
+                "object_change": 434,
+                "structural_change": 139,
+                "class_depletion": 1
+              },
+              "tp": {
+                "narrowing_targets": 2,
+                "speculative_teleology": 271,
+                "validated_teleology": 13,
+                "closure_signal_validated": 13
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 7
+              },
+              "tp": {
+                "closure_signal_speculative": 271,
+                "narrowing_targets": 31
+              }
+            }
+          },
+          "branch": 0,
+          "states": 157,
+          "minds": {
+            "closure": 82
+          },
+          "intents": {
+            "closure": 193,
+            "dissent": 49,
+            "reactive": 166
+          },
+          "phases": {
+            "project_emergence": 191,
+            "closure_pressure": 9
+          },
+          "learning": {
+            "world_reliability": 0.468,
+            "sterility_risk": 0.123,
+            "frame_embeddings": 7,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 434,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_sp\\02_vc33-9851e02b.json"
+          },
+          "ontology": "click_world",
+          "time": 3.1
+        },
+        {
+          "game": "cn04-65d47d14",
+          "won": false,
+          "levels": 0,
+          "actions": 465,
+          "operators": 4,
+          "rules": 5,
+          "teleology": 3,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.583,
+          "pred_acc": 0.333,
+          "ctrl_suc": 0.417,
+          "lp": 0.86,
+          "sp": 0.797,
+          "tp": 0.24,
+          "progress_detail": {
+            "profile": "relaxed_sp",
+            "lp": 0.86,
+            "sp": 0.797,
+            "tp": 0.24,
+            "branch_id": 0,
+            "sterile_repeats": 10,
+            "terminal_stall_steps": 2,
+            "recent_unique_states": 24,
+            "num_updates": 461,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 389,
+                "effective_click": 391,
+                "meaningful_grid_change": 375,
+                "player_displacement": 12
+              },
+              "sp": {
+                "novel_state": 191,
+                "new_rules": 11,
+                "structural_change": 375,
+                "object_change": 391,
+                "region_unlock": 175,
+                "class_depletion": 193
+              },
+              "tp": {
+                "speculative_teleology": 9,
+                "closure_signal_speculative": 9,
+                "validated_teleology": 205,
+                "closure_signal_validated": 146
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 389,
+                "effective_click": 391,
+                "meaningful_grid_change": 375,
+                "player_displacement": 12
+              },
+              "sp": {
+                "novel_state": 191,
+                "new_rules": 11,
+                "structural_change": 375,
+                "object_change": 391,
+                "region_unlock": 175,
+                "class_depletion": 3
+              },
+              "tp": {
+                "speculative_teleology": 9,
+                "validated_teleology": 205,
+                "closure_signal_validated": 146
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "class_depletion": 190
+              },
+              "tp": {
+                "closure_signal_speculative": 9
+              }
+            }
+          },
+          "branch": 0,
+          "states": 186,
+          "minds": {
+            "closure": 87,
+            "click": 1,
+            "transform": 7
+          },
+          "intents": {
+            "closure": 372,
+            "dissent": 47,
+            "click": 5,
+            "transform": 28
+          },
+          "phases": {
+            "closure_pressure": 174,
+            "project_emergence": 26
+          },
+          "learning": {
+            "world_reliability": 0.517,
+            "sterility_risk": 0.157,
+            "frame_embeddings": 11,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 461,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_sp\\03_cn04-65d47d14.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 328,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_sp",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 288,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 327,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 40,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "speculative_teleology": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {},
+              "tp": {
+                "narrowing_targets": 40,
+                "closure_signal_speculative": 2
+              }
+            }
+          },
+          "branch": 288,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 288
+          },
+          "phases": {
+            "mechanical_stabilization": 200
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 9,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 327,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_sp\\04_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 3.0
+        }
+      ]
+    },
+    "relaxed_tp": {
+      "profile": "relaxed_tp",
+      "games": 4,
+      "solved": 0,
+      "total_levels": 0,
+      "total_actions": 1502,
+      "avg_pred_acc": 0.25475000000000003,
+      "avg_ctrl_suc": 0.39649999999999996,
+      "avg_lp": 0.46975,
+      "avg_sp": 0.0,
+      "avg_tp": 0.08174999999999999,
+      "avg_knowledge": 0.40175,
+      "wall_clock": 12.8,
+      "observed_event_counts": {
+        "lp": {
+          "predicted_ok": 845,
+          "effective_click": 868,
+          "meaningful_grid_change": 257,
+          "player_displacement": 63
+        },
+        "sp": {
+          "novel_state": 352,
+          "new_rules": 26,
+          "object_change": 871,
+          "class_depletion": 130,
+          "structural_change": 257,
+          "region_unlock": 119
+        },
+        "tp": {
+          "speculative_teleology": 527,
+          "validated_teleology": 254,
+          "narrowing_targets": 21,
+          "closure_signal_speculative": 364,
+          "closure_signal_validated": 183
+        }
+      },
+      "awarded_event_counts": {
+        "lp": {
+          "predicted_ok": 845,
+          "effective_click": 868,
+          "meaningful_grid_change": 257,
+          "player_displacement": 63
+        },
+        "sp": {
+          "novel_state": 352,
+          "new_rules": 26,
+          "class_depletion": 9,
+          "region_unlock": 119
+        },
+        "tp": {
+          "speculative_teleology": 527,
+          "validated_teleology": 254,
+          "narrowing_targets": 4,
+          "closure_signal_speculative": 364,
+          "closure_signal_validated": 183
+        }
+      },
+      "missed_event_counts": {
+        "sp": {
+          "object_change": 871,
+          "structural_change": 257,
+          "class_depletion": 121,
+          "grid_change_without_sp": 446
+        },
+        "tp": {
+          "narrowing_targets": 17
+        }
+      },
+      "results": [
+        {
+          "game": "bp35-0a0ad940",
+          "won": false,
+          "levels": 0,
+          "actions": 206,
+          "operators": 6,
+          "rules": 6,
+          "teleology": 3,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.648,
+          "pred_acc": 0.5,
+          "ctrl_suc": 1.0,
+          "lp": 0.879,
+          "sp": 0.0,
+          "tp": 0.155,
+          "progress_detail": {
+            "profile": "relaxed_tp",
+            "lp": 0.879,
+            "sp": 0.0,
+            "tp": 0.155,
+            "branch_id": 0,
+            "sterile_repeats": 2,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 40,
+            "num_updates": 202,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 179,
+                "effective_click": 202,
+                "meaningful_grid_change": 12,
+                "player_displacement": 8
+              },
+              "sp": {
+                "novel_state": 122,
+                "new_rules": 7,
+                "object_change": 202,
+                "class_depletion": 10,
+                "structural_change": 12
+              },
+              "tp": {
+                "speculative_teleology": 143,
+                "validated_teleology": 8
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 179,
+                "effective_click": 202,
+                "meaningful_grid_change": 12,
+                "player_displacement": 8
+              },
+              "sp": {
+                "novel_state": 122,
+                "new_rules": 7,
+                "class_depletion": 5
+              },
+              "tp": {
+                "speculative_teleology": 143,
+                "validated_teleology": 8
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "object_change": 202,
+                "structural_change": 12,
+                "class_depletion": 5,
+                "grid_change_without_sp": 79
+              },
+              "tp": {}
+            }
+          },
+          "branch": 0,
+          "states": 116,
+          "minds": {
+            "click": 36,
+            "closure": 3
+          },
+          "intents": {
+            "click": 160,
+            "dissent": 20,
+            "closure": 16
+          },
+          "phases": {
+            "sensory_ignorance": 4,
+            "project_emergence": 112,
+            "closure_pressure": 34,
+            "mechanical_stabilization": 46
+          },
+          "learning": {
+            "world_reliability": 0.282,
+            "sterility_risk": 0.205,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 202,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_tp\\01_bp35-0a0ad940.json"
+          },
+          "ontology": "avatar_world",
+          "time": 3.0
+        },
+        {
+          "game": "vc33-9851e02b",
+          "won": false,
+          "levels": 0,
+          "actions": 431,
+          "operators": 4,
+          "rules": 6,
+          "teleology": 1,
+          "motifs": 4,
+          "rituals": 0,
+          "knowledge": 0.322,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 1.0,
+          "sp": 0.0,
+          "tp": 0.172,
+          "progress_detail": {
+            "profile": "relaxed_tp",
+            "lp": 1.0,
+            "sp": 0.0,
+            "tp": 0.172,
+            "branch_id": 0,
+            "sterile_repeats": 15,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 34,
+            "num_updates": 424,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 424,
+                "effective_click": 424,
+                "player_displacement": 47,
+                "meaningful_grid_change": 14
+              },
+              "sp": {
+                "novel_state": 124,
+                "region_unlock": 13,
+                "new_rules": 11,
+                "object_change": 424,
+                "structural_change": 14,
+                "class_depletion": 6
+              },
+              "tp": {
+                "narrowing_targets": 2,
+                "speculative_teleology": 317,
+                "closure_signal_speculative": 317,
+                "validated_teleology": 24,
+                "closure_signal_validated": 24
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 424,
+                "effective_click": 424,
+                "player_displacement": 47,
+                "meaningful_grid_change": 14
+              },
+              "sp": {
+                "novel_state": 124,
+                "region_unlock": 13,
+                "new_rules": 11,
+                "class_depletion": 1
+              },
+              "tp": {
+                "narrowing_targets": 2,
+                "speculative_teleology": 317,
+                "closure_signal_speculative": 317,
+                "validated_teleology": 24,
+                "closure_signal_validated": 24
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "object_change": 424,
+                "grid_change_without_sp": 284,
+                "structural_change": 14,
+                "class_depletion": 5
+              },
+              "tp": {}
+            }
+          },
+          "branch": 0,
+          "states": 125,
+          "minds": {
+            "closure": 83
+          },
+          "intents": {
+            "closure": 191,
+            "dissent": 40,
+            "reactive": 92
+          },
+          "phases": {
+            "closure_pressure": 164,
+            "project_emergence": 2,
+            "mechanical_stabilization": 34
+          },
+          "learning": {
+            "world_reliability": 0.273,
+            "sterility_risk": 0.229,
+            "frame_embeddings": 12,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 424,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_tp\\02_vc33-9851e02b.json"
+          },
+          "ontology": "click_world",
+          "time": 3.0
+        },
+        {
+          "game": "cn04-65d47d14",
+          "won": false,
+          "levels": 0,
+          "actions": 449,
+          "operators": 3,
+          "rules": 5,
+          "teleology": 3,
+          "motifs": 5,
+          "rituals": 0,
+          "knowledge": 0.517,
+          "pred_acc": 0.519,
+          "ctrl_suc": 0.586,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_tp",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 161,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 447,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 239,
+                "effective_click": 242,
+                "meaningful_grid_change": 228,
+                "player_displacement": 7
+              },
+              "sp": {
+                "novel_state": 103,
+                "new_rules": 7,
+                "structural_change": 228,
+                "object_change": 242,
+                "region_unlock": 106,
+                "class_depletion": 114
+              },
+              "tp": {
+                "narrowing_targets": 2,
+                "speculative_teleology": 65,
+                "closure_signal_speculative": 45,
+                "validated_teleology": 222,
+                "closure_signal_validated": 159
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 239,
+                "effective_click": 242,
+                "meaningful_grid_change": 228,
+                "player_displacement": 7
+              },
+              "sp": {
+                "novel_state": 103,
+                "new_rules": 7,
+                "region_unlock": 106,
+                "class_depletion": 3
+              },
+              "tp": {
+                "narrowing_targets": 1,
+                "speculative_teleology": 65,
+                "closure_signal_speculative": 45,
+                "validated_teleology": 222,
+                "closure_signal_validated": 159
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "structural_change": 228,
+                "object_change": 242,
+                "grid_change_without_sp": 83,
+                "class_depletion": 111
+              },
+              "tp": {
+                "narrowing_targets": 1
+              }
+            }
+          },
+          "branch": 161,
+          "states": 99,
+          "minds": {
+            "closure": 48,
+            "transform": 11,
+            "click": 1
+          },
+          "intents": {
+            "closure": 203,
+            "dissent": 29,
+            "transform": 37,
+            "reactive": 4,
+            "click": 4,
+            "reset": 161
+          },
+          "phases": {
+            "closure_pressure": 33,
+            "project_emergence": 1,
+            "mechanical_stabilization": 166
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.639,
+            "frame_embeddings": 11,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 447,
+            "assertion_failures": [
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning",
+              "project outcome did not change score/dignity or trigger pruning"
+            ],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_tp\\03_cn04-65d47d14.json"
+          },
+          "ontology": "token_world",
+          "time": 3.0
+        },
+        {
+          "game": "ar25-e3c63847",
+          "won": false,
+          "levels": 0,
+          "actions": 416,
+          "operators": 1,
+          "rules": 1,
+          "teleology": 0,
+          "motifs": 3,
+          "rituals": 0,
+          "knowledge": 0.12,
+          "pred_acc": 0.0,
+          "ctrl_suc": 0.0,
+          "lp": 0.0,
+          "sp": 0.0,
+          "tp": 0.0,
+          "progress_detail": {
+            "profile": "relaxed_tp",
+            "lp": 0.0,
+            "sp": 0.0,
+            "tp": 0.0,
+            "branch_id": 376,
+            "sterile_repeats": 0,
+            "terminal_stall_steps": 0,
+            "recent_unique_states": 0,
+            "num_updates": 415,
+            "observed_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1,
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 17,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "awarded_event_counts": {
+              "lp": {
+                "predicted_ok": 3,
+                "meaningful_grid_change": 3,
+                "player_displacement": 1
+              },
+              "sp": {
+                "novel_state": 3,
+                "new_rules": 1
+              },
+              "tp": {
+                "narrowing_targets": 1,
+                "speculative_teleology": 2,
+                "closure_signal_speculative": 2
+              }
+            },
+            "missed_event_counts": {
+              "sp": {
+                "structural_change": 3,
+                "object_change": 3
+              },
+              "tp": {
+                "narrowing_targets": 16
+              }
+            }
+          },
+          "branch": 376,
+          "states": 4,
+          "minds": {
+            "click": 8,
+            "sequence": 1,
+            "closure": 19
+          },
+          "intents": {
+            "click": 13,
+            "dissent": 5,
+            "sequence": 3,
+            "closure": 19,
+            "reset": 376
+          },
+          "phases": {
+            "mechanical_stabilization": 200
+          },
+          "learning": {
+            "world_reliability": 0.0,
+            "sterility_risk": 0.653,
+            "frame_embeddings": 8,
+            "episode_embeddings": 0
+          },
+          "diagnostics": {
+            "enabled": true,
+            "freeze_transfer": true,
+            "freeze_learning_updates": true,
+            "records": 415,
+            "assertion_failures": [],
+            "dump_path": "diagnostics\\v4\\progress_ablation_probe_strictplus\\relaxed_tp\\04_ar25-e3c63847.json"
+          },
+          "ontology": "token_world",
+          "time": 3.0
+        }
+      ]
+    }
+  },
+  "saved_at": "2026-04-20 09:58:17"
+}

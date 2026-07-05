@@ -1,0 +1,572 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3.8",
+      "M3.9",
+      "M3.10",
+      "M3.11",
+      "M3.12",
+      "M3.13",
+      "A32",
+      "A33"
+    ],
+    "induction_policy": {
+      "changed_pixels_not_used_as_success_metric": true,
+      "execution_performed": false,
+      "requires_success_and_failure_contrast": true,
+      "rules_are_candidate_only": true,
+      "support_forced_to_zero": true
+    },
+    "inputs_read": [
+      "M3.13"
+    ],
+    "mechanism_candidates_path": "diagnostics\\m3\\dynamic_retarget_mechanism_candidates.json",
+    "schema_version": "m3.dynamic_retarget_selection_rules.v1"
+  },
+  "controlled_test_required": true,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rule_counted_as_confirmation": false,
+  "selection_rule_sets": [
+    {
+      "candidate_mechanic": "repositioning_opens_new_action6_target_region",
+      "candidate_rules": [
+        {
+          "controlled_test_required": true,
+          "counterexamples": [
+            {
+              "x": 30,
+              "y": 0
+            }
+          ],
+          "description": "Retarget validity depends on a coordinate-and-band interaction, not on x or y alone. The current contrast keeps both the successful and failed examples open as candidate-only evidence.",
+          "falsification_criterion": "Additional retargets sharing the proposed band relation fail, or retargets matching the failed band relation succeed under the same replay and grounded metrics.",
+          "observed_contrasts": {
+            "failed_points": [
+              {
+                "x": 30,
+                "y": 0
+              }
+            ],
+            "failed_x_values": [
+              30
+            ],
+            "failed_y_values": [
+              0
+            ],
+            "pure_x_rule_blocked": true,
+            "pure_y_rule_blocked": true,
+            "same_x_mixed_outcomes": [
+              {
+                "failed_y_values": [
+                  0
+                ],
+                "successful_y_values": [
+                  12
+                ],
+                "x": 30
+              }
+            ],
+            "same_y_mixed_outcomes": [
+              {
+                "failed_x_values": [
+                  30
+                ],
+                "successful_x_values": [
+                  12,
+                  24
+                ],
+                "y": 0
+              }
+            ],
+            "successful_points": [
+              {
+                "x": 12,
+                "y": 0
+              },
+              {
+                "x": 24,
+                "y": 0
+              },
+              {
+                "x": 30,
+                "y": 12
+              },
+              {
+                "x": 36,
+                "y": 12
+              }
+            ],
+            "successful_x_values": [
+              12,
+              24,
+              30,
+              36
+            ],
+            "successful_y_values": [
+              0,
+              12
+            ]
+          },
+          "positive_examples": [
+            {
+              "x": 12,
+              "y": 0
+            },
+            {
+              "x": 24,
+              "y": 0
+            },
+            {
+              "x": 30,
+              "y": 12
+            },
+            {
+              "x": 36,
+              "y": 12
+            }
+          ],
+          "predicate_features": [
+            "target_arg_x",
+            "target_arg_y",
+            "spatial_band_after_repositioning",
+            "same_x_mixed_outcome",
+            "same_y_mixed_outcome"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "rule_counted_as_confirmation": false,
+          "rule_family": "row_or_band_dependent_retarget",
+          "rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::row_or_band_dependent_retarget",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testable": true,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "controlled_test_required": true,
+          "counterexamples": [
+            {
+              "x": 30,
+              "y": 0
+            }
+          ],
+          "description": "A retarget is valid when the local patch around the target is transformable by the target action and the object-position effect is specific to the retargeted action.",
+          "falsification_criterion": "A retarget with a similar local patch fails, or a retarget without the transformable local patch succeeds on grounded local_patch/object_positions metrics.",
+          "observed_contrasts": {
+            "failed_points": [
+              {
+                "x": 30,
+                "y": 0
+              }
+            ],
+            "failed_x_values": [
+              30
+            ],
+            "failed_y_values": [
+              0
+            ],
+            "pure_x_rule_blocked": true,
+            "pure_y_rule_blocked": true,
+            "same_x_mixed_outcomes": [
+              {
+                "failed_y_values": [
+                  0
+                ],
+                "successful_y_values": [
+                  12
+                ],
+                "x": 30
+              }
+            ],
+            "same_y_mixed_outcomes": [
+              {
+                "failed_x_values": [
+                  30
+                ],
+                "successful_x_values": [
+                  12,
+                  24
+                ],
+                "y": 0
+              }
+            ],
+            "successful_points": [
+              {
+                "x": 12,
+                "y": 0
+              },
+              {
+                "x": 24,
+                "y": 0
+              },
+              {
+                "x": 30,
+                "y": 12
+              },
+              {
+                "x": 36,
+                "y": 12
+              }
+            ],
+            "successful_x_values": [
+              12,
+              24,
+              30,
+              36
+            ],
+            "successful_y_values": [
+              0,
+              12
+            ]
+          },
+          "positive_examples": [
+            {
+              "x": 12,
+              "y": 0
+            },
+            {
+              "x": 24,
+              "y": 0
+            },
+            {
+              "x": 30,
+              "y": 12
+            },
+            {
+              "x": 36,
+              "y": 12
+            }
+          ],
+          "predicate_features": [
+            "local_patch_before_after",
+            "object_positions_before_after",
+            "target_local_patch_signature",
+            "post_repositioning_object_layout"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "rule_counted_as_confirmation": false,
+          "rule_family": "local_patch_transformability",
+          "rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::local_patch_transformability",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testable": true,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "controlled_test_required": true,
+          "counterexamples": [
+            {
+              "x": 30,
+              "y": 0
+            }
+          ],
+          "description": "Retarget success should be selected by grounded local/object effects rather than by maximizing global changed_pixels, which can be larger for controls.",
+          "falsification_criterion": "Global changed_pixels alone predicts successful retargets better than the grounded local/object metrics on follow-up retargets from the same causal replay.",
+          "observed_contrasts": {
+            "failed_points": [
+              {
+                "x": 30,
+                "y": 0
+              }
+            ],
+            "failed_x_values": [
+              30
+            ],
+            "failed_y_values": [
+              0
+            ],
+            "pure_x_rule_blocked": true,
+            "pure_y_rule_blocked": true,
+            "same_x_mixed_outcomes": [
+              {
+                "failed_y_values": [
+                  0
+                ],
+                "successful_y_values": [
+                  12
+                ],
+                "x": 30
+              }
+            ],
+            "same_y_mixed_outcomes": [
+              {
+                "failed_x_values": [
+                  30
+                ],
+                "successful_x_values": [
+                  12,
+                  24
+                ],
+                "y": 0
+              }
+            ],
+            "successful_points": [
+              {
+                "x": 12,
+                "y": 0
+              },
+              {
+                "x": 24,
+                "y": 0
+              },
+              {
+                "x": 30,
+                "y": 12
+              },
+              {
+                "x": 36,
+                "y": 12
+              }
+            ],
+            "successful_x_values": [
+              12,
+              24,
+              30,
+              36
+            ],
+            "successful_y_values": [
+              0,
+              12
+            ]
+          },
+          "positive_examples": [
+            {
+              "x": 12,
+              "y": 0
+            },
+            {
+              "x": 24,
+              "y": 0
+            },
+            {
+              "x": 30,
+              "y": 12
+            },
+            {
+              "x": 36,
+              "y": 12
+            }
+          ],
+          "predicate_features": [
+            "local_patch_before_after",
+            "object_positions_before_after",
+            "changed_pixels_as_effect_radar"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "rule_counted_as_confirmation": false,
+          "rule_family": "specific_effect_over_global_pixels",
+          "rule_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule::specific_effect_over_global_pixels",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testable": true,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "controlled_test_required": true,
+      "failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "followup_test_hints": [
+        {
+          "description": "Probe additional y bands at the same x to test whether the band relation explains success versus failure.",
+          "fixed_x": 30,
+          "hint_family": "same_x_different_band_probe",
+          "metrics": [
+            "local_patch_before_after",
+            "object_positions_before_after"
+          ],
+          "status": "UNRESOLVED",
+          "support": 0,
+          "target_action": "ACTION6"
+        },
+        {
+          "description": "Probe neighboring x values on the mixed-outcome band to separate coordinate effects from local-patch effects.",
+          "fixed_y": 0,
+          "hint_family": "same_y_neighbor_x_probe",
+          "metrics": [
+            "local_patch_before_after",
+            "object_positions_before_after"
+          ],
+          "status": "UNRESOLVED",
+          "support": 0,
+          "target_action": "ACTION6"
+        },
+        {
+          "description": "Compare targets with local patches similar to successful and failed retargets under the same replay.",
+          "hint_family": "local_patch_similarity_probe",
+          "metrics": [
+            "local_patch_before_after",
+            "object_positions_before_after"
+          ],
+          "status": "UNRESOLVED",
+          "support": 0,
+          "target_action": "ACTION6"
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "initial_consumed_args": {
+        "x": 18,
+        "y": 0
+      },
+      "non_decisive_or_negative_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "observed_contrasts": {
+        "failed_points": [
+          {
+            "x": 30,
+            "y": 0
+          }
+        ],
+        "failed_x_values": [
+          30
+        ],
+        "failed_y_values": [
+          0
+        ],
+        "pure_x_rule_blocked": true,
+        "pure_y_rule_blocked": true,
+        "same_x_mixed_outcomes": [
+          {
+            "failed_y_values": [
+              0
+            ],
+            "successful_y_values": [
+              12
+            ],
+            "x": 30
+          }
+        ],
+        "same_y_mixed_outcomes": [
+          {
+            "failed_x_values": [
+              30
+            ],
+            "successful_x_values": [
+              12,
+              24
+            ],
+            "y": 0
+          }
+        ],
+        "successful_points": [
+          {
+            "x": 12,
+            "y": 0
+          },
+          {
+            "x": 24,
+            "y": 0
+          },
+          {
+            "x": 30,
+            "y": 12
+          },
+          {
+            "x": 36,
+            "y": 12
+          }
+        ],
+        "successful_x_values": [
+          12,
+          24,
+          30,
+          36
+        ],
+        "successful_y_values": [
+          0,
+          12
+        ]
+      },
+      "positive_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "prior_counted_as_proof": false,
+      "repositioning_action": "ACTION4",
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_refined_hypothesis_id": "m3_8::bp35::A6_A3::ACTION4::global_motion",
+      "status": "UNRESOLVED",
+      "successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "candidate_rules": 3,
+    "controlled_test_required": true,
+    "execution_performed": false,
+    "mechanism_candidates_consumed": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "rule_families": [
+      "local_patch_transformability",
+      "row_or_band_dependent_retarget",
+      "specific_effect_over_global_pixels"
+    ],
+    "rules_with_falsification": 3,
+    "selection_problem_sets": 1,
+    "selection_rule_sets": 1,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

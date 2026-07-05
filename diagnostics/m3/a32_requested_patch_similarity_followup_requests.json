@@ -1,0 +1,1313 @@
+{
+  "a32_decision_counted_as_confirmation": false,
+  "a32_requested_followup_requests": [
+    {
+      "a32_decision_counted_as_confirmation": false,
+      "candidate_resolution_args": [
+        {
+          "action_args": {
+            "x": 18,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 1.0,
+          "followup_family": "outside_known_y12_region_probe",
+          "mixed_patch_boundary_score": 1.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 2.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 0.0,
+          "followup_family": "outside_known_y12_region_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 3.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "candidate_rule_family": "local_patch_transformability",
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "execution_performed": false,
+      "expected_signal": "outside_region_targets_test_patch_similarity_scope_limit",
+      "falsification_criterion": "Outside-region ACTION6 args fail on local_patch_before_after and object_positions_before_after.",
+      "followup_family": "outside_known_y12_region_probe",
+      "game_id": "bp35-0a0ad940",
+      "max_dynamic_args": 2,
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "A32.3 judged the current evidence mono-context and asked whether the rule holds outside the known success line/region.",
+      "prior_counted_as_proof": false,
+      "purpose": "test whether patch-similarity holds outside the current success line/region",
+      "request_id": "m3_22::m3_21_bp35_ACTION4_ACTION6_local_patch_transformability::outside_known_y12_region_probe::x18_y0__x30_y0",
+      "resolution_basis": "nearest_success_patch_outside_known_y12_region",
+      "resolved_target_action_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "seed_failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "seed_successful_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "source_a32_decision": "SCOPE_LIMITED_CANDIDATE_ONLY",
+      "source_a32_decision_reasons": [
+        "mono_game_scope",
+        "mono_context_scope",
+        "scope_not_a33_ready"
+      ],
+      "source_a32_queue_item_id": "m3_21::bp35::ACTION4_ACTION6::local_patch_transformability",
+      "source_a32_recommended_next_step": "REQUEST_MORE_TESTS_WITH_SCOPE_LIMITS",
+      "status": "READY_FOR_M3_A32_PATCH_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "patch_similarity_excluding_known_args",
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_decision_counted_as_confirmation": false,
+      "candidate_resolution_args": [
+        {
+          "action_args": {
+            "x": 18,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 1.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 1.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 2.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 24,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 3.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              10,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 0.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 3.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 12,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 3.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 5.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 5.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 36,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 7.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 7.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              10,
+              10,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 42,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 7.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 7.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              10,
+              10,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 48,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 7.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 7.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              10,
+              10,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "candidate_rule_family": "local_patch_transformability",
+      "context_replay": [
+        "ACTION6",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {}
+      ],
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "excluded_args": [],
+      "execution_performed": false,
+      "expected_signal": "alternate_repositioning_context_tests_patch_similarity_scope_limit",
+      "falsification_criterion": "Patch-similar ACTION6 args in the alternate repositioning context fail on grounded success metrics.",
+      "followup_family": "alternate_repositioning_context_probe",
+      "game_id": "bp35-0a0ad940",
+      "max_dynamic_args": 2,
+      "metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after",
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "observation_counted_as_confirmation": false,
+      "planning_rationale": "A32.3 asked whether the patch-similarity rule survives a different repositioning replay context.",
+      "prior_counted_as_proof": false,
+      "purpose": "test whether ACTION4 creates patch-similar ACTION6 affordances in another replay context",
+      "request_id": "m3_22::m3_21_bp35_ACTION4_ACTION6_local_patch_transformability::alternate_repositioning_context_probe::x12_y0__x24_y0",
+      "resolution_basis": "nearest_success_patch_in_alternate_repositioning_context",
+      "resolved_target_action_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        }
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "rule_counted_as_confirmation": false,
+      "seed_failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "seed_successful_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "source_a32_decision": "SCOPE_LIMITED_CANDIDATE_ONLY",
+      "source_a32_decision_reasons": [
+        "mono_game_scope",
+        "mono_context_scope",
+        "scope_not_a33_ready"
+      ],
+      "source_a32_queue_item_id": "m3_21::bp35::ACTION4_ACTION6::local_patch_transformability",
+      "source_a32_recommended_next_step": "REQUEST_MORE_TESTS_WITH_SCOPE_LIMITS",
+      "status": "READY_FOR_M3_A32_PATCH_FOLLOWUP",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "suggested_control_actions": [
+        "ACTION3",
+        "ACTION4"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_arg_policy": "patch_similarity_excluding_known_args",
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "blocked_followup_requests": [],
+  "candidate_arg_groups": [
+    {
+      "available_args_after_exclusion": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "blocked_reason": null,
+      "candidate_resolution_args": [
+        {
+          "action_args": {
+            "x": 18,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 1.0,
+          "followup_family": "outside_known_y12_region_probe",
+          "mixed_patch_boundary_score": 1.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 2.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 0.0,
+          "followup_family": "outside_known_y12_region_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 3.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "exact_replay_available": true,
+      "excluded_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "followup_family": "outside_known_y12_region_probe",
+      "game_id": "bp35-0a0ad940",
+      "live_available_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "max_dynamic_args": 2,
+      "revision_status": "CANDIDATE_ONLY",
+      "seed_failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "seed_successful_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "selected_candidates": [
+        {
+          "action_args": {
+            "x": 18,
+            "y": 0
+          },
+          "candidate_arg_rank": 1,
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 1.0,
+          "followup_family": "outside_known_y12_region_probe",
+          "mixed_patch_boundary_score": 1.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "resolution_basis": "nearest_success_patch_outside_known_y12_region",
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 2.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 0
+          },
+          "candidate_arg_rank": 2,
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 0.0,
+          "followup_family": "outside_known_y12_region_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "resolution_basis": "nearest_success_patch_outside_known_y12_region",
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 3.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "source_a32_decision": "SCOPE_LIMITED_CANDIDATE_ONLY",
+      "source_a32_queue_item_id": "m3_21::bp35::ACTION4_ACTION6::local_patch_transformability",
+      "source_a32_recommended_next_step": "REQUEST_MORE_TESTS_WITH_SCOPE_LIMITS",
+      "status": "CANDIDATE_ARGS_GENERATED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "available_args_after_exclusion": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "blocked_reason": null,
+      "candidate_resolution_args": [
+        {
+          "action_args": {
+            "x": 18,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 1.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 1.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 2.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 24,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 3.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              10,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 0.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "similarity_interpretation": "failure_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 3.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 12,
+            "y": 0
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 3.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 30,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 5.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 5.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              5,
+              5,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 36,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 7.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 7.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              10,
+              10,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 42,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 7.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 7.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              10,
+              10,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 48,
+            "y": 12
+          },
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 7.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 7.0,
+          "outside_known_y12_region": false,
+          "patch_signature": [
+            [
+              10,
+              10,
+              10
+            ],
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "context_replay": [
+        "ACTION6",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {}
+      ],
+      "exact_replay_available": true,
+      "excluded_args": [],
+      "followup_family": "alternate_repositioning_context_probe",
+      "game_id": "bp35-0a0ad940",
+      "live_available_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        },
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "max_dynamic_args": 2,
+      "revision_status": "CANDIDATE_ONLY",
+      "seed_failed_args": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "seed_successful_args": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        },
+        {
+          "x": 48,
+          "y": 12
+        }
+      ],
+      "selected_candidates": [
+        {
+          "action_args": {
+            "x": 12,
+            "y": 0
+          },
+          "candidate_arg_rank": 1,
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 3.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              5,
+              3
+            ]
+          ],
+          "resolution_basis": "nearest_success_patch_in_alternate_repositioning_context",
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "action_args": {
+            "x": 24,
+            "y": 0
+          },
+          "candidate_arg_rank": 2,
+          "excluded_known_args_respected": true,
+          "failure_patch_distance": 3.0,
+          "followup_family": "alternate_repositioning_context_probe",
+          "mixed_patch_boundary_score": 3.0,
+          "outside_known_y12_region": true,
+          "patch_signature": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              10,
+              5,
+              3
+            ]
+          ],
+          "resolution_basis": "nearest_success_patch_in_alternate_repositioning_context",
+          "similarity_interpretation": "success_like",
+          "status": "UNRESOLVED",
+          "success_patch_distance": 0.0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "source_a32_decision": "SCOPE_LIMITED_CANDIDATE_ONLY",
+      "source_a32_queue_item_id": "m3_21::bp35::ACTION4_ACTION6::local_patch_transformability",
+      "source_a32_recommended_next_step": "REQUEST_MORE_TESTS_WITH_SCOPE_LIMITS",
+      "status": "CANDIDATE_ARGS_GENERATED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "config": {
+    "a32_decisions_path": "diagnostics\\a32\\patch_similarity_revision_decisions.json",
+    "artifacts_not_modified": [
+      "A32",
+      "A33"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "execution_performed": false,
+    "inputs_read": [
+      "A32.3"
+    ],
+    "max_dynamic_args": 2,
+    "schema_version": "m3.a32_requested_patch_similarity_followup_requests.v1"
+  },
+  "controlled_test_required": true,
+  "execution_performed": false,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rule_counted_as_confirmation": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_decision_counted_as_confirmation": false,
+    "a32_remains_only_verdict_location": true,
+    "a32_requested_followup_tests_seen": 2,
+    "a32_revision_decisions_consumed": 1,
+    "alternate_repositioning_context_requests": 1,
+    "blocked_followup_requests": 0,
+    "candidate_arg_groups": 2,
+    "controlled_test_required": true,
+    "execution_performed": false,
+    "outside_known_y12_region_requests": 1,
+    "planned_followup_requests": 2,
+    "resolved_request_arg_pairs": 4,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "unique_resolved_target_arg_sets": 4,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

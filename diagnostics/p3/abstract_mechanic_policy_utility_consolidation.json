@@ -1,0 +1,101 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "candidate_model_counted_as_confirmed_mechanic": false,
+  "condition_aggregates": {
+    "abstract_mechanic_policy_from_m3g0": {
+      "condition": "abstract_mechanic_policy_from_m3g0",
+      "mean_action_effect_usefulness": 12.0,
+      "mean_actor_relation_delta_count": 12.0,
+      "mean_levels_completed": 0.0,
+      "mean_progress_proxy": 120.0,
+      "mean_stale_action_rate": 0.0,
+      "mean_steps_survived": 12.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 6,
+      "support": 0,
+      "terminal_rate": 0.5,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "baseline_greedy_changed_pixels": {
+      "condition": "baseline_greedy_changed_pixels",
+      "mean_action_effect_usefulness": 11.5,
+      "mean_actor_relation_delta_count": 11.5,
+      "mean_levels_completed": 0.0,
+      "mean_progress_proxy": 117.5,
+      "mean_stale_action_rate": 0.0,
+      "mean_steps_survived": 12.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 6,
+      "support": 0,
+      "terminal_rate": 0.5,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "baseline_random_available_action": {
+      "condition": "baseline_random_available_action",
+      "mean_action_effect_usefulness": 8.0,
+      "mean_actor_relation_delta_count": 8.0,
+      "mean_levels_completed": 0.0,
+      "mean_progress_proxy": 100.0,
+      "mean_stale_action_rate": 0.0,
+      "mean_steps_survived": 12.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 6,
+      "support": 0,
+      "terminal_rate": 0.0,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "baseline_terminal_horizon_guard": {
+      "condition": "baseline_terminal_horizon_guard",
+      "mean_action_effect_usefulness": 8.0,
+      "mean_actor_relation_delta_count": 8.0,
+      "mean_levels_completed": 0.0,
+      "mean_progress_proxy": 100.0,
+      "mean_stale_action_rate": 0.0,
+      "mean_steps_survived": 12.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 6,
+      "support": 0,
+      "terminal_rate": 0.0,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    }
+  },
+  "config": {
+    "execution_performed": false,
+    "rollout_path": "diagnostics\\p3\\abstract_mechanic_policy_probe.json",
+    "schema_version": "p3.abstract_mechanic_policy_probe.v1",
+    "stage": "P3.G0.3"
+  },
+  "policy_result_counted_as_scientific_verdict": false,
+  "policy_utility_record": {
+    "candidate_model_counted_as_confirmed_mechanic": false,
+    "model_source": "diagnostics\\p3\\abstract_mechanic_policy_adapter.json",
+    "policy": "abstract_mechanic_policy_from_m3g0",
+    "policy_result_counted_as_scientific_verdict": false,
+    "policy_utility_status": "POLICY_USEFUL_CANDIDATE_ONLY",
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "best_baseline_mean_actor_relation_delta_count": 11.5,
+    "best_baseline_mean_progress_proxy": 117.5,
+    "candidate_beats_best_baseline_progress": true,
+    "candidate_beats_best_baseline_relation_metric": true,
+    "candidate_mean_actor_relation_delta_count": 12.0,
+    "candidate_mean_progress_proxy": 120.0,
+    "candidate_model_counted_as_confirmed_mechanic": false,
+    "policy_result_counted_as_scientific_verdict": false,
+    "policy_utility_status": "POLICY_USEFUL_CANDIDATE_ONLY",
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

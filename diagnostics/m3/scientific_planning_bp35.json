@@ -1,0 +1,1022 @@
+{
+  "config": {
+    "budget": 3,
+    "controlled_results_paths": [
+      "diagnostics\\m1\\controlled_experiment_results.json"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "game_id": "bp35-0a0ad940",
+    "preferred_controls": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "scientific_integration_path": "diagnostics\\m1\\scientific_integration_pretest.json"
+  },
+  "controlled_experiments": [
+    {
+      "baseline_sequence": [
+        "RESET",
+        "ACTION3"
+      ],
+      "contradiction_events": 0,
+      "control_action": "ACTION3",
+      "controlled_experiments_run": 1,
+      "delta": {
+        "absolute_effect_size": 1.0,
+        "baseline_signal": 0.0,
+        "direction": "support",
+        "effect_size": 1.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "env_actions": 2,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "independent_support_events": 1,
+      "mechanic_family": "position_effect_candidate",
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.006348,
+        "changed_pixels": 26,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 1,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "perturbation_sequence": [
+        "RESET",
+        "ACTION6"
+      ],
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "reused_control_support_events": 0,
+      "revision_performed": false,
+      "status": "UNRESOLVED",
+      "support_events": 1,
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_sequence": [
+        "RESET",
+        "ACTION4"
+      ],
+      "contradiction_events": 0,
+      "contradictions": 0,
+      "control_action": "ACTION4",
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 1.0,
+        "baseline_signal": 0.0,
+        "direction": "support",
+        "effect_size": 1.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "env_actions": 2,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "independent_support_events": 1,
+      "mechanic_family": "position_effect_candidate",
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.006348,
+        "changed_pixels": 26,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 1,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "perturbation_sequence": [
+        "RESET",
+        "ACTION6"
+      ],
+      "planned_priority": 1.5,
+      "planning_reason": "m3_priority_v1:tested=1;support_events=1;available_controls=ACTION3,ACTION4",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "reused_control_support_events": 0,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "baseline_sequence": [
+        "RESET",
+        "ACTION3"
+      ],
+      "contradiction_events": 0,
+      "contradictions": 0,
+      "control_action": "ACTION3",
+      "control_reuse_reason": "no_unused_distinct_control_available",
+      "controlled_experiments_run": 1,
+      "controlled_test_required": true,
+      "delta": {
+        "absolute_effect_size": 1.0,
+        "baseline_signal": 0.0,
+        "direction": "support",
+        "effect_size": 1.0,
+        "perturbation_signal": 1.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "env_actions": 2,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "independent_support_events": 0,
+      "mechanic_family": "position_effect_candidate",
+      "observation_counted_as_confirmation": false,
+      "observed_baseline": {
+        "changed": true,
+        "changed_cell_ratio": 0.011475,
+        "changed_pixels": 47,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "observed_perturbation": {
+        "changed": true,
+        "changed_cell_ratio": 0.006348,
+        "changed_pixels": 26,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 1,
+        "local_patch_after": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            10
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            3,
+            5,
+            3
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "patch_bbox": [
+          0,
+          17,
+          1,
+          19
+        ]
+      },
+      "perturbation_sequence": [
+        "RESET",
+        "ACTION6"
+      ],
+      "planned_priority": 1.0,
+      "planning_reason": "m3_priority_v1:tested=2;support_events=2;available_controls=ACTION3,ACTION4",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "reused_control_support_events": 1,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "controlled_test_required": true,
+  "observation_counted_as_confirmation": false,
+  "open_questions": [
+    "all_controls_support_hypothesis"
+  ],
+  "planned_experiments": [
+    {
+      "control_action": "ACTION4",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "mechanic_family": "position_effect_candidate",
+      "open_questions": [],
+      "predicted_metric": "local_patch_before_after",
+      "priority": 1.5,
+      "reason": "m3_priority_v1:tested=1;support_events=1;available_controls=ACTION3,ACTION4",
+      "skipped_controls": [
+        {
+          "action": "ACTION1",
+          "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "reason": "action_not_available_at_reset"
+        },
+        {
+          "action": "ACTION2",
+          "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "reason": "action_not_available_at_reset"
+        }
+      ],
+      "status": "PLANNED",
+      "target_action": "ACTION6"
+    },
+    {
+      "control_action": "ACTION3",
+      "control_reuse_reason": "no_unused_distinct_control_available",
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "mechanic_family": "position_effect_candidate",
+      "open_questions": [
+        "all_controls_support_hypothesis"
+      ],
+      "predicted_metric": "local_patch_before_after",
+      "priority": 1.0,
+      "reason": "m3_priority_v1:tested=2;support_events=2;available_controls=ACTION3,ACTION4",
+      "skipped_controls": [
+        {
+          "action": "ACTION1",
+          "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "reason": "action_not_available_at_reset"
+        },
+        {
+          "action": "ACTION2",
+          "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+          "reason": "action_not_available_at_reset"
+        }
+      ],
+      "status": "PLANNED",
+      "target_action": "ACTION6"
+    }
+  ],
+  "planning_state": {
+    "contradiction_events_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": 0
+    },
+    "controlled_experiment_results": [
+      {
+        "baseline_sequence": [
+          "RESET",
+          "ACTION3"
+        ],
+        "contradiction_events": 0,
+        "control_action": "ACTION3",
+        "controlled_experiments_run": 1,
+        "delta": {
+          "absolute_effect_size": 1.0,
+          "baseline_signal": 0.0,
+          "direction": "support",
+          "effect_size": 1.0,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after"
+        },
+        "env_actions": 2,
+        "game_id": "bp35-0a0ad940",
+        "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "independent_support_events": 1,
+        "mechanic_family": "position_effect_candidate",
+        "observation_counted_as_confirmation": false,
+        "observed_baseline": {
+          "changed": true,
+          "changed_cell_ratio": 0.011475,
+          "changed_pixels": 47,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ]
+        },
+        "observed_perturbation": {
+          "changed": true,
+          "changed_cell_ratio": 0.006348,
+          "changed_pixels": 26,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 1,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ]
+        },
+        "perturbation_sequence": [
+          "RESET",
+          "ACTION6"
+        ],
+        "predicted_metric": "local_patch_before_after",
+        "prior_counted_as_proof": false,
+        "reused_control_support_events": 0,
+        "revision_performed": false,
+        "status": "UNRESOLVED",
+        "support_events": 1,
+        "target_action": "ACTION6",
+        "trace_support_counted_as_proof": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "baseline_sequence": [
+          "RESET",
+          "ACTION4"
+        ],
+        "contradiction_events": 0,
+        "contradictions": 0,
+        "control_action": "ACTION4",
+        "controlled_experiments_run": 1,
+        "controlled_test_required": true,
+        "delta": {
+          "absolute_effect_size": 1.0,
+          "baseline_signal": 0.0,
+          "direction": "support",
+          "effect_size": 1.0,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after"
+        },
+        "env_actions": 2,
+        "game_id": "bp35-0a0ad940",
+        "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "independent_support_events": 1,
+        "mechanic_family": "position_effect_candidate",
+        "observation_counted_as_confirmation": false,
+        "observed_baseline": {
+          "changed": true,
+          "changed_cell_ratio": 0.011475,
+          "changed_pixels": 47,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ]
+        },
+        "observed_perturbation": {
+          "changed": true,
+          "changed_cell_ratio": 0.006348,
+          "changed_pixels": 26,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 1,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ]
+        },
+        "perturbation_sequence": [
+          "RESET",
+          "ACTION6"
+        ],
+        "planned_priority": 1.5,
+        "planning_reason": "m3_priority_v1:tested=1;support_events=1;available_controls=ACTION3,ACTION4",
+        "predicted_metric": "local_patch_before_after",
+        "prior_counted_as_proof": false,
+        "reused_control_support_events": 0,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "status": "UNRESOLVED",
+        "support": 0,
+        "support_events": 1,
+        "target_action": "ACTION6",
+        "trace_support_counted_as_proof": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "baseline_sequence": [
+          "RESET",
+          "ACTION3"
+        ],
+        "contradiction_events": 0,
+        "contradictions": 0,
+        "control_action": "ACTION3",
+        "control_reuse_reason": "no_unused_distinct_control_available",
+        "controlled_experiments_run": 1,
+        "controlled_test_required": true,
+        "delta": {
+          "absolute_effect_size": 1.0,
+          "baseline_signal": 0.0,
+          "direction": "support",
+          "effect_size": 1.0,
+          "perturbation_signal": 1.0,
+          "predicted_metric": "local_patch_before_after"
+        },
+        "env_actions": 2,
+        "game_id": "bp35-0a0ad940",
+        "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "independent_support_events": 0,
+        "mechanic_family": "position_effect_candidate",
+        "observation_counted_as_confirmation": false,
+        "observed_baseline": {
+          "changed": true,
+          "changed_cell_ratio": 0.011475,
+          "changed_pixels": 47,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ]
+        },
+        "observed_perturbation": {
+          "changed": true,
+          "changed_cell_ratio": 0.006348,
+          "changed_pixels": 26,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 1,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              10
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              3,
+              5,
+              3
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "patch_bbox": [
+            0,
+            17,
+            1,
+            19
+          ]
+        },
+        "perturbation_sequence": [
+          "RESET",
+          "ACTION6"
+        ],
+        "planned_priority": 1.0,
+        "planning_reason": "m3_priority_v1:tested=2;support_events=2;available_controls=ACTION3,ACTION4",
+        "predicted_metric": "local_patch_before_after",
+        "prior_counted_as_proof": false,
+        "reused_control_support_events": 1,
+        "revision_performed": false,
+        "revision_status": "CANDIDATE_ONLY",
+        "status": "UNRESOLVED",
+        "support": 0,
+        "support_events": 1,
+        "target_action": "ACTION6",
+        "trace_support_counted_as_proof": false,
+        "wrong_confirmations": 0
+      }
+    ],
+    "controlled_experiments_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": 3
+    },
+    "controls_used_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION3"
+      ]
+    },
+    "independent_support_events_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": 2
+    },
+    "ledger_entries": [
+      {
+        "contradictions": 0,
+        "controlled_test_required": true,
+        "description": "ACTION6 position_effect_candidate via local_patch_before_after",
+        "entered_scientific_ledger": true,
+        "experiments_spent": 0,
+        "game_id": "bp35-0a0ad940",
+        "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "observation_counted_as_confirmation": false,
+        "prior_counted_as_proof": false,
+        "revision_candidate_id": "revision::m1e0015:bp35-0a0ad940:ACTION6:position_effect_candidate",
+        "status": "unresolved",
+        "support": 0,
+        "trace_support_counted_as_proof": false
+      }
+    ],
+    "open_questions": [
+      "all_controls_support_hypothesis"
+    ],
+    "remaining_budget": 0,
+    "reused_control_support_events_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": 1
+    },
+    "skipped_controls": [
+      {
+        "action": "ACTION1",
+        "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "reason": "action_not_available_at_reset"
+      },
+      {
+        "action": "ACTION2",
+        "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+        "reason": "action_not_available_at_reset"
+      }
+    ],
+    "summary": {
+      "contradiction_events_total": 0,
+      "controlled_experiments_run": 3,
+      "independent_support_events_total": 2,
+      "open_hypotheses": 1,
+      "remaining_budget": 0,
+      "reused_control_support_events_total": 1,
+      "support_events_total": 3,
+      "tested_hypotheses": 1,
+      "untested_hypotheses": 0,
+      "wrong_confirmations": 0
+    },
+    "support_controls_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": [
+        "ACTION3",
+        "ACTION4"
+      ]
+    },
+    "support_events_by_key": {
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after": 3
+    },
+    "tested_hypothesis_keys": [
+      "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after"
+    ]
+  },
+  "prior_counted_as_proof": false,
+  "propose_followup_disambiguation": false,
+  "propose_ready_for_A15_revision": true,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "skipped_controls": [
+    {
+      "action": "ACTION1",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "reason": "action_not_available_at_reset"
+    },
+    {
+      "action": "ACTION2",
+      "hypothesis_key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "reason": "action_not_available_at_reset"
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "contradiction_events": 0,
+    "controlled_experiments_run": 3,
+    "controlled_test_required": true,
+    "executed_experiments": 3,
+    "independent_support_events": 2,
+    "observation_counted_as_confirmation": false,
+    "planned_experiments": 2,
+    "propose_followup_disambiguation": false,
+    "propose_ready_for_A15_revision": true,
+    "reused_control_support_events": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "support_events": 3,
+    "unresolved_records": 1,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "updated_ledger_entries": [
+    {
+      "contradiction_events": 0,
+      "contradictions": 0,
+      "controlled_experiments_run": 3,
+      "controlled_test_required": true,
+      "game_id": "bp35-0a0ad940",
+      "independent_support_events": 2,
+      "key": "mechanic_prediction::bp35-0a0ad940::ACTION6::position_effect_candidate::local_patch_before_after",
+      "observation_counted_as_confirmation": false,
+      "prior_counted_as_proof": false,
+      "reused_control_support_events": 1,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "support_events": 3,
+      "trace_support_counted_as_proof": false
+    }
+  ],
+  "wrong_confirmations": 0
+}

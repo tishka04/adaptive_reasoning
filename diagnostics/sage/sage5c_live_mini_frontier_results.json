@@ -1,0 +1,4607 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "comparison": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "budgets_evaluated": [
+      50,
+      150,
+      300
+    ],
+    "effective_request_ratio": 0.06734,
+    "effective_requests_generated": 20,
+    "generated_requests_counted_as_support": false,
+    "levels_completed_max": 0,
+    "max_generated_requests": 20,
+    "mini_frontier_counted_as_evidence": false,
+    "mini_frontier_hypotheses_generated": 20,
+    "outcome_status": "SAGE_LIVE_MINI_FRONTIER_GENERATED_CANDIDATE_ONLY",
+    "outcome_status_is_candidate_only": true,
+    "policy_result_counted_as_confirmation": false,
+    "rerun_m2_m3_requested": 297,
+    "residual_placeholder_switch_ratio": 0.905229,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_placeholder_switch_ratio": 0.970588,
+    "source_sage5_outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+    "source_sage5b_outcome_status": "SAGE_SWITCH_ATTRIBUTION_PLACEHOLDER_DEPENDENCY_HIGH_CANDIDATE_ONLY",
+    "support": 0,
+    "true_exploratory_or_scientific_switches": 29,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+    "unresolved_placeholder_switches_after_generation": 277
+  },
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "benchmark_run": false,
+    "budgets": [
+      50,
+      150,
+      300
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "game_id": "sb26-7fbdac44",
+    "inputs_read": [
+      "M2.15",
+      "M3.7e",
+      "M3.7f",
+      "P1",
+      "SAGE.5",
+      "SAGE.5b"
+    ],
+    "live_mini_frontier_generation": true,
+    "low_state_novelty_threshold": 3,
+    "max_counterfactual_collections": 8,
+    "max_generated_requests": 20,
+    "progress_stall_trigger_enabled": true,
+    "progress_stall_window": 8,
+    "repeated_action_arg_rate_threshold": 0.75,
+    "same_action_arg_repeats": 4,
+    "schema_version": "sage.live_mini_frontier_generation.v1",
+    "source_sage5_path": "diagnostics\\sage\\sage5_unknown_game_bounded_probe_results.json",
+    "source_sage5b_path": "diagnostics\\sage\\sage5b_switch_attribution_placeholder_audit.json"
+  },
+  "generated_requests_counted_as_support": false,
+  "mini_frontier_counted_as_evidence": false,
+  "mini_frontier_hypotheses": [
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 63,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [
+          3
+        ],
+        "colors_removed": [],
+        "component_delta_by_color": {
+          "3": 1
+        },
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 1,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0001",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 1,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "object_delta_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0001",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 62,
+          "x_min": 33,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0003",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 3,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0003",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 61,
+          "x_min": 41,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0005",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 5,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0005",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0006",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 6,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0006",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 60,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0007",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 7,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0007",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0008",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 8,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0008",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 59,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0009",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 9,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0009",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0010",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 10,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0010",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 58,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0011",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 11,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0011",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0012",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 12,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0012",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"01e54b91d0e5eb23\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"01e54b91d0e5eb23\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 57,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0013",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 13,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0013",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"426a899f2165cc4d\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"426a899f2165cc4d\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0014",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 14,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0014",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"42e8259b2518f502\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"42e8259b2518f502\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 56,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0015",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 15,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0015",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"77ad3efd614b8816\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"77ad3efd614b8816\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0016",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 16,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0016",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"26e628712f6a7194\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"26e628712f6a7194\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 55,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0017",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 17,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0017",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"c09ebe33c81d2cfa\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"c09ebe33c81d2cfa\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0018",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 18,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0018",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 54,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0019",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 19,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0019",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0020",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 20,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0020",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION5",
+      "candidate_action_args": {},
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          }
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 53,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 53
+        },
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0021",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 21,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0021",
+      "predicted_effect": "ACTION5 changes 21 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "candidate_action": "ACTION6",
+      "candidate_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION5",
+          "ACTION6"
+        ],
+        "frame_before_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "live_state_signature": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "replay_action_args": [
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 34,
+            "y": 57
+          },
+          {},
+          {
+            "x": 42,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {},
+          {
+            "x": 26,
+            "y": 57
+          },
+          {}
+        ],
+        "replay_actions": [
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5",
+          "ACTION6",
+          "ACTION5"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "diff_summary": {
+        "changed_bbox": {
+          "x_max": 30,
+          "x_min": 25,
+          "y_max": 61,
+          "y_min": 56
+        },
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "colors_added": [],
+        "colors_removed": [],
+        "component_delta_by_color": {},
+        "components_after_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_before_by_color": {
+          "11": 2,
+          "14": 2,
+          "15": 2,
+          "2": 5,
+          "3": 1,
+          "4": 3,
+          "5": 5,
+          "8": 1,
+          "9": 2
+        },
+        "components_created_total": 0,
+        "components_removed_total": 0,
+        "levels_delta": 0,
+        "terminal_after": false
+      },
+      "frontier_context_id": "sage5c::sb26-7fbdac44::budget_050::step_0022",
+      "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
+      "frontier_step": 22,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "hypothesis_id": "sage5c::live_mini_frontier::050::0022",
+      "predicted_effect": "ACTION6 changes 20 cells in this live context",
+      "predicted_metric": "local_patch_before_after",
+      "prior_counted_as_proof": false,
+      "rationale": "deterministic live diff from unknown-game transition",
+      "revision_performed": false,
+      "source_generation": {
+        "llm_used": false,
+        "priority_score": 0.0,
+        "priority_score_counted_as_support": false,
+        "sources": [
+          "live_mini_frontier"
+        ],
+        "world_model_used": false
+      },
+      "source_request_id": "sage5_placeholder::rerun_m2_m3",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "mini_frontier_m3_requests": [
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_object_delta_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "object_delta_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0001",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0001",
+      "source_step": 1,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0001",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0003",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0003",
+      "source_step": 3,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0003",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0005",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0005",
+      "source_step": 5,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0005",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0006",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0006",
+      "source_step": 6,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0006",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0007",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0007",
+      "source_step": 7,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0007",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0008",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0008",
+      "source_step": 8,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0008",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0009",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0009",
+      "source_step": 9,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0009",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0010",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0010",
+      "source_step": 10,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0010",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0011",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0011",
+      "source_step": 11,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0011",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0012",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0012",
+      "source_step": 12,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0012",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"01e54b91d0e5eb23\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0013",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0013",
+      "source_step": 13,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0013",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"426a899f2165cc4d\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0014",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0014",
+      "source_step": 14,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0014",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"42e8259b2518f502\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0015",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0015",
+      "source_step": 15,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0015",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"77ad3efd614b8816\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0016",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0016",
+      "source_step": 16,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0016",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"26e628712f6a7194\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0017",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0017",
+      "source_step": 17,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0017",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"c09ebe33c81d2cfa\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0018",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0018",
+      "source_step": 18,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0018",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0019",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0019",
+      "source_step": 19,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0019",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0020",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0020",
+      "source_step": 20,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0020",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        }
+      ],
+      "context_snapshot_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0021",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0021",
+      "source_step": 21,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0021",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION6"
+      ],
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    },
+    {
+      "blocking_reason": null,
+      "context_replay": [
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5",
+        "ACTION6",
+        "ACTION5"
+      ],
+      "context_replay_args": [
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 34,
+          "y": 57
+        },
+        {},
+        {
+          "x": 42,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {},
+        {
+          "x": 26,
+          "y": 57
+        },
+        {}
+      ],
+      "context_snapshot_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_state_origin": "sage5_live_prefix_frame_before",
+      "control_policy": "m3_dynamic_available_controls",
+      "controlled_test_required": true,
+      "expected_signal": "target_action_local_patch_change_differs_from_dynamic_control",
+      "falsification_criterion": {
+        "failure_condition": "target_live_effect_matches_dynamic_control_or_is_unavailable",
+        "metric": "local_patch_before_after",
+        "minimum_effect_size": 1,
+        "support_condition": "target_live_effect_differs_from_dynamic_control"
+      },
+      "game_id": "sb26-7fbdac44",
+      "generated_by": "SAGE.5c_live_mini_frontier",
+      "generated_request_counted_as_support": false,
+      "hypothesis_family": "local_patch_change_candidate",
+      "metric": "local_patch_before_after",
+      "replayability": "LIVE_PREFIX_REPLAY_CONTEXT",
+      "request_id": "m2m3::sage5c::live_mini_frontier::050::0022",
+      "revision_performed": false,
+      "source_episode_id": null,
+      "source_hypothesis_id": "sage5c::live_mini_frontier::050::0022",
+      "source_step": 22,
+      "source_transition_id": "sage5c::sb26-7fbdac44::budget_050::step_0022",
+      "status": "READY_FOR_M3",
+      "suggested_control_actions": [
+        "ACTION5"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "outcome_status": "SAGE_LIVE_MINI_FRONTIER_GENERATED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "per_budget_results": [
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 50,
+      "generation_diagnostics": [
+        {
+          "changed_cells": 21,
+          "controls_available": 1,
+          "hypothesis_family": "object_delta_candidate",
+          "hypothesis_id": "sage5c::live_mini_frontier::050::0001",
+          "request_id": "m2m3::sage5c::live_mini_frontier::050::0001",
+          "request_status": "READY_FOR_M3",
+          "step": 1,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+        },
+        {
+          "changed_cells": 21,
+          "controls_available": 1,
+          "hypothesis_family": "local_patch_change_candidate",
+          "hypothesis_id": "sage5c::live_mini_frontier::050::0003",
+          "request_id": "m2m3::sage5c::live_mini_frontier::050::0003",
+          "request_status": "READY_FOR_M3",
+          "step": 3,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+        },
+        {
+          "changed_cells": 21,
+          "controls_available": 1,
+          "hypothesis_family": "local_patch_change_candidate",
+          "hypothesis_id": "sage5c::live_mini_frontier::050::0005",
+          "request_id": "m2m3::sage5c::live_mini_frontier::050::0005",
+          "request_status": "READY_FOR_M3",
+          "step": 5,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+        },
+        {
+          "changed_cells": 20,
+          "controls_available": 1,
+          "hypothesis_family": "local_patch_change_candidate",
+          "hypothesis_id": "sage5c::live_mini_frontier::050::0006",
+          "request_id": "m2m3::sage5c::live_mini_frontier::050::0006",
+          "request_status": "READY_FOR_M3",
+          "step": 6,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+        },
+        {
+          "changed_cells": 21,
+          "controls_available": 1,
+          "hypothesis_family": "local_patch_change_candidate",
+          "hypothesis_id": "sage5c::live_mini_frontier::050::0007",
+          "request_id": "m2m3::sage5c::live_mini_frontier::050::0007",
+          "request_status": "READY_FOR_M3",
+          "step": 7,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+        }
+      ],
+      "generation_metrics": {
+        "effective_request_ratio": 0.425532,
+        "effective_requests_generated": 20,
+        "generation_budget_exhausted": true,
+        "mini_frontier_hypotheses_generated": 20,
+        "residual_placeholder_switch_ratio": 0.54,
+        "source_placeholder_switch_ratio": 0.94,
+        "support": 0,
+        "true_exploratory_or_scientific_switches": 23,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+        "unresolved_placeholder_switches_after_generation": 27
+      },
+      "policy_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_metrics": {
+        "active_counterfactuals_after_exhaustion": 0,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 3,
+        "placeholder_switches_seen": 47,
+        "rerun_m2_m3_effective_requests_generated_before_sage5c": 0,
+        "rerun_m2_m3_requested": 47,
+        "subgoal_switches": 50,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 150,
+      "generation_diagnostics": [],
+      "generation_metrics": {
+        "effective_request_ratio": 0.0,
+        "effective_requests_generated": 0,
+        "generation_budget_exhausted": true,
+        "mini_frontier_hypotheses_generated": 0,
+        "residual_placeholder_switch_ratio": 0.976562,
+        "source_placeholder_switch_ratio": 0.976562,
+        "support": 0,
+        "true_exploratory_or_scientific_switches": 3,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+        "unresolved_placeholder_switches_after_generation": 125
+      },
+      "policy_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_metrics": {
+        "active_counterfactuals_after_exhaustion": 0,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 3,
+        "placeholder_switches_seen": 125,
+        "rerun_m2_m3_effective_requests_generated_before_sage5c": 0,
+        "rerun_m2_m3_requested": 125,
+        "subgoal_switches": 128,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 300,
+      "generation_diagnostics": [],
+      "generation_metrics": {
+        "effective_request_ratio": 0.0,
+        "effective_requests_generated": 0,
+        "generation_budget_exhausted": true,
+        "mini_frontier_hypotheses_generated": 0,
+        "residual_placeholder_switch_ratio": 0.976562,
+        "source_placeholder_switch_ratio": 0.976562,
+        "support": 0,
+        "true_exploratory_or_scientific_switches": 3,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+        "unresolved_placeholder_switches_after_generation": 125
+      },
+      "policy_result_counted_as_confirmation": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_metrics": {
+        "active_counterfactuals_after_exhaustion": 0,
+        "levels_completed": 0,
+        "new_candidate_targets_discovered": 3,
+        "placeholder_switches_seen": 125,
+        "rerun_m2_m3_effective_requests_generated_before_sage5c": 0,
+        "rerun_m2_m3_requested": 125,
+        "subgoal_switches": 128,
+        "support": 0,
+        "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+    }
+  ],
+  "policy_result_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_sage5_context": {
+    "outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+    "source_artifact": "SAGE.5",
+    "source_counted_as_scientific_evidence": false,
+    "summary": {
+      "budgets_gate_passed": 3,
+      "budgets_total": 3
+    },
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+  },
+  "source_sage5b_context": {
+    "outcome_status": "SAGE_SWITCH_ATTRIBUTION_PLACEHOLDER_DEPENDENCY_HIGH_CANDIDATE_ONLY",
+    "source_artifact": "SAGE.5b",
+    "source_counted_as_scientific_evidence": false,
+    "summary": {
+      "effective_request_ratio": 0.0,
+      "placeholder_switch_ratio": 0.964286,
+      "rerun_m2_m3_effective_requests_generated": 0,
+      "rerun_m2_m3_requested": 297
+    },
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5C"
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "budgets_evaluated": [
+      50,
+      150,
+      300
+    ],
+    "effective_request_ratio": 0.06734,
+    "effective_requests_generated": 20,
+    "generated_requests_counted_as_support": false,
+    "levels_completed_max": 0,
+    "max_generated_requests": 20,
+    "mini_frontier_counted_as_evidence": false,
+    "mini_frontier_hypotheses_generated": 20,
+    "outcome_status": "SAGE_LIVE_MINI_FRONTIER_GENERATED_CANDIDATE_ONLY",
+    "outcome_status_is_candidate_only": true,
+    "policy_result_counted_as_confirmation": false,
+    "rerun_m2_m3_requested": 297,
+    "residual_placeholder_switch_ratio": 0.905229,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_placeholder_switch_ratio": 0.970588,
+    "source_sage5_outcome_status": "SAGE_UNKNOWN_BOUNDED_PROBE_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY",
+    "source_sage5b_outcome_status": "SAGE_SWITCH_ATTRIBUTION_PLACEHOLDER_DEPENDENCY_HIGH_CANDIDATE_ONLY",
+    "support": 0,
+    "true_exploratory_or_scientific_switches": 29,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+    "unresolved_placeholder_switches_after_generation": 277
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_5C",
+  "wrong_confirmations": 0
+}

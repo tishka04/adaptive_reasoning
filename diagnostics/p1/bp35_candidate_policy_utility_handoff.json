@@ -1,0 +1,85 @@
+{
+  "a33_ready": false,
+  "agentic_utility_status": "SUPPORTED_CANDIDATE_ONLY",
+  "candidate_beats_action4_only_runs": 18,
+  "candidate_beats_baseline_runs": 18,
+  "candidate_policy_utility_handoffs": [
+    {
+      "a33_ready": false,
+      "agentic_utility_status": "SUPPORTED_CANDIDATE_ONLY",
+      "blocking_reasons": [],
+      "candidate_beats_action4_only_ratio": 1.0,
+      "candidate_beats_action4_only_runs": 18,
+      "candidate_beats_baseline_ratio": 1.0,
+      "candidate_beats_baseline_runs": 18,
+      "candidate_mean_failure_like_selection_delta_vs_baseline": -4.4444,
+      "candidate_mean_progress_delta_vs_baseline": 57.2222,
+      "candidate_mechanic": "",
+      "candidate_policy_status": "EXPERIMENTAL_POLICY_CANDIDATE_ONLY",
+      "candidate_rule_family": "local_patch_transformability",
+      "handoff_id": "p1_4::bp35::ACTION4_ACTION6::candidate_policy_utility",
+      "handoff_type": "AGENTIC_UTILITY_CANDIDATE_ONLY",
+      "patch_similarity_attribution_signal_candidate_only": true,
+      "policy_result_counted_as_a33_readiness": false,
+      "policy_result_counted_as_mechanistic_confirmation": false,
+      "ready_for_a32_utility_review": true,
+      "ready_for_a32_utility_review_is_not_verdict": true,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "single_probe_candidate_better_than_baseline": true,
+      "single_probe_candidate_progress_proxy_delta": 27.0,
+      "source_policy_matrix_path": "diagnostics\\p1\\bp35_sage_candidate_policy_probe_matrix.json",
+      "source_policy_probe_path": "diagnostics\\p1\\bp35_sage_candidate_policy_probe.json",
+      "source_scope_consolidation_id": "m3_24::bp35-0a0ad940::patch_similarity_scope::ACTION6",
+      "source_scope_consolidation_path": "diagnostics\\m3\\a32_requested_patch_similarity_scope_consolidation.json",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+      "wrong_confirmations": 0
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "A32",
+      "A33",
+      "M3"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "inputs_read": [
+      "P1.1",
+      "P1.2/P1.3",
+      "M3.24"
+    ],
+    "policy_matrix_path": "diagnostics\\p1\\bp35_sage_candidate_policy_probe_matrix.json",
+    "policy_probe_path": "diagnostics\\p1\\bp35_sage_candidate_policy_probe.json",
+    "schema_version": "p1.candidate_policy_utility_handoff.v1",
+    "scope_consolidation_path": "diagnostics\\m3\\a32_requested_patch_similarity_scope_consolidation.json"
+  },
+  "handoff_type": "AGENTIC_UTILITY_CANDIDATE_ONLY",
+  "patch_similarity_attribution_signal_candidate_only": true,
+  "policy_result_counted_as_mechanistic_confirmation": false,
+  "prior_counted_as_proof": false,
+  "rejected_handoff_candidates": [],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a33_ready": false,
+    "agentic_utility_status": "SUPPORTED_CANDIDATE_ONLY",
+    "handoffs_produced": 1,
+    "handoffs_rejected": 0,
+    "policy_result_counted_as_mechanistic_confirmation": false,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

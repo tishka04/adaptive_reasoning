@@ -1,0 +1,182 @@
+{
+  "config": {
+    "schema_version": "m2.mock_world_model_predictions.v1"
+  },
+  "prediction_batches": [
+    {
+      "frontier_context_id": "after_ACTION6",
+      "frontier_state": {
+        "frontier_context_id": "after_ACTION6",
+        "game_id": "bp35-0a0ad940",
+        "live_state_signature": "(64, 64):1d03fa53f68d39da:0:NOT_FINISHED",
+        "local_patch": null,
+        "replay_actions": [
+          "ACTION6"
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_action": "ACTION3",
+          "epistemic_value": 0.74,
+          "predicted_change_probability": 0.72,
+          "predicted_contact_graph_change_probability": 0.52,
+          "predicted_local_signal_probability": 0.41,
+          "predicted_object_count_change_probability": 0.12,
+          "predicted_observables": {
+            "changed_pixels": {
+              "mean": 12.4,
+              "uncertainty": 0.31
+            },
+            "contact_graph_change": {
+              "probability": 0.52
+            },
+            "local_patch_change": {
+              "probability": 0.41
+            }
+          },
+          "predicted_topology_change_probability": 0.33,
+          "recommended_metric": "contact_graph_before_after",
+          "uncertainty": 0.28
+        },
+        {
+          "candidate_action": "ACTION4",
+          "epistemic_value": 0.7,
+          "predicted_change_probability": 0.6699999999999999,
+          "predicted_contact_graph_change_probability": 0.52,
+          "predicted_local_signal_probability": 0.41,
+          "predicted_object_count_change_probability": 0.12,
+          "predicted_observables": {
+            "changed_pixels": {
+              "mean": 12.4,
+              "uncertainty": 0.31
+            },
+            "contact_graph_change": {
+              "probability": 0.52
+            },
+            "local_patch_change": {
+              "probability": 0.41
+            }
+          },
+          "predicted_topology_change_probability": 0.33,
+          "recommended_metric": "local_patch_before_after",
+          "uncertainty": 0.31000000000000005
+        },
+        {
+          "candidate_action": "ACTION6",
+          "epistemic_value": 0.66,
+          "predicted_change_probability": 0.62,
+          "predicted_contact_graph_change_probability": 0.52,
+          "predicted_local_signal_probability": 0.41,
+          "predicted_object_count_change_probability": 0.12,
+          "predicted_observables": {
+            "changed_pixels": {
+              "mean": 12.4,
+              "uncertainty": 0.31
+            },
+            "contact_graph_change": {
+              "probability": 0.52
+            },
+            "local_patch_change": {
+              "probability": 0.41
+            }
+          },
+          "predicted_topology_change_probability": 0.33,
+          "recommended_metric": "local_patch_before_after",
+          "uncertainty": 0.34
+        }
+      ],
+      "source_request_id": "frontier::after_ACTION6::step_1::context_not_covered_by_scope"
+    },
+    {
+      "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+      "frontier_state": {
+        "frontier_context_id": "after_ACTION3_live_after_ACTION6",
+        "game_id": "bp35-0a0ad940",
+        "live_state_signature": "(64, 64):b33aabd922c7b268:0:NOT_FINISHED",
+        "local_patch": null,
+        "replay_actions": [
+          "ACTION3"
+        ]
+      },
+      "predictions": [
+        {
+          "candidate_action": "ACTION3",
+          "epistemic_value": 0.74,
+          "predicted_change_probability": 0.72,
+          "predicted_contact_graph_change_probability": 0.52,
+          "predicted_local_signal_probability": 0.41,
+          "predicted_object_count_change_probability": 0.12,
+          "predicted_observables": {
+            "changed_pixels": {
+              "mean": 12.4,
+              "uncertainty": 0.31
+            },
+            "contact_graph_change": {
+              "probability": 0.52
+            },
+            "local_patch_change": {
+              "probability": 0.41
+            }
+          },
+          "predicted_topology_change_probability": 0.33,
+          "recommended_metric": "contact_graph_before_after",
+          "uncertainty": 0.28
+        },
+        {
+          "candidate_action": "ACTION4",
+          "epistemic_value": 0.7,
+          "predicted_change_probability": 0.6699999999999999,
+          "predicted_contact_graph_change_probability": 0.52,
+          "predicted_local_signal_probability": 0.41,
+          "predicted_object_count_change_probability": 0.12,
+          "predicted_observables": {
+            "changed_pixels": {
+              "mean": 12.4,
+              "uncertainty": 0.31
+            },
+            "contact_graph_change": {
+              "probability": 0.52
+            },
+            "local_patch_change": {
+              "probability": 0.41
+            }
+          },
+          "predicted_topology_change_probability": 0.33,
+          "recommended_metric": "local_patch_before_after",
+          "uncertainty": 0.31000000000000005
+        },
+        {
+          "candidate_action": "ACTION6",
+          "epistemic_value": 0.66,
+          "predicted_change_probability": 0.62,
+          "predicted_contact_graph_change_probability": 0.52,
+          "predicted_local_signal_probability": 0.41,
+          "predicted_object_count_change_probability": 0.12,
+          "predicted_observables": {
+            "changed_pixels": {
+              "mean": 12.4,
+              "uncertainty": 0.31
+            },
+            "contact_graph_change": {
+              "probability": 0.52
+            },
+            "local_patch_change": {
+              "probability": 0.41
+            }
+          },
+          "predicted_topology_change_probability": 0.33,
+          "recommended_metric": "local_patch_before_after",
+          "uncertainty": 0.34
+        }
+      ],
+      "source_request_id": "frontier::after_ACTION3_live_after_ACTION6::step_2::confirmed_skill_blocked_by_failed_precondition"
+    }
+  ],
+  "summary": {
+    "frontier_requests_consumed": 2,
+    "world_model_predictions": 6,
+    "world_model_predictions_loaded": true,
+    "world_model_scores_counted_as_support": false,
+    "wrong_confirmations": 0
+  }
+}

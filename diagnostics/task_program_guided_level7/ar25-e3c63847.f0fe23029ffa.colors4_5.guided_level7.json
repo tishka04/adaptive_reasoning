@@ -1,0 +1,2205 @@
+{
+  "episode_id": "f0fe23029ffa",
+  "frontier": {
+    "danger_actions": [
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2"
+    ],
+    "immediate_danger_action": "ACTION2",
+    "level_start_index": 486,
+    "terminal_index": 823
+  },
+  "game_id": "ar25-e3c63847",
+  "guided_search": {
+    "action3_contradictions": 0,
+    "beam_width": 48,
+    "best": {
+      "action3_contradiction": false,
+      "action_data": [
+        null,
+        null
+      ],
+      "actions": [
+        "ACTION1",
+        "ACTION2"
+      ],
+      "available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "consecutive_submit": 1,
+      "danger_prefix_len": 0,
+      "depth": 2,
+      "died": false,
+      "grid_hash": "1511d1c8da6b9037",
+      "level": 7,
+      "match_delta_from_parent": 18.5895,
+      "match_delta_from_root": 0.0,
+      "match_score": {
+        "best_pairs": [
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 19.4014,
+            "col_alignment": 0.9984,
+            "first": {
+              "centroid_x": 26.615,
+              "centroid_y": 6.885,
+              "color": 4,
+              "height": 12,
+              "max_x": 29,
+              "max_y": 11,
+              "min_x": 21,
+              "min_y": 0,
+              "size": 52,
+              "width": 9
+            },
+            "row_alignment": 0.692,
+            "score": 4.5658,
+            "second": {
+              "centroid_x": 26.714,
+              "centroid_y": 26.286,
+              "color": 5,
+              "height": 15,
+              "max_x": 29,
+              "max_y": 35,
+              "min_x": 21,
+              "min_y": 21,
+              "size": 56,
+              "width": 9
+            },
+            "shape_score": 0.9,
+            "size_score": 0.9286
+          }
+        ],
+        "component_counts": {
+          "4": 1,
+          "5": 3,
+          "cursor": 4
+        },
+        "cursor_near_target": 4,
+        "dotted_constraint_violations": 2,
+        "matched_pairs": 1,
+        "pair_colors": [
+          4,
+          5
+        ],
+        "score": 7.4483,
+        "shape_overlap_or_alignment": 1.5219,
+        "unmatched_first": 0,
+        "unmatched_second": 2
+      },
+      "reached_next_level": false,
+      "repeat_penalty": 0.0,
+      "search_score": 604.9502,
+      "state": "NOT_FINISHED",
+      "submit_not_ready": false
+    },
+    "best_match": {
+      "action3_contradiction": false,
+      "action_data": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "actions": [
+        "ACTION3",
+        "ACTION2",
+        "ACTION5",
+        "ACTION3",
+        "ACTION5",
+        "ACTION3",
+        "ACTION3"
+      ],
+      "available_actions": [
+        "ACTION1",
+        "ACTION2",
+        "ACTION3",
+        "ACTION4",
+        "ACTION5",
+        "ACTION6",
+        "ACTION7"
+      ],
+      "consecutive_submit": 0,
+      "danger_prefix_len": 0,
+      "depth": 7,
+      "died": false,
+      "grid_hash": "d3cbddbf30b31294",
+      "level": 7,
+      "match_delta_from_parent": 0.0007,
+      "match_delta_from_root": 1.65,
+      "match_score": {
+        "best_pairs": [
+          {
+            "bbox_iou": 0.0,
+            "centroid_distance": 14.6136,
+            "col_alignment": 0.9999,
+            "first": {
+              "centroid_x": 20.721,
+              "centroid_y": 11.672,
+              "color": 4,
+              "height": 15,
+              "max_x": 23,
+              "max_y": 17,
+              "min_x": 15,
+              "min_y": 3,
+              "size": 61,
+              "width": 9
+            },
+            "row_alignment": 0.768,
+            "score": 4.7703,
+            "second": {
+              "centroid_x": 20.714,
+              "centroid_y": 26.286,
+              "color": 5,
+              "height": 15,
+              "max_x": 23,
+              "max_y": 35,
+              "min_x": 15,
+              "min_y": 21,
+              "size": 56,
+              "width": 9
+            },
+            "shape_score": 1.0,
+            "size_score": 0.918
+          }
+        ],
+        "component_counts": {
+          "4": 1,
+          "5": 3,
+          "cursor": 4
+        },
+        "cursor_near_target": 4,
+        "dotted_constraint_violations": 1,
+        "matched_pairs": 1,
+        "pair_colors": [
+          4,
+          5
+        ],
+        "score": 9.0982,
+        "shape_overlap_or_alignment": 1.5901,
+        "unmatched_first": 0,
+        "unmatched_second": 2
+      },
+      "reached_next_level": false,
+      "repeat_penalty": 1.0,
+      "search_score": 163.3775,
+      "state": "NOT_FINISHED",
+      "submit_not_ready": false
+    },
+    "evaluated_branches": 1698,
+    "horizon": 8,
+    "improved_match_states": 847,
+    "include_action6": false,
+    "known_danger_actions": [
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2",
+      "ACTION2"
+    ],
+    "reaches_level_8": false,
+    "root_match_score": {
+      "best_pairs": [
+        {
+          "bbox_iou": 0.0,
+          "centroid_distance": 19.4014,
+          "col_alignment": 0.9984,
+          "first": {
+            "centroid_x": 26.615,
+            "centroid_y": 6.885,
+            "color": 4,
+            "height": 12,
+            "max_x": 29,
+            "max_y": 11,
+            "min_x": 21,
+            "min_y": 0,
+            "size": 52,
+            "width": 9
+          },
+          "row_alignment": 0.692,
+          "score": 4.5658,
+          "second": {
+            "centroid_x": 26.714,
+            "centroid_y": 26.286,
+            "color": 5,
+            "height": 15,
+            "max_x": 29,
+            "max_y": 35,
+            "min_x": 21,
+            "min_y": 21,
+            "size": 56,
+            "width": 9
+          },
+          "shape_score": 0.9,
+          "size_score": 0.9286
+        }
+      ],
+      "component_counts": {
+        "4": 1,
+        "5": 3,
+        "cursor": 4
+      },
+      "cursor_near_target": 4,
+      "dotted_constraint_violations": 2,
+      "matched_pairs": 1,
+      "pair_colors": [
+        4,
+        5
+      ],
+      "score": 7.4483,
+      "shape_overlap_or_alignment": 1.5219,
+      "unmatched_first": 0,
+      "unmatched_second": 2
+    },
+    "submit_attempts": 283,
+    "submit_not_ready": 249,
+    "top": [
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION2"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 1,
+        "danger_prefix_len": 0,
+        "depth": 2,
+        "died": false,
+        "grid_hash": "1511d1c8da6b9037",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 604.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION7"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 2,
+        "died": false,
+        "grid_hash": "c3748660b6fdcab1",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 586.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION5",
+          "ACTION7"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "a2c95481136b474a",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 584.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION3",
+          "ACTION2"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 1,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "1511d1c8da6b9037",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 567.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION4",
+          "ACTION2"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 1,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "1511d1c8da6b9037",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 567.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION3",
+          "ACTION1",
+          "ACTION2"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 1,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "1511d1c8da6b9037",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 567.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION4",
+          "ACTION1",
+          "ACTION2"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 1,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "1511d1c8da6b9037",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 567.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION7",
+          "ACTION1",
+          "ACTION2"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 1,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "1511d1c8da6b9037",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 567.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION3",
+          "ACTION7"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "c3748660b6fdcab1",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 549.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION4",
+          "ACTION7"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 3,
+        "died": false,
+        "grid_hash": "c3748660b6fdcab1",
+        "level": 7,
+        "match_delta_from_parent": 18.5895,
+        "match_delta_from_root": 0.0,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 19.4014,
+              "col_alignment": 0.9984,
+              "first": {
+                "centroid_x": 26.615,
+                "centroid_y": 6.885,
+                "color": 4,
+                "height": 12,
+                "max_x": 29,
+                "max_y": 11,
+                "min_x": 21,
+                "min_y": 0,
+                "size": 52,
+                "width": 9
+              },
+              "row_alignment": 0.692,
+              "score": 4.5658,
+              "second": {
+                "centroid_x": 26.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 29,
+                "max_y": 35,
+                "min_x": 21,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 0.9,
+              "size_score": 0.9286
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 2,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 7.4483,
+          "shape_overlap_or_alignment": 1.5219,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 549.9502,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      }
+    ],
+    "top_contradictions": [],
+    "top_match": [
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION3",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "grid_hash": "d3cbddbf30b31294",
+        "level": 7,
+        "match_delta_from_parent": 0.0007,
+        "match_delta_from_root": 1.65,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6136,
+              "col_alignment": 0.9999,
+              "first": {
+                "centroid_x": 20.721,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 17,
+                "min_x": 15,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7703,
+              "second": {
+                "centroid_x": 20.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 35,
+                "min_x": 15,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0982,
+          "shape_overlap_or_alignment": 1.5901,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 163.3775,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION4",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "grid_hash": "d3cbddbf30b31294",
+        "level": 7,
+        "match_delta_from_parent": 0.0007,
+        "match_delta_from_root": 1.65,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6136,
+              "col_alignment": 0.9999,
+              "first": {
+                "centroid_x": 20.721,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 17,
+                "min_x": 15,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7703,
+              "second": {
+                "centroid_x": 20.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 35,
+                "min_x": 15,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0982,
+          "shape_overlap_or_alignment": 1.5901,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 163.3775,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 8,
+        "died": false,
+        "grid_hash": "5b147de5e31c5e41",
+        "level": 7,
+        "match_delta_from_parent": 0.0007,
+        "match_delta_from_root": 1.65,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6136,
+              "col_alignment": 0.9999,
+              "first": {
+                "centroid_x": 20.721,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 17,
+                "min_x": 15,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7703,
+              "second": {
+                "centroid_x": 20.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 35,
+                "min_x": 15,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0982,
+          "shape_overlap_or_alignment": 1.5901,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 196.3775,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION7",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 8,
+        "died": false,
+        "grid_hash": "b982c63c8fd0dec8",
+        "level": 7,
+        "match_delta_from_parent": 0.0007,
+        "match_delta_from_root": 1.65,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6136,
+              "col_alignment": 0.9999,
+              "first": {
+                "centroid_x": 20.721,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 17,
+                "min_x": 15,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7703,
+              "second": {
+                "centroid_x": 20.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 23,
+                "max_y": 35,
+                "min_x": 15,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0982,
+          "shape_overlap_or_alignment": 1.5901,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 196.3775,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION3",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "grid_hash": "5545e16baff12e77",
+        "level": 7,
+        "match_delta_from_parent": 0.0289,
+        "match_delta_from_root": 1.6493,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6137,
+              "col_alignment": 0.9991,
+              "first": {
+                "centroid_x": 23.77,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 17,
+                "min_x": 18,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7694,
+              "second": {
+                "centroid_x": 23.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 35,
+                "min_x": 18,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0976,
+          "shape_overlap_or_alignment": 1.5898,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 166.2006,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION4",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "grid_hash": "5545e16baff12e77",
+        "level": 7,
+        "match_delta_from_parent": 0.0289,
+        "match_delta_from_root": 1.6493,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6137,
+              "col_alignment": 0.9991,
+              "first": {
+                "centroid_x": 23.77,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 17,
+                "min_x": 18,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7694,
+              "second": {
+                "centroid_x": 23.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 35,
+                "min_x": 18,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0976,
+          "shape_overlap_or_alignment": 1.5898,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 166.2006,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION7",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 6,
+        "died": false,
+        "grid_hash": "5545e16baff12e77",
+        "level": 7,
+        "match_delta_from_parent": 0.0289,
+        "match_delta_from_root": 1.6493,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6137,
+              "col_alignment": 0.9991,
+              "first": {
+                "centroid_x": 23.77,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 17,
+                "min_x": 18,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7694,
+              "second": {
+                "centroid_x": 23.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 35,
+                "min_x": 18,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0976,
+          "shape_overlap_or_alignment": 1.5898,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 166.2006,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "grid_hash": "a6997b5d898915fa",
+        "level": 7,
+        "match_delta_from_parent": 0.0289,
+        "match_delta_from_root": 1.6493,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6137,
+              "col_alignment": 0.9991,
+              "first": {
+                "centroid_x": 23.77,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 17,
+                "min_x": 18,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7694,
+              "second": {
+                "centroid_x": 23.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 35,
+                "min_x": 18,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0976,
+          "shape_overlap_or_alignment": 1.5898,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 199.2006,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION1",
+          "ACTION7",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "grid_hash": "d2072f0b330b1267",
+        "level": 7,
+        "match_delta_from_parent": 0.0289,
+        "match_delta_from_root": 1.6493,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6137,
+              "col_alignment": 0.9991,
+              "first": {
+                "centroid_x": 23.77,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 17,
+                "min_x": 18,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7694,
+              "second": {
+                "centroid_x": 23.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 35,
+                "min_x": 18,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0976,
+          "shape_overlap_or_alignment": 1.5898,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 0.0,
+        "search_score": 199.2006,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      },
+      {
+        "action3_contradiction": false,
+        "action_data": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "actions": [
+          "ACTION3",
+          "ACTION2",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5",
+          "ACTION3",
+          "ACTION5"
+        ],
+        "available_actions": [
+          "ACTION1",
+          "ACTION2",
+          "ACTION3",
+          "ACTION4",
+          "ACTION5",
+          "ACTION6",
+          "ACTION7"
+        ],
+        "consecutive_submit": 0,
+        "danger_prefix_len": 0,
+        "depth": 7,
+        "died": false,
+        "grid_hash": "dc63c9e2a06b3ab7",
+        "level": 7,
+        "match_delta_from_parent": 0.0,
+        "match_delta_from_root": 1.6493,
+        "match_score": {
+          "best_pairs": [
+            {
+              "bbox_iou": 0.0,
+              "centroid_distance": 14.6137,
+              "col_alignment": 0.9991,
+              "first": {
+                "centroid_x": 23.77,
+                "centroid_y": 11.672,
+                "color": 4,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 17,
+                "min_x": 18,
+                "min_y": 3,
+                "size": 61,
+                "width": 9
+              },
+              "row_alignment": 0.768,
+              "score": 4.7694,
+              "second": {
+                "centroid_x": 23.714,
+                "centroid_y": 26.286,
+                "color": 5,
+                "height": 15,
+                "max_x": 26,
+                "max_y": 35,
+                "min_x": 18,
+                "min_y": 21,
+                "size": 56,
+                "width": 9
+              },
+              "shape_score": 1.0,
+              "size_score": 0.918
+            }
+          ],
+          "component_counts": {
+            "4": 1,
+            "5": 3,
+            "cursor": 4
+          },
+          "cursor_near_target": 4,
+          "dotted_constraint_violations": 1,
+          "matched_pairs": 1,
+          "pair_colors": [
+            4,
+            5
+          ],
+          "score": 9.0976,
+          "shape_overlap_or_alignment": 1.5898,
+          "unmatched_first": 0,
+          "unmatched_second": 2
+        },
+        "reached_next_level": false,
+        "repeat_penalty": 1.0,
+        "search_score": 178.276,
+        "state": "NOT_FINISHED",
+        "submit_not_ready": false
+      }
+    ]
+  },
+  "rule_model": {
+    "expected_matched_pairs": 1,
+    "expected_unmatched_total": 2,
+    "pair_color_candidates": [
+      {
+        "avg_ready_score": 3.844,
+        "best_ready_score": 28.2268,
+        "median_matched_pairs": 1.0,
+        "pair_colors": [
+          4,
+          5
+        ],
+        "q90_ready_score": 25.1383,
+        "selected": true
+      },
+      {
+        "avg_ready_score": -16.4502,
+        "best_ready_score": -3.0488,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          4,
+          10
+        ],
+        "q90_ready_score": -3.2656,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -18.7143,
+        "best_ready_score": -12.4367,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          5,
+          10
+        ],
+        "q90_ready_score": -13.7923,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -81.7245,
+        "best_ready_score": -23.5767,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          4,
+          11
+        ],
+        "q90_ready_score": -25.914,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -83.8122,
+        "best_ready_score": -25.37,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          10,
+          11
+        ],
+        "q90_ready_score": -27.5772,
+        "selected": false
+      },
+      {
+        "avg_ready_score": -76.8386,
+        "best_ready_score": -27.741,
+        "median_matched_pairs": 0.0,
+        "pair_colors": [
+          5,
+          11
+        ],
+        "q90_ready_score": -30.3423,
+        "selected": false
+      }
+    ],
+    "pair_colors": [
+      4,
+      5
+    ],
+    "ready_level_up_actions": {
+      "ACTION2": 5,
+      "ACTION3": 1
+    },
+    "ready_scores": [
+      7.4302,
+      7.4494,
+      22.0498,
+      28.2268,
+      -4.5685,
+      -37.524
+    ],
+    "ready_threshold": 25.1383
+  },
+  "rule_report": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\diagnostics\\rule_inference\\ar25-e3c63847.global_rule_inference.json",
+  "target_level": 7
+}

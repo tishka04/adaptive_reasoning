@@ -1,0 +1,726 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "baseline_aggregates": {
+    "ACTION6": {
+      "condition": "ACTION6",
+      "mean_delta_vs_hold": 5.0,
+      "mean_levels_completed": 0.0,
+      "mean_terminal_adjusted_progress": 73.076923,
+      "objective_completion_runs": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 13,
+      "support": 0,
+      "terminal_rate": 0.0,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "ACTION6,ACTION3": {
+      "condition": "ACTION6,ACTION3",
+      "mean_delta_vs_hold": 3.076923,
+      "mean_levels_completed": 0.0,
+      "mean_terminal_adjusted_progress": 71.153846,
+      "objective_completion_runs": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 13,
+      "support": 0,
+      "terminal_rate": 0.076923,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "ACTION6,ACTION4": {
+      "condition": "ACTION6,ACTION4",
+      "mean_delta_vs_hold": 3.076923,
+      "mean_levels_completed": 0.0,
+      "mean_terminal_adjusted_progress": 71.153846,
+      "objective_completion_runs": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 13,
+      "support": 0,
+      "terminal_rate": 0.076923,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "hold_or_stop_state": {
+      "condition": "hold_or_stop_state",
+      "mean_delta_vs_hold": 0.0,
+      "mean_levels_completed": 0.0,
+      "mean_terminal_adjusted_progress": 68.076923,
+      "objective_completion_runs": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 13,
+      "support": 0,
+      "terminal_rate": 0.0,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    }
+  },
+  "config": {
+    "adapter_path": "diagnostics\\p3\\contextual_post_stop_conversion_policy_adapter.json",
+    "execution_performed": false,
+    "p3g0_policy_probe_path": "diagnostics\\p3\\abstract_mechanic_policy_probe.json",
+    "p3g1_consolidation_path": "diagnostics\\p3\\objective_aware_abstract_policy_utility_consolidation.json",
+    "policy_options": [
+      "hold_or_stop_state",
+      "ACTION6",
+      "ACTION6,ACTION3",
+      "ACTION6,ACTION4"
+    ],
+    "schema_version": "p3.contextual_post_stop_conversion_policy_probe.v1",
+    "source_cells_rerun": false,
+    "source_m3g4_path": "diagnostics\\m3\\objective_conversion_diverse_safe_stop_validation.json",
+    "stage": "P3.G2.2"
+  },
+  "contextual_policy_aggregate": {
+    "condition": "contextual_post_stop_conversion_policy",
+    "mean_delta_vs_hold": 11.923077,
+    "mean_levels_completed": 0.0,
+    "mean_terminal_adjusted_progress": 80.0,
+    "objective_completion_runs": 0,
+    "revision_status": "CANDIDATE_ONLY",
+    "runs": 13,
+    "support": 0,
+    "terminal_rate": 0.0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+  },
+  "policy_decision_records": [
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_low_lt_50",
+      "hold_baseline_terminal_adjusted_progress": 40.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 60.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::001",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 55.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 60,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_mid_50_119",
+      "hold_baseline_terminal_adjusted_progress": 60.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 80.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::002",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 75.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 58,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_mid_50_119",
+      "hold_baseline_terminal_adjusted_progress": 80.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 100.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::003",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 95.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 56,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 115.0,
+          "candidate_terminal_reentry": false,
+          "delta_terminal_adjusted_progress_vs_hold": 15.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION3",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 115.0,
+          "candidate_terminal_reentry": false,
+          "delta_terminal_adjusted_progress_vs_hold": 15.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION4",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        }
+      ],
+      "delta_vs_action6_only": 0.0,
+      "delta_vs_hold": 5.0,
+      "hold_baseline_band": "hold_mid_50_119",
+      "hold_baseline_terminal_adjusted_progress": 100.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 120.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::004",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6"
+      ],
+      "selected_option": "ACTION6",
+      "selected_reason": "safe_action6_fallback",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 105.0,
+      "terminal_horizon_band": "horizon_mid_45_54",
+      "terminal_horizon_remaining": 54,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair",
+            "blocked_hold_baseline_band"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 135.0,
+          "candidate_terminal_reentry": false,
+          "delta_terminal_adjusted_progress_vs_hold": 15.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION3",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair",
+            "blocked_hold_baseline_band"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 135.0,
+          "candidate_terminal_reentry": false,
+          "delta_terminal_adjusted_progress_vs_hold": 15.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION4",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        }
+      ],
+      "delta_vs_action6_only": 0.0,
+      "delta_vs_hold": 5.0,
+      "hold_baseline_band": "hold_high_ge_120",
+      "hold_baseline_terminal_adjusted_progress": 120.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 140.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::005",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6"
+      ],
+      "selected_option": "ACTION6",
+      "selected_reason": "safe_action6_fallback",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 125.0,
+      "terminal_horizon_band": "horizon_mid_45_54",
+      "terminal_horizon_remaining": 52,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair",
+            "blocked_hold_baseline_band",
+            "candidate_terminal_reentry",
+            "extension_margin_vs_action6_too_small",
+            "does_not_beat_hold"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 0.0,
+          "candidate_terminal_reentry": true,
+          "delta_terminal_adjusted_progress_vs_hold": -140.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION3",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair",
+            "blocked_hold_baseline_band",
+            "candidate_terminal_reentry",
+            "extension_margin_vs_action6_too_small",
+            "does_not_beat_hold"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 0.0,
+          "candidate_terminal_reentry": true,
+          "delta_terminal_adjusted_progress_vs_hold": -140.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION4",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        }
+      ],
+      "delta_vs_action6_only": 0.0,
+      "delta_vs_hold": 5.0,
+      "hold_baseline_band": "hold_high_ge_120",
+      "hold_baseline_terminal_adjusted_progress": 140.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 150.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::006",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6"
+      ],
+      "selected_option": "ACTION6",
+      "selected_reason": "safe_action6_fallback",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 145.0,
+      "terminal_horizon_band": "horizon_mid_45_54",
+      "terminal_horizon_remaining": 50,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 2
+    },
+    {
+      "beats_relation_progress_policy": true,
+      "blocked_extension_records": [
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair",
+            "blocked_hold_baseline_band"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 165.0,
+          "candidate_terminal_reentry": false,
+          "delta_terminal_adjusted_progress_vs_hold": 15.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION3",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "blockers": [
+            "blocked_sampling_family_horizon_pair",
+            "blocked_hold_baseline_band"
+          ],
+          "candidate_terminal_adjusted_progress_after_stop": 165.0,
+          "candidate_terminal_reentry": false,
+          "delta_terminal_adjusted_progress_vs_hold": 15.0,
+          "revision_status": "CANDIDATE_ONLY",
+          "sequence_key": "ACTION6,ACTION4",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+        }
+      ],
+      "delta_vs_action6_only": 0.0,
+      "delta_vs_hold": 5.0,
+      "hold_baseline_band": "hold_high_ge_120",
+      "hold_baseline_terminal_adjusted_progress": 150.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 0.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::007",
+      "sampling_family": "base_prefix_truncation",
+      "selected_action_or_sequence": [
+        "ACTION6"
+      ],
+      "selected_option": "ACTION6",
+      "selected_reason": "safe_action6_fallback",
+      "signal_strength": "MEDIUM_BEATS_HOLD_AND_RELATION_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 155.0,
+      "terminal_horizon_band": "horizon_mid_45_54",
+      "terminal_horizon_remaining": 49,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_low_lt_50",
+      "hold_baseline_terminal_adjusted_progress": 30.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 50.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::008",
+      "sampling_family": "single_action_burst",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 45.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 61,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_mid_50_119",
+      "hold_baseline_terminal_adjusted_progress": 50.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 70.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::009",
+      "sampling_family": "single_action_burst",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 65.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 59,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_mid_50_119",
+      "hold_baseline_terminal_adjusted_progress": 70.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 90.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::010",
+      "sampling_family": "single_action_burst",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 85.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 57,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_low_lt_50",
+      "hold_baseline_terminal_adjusted_progress": 5.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 25.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::011",
+      "sampling_family": "action6_perturbation",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 20.0,
+      "terminal_horizon_band": "horizon_near_lt_45",
+      "terminal_horizon_remaining": 36,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_low_lt_50",
+      "hold_baseline_terminal_adjusted_progress": 15.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 35.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::012",
+      "sampling_family": "action6_perturbation",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 30.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 62,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    },
+    {
+      "beats_relation_progress_policy": false,
+      "blocked_extension_records": [],
+      "delta_vs_action6_only": 10.0,
+      "delta_vs_hold": 15.0,
+      "hold_baseline_band": "hold_low_lt_50",
+      "hold_baseline_terminal_adjusted_progress": 25.0,
+      "levels_completed_after_rollout": 0,
+      "objective_completion_signal": false,
+      "policy_decision_counted_as_confirmation": false,
+      "relation_progress_best_taps": 45.0,
+      "revision_status": "CANDIDATE_ONLY",
+      "safe_stop_id": "m3_g3::safe_stop::013",
+      "sampling_family": "action6_perturbation",
+      "selected_action_or_sequence": [
+        "ACTION6",
+        "ACTION3"
+      ],
+      "selected_option": "ACTION6,ACTION3",
+      "selected_reason": "contextual_extension_allowed_and_beats_action6",
+      "signal_strength": "WEAK_BEATS_HOLD_CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress": 40.0,
+      "terminal_horizon_band": "horizon_far_ge_55",
+      "terminal_horizon_remaining": 61,
+      "terminal_reentry": false,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+      "unsafe_extension_options_avoided": 0
+    }
+  ],
+  "policy_result_counted_as_scientific_verdict": false,
+  "policy_utility_status": "POST_STOP_CONTEXTUAL_POLICY_CANDIDATE_ONLY",
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_m3g4_counted_as_mechanic_confirmation": false,
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "abstention_or_hold_rate": 0.0,
+    "baseline_aggregates": {
+      "ACTION6": {
+        "condition": "ACTION6",
+        "mean_delta_vs_hold": 5.0,
+        "mean_levels_completed": 0.0,
+        "mean_terminal_adjusted_progress": 73.076923,
+        "objective_completion_runs": 0,
+        "revision_status": "CANDIDATE_ONLY",
+        "runs": 13,
+        "support": 0,
+        "terminal_rate": 0.0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      "ACTION6,ACTION3": {
+        "condition": "ACTION6,ACTION3",
+        "mean_delta_vs_hold": 3.076923,
+        "mean_levels_completed": 0.0,
+        "mean_terminal_adjusted_progress": 71.153846,
+        "objective_completion_runs": 0,
+        "revision_status": "CANDIDATE_ONLY",
+        "runs": 13,
+        "support": 0,
+        "terminal_rate": 0.076923,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      "ACTION6,ACTION4": {
+        "condition": "ACTION6,ACTION4",
+        "mean_delta_vs_hold": 3.076923,
+        "mean_levels_completed": 0.0,
+        "mean_terminal_adjusted_progress": 71.153846,
+        "objective_completion_runs": 0,
+        "revision_status": "CANDIDATE_ONLY",
+        "runs": 13,
+        "support": 0,
+        "terminal_rate": 0.076923,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      "hold_or_stop_state": {
+        "condition": "hold_or_stop_state",
+        "mean_delta_vs_hold": 0.0,
+        "mean_levels_completed": 0.0,
+        "mean_terminal_adjusted_progress": 68.076923,
+        "objective_completion_runs": 0,
+        "revision_status": "CANDIDATE_ONLY",
+        "runs": 13,
+        "support": 0,
+        "terminal_rate": 0.0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      }
+    },
+    "contextual_policy_aggregate": {
+      "condition": "contextual_post_stop_conversion_policy",
+      "mean_delta_vs_hold": 11.923077,
+      "mean_levels_completed": 0.0,
+      "mean_terminal_adjusted_progress": 80.0,
+      "objective_completion_runs": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "runs": 13,
+      "support": 0,
+      "terminal_rate": 0.0,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "improvement_over_action6_only": true,
+    "mean_delta_vs_action6_only": 6.923077,
+    "mean_delta_vs_hold": 11.923077,
+    "mean_terminal_adjusted_progress": 80.0,
+    "objective_completion_runs": 0,
+    "objective_completion_signal": false,
+    "p3_reference_comparison": {
+      "comparison_scale_note": "P3.G2 is evaluated on post-stop safe-stop records; P3.G0/P3.G1 references are full rollout aggregates and are terminal-rate references, not mechanic confirmation.",
+      "p3g0_reference": {
+        "available": true,
+        "condition": "abstract_mechanic_policy_from_m3g0",
+        "mean_progress_proxy": 120.0,
+        "revision_status": "CANDIDATE_ONLY",
+        "support": 0,
+        "terminal_adjusted_progress": null,
+        "terminal_rate": 0.5,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      "p3g1_reference": {
+        "available": true,
+        "condition": "objective_aware_abstract_policy_lambda_0",
+        "mean_progress_proxy": 132.5,
+        "revision_status": "CANDIDATE_ONLY",
+        "support": 0,
+        "terminal_adjusted_progress": 132.5,
+        "terminal_rate": 0.0,
+        "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+      },
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "terminal_adjusted_progress_delta_vs_p3g0": null,
+      "terminal_adjusted_progress_delta_vs_p3g1": -52.5,
+      "terminal_rate_delta_vs_p3g0": -0.5,
+      "terminal_rate_delta_vs_p3g1": 0.0,
+      "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE"
+    },
+    "policy_result_counted_as_scientific_verdict": false,
+    "policy_utility_status": "POST_STOP_CONTEXTUAL_POLICY_CANDIDATE_ONLY",
+    "revision_status": "CANDIDATE_ONLY",
+    "safe_stops_evaluated": 13,
+    "selected_action6_only_count": 4,
+    "selected_extension_count": 9,
+    "selected_hold_count": 0,
+    "source_m3g4_counted_as_mechanic_confirmation": false,
+    "source_m3g4_validation_outcome_status": "MIXED_BY_SAFE_STOP_FAMILY_CANDIDATE_ONLY",
+    "support": 0,
+    "terminal_rate": 0.0,
+    "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+    "unsafe_extension_options_avoided": 2,
+    "unsafe_extension_safe_stops_avoided": 1
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_P3_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

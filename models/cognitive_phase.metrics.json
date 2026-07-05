@@ -1,0 +1,449 @@
+{
+  "dataset": "training/cognitive_trace_dataset.jsonl",
+  "rows": 5605,
+  "games": [
+    "ar25-e3c63847",
+    "bp35-0a0ad940",
+    "cd82-fb555c5d",
+    "cn04-65d47d14",
+    "dc22-4c9bff3e",
+    "ft09-0d8bbf25"
+  ],
+  "group_by": "episode",
+  "groups": 27,
+  "n_splits": 5,
+  "with_history": false,
+  "label_counts": {
+    "explore_unknown": 512,
+    "test_move": 596,
+    "test_click": 238,
+    "test_interaction": 586,
+    "probe_object": 652,
+    "reach_target": 664,
+    "avoid_danger": 275,
+    "repeat_success": 1909,
+    "recover_after_failure": 109,
+    "none": 64
+  },
+  "cv": {
+    "accuracy": {
+      "mean": 0.2529,
+      "std": 0.0636
+    },
+    "balanced_accuracy": {
+      "mean": 0.2373,
+      "std": 0.0589
+    },
+    "macro_f1": {
+      "mean": 0.1636,
+      "std": 0.0404
+    },
+    "weighted_f1": {
+      "mean": 0.2234,
+      "std": 0.0271
+    }
+  },
+  "baseline": {
+    "accuracy": {
+      "mean": 0.3373,
+      "std": 0.0458
+    },
+    "balanced_accuracy": {
+      "mean": 0.118,
+      "std": 0.0148
+    },
+    "macro_f1": {
+      "mean": 0.0594,
+      "std": 0.0098
+    },
+    "weighted_f1": {
+      "mean": 0.1718,
+      "std": 0.0424
+    }
+  },
+  "oof": {
+    "accuracy": 0.2471,
+    "balanced_accuracy": 0.1808,
+    "macro_f1": 0.1362,
+    "weighted_f1": 0.2296
+  },
+  "oof_baseline": {
+    "accuracy": 0.3406,
+    "balanced_accuracy": 0.1,
+    "macro_f1": 0.0508,
+    "weighted_f1": 0.1731
+  },
+  "per_class": {
+    "explore_unknown": {
+      "precision": 0.106,
+      "recall": 0.0312,
+      "f1": 0.0483,
+      "support": 512
+    },
+    "test_move": {
+      "precision": 0.1899,
+      "recall": 0.1946,
+      "f1": 0.1922,
+      "support": 596
+    },
+    "test_click": {
+      "precision": 0.0787,
+      "recall": 0.0714,
+      "f1": 0.0749,
+      "support": 238
+    },
+    "test_interaction": {
+      "precision": 0.0341,
+      "recall": 0.0324,
+      "f1": 0.0332,
+      "support": 586
+    },
+    "probe_object": {
+      "precision": 0.2217,
+      "recall": 0.1564,
+      "f1": 0.1835,
+      "support": 652
+    },
+    "reach_target": {
+      "precision": 0.1622,
+      "recall": 0.1099,
+      "f1": 0.1311,
+      "support": 664
+    },
+    "avoid_danger": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 275
+    },
+    "repeat_success": {
+      "precision": 0.4216,
+      "recall": 0.5055,
+      "f1": 0.4597,
+      "support": 1909
+    },
+    "recover_after_failure": {
+      "precision": 0.1442,
+      "recall": 0.7064,
+      "f1": 0.2395,
+      "support": 109
+    },
+    "none": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 64
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "explore_unknown",
+      "test_move",
+      "test_click",
+      "test_interaction",
+      "probe_object",
+      "reach_target",
+      "avoid_danger",
+      "repeat_success",
+      "recover_after_failure",
+      "none"
+    ],
+    "matrix": [
+      [
+        16,
+        20,
+        26,
+        1,
+        0,
+        2,
+        0,
+        440,
+        7,
+        0
+      ],
+      [
+        78,
+        116,
+        52,
+        17,
+        0,
+        53,
+        16,
+        37,
+        151,
+        76
+      ],
+      [
+        25,
+        56,
+        17,
+        105,
+        0,
+        11,
+        14,
+        10,
+        0,
+        0
+      ],
+      [
+        0,
+        138,
+        66,
+        19,
+        21,
+        101,
+        80,
+        147,
+        14,
+        0
+      ],
+      [
+        0,
+        85,
+        3,
+        24,
+        102,
+        35,
+        7,
+        363,
+        18,
+        15
+      ],
+      [
+        0,
+        65,
+        24,
+        95,
+        52,
+        73,
+        28,
+        301,
+        26,
+        0
+      ],
+      [
+        0,
+        39,
+        17,
+        152,
+        23,
+        25,
+        0,
+        19,
+        0,
+        0
+      ],
+      [
+        32,
+        92,
+        11,
+        144,
+        173,
+        150,
+        17,
+        965,
+        241,
+        84
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        31,
+        0,
+        0,
+        1,
+        77,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        58,
+        0,
+        0,
+        6,
+        0,
+        0
+      ]
+    ]
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "n_train": 4377,
+      "n_test": 1228,
+      "test_groups": 4,
+      "metrics": {
+        "accuracy": 0.2712,
+        "balanced_accuracy": 0.325,
+        "macro_f1": 0.1542,
+        "weighted_f1": 0.2023
+      },
+      "baseline": {
+        "accuracy": 0.3046,
+        "balanced_accuracy": 0.1429,
+        "macro_f1": 0.0667,
+        "weighted_f1": 0.1422
+      }
+    },
+    {
+      "fold": 2,
+      "n_train": 4332,
+      "n_test": 1273,
+      "test_groups": 5,
+      "metrics": {
+        "accuracy": 0.1438,
+        "balanced_accuracy": 0.2049,
+        "macro_f1": 0.1035,
+        "weighted_f1": 0.1808
+      },
+      "baseline": {
+        "accuracy": 0.4258,
+        "balanced_accuracy": 0.125,
+        "macro_f1": 0.0747,
+        "weighted_f1": 0.2543
+      }
+    },
+    {
+      "fold": 3,
+      "n_train": 4459,
+      "n_test": 1146,
+      "test_groups": 6,
+      "metrics": {
+        "accuracy": 0.2478,
+        "balanced_accuracy": 0.2584,
+        "macro_f1": 0.1883,
+        "weighted_f1": 0.2513
+      },
+      "baseline": {
+        "accuracy": 0.3351,
+        "balanced_accuracy": 0.1111,
+        "macro_f1": 0.0558,
+        "weighted_f1": 0.1682
+      }
+    },
+    {
+      "fold": 4,
+      "n_train": 4678,
+      "n_test": 927,
+      "test_groups": 5,
+      "metrics": {
+        "accuracy": 0.342,
+        "balanced_accuracy": 0.2501,
+        "macro_f1": 0.2239,
+        "weighted_f1": 0.2422
+      },
+      "baseline": {
+        "accuracy": 0.302,
+        "balanced_accuracy": 0.1111,
+        "macro_f1": 0.0516,
+        "weighted_f1": 0.1401
+      }
+    },
+    {
+      "fold": 5,
+      "n_train": 4574,
+      "n_test": 1031,
+      "test_groups": 7,
+      "metrics": {
+        "accuracy": 0.2599,
+        "balanced_accuracy": 0.1479,
+        "macro_f1": 0.1483,
+        "weighted_f1": 0.2405
+      },
+      "baseline": {
+        "accuracy": 0.3191,
+        "balanced_accuracy": 0.1,
+        "macro_f1": 0.0484,
+        "weighted_f1": 0.1544
+      }
+    }
+  ],
+  "top_feature_importances": [
+    {
+      "feature": "nonzero_density",
+      "importance": 0.03879
+    },
+    {
+      "feature": "color_1_centroid_x",
+      "importance": 0.03641
+    },
+    {
+      "feature": "mean_component_size",
+      "importance": 0.0354
+    },
+    {
+      "feature": "centroid_spread_x",
+      "importance": 0.03486
+    },
+    {
+      "feature": "size_entropy",
+      "importance": 0.03109
+    },
+    {
+      "feature": "size_bin_1_frac",
+      "importance": 0.02643
+    },
+    {
+      "feature": "nearest_distance_max",
+      "importance": 0.0226
+    },
+    {
+      "feature": "centroid_spread_y",
+      "importance": 0.02153
+    },
+    {
+      "feature": "color_3_total_size",
+      "importance": 0.02091
+    },
+    {
+      "feature": "color_0_centroid_x",
+      "importance": 0.02086
+    },
+    {
+      "feature": "size_bin_0_frac",
+      "importance": 0.0208
+    },
+    {
+      "feature": "nearest_distance_mean",
+      "importance": 0.02078
+    },
+    {
+      "feature": "color_0_centroid_y",
+      "importance": 0.01922
+    },
+    {
+      "feature": "top_pair_1_nearest_dist",
+      "importance": 0.01917
+    },
+    {
+      "feature": "boundary_contact_ratio",
+      "importance": 0.01902
+    },
+    {
+      "feature": "color_2_centroid_y",
+      "importance": 0.01889
+    },
+    {
+      "feature": "color_2_centroid_x",
+      "importance": 0.01861
+    },
+    {
+      "feature": "color_1_total_size",
+      "importance": 0.01854
+    },
+    {
+      "feature": "top_pair_0_size_sim",
+      "importance": 0.01808
+    },
+    {
+      "feature": "size_bin_2_frac",
+      "importance": 0.01801
+    }
+  ],
+  "model_out": "models\\cognitive_phase.joblib"
+}

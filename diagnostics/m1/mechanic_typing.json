@@ -1,0 +1,368 @@
+{
+  "config": {
+    "grounding_autopsy_path": "diagnostics\\m1\\grounding_autopsy.json",
+    "observation_path": "training\\m1_observation_dataset.jsonl",
+    "reset_transitions_excluded_from_rates": true
+  },
+  "prior_counted_as_proof": false,
+  "profiles": [
+    {
+      "game_id": "ar25-e3c63847",
+      "grounding_fit": {
+        "new_pair_source_color_predictiveness": 0.0,
+        "new_pair_source_not_selectable_rate": 0.0,
+        "new_pairs_entering_agenda_rate": 0.0,
+        "pairs_entering_agenda_rate": 0.0,
+        "source_color_predictiveness": 0.0,
+        "source_not_selectable_rate": 0.0
+      },
+      "mechanic_scores": {
+        "action_argument": 0.0026,
+        "color_change": 0.9657,
+        "color_source_grounding": 0.0,
+        "object_lifecycle": 0.8613,
+        "position_motion": 0.9201,
+        "shape_object": 0.8188,
+        "topology_contact": 0.8495
+      },
+      "mechanic_tags": [
+        "color_change",
+        "position_motion",
+        "object_lifecycle",
+        "topology_contact"
+      ],
+      "non_reset_observations": 1156,
+      "observations_total": 1161,
+      "prior_counted_as_proof": false,
+      "raw_rates": {
+        "action_argument_predictiveness": 0.0,
+        "action_argument_rate": 0.0026,
+        "changed_transition_rate": 0.9472,
+        "color_change_rate": 0.9472,
+        "contact_change_rate": 0.8495,
+        "level_progress_rate": 0.0104,
+        "mean_changed_cell_ratio": 0.0622,
+        "mean_color_pairs_changed": 8.0588,
+        "mean_motion_vectors": 12.3486,
+        "object_count_change_rate": 0.6903,
+        "object_creation_rate": 0.9464,
+        "object_motion_rate": 0.923,
+        "object_removal_rate": 0.9472,
+        "player_motion_rate": 0.9144,
+        "position_change_rate": 0.923,
+        "shape_change_rate": 0.9472
+      },
+      "representation_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+      "status": "UNRESOLVED",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "game_id": "bp35-0a0ad940",
+      "grounding_fit": {
+        "new_pair_source_color_predictiveness": 0.0,
+        "new_pair_source_not_selectable_rate": 1.0,
+        "new_pairs_entering_agenda_rate": 0.0,
+        "pairs_entering_agenda_rate": 0.0,
+        "source_color_predictiveness": 0.0,
+        "source_not_selectable_rate": 1.0
+      },
+      "mechanic_scores": {
+        "action_argument": 0.4227,
+        "color_change": 1.0,
+        "color_source_grounding": 0.0,
+        "object_lifecycle": 0.8615,
+        "position_motion": 0.9464,
+        "shape_object": 0.7923,
+        "topology_contact": 0.7598
+      },
+      "mechanic_tags": [
+        "color_change",
+        "position_motion",
+        "object_lifecycle",
+        "shape_object"
+      ],
+      "non_reset_observations": 970,
+      "observations_total": 986,
+      "prior_counted_as_proof": false,
+      "raw_rates": {
+        "action_argument_predictiveness": 0.0,
+        "action_argument_rate": 0.4227,
+        "changed_transition_rate": 1.0,
+        "color_change_rate": 1.0,
+        "contact_change_rate": 0.7598,
+        "level_progress_rate": 0.0206,
+        "mean_changed_cell_ratio": 0.1083,
+        "mean_color_pairs_changed": 11.5299,
+        "mean_motion_vectors": 54.8794,
+        "object_count_change_rate": 0.5845,
+        "object_creation_rate": 1.0,
+        "object_motion_rate": 0.9464,
+        "object_removal_rate": 1.0,
+        "player_motion_rate": 0.9464,
+        "position_change_rate": 0.9464,
+        "shape_change_rate": 1.0
+      },
+      "representation_warning": "color_source_schema_misaligned_with_observed_mechanics",
+      "status": "UNRESOLVED",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "game_id": "cd82-fb555c5d",
+      "grounding_fit": {
+        "new_pair_source_color_predictiveness": 0.0,
+        "new_pair_source_not_selectable_rate": 1.0,
+        "new_pairs_entering_agenda_rate": 0.0,
+        "pairs_entering_agenda_rate": 0.0,
+        "source_color_predictiveness": 0.0,
+        "source_not_selectable_rate": 1.0
+      },
+      "mechanic_scores": {
+        "action_argument": 0.1758,
+        "color_change": 0.9152,
+        "color_source_grounding": 0.0,
+        "object_lifecycle": 0.6982,
+        "position_motion": 0.1314,
+        "shape_object": 0.6132,
+        "topology_contact": 0.6485
+      },
+      "mechanic_tags": [
+        "color_change",
+        "object_lifecycle",
+        "topology_contact",
+        "shape_object"
+      ],
+      "non_reset_observations": 751,
+      "observations_total": 761,
+      "prior_counted_as_proof": false,
+      "raw_rates": {
+        "action_argument_predictiveness": 0.048,
+        "action_argument_rate": 0.1758,
+        "changed_transition_rate": 0.8695,
+        "color_change_rate": 0.8695,
+        "contact_change_rate": 0.6485,
+        "level_progress_rate": 0.0107,
+        "mean_changed_cell_ratio": 0.0284,
+        "mean_color_pairs_changed": 4.2051,
+        "mean_motion_vectors": 0.1651,
+        "object_count_change_rate": 0.3569,
+        "object_creation_rate": 0.8682,
+        "object_motion_rate": 0.1345,
+        "object_removal_rate": 0.8695,
+        "player_motion_rate": 0.1252,
+        "position_change_rate": 0.1345,
+        "shape_change_rate": 0.8695
+      },
+      "representation_warning": "color_source_schema_misaligned_with_observed_mechanics",
+      "status": "UNRESOLVED",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "game_id": "cn04-65d47d14",
+      "grounding_fit": {
+        "new_pair_source_color_predictiveness": 0.0,
+        "new_pair_source_not_selectable_rate": 0.0,
+        "new_pairs_entering_agenda_rate": 0.0,
+        "pairs_entering_agenda_rate": 0.0,
+        "source_color_predictiveness": 0.0,
+        "source_not_selectable_rate": 0.0
+      },
+      "mechanic_scores": {
+        "action_argument": 0.0948,
+        "color_change": 0.9935,
+        "color_source_grounding": 0.0,
+        "object_lifecycle": 0.5353,
+        "position_motion": 0.8894,
+        "shape_object": 0.4763,
+        "topology_contact": 0.5636
+      },
+      "mechanic_tags": [
+        "color_change",
+        "position_motion",
+        "topology_contact",
+        "object_lifecycle"
+      ],
+      "non_reset_observations": 401,
+      "observations_total": 406,
+      "prior_counted_as_proof": false,
+      "raw_rates": {
+        "action_argument_predictiveness": 0.0,
+        "action_argument_rate": 0.0948,
+        "changed_transition_rate": 0.99,
+        "color_change_rate": 0.99,
+        "contact_change_rate": 0.5636,
+        "level_progress_rate": 0.0249,
+        "mean_changed_cell_ratio": 0.0521,
+        "mean_color_pairs_changed": 5.1895,
+        "mean_motion_vectors": 2.6035,
+        "object_count_change_rate": 0.2793,
+        "object_creation_rate": 0.6633,
+        "object_motion_rate": 0.9027,
+        "object_removal_rate": 0.6633,
+        "player_motion_rate": 0.8628,
+        "position_change_rate": 0.9027,
+        "shape_change_rate": 0.6733
+      },
+      "representation_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+      "status": "UNRESOLVED",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "game_id": "dc22-4c9bff3e",
+      "grounding_fit": {
+        "new_pair_source_color_predictiveness": 0.5,
+        "new_pair_source_not_selectable_rate": 0.5,
+        "new_pairs_entering_agenda_rate": 0.1667,
+        "pairs_entering_agenda_rate": 0.1,
+        "source_color_predictiveness": 0.25,
+        "source_not_selectable_rate": 0.75
+      },
+      "mechanic_scores": {
+        "action_argument": 0.3635,
+        "color_change": 0.8451,
+        "color_source_grounding": 0.25,
+        "object_lifecycle": 0.5917,
+        "position_motion": 0.6764,
+        "shape_object": 0.4872,
+        "topology_contact": 0.6922
+      },
+      "mechanic_tags": [
+        "color_change",
+        "topology_contact",
+        "position_motion",
+        "object_lifecycle"
+      ],
+      "non_reset_observations": 1920,
+      "observations_total": 1926,
+      "prior_counted_as_proof": false,
+      "raw_rates": {
+        "action_argument_predictiveness": 0.0,
+        "action_argument_rate": 0.3635,
+        "changed_transition_rate": 0.8214,
+        "color_change_rate": 0.8214,
+        "contact_change_rate": 0.6922,
+        "level_progress_rate": 0.0073,
+        "mean_changed_cell_ratio": 0.006,
+        "mean_color_pairs_changed": 2.6672,
+        "mean_motion_vectors": 1.5083,
+        "object_count_change_rate": 0.174,
+        "object_creation_rate": 0.8005,
+        "object_motion_rate": 0.6964,
+        "object_removal_rate": 0.8005,
+        "player_motion_rate": 0.6365,
+        "position_change_rate": 0.6964,
+        "shape_change_rate": 0.8005
+      },
+      "representation_warning": null,
+      "status": "UNRESOLVED",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "game_id": "ft09-0d8bbf25",
+      "grounding_fit": {
+        "new_pair_source_color_predictiveness": 0.0,
+        "new_pair_source_not_selectable_rate": 0.0,
+        "new_pairs_entering_agenda_rate": 0.0,
+        "pairs_entering_agenda_rate": 0.0,
+        "source_color_predictiveness": 0.0,
+        "source_not_selectable_rate": 0.0
+      },
+      "mechanic_scores": {
+        "action_argument": 1.0,
+        "color_change": 0.8288,
+        "color_source_grounding": 0.0,
+        "object_lifecycle": 0.6343,
+        "position_motion": 0.5781,
+        "shape_object": 0.4892,
+        "topology_contact": 0.2225
+      },
+      "mechanic_tags": [
+        "action_argument",
+        "color_change",
+        "object_lifecycle",
+        "position_motion"
+      ],
+      "non_reset_observations": 463,
+      "observations_total": 471,
+      "prior_counted_as_proof": false,
+      "raw_rates": {
+        "action_argument_predictiveness": 0.0,
+        "action_argument_rate": 1.0,
+        "changed_transition_rate": 0.9309,
+        "color_change_rate": 0.9309,
+        "contact_change_rate": 0.2225,
+        "level_progress_rate": 0.0216,
+        "mean_changed_cell_ratio": 0.0197,
+        "mean_color_pairs_changed": 1.9179,
+        "mean_motion_vectors": 4.2354,
+        "object_count_change_rate": 0.054,
+        "object_creation_rate": 0.9244,
+        "object_motion_rate": 0.8251,
+        "object_removal_rate": 0.9244,
+        "player_motion_rate": 0.0842,
+        "position_change_rate": 0.8251,
+        "shape_change_rate": 0.9244
+      },
+      "representation_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+      "status": "UNRESOLVED",
+      "trace_support_counted_as_proof": false
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "game_count": 6,
+    "mechanic_tags_by_game": {
+      "ar25-e3c63847": [
+        "color_change",
+        "position_motion",
+        "object_lifecycle",
+        "topology_contact"
+      ],
+      "bp35-0a0ad940": [
+        "color_change",
+        "position_motion",
+        "object_lifecycle",
+        "shape_object"
+      ],
+      "cd82-fb555c5d": [
+        "color_change",
+        "object_lifecycle",
+        "topology_contact",
+        "shape_object"
+      ],
+      "cn04-65d47d14": [
+        "color_change",
+        "position_motion",
+        "topology_contact",
+        "object_lifecycle"
+      ],
+      "dc22-4c9bff3e": [
+        "color_change",
+        "topology_contact",
+        "position_motion",
+        "object_lifecycle"
+      ],
+      "ft09-0d8bbf25": [
+        "action_argument",
+        "color_change",
+        "object_lifecycle",
+        "position_motion"
+      ]
+    },
+    "source_color_predictiveness_by_game": {
+      "ar25-e3c63847": 0.0,
+      "bp35-0a0ad940": 0.0,
+      "cd82-fb555c5d": 0.0,
+      "cn04-65d47d14": 0.0,
+      "dc22-4c9bff3e": 0.25,
+      "ft09-0d8bbf25": 0.0
+    },
+    "warnings": {
+      "ar25-e3c63847": "color_changes_exist_but_source_color_grounding_is_weak",
+      "bp35-0a0ad940": "color_source_schema_misaligned_with_observed_mechanics",
+      "cd82-fb555c5d": "color_source_schema_misaligned_with_observed_mechanics",
+      "cn04-65d47d14": "color_changes_exist_but_source_color_grounding_is_weak",
+      "ft09-0d8bbf25": "color_changes_exist_but_source_color_grounding_is_weak"
+    }
+  },
+  "trace_support_counted_as_proof": false
+}

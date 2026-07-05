@@ -1,0 +1,202 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "anti_collapse_diagnostics": {
+    "collapse_detected": false,
+    "latent_cov_rank_proxy": 60,
+    "latent_norm_mean": 11.056163787841797,
+    "latent_std_mean": 0.07099911570549011,
+    "latent_std_min": 0.014345957897603512,
+    "latent_variance_above_min": true,
+    "nan_or_inf_detected": false,
+    "prediction_loss_end": 0.00855754506052008,
+    "prediction_loss_start": 0.34895097191389884,
+    "sigreg_loss_end": 1.0317497839752132,
+    "sigreg_loss_start": 0.9498369177206496
+  },
+  "baseline_diagnostics": {
+    "action_conditioning_utility": "POSITIVE",
+    "arc_lewm_action_conditioned_prediction_loss": 0.1564526769721513,
+    "baseline_action_agnostic_prediction_loss": 0.16363941099452733,
+    "baseline_persistence_prediction_loss": 0.0023996691207075474,
+    "baseline_scores_counted_as_support": false,
+    "beats_action_agnostic_baseline": true,
+    "beats_persistence_baseline": false,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M2"
+  },
+  "candidate_only_metadata": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "trace_support_counted_as_proof": false,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "checkpoints": {
+    "best_val": "models\\m2_arc_lewm_best_val.pt",
+    "best_val_epoch": 2,
+    "best_val_prediction_loss": 0.1564526769721513,
+    "best_val_total_loss": 0.30723413832495,
+    "last": "models\\m2_arc_lewm_last.pt",
+    "selected": "models\\m2_arc_lewm.pt",
+    "selected_checkpoint_policy": "best_val_total_loss"
+  },
+  "config": {
+    "batch_size": 256,
+    "best_val_model_output_path": "models\\m2_arc_lewm_best_val.pt",
+    "canvas_size": [
+      64,
+      64
+    ],
+    "dataset_path": "training\\m2_arc_lewm_transitions.jsonl",
+    "device": "cuda",
+    "ema_target_encoder_used": false,
+    "epochs": 5,
+    "hud_branch_policy": "disabled_foundation",
+    "lambda_sigreg": 0.1,
+    "last_model_output_path": "models\\m2_arc_lewm_last.pt",
+    "latent_dim": 128,
+    "learning_rate": 0.001,
+    "model_output_path": "models\\m2_arc_lewm.pt",
+    "reconstruction_loss_used": false,
+    "reward_read": false,
+    "schema_version": "m2.arc_lewm_training_report.v1",
+    "selected_checkpoint_policy": "best_val_total_loss",
+    "split_mode": "by_game",
+    "stop_gradient_used": false,
+    "use_hud": false
+  },
+  "per_epoch_losses": [
+    {
+      "epoch": 1,
+      "train": {
+        "prediction_loss": 0.34895097191389884,
+        "sigreg_loss": 0.9498369177206496,
+        "total_loss": 0.4439346591841405
+      },
+      "val": {
+        "prediction_loss": 0.1963331737292524,
+        "sigreg_loss": 1.4906592409860406,
+        "total_loss": 0.3453991055538319
+      }
+    },
+    {
+      "epoch": 2,
+      "train": {
+        "prediction_loss": 0.041990002502581045,
+        "sigreg_loss": 1.0639299760759775,
+        "total_loss": 0.14838300455602163
+      },
+      "val": {
+        "prediction_loss": 0.1564526769721513,
+        "sigreg_loss": 1.507814610059131,
+        "total_loss": 0.30723413832495
+      }
+    },
+    {
+      "epoch": 3,
+      "train": {
+        "prediction_loss": 0.01593283574081683,
+        "sigreg_loss": 1.071867151510737,
+        "total_loss": 0.12311955223025223
+      },
+      "val": {
+        "prediction_loss": 0.18024853893901888,
+        "sigreg_loss": 1.5360368693625872,
+        "total_loss": 0.33385222928942765
+      }
+    },
+    {
+      "epoch": 4,
+      "train": {
+        "prediction_loss": 0.010296911726816455,
+        "sigreg_loss": 1.0478871465089024,
+        "total_loss": 0.11508562848394581
+      },
+      "val": {
+        "prediction_loss": 0.20689526386792131,
+        "sigreg_loss": 1.5333371504078221,
+        "total_loss": 0.36022897581284274
+      }
+    },
+    {
+      "epoch": 5,
+      "train": {
+        "prediction_loss": 0.00855754506052008,
+        "sigreg_loss": 1.0317497839752132,
+        "total_loss": 0.11173252470894758
+      },
+      "val": {
+        "prediction_loss": 0.2400937618118154,
+        "sigreg_loss": 1.522819530232827,
+        "total_loss": 0.392375720158984
+      }
+    }
+  ],
+  "per_game_validation": {
+    "dc22-4c9bff3e": {
+      "prediction_loss": 0.1518392432036182,
+      "support": 0,
+      "transitions": 1926,
+      "truth_status": "NOT_EVALUATED_BY_M2"
+    },
+    "ft09-0d8bbf25": {
+      "prediction_loss": 0.17531781305505592,
+      "support": 0,
+      "transitions": 471,
+      "truth_status": "NOT_EVALUATED_BY_M2"
+    }
+  },
+  "revision_status": "CANDIDATE_ONLY",
+  "split": {
+    "mode": "by_game",
+    "train_games": [
+      "ar25-e3c63847",
+      "bp35-0a0ad940",
+      "cd82-fb555c5d",
+      "cn04-65d47d14"
+    ],
+    "val_games": [
+      "dc22-4c9bff3e",
+      "ft09-0d8bbf25"
+    ]
+  },
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_conditioning_utility": "POSITIVE",
+    "beats_action_agnostic_baseline": true,
+    "beats_persistence_baseline": false,
+    "best_val_epoch": 2,
+    "best_val_prediction_loss": 0.1564526769721513,
+    "best_val_total_loss": 0.30723413832495,
+    "collapse_detected": false,
+    "games_total": 6,
+    "latent_variance_above_min": true,
+    "nan_or_inf_detected": false,
+    "prediction_loss_decreased_or_stable": true,
+    "revision_status": "CANDIDATE_ONLY",
+    "selected_checkpoint_policy": "best_val_total_loss",
+    "sigreg_active": true,
+    "smoke_generalization_claim": false,
+    "split_mode": "by_game",
+    "support": 0,
+    "trace_support_counted_as_proof": false,
+    "train_games": 4,
+    "training_completed": true,
+    "training_steps": 65,
+    "training_steps_completed": true,
+    "transitions_consumed": 5711,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "val_games": 2,
+    "world_model_prediction_counted_as_evidence": false,
+    "world_model_score_counted_as_support": false
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "world_model_prediction_counted_as_evidence": false,
+  "world_model_score_counted_as_support": false
+}

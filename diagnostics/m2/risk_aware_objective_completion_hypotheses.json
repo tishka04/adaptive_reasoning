@@ -1,0 +1,1744 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "P2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "base_m2_schema_version": "m2.v1",
+    "contextual_inputs_not_required": [
+      "diagnostics/p2/risk_aware_post_stop_frontier_records.json",
+      "diagnostics/p3/risk_targeted_contextual_post_stop_policy_validation.json",
+      "diagnostics/p3/contextual_post_stop_conversion_policy_adapter.json"
+    ],
+    "environment_step_performed": false,
+    "execution_performed": false,
+    "generator_mode": "risk_aware_objective_completion_heuristic_only",
+    "inputs_read": [
+      "P2.G5"
+    ],
+    "policy_rollout_performed": false,
+    "schema_version": "m2.risk_aware_objective_completion.v1",
+    "source_risk_aware_objective_requests_path": "diagnostics\\p2\\risk_aware_objective_frontier_handoff_requests.json"
+  },
+  "environment_step_performed": false,
+  "execution_performed": false,
+  "m3_write_performed": false,
+  "policy_result_counted_as_scientific_verdict": false,
+  "policy_rollout_performed": false,
+  "rejected_risk_aware_objective_requests": [],
+  "request_counted_as_scientific_verdict": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "risk_aware_objective_hypotheses_counted_as_confirmation": false,
+  "risk_aware_objective_hypothesis_batches": [
+    {
+      "blocked_capability": "objective_completion_after_risk_aware_safe_conversion",
+      "candidate_hypotheses": [
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "READINESS_RELATION_SATURATION_DETECTOR",
+          "claim": "H_readiness_relation_saturation: objective completion becomes possible when new relation states stop increasing despite high safe progress.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:objective_readiness_detection:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "plateau_gated_levels_completed <= non_plateau_levels_completed",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "plateau_gated_levels_completed > non_plateau_levels_completed"
+          },
+          "falsification_signal": "plateau-gated states do not improve completion over non-plateau controls",
+          "family": "objective_readiness_detection",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_readiness_detection",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H001",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "plateau-gated states complete more often than equally high proxy states without plateau",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_readiness_relation_saturation: objective completion becomes possible when new relation states stop increasing despite high safe progress. Falsification signal: plateau-gated states do not improve completion over non-plateau controls. Requested experiment style: post_selector_objective_readiness_probe. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "post_selector_objective_readiness_probe",
+          "required_observables": [
+            "new_relation_states",
+            "relation_delta_after_stop",
+            "hold_baseline_terminal_adjusted_progress",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 5.0,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "P3.G4 shows safe proxy progress without completion, so a readiness discriminator may require relation saturation rather than more extension."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::001"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "post_selector_objective_readiness_probe",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "plateau-gated states complete more often than equally high proxy states without plateau",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "post_selector_objective_readiness_probe",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "no_readiness_filter",
+              "hold_or_stop_state"
+            ],
+            "target_action": "READINESS_RELATION_SATURATION_DETECTOR",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "P3.G4 shows safe proxy progress without completion, so a readiness discriminator may require relation saturation rather than more extension.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "HORIZON_READINESS_WINDOW_DETECTOR",
+          "claim": "H_readiness_horizon_window: there is a terminal-horizon window where the policy should stop extending and prepare completion.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:objective_readiness_detection:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "horizon_window_terminal_rate >= horizon_agnostic_terminal_rate or no_completion_attempt_gain",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "horizon_window_terminal_rate < horizon_agnostic_terminal_rate and completion_attempt_signal > control"
+          },
+          "falsification_signal": "horizon-window gating neither reduces terminal re-entry nor improves completion readiness",
+          "family": "objective_readiness_detection",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_readiness_detection",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H002",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "horizon-window gating preserves terminal safety while improving completion attempts",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_readiness_horizon_window: there is a terminal-horizon window where the policy should stop extending and prepare completion. Falsification signal: horizon-window gating neither reduces terminal re-entry nor improves completion readiness. Requested experiment style: horizon_conditioned_completion_trigger_search. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "horizon_conditioned_completion_trigger_search",
+          "required_observables": [
+            "terminal_horizon_remaining",
+            "terminal_horizon_band",
+            "terminal_reentry_rate",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.9,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "P3.G4 risk reappears in hold_high and horizon_mid contexts, suggesting readiness is horizon-conditioned."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::002"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "horizon_conditioned_completion_trigger_search",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "horizon-window gating preserves terminal safety while improving completion attempts",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "horizon_conditioned_completion_trigger_search",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "horizon_agnostic_readiness",
+              "ACTION6_only"
+            ],
+            "target_action": "HORIZON_READINESS_WINDOW_DETECTOR",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "P3.G4 risk reappears in hold_high and horizon_mid contexts, suggesting readiness is horizon-conditioned.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "STATE_GEOMETRY_READINESS_DETECTOR",
+          "claim": "H_readiness_state_geometry: post-ACTION6 spatial geometry marks a pre-completion zone distinct from generic progress.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:objective_readiness_detection:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "geometry_readiness_precision <= proxy_progress_readiness_precision",
+            "metric": "topology_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "geometry_readiness_precision > proxy_progress_readiness_precision"
+          },
+          "falsification_signal": "geometry features fail to separate completion-ready states from safe-progress controls",
+          "family": "objective_readiness_detection",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_readiness_detection",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H003",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "specific global geometry predicts completion-ready states better than raw proxy progress",
+          "predicted_metric": "topology_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "H_readiness_state_geometry: post-ACTION6 spatial geometry marks a pre-completion zone distinct from generic progress. Falsification signal: geometry features fail to separate completion-ready states from safe-progress controls. Requested experiment style: post_selector_objective_readiness_probe. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "post_selector_objective_readiness_probe",
+          "required_observables": [
+            "global_configuration_signature",
+            "actor_target_geometry",
+            "changed_pixels",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.8,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The selector sees progress but not completion, so readiness may be encoded in state geometry rather than scalar score."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::003"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "post_selector_objective_readiness_probe",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "specific global geometry predicts completion-ready states better than raw proxy progress",
+            "measurable_by_existing_extractor": true,
+            "metric": "topology_before_after",
+            "recommended_test_type": "post_selector_objective_readiness_probe",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "changed_pixels_greedy",
+              "relation_delta_greedy"
+            ],
+            "target_action": "STATE_GEOMETRY_READINESS_DETECTOR",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The selector sees progress but not completion, so readiness may be encoded in state geometry rather than scalar score.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "ACTION1",
+          "claim": "H_commit_after_safe_extension: after safe conversion, a distinct commit action may trigger completion.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:post_conversion_commit_action_search:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "post_conversion_ACTION1_levels_completed <= selector_only_levels_completed or ACTION1_terminal_reentry",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "post_conversion_ACTION1_levels_completed > selector_only_levels_completed"
+          },
+          "falsification_signal": "commit action does not beat selector-only or re-enters terminal",
+          "family": "post_conversion_commit_action_search",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_conversion_commit_action_search",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H004",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "commit action after safe conversion improves completed levels over selector-only continuation",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_commit_after_safe_extension: after safe conversion, a distinct commit action may trigger completion. Falsification signal: commit action does not beat selector-only or re-enters terminal. Requested experiment style: post_conversion_commit_action_matrix. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "post_conversion_commit_action_matrix",
+          "required_observables": [
+            "safe_conversion_state",
+            "commit_action",
+            "levels_completed_after_rollout",
+            "terminal_reentry_rate"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.7,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "P3.G4 policy options stop at hold/ACTION6/extensions and never test a separate commit branch."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::004"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "post_conversion_commit_action_matrix",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "commit action after safe conversion improves completed levels over selector-only continuation",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "post_conversion_commit_action_matrix",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION2",
+              "ACTION5",
+              "hold_or_stop_state"
+            ],
+            "target_action": "ACTION1",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "P3.G4 policy options stop at hold/ACTION6/extensions and never test a separate commit branch.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "ACTION2",
+          "claim": "H_commit_requires_no_more_relation_progress: commit helps only after relation progress stalls.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:post_conversion_commit_action_search:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "plateau_then_commit_objective_signal <= immediate_commit_objective_signal",
+            "metric": "objective_progress_proxy",
+            "minimum_effect_size": 1,
+            "support_condition": "plateau_then_commit_objective_signal > immediate_commit_objective_signal"
+          },
+          "falsification_signal": "commit timing is unrelated to plateau or does not improve objective signal",
+          "family": "post_conversion_commit_action_search",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_conversion_commit_action_search",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H005",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "commit after relation plateau produces more objective signal than commit before plateau",
+          "predicted_metric": "objective_progress_proxy",
+          "prior_counted_as_proof": false,
+          "rationale": "H_commit_requires_no_more_relation_progress: commit helps only after relation progress stalls. Falsification signal: commit timing is unrelated to plateau or does not improve objective signal. Requested experiment style: post_conversion_commit_action_matrix. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "post_conversion_commit_action_matrix",
+          "required_observables": [
+            "relation_delta_after_stop",
+            "new_relation_states",
+            "commit_action",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.6,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The frontier points to proxy progress continuing without completion; commit may require a no-more-progress condition."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::005"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "post_conversion_commit_action_matrix",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "commit after relation plateau produces more objective signal than commit before plateau",
+            "measurable_by_existing_extractor": true,
+            "metric": "objective_progress_proxy",
+            "recommended_test_type": "post_conversion_commit_action_matrix",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION1",
+              "ACTION5",
+              "continue_extension"
+            ],
+            "target_action": "ACTION2",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The frontier points to proxy progress continuing without completion; commit may require a no-more-progress condition.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "ACTION5",
+          "claim": "H_commit_is_horizon_sensitive: commit becomes necessary before the mid/near terminal horizon risk zone.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:post_conversion_commit_action_search:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "horizon_commit_terminal_rate >= static_extension_terminal_rate or no_completion_attempt_gain",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "horizon_commit_terminal_rate < static_extension_terminal_rate"
+          },
+          "falsification_signal": "horizon-sensitive commit does not reduce terminal re-entry or remains passive",
+          "family": "post_conversion_commit_action_search",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_conversion_commit_action_search",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H006",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "horizon-sensitive commit lowers terminal re-entry while preserving completion attempts",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_commit_is_horizon_sensitive: commit becomes necessary before the mid/near terminal horizon risk zone. Falsification signal: horizon-sensitive commit does not reduce terminal re-entry or remains passive. Requested experiment style: horizon_conditioned_completion_trigger_search. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "horizon_conditioned_completion_trigger_search",
+          "required_observables": [
+            "terminal_horizon_band",
+            "hold_baseline_band",
+            "commit_action",
+            "terminal_reentry_rate"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.5,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The selector avoided terminal extension risk in mid-horizon contexts but did not add a completion step."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::006"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "horizon_conditioned_completion_trigger_search",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "horizon-sensitive commit lowers terminal re-entry while preserving completion attempts",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "horizon_conditioned_completion_trigger_search",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION6_only"
+            ],
+            "target_action": "ACTION5",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The selector avoided terminal extension risk in mid-horizon contexts but did not add a completion step.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "GLOBAL_PATTERN_ALIGNMENT_METRIC",
+          "claim": "H_goal_global_pattern_alignment: the objective is a global grid configuration, not additional relation progress.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:goal_state_representation_beyond_safe_progress:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "global_pattern_completion_prediction <= proxy_progress_completion_prediction",
+            "metric": "topology_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "global_pattern_completion_prediction > proxy_progress_completion_prediction"
+          },
+          "falsification_signal": "global pattern alignment does not outperform terminal-adjusted progress",
+          "family": "goal_state_representation_beyond_safe_progress",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "goal_state_representation_beyond_safe_progress",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H007",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "global pattern alignment predicts completion better than terminal-adjusted progress",
+          "predicted_metric": "topology_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "H_goal_global_pattern_alignment: the objective is a global grid configuration, not additional relation progress. Falsification signal: global pattern alignment does not outperform terminal-adjusted progress. Requested experiment style: terminal_safe_progress_vs_completion_discriminator. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "required_observables": [
+            "global_configuration_signature",
+            "topology_before_after",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.4,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "Safe progress and risk-aware utility are present, but levels remain incomplete."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::007"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "global pattern alignment predicts completion better than terminal-adjusted progress",
+            "measurable_by_existing_extractor": true,
+            "metric": "topology_before_after",
+            "recommended_test_type": "terminal_safe_progress_vs_completion_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "terminal_adjusted_progress_metric"
+            ],
+            "target_action": "GLOBAL_PATTERN_ALIGNMENT_METRIC",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "Safe progress and risk-aware utility are present, but levels remain incomplete.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "ACTOR_TARGET_CONTACT_METRIC",
+          "claim": "H_goal_actor_target_contact: completion depends on a specific actor-target contact relation rather than total relation count.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:goal_state_representation_beyond_safe_progress:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "actor_target_contact_completion_prediction <= relation_delta_completion_prediction",
+            "metric": "contact_graph_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "actor_target_contact_completion_prediction > relation_delta_completion_prediction"
+          },
+          "falsification_signal": "specific contact relation does not separate completion states from proxy states",
+          "family": "goal_state_representation_beyond_safe_progress",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "goal_state_representation_beyond_safe_progress",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H008",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "specific actor-target contact predicts completion better than aggregate relation delta",
+          "predicted_metric": "contact_graph_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "H_goal_actor_target_contact: completion depends on a specific actor-target contact relation rather than total relation count. Falsification signal: specific contact relation does not separate completion states from proxy states. Requested experiment style: terminal_safe_progress_vs_completion_discriminator. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "required_observables": [
+            "actor_target_contact_graph",
+            "relation_delta_after_stop",
+            "levels_completed_after_rollout"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.3,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The current policy counts useful relation changes but may miss the exact contact needed by the task."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::008"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "specific actor-target contact predicts completion better than aggregate relation delta",
+            "measurable_by_existing_extractor": true,
+            "metric": "contact_graph_before_after",
+            "recommended_test_type": "terminal_safe_progress_vs_completion_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "relation_delta_count_metric"
+            ],
+            "target_action": "ACTOR_TARGET_CONTACT_METRIC",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The current policy counts useful relation changes but may miss the exact contact needed by the task.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "REGION_BOUNDARY_GOAL_METRIC",
+          "claim": "H_goal_region_or_boundary_condition: completion is tied to a region, boundary, or terrain condition rather than proximity progress.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:goal_state_representation_beyond_safe_progress:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "region_boundary_completion_prediction <= proximity_completion_prediction",
+            "metric": "object_shape_zone_before_after",
+            "minimum_effect_size": 1,
+            "support_condition": "region_boundary_completion_prediction > proximity_completion_prediction"
+          },
+          "falsification_signal": "region or boundary features do not outperform proximity progress",
+          "family": "goal_state_representation_beyond_safe_progress",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "goal_state_representation_beyond_safe_progress",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H009",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "region or boundary membership predicts objective completion better than proximity progress",
+          "predicted_metric": "object_shape_zone_before_after",
+          "prior_counted_as_proof": false,
+          "rationale": "H_goal_region_or_boundary_condition: completion is tied to a region, boundary, or terrain condition rather than proximity progress. Falsification signal: region or boundary features do not outperform proximity progress. Requested experiment style: terminal_safe_progress_vs_completion_discriminator. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "required_observables": [
+            "object_shape_zone_before_after",
+            "boundary_contact",
+            "terrain_region_signature",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.2,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The selector is safe around local progress, but completion may depend on a global zone condition."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::009"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "region or boundary membership predicts objective completion better than proximity progress",
+            "measurable_by_existing_extractor": true,
+            "metric": "object_shape_zone_before_after",
+            "recommended_test_type": "terminal_safe_progress_vs_completion_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "distance_decreases_metric"
+            ],
+            "target_action": "REGION_BOUNDARY_GOAL_METRIC",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The selector is safe around local progress, but completion may depend on a global zone condition.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "HIGH_HOLD_PROXY_COMPLETION_DISCRIMINATOR",
+          "claim": "H_proxy_completion_divergence_high_hold: high-hold states can score well on proxy progress while being poor or risky completion states.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:proxy_progress_vs_completion_discriminator:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "completion_specific_levels_completed <= high_hold_proxy_levels_completed",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "completion_specific_levels_completed > high_hold_proxy_levels_completed"
+          },
+          "falsification_signal": "high-hold proxy states complete as well as completion-specific states",
+          "family": "proxy_progress_vs_completion_discriminator",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "proxy_progress_vs_completion_discriminator",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H010",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "high-hold proxy states underperform completion-specific states despite higher terminal-adjusted progress",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_proxy_completion_divergence_high_hold: high-hold states can score well on proxy progress while being poor or risky completion states. Falsification signal: high-hold proxy states complete as well as completion-specific states. Requested experiment style: terminal_safe_progress_vs_completion_discriminator. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "required_observables": [
+            "hold_baseline_terminal_adjusted_progress",
+            "hold_baseline_band",
+            "levels_completed_after_rollout"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.1,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "P3.G4 found the risky OOS region in high-hold/mid-horizon contexts."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::010"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "high-hold proxy states underperform completion-specific states despite higher terminal-adjusted progress",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "terminal_safe_progress_vs_completion_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "low_hold_completion_discriminator"
+            ],
+            "target_action": "HIGH_HOLD_PROXY_COMPLETION_DISCRIMINATOR",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "P3.G4 found the risky OOS region in high-hold/mid-horizon contexts.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "CHANGED_PIXELS_COMPLETION_DISCRIMINATOR",
+          "claim": "H_changed_pixels_false_friend: many changed pixels after extension may not indicate objective readiness.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:proxy_progress_vs_completion_discriminator:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "changed_pixels_completion_correlation >= readiness_completion_correlation",
+            "metric": "changed_pixels",
+            "minimum_effect_size": 1,
+            "support_condition": "changed_pixels_completion_correlation < readiness_completion_correlation"
+          },
+          "falsification_signal": "changed-pixel magnitude predicts completion as well as readiness features",
+          "family": "proxy_progress_vs_completion_discriminator",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "proxy_progress_vs_completion_discriminator",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H011",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "changed-pixel magnitude diverges from completion readiness",
+          "predicted_metric": "changed_pixels",
+          "prior_counted_as_proof": false,
+          "rationale": "H_changed_pixels_false_friend: many changed pixels after extension may not indicate objective readiness. Falsification signal: changed-pixel magnitude predicts completion as well as readiness features. Requested experiment style: terminal_safe_progress_vs_completion_discriminator. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "required_observables": [
+            "changed_pixels",
+            "objective_completion_signal",
+            "global_configuration_signature"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 4.0,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "Changed pixels can help locate activity, but P3.G4 shows activity is not enough for completion."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::011"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "changed-pixel magnitude diverges from completion readiness",
+            "measurable_by_existing_extractor": true,
+            "metric": "changed_pixels",
+            "recommended_test_type": "terminal_safe_progress_vs_completion_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "objective_readiness_detector"
+            ],
+            "target_action": "CHANGED_PIXELS_COMPLETION_DISCRIMINATOR",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "Changed pixels can help locate activity, but P3.G4 shows activity is not enough for completion.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "RELATION_DELTA_COMPLETION_DISCRIMINATOR",
+          "claim": "H_relation_delta_false_friend: high relation delta can continue without ever triggering completion.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:proxy_progress_vs_completion_discriminator:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "relation_delta_completion_correlation >= global_goal_completion_correlation",
+            "metric": "objective_progress_proxy",
+            "minimum_effect_size": 1,
+            "support_condition": "relation_delta_completion_correlation < global_goal_completion_correlation"
+          },
+          "falsification_signal": "relation-delta progress predicts completion as well as global goal features",
+          "family": "proxy_progress_vs_completion_discriminator",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "proxy_progress_vs_completion_discriminator",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H012",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "relation-delta progress diverges from completion probability",
+          "predicted_metric": "objective_progress_proxy",
+          "prior_counted_as_proof": false,
+          "rationale": "H_relation_delta_false_friend: high relation delta can continue without ever triggering completion. Falsification signal: relation-delta progress predicts completion as well as global goal features. Requested experiment style: terminal_safe_progress_vs_completion_discriminator. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "required_observables": [
+            "relation_delta_after_stop",
+            "new_relation_states",
+            "objective_completion_signal"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 3.9,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The safe selector optimizes terminal-adjusted progress but still completes zero levels."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::012"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "relation-delta progress diverges from completion probability",
+            "measurable_by_existing_extractor": true,
+            "metric": "objective_progress_proxy",
+            "recommended_test_type": "terminal_safe_progress_vs_completion_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "global_goal_metric"
+            ],
+            "target_action": "RELATION_DELTA_COMPLETION_DISCRIMINATOR",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The safe selector optimizes terminal-adjusted progress but still completes zero levels.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "TWO_STAGE_SELECTOR_WITH_COMMIT_BRANCH",
+          "claim": "H_selector_missing_commit_branch: the selector is safe because it chooses hold/ACTION6/extensions, but it lacks a commit branch.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:risk_aware_selector_completion_gap:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "selector_plus_commit_levels_completed <= frozen_selector_levels_completed or terminal_rate_increases",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "selector_plus_commit_levels_completed > frozen_selector_levels_completed"
+          },
+          "falsification_signal": "commit branch does not improve completion or increases terminal re-entry",
+          "family": "risk_aware_selector_completion_gap",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "risk_aware_selector_completion_gap",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H013",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "adding a commit branch after safe conversion improves completion without raising terminal rate",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_selector_missing_commit_branch: the selector is safe because it chooses hold/ACTION6/extensions, but it lacks a commit branch. Falsification signal: commit branch does not improve completion or increases terminal re-entry. Requested experiment style: risk_aware_policy_ablation_with_completion_metrics. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "required_observables": [
+            "selected_option",
+            "commit_action",
+            "levels_completed_after_rollout",
+            "terminal_reentry_rate"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 3.8,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "P3.G4 proves risk-aware selection utility but its action menu contains no explicit completion transition."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::013"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "adding a commit branch after safe conversion improves completion without raising terminal rate",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "risk_aware_policy_ablation_with_completion_metrics",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "frozen_contextual_selector"
+            ],
+            "target_action": "TWO_STAGE_SELECTOR_WITH_COMMIT_BRANCH",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "P3.G4 proves risk-aware selection utility but its action menu contains no explicit completion transition.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "COMPLETION_PROBABILITY_SELECTOR_TARGET",
+          "claim": "H_selector_target_wrong_metric: the selector optimizes terminal-adjusted progress instead of completion probability.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:risk_aware_selector_completion_gap:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "completion_targeted_levels_completed <= terminal_adjusted_progress_levels_completed or terminal_rate_higher",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "completion_targeted_levels_completed > terminal_adjusted_progress_levels_completed and terminal_rate_matched"
+          },
+          "falsification_signal": "completion-targeted selector fails to improve completion or loses terminal safety",
+          "family": "risk_aware_selector_completion_gap",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "risk_aware_selector_completion_gap",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H014",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "completion-targeted selector improves levels completed at matched terminal rate",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "H_selector_target_wrong_metric: the selector optimizes terminal-adjusted progress instead of completion probability. Falsification signal: completion-targeted selector fails to improve completion or loses terminal safety. Requested experiment style: risk_aware_policy_ablation_with_completion_metrics. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "required_observables": [
+            "selector_score_components",
+            "objective_completion_signal",
+            "terminal_rate"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 3.7,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The current selector gains terminal-adjusted progress but objective completion remains zero."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::014"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "completion-targeted selector improves levels completed at matched terminal rate",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "risk_aware_policy_ablation_with_completion_metrics",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "terminal_adjusted_progress_selector"
+            ],
+            "target_action": "COMPLETION_PROBABILITY_SELECTOR_TARGET",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The current selector gains terminal-adjusted progress but objective completion remains zero.",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+          "candidate_action": "SAFE_CONVERSION_THEN_OBJECTIVE_COMMIT_POLICY",
+          "claim": "H_selector_needs_two_stage_policy: safe conversion and objective commit must be modeled as separate stages.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION1",
+              "ACTION2",
+              "ACTION3",
+              "ACTION4",
+              "ACTION5",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "risk_aware_objective_completion:risk_aware_terminal_safe_post_stop_conversion_state:risk_aware_selector_completion_gap:risk_aware_safe_post_stop_progress_does_not_complete_objective",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "falsification": {
+            "failure_condition": "two_stage_completion_ready_or_complete_rate <= single_stage_completion_ready_or_complete_rate or terminal_rate_higher",
+            "metric": "final_game_state",
+            "minimum_effect_size": 1,
+            "support_condition": "two_stage_completion_ready_or_complete_rate > single_stage_completion_ready_or_complete_rate"
+          },
+          "falsification_signal": "two-stage policy does not improve completion states or reintroduces terminal risk",
+          "family": "risk_aware_selector_completion_gap",
+          "forbidden_interpretations": [
+            "Do not interpret policy utility as objective completion.",
+            "Do not increment support from this generated hypothesis.",
+            "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+          ],
+          "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+          "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "risk_aware_selector_completion_gap",
+          "hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H015",
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "two-stage policy reaches completion-ready or completed states more often than single-stage selector",
+          "predicted_metric": "final_game_state",
+          "prior_counted_as_proof": false,
+          "rationale": "H_selector_needs_two_stage_policy: safe conversion and objective commit must be modeled as separate stages. Falsification signal: two-stage policy does not improve completion states or reintroduces terminal risk. Requested experiment style: risk_aware_policy_ablation_with_completion_metrics. This is an M2.G2 candidate hypothesis about completion, not a policy decision.",
+          "ready_for_a32": false,
+          "ready_for_a33": false,
+          "ready_for_m3_g5": true,
+          "ready_for_m3_g5_candidate_experiment_request": true,
+          "request_counted_as_scientific_verdict": false,
+          "requested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "required_observables": [
+            "stage_transition",
+            "safe_conversion_state",
+            "completion_ready_state",
+            "final_game_state"
+          ],
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "risk_aware_objective_hypothesis_counted_as_confirmation": false,
+          "source_generation": {
+            "normalization_warnings": [
+              "risk_aware_objective_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict",
+              "action6_extension_sequences_are_substrate_not_target_hypotheses"
+            ],
+            "priority_score": 3.6,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G5 request is a candidate-only frontier handoff, not evidence.",
+              "The frontier separates safety/utility from completion, suggesting a staged controller rather than another gate tweak."
+            ],
+            "raw_proposal_ids": [
+              "raw::risk_aware_objective_completion::p2g5::bp35-0a0ad940::risk_aware_objective_completion::001::015"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+          "status": "UNRESOLVED",
+          "substrate_actions_not_target_hypotheses": [
+            "ACTION6",
+            "ACTION6,ACTION3",
+            "ACTION6,ACTION4"
+          ],
+          "suggested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "two-stage policy reaches completion-ready or completed states more often than single-stage selector",
+            "measurable_by_existing_extractor": true,
+            "metric": "final_game_state",
+            "recommended_test_type": "risk_aware_policy_ablation_with_completion_metrics",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "single_stage_contextual_selector"
+            ],
+            "target_action": "SAFE_CONVERSION_THEN_OBJECTIVE_COMMIT_POLICY",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "why_prompted_by_frontier": "The frontier separates safety/utility from completion, suggesting a staged controller rather than another gate tweak.",
+          "wrong_confirmations": 0
+        }
+      ],
+      "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+      "frontier_type": "RISK_AWARE_POST_STOP_NO_OBJECTIVE_COMPLETION_FRONTIER",
+      "handoff_type": "RISK_AWARE_OBJECTIVE_COMPLETION_FRONTIER_REQUEST",
+      "source_frontier_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "target": "M2_OR_M3",
+      "target_modules": [
+        "M2.G2"
+      ]
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action6_extension_retest_hypotheses_generated": false,
+    "all_hypotheses_have_falsification_signal": true,
+    "all_hypotheses_map_to_requested_experiment_style": true,
+    "all_requested_hypothesis_families_covered": true,
+    "blocked_not_testable_hypotheses": 0,
+    "environment_step_performed": false,
+    "execution_performed": false,
+    "final_invalid_hypotheses": 0,
+    "generated_hypothesis_families": [
+      "goal_state_representation_beyond_safe_progress",
+      "objective_readiness_detection",
+      "post_conversion_commit_action_search",
+      "proxy_progress_vs_completion_discriminator",
+      "risk_aware_selector_completion_gap"
+    ],
+    "generated_requested_experiment_styles": [
+      "horizon_conditioned_completion_trigger_search",
+      "post_conversion_commit_action_matrix",
+      "post_selector_objective_readiness_probe",
+      "risk_aware_policy_ablation_with_completion_metrics",
+      "terminal_safe_progress_vs_completion_discriminator"
+    ],
+    "hypotheses_generated": 15,
+    "hypothesis_batches": 1,
+    "m3_write_performed": false,
+    "policy_rollout_performed": false,
+    "ready_for_m3_g5_candidate_experiment_request": 15,
+    "requested_experiment_styles": [
+      "horizon_conditioned_completion_trigger_search",
+      "post_conversion_commit_action_matrix",
+      "post_selector_objective_readiness_probe",
+      "risk_aware_policy_ablation_with_completion_metrics",
+      "terminal_safe_progress_vs_completion_discriminator"
+    ],
+    "requested_hypothesis_families": [
+      "goal_state_representation_beyond_safe_progress",
+      "objective_readiness_detection",
+      "post_conversion_commit_action_search",
+      "proxy_progress_vs_completion_discriminator",
+      "risk_aware_selector_completion_gap"
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "risk_aware_objective_requests_consumed": 1,
+    "risk_aware_objective_requests_rejected": 0,
+    "risk_aware_objective_requests_seen": 1,
+    "substrate_actions_not_target_hypotheses": [
+      "ACTION6",
+      "ACTION6,ACTION3",
+      "ACTION6,ACTION4"
+    ],
+    "support": 0,
+    "testable_hypotheses": 15,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "wrong_confirmations": 0
+}

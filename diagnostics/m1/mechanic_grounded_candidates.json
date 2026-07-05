@@ -1,0 +1,3210 @@
+{
+  "candidates": [
+    {
+      "action": "ACTION5",
+      "candidate_type": "contact_change_candidate",
+      "evidence": {
+        "action_transition_count": 133,
+        "dominant_changed_contact_pairs": [
+          {
+            "colors": [
+              0,
+              10
+            ],
+            "count": 6376
+          },
+          {
+            "colors": [
+              0,
+              5
+            ],
+            "count": 2496
+          },
+          {
+            "colors": [
+              0,
+              4
+            ],
+            "count": 88
+          },
+          {
+            "colors": [
+              5,
+              11
+            ],
+            "count": 13
+          },
+          {
+            "colors": [
+              5,
+              12
+            ],
+            "count": 12
+          }
+        ],
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 130
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "topology_contact",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 130,
+      "support_rate": 0.9774,
+      "test_goal": "test whether ACTION5 changes object contacts/topology",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 133,
+        "dominant_created_colors": [
+          {
+            "color": 0,
+            "count": 590
+          },
+          {
+            "color": 12,
+            "count": 6
+          },
+          {
+            "color": 5,
+            "count": 3
+          },
+          {
+            "color": 8,
+            "count": 1
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 0,
+            "count": 568
+          },
+          {
+            "color": 11,
+            "count": 1
+          },
+          {
+            "color": 12,
+            "count": 1
+          }
+        ],
+        "mean_created_object_count": 6.5263,
+        "mean_removed_object_count": 6.3008,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 133
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 133,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION5 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 244,
+        "dominant_motion_colors": [
+          {
+            "color": 0,
+            "count": 2204
+          },
+          {
+            "color": 11,
+            "count": 688
+          },
+          {
+            "color": 5,
+            "count": 117
+          },
+          {
+            "color": 4,
+            "count": 111
+          },
+          {
+            "color": 10,
+            "count": 55
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 2234,
+            "direction": "up"
+          },
+          {
+            "count": 453,
+            "direction": "down"
+          },
+          {
+            "count": 429,
+            "direction": "right"
+          },
+          {
+            "count": 59,
+            "direction": "left"
+          }
+        ],
+        "mean_motion_vectors": 13.6266,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 233
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 233,
+      "support_rate": 0.9549,
+      "test_goal": "test whether ACTION1 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [
+          "x",
+          "y"
+        ],
+        "action_arg_rate": 1.0,
+        "action_transition_count": 3,
+        "dominant_motion_directions": [
+          {
+            "count": 7,
+            "direction": "right"
+          },
+          {
+            "count": 1,
+            "direction": "down"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0024,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 3
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 3,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 133,
+        "dominant_zones_after": [
+          {
+            "count": 905,
+            "zone": "middle_center"
+          },
+          {
+            "count": 691,
+            "zone": "bottom_center"
+          },
+          {
+            "count": 657,
+            "zone": "middle_right"
+          },
+          {
+            "count": 647,
+            "zone": "top_center"
+          },
+          {
+            "count": 572,
+            "zone": "bottom_right"
+          }
+        ],
+        "mean_object_count_delta": 0.2256,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 133
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 133,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION5 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 244,
+        "dominant_created_colors": [
+          {
+            "color": 11,
+            "count": 336
+          },
+          {
+            "color": 0,
+            "count": 173
+          },
+          {
+            "color": 4,
+            "count": 68
+          },
+          {
+            "color": 10,
+            "count": 65
+          },
+          {
+            "color": 5,
+            "count": 14
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 11,
+            "count": 305
+          },
+          {
+            "color": 0,
+            "count": 213
+          },
+          {
+            "color": 4,
+            "count": 71
+          },
+          {
+            "color": 10,
+            "count": 64
+          },
+          {
+            "color": 5,
+            "count": 2
+          }
+        ],
+        "mean_created_object_count": 9.4872,
+        "mean_removed_object_count": 9.4915,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 234
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 234,
+      "support_rate": 0.959,
+      "test_goal": "test whether ACTION1 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 244,
+        "dominant_zones_after": [
+          {
+            "count": 1563,
+            "zone": "middle_center"
+          },
+          {
+            "count": 1482,
+            "zone": "middle_right"
+          },
+          {
+            "count": 1298,
+            "zone": "middle_left"
+          },
+          {
+            "count": 1113,
+            "zone": "bottom_left"
+          },
+          {
+            "count": 1057,
+            "zone": "bottom_right"
+          }
+        ],
+        "mean_object_count_delta": -0.0043,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 234
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 234,
+      "support_rate": 0.959,
+      "test_goal": "test whether ACTION1 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 244,
+        "dominant_motion_directions": [
+          {
+            "count": 2234,
+            "direction": "up"
+          },
+          {
+            "count": 453,
+            "direction": "down"
+          },
+          {
+            "count": 429,
+            "direction": "right"
+          },
+          {
+            "count": 59,
+            "direction": "left"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0817,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 233
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 233,
+      "support_rate": 0.9549,
+      "test_goal": "test whether ACTION1 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 232,
+        "dominant_created_colors": [
+          {
+            "color": 11,
+            "count": 147
+          },
+          {
+            "color": 0,
+            "count": 78
+          },
+          {
+            "color": 10,
+            "count": 64
+          },
+          {
+            "color": 4,
+            "count": 35
+          },
+          {
+            "color": 5,
+            "count": 8
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 11,
+            "count": 123
+          },
+          {
+            "color": 0,
+            "count": 111
+          },
+          {
+            "color": 10,
+            "count": 48
+          },
+          {
+            "color": 4,
+            "count": 33
+          },
+          {
+            "color": 5,
+            "count": 2
+          }
+        ],
+        "mean_created_object_count": 6.75,
+        "mean_removed_object_count": 6.6864,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 220
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 220,
+      "support_rate": 0.9483,
+      "test_goal": "test whether ACTION3 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 232,
+        "dominant_zones_after": [
+          {
+            "count": 1547,
+            "zone": "middle_center"
+          },
+          {
+            "count": 1314,
+            "zone": "bottom_center"
+          },
+          {
+            "count": 1302,
+            "zone": "top_center"
+          },
+          {
+            "count": 905,
+            "zone": "bottom_left"
+          },
+          {
+            "count": 722,
+            "zone": "top_right"
+          }
+        ],
+        "mean_object_count_delta": 0.0636,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 220
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 220,
+      "support_rate": 0.9483,
+      "test_goal": "test whether ACTION3 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 186,
+        "dominant_created_colors": [
+          {
+            "color": 11,
+            "count": 138
+          },
+          {
+            "color": 0,
+            "count": 102
+          },
+          {
+            "color": 10,
+            "count": 55
+          },
+          {
+            "color": 4,
+            "count": 43
+          },
+          {
+            "color": 5,
+            "count": 1
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 0,
+            "count": 108
+          },
+          {
+            "color": 11,
+            "count": 75
+          },
+          {
+            "color": 10,
+            "count": 71
+          },
+          {
+            "color": 4,
+            "count": 30
+          },
+          {
+            "color": 5,
+            "count": 1
+          }
+        ],
+        "mean_created_object_count": 6.9375,
+        "mean_removed_object_count": 6.625,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 176
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 176,
+      "support_rate": 0.9462,
+      "test_goal": "test whether ACTION4 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 186,
+        "dominant_motion_colors": [
+          {
+            "color": 0,
+            "count": 1984
+          },
+          {
+            "color": 11,
+            "count": 293
+          },
+          {
+            "color": 4,
+            "count": 137
+          },
+          {
+            "color": 5,
+            "count": 95
+          },
+          {
+            "color": 10,
+            "count": 91
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 2069,
+            "direction": "right"
+          },
+          {
+            "count": 446,
+            "direction": "down"
+          },
+          {
+            "count": 50,
+            "direction": "up"
+          },
+          {
+            "count": 35,
+            "direction": "left"
+          }
+        ],
+        "mean_motion_vectors": 14.7727,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 176
+      },
+      "game_id": "ar25-e3c63847",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 176,
+      "support_rate": 0.9462,
+      "test_goal": "test whether ACTION4 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "contact_change_candidate",
+      "evidence": {
+        "action_transition_count": 410,
+        "dominant_changed_contact_pairs": [
+          {
+            "colors": [
+              10,
+              12
+            ],
+            "count": 3388
+          },
+          {
+            "colors": [
+              3,
+              14
+            ],
+            "count": 2392
+          },
+          {
+            "colors": [
+              3,
+              5
+            ],
+            "count": 1758
+          },
+          {
+            "colors": [
+              3,
+              12
+            ],
+            "count": 1592
+          },
+          {
+            "colors": [
+              3,
+              15
+            ],
+            "count": 1532
+          }
+        ],
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 402
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "topology_contact",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 402,
+      "support_rate": 0.9805,
+      "test_goal": "test whether ACTION6 changes object contacts/topology",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 410,
+        "dominant_created_colors": [
+          {
+            "color": 3,
+            "count": 2257
+          },
+          {
+            "color": 12,
+            "count": 594
+          },
+          {
+            "color": 11,
+            "count": 257
+          },
+          {
+            "color": 15,
+            "count": 252
+          },
+          {
+            "color": 0,
+            "count": 129
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 3,
+            "count": 2333
+          },
+          {
+            "color": 12,
+            "count": 680
+          },
+          {
+            "color": 11,
+            "count": 216
+          },
+          {
+            "color": 14,
+            "count": 177
+          },
+          {
+            "color": 15,
+            "count": 152
+          }
+        ],
+        "mean_created_object_count": 13.2,
+        "mean_removed_object_count": 13.4366,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 410
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 410,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 254,
+        "dominant_motion_colors": [
+          {
+            "color": 3,
+            "count": 6823
+          },
+          {
+            "color": 12,
+            "count": 806
+          },
+          {
+            "color": 11,
+            "count": 587
+          },
+          {
+            "color": 15,
+            "count": 212
+          },
+          {
+            "color": 0,
+            "count": 170
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 5500,
+            "direction": "down"
+          },
+          {
+            "count": 1257,
+            "direction": "right"
+          },
+          {
+            "count": 1157,
+            "direction": "left"
+          },
+          {
+            "count": 1002,
+            "direction": "up"
+          }
+        ],
+        "mean_motion_vectors": 35.8072,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 249
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 249,
+      "support_rate": 0.9803,
+      "test_goal": "test whether ACTION3 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [
+          "x",
+          "y"
+        ],
+        "action_arg_rate": 1.0,
+        "action_transition_count": 410,
+        "dominant_motion_directions": [
+          {
+            "count": 20334,
+            "direction": "down"
+          },
+          {
+            "count": 4995,
+            "direction": "right"
+          },
+          {
+            "count": 4456,
+            "direction": "up"
+          },
+          {
+            "count": 2483,
+            "direction": "left"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.1318,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 410
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 410,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 410,
+        "dominant_zones_after": [
+          {
+            "count": 13360,
+            "zone": "middle_left"
+          },
+          {
+            "count": 13211,
+            "zone": "top_left"
+          },
+          {
+            "count": 12273,
+            "zone": "bottom_left"
+          },
+          {
+            "count": 11453,
+            "zone": "middle_right"
+          },
+          {
+            "count": 10943,
+            "zone": "middle_center"
+          }
+        ],
+        "mean_object_count_delta": -0.2366,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 410
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 410,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 298,
+        "dominant_created_colors": [
+          {
+            "color": 3,
+            "count": 1705
+          },
+          {
+            "color": 12,
+            "count": 325
+          },
+          {
+            "color": 14,
+            "count": 77
+          },
+          {
+            "color": 10,
+            "count": 68
+          },
+          {
+            "color": 11,
+            "count": 61
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 3,
+            "count": 598
+          },
+          {
+            "color": 12,
+            "count": 436
+          },
+          {
+            "color": 11,
+            "count": 179
+          },
+          {
+            "color": 15,
+            "count": 126
+          },
+          {
+            "color": 0,
+            "count": 89
+          }
+        ],
+        "mean_created_object_count": 11.5839,
+        "mean_removed_object_count": 8.755,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 298
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 298,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION4 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 298,
+        "dominant_zones_after": [
+          {
+            "count": 9992,
+            "zone": "top_left"
+          },
+          {
+            "count": 9824,
+            "zone": "middle_left"
+          },
+          {
+            "count": 8557,
+            "zone": "top_right"
+          },
+          {
+            "count": 8459,
+            "zone": "bottom_left"
+          },
+          {
+            "count": 8164,
+            "zone": "middle_right"
+          }
+        ],
+        "mean_object_count_delta": 2.8289,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 298
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 298,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION4 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 254,
+        "dominant_created_colors": [
+          {
+            "color": 3,
+            "count": 518
+          },
+          {
+            "color": 12,
+            "count": 334
+          },
+          {
+            "color": 11,
+            "count": 200
+          },
+          {
+            "color": 0,
+            "count": 101
+          },
+          {
+            "color": 15,
+            "count": 83
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 3,
+            "count": 1208
+          },
+          {
+            "color": 12,
+            "count": 162
+          },
+          {
+            "color": 11,
+            "count": 70
+          },
+          {
+            "color": 15,
+            "count": 58
+          },
+          {
+            "color": 10,
+            "count": 50
+          }
+        ],
+        "mean_created_object_count": 9.1378,
+        "mean_removed_object_count": 10.1929,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 254
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 254,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION3 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 254,
+        "dominant_zones_after": [
+          {
+            "count": 8198,
+            "zone": "top_left"
+          },
+          {
+            "count": 8004,
+            "zone": "bottom_left"
+          },
+          {
+            "count": 7884,
+            "zone": "middle_left"
+          },
+          {
+            "count": 7060,
+            "zone": "middle_right"
+          },
+          {
+            "count": 6892,
+            "zone": "top_right"
+          }
+        ],
+        "mean_object_count_delta": -1.0551,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 254
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 254,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION3 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION7",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 8,
+        "dominant_created_colors": [
+          {
+            "color": 3,
+            "count": 14
+          },
+          {
+            "color": 14,
+            "count": 7
+          },
+          {
+            "color": 10,
+            "count": 3
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 3,
+            "count": 57
+          },
+          {
+            "color": 14,
+            "count": 8
+          },
+          {
+            "color": 10,
+            "count": 1
+          },
+          {
+            "color": 7,
+            "count": 1
+          }
+        ],
+        "mean_created_object_count": 5.875,
+        "mean_removed_object_count": 11.25,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 8
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 8,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION7 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION7",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 8,
+        "dominant_zones_after": [
+          {
+            "count": 278,
+            "zone": "middle_left"
+          },
+          {
+            "count": 241,
+            "zone": "bottom_left"
+          },
+          {
+            "count": 229,
+            "zone": "middle_right"
+          },
+          {
+            "count": 205,
+            "zone": "top_left"
+          },
+          {
+            "count": 182,
+            "zone": "middle_center"
+          }
+        ],
+        "mean_object_count_delta": -5.375,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 8
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 8,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION7 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 254,
+        "dominant_motion_directions": [
+          {
+            "count": 5500,
+            "direction": "down"
+          },
+          {
+            "count": 1257,
+            "direction": "right"
+          },
+          {
+            "count": 1157,
+            "direction": "left"
+          },
+          {
+            "count": 1002,
+            "direction": "up"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0857,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 249
+      },
+      "game_id": "bp35-0a0ad940",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 249,
+      "support_rate": 0.9803,
+      "test_goal": "test whether ACTION3 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "contact_change_candidate",
+      "evidence": {
+        "action_transition_count": 73,
+        "dominant_changed_contact_pairs": [
+          {
+            "colors": [
+              3,
+              4
+            ],
+            "count": 200
+          },
+          {
+            "colors": [
+              0,
+              14
+            ],
+            "count": 191
+          },
+          {
+            "colors": [
+              0,
+              15
+            ],
+            "count": 189
+          },
+          {
+            "colors": [
+              0,
+              12
+            ],
+            "count": 137
+          },
+          {
+            "colors": [
+              0,
+              8
+            ],
+            "count": 125
+          }
+        ],
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 55
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "topology_contact",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 55,
+      "support_rate": 0.7534,
+      "test_goal": "test whether ACTION5 changes object contacts/topology",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 73,
+        "dominant_created_colors": [
+          {
+            "color": 14,
+            "count": 14
+          },
+          {
+            "color": 15,
+            "count": 12
+          },
+          {
+            "color": 12,
+            "count": 12
+          },
+          {
+            "color": 8,
+            "count": 12
+          },
+          {
+            "color": 4,
+            "count": 10
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 0,
+            "count": 10
+          },
+          {
+            "color": 12,
+            "count": 5
+          },
+          {
+            "color": 14,
+            "count": 2
+          },
+          {
+            "color": 9,
+            "count": 2
+          },
+          {
+            "color": 4,
+            "count": 1
+          }
+        ],
+        "mean_created_object_count": 3.4179,
+        "mean_removed_object_count": 2.6567,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 67
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 67,
+      "support_rate": 0.9178,
+      "test_goal": "test whether ACTION5 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 132,
+        "dominant_motion_colors": [
+          {
+            "color": 0,
+            "count": 90
+          },
+          {
+            "color": 15,
+            "count": 2
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 46,
+            "direction": "left"
+          },
+          {
+            "count": 44,
+            "direction": "right"
+          },
+          {
+            "count": 2,
+            "direction": "down"
+          }
+        ],
+        "mean_motion_vectors": 1.0222,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 90
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 90,
+      "support_rate": 0.6818,
+      "test_goal": "test whether ACTION6 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [
+          "x",
+          "y"
+        ],
+        "action_arg_rate": 1.0,
+        "action_transition_count": 132,
+        "dominant_motion_directions": [
+          {
+            "count": 46,
+            "direction": "left"
+          },
+          {
+            "count": 44,
+            "direction": "right"
+          },
+          {
+            "count": 2,
+            "direction": "down"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0185,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 132
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 132,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 73,
+        "dominant_zones_after": [
+          {
+            "count": 574,
+            "zone": "top_center"
+          },
+          {
+            "count": 382,
+            "zone": "top_left"
+          },
+          {
+            "count": 349,
+            "zone": "top_right"
+          },
+          {
+            "count": 233,
+            "zone": "middle_center"
+          },
+          {
+            "count": 95,
+            "zone": "bottom_center"
+          }
+        ],
+        "mean_object_count_delta": 0.7612,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 67
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 67,
+      "support_rate": 0.9178,
+      "test_goal": "test whether ACTION5 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 132,
+        "dominant_created_colors": [
+          {
+            "color": 0,
+            "count": 29
+          },
+          {
+            "color": 15,
+            "count": 26
+          },
+          {
+            "color": 12,
+            "count": 26
+          },
+          {
+            "color": 8,
+            "count": 23
+          },
+          {
+            "color": 14,
+            "count": 20
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 15,
+            "count": 48
+          },
+          {
+            "color": 0,
+            "count": 19
+          },
+          {
+            "color": 12,
+            "count": 19
+          },
+          {
+            "color": 14,
+            "count": 18
+          },
+          {
+            "color": 8,
+            "count": 15
+          }
+        ],
+        "mean_created_object_count": 3.0333,
+        "mean_removed_object_count": 2.9583,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 120
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 120,
+      "support_rate": 0.9091,
+      "test_goal": "test whether ACTION6 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 132,
+        "dominant_zones_after": [
+          {
+            "count": 1052,
+            "zone": "top_center"
+          },
+          {
+            "count": 685,
+            "zone": "top_left"
+          },
+          {
+            "count": 603,
+            "zone": "top_right"
+          },
+          {
+            "count": 440,
+            "zone": "middle_center"
+          },
+          {
+            "count": 153,
+            "zone": "bottom_center"
+          }
+        ],
+        "mean_object_count_delta": 0.075,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 120
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 120,
+      "support_rate": 0.9091,
+      "test_goal": "test whether ACTION6 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION2",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 159,
+        "dominant_created_colors": [
+          {
+            "color": 0,
+            "count": 33
+          },
+          {
+            "color": 2,
+            "count": 33
+          },
+          {
+            "color": 14,
+            "count": 11
+          },
+          {
+            "color": 12,
+            "count": 8
+          },
+          {
+            "color": 15,
+            "count": 5
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 0,
+            "count": 26
+          },
+          {
+            "color": 2,
+            "count": 26
+          },
+          {
+            "color": 14,
+            "count": 7
+          },
+          {
+            "color": 12,
+            "count": 5
+          },
+          {
+            "color": 15,
+            "count": 5
+          }
+        ],
+        "mean_created_object_count": 2.8248,
+        "mean_removed_object_count": 2.6715,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 137
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 137,
+      "support_rate": 0.8616,
+      "test_goal": "test whether ACTION2 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION2",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 159,
+        "dominant_zones_after": [
+          {
+            "count": 1112,
+            "zone": "top_center"
+          },
+          {
+            "count": 762,
+            "zone": "top_left"
+          },
+          {
+            "count": 675,
+            "zone": "top_right"
+          },
+          {
+            "count": 387,
+            "zone": "middle_center"
+          },
+          {
+            "count": 222,
+            "zone": "bottom_center"
+          }
+        ],
+        "mean_object_count_delta": 0.1533,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 137
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 137,
+      "support_rate": 0.8616,
+      "test_goal": "test whether ACTION2 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 129,
+        "dominant_created_colors": [
+          {
+            "color": 0,
+            "count": 32
+          },
+          {
+            "color": 2,
+            "count": 32
+          },
+          {
+            "color": 14,
+            "count": 10
+          },
+          {
+            "color": 12,
+            "count": 8
+          },
+          {
+            "color": 8,
+            "count": 6
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 0,
+            "count": 20
+          },
+          {
+            "color": 2,
+            "count": 20
+          },
+          {
+            "color": 14,
+            "count": 7
+          },
+          {
+            "color": 12,
+            "count": 4
+          },
+          {
+            "color": 15,
+            "count": 3
+          }
+        ],
+        "mean_created_object_count": 2.964,
+        "mean_removed_object_count": 2.6577,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 111
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 111,
+      "support_rate": 0.8605,
+      "test_goal": "test whether ACTION3 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 129,
+        "dominant_zones_after": [
+          {
+            "count": 934,
+            "zone": "top_center"
+          },
+          {
+            "count": 634,
+            "zone": "top_left"
+          },
+          {
+            "count": 570,
+            "zone": "top_right"
+          },
+          {
+            "count": 362,
+            "zone": "middle_center"
+          },
+          {
+            "count": 210,
+            "zone": "bottom_center"
+          }
+        ],
+        "mean_object_count_delta": 0.3063,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 111
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 111,
+      "support_rate": 0.8605,
+      "test_goal": "test whether ACTION3 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 128,
+        "dominant_created_colors": [
+          {
+            "color": 0,
+            "count": 25
+          },
+          {
+            "color": 2,
+            "count": 25
+          },
+          {
+            "color": 14,
+            "count": 7
+          },
+          {
+            "color": 15,
+            "count": 5
+          },
+          {
+            "color": 8,
+            "count": 4
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 0,
+            "count": 30
+          },
+          {
+            "color": 2,
+            "count": 30
+          },
+          {
+            "color": 14,
+            "count": 14
+          },
+          {
+            "color": 12,
+            "count": 7
+          },
+          {
+            "color": 15,
+            "count": 3
+          }
+        ],
+        "mean_created_object_count": 2.9545,
+        "mean_removed_object_count": 3.1,
+        "mechanic_typing_warning": "color_source_schema_misaligned_with_observed_mechanics",
+        "support_transition_count": 110
+      },
+      "game_id": "cd82-fb555c5d",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 110,
+      "support_rate": 0.8594,
+      "test_goal": "test whether ACTION1 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "contact_change_candidate",
+      "evidence": {
+        "action_transition_count": 38,
+        "dominant_changed_contact_pairs": [
+          {
+            "colors": [
+              8,
+              11
+            ],
+            "count": 141
+          },
+          {
+            "colors": [
+              0,
+              8
+            ],
+            "count": 120
+          },
+          {
+            "colors": [
+              8,
+              14
+            ],
+            "count": 114
+          },
+          {
+            "colors": [
+              8,
+              10
+            ],
+            "count": 78
+          },
+          {
+            "colors": [
+              8,
+              15
+            ],
+            "count": 63
+          }
+        ],
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 37
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "topology_contact",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 37,
+      "support_rate": 0.9737,
+      "test_goal": "test whether ACTION6 changes object contacts/topology",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 54,
+        "dominant_created_colors": [
+          {
+            "color": 8,
+            "count": 15
+          },
+          {
+            "color": 14,
+            "count": 5
+          },
+          {
+            "color": 0,
+            "count": 4
+          },
+          {
+            "color": 3,
+            "count": 4
+          },
+          {
+            "color": 15,
+            "count": 3
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 3,
+            "count": 9
+          },
+          {
+            "color": 8,
+            "count": 8
+          },
+          {
+            "color": 14,
+            "count": 3
+          },
+          {
+            "color": 15,
+            "count": 3
+          },
+          {
+            "color": 4,
+            "count": 1
+          }
+        ],
+        "mean_created_object_count": 2.3889,
+        "mean_removed_object_count": 2.2037,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 54
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 54,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION5 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 54,
+        "dominant_motion_colors": [
+          {
+            "color": 8,
+            "count": 114
+          },
+          {
+            "color": 3,
+            "count": 3
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 53,
+            "direction": "down"
+          },
+          {
+            "count": 25,
+            "direction": "left"
+          },
+          {
+            "count": 23,
+            "direction": "up"
+          },
+          {
+            "count": 16,
+            "direction": "right"
+          }
+        ],
+        "mean_motion_vectors": 2.1667,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 54
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 54,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION5 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 54,
+        "dominant_motion_directions": [
+          {
+            "count": 53,
+            "direction": "down"
+          },
+          {
+            "count": 25,
+            "direction": "left"
+          },
+          {
+            "count": 23,
+            "direction": "up"
+          },
+          {
+            "count": 16,
+            "direction": "right"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0353,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 54
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 54,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION5 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION5",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 54,
+        "dominant_zones_after": [
+          {
+            "count": 150,
+            "zone": "top_center"
+          },
+          {
+            "count": 116,
+            "zone": "middle_center"
+          },
+          {
+            "count": 104,
+            "zone": "middle_left"
+          },
+          {
+            "count": 91,
+            "zone": "top_left"
+          },
+          {
+            "count": 32,
+            "zone": "bottom_center"
+          }
+        ],
+        "mean_object_count_delta": 0.1852,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 54
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 54,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION5 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [
+          "x",
+          "y"
+        ],
+        "action_arg_rate": 1.0,
+        "action_transition_count": 38,
+        "dominant_motion_directions": [
+          {
+            "count": 7,
+            "direction": "right"
+          },
+          {
+            "count": 4,
+            "direction": "down"
+          },
+          {
+            "count": 1,
+            "direction": "left"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0462,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 38
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 38,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 88,
+        "dominant_motion_colors": [
+          {
+            "color": 8,
+            "count": 208
+          },
+          {
+            "color": 0,
+            "count": 58
+          },
+          {
+            "color": 11,
+            "count": 14
+          },
+          {
+            "color": 12,
+            "count": 8
+          },
+          {
+            "color": 14,
+            "count": 6
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 273,
+            "direction": "up"
+          },
+          {
+            "count": 10,
+            "direction": "down"
+          },
+          {
+            "count": 8,
+            "direction": "right"
+          },
+          {
+            "count": 4,
+            "direction": "left"
+          }
+        ],
+        "mean_motion_vectors": 3.4302,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 86
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 86,
+      "support_rate": 0.9773,
+      "test_goal": "test whether ACTION1 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 88,
+        "dominant_motion_directions": [
+          {
+            "count": 273,
+            "direction": "up"
+          },
+          {
+            "count": 10,
+            "direction": "down"
+          },
+          {
+            "count": 8,
+            "direction": "right"
+          },
+          {
+            "count": 4,
+            "direction": "left"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0324,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 86
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 86,
+      "support_rate": 0.9773,
+      "test_goal": "test whether ACTION1 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 38,
+        "dominant_created_colors": [
+          {
+            "color": 14,
+            "count": 13
+          },
+          {
+            "color": 11,
+            "count": 9
+          },
+          {
+            "color": 15,
+            "count": 6
+          },
+          {
+            "color": 8,
+            "count": 5
+          },
+          {
+            "color": 12,
+            "count": 4
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 11,
+            "count": 12
+          },
+          {
+            "color": 14,
+            "count": 10
+          },
+          {
+            "color": 15,
+            "count": 5
+          },
+          {
+            "color": 10,
+            "count": 5
+          },
+          {
+            "color": 3,
+            "count": 4
+          }
+        ],
+        "mean_created_object_count": 2.3243,
+        "mean_removed_object_count": 2.4324,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 37
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 37,
+      "support_rate": 0.9737,
+      "test_goal": "test whether ACTION6 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 38,
+        "dominant_zones_after": [
+          {
+            "count": 90,
+            "zone": "top_center"
+          },
+          {
+            "count": 89,
+            "zone": "middle_center"
+          },
+          {
+            "count": 59,
+            "zone": "top_left"
+          },
+          {
+            "count": 49,
+            "zone": "middle_left"
+          },
+          {
+            "count": 26,
+            "zone": "top_right"
+          }
+        ],
+        "mean_object_count_delta": -0.1081,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 37
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 37,
+      "support_rate": 0.9737,
+      "test_goal": "test whether ACTION6 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 91,
+        "dominant_motion_colors": [
+          {
+            "color": 8,
+            "count": 148
+          },
+          {
+            "color": 0,
+            "count": 44
+          },
+          {
+            "color": 12,
+            "count": 24
+          },
+          {
+            "color": 14,
+            "count": 12
+          },
+          {
+            "color": 11,
+            "count": 11
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 229,
+            "direction": "left"
+          },
+          {
+            "count": 8,
+            "direction": "right"
+          },
+          {
+            "count": 3,
+            "direction": "down"
+          },
+          {
+            "count": 1,
+            "direction": "up"
+          }
+        ],
+        "mean_motion_vectors": 2.7386,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 88
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 88,
+      "support_rate": 0.967,
+      "test_goal": "test whether ACTION3 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 91,
+        "dominant_motion_directions": [
+          {
+            "count": 229,
+            "direction": "left"
+          },
+          {
+            "count": 8,
+            "direction": "right"
+          },
+          {
+            "count": 3,
+            "direction": "down"
+          },
+          {
+            "count": 1,
+            "direction": "up"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0421,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 88
+      },
+      "game_id": "cn04-65d47d14",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 88,
+      "support_rate": 0.967,
+      "test_goal": "test whether ACTION3 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "contact_change_candidate",
+      "evidence": {
+        "action_transition_count": 342,
+        "dominant_changed_contact_pairs": [
+          {
+            "colors": [
+              2,
+              14
+            ],
+            "count": 300
+          },
+          {
+            "colors": [
+              0,
+              3
+            ],
+            "count": 154
+          },
+          {
+            "colors": [
+              9,
+              14
+            ],
+            "count": 139
+          },
+          {
+            "colors": [
+              12,
+              14
+            ],
+            "count": 124
+          },
+          {
+            "colors": [
+              8,
+              14
+            ],
+            "count": 103
+          }
+        ],
+        "mechanic_typing_warning": "",
+        "support_transition_count": 264
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "topology_contact",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 264,
+      "support_rate": 0.7719,
+      "test_goal": "test whether ACTION1 changes object contacts/topology",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 316,
+        "dominant_created_colors": [
+          {
+            "color": 15,
+            "count": 37
+          },
+          {
+            "color": 9,
+            "count": 22
+          },
+          {
+            "color": 6,
+            "count": 15
+          },
+          {
+            "color": 12,
+            "count": 15
+          },
+          {
+            "color": 7,
+            "count": 14
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 1,
+            "count": 20
+          },
+          {
+            "color": 12,
+            "count": 11
+          },
+          {
+            "color": 9,
+            "count": 6
+          },
+          {
+            "color": 10,
+            "count": 6
+          },
+          {
+            "color": 2,
+            "count": 3
+          }
+        ],
+        "mean_created_object_count": 2.5729,
+        "mean_removed_object_count": 2.2475,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 295
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 295,
+      "support_rate": 0.9335,
+      "test_goal": "test whether ACTION4 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 316,
+        "dominant_motion_colors": [
+          {
+            "color": 14,
+            "count": 297
+          },
+          {
+            "color": 9,
+            "count": 28
+          },
+          {
+            "color": 2,
+            "count": 23
+          },
+          {
+            "color": 12,
+            "count": 17
+          },
+          {
+            "color": 0,
+            "count": 13
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 328,
+            "direction": "right"
+          },
+          {
+            "count": 45,
+            "direction": "down"
+          },
+          {
+            "count": 19,
+            "direction": "left"
+          },
+          {
+            "count": 14,
+            "direction": "up"
+          }
+        ],
+        "mean_motion_vectors": 1.367,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 297
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 297,
+      "support_rate": 0.9399,
+      "test_goal": "test whether ACTION4 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [
+          "x",
+          "y"
+        ],
+        "action_arg_rate": 1.0,
+        "action_transition_count": 698,
+        "dominant_motion_directions": [
+          {
+            "count": 584,
+            "direction": "right"
+          },
+          {
+            "count": 434,
+            "direction": "left"
+          },
+          {
+            "count": 173,
+            "direction": "up"
+          },
+          {
+            "count": 169,
+            "direction": "down"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0079,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 698
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 698,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 316,
+        "dominant_zones_after": [
+          {
+            "count": 3965,
+            "zone": "middle_left"
+          },
+          {
+            "count": 3666,
+            "zone": "bottom_center"
+          },
+          {
+            "count": 2582,
+            "zone": "middle_center"
+          },
+          {
+            "count": 2102,
+            "zone": "top_center"
+          },
+          {
+            "count": 1208,
+            "zone": "middle_right"
+          }
+        ],
+        "mean_object_count_delta": 0.3254,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 295
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 295,
+      "support_rate": 0.9335,
+      "test_goal": "test whether ACTION4 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION4",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 316,
+        "dominant_motion_directions": [
+          {
+            "count": 328,
+            "direction": "right"
+          },
+          {
+            "count": 45,
+            "direction": "down"
+          },
+          {
+            "count": 19,
+            "direction": "left"
+          },
+          {
+            "count": 14,
+            "direction": "up"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0037,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 297
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 297,
+      "support_rate": 0.9399,
+      "test_goal": "test whether ACTION4 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 342,
+        "dominant_created_colors": [
+          {
+            "color": 15,
+            "count": 74
+          },
+          {
+            "color": 9,
+            "count": 36
+          },
+          {
+            "color": 6,
+            "count": 18
+          },
+          {
+            "color": 7,
+            "count": 16
+          },
+          {
+            "color": 2,
+            "count": 12
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 6,
+            "count": 12
+          },
+          {
+            "color": 7,
+            "count": 12
+          },
+          {
+            "color": 12,
+            "count": 8
+          },
+          {
+            "color": 2,
+            "count": 7
+          },
+          {
+            "color": 1,
+            "count": 6
+          }
+        ],
+        "mean_created_object_count": 2.524,
+        "mean_removed_object_count": 2.1821,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 313
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 313,
+      "support_rate": 0.9152,
+      "test_goal": "test whether ACTION1 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 342,
+        "dominant_zones_after": [
+          {
+            "count": 5206,
+            "zone": "bottom_center"
+          },
+          {
+            "count": 4737,
+            "zone": "middle_left"
+          },
+          {
+            "count": 3299,
+            "zone": "middle_center"
+          },
+          {
+            "count": 2440,
+            "zone": "top_center"
+          },
+          {
+            "count": 1585,
+            "zone": "middle_right"
+          }
+        ],
+        "mean_object_count_delta": 0.3419,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 313
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 313,
+      "support_rate": 0.9152,
+      "test_goal": "test whether ACTION1 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 342,
+        "dominant_motion_colors": [
+          {
+            "color": 14,
+            "count": 302
+          },
+          {
+            "color": 9,
+            "count": 62
+          },
+          {
+            "color": 2,
+            "count": 32
+          },
+          {
+            "color": 0,
+            "count": 32
+          },
+          {
+            "color": 6,
+            "count": 12
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 327,
+            "direction": "up"
+          },
+          {
+            "count": 97,
+            "direction": "down"
+          },
+          {
+            "count": 36,
+            "direction": "right"
+          },
+          {
+            "count": 18,
+            "direction": "left"
+          }
+        ],
+        "mean_motion_vectors": 1.5776,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 303
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 303,
+      "support_rate": 0.886,
+      "test_goal": "test whether ACTION1 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION1",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [],
+        "action_arg_rate": 0.0,
+        "action_transition_count": 342,
+        "dominant_motion_directions": [
+          {
+            "count": 327,
+            "direction": "up"
+          },
+          {
+            "count": 97,
+            "direction": "down"
+          },
+          {
+            "count": 36,
+            "direction": "right"
+          },
+          {
+            "count": 18,
+            "direction": "left"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0051,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 303
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 303,
+      "support_rate": 0.886,
+      "test_goal": "test whether ACTION1 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 195,
+        "dominant_created_colors": [
+          {
+            "color": 12,
+            "count": 14
+          },
+          {
+            "color": 10,
+            "count": 9
+          },
+          {
+            "color": 1,
+            "count": 8
+          },
+          {
+            "color": 0,
+            "count": 7
+          },
+          {
+            "color": 9,
+            "count": 6
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 15,
+            "count": 17
+          },
+          {
+            "color": 12,
+            "count": 12
+          },
+          {
+            "color": 9,
+            "count": 10
+          },
+          {
+            "color": 0,
+            "count": 10
+          },
+          {
+            "color": 1,
+            "count": 9
+          }
+        ],
+        "mean_created_object_count": 2.284,
+        "mean_removed_object_count": 2.4379,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 169
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 169,
+      "support_rate": 0.8667,
+      "test_goal": "test whether ACTION3 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION3",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 195,
+        "dominant_zones_after": [
+          {
+            "count": 2756,
+            "zone": "middle_left"
+          },
+          {
+            "count": 2639,
+            "zone": "bottom_center"
+          },
+          {
+            "count": 2219,
+            "zone": "middle_center"
+          },
+          {
+            "count": 1351,
+            "zone": "top_center"
+          },
+          {
+            "count": 802,
+            "zone": "middle_right"
+          }
+        ],
+        "mean_object_count_delta": -0.1538,
+        "mechanic_typing_warning": "",
+        "support_transition_count": 169
+      },
+      "game_id": "dc22-4c9bff3e",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 169,
+      "support_rate": 0.8667,
+      "test_goal": "test whether ACTION3 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "object_lifecycle_candidate",
+      "evidence": {
+        "action_transition_count": 463,
+        "dominant_created_colors": [
+          {
+            "color": 14,
+            "count": 250
+          },
+          {
+            "color": 15,
+            "count": 212
+          },
+          {
+            "color": 8,
+            "count": 136
+          },
+          {
+            "color": 12,
+            "count": 99
+          },
+          {
+            "color": 9,
+            "count": 62
+          }
+        ],
+        "dominant_removed_colors": [
+          {
+            "color": 14,
+            "count": 248
+          },
+          {
+            "color": 8,
+            "count": 157
+          },
+          {
+            "color": 15,
+            "count": 145
+          },
+          {
+            "color": 9,
+            "count": 113
+          },
+          {
+            "color": 12,
+            "count": 99
+          }
+        ],
+        "mean_created_object_count": 3.5841,
+        "mean_removed_object_count": 3.4322,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 428
+      },
+      "game_id": "ft09-0d8bbf25",
+      "mechanism": "object_lifecycle",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 428,
+      "support_rate": 0.9244,
+      "test_goal": "test whether ACTION6 creates/removes/replaces objects",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "object_motion_candidate",
+      "evidence": {
+        "action_transition_count": 463,
+        "dominant_motion_colors": [
+          {
+            "color": 14,
+            "count": 810
+          },
+          {
+            "color": 15,
+            "count": 325
+          },
+          {
+            "color": 9,
+            "count": 264
+          },
+          {
+            "color": 8,
+            "count": 224
+          },
+          {
+            "color": 12,
+            "count": 140
+          }
+        ],
+        "dominant_motion_directions": [
+          {
+            "count": 1080,
+            "direction": "down"
+          },
+          {
+            "count": 742,
+            "direction": "right"
+          },
+          {
+            "count": 81,
+            "direction": "left"
+          },
+          {
+            "count": 58,
+            "direction": "up"
+          }
+        ],
+        "mean_motion_vectors": 5.1335,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 382
+      },
+      "game_id": "ft09-0d8bbf25",
+      "mechanism": "object_motion",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 382,
+      "support_rate": 0.8251,
+      "test_goal": "test whether ACTION6 produces object motion or displacement",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "position_effect_candidate",
+      "evidence": {
+        "action_arg_keys": [
+          "x",
+          "y"
+        ],
+        "action_arg_rate": 1.0,
+        "action_transition_count": 463,
+        "dominant_motion_directions": [
+          {
+            "count": 1080,
+            "direction": "down"
+          },
+          {
+            "count": 742,
+            "direction": "right"
+          },
+          {
+            "count": 81,
+            "direction": "left"
+          },
+          {
+            "count": 58,
+            "direction": "up"
+          }
+        ],
+        "mean_changed_cell_ratio": 0.0197,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 463
+      },
+      "game_id": "ft09-0d8bbf25",
+      "mechanism": "position_effect",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 463,
+      "support_rate": 1.0,
+      "test_goal": "test whether ACTION6 has a position/local-effect dependency",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "action": "ACTION6",
+      "candidate_type": "shape_zone_candidate",
+      "evidence": {
+        "action_transition_count": 463,
+        "dominant_zones_after": [
+          {
+            "count": 10828,
+            "zone": "middle_center"
+          },
+          {
+            "count": 5561,
+            "zone": "bottom_center"
+          },
+          {
+            "count": 4902,
+            "zone": "top_center"
+          },
+          {
+            "count": 3185,
+            "zone": "middle_left"
+          },
+          {
+            "count": 2987,
+            "zone": "middle_right"
+          }
+        ],
+        "mean_object_count_delta": 0.1519,
+        "mechanic_typing_warning": "color_changes_exist_but_source_color_grounding_is_weak",
+        "support_transition_count": 428
+      },
+      "game_id": "ft09-0d8bbf25",
+      "mechanism": "shape_zone",
+      "prior_counted_as_proof": false,
+      "status": "UNRESOLVED",
+      "support": 428,
+      "support_rate": 0.9244,
+      "test_goal": "test whether ACTION6 changes object shape/zone occupancy",
+      "trace_support_counted_as_proof": false
+    }
+  ],
+  "config": {
+    "max_candidates_per_game": 12,
+    "mechanic_typing_path": "diagnostics\\m1\\mechanic_typing.json",
+    "min_support_count": 3,
+    "min_support_rate": 0.35,
+    "observation_path": "training\\m1_observation_dataset.jsonl"
+  },
+  "prior_counted_as_proof": false,
+  "status": "UNRESOLVED",
+  "summary": {
+    "candidate_count": 64,
+    "candidate_count_by_game": {
+      "ar25-e3c63847": 12,
+      "bp35-0a0ad940": 12,
+      "cd82-fb555c5d": 12,
+      "cn04-65d47d14": 12,
+      "dc22-4c9bff3e": 12,
+      "ft09-0d8bbf25": 4
+    },
+    "candidate_count_by_type": {
+      "contact_change_candidate": 5,
+      "object_lifecycle_candidate": 19,
+      "object_motion_candidate": 10,
+      "position_effect_candidate": 13,
+      "shape_zone_candidate": 17
+    },
+    "non_color_candidate_types": [
+      "contact_change_candidate",
+      "object_lifecycle_candidate",
+      "object_motion_candidate",
+      "position_effect_candidate",
+      "shape_zone_candidate"
+    ]
+  },
+  "trace_support_counted_as_proof": false
+}

@@ -1,0 +1,245 @@
+{
+  "blocked_probe_counted_as_contradiction": false,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3.8",
+      "M3.9",
+      "M3.10",
+      "M3.11",
+      "M3.12",
+      "M3.13",
+      "M3.14",
+      "M3.15",
+      "M3.16",
+      "A32",
+      "A33"
+    ],
+    "consolidation_policy": {
+      "blocked_probes_are_not_contradictions": true,
+      "diagnostic_metrics_do_not_decide_retarget_success": true,
+      "duplicate_resolved_args_are_not_independent": true,
+      "execution_performed": false,
+      "support_forced_to_zero": true
+    },
+    "inputs_read": [
+      "M3.16"
+    ],
+    "schema_version": "m3.dynamic_retarget_selection_rule_consolidation.v1",
+    "selection_followup_results_path": "diagnostics\\m3\\dynamic_retarget_selection_followup_results.json"
+  },
+  "controlled_test_required": true,
+  "observation_counted_as_confirmation": false,
+  "prior_counted_as_proof": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "rule_counted_as_confirmation": false,
+  "selection_rule_consolidations": [
+    {
+      "best_current_rule_family": "local_patch_transformability",
+      "blocked_probe_counted_as_contradiction": false,
+      "confidence_basis": "only_executed_followups_support_patch_similarity",
+      "context_replay": [
+        "ACTION6",
+        "ACTION3",
+        "ACTION4"
+      ],
+      "context_replay_args": [
+        {
+          "x": 18,
+          "y": 0
+        },
+        {},
+        {}
+      ],
+      "controlled_test_required": true,
+      "diagnostic_metric_interpretation": {
+        "changed_pixels_role": "effect_radar_not_retarget_success_metric",
+        "contact_graph_role": "diagnostic_not_decisive_for_current_retarget",
+        "diagnostic_metrics": [
+          "changed_pixels",
+          "contact_graph_before_after"
+        ],
+        "diagnostic_metrics_decide_retarget_success": false,
+        "diagnostic_metrics_with_contradictions": [
+          "changed_pixels"
+        ],
+        "success_metrics": [
+          "local_patch_before_after",
+          "object_positions_before_after"
+        ]
+      },
+      "diagnostic_metrics": [
+        "changed_pixels",
+        "contact_graph_before_after"
+      ],
+      "duplicate_resolution_counted_as_independent": false,
+      "excluded_args_for_next_expansion": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 18,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        },
+        {
+          "x": 42,
+          "y": 12
+        }
+      ],
+      "game_id": "bp35-0a0ad940",
+      "important_caveat": "row_or_band probes were mostly not executable, so they are not direct contradictions",
+      "known_failed_retargets": [
+        {
+          "x": 30,
+          "y": 0
+        }
+      ],
+      "known_successful_retargets": [
+        {
+          "x": 12,
+          "y": 0
+        },
+        {
+          "x": 24,
+          "y": 0
+        },
+        {
+          "x": 30,
+          "y": 12
+        },
+        {
+          "x": 36,
+          "y": 12
+        }
+      ],
+      "observation_counted_as_confirmation": false,
+      "prior_counted_as_proof": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "row_or_band_directly_tested": false,
+      "row_or_band_not_directly_contradicted": true,
+      "rule_counted_as_confirmation": false,
+      "rule_family_assessments": [
+        {
+          "assessment": "supported_candidate_only_by_executed_followups",
+          "blocked_probe_counted_as_contradiction": false,
+          "blocked_reason_counts": {},
+          "blocked_requests": 0,
+          "controlled_experiments_run": 16,
+          "diagnostic_contradiction_events": 4,
+          "diagnostic_support_events": 0,
+          "directly_contradicted": false,
+          "directly_tested": true,
+          "requests_with_success_metric_support": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "rule_family": "local_patch_transformability",
+          "success_metric_contradiction_events": 0,
+          "success_metric_support_events": 8,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "assessment": "not_directly_tested_blocked_or_excluded",
+          "blocked_probe_counted_as_contradiction": false,
+          "blocked_reason_counts": {
+            "explicit_args_excluded_known_arg": 1,
+            "explicit_args_not_available_after_replay": 5
+          },
+          "blocked_requests": 6,
+          "controlled_experiments_run": 0,
+          "diagnostic_contradiction_events": 0,
+          "diagnostic_support_events": 0,
+          "directly_contradicted": false,
+          "directly_tested": false,
+          "requests_with_success_metric_support": 0,
+          "revision_status": "CANDIDATE_ONLY",
+          "rule_family": "row_or_band_dependent_retarget",
+          "success_metric_contradiction_events": 0,
+          "success_metric_support_events": 0,
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        },
+        {
+          "assessment": "methodological_support_candidate_only",
+          "basis": "Diagnostic metrics produced contradictions while grounded success metrics supported the retarget.",
+          "changed_pixels_role": "effect_radar_not_retarget_success_metric",
+          "diagnostic_contradiction_events": 4,
+          "directly_contradicted": false,
+          "directly_tested": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "rule_family": "specific_effect_over_global_pixels",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_M3",
+          "wrong_confirmations": 0
+        }
+      ],
+      "selection_rule_consolidation_id": "m3_17::bp35::ACTION4_ACTION6::selection_rule_consolidation",
+      "source_mechanism_candidate_id": "m3_13::bp35::A6_A3_A4::ACTION6::retarget_region",
+      "source_selection_rule_candidate_id": "m3_14::bp35::ACTION4_ACTION6::retarget_selection_rule",
+      "status": "UNRESOLVED",
+      "success_metrics": [
+        "local_patch_before_after",
+        "object_positions_before_after"
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "unique_new_successful_args": [
+        {
+          "x": 42,
+          "y": 12
+        }
+      ],
+      "wrong_confirmations": 0
+    }
+  ],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "best_current_rule_families": [
+      "local_patch_transformability"
+    ],
+    "blocked_probe_counted_as_contradiction": false,
+    "controlled_test_required": true,
+    "duplicate_resolution_counted_as_independent": false,
+    "execution_performed": false,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "row_or_band_directly_tested": false,
+    "row_or_band_not_directly_contradicted": true,
+    "selection_followup_results_consumed": 1,
+    "selection_rule_consolidations": 1,
+    "source_diagnostic_contradiction_events": 4,
+    "source_success_metric_support_events": 8,
+    "status": "UNRESOLVED",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "unique_new_successful_args": 1,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "trace_support_counted_as_proof": false,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

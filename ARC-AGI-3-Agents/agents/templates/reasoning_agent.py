@@ -8,7 +8,10 @@ from typing import Any, Dict, List, Literal
 from arcengine import FrameData, GameAction
 from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
-from pydantic import BaseModel, Field
+try:
+    from pydantic import BaseModel, Field
+except ImportError:
+    from adaptive_reasoning_compat.pydantic import BaseModel, Field
 
 from .llm_agents import ReasoningLLM
 

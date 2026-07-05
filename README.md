@@ -1,102 +1,125 @@
-# v4.1 Adaptive Reasoning System
+# Adaptive Reasoning for ARC-AGI-3
 
-**An architecture that treats reasoning itself as a control problem.**
+**A brain-inspired agent that explores, learns, and strategises to solve unknown interactive games.**
 
 ```
-Problem → LLM parse → latent state → candidate reasoning actions
-→ JEPA-style latent consequence prediction → EBM routing
-→ specialized solver/tool execution → external verification
-→ repair or memory update → repeat
+Game Frame → Visual Cortex (CNN) → State Description → Goal Decomposition
+→ JEPA World Model predicts outcomes → EBM scores strategies
+→ Actioner executes → Associative Memory consolidates → repeat
 ```
 
 ## Core Principle
 
-General intelligence is not just solving a given problem — it is **choosing the right way to think** for the problem at hand.
+Each ARC-AGI-3 game is unique and its rules are unknown. The agent must:
+1. **Explore** the game to discover mechanics (fast random play + systematic probing)
+2. **Model** the world (latent JEPA predictions + pixel-level CNN predictions)
+3. **Plan** from a small trajectory-sampling core that stays measurable as we extend it
+4. **Learn online** from every action, transferring knowledge across games
 
-This system explicitly learns:
-- **What** kind of reasoning to do
-- **When** to do it
-- **For how long** (budget)
-- **With which tool** (solver selection)
-- **Under which verification constraints** (strictness)
+## Sampler Roadmap
+
+The current branch recentres planning around a deliberately minimal sampler:
+
+1. `V0`: observe -> infer lightweight goal context -> sample short `heuristic` and `random` trajectories -> score them -> execute the first action -> store the observed outcome.
+2. `V1`: add task-program and human-prior guidance only if it improves a tracked metric.
+3. `V2`: add trajectory replay and mutation only if it beats `V1`.
+4. `V3`: add level-to-level continuation only if it clearly helps again.
+
+This keeps the planning loop readable, testable, and easy to ablate instead of mixing several special-case mechanisms at once.
+
+The runner now exposes this explicitly via `--sampler-stage v0|v1|v2|v3`. Current practical stages are `v0` and `v1`.
+Use `--planner-mode hypothesis` to switch from prior-guided action sampling to the new action-dynamics hypothesis planner.
 
 ## Architecture Overview
 
 | Module | Role | Implementation |
 |--------|------|----------------|
-| **Semantic Parser** | NL → structured task | 7-8B instruct LLM (Mistral/Llama/Qwen) |
-| **State Encoder** | Context → latent z_t | MLP, ~5-20M params |
-| **Candidate Generator** | Propose reasoning actions | Rule-based (Phase 1), learnable later |
-| **JEPA World Model** | Predict latent consequences | Transition predictor + aux heads, ~20-100M params |
-| **EBM Router** | Score & select best action | Energy-Based Model, ~10-50M params |
-| **Solver Portfolio** | Execute reasoning | Hierarchical, Global Opt, Repair, LLM Codegen |
-| **Verifier** | Ground truth checking | Domain-specific (planning, scheduling, optimization, code) |
-| **Memory** | Long-term adaptation | Episodic replay + structural patterns (FAISS) |
+| **Visual Cortex** | Predict next frame from current frame + action | U-Net CNN with FiLM conditioning, ~450K params |
+| **State Describer** | Frame → structured `GameObservation` | Grid analysis + object detection + player tracking |
+| **Goal Decomposer** | Game → overarching goal → ordered subgoals | LLM + template fallback, game-type classification |
+| **Strategy Generator** | Subgoal → candidate strategies | LLM + template fallback, action-effect aware |
+| **JEPA World Model** | Predict latent consequences of strategies | Encoder + Predictor + Aux heads, ~5M params |
+| **EBM Energy Scorer** | Score & rank candidate strategies | Energy-Based Model with pairwise ranking loss |
+| **Actioner** | Strategy → concrete game action | Handler dispatch: navigate, click, explore, undo, sequence |
+| **Associative Memory** | Brain-inspired multi-system memory | LTP/LTD associations + episodic + procedural + policy NN |
+| **Game Memory** | Tracks discovered game mechanics | Action profiles, player tracking, direction mapping |
+| **Cross-Game Memory** | Trust-gated meta-knowledge across games and runs | Policy NN + action priors + goal hints + failure patterns → `cross_game_memory.pt` |
 
-## Reasoning Modes
+## Agent Phases
 
-| Mode | Use Case | Backend |
-|------|----------|---------|
-| `hierarchical` | Subgoal decomposition, dependency planning | Topological sort + recursive solve |
-| `global_opt` | Coupled constrained optimization | OR-Tools CP-SAT |
-| `repair` | Fix violations, restore feasibility | Targeted patch / relaxation / local search |
-| `llm_codegen` | Code synthesis, critique, repair | Instruction-tuned LLM |
+```
+Phase 1 — Fast Exploration (time-budgeted)
+  ├─ Random play with novelty-driven clicking
+  ├─ Replay winning sequences (procedural memory)
+  ├─ Visual cortex trains on observed transitions (50 steps)
+  └─ Associative memory consolidates episodes
+
+Phase 2 — Strategic Play (action-budgeted)
+  ├─ Observe → Decompose → Strategize → Execute → Update
+  ├─ Visual cortex predictions feed into:
+  │   ├─ Strategy Generator (NL descriptions in prompt)
+  │   ├─ Associative Memory (change rates, directions, danger, similarity)
+  │   └─ Game Memory (VC-predicted movement directions)
+  ├─ JEPA predicts latent outcomes, EBM scores
+  ├─ Online training (world model, EBM, visual cortex)
+  └─ Subgoal budget management + re-decomposition when stuck
+```
+
+## Visual Cortex → Memory Integration
+
+The visual cortex (CNN) feeds structured predictions into the associative memory:
+
+| Pathway | Data | Effect |
+|---------|------|--------|
+| **Change rates** | Predicted % cells changed per action | Biases `pick_novel_action()` weights for untried actions |
+| **Directions** | Predicted (dy, dx) displacement | Fallback for navigation when no observed player movement |
+| **Danger** | Predicted destruction score | Injected into `danger_map` to avoid risky actions |
+| **Similarity** | Pairwise cosine of predicted grids | Regularises policy NN to generalise across similar-effect actions |
 
 ## Project Structure
 
 ```
 v4_1_reasoning_system/
-├── parser/
-│   ├── task_schema.py          # Pydantic task representation
-│   └── llm_parser.py           # LLM-based semantic parser
-├── world_model/
-│   ├── encoder.py              # State → latent z_t
-│   ├── predictor.py            # JEPA transition predictor + action encoder
-│   └── aux_heads.py            # Validity, score, cost, repair prediction
-├── router/
-│   ├── candidate_generator.py  # Rule-based candidate generation
-│   ├── ebm_router.py           # Energy-Based Model router + rule fallback
-│   └── routing_train.py        # Ranking loss training for EBM
-├── solvers/
-│   ├── base.py                 # BaseSolver interface + SolverResult
-│   ├── hierarchical_solver.py  # Subgoal decomposition
-│   ├── global_opt_solver.py    # OR-Tools CP-SAT wrapper
-│   ├── repair_solver.py        # Violation-targeted / relaxation / local search
-│   └── llm_codegen_solver.py   # LLM code generation + execution
-├── verifier/
-│   ├── base.py                 # BaseVerifier + VerificationResult
-│   ├── planning_verifier.py    # Dependency, cycle, coverage checks
-│   ├── scheduling_verifier.py  # Precedence, resource, makespan checks
-│   ├── dispatch_verifier.py    # Bounds, constraints, objective checks
-│   └── code_verifier.py        # Syntax, execution, test case checks
-├── memory/
-│   ├── replay.py               # Episodic trajectory replay buffer
-│   └── retrieval.py            # FAISS episodic retriever + structural memory
-├── orchestration/
-│   ├── controller.py           # Main reasoning control loop
-│   └── state_update.py         # State lifecycle management
-├── training/
-│   ├── collect_rollouts.py     # Synthetic problem gen + rollout collection
-│   ├── train_world_model.py    # JEPA predictor + aux heads training
-│   └── train_router.py         # EBM router ranking loss training
-├── pyproject.toml
-└── setup.py
+├── arc_agi/                        # ARC-AGI-3 game adapter (core agent logic)
+│   ├── reasoning_loop.py           # Hierarchical control loop (Observe→Explore→Decompose→Strategize→Execute→Update)
+│   ├── visual_cortex.py            # CNN U-Net frame predictor with FiLM action conditioning
+│   ├── associative_memory.py       # Brain-inspired memory (LTP/LTD, episodic, procedural, policy NN, cross-game)
+│   ├── game_memory.py              # Per-game knowledge: action profiles, player tracking, directions
+│   ├── game_world_model.py         # JEPA-style world model (latent state prediction + aux heads)
+│   ├── energy_scorer.py            # EBM strategy scorer with pairwise ranking loss
+│   ├── strategy_generator.py       # LLM + template strategy generation
+│   ├── strategy_router.py          # Rule-based strategy candidate routing
+│   ├── goal_decomposer.py          # Game-type classification + subgoal decomposition
+│   ├── actioner.py                 # Strategy → concrete action (navigate, click, explore, undo)
+│   ├── state_describer.py          # Frame → GameObservation (grid analysis, objects, player)
+│   ├── grid_analyzer.py            # Low-level grid analysis utilities
+│   └── llm_cache.py               # Deterministic LLM response caching
+│
+├── world_model/                    # Generic JEPA components
+│   ├── encoder.py                  # State → latent z_t
+│   ├── predictor.py                # JEPA transition predictor
+│   └── aux_heads.py                # Auxiliary prediction heads
+│
+├── router/                         # Generic routing components
+│   ├── candidate_generator.py      # Rule-based candidate generation
+│   ├── ebm_router.py              # Energy-Based Model router
+│   └── routing_train.py           # Ranking loss training
+│
+├── training/                       # Training scripts
+│   ├── train_world_model.py       # JEPA predictor + aux heads training
+│   └── train_router.py            # EBM router ranking loss training
+│
+└── pyproject.toml
 
-notebooks/
-├── 01_demo_inference.ipynb     # Colab demo: run the full loop
-└── 02_training_pipeline.ipynb  # Colab training: Phases 2-5
+ARC-AGI-3-Agents/
+├── agents/templates/
+│   └── adaptive_reasoning_agent.py # Main agent entry point (Phase 1 + Phase 2)
+├── test_full_agent.py              # Multi-game test with clean summary output
+├── run_training_loop.py            # Iterated training: compound cross-game memory across runs
+├── test_play_and_learn.py          # Fast-play training loop (associative memory only)
+├── test_single_verbose.py          # Single-game verbose debugging
+└── main.py                         # Competition entry point (Swarm orchestrator)
 ```
-
-## Training Order
-
-| Phase | What | Details |
-|-------|------|---------|
-| **1** | Build solvers & verifier | Make each mode work individually |
-| **2** | Rule-based router | Get the full loop running end-to-end |
-| **3** | Train JEPA-lite world model | Predict latent next state + aux targets |
-| **4** | Train router EBM | Ranking loss on good vs bad reasoning actions |
-| **5** | Add top-k routing | Evaluate multiple candidates under verification |
-| **6** | Add stronger LLM usage | Code gen, critique, solver formulation, repair |
 
 ## Quick Start
 
@@ -107,114 +130,65 @@ cd v4_1_reasoning_system
 pip install -e .
 ```
 
-### Minimal Example (No GPU / No LLM)
+### Run a Multi-Game Test
 
-```python
-from v4_1_reasoning_system.orchestration.controller import ReasoningController
-
-controller = ReasoningController(
-    use_learned_router=False,
-    max_iterations=5,
-    device="cpu",
-)
-
-# Solve a scheduling problem with pre-parsed input
-result = controller.solve_from_dict(
-    problem="Schedule 3 jobs to minimize makespan",
-    parsed_json={
-        "domain": "scheduling",
-        "description": "Schedule 3 jobs",
-        "entities": ["job_0", "job_1", "job_2"],
-        "constraints": [],
-        "objective": {"description": "Minimize makespan", "sense": "minimize"},
-        "ambiguities": [],
-        "structured_data": {
-            "type": "scheduling",
-            "jobs": [
-                {"name": "job_0", "duration": 3, "dependencies": []},
-                {"name": "job_1", "duration": 5, "dependencies": ["job_0"]},
-                {"name": "job_2", "duration": 2, "dependencies": ["job_0"]},
-            ],
-            "horizon": 20,
-            "resources": {},
-        },
-    },
-)
-
-print(f"Valid: {result['valid']}, Score: {result['score']:.3f}")
-print(f"Solution: {result['solution']}")
+```bash
+# 25 games, 60s per game
+python ARC-AGI-3-Agents/test_full_agent.py 25 60
 ```
 
-### Google Colab
+Output includes per-game results table with timing, visual cortex steps, goal pursuit stats, wins, and cross-game memory. Memory is saved to `cross_game_memory.pt` and reloaded automatically on next run.
 
-1. Upload `v4_1_reasoning_system/` to Google Drive
-2. Open `notebooks/01_demo_inference.ipynb` for inference demo
-3. Open `notebooks/02_training_pipeline.ipynb` for training
+### Run the Training Loop (compound learning across runs)
 
-### Collect Rollouts & Train
-
-```python
-from v4_1_reasoning_system.training.collect_rollouts import RolloutCollector
-
-# Generate synthetic problems
-problems = RolloutCollector.generate_benchmark_suite(
-    n_planning=20, n_scheduling=20, n_optimization=20,
-)
-
-# Collect reasoning trajectories
-collector = RolloutCollector(controller)
-results = collector.collect(problems)
-
-# Train world model (Phase 3)
-from v4_1_reasoning_system.training.train_world_model import (
-    WorldModelTrainer, build_world_model_dataset, WorldModelDataset
-)
-from torch.utils.data import DataLoader
-
-records = build_world_model_dataset(controller.replay_buffer)
-loader = DataLoader(WorldModelDataset(records), batch_size=16, shuffle=True)
-trainer = WorldModelTrainer(controller.transition_predictor, controller.aux_heads)
-for epoch in range(100):
-    metrics = trainer.train_epoch(loader)
-
-# Train router EBM (Phase 4)
-from v4_1_reasoning_system.training.train_router import train_router_from_buffer
-
-result = train_router_from_buffer(
-    controller.ebm_router, controller.replay_buffer, num_epochs=100
-)
-
-# Switch to learned routing
-controller.use_learned_router = True
+```bash
+# 5 iterations × 25 games × 60s each—memory persists between iterations
+python ARC-AGI-3-Agents/run_training_loop.py 5 25 60
 ```
 
-### Save / Load Checkpoints
+Each iteration runs the full game suite. Cross-game memory compounds: action priors, policy NN weights, and goal strategy hints carry over. A comparative diagnostic table is printed after each iteration showing trends (▲/▼) and first-to-last improvement.
 
-```python
-controller.save_checkpoint("/path/to/checkpoint")
-controller.load_checkpoint("/path/to/checkpoint")
+### Run a Single Game (Verbose)
+
+```bash
+python ARC-AGI-3-Agents/test_single_verbose.py ls20
+```
+
+### Fast Play-and-Learn (No Strategy, Memory Only)
+
+```bash
+# 10 games, 50 iterations each, 100 actions per iteration
+python ARC-AGI-3-Agents/test_play_and_learn.py 10 50 100
+```
+
+### Competition Submission
+
+```bash
+python ARC-AGI-3-Agents/main.py --agent=adaptivereasoning
 ```
 
 ## Hardware Requirements
 
 | Component | Size | Notes |
 |-----------|------|-------|
-| LLM (parser/codegen) | 7-8B params | 4-bit quantized, ~5GB VRAM |
-| State Encoder | ~5-20M params | Negligible |
-| World Model | ~20-100M params | < 1GB |
-| Router EBM | ~10-50M params | < 0.5GB |
-| Memory (FAISS) | CPU/RAM | Scales with trajectory count |
+| Visual Cortex (U-Net) | ~450K params | CPU or GPU, trains online |
+| JEPA World Model | ~5M params | CPU or GPU |
+| EBM Scorer | ~1M params | CPU |
+| Policy NN (actor-critic) | ~10K params | CPU, trains online |
+| LLM (goal bank gen) | 494M params (Qwen2.5-0.5B) | ~1GB fp16, GPU recommended |
 
-**Total: fits comfortably on a single A100 (40/80GB) or H100.**
+**All neural components auto-detect GPU (CUDA).** With an RTX 4050 (6.4GB), total VRAM usage is ~1.1GB.
 
-## Benchmark Domains
+Kaggle constraints: CPU/GPU ≤ 6 hrs, no internet, pre-trained models OK.
 
-| Domain | Task Examples |
-|--------|--------------|
-| **Planning** | Key-door, resource assembly, tool-use planning |
-| **Scheduling** | Job-shop, precedence scheduling, fairness constraints |
-| **Optimization** | Knapsack, energy dispatch, network flow |
-| **Coding** | Generate solver code, patch failing code, pass tests |
+## Key Design Decisions
+
+- **Two-phase architecture**: Fast exploration builds a model of the game, strategic phase exploits it
+- **Visual cortex as shared backbone**: CNN predictions feed into both the LLM (via NL descriptions) and the memory system (via structured analysis)
+- **Brain-inspired memory**: LTP/LTD synaptic learning, not just a replay buffer — enables rapid online adaptation
+- **Hierarchical goals**: Game-type classification drives subgoal decomposition, preventing aimless action
+- **Sceptical cross-game transfer**: Persistent memory acts as hypothesis proposer (trust=0.3), not action governor; failure patterns, overpredicted goals, and contradicted priors are persisted alongside successes
+- **Dev/competition separation**: Development mode uses full persistence; competition mode halves trust (0.15) to preserve adaptation to novel games
 
 ## License
 

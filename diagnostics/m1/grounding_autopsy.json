@@ -1,0 +1,3073 @@
+{
+  "config": {
+    "accepted_invariants_path": "diagnostics\\m1\\accepted_invariants.json",
+    "discovery_top_k": 100,
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "max_candidates": 20,
+    "min_pixel_support": 1,
+    "preferred_predicates": [
+      "same_shape",
+      "aligned_with",
+      "adjacent_to",
+      "paired_with"
+    ],
+    "run_agenda": true
+  },
+  "games": [
+    {
+      "after_ranking_metrics": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 5,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 5,
+        "new_pairs_total": 5,
+        "new_pairs_with_2_preferred_predicates": 5,
+        "pair_count": 20
+      },
+      "agenda": {
+        "agenda_pairs": [],
+        "agenda_predicates": [],
+        "candidate_prediction_count": 0,
+        "discovered_candidates": 20,
+        "env_actions": 0,
+        "error": "not_enough_relation_candidates_for_agenda",
+        "raw_discovered_candidates": 39,
+        "relation_candidate_count": 0,
+        "wrong_confirmations": 0
+      },
+      "all_new_pair_block_reasons": {
+        "source_not_selectable_for_action": 8
+      },
+      "baseline_candidate_count": 31,
+      "before_ranking_metrics": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 8,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 5,
+        "new_pairs_total": 8,
+        "new_pairs_with_2_preferred_predicates": 8,
+        "pair_count": 39
+      },
+      "game_id": "bp35-0a0ad940",
+      "grounding_funnel": {
+        "pairs_actionable_source": 0,
+        "pairs_blocked_by_unselectable_source": 20,
+        "pairs_discovered": 20,
+        "pairs_entering_agenda": 0,
+        "pairs_generating_env_action": 0,
+        "pairs_live_compatible": 0,
+        "pairs_target_present": 20,
+        "pairs_with_2_preferred_predicates": 20
+      },
+      "live_source_colors_by_action": {
+        "ACTION6": [
+          5
+        ]
+      },
+      "m1_candidate_count": 39,
+      "new_pair_grounding_funnel": {
+        "pairs_actionable_source": 0,
+        "pairs_blocked_by_unselectable_source": 5,
+        "pairs_discovered": 5,
+        "pairs_entering_agenda": 0,
+        "pairs_generating_env_action": 0,
+        "pairs_live_compatible": 0,
+        "pairs_target_present": 5,
+        "pairs_with_2_preferred_predicates": 5
+      },
+      "ranked_candidate_count": 20,
+      "ranked_entering_agenda_new_pairs": [],
+      "ranked_live_compatible_new_pairs": [],
+      "ranked_new_pair_block_reasons": {
+        "source_not_selectable_for_action": 5
+      },
+      "ranked_new_pairs": [
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 24,
+          "target_color": 11,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 11,
+          "support": 8,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 11,
+          "support": 8,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 18,
+          "target_color": 11,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 105,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 1
+        }
+      ],
+      "ranked_pairs": [
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            5
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 450,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 6
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            5
+          ],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 378,
+          "target_color": 10,
+          "target_live_present": true,
+          "transition_support": 6
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            5
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 3,
+          "support": 216,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 6
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            5
+          ],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 3,
+          "support": 117,
+          "target_color": 10,
+          "target_live_present": true,
+          "transition_support": 6
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 24,
+          "target_color": 11,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 11,
+          "support": 8,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 11,
+          "support": 8,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 18,
+          "target_color": 11,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            5
+          ],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 10,
+          "support": 273,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION7",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved",
+            "m1_object_motion_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 10,
+          "support": 147,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            5
+          ],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 10,
+          "support": 115,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION7",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 10,
+          "support": 43,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 147,
+          "target_color": 10,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "m1_anchor_motion",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 105,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION7",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 96,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 10,
+          "support": 84,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 3,
+          "support": 83,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION7",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 3,
+          "support": 64,
+          "target_color": 10,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 10,
+          "support": 55,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 1
+        },
+        {
+          "action": "ACTION7",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_created_removed",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 3,
+          "support": 47,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 1
+        }
+      ],
+      "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl"
+    },
+    {
+      "after_ranking_metrics": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 4,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 4,
+        "new_pairs_total": 4,
+        "new_pairs_with_2_preferred_predicates": 4,
+        "pair_count": 20
+      },
+      "agenda": {
+        "agenda_pairs": [],
+        "agenda_predicates": [],
+        "candidate_prediction_count": 0,
+        "discovered_candidates": 20,
+        "env_actions": 0,
+        "error": "not_enough_relation_candidates_for_agenda",
+        "raw_discovered_candidates": 100,
+        "relation_candidate_count": 0,
+        "wrong_confirmations": 0
+      },
+      "all_new_pair_block_reasons": {
+        "source_not_selectable_for_action": 12
+      },
+      "baseline_candidate_count": 100,
+      "before_ranking_metrics": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 12,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 10,
+        "new_pairs_total": 12,
+        "new_pairs_with_2_preferred_predicates": 12,
+        "pair_count": 100
+      },
+      "game_id": "cd82-fb555c5d",
+      "grounding_funnel": {
+        "pairs_actionable_source": 0,
+        "pairs_blocked_by_unselectable_source": 20,
+        "pairs_discovered": 20,
+        "pairs_entering_agenda": 0,
+        "pairs_generating_env_action": 0,
+        "pairs_live_compatible": 0,
+        "pairs_target_present": 20,
+        "pairs_with_2_preferred_predicates": 20
+      },
+      "live_source_colors_by_action": {},
+      "m1_candidate_count": 100,
+      "new_pair_grounding_funnel": {
+        "pairs_actionable_source": 0,
+        "pairs_blocked_by_unselectable_source": 4,
+        "pairs_discovered": 4,
+        "pairs_entering_agenda": 0,
+        "pairs_generating_env_action": 0,
+        "pairs_live_compatible": 0,
+        "pairs_target_present": 4,
+        "pairs_with_2_preferred_predicates": 4
+      },
+      "ranked_candidate_count": 20,
+      "ranked_entering_agenda_new_pairs": [],
+      "ranked_live_compatible_new_pairs": [],
+      "ranked_new_pair_block_reasons": {
+        "source_not_selectable_for_action": 4
+      },
+      "ranked_new_pairs": [
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_modified"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 12,
+          "support": 34,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 49,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 44,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 37
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 43,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 36
+        }
+      ],
+      "ranked_pairs": [
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_created_removed",
+            "m1_object_removal_appears",
+            "m1_object_count_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 60,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 14
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears",
+            "m1_anchor_contact",
+            "m1_object_motion_appears",
+            "m1_object_removal_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 395,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 9
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_anchor_created_removed",
+            "m1_adjacency_modified",
+            "m1_object_motion_appears",
+            "m1_object_count_preserved",
+            "m1_object_removal_appears",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 15,
+          "support": 576,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 5
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 15,
+          "support": 155,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears",
+            "m1_object_count_preserved",
+            "m1_anchor_contact"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 12,
+          "support": 569,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 5
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears",
+            "m1_anchor_contact",
+            "m1_object_motion_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 12,
+          "support": 178,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 5
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 122,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 4
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_anchor_created_removed",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved",
+            "m1_adjacency_modified"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 300,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_modified",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 276,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_modified",
+            "m1_anchor_contact",
+            "m1_object_creation_appears",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 253,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_anchor_created_removed",
+            "m1_object_removal_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 236,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_modified"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 12,
+          "support": 34,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 3
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 11,
+          "support": 384,
+          "target_color": 15,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 75,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION5",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 49,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 2
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "m1_anchor_motion",
+            "m1_object_removal_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 340,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 42
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 3,
+          "support": 210,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 42
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 44,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 37
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 43,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 36
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_creation_appears",
+            "m1_object_removal_appears"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 40,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 28
+        }
+      ],
+      "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl"
+    },
+    {
+      "after_ranking_metrics": {
+        "agenda_eligible_pairs": 2,
+        "new_pairs_blocked_by_unselectable_source": 3,
+        "new_pairs_entering_agenda": 1,
+        "new_pairs_live_color_compatible": 3,
+        "new_pairs_target_present": 4,
+        "new_pairs_total": 6,
+        "new_pairs_with_2_preferred_predicates": 6,
+        "pair_count": 20
+      },
+      "agenda": {
+        "agenda_pairs": [
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            12
+          ]
+        ],
+        "agenda_predicates": [
+          "same_shape",
+          "aligned_with",
+          "adjacent_to",
+          "paired_with"
+        ],
+        "candidate_prediction_count": 38,
+        "discovered_candidates": 20,
+        "env_actions": 1,
+        "error": "",
+        "raw_discovered_candidates": 100,
+        "relation_candidate_count": 4,
+        "wrong_confirmations": 0
+      },
+      "all_new_pair_block_reasons": {
+        "agenda_eligible": 1,
+        "source_not_selectable_for_action": 25,
+        "target_not_present_in_live_grid": 2
+      },
+      "baseline_candidate_count": 100,
+      "before_ranking_metrics": {
+        "agenda_eligible_pairs": 2,
+        "new_pairs_blocked_by_unselectable_source": 25,
+        "new_pairs_entering_agenda": 1,
+        "new_pairs_live_color_compatible": 3,
+        "new_pairs_target_present": 17,
+        "new_pairs_total": 28,
+        "new_pairs_with_2_preferred_predicates": 27,
+        "pair_count": 100
+      },
+      "game_id": "dc22-4c9bff3e",
+      "grounding_funnel": {
+        "pairs_actionable_source": 5,
+        "pairs_blocked_by_unselectable_source": 15,
+        "pairs_discovered": 20,
+        "pairs_entering_agenda": 2,
+        "pairs_generating_env_action": 1,
+        "pairs_live_compatible": 2,
+        "pairs_target_present": 17,
+        "pairs_with_2_preferred_predicates": 20
+      },
+      "live_source_colors_by_action": {
+        "ACTION6": [
+          8,
+          9
+        ]
+      },
+      "m1_candidate_count": 100,
+      "new_pair_grounding_funnel": {
+        "pairs_actionable_source": 3,
+        "pairs_blocked_by_unselectable_source": 3,
+        "pairs_discovered": 6,
+        "pairs_entering_agenda": 1,
+        "pairs_generating_env_action": 0,
+        "pairs_live_compatible": 1,
+        "pairs_target_present": 4,
+        "pairs_with_2_preferred_predicates": 6
+      },
+      "ranked_candidate_count": 20,
+      "ranked_entering_agenda_new_pairs": [
+        {
+          "action": "ACTION6",
+          "block_reason": "agenda_eligible",
+          "entering_agenda": true,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 291,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 10
+        }
+      ],
+      "ranked_live_compatible_new_pairs": [
+        {
+          "action": "ACTION6",
+          "block_reason": "agenda_eligible",
+          "entering_agenda": true,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 291,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 10
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 100,
+          "target_color": 12,
+          "target_live_present": false,
+          "transition_support": 36
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "m1_anchor_contact",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 713,
+          "target_color": 15,
+          "target_live_present": false,
+          "transition_support": 28
+        }
+      ],
+      "ranked_new_pair_block_reasons": {
+        "agenda_eligible": 1,
+        "source_not_selectable_for_action": 3,
+        "target_not_present_in_live_grid": 2
+      },
+      "ranked_new_pairs": [
+        {
+          "action": "ACTION6",
+          "block_reason": "agenda_eligible",
+          "entering_agenda": true,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 291,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 10
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 100,
+          "target_color": 12,
+          "target_live_present": false,
+          "transition_support": 36
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "m1_anchor_contact",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 713,
+          "target_color": 15,
+          "target_live_present": false,
+          "transition_support": 28
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "same_shape",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_motion",
+            "m1_anchor_contact"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 155,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 12
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "same_shape",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 126,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 11
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "same_shape",
+            "m1_anchor_created_removed",
+            "m1_anchor_motion",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_modified",
+            "m1_object_motion_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 110,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 10
+        }
+      ],
+      "ranked_pairs": [
+        {
+          "action": "ACTION6",
+          "block_reason": "agenda_eligible",
+          "entering_agenda": true,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_motion",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_object_creation_appears",
+            "m1_object_removal_appears",
+            "m1_adjacency_modified"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 1812,
+          "target_color": 0,
+          "target_live_present": true,
+          "transition_support": 57
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "agenda_eligible",
+          "entering_agenda": true,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved"
+          ],
+          "preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 291,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 10
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "same_shape",
+            "m1_object_motion_appears",
+            "m1_anchor_motion",
+            "m1_object_count_preserved",
+            "m1_anchor_created_removed",
+            "m1_object_creation_appears",
+            "m1_object_removal_appears",
+            "m1_anchor_contact"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 1518,
+          "target_color": 12,
+          "target_live_present": false,
+          "transition_support": 64
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_contact",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 100,
+          "target_color": 12,
+          "target_live_present": false,
+          "transition_support": 36
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "target_not_present_in_live_grid",
+          "entering_agenda": false,
+          "live_color_compatible": true,
+          "live_preferred_predicates": [],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "m1_anchor_contact",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 8,
+          "support": 713,
+          "target_color": 15,
+          "target_live_present": false,
+          "transition_support": 28
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "same_shape",
+            "m1_anchor_created_removed",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_anchor_motion",
+            "m1_anchor_contact"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 155,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 12
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "same_shape",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 126,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 11
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "same_shape",
+            "m1_anchor_created_removed",
+            "m1_anchor_motion",
+            "m1_anchor_contact",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_modified",
+            "m1_object_motion_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 110,
+          "target_color": 9,
+          "target_live_present": true,
+          "transition_support": 10
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_created_removed",
+            "same_shape",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_adjacency_modified"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 9,
+          "support": 176,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 5
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_anchor_motion",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 528,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 100
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "same_shape",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_motion_appears",
+            "m1_anchor_motion",
+            "m1_object_count_preserved",
+            "m1_object_creation_appears",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 460,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 94
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "aligned_with",
+            "m1_anchor_created_removed",
+            "m1_object_creation_appears",
+            "m1_object_removal_appears",
+            "m1_object_motion_appears",
+            "same_shape",
+            "m1_adjacency_modified",
+            "m1_anchor_contact"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 968,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 90
+        },
+        {
+          "action": "ACTION2",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_motion_appears",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_anchor_contact",
+            "m1_anchor_motion",
+            "m1_object_removal_appears",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 344,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 82
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_anchor_contact",
+            "m1_object_removal_appears",
+            "m1_anchor_motion",
+            "m1_object_creation_appears",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 307,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 75
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_object_creation_appears"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 308,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 61
+        },
+        {
+          "action": "ACTION6",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [
+            8,
+            9
+          ],
+          "predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "m1_anchor_motion",
+            "same_shape",
+            "m1_object_removal_appears",
+            "m1_anchor_contact",
+            "m1_adjacency_modified"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 806,
+          "target_color": 8,
+          "target_live_present": true,
+          "transition_support": 58
+        },
+        {
+          "action": "ACTION4",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_motion_appears",
+            "m1_object_count_preserved",
+            "same_shape",
+            "m1_anchor_contact",
+            "m1_anchor_motion",
+            "m1_object_removal_appears",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 215,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 56
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_motion_appears",
+            "same_shape",
+            "m1_anchor_motion",
+            "m1_object_count_preserved",
+            "m1_object_creation_appears",
+            "m1_anchor_created_removed"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 14,
+          "support": 248,
+          "target_color": 2,
+          "target_live_present": true,
+          "transition_support": 48
+        },
+        {
+          "action": "ACTION3",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "aligned_with",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved",
+            "same_shape",
+            "m1_anchor_contact",
+            "m1_anchor_motion"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 2,
+          "support": 117,
+          "target_color": 14,
+          "target_live_present": true,
+          "transition_support": 35
+        },
+        {
+          "action": "ACTION1",
+          "block_reason": "source_not_selectable_for_action",
+          "entering_agenda": false,
+          "live_color_compatible": false,
+          "live_preferred_predicates": [
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "live_source_colors_for_action": [],
+          "predicates": [
+            "paired_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_adjacency_preserved",
+            "m1_object_count_preserved",
+            "aligned_with",
+            "same_shape",
+            "m1_anchor_created_removed",
+            "m1_object_creation_appears",
+            "m1_anchor_motion",
+            "m1_adjacency_modified",
+            "m1_anchor_contact"
+          ],
+          "preferred_predicates": [
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "paired_with"
+          ],
+          "ranked_top20": true,
+          "source_color": 0,
+          "support": 160,
+          "target_color": 3,
+          "target_live_present": true,
+          "transition_support": 32
+        }
+      ],
+      "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl"
+    }
+  ],
+  "interpretation": [
+    "dc22 is the positive control: at least one new M1 pair is live-compatible and enters A25.",
+    "bp35/cd82 produce new pairs, but their new sources are not selectable from the reset grid.",
+    "The bottleneck is now hypothesis grounding: trace anchor -> live object -> actionable source.",
+    "This diagnostic remains analysis-only and does not count trace support as proof.",
+    "Positive games: dc22-4c9bff3e.",
+    "Blocked-by-source games: bp35-0a0ad940, cd82-fb555c5d."
+  ],
+  "prior_counted_as_proof": false,
+  "summary_table": [
+    {
+      "entering_agenda": 0,
+      "env_actions": 0,
+      "error": "not_enough_relation_candidates_for_agenda",
+      "game_id": "bp35-0a0ad940",
+      "live_compatible": 0,
+      "new_pairs": 5,
+      "pairs_actionable_source": 0,
+      "pairs_blocked_by_unselectable_source": 20,
+      "pairs_discovered": 20,
+      "pairs_generating_env_action": 0,
+      "pairs_target_present": 20,
+      "relation_candidate_count": 0
+    },
+    {
+      "entering_agenda": 0,
+      "env_actions": 0,
+      "error": "not_enough_relation_candidates_for_agenda",
+      "game_id": "cd82-fb555c5d",
+      "live_compatible": 0,
+      "new_pairs": 4,
+      "pairs_actionable_source": 0,
+      "pairs_blocked_by_unselectable_source": 20,
+      "pairs_discovered": 20,
+      "pairs_generating_env_action": 0,
+      "pairs_target_present": 20,
+      "relation_candidate_count": 0
+    },
+    {
+      "entering_agenda": 1,
+      "env_actions": 1,
+      "error": "",
+      "game_id": "dc22-4c9bff3e",
+      "live_compatible": 3,
+      "new_pairs": 6,
+      "pairs_actionable_source": 5,
+      "pairs_blocked_by_unselectable_source": 15,
+      "pairs_discovered": 20,
+      "pairs_generating_env_action": 1,
+      "pairs_target_present": 17,
+      "relation_candidate_count": 4
+    }
+  ],
+  "trace_support_counted_as_proof": false
+}

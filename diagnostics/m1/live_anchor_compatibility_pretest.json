@@ -1,0 +1,122 @@
+{
+  "averages_after_ranking": {
+    "agenda_eligible_pairs": 0.6667,
+    "new_pairs_blocked_by_unselectable_source": 4.0,
+    "new_pairs_entering_agenda": 0.3333,
+    "new_pairs_live_color_compatible": 1.0,
+    "new_pairs_target_present": 4.3333,
+    "new_pairs_total": 5.0,
+    "new_pairs_with_2_preferred_predicates": 5.0,
+    "pair_count": 20.0
+  },
+  "averages_before_ranking": {
+    "agenda_eligible_pairs": 0.6667,
+    "new_pairs_blocked_by_unselectable_source": 15.0,
+    "new_pairs_entering_agenda": 0.3333,
+    "new_pairs_live_color_compatible": 1.0,
+    "new_pairs_target_present": 10.6667,
+    "new_pairs_total": 16.0,
+    "new_pairs_with_2_preferred_predicates": 15.6667,
+    "pair_count": 79.6667
+  },
+  "discovery_top_k": 100,
+  "max_candidates": 20,
+  "preferred_predicates": [
+    "same_shape",
+    "aligned_with",
+    "adjacent_to",
+    "paired_with"
+  ],
+  "prior_counted_as_proof": false,
+  "trace_count": 3,
+  "trace_support_counted_as_proof": false,
+  "traces": [
+    {
+      "after_ranking": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 5,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 5,
+        "new_pairs_total": 5,
+        "new_pairs_with_2_preferred_predicates": 5,
+        "pair_count": 20
+      },
+      "baseline_candidate_count": 31,
+      "before_ranking": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 8,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 5,
+        "new_pairs_total": 8,
+        "new_pairs_with_2_preferred_predicates": 8,
+        "pair_count": 39
+      },
+      "game_id": "bp35-0a0ad940",
+      "m1_candidate_count": 39,
+      "prior_counted_as_proof": false,
+      "ranked_candidate_count": 20,
+      "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "after_ranking": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 4,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 4,
+        "new_pairs_total": 4,
+        "new_pairs_with_2_preferred_predicates": 4,
+        "pair_count": 20
+      },
+      "baseline_candidate_count": 100,
+      "before_ranking": {
+        "agenda_eligible_pairs": 0,
+        "new_pairs_blocked_by_unselectable_source": 12,
+        "new_pairs_entering_agenda": 0,
+        "new_pairs_live_color_compatible": 0,
+        "new_pairs_target_present": 10,
+        "new_pairs_total": 12,
+        "new_pairs_with_2_preferred_predicates": 12,
+        "pair_count": 100
+      },
+      "game_id": "cd82-fb555c5d",
+      "m1_candidate_count": 100,
+      "prior_counted_as_proof": false,
+      "ranked_candidate_count": 20,
+      "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+      "trace_support_counted_as_proof": false
+    },
+    {
+      "after_ranking": {
+        "agenda_eligible_pairs": 2,
+        "new_pairs_blocked_by_unselectable_source": 3,
+        "new_pairs_entering_agenda": 1,
+        "new_pairs_live_color_compatible": 3,
+        "new_pairs_target_present": 4,
+        "new_pairs_total": 6,
+        "new_pairs_with_2_preferred_predicates": 6,
+        "pair_count": 20
+      },
+      "baseline_candidate_count": 100,
+      "before_ranking": {
+        "agenda_eligible_pairs": 2,
+        "new_pairs_blocked_by_unselectable_source": 25,
+        "new_pairs_entering_agenda": 1,
+        "new_pairs_live_color_compatible": 3,
+        "new_pairs_target_present": 17,
+        "new_pairs_total": 28,
+        "new_pairs_with_2_preferred_predicates": 27,
+        "pair_count": 100
+      },
+      "game_id": "dc22-4c9bff3e",
+      "m1_candidate_count": 100,
+      "prior_counted_as_proof": false,
+      "ranked_candidate_count": 20,
+      "trace_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+      "trace_support_counted_as_proof": false
+    }
+  ]
+}

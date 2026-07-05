@@ -8,7 +8,10 @@ from typing import Any, Optional
 from arc_agi import EnvironmentWrapper
 from arc_agi.scorecard import EnvironmentScorecard
 from arcengine import FrameData, FrameDataRaw, GameAction, GameState
-from pydantic import ValidationError
+try:
+    from pydantic import ValidationError
+except ImportError:
+    from adaptive_reasoning_compat.pydantic import ValidationError
 
 from .recorder import Recorder
 from .tracing import trace_agent_session

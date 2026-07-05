@@ -1,0 +1,3180 @@
+{
+  "a32_remains_only_verdict_location": true,
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "A32",
+      "A33"
+    ],
+    "central_experimental_unit": "risk_aware_post_stop_substrate -> readiness_or_commit_protocol",
+    "controls": [
+      "hold_or_stop_state",
+      "ACTION6",
+      "frozen_contextual_selector",
+      "static_ACTION6,ACTION3",
+      "static_ACTION6,ACTION4",
+      "relation_progress_policy"
+    ],
+    "environment_step_performed": false,
+    "execution_performed": false,
+    "inputs_read": [
+      "M2.G2"
+    ],
+    "policy_rollout_performed": false,
+    "risk_aware_objective_hypotheses_path": "diagnostics\\m2\\risk_aware_objective_completion_hypotheses.json",
+    "schema_version": "m3.risk_aware_objective_completion_experiment_requests.v1",
+    "substrate_sources": [
+      "diagnostics/m3/objective_conversion_diverse_safe_stop_validation.json",
+      "diagnostics/p3/risk_targeted_contextual_post_stop_policy_validation.json"
+    ]
+  },
+  "controlled_test_required": true,
+  "environment_step_performed": false,
+  "execution_performed": false,
+  "experiment_request_counted_as_support": false,
+  "experiment_result_counted_as_scientific_verdict": false,
+  "m2_hypothesis_counted_as_confirmation": false,
+  "planner_outcome_status": "OBJECTIVE_READINESS_EXPERIMENT_REQUESTS_COMPILED_CANDIDATE_ONLY",
+  "policy_rollout_performed": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "risk_aware_objective_experiment_requests": [
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "candidate_state_partitions": [
+            "readiness_positive",
+            "matched_high_proxy_readiness_negative",
+            "matched_hold_band_control"
+          ],
+          "experiment_style": "post_selector_objective_readiness_probe",
+          "protocol_family": "objective_readiness_detection",
+          "protocol_id": "readiness_probe",
+          "readiness_features": [
+            "new_relation_states",
+            "relation_delta_after_stop",
+            "hold_baseline_terminal_adjusted_progress",
+            "objective_completion_signal"
+          ],
+          "role": "detect_completion_ready_state_before_commit",
+          "target_detector": "READINESS_RELATION_SATURATION_DETECTOR"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "plateau_gated_levels_completed <= non_plateau_levels_completed",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "plateau_gated_levels_completed > non_plateau_levels_completed"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "plateau-gated states do not improve completion over non-plateau controls",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_detection",
+      "hypothesis_tested": "H_readiness_relation_saturation: objective completion becomes possible when new relation states stop increasing despite high safe progress.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile readiness probes that separate completion-ready states from safe proxy-progress states before any commit or extension decision.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H001::objective_readiness_detection",
+      "requested_experiment_style": "post_selector_objective_readiness_probe",
+      "required_observables": [
+        "new_relation_states",
+        "relation_delta_after_stop",
+        "hold_baseline_terminal_adjusted_progress",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H001",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "candidate_state_partitions": [
+            "readiness_positive",
+            "matched_high_proxy_readiness_negative",
+            "matched_hold_band_control"
+          ],
+          "experiment_style": "horizon_conditioned_completion_trigger_search",
+          "protocol_family": "objective_readiness_detection",
+          "protocol_id": "readiness_probe",
+          "readiness_features": [
+            "terminal_horizon_remaining",
+            "terminal_horizon_band",
+            "terminal_reentry_rate",
+            "objective_completion_signal"
+          ],
+          "role": "detect_completion_ready_state_before_commit",
+          "target_detector": "HORIZON_READINESS_WINDOW_DETECTOR"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "horizon_window_terminal_rate >= horizon_agnostic_terminal_rate or no_completion_attempt_gain",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "horizon_window_terminal_rate < horizon_agnostic_terminal_rate and completion_attempt_signal > control"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "horizon-window gating neither reduces terminal re-entry nor improves completion readiness",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_detection",
+      "hypothesis_tested": "H_readiness_horizon_window: there is a terminal-horizon window where the policy should stop extending and prepare completion.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile readiness probes that separate completion-ready states from safe proxy-progress states before any commit or extension decision.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H002::objective_readiness_detection",
+      "requested_experiment_style": "horizon_conditioned_completion_trigger_search",
+      "required_observables": [
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "terminal_reentry_rate",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H002",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "candidate_state_partitions": [
+            "readiness_positive",
+            "matched_high_proxy_readiness_negative",
+            "matched_hold_band_control"
+          ],
+          "experiment_style": "post_selector_objective_readiness_probe",
+          "protocol_family": "objective_readiness_detection",
+          "protocol_id": "readiness_probe",
+          "readiness_features": [
+            "global_configuration_signature",
+            "actor_target_geometry",
+            "changed_pixels",
+            "objective_completion_signal"
+          ],
+          "role": "detect_completion_ready_state_before_commit",
+          "target_detector": "STATE_GEOMETRY_READINESS_DETECTOR"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "geometry_readiness_precision <= proxy_progress_readiness_precision",
+          "metric": "topology_before_after",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "geometry_readiness_precision > proxy_progress_readiness_precision"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "geometry features fail to separate completion-ready states from safe-progress controls",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_detection",
+      "hypothesis_tested": "H_readiness_state_geometry: post-ACTION6 spatial geometry marks a pre-completion zone distinct from generic progress.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile readiness probes that separate completion-ready states from safe proxy-progress states before any commit or extension decision.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H003::objective_readiness_detection",
+      "requested_experiment_style": "post_selector_objective_readiness_probe",
+      "required_observables": [
+        "global_configuration_signature",
+        "actor_target_geometry",
+        "changed_pixels",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H003",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "commit_action_candidates": [
+            "ACTION1",
+            "ACTION2",
+            "ACTION5",
+            "hold_or_stop_state"
+          ],
+          "experiment_style": "post_conversion_commit_action_matrix",
+          "optional_commit_actions_if_available": [
+            "ACTION7"
+          ],
+          "pre_commit_state_requirements": [
+            "risk_aware_terminal_safe_post_stop_state",
+            "safe_conversion_state",
+            "hold_baseline_measurable"
+          ],
+          "protocol_family": "post_conversion_commit_action_search",
+          "protocol_id": "post_conversion_commit_matrix",
+          "role": "test_distinct_completion_commit_after_safe_conversion",
+          "target_commit_action": "ACTION1"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "post_conversion_ACTION1_levels_completed <= selector_only_levels_completed or ACTION1_terminal_reentry",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "post_conversion_ACTION1_levels_completed > selector_only_levels_completed"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "commit action does not beat selector-only or re-enters terminal",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_conversion_commit_action_search",
+      "hypothesis_tested": "H_commit_after_safe_extension: after safe conversion, a distinct commit action may trigger completion.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile a post-conversion commit matrix over explicit commit actions, after the risk-aware selector has reached terminal-safe substrate states.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H004::post_conversion_commit_action_search",
+      "requested_experiment_style": "post_conversion_commit_action_matrix",
+      "required_observables": [
+        "safe_conversion_state",
+        "commit_action",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H004",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "commit_action_candidates": [
+            "ACTION2",
+            "ACTION1",
+            "ACTION5",
+            "continue_extension"
+          ],
+          "experiment_style": "post_conversion_commit_action_matrix",
+          "optional_commit_actions_if_available": [
+            "ACTION7"
+          ],
+          "pre_commit_state_requirements": [
+            "risk_aware_terminal_safe_post_stop_state",
+            "safe_conversion_state",
+            "hold_baseline_measurable"
+          ],
+          "protocol_family": "post_conversion_commit_action_search",
+          "protocol_id": "post_conversion_commit_matrix",
+          "role": "test_distinct_completion_commit_after_safe_conversion",
+          "target_commit_action": "ACTION2"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "plateau_then_commit_objective_signal <= immediate_commit_objective_signal",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "plateau_then_commit_objective_signal > immediate_commit_objective_signal"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "commit timing is unrelated to plateau or does not improve objective signal",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_conversion_commit_action_search",
+      "hypothesis_tested": "H_commit_requires_no_more_relation_progress: commit helps only after relation progress stalls.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile a post-conversion commit matrix over explicit commit actions, after the risk-aware selector has reached terminal-safe substrate states.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H005::post_conversion_commit_action_search",
+      "requested_experiment_style": "post_conversion_commit_action_matrix",
+      "required_observables": [
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "commit_action",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H005",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "commit_action_candidates": [
+            "ACTION5",
+            "ACTION1",
+            "ACTION2",
+            "ACTION6_only"
+          ],
+          "experiment_style": "horizon_conditioned_completion_trigger_search",
+          "optional_commit_actions_if_available": [
+            "ACTION7"
+          ],
+          "pre_commit_state_requirements": [
+            "risk_aware_terminal_safe_post_stop_state",
+            "safe_conversion_state",
+            "hold_baseline_measurable"
+          ],
+          "protocol_family": "post_conversion_commit_action_search",
+          "protocol_id": "post_conversion_commit_matrix",
+          "role": "test_distinct_completion_commit_after_safe_conversion",
+          "target_commit_action": "ACTION5"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "horizon_commit_terminal_rate >= static_extension_terminal_rate or no_completion_attempt_gain",
+          "metric": "terminal_state_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "horizon_commit_terminal_rate < static_extension_terminal_rate"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "horizon-sensitive commit does not reduce terminal re-entry or remains passive",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "post_conversion_commit_action_search",
+      "hypothesis_tested": "H_commit_is_horizon_sensitive: commit becomes necessary before the mid/near terminal horizon risk zone.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile a post-conversion commit matrix over explicit commit actions, after the risk-aware selector has reached terminal-safe substrate states.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H006::post_conversion_commit_action_search",
+      "requested_experiment_style": "horizon_conditioned_completion_trigger_search",
+      "required_observables": [
+        "terminal_horizon_band",
+        "hold_baseline_band",
+        "commit_action",
+        "terminal_reentry_rate"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H006",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "compare_against": [
+            "terminal_adjusted_progress",
+            "relation_delta_after_stop",
+            "changed_pixels"
+          ],
+          "experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "protocol_family": "goal_state_representation_beyond_safe_progress",
+          "protocol_id": "goal_representation_discriminator",
+          "representation_features": [
+            "global_configuration_signature",
+            "topology_before_after",
+            "objective_completion_signal"
+          ],
+          "role": "test_goal_feature_beyond_safe_proxy_progress",
+          "target_representation": "GLOBAL_PATTERN_ALIGNMENT_METRIC"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "global_pattern_completion_prediction <= proxy_progress_completion_prediction",
+          "metric": "topology_before_after",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "global_pattern_completion_prediction > proxy_progress_completion_prediction"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "global pattern alignment does not outperform terminal-adjusted progress",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "goal_state_representation_beyond_safe_progress",
+      "hypothesis_tested": "H_goal_global_pattern_alignment: the objective is a global grid configuration, not additional relation progress.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile representation discriminators that test global/contact/region goal features against terminal-adjusted proxy progress.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H007::goal_state_representation_beyond_safe_progress",
+      "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+      "required_observables": [
+        "global_configuration_signature",
+        "topology_before_after",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H007",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "compare_against": [
+            "terminal_adjusted_progress",
+            "relation_delta_after_stop",
+            "changed_pixels"
+          ],
+          "experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "protocol_family": "goal_state_representation_beyond_safe_progress",
+          "protocol_id": "goal_representation_discriminator",
+          "representation_features": [
+            "actor_target_contact_graph",
+            "relation_delta_after_stop",
+            "levels_completed_after_rollout"
+          ],
+          "role": "test_goal_feature_beyond_safe_proxy_progress",
+          "target_representation": "ACTOR_TARGET_CONTACT_METRIC"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "actor_target_contact_completion_prediction <= relation_delta_completion_prediction",
+          "metric": "contact_graph_before_after",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "actor_target_contact_completion_prediction > relation_delta_completion_prediction"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "specific contact relation does not separate completion states from proxy states",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "goal_state_representation_beyond_safe_progress",
+      "hypothesis_tested": "H_goal_actor_target_contact: completion depends on a specific actor-target contact relation rather than total relation count.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile representation discriminators that test global/contact/region goal features against terminal-adjusted proxy progress.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H008::goal_state_representation_beyond_safe_progress",
+      "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+      "required_observables": [
+        "actor_target_contact_graph",
+        "relation_delta_after_stop",
+        "levels_completed_after_rollout"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H008",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "compare_against": [
+            "terminal_adjusted_progress",
+            "relation_delta_after_stop",
+            "changed_pixels"
+          ],
+          "experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "protocol_family": "goal_state_representation_beyond_safe_progress",
+          "protocol_id": "goal_representation_discriminator",
+          "representation_features": [
+            "object_shape_zone_before_after",
+            "boundary_contact",
+            "terrain_region_signature",
+            "objective_completion_signal"
+          ],
+          "role": "test_goal_feature_beyond_safe_proxy_progress",
+          "target_representation": "REGION_BOUNDARY_GOAL_METRIC"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "region_boundary_completion_prediction <= proximity_completion_prediction",
+          "metric": "object_shape_zone_before_after",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "region_boundary_completion_prediction > proximity_completion_prediction"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "region or boundary features do not outperform proximity progress",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "goal_state_representation_beyond_safe_progress",
+      "hypothesis_tested": "H_goal_region_or_boundary_condition: completion is tied to a region, boundary, or terrain condition rather than proximity progress.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile representation discriminators that test global/contact/region goal features against terminal-adjusted proxy progress.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H009::goal_state_representation_beyond_safe_progress",
+      "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+      "required_observables": [
+        "object_shape_zone_before_after",
+        "boundary_contact",
+        "terrain_region_signature",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H009",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "protocol_family": "proxy_progress_vs_completion_discriminator",
+          "protocol_id": "proxy_completion_discriminator",
+          "proxy_features": [
+            "hold_baseline_terminal_adjusted_progress",
+            "hold_baseline_band",
+            "levels_completed_after_rollout"
+          ],
+          "role": "separate_scoring_states_from_completion_ready_states",
+          "state_strata": [
+            "high_hold_high_proxy",
+            "changed_pixels_high",
+            "relation_delta_high",
+            "completion_ready_candidate"
+          ],
+          "target_discriminator": "HIGH_HOLD_PROXY_COMPLETION_DISCRIMINATOR"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "completion_specific_levels_completed <= high_hold_proxy_levels_completed",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "completion_specific_levels_completed > high_hold_proxy_levels_completed"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "high-hold proxy states complete as well as completion-specific states",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "proxy_progress_vs_completion_discriminator",
+      "hypothesis_tested": "H_proxy_completion_divergence_high_hold: high-hold states can score well on proxy progress while being poor or risky completion states.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile discriminators for high proxy-progress states that may not be completion-ready despite safe terminal-adjusted progress.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H010::proxy_progress_vs_completion_discriminator",
+      "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+      "required_observables": [
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band",
+        "levels_completed_after_rollout"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H010",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "static_extension_terminal_risk_contexts",
+          "risk_aware_post_stop_safe_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "protocol_family": "proxy_progress_vs_completion_discriminator",
+          "protocol_id": "proxy_completion_discriminator",
+          "proxy_features": [
+            "changed_pixels",
+            "objective_completion_signal",
+            "global_configuration_signature"
+          ],
+          "role": "separate_scoring_states_from_completion_ready_states",
+          "state_strata": [
+            "high_hold_high_proxy",
+            "changed_pixels_high",
+            "relation_delta_high",
+            "completion_ready_candidate"
+          ],
+          "target_discriminator": "CHANGED_PIXELS_COMPLETION_DISCRIMINATOR"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "changed_pixels_completion_correlation >= readiness_completion_correlation",
+          "metric": "changed_pixels",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "changed_pixels_completion_correlation < readiness_completion_correlation"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "changed-pixel magnitude predicts completion as well as readiness features",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "proxy_progress_vs_completion_discriminator",
+      "hypothesis_tested": "H_changed_pixels_false_friend: many changed pixels after extension may not indicate objective readiness.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile discriminators for high proxy-progress states that may not be completion-ready despite safe terminal-adjusted progress.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H011::proxy_progress_vs_completion_discriminator",
+      "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+      "required_observables": [
+        "changed_pixels",
+        "objective_completion_signal",
+        "global_configuration_signature"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H011",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "static_extension_terminal_risk_contexts",
+          "risk_aware_post_stop_safe_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+          "protocol_family": "proxy_progress_vs_completion_discriminator",
+          "protocol_id": "proxy_completion_discriminator",
+          "proxy_features": [
+            "relation_delta_after_stop",
+            "new_relation_states",
+            "objective_completion_signal"
+          ],
+          "role": "separate_scoring_states_from_completion_ready_states",
+          "state_strata": [
+            "high_hold_high_proxy",
+            "changed_pixels_high",
+            "relation_delta_high",
+            "completion_ready_candidate"
+          ],
+          "target_discriminator": "RELATION_DELTA_COMPLETION_DISCRIMINATOR"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "relation_delta_completion_correlation >= global_goal_completion_correlation",
+          "metric": "objective_progress_proxy",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "relation_delta_completion_correlation < global_goal_completion_correlation"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "relation-delta progress predicts completion as well as global goal features",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "proxy_progress_vs_completion_discriminator",
+      "hypothesis_tested": "H_relation_delta_false_friend: high relation delta can continue without ever triggering completion.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile discriminators for high proxy-progress states that may not be completion-ready despite safe terminal-adjusted progress.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H012::proxy_progress_vs_completion_discriminator",
+      "requested_experiment_style": "terminal_safe_progress_vs_completion_discriminator",
+      "required_observables": [
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "objective_completion_signal"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H012",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "static_extension_terminal_risk_contexts",
+          "risk_aware_post_stop_safe_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "policy_variants": [
+            "frozen_contextual_selector",
+            "selector_plus_commit_branch",
+            "completion_probability_selector_target",
+            "safe_conversion_then_objective_commit_policy"
+          ],
+          "protocol_family": "risk_aware_selector_completion_gap",
+          "protocol_id": "selector_gap_policy_ablation",
+          "role": "test_why_safe_risk_aware_selector_does_not_complete",
+          "target_policy_variant": "TWO_STAGE_SELECTOR_WITH_COMMIT_BRANCH"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "selector_plus_commit_levels_completed <= frozen_selector_levels_completed or terminal_rate_increases",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "selector_plus_commit_levels_completed > frozen_selector_levels_completed"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "commit branch does not improve completion or increases terminal re-entry",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "risk_aware_selector_completion_gap",
+      "hypothesis_tested": "H_selector_missing_commit_branch: the selector is safe because it chooses hold/ACTION6/extensions, but it lacks a commit branch.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile selector ablations that compare the frozen selector with completion-targeted or two-stage variants without changing support.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H013::risk_aware_selector_completion_gap",
+      "requested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+      "required_observables": [
+        "selected_option",
+        "commit_action",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H013",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "policy_variants": [
+            "frozen_contextual_selector",
+            "selector_plus_commit_branch",
+            "completion_probability_selector_target",
+            "safe_conversion_then_objective_commit_policy"
+          ],
+          "protocol_family": "risk_aware_selector_completion_gap",
+          "protocol_id": "selector_gap_policy_ablation",
+          "role": "test_why_safe_risk_aware_selector_does_not_complete",
+          "target_policy_variant": "COMPLETION_PROBABILITY_SELECTOR_TARGET"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "completion_targeted_levels_completed <= terminal_adjusted_progress_levels_completed or terminal_rate_higher",
+          "metric": "levels_completed_after_rollout",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "completion_targeted_levels_completed > terminal_adjusted_progress_levels_completed and terminal_rate_matched"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "completion-targeted selector fails to improve completion or loses terminal safety",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "risk_aware_selector_completion_gap",
+      "hypothesis_tested": "H_selector_target_wrong_metric: the selector optimizes terminal-adjusted progress instead of completion probability.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile selector ablations that compare the frozen selector with completion-targeted or two-stage variants without changing support.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H014::risk_aware_selector_completion_gap",
+      "requested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+      "required_observables": [
+        "selector_score_components",
+        "objective_completion_signal",
+        "terminal_rate"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H014",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_remains_only_verdict_location": true,
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_protocols": [
+        {
+          "experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+          "policy_variants": [
+            "frozen_contextual_selector",
+            "selector_plus_commit_branch",
+            "completion_probability_selector_target",
+            "safe_conversion_then_objective_commit_policy"
+          ],
+          "protocol_family": "risk_aware_selector_completion_gap",
+          "protocol_id": "selector_gap_policy_ablation",
+          "role": "test_why_safe_risk_aware_selector_does_not_complete",
+          "target_policy_variant": "SAFE_CONVERSION_THEN_OBJECTIVE_COMMIT_POLICY"
+        }
+      ],
+      "control_conditions": [
+        {
+          "condition_family": "hold_or_stop_state",
+          "condition_id": "hold_or_stop_state",
+          "condition_kind": "control",
+          "role": "zero_action_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6"
+          ],
+          "condition_family": "ACTION6_only",
+          "condition_id": "ACTION6",
+          "condition_kind": "control",
+          "role": "safe_weak_conversion_control"
+        },
+        {
+          "condition_family": "frozen_contextual_selector",
+          "condition_id": "frozen_contextual_selector",
+          "condition_kind": "control",
+          "policy": "P3.G2_frozen_contextual_post_stop_selector",
+          "role": "risk_aware_policy_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION3"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION3",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "action_or_sequence": [
+            "ACTION6",
+            "ACTION4"
+          ],
+          "condition_family": "static_extension_policy",
+          "condition_id": "static_ACTION6,ACTION4",
+          "condition_kind": "control",
+          "role": "risky_static_extension_control"
+        },
+        {
+          "condition_family": "relation_progress_policy",
+          "condition_id": "relation_progress_policy",
+          "condition_kind": "control",
+          "policy": "abstract_relation_progress_continuation",
+          "role": "proxy_progress_control"
+        }
+      ],
+      "controlled_test_required": true,
+      "decision_rule": {
+        "central": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+        "completion_priority": "objective_completion_signal and levels_completed_after_rollout dominate proxy progress",
+        "falsification_guard": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector"
+      },
+      "diagnostic_metrics": [
+        "completion_ready_signature",
+        "proxy_completion_divergence",
+        "objective_readiness_precision",
+        "relation_delta_after_stop",
+        "new_relation_states",
+        "changed_pixels",
+        "global_configuration_signature",
+        "actor_target_contact_graph",
+        "terminal_horizon_remaining",
+        "terminal_horizon_band",
+        "hold_baseline_terminal_adjusted_progress",
+        "hold_baseline_band"
+      ],
+      "environment_step_performed": false,
+      "execution_performed": false,
+      "experiment_request_counted_as_support": false,
+      "experiment_result_counted_as_scientific_verdict": false,
+      "falsification_criteria": [
+        {
+          "failure_condition": "two_stage_completion_ready_or_complete_rate <= single_stage_completion_ready_or_complete_rate or terminal_rate_higher",
+          "metric": "final_game_state",
+          "minimum_effect_size": 1,
+          "source": "m2_g2_hypothesis",
+          "support_condition": "two_stage_completion_ready_or_complete_rate > single_stage_completion_ready_or_complete_rate"
+        },
+        {
+          "failure_condition": "no completion/level gain over frozen_contextual_selector, or terminal re-entry increases relative to frozen_contextual_selector",
+          "metric": "objective_completion_signal",
+          "minimum_effect_size": 1,
+          "source": "m3_g5_central_completion_guard",
+          "support_condition": "candidate_protocol_completion_signal > best_control_completion_signal and candidate_protocol_terminal_reentry_rate <= frozen_contextual_selector_terminal_reentry_rate"
+        }
+      ],
+      "falsification_signal": "two-stage policy does not improve completion states or reintroduces terminal risk",
+      "forbidden_interpretations": [
+        "Do not interpret policy utility as objective completion.",
+        "Do not increment support from this generated hypothesis.",
+        "Do not treat ACTION6,ACTION3 or ACTION6,ACTION4 as newly confirmed mechanics."
+      ],
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "risk_aware_selector_completion_gap",
+      "hypothesis_tested": "H_selector_needs_two_stage_policy: safe conversion and objective commit must be modeled as separate stages.",
+      "m2_hypothesis_counted_as_confirmation": false,
+      "planning_rationale": "Compile selector ablations that compare the frozen selector with completion-targeted or two-stage variants without changing support.",
+      "policy_rollout_performed": false,
+      "primary_metrics": [
+        "objective_completion_signal",
+        "levels_completed_after_rollout",
+        "terminal_reentry_rate"
+      ],
+      "request_id": "m3_g5::m2g2_bp35-0a0ad940_risk_aware_objective_completion_H015::risk_aware_selector_completion_gap",
+      "requested_experiment_style": "risk_aware_policy_ablation_with_completion_metrics",
+      "required_observables": [
+        "stage_transition",
+        "safe_conversion_state",
+        "completion_ready_state",
+        "final_game_state"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "safety_metrics": [
+        "terminal_adjusted_progress_after_stop",
+        "terminal_state_after_rollout"
+      ],
+      "source_hypothesis_id": "m2g2::bp35-0a0ad940::risk_aware_objective_completion::H015",
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "READY_FOR_M3_G5_OBJECTIVE_COMPLETION_EXPERIMENT",
+      "substrate_selection_spec": {
+        "base_state_family": "risk_aware_terminal_safe_post_stop_conversion_state",
+        "coverage_requirements": [
+          "multiple_hold_baseline_band_values_when_available",
+          "multiple_terminal_horizon_band_values_when_available",
+          "include_hold_high_ge_120_and_horizon_mid_45_54_when_available",
+          "include_contexts_where_static_extensions_are_terminal_when_available"
+        ],
+        "preferred_categories_for_family": [
+          "risk_aware_post_stop_safe_contexts",
+          "selector_action6_fallback_contexts",
+          "selector_extension_safe_contexts",
+          "static_extension_terminal_risk_contexts"
+        ],
+        "selection_counted_as_support": false,
+        "substrate_categories": [
+          {
+            "acceptance": [
+              "replay_exact",
+              "non_terminal",
+              "terminal_safe",
+              "hold_baseline_measurable"
+            ],
+            "category": "risk_aware_post_stop_safe_contexts",
+            "source": "P3.G4 accepted_risk_targeted_safe_stops"
+          },
+          {
+            "acceptance": [
+              "selected_option == ACTION6",
+              "terminal_rate == 0"
+            ],
+            "category": "selector_action6_fallback_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "selected_option in ACTION6,ACTION3|ACTION6,ACTION4",
+              "candidate_terminal_reentry == false"
+            ],
+            "category": "selector_extension_safe_contexts",
+            "source": "P3.G4 policy_decision_records"
+          },
+          {
+            "acceptance": [
+              "static extension terminal record exists",
+              "hold_high_ge_120 or horizon_mid_45_54"
+            ],
+            "category": "static_extension_terminal_risk_contexts",
+            "source": "P3.G4 risk_targeted_extension_risk_stats"
+          }
+        ]
+      },
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_M3",
+      "wrong_confirmations": 0
+    }
+  ],
+  "skipped_risk_aware_objective_hypotheses": [],
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_remains_only_verdict_location": true,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action6_extension_retest_requests_generated": false,
+    "all_five_families_covered": true,
+    "central_decision_rule": "candidate protocol improves objective_completion_signal or levels_completed_after_rollout over matched controls while keeping terminal_reentry_rate at or below frozen_contextual_selector",
+    "controlled_test_required": true,
+    "controls_per_request": [
+      "hold_or_stop_state",
+      "ACTION6",
+      "frozen_contextual_selector",
+      "static_ACTION6,ACTION3",
+      "static_ACTION6,ACTION4",
+      "relation_progress_policy"
+    ],
+    "covered_experiment_styles": [
+      "horizon_conditioned_completion_trigger_search",
+      "post_conversion_commit_action_matrix",
+      "post_selector_objective_readiness_probe",
+      "risk_aware_policy_ablation_with_completion_metrics",
+      "terminal_safe_progress_vs_completion_discriminator"
+    ],
+    "covered_hypothesis_families": [
+      "goal_state_representation_beyond_safe_progress",
+      "objective_readiness_detection",
+      "post_conversion_commit_action_search",
+      "proxy_progress_vs_completion_discriminator",
+      "risk_aware_selector_completion_gap"
+    ],
+    "diagnostic_metrics": [
+      "completion_ready_signature",
+      "proxy_completion_divergence",
+      "objective_readiness_precision",
+      "relation_delta_after_stop",
+      "new_relation_states",
+      "changed_pixels",
+      "global_configuration_signature",
+      "actor_target_contact_graph",
+      "terminal_horizon_remaining",
+      "terminal_horizon_band",
+      "hold_baseline_terminal_adjusted_progress",
+      "hold_baseline_band"
+    ],
+    "environment_step_performed": false,
+    "execution_performed": false,
+    "experiment_request_counted_as_support": false,
+    "experiment_result_counted_as_scientific_verdict": false,
+    "m2_hypothesis_counted_as_confirmation": false,
+    "planner_outcome_status": "OBJECTIVE_READINESS_EXPERIMENT_REQUESTS_COMPILED_CANDIDATE_ONLY",
+    "policy_rollout_performed": false,
+    "primary_metrics": [
+      "objective_completion_signal",
+      "levels_completed_after_rollout",
+      "terminal_reentry_rate"
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "risk_aware_objective_experiment_requests_generated": 15,
+    "risk_aware_objective_hypotheses_consumed": 15,
+    "safety_metrics": [
+      "terminal_adjusted_progress_after_stop",
+      "terminal_state_after_rollout"
+    ],
+    "skipped_risk_aware_objective_hypotheses": 0,
+    "status": "UNRESOLVED",
+    "substrate_actions_not_target_hypotheses": [
+      "ACTION6",
+      "ACTION6,ACTION3",
+      "ACTION6,ACTION4"
+    ],
+    "substrate_categories": [
+      "risk_aware_post_stop_safe_contexts",
+      "selector_action6_fallback_contexts",
+      "selector_extension_safe_contexts",
+      "static_extension_terminal_risk_contexts"
+    ],
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M3",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M3",
+  "wrong_confirmations": 0
+}

@@ -1,0 +1,46 @@
+==========================================================================================
+  AdaptiveReasoning agent, human-primed   |   game='ar25'
+  traces=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__   memory=diagnostics\sampling_setup_compare\smoke_hypothesis_planner\hypothesis_planner_memory.pt
+  time_budget=1.0s   mode=development
+  sampler stage: v0
+  planner mode:  hypothesis
+==========================================================================================
+  resolved game_id = ar25-e3c63847
+  [human] no trace files under C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__
+  [warn] continuing without human priors (no traces found).
+  [cross-game] fresh memory
+  [tuning] stall_fraction=0.25 max_wins=999 level_up_bonus=30.0s preserve_env=True
+  [task-program] disabled via --no-task-program
+
+  running agent.main() with 1.0s budget ...
+
+[DIAG ar25-e3c63847] ITER-START iter=1 knowledge=0.00 epsilon=1.00 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=1 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=2 knowledge=0.51 epsilon=0.85 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=2 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] ITER-START iter=3 knowledge=0.58 epsilon=0.83 total_wins=0 best_level=0 path=explore
+[DIAG ar25-e3c63847] ITER-END (explore) iter=3 level=0 best_level=0 total_wins=0
+[DIAG ar25-e3c63847] LIVE-REVISE skipped: traces_dir=C:\Users\coudr\OneDrive\projects\adaptive_reasoning\__no_traces__ programs_dir=None
+[DIAG ar25-e3c63847] ITER-START iter=4 knowledge=0.62 epsilon=0.25 total_wins=0 best_level=0 path=goal_pursuit
+[DIAG ar25-e3c63847] STRAT-ENTRY iter=4 preserved=False flag=False cls_enable=True arc_env_none=False live_level=0
+[DIAG ar25-e3c63847] STRAT-PROBE iter=4 env_state=NOT_FINISHED env_levels_completed=0 (our iter_level=0)
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=1 action=ACTION1 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.2904913552162111 energy=0.5118354558944702 goal_prog=0.19537133624930475 risk=0.07985540334855415 sources={'hypothesis': 9, 'random': 3} top=[#1 hypothesis ACTION1 s=-0.29, #2 hypothesis ACTION2 s=-0.328, #3 hypothesis ACTION1 s=-0.334]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=2 action=ACTION1 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.3035958482903749 energy=0.5068584084510803 goal_prog=0.2023044947959463 risk=0.05485540334855418 sources={'hypothesis': 9, 'random': 3} top=[#1 hypothesis ACTION1 s=-0.304, #2 hypothesis ACTION2 s=-0.318, #3 hypothesis ACTION1 s=-0.347]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=3 action=ACTION2 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.30803593347704916 energy=0.5010793209075928 goal_prog=0.19193258141242972 risk=0.020000000000000236 sources={'hypothesis': 9, 'random': 3} top=[#1 hypothesis ACTION2 s=-0.308, #2 hypothesis ACTION1 s=-0.309, #3 hypothesis ACTION7 s=-0.33]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=4 action=ACTION1 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.3040720578443859 energy=0.5001805126667023 goal_prog=0.20804029262345283 risk=0.03291291291291305 sources={'hypothesis': 9, 'random': 3} top=[#1 hypothesis ACTION1 s=-0.304, #2 hypothesis ACTION2 s=-0.308, #3 hypothesis ACTION7 s=-0.325]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=5 action=ACTION1 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.2959844500303923 energy=0.5051101744174957 goal_prog=0.20974637500111876 risk=0.021008151008151083 sources={'hypothesis': 9, 'random': 3} top=[#1 hypothesis ACTION1 s=-0.296, #2 hypothesis ACTION2 s=-0.31, #3 hypothesis ACTION7 s=-0.319]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=6 action=ACTION1 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.2892283976381297 energy=0.5008703768253326 goal_prog=0.21103500145248835 risk=0.020000000000000122 sources={'hypothesis': 9, 'random': 3} top=[#1 hypothesis ACTION1 s=-0.289, #2 hypothesis ACTION2 s=-0.304, #3 hypothesis ACTION7 s=-0.314]
+[DIAG ar25-e3c63847] PLAN iter=4 plan_step=9 action=ACTION2 subgoal=Reach item 1/3: color-5 at (19, 16) source=hypothesis score=-0.30635057931165993 energy=0.4992850124835968 goal_prog=0.1923054762244613 risk=0.020000000000000125 sources={'hypothesis': 8, 'random': 4} top=[#1 hypothesis ACTION2 s=-0.306, #2 hypothesis ACTION7 s=-0.315, #3 hypothesis ACTION1 s=-0.334]
+[DIAG ar25-e3c63847] STRAT-EXIT iter=4 iter_level=0 deaths_in_iter=0 reached_win=False set_preserve_flag=False trajectory_sources={'hypothesis': 13}
+
+------------------------------------------------------------------------------------------
+  RESULT
+------------------------------------------------------------------------------------------
+  won:           False
+  max level:     0
+  total actions: 323
+  assoc wins:    0
+  elapsed:       5.0s
+  final goal:    Collect all target items on the grid
+
+  --no-save-memory set; cross-game memory NOT written back

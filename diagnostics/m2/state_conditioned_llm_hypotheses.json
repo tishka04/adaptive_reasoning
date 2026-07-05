@@ -1,0 +1,140 @@
+{
+  "candidate_hypotheses": [
+    {
+      "candidate_action": "ACTION3",
+      "context_snapshot": {
+        "available_actions": [
+          "ACTION3",
+          "ACTION4",
+          "ACTION6"
+        ],
+        "frame_before_hash": null,
+        "live_state_signature": "state:risk_aware_post_stop_safe_conversion",
+        "local_patch": null,
+        "replay_action_args": null,
+        "replay_actions": [
+          "ACTION6"
+        ],
+        "terminal_state": false
+      },
+      "controlled_test_required": true,
+      "falsification": {
+        "failure_condition": "no_completed_level_delta_vs_matched_controls",
+        "metric": "objective_completion_signal",
+        "minimum_effect_size": 1,
+        "support_condition": "target_action_signal > best_control_signal"
+      },
+      "frontier_context_id": "p2g4::bp35::risk_aware_post_stop_no_objective_completion",
+      "frontier_reason": "RISK_AWARE_UTILITY_WITHOUT_OBJECTIVE_COMPLETION",
+      "frontier_step": null,
+      "game_id": "bp35-0a0ad940",
+      "hypothesis_family": "objective_readiness_detection",
+      "hypothesis_id": "m2::p2g4::bp35::risk_aware_post_stop_no_objective_completion::h001",
+      "predicted_effect": "ACTION3 triggers objective completion when proxy progress > 0.5",
+      "predicted_metric": "objective_completion_signal",
+      "prior_counted_as_proof": false,
+      "rationale": "Candidate-only LLM abductive proposal; the LLM is not trusted and this is never evidence or support.",
+      "revision_performed": false,
+      "source_generation": {
+        "normalization_warnings": [
+          "suggested_controls_filled_from_available_actions"
+        ],
+        "priority_score": 3.0,
+        "priority_score_counted_as_support": false,
+        "rationales": [
+          "Candidate-only LLM abductive proposal; the LLM is not trusted and this is never evidence or support."
+        ],
+        "raw_proposal_ids": [
+          "raw::p2g4::bp35::risk_aware_post_stop_no_objective_completion::llm::objective_readiness_detection::001"
+        ],
+        "sources": [
+          "llm"
+        ]
+      },
+      "source_request_id": "p2g5::bp35-0a0ad940::risk_aware_objective_completion::001",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "testability": {
+        "blocking_reason": null,
+        "control_policy": "m3_dynamic_available_controls",
+        "expected_signal_type": "readiness_feature_predicts_completion_more_than_controls",
+        "measurable_by_existing_extractor": true,
+        "metric": "objective_completion_signal",
+        "recommended_test_type": "controlled_action_vs_alternative",
+        "required_action_args": null,
+        "required_context_replay": [
+          "ACTION6"
+        ],
+        "suggested_control_actions": [
+          "ACTION4",
+          "ACTION6"
+        ],
+        "target_action": "ACTION3",
+        "testable": true
+      },
+      "trace_support_counted_as_proof": false,
+      "truth_status": "NOT_EVALUATED_BY_M2",
+      "unlock_target_actions": [],
+      "wrong_confirmations": 0
+    }
+  ],
+  "config": {
+    "artifacts_not_modified": [
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2",
+      "P3"
+    ],
+    "device": "auto",
+    "inputs_read": [
+      "P2.G5",
+      "M2.G2",
+      "M1.G0",
+      "M3.G6"
+    ],
+    "local_llm_backend": "transformers",
+    "local_llm_enabled": true,
+    "m2_schema_version": "m2.v1",
+    "max_new_tokens": 2048,
+    "model_path": "models\\qwen2_5_3b_instruct",
+    "schema_version": "m2.state_conditioned_llm_hypotheses.v1",
+    "sources": {
+      "frontiers_path": "diagnostics\\p2\\risk_aware_objective_frontier_handoff_requests.json",
+      "m1_candidates_path": "diagnostics\\m1\\general_mechanic_candidates.json",
+      "m2g2_path": "diagnostics\\m2\\risk_aware_objective_completion_hypotheses.json",
+      "m3g6_results_path": "diagnostics\\m3\\risk_aware_objective_completion_experiment_results.json"
+    },
+    "temperature": 0.2
+  },
+  "rejected_llm_proposals": [],
+  "rejected_normalized_proposals": [],
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action6_extension_retest_hypotheses_generated": false,
+    "blocked_not_testable_hypotheses": 0,
+    "direct_unavailable_action_hypotheses": 0,
+    "direct_unavailable_action_rejected": 0,
+    "fallback_used": false,
+    "hypotheses_generated": 1,
+    "hypothesis_families_covered": [
+      "objective_readiness_detection"
+    ],
+    "invalid_hypotheses_rejected": 0,
+    "llm_context_anchoring_failures": 4,
+    "llm_enabled": true,
+    "local_llm_backend": "transformers",
+    "local_llm_error": null,
+    "raw_llm_items": 1,
+    "ready_for_m3_candidate_experiment_request": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "substrate_retest_rejected": 0,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "valid_hypotheses": 1,
+    "wrong_confirmations": 0
+  }
+}

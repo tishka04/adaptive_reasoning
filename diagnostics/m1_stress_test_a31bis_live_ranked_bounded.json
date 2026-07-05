@@ -1,0 +1,1016 @@
+{
+  "archived_baseline": {
+    "confirmations_per_experiment": 0.6346,
+    "experiments_run": 624,
+    "failure_types": {
+      "no_functional_progress": 72,
+      "not_enough_relation_candidates": 72
+    },
+    "game_count": 6,
+    "hypotheses_confirmed": 396,
+    "hypotheses_refuted": 468,
+    "label": "baseline_archived",
+    "not_enough_relation_candidates": 72,
+    "refutations_per_experiment": 0.75,
+    "trace_count": 18,
+    "useful_new_states": 216,
+    "useful_new_states_per_experiment": 0.3462,
+    "wrong_confirmations": 0
+  },
+  "baseline": {
+    "confirmations_per_experiment": 0.0,
+    "experiments_run": 0,
+    "failure_types": {
+      "not_enough_relation_candidates": 8
+    },
+    "game_count": 2,
+    "hypotheses_confirmed": 0,
+    "hypotheses_refuted": 0,
+    "label": "baseline_local_same_config",
+    "not_enough_relation_candidates": 8,
+    "refutations_per_experiment": 0.0,
+    "trace_count": 2,
+    "useful_new_states": 0,
+    "useful_new_states_per_experiment": 0.0,
+    "wrong_confirmations": 0
+  },
+  "config": {
+    "accepted_invariants_path": "diagnostics\\m1\\accepted_invariants.json",
+    "baseline_path": "diagnostics\\multi_game_stress_test.json",
+    "budgets": [
+      5,
+      10,
+      25,
+      50
+    ],
+    "include_ar25": false,
+    "latest_per_game": true,
+    "m1_anchor_expansion": true,
+    "m1_live_anchor_ranking": true,
+    "max_candidates": 20,
+    "max_traces": 2,
+    "min_pixel_support": 1,
+    "run_local_baseline": true,
+    "run_memory_comparison": true
+  },
+  "coverage_pretest": {
+    "accepted_invariants_path": "diagnostics\\m1\\accepted_invariants.json",
+    "anchor_expansion_enabled": true,
+    "averages": {
+      "candidate_pairs_per_trace": {
+        "delta": 4.0,
+        "off": 65.5,
+        "on": 69.5
+      },
+      "relation_candidates_generated": {
+        "delta": 363.5,
+        "off": 285.5,
+        "on": 649.0
+      },
+      "unique_predicates_per_trace": {
+        "delta": 10.0,
+        "off": 4.5,
+        "on": 14.5
+      }
+    },
+    "comparisons": [
+      {
+        "deltas": {
+          "candidate_pairs_per_trace": 8,
+          "relation_candidates_generated": 174,
+          "unique_predicates_per_trace": 10
+        },
+        "game_id": "bp35-0a0ad940",
+        "off": {
+          "candidate_count": 31,
+          "candidate_pairs_per_trace": 31,
+          "game_id": "bp35-0a0ad940",
+          "m1_predicates_per_trace": 0,
+          "mode": "m1_off",
+          "relation_candidates_generated": 122,
+          "source_target_predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+          "unique_predicates_per_trace": 4
+        },
+        "on": {
+          "candidate_count": 39,
+          "candidate_pairs_per_trace": 39,
+          "game_id": "bp35-0a0ad940",
+          "m1_predicates_per_trace": 10,
+          "mode": "m1_on",
+          "relation_candidates_generated": 296,
+          "source_target_predicates": [
+            "paired_with",
+            "aligned_with",
+            "adjacent_to",
+            "m1_anchor_motion",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_anchor_created_removed",
+            "m1_object_count_preserved",
+            "m1_adjacency_modified",
+            "m1_anchor_contact"
+          ],
+          "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+          "unique_predicates_per_trace": 14
+        },
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl"
+      },
+      {
+        "deltas": {
+          "candidate_pairs_per_trace": 0,
+          "relation_candidates_generated": 553,
+          "unique_predicates_per_trace": 10
+        },
+        "game_id": "cd82-fb555c5d",
+        "off": {
+          "candidate_count": 100,
+          "candidate_pairs_per_trace": 100,
+          "game_id": "cd82-fb555c5d",
+          "m1_predicates_per_trace": 0,
+          "mode": "m1_off",
+          "relation_candidates_generated": 449,
+          "source_target_predicates": [
+            "source_target_color_transform",
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to"
+          ],
+          "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+          "unique_predicates_per_trace": 5
+        },
+        "on": {
+          "candidate_count": 100,
+          "candidate_pairs_per_trace": 100,
+          "game_id": "cd82-fb555c5d",
+          "m1_predicates_per_trace": 10,
+          "mode": "m1_on",
+          "relation_candidates_generated": 1002,
+          "source_target_predicates": [
+            "paired_with",
+            "same_shape",
+            "aligned_with",
+            "adjacent_to",
+            "source_target_color_transform",
+            "m1_color_pair_change_appears",
+            "m1_anchor_created_removed",
+            "m1_object_count_preserved",
+            "m1_adjacency_preserved",
+            "m1_object_removal_appears",
+            "m1_object_creation_appears",
+            "m1_object_motion_appears",
+            "m1_adjacency_modified",
+            "m1_anchor_contact",
+            "m1_anchor_motion"
+          ],
+          "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+          "unique_predicates_per_trace": 15
+        },
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl"
+      }
+    ],
+    "min_pixel_support": 1,
+    "prior_counted_as_proof": false,
+    "rule_count": 7,
+    "rules": [
+      {
+        "attribute": "color_pair_change",
+        "cross_game_score": 1.785972,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "bp35-0a0ad940",
+          "cd82-fb555c5d",
+          "cn04-65d47d14",
+          "dc22-4c9bff3e",
+          "ft09-0d8bbf25"
+        ],
+        "invariant_name": "color_pair_change_appears",
+        "novelty_score": 0.333333,
+        "outcome": "appears",
+        "predicate_name": "m1_color_pair_change_appears",
+        "support": 5122
+      },
+      {
+        "attribute": "object_removal",
+        "cross_game_score": 1.785972,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "bp35-0a0ad940",
+          "cd82-fb555c5d",
+          "cn04-65d47d14",
+          "dc22-4c9bff3e",
+          "ft09-0d8bbf25"
+        ],
+        "invariant_name": "object_removal_appears",
+        "novelty_score": 0.833333,
+        "outcome": "appears",
+        "predicate_name": "m1_object_removal_appears",
+        "support": 4840
+      },
+      {
+        "attribute": "object_creation",
+        "cross_game_score": 1.769009,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "bp35-0a0ad940",
+          "cd82-fb555c5d",
+          "cn04-65d47d14",
+          "dc22-4c9bff3e",
+          "ft09-0d8bbf25"
+        ],
+        "invariant_name": "object_creation_appears",
+        "novelty_score": 0.5,
+        "outcome": "appears",
+        "predicate_name": "m1_object_creation_appears",
+        "support": 4839
+      },
+      {
+        "attribute": "adjacency",
+        "cross_game_score": 1.349956,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "bp35-0a0ad940",
+          "cd82-fb555c5d",
+          "cn04-65d47d14",
+          "dc22-4c9bff3e"
+        ],
+        "invariant_name": "adjacency_modified",
+        "novelty_score": 0.666667,
+        "outcome": "modified",
+        "predicate_name": "m1_adjacency_modified",
+        "support": 3354
+      },
+      {
+        "attribute": "object_motion",
+        "cross_game_score": 1.326757,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "bp35-0a0ad940",
+          "cd82-fb555c5d",
+          "cn04-65d47d14",
+          "dc22-4c9bff3e",
+          "ft09-0d8bbf25"
+        ],
+        "invariant_name": "object_motion_appears",
+        "novelty_score": 0.5,
+        "outcome": "appears",
+        "predicate_name": "m1_object_motion_appears",
+        "support": 3849
+      },
+      {
+        "attribute": "object_count",
+        "cross_game_score": 1.218109,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "bp35-0a0ad940",
+          "cd82-fb555c5d",
+          "cn04-65d47d14",
+          "dc22-4c9bff3e",
+          "ft09-0d8bbf25"
+        ],
+        "invariant_name": "object_count_preserved",
+        "novelty_score": 0.8,
+        "outcome": "preserved",
+        "predicate_name": "m1_object_count_preserved",
+        "support": 2740
+      },
+      {
+        "attribute": "adjacency",
+        "cross_game_score": 0.899218,
+        "games_supporting": [
+          "ar25-e3c63847",
+          "cn04-65d47d14",
+          "ft09-0d8bbf25"
+        ],
+        "invariant_name": "adjacency_preserved",
+        "novelty_score": 0.333333,
+        "outcome": "preserved",
+        "predicate_name": "m1_adjacency_preserved",
+        "support": 386
+      }
+    ],
+    "top_k": 100,
+    "trace_count": 2,
+    "trace_support_counted_as_proof": false
+  },
+  "deltas": {
+    "confirmations_per_experiment": 0.0,
+    "experiments_run": 0,
+    "hypotheses_confirmed": 0,
+    "hypotheses_refuted": 0,
+    "not_enough_relation_candidates": 0,
+    "refutations_per_experiment": 0.0,
+    "useful_new_states": 0,
+    "useful_new_states_per_experiment": 0.0,
+    "wrong_confirmations": 0
+  },
+  "diagnosis": "anchor_expansion_pairs_up_blocker_not_reduced",
+  "live_anchor_compatibility_pretest": {
+    "averages_after_ranking": {
+      "agenda_eligible_pairs": 0.0,
+      "new_pairs_entering_agenda": 0.0,
+      "new_pairs_live_color_compatible": 0.0,
+      "new_pairs_target_present": 4.5,
+      "new_pairs_total": 4.5,
+      "new_pairs_with_2_preferred_predicates": 4.5,
+      "pair_count": 20.0
+    },
+    "averages_before_ranking": {
+      "agenda_eligible_pairs": 0.0,
+      "new_pairs_entering_agenda": 0.0,
+      "new_pairs_live_color_compatible": 0.0,
+      "new_pairs_target_present": 7.5,
+      "new_pairs_total": 10.0,
+      "new_pairs_with_2_preferred_predicates": 10.0,
+      "pair_count": 69.5
+    },
+    "discovery_top_k": 100,
+    "max_candidates": 20,
+    "preferred_predicates": [
+      "same_shape",
+      "aligned_with",
+      "adjacent_to",
+      "paired_with"
+    ],
+    "prior_counted_as_proof": false,
+    "trace_count": 2,
+    "trace_support_counted_as_proof": false,
+    "traces": [
+      {
+        "after_ranking": {
+          "agenda_eligible_pairs": 0,
+          "new_pairs_entering_agenda": 0,
+          "new_pairs_live_color_compatible": 0,
+          "new_pairs_target_present": 5,
+          "new_pairs_total": 5,
+          "new_pairs_with_2_preferred_predicates": 5,
+          "pair_count": 20
+        },
+        "baseline_candidate_count": 31,
+        "before_ranking": {
+          "agenda_eligible_pairs": 0,
+          "new_pairs_entering_agenda": 0,
+          "new_pairs_live_color_compatible": 0,
+          "new_pairs_target_present": 5,
+          "new_pairs_total": 8,
+          "new_pairs_with_2_preferred_predicates": 8,
+          "pair_count": 39
+        },
+        "game_id": "bp35-0a0ad940",
+        "m1_candidate_count": 39,
+        "prior_counted_as_proof": false,
+        "ranked_candidate_count": 20,
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false
+      },
+      {
+        "after_ranking": {
+          "agenda_eligible_pairs": 0,
+          "new_pairs_entering_agenda": 0,
+          "new_pairs_live_color_compatible": 0,
+          "new_pairs_target_present": 4,
+          "new_pairs_total": 4,
+          "new_pairs_with_2_preferred_predicates": 4,
+          "pair_count": 20
+        },
+        "baseline_candidate_count": 100,
+        "before_ranking": {
+          "agenda_eligible_pairs": 0,
+          "new_pairs_entering_agenda": 0,
+          "new_pairs_live_color_compatible": 0,
+          "new_pairs_target_present": 10,
+          "new_pairs_total": 12,
+          "new_pairs_with_2_preferred_predicates": 12,
+          "pair_count": 100
+        },
+        "game_id": "cd82-fb555c5d",
+        "m1_candidate_count": 100,
+        "prior_counted_as_proof": false,
+        "ranked_candidate_count": 20,
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false
+      }
+    ]
+  },
+  "local_baseline_stress_result": {
+    "budget_summaries": [
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 5,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 10,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 25,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 50,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      }
+    ],
+    "budgets": [
+      5,
+      10,
+      25,
+      50
+    ],
+    "curve_points": [
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 5,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 5,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 10,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 10,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 25,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 25,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 50,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 50,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      }
+    ],
+    "errors": [],
+    "experiments_run": 0,
+    "failure_types": {
+      "not_enough_relation_candidates": 8
+    },
+    "failures_are_typed": true,
+    "game_count": 2,
+    "hypotheses_confirmed": 0,
+    "hypotheses_refuted": 0,
+    "negative_memory_contexts_avoided": 0,
+    "trace_count": 2,
+    "traces": [
+      {
+        "game_id": "bp35-0a0ad940",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl"
+      },
+      {
+        "game_id": "cd82-fb555c5d",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl"
+      }
+    ],
+    "useful_new_states": 0,
+    "wrong_confirmations": 0,
+    "wrong_confirmations_zero": true
+  },
+  "m1": {
+    "confirmations_per_experiment": 0.0,
+    "experiments_run": 0,
+    "failure_types": {
+      "not_enough_relation_candidates": 8
+    },
+    "game_count": 2,
+    "hypotheses_confirmed": 0,
+    "hypotheses_refuted": 0,
+    "label": "m1_a31bis",
+    "not_enough_relation_candidates": 8,
+    "refutations_per_experiment": 0.0,
+    "trace_count": 2,
+    "useful_new_states": 0,
+    "useful_new_states_per_experiment": 0.0,
+    "wrong_confirmations": 0
+  },
+  "m1_stress_result": {
+    "budget_summaries": [
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 5,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 10,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 25,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 50,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 2
+        },
+        "failures": 2,
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 2,
+        "traces_evaluated": 2,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      }
+    ],
+    "budgets": [
+      5,
+      10,
+      25,
+      50
+    ],
+    "curve_points": [
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 5,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 5,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 10,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 10,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 25,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 25,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 50,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "bp35-0a0ad940",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      },
+      {
+        "attempts": 1,
+        "confirmations_per_experiment": 0.0,
+        "experiment_budget": 50,
+        "experiments_run": 0,
+        "failure_types": {
+          "not_enough_relation_candidates": 1
+        },
+        "failures": 1,
+        "game_id": "cd82-fb555c5d",
+        "hypotheses_confirmed": 0,
+        "hypotheses_refuted": 0,
+        "negative_memory_contexts_avoided": 0,
+        "refutations_per_experiment": 0.0,
+        "skips": 1,
+        "stopped_reason": "max_attempts_reached",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "trace_support_counted_as_proof": false,
+        "updates_per_experiment": 0.0,
+        "useful_new_states": 0,
+        "useful_new_states_per_experiment": 0.0,
+        "wrong_confirmations": 0
+      }
+    ],
+    "errors": [],
+    "experiments_run": 0,
+    "failure_types": {
+      "not_enough_relation_candidates": 8
+    },
+    "failures_are_typed": true,
+    "game_count": 2,
+    "hypotheses_confirmed": 0,
+    "hypotheses_refuted": 0,
+    "negative_memory_contexts_avoided": 0,
+    "trace_count": 2,
+    "traces": [
+      {
+        "game_id": "bp35-0a0ad940",
+        "trace_path": "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl"
+      },
+      {
+        "game_id": "cd82-fb555c5d",
+        "trace_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl"
+      }
+    ],
+    "useful_new_states": 0,
+    "wrong_confirmations": 0,
+    "wrong_confirmations_zero": true
+  },
+  "prior_counted_as_proof": false,
+  "trace_support_counted_as_proof": false
+}

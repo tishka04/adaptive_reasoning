@@ -1,0 +1,1242 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "config": {
+    "artifacts_not_modified": [
+      "P2",
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "base_m2_schema_version": "m2.v1",
+    "execution_performed": false,
+    "generator_mode": "objective_conversion_heuristic_only",
+    "inputs_read": [
+      "P2.G3"
+    ],
+    "policy_rollout_performed": false,
+    "schema_version": "m2.objective_conversion.v1",
+    "source_objective_conversion_handoff_requests_path": "diagnostics\\p2\\objective_conversion_handoff_requests.json"
+  },
+  "execution_performed": false,
+  "m3_write_performed": false,
+  "objective_conversion_hypotheses_counted_as_confirmation": false,
+  "objective_conversion_hypothesis_batches": [
+    {
+      "blocked_capability": "objective_conversion_after_safe_stop",
+      "candidate_hypotheses": [
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ]
+          ],
+          "claim": "After terminal-safe stop, ACTION3 may convert relation progress into objective progress without terminal re-entry.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "terminal_adjusted_progress_after_stop improves over hold_or_stop_state",
+          "falsification": {
+            "failure_condition": "ACTION3_terminal_adjusted_progress <= hold_or_stop_state_terminal_adjusted_progress or ACTION3_terminal_reentry",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "ACTION3_terminal_adjusted_progress > hold_or_stop_state_terminal_adjusted_progress"
+          },
+          "falsification_signal": "no improvement over hold_or_stop_state or terminal re-entry",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_safe_stop_objective_conversion",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H001",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "terminal_adjusted_progress_after_stop improves over hold_or_stop_state",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "After terminal-safe stop, ACTION3 may convert relation progress into objective progress without terminal re-entry. Falsification signal: no improvement over hold_or_stop_state or terminal re-entry. Requested experiment style: stop_state_action_matrix. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "stop_state_action_matrix",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 5.0,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "After terminal-safe stop, ACTION3 may convert relation progress into objective progress without terminal re-entry."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::001"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "terminal_adjusted_progress_after_stop improves over hold_or_stop_state",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "stop_state_action_matrix",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION4",
+          "candidate_actions": [
+            "ACTION4"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION4"
+            ]
+          ],
+          "claim": "After terminal-safe stop, ACTION4 may convert relation progress into objective progress without terminal re-entry.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "terminal_adjusted_progress_after_stop improves over hold_or_stop_state",
+          "falsification": {
+            "failure_condition": "ACTION4_terminal_adjusted_progress <= hold_or_stop_state_terminal_adjusted_progress or ACTION4_terminal_reentry",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "ACTION4_terminal_adjusted_progress > hold_or_stop_state_terminal_adjusted_progress"
+          },
+          "falsification_signal": "no improvement over hold_or_stop_state or terminal re-entry",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_safe_stop_objective_conversion",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H002",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "terminal_adjusted_progress_after_stop improves over hold_or_stop_state",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "After terminal-safe stop, ACTION4 may convert relation progress into objective progress without terminal re-entry. Falsification signal: no improvement over hold_or_stop_state or terminal re-entry. Requested experiment style: stop_state_action_matrix. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "stop_state_action_matrix",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 4.9,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "After terminal-safe stop, ACTION4 may convert relation progress into objective progress without terminal re-entry."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::002"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "terminal_adjusted_progress_after_stop improves over hold_or_stop_state",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "stop_state_action_matrix",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION6"
+            ],
+            "target_action": "ACTION4",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION6",
+          "candidate_actions": [
+            "ACTION6"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION6"
+            ]
+          ],
+          "claim": "After terminal-safe stop, ACTION6 may reactivate objective conversion only in specific readiness contexts.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "ACTION6 improves objective progress only when a readiness condition is present",
+          "falsification": {
+            "failure_condition": "ACTION6_objective_progress <= hold_or_stop_state_objective_progress or ACTION6_terminal_reentry",
+            "metric": "objective_progress_proxy",
+            "minimum_effect_size": 1,
+            "support_condition": "ACTION6_ready_context_objective_progress > hold_or_stop_state_objective_progress"
+          },
+          "falsification_signal": "ACTION6 gives no objective gain or re-enters terminal risk",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "post_safe_stop_objective_conversion",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H003",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "ACTION6 improves objective progress only when a readiness condition is present",
+          "predicted_metric": "objective_progress_proxy",
+          "prior_counted_as_proof": false,
+          "rationale": "After terminal-safe stop, ACTION6 may reactivate objective conversion only in specific readiness contexts. Falsification signal: ACTION6 gives no objective gain or re-enters terminal risk. Requested experiment style: stop_state_action_matrix. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "stop_state_action_matrix",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 4.8,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "After terminal-safe stop, ACTION6 may reactivate objective conversion only in specific readiness contexts."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::003"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "ACTION6 improves objective progress only when a readiness condition is present",
+            "measurable_by_existing_extractor": true,
+            "metric": "objective_progress_proxy",
+            "recommended_test_type": "stop_state_action_matrix",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4"
+            ],
+            "target_action": "ACTION6",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ],
+            [
+              "ACTION4"
+            ]
+          ],
+          "claim": "After terminal-safe stop, distance_decreases toward E136/E137/E138/E139 may no longer be the right target relation.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "relation target ablation separates objective gain from generic distance_decreases",
+          "falsification": {
+            "failure_condition": "alternate_relation_target_objective_progress <= nearest_distance_decreases_objective_progress",
+            "metric": "objective_progress_proxy",
+            "minimum_effect_size": 1,
+            "support_condition": "alternate_relation_target_objective_progress > nearest_distance_decreases_objective_progress"
+          },
+          "falsification_signal": "generic distance_decreases predicts no objective gain after safe stop",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "subgoal_target_reselection",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H004",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "relation target ablation separates objective gain from generic distance_decreases",
+          "predicted_metric": "objective_progress_proxy",
+          "prior_counted_as_proof": false,
+          "rationale": "After terminal-safe stop, distance_decreases toward E136/E137/E138/E139 may no longer be the right target relation. Falsification signal: generic distance_decreases predicts no objective gain after safe stop. Requested experiment style: relation_target_ablation_after_safe_stop. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "relation_target_ablation_after_safe_stop",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 4.4,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "After terminal-safe stop, distance_decreases toward E136/E137/E138/E139 may no longer be the right target relation."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::004"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "relation target ablation separates objective gain from generic distance_decreases",
+            "measurable_by_existing_extractor": true,
+            "metric": "objective_progress_proxy",
+            "recommended_test_type": "relation_target_ablation_after_safe_stop",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ],
+            [
+              "ACTION4"
+            ]
+          ],
+          "claim": "After terminal-safe stop, the policy may need to select a relation target other than the closest one.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "non-closest relation target improves level completion over closest-target relation policy",
+          "falsification": {
+            "failure_condition": "non_closest_relation_target_levels_completed <= closest_relation_target_levels_completed",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "non_closest_relation_target_levels_completed > closest_relation_target_levels_completed"
+          },
+          "falsification_signal": "non-closest relation target fails to improve completion",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "subgoal_target_reselection",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H005",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "non-closest relation target improves level completion over closest-target relation policy",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "After terminal-safe stop, the policy may need to select a relation target other than the closest one. Falsification signal: non-closest relation target fails to improve completion. Requested experiment style: relation_target_ablation_after_safe_stop. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "relation_target_ablation_after_safe_stop",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 4.3,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "After terminal-safe stop, the policy may need to select a relation target other than the closest one."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::005"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "non-closest relation target improves level completion over closest-target relation policy",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "relation_target_ablation_after_safe_stop",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ],
+            [
+              "ACTION4"
+            ],
+            [
+              "ACTION6"
+            ]
+          ],
+          "claim": "After terminal-safe stop, a global configuration transition may be a better objective signal than any local relation.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "global configuration transition predicts objective progress better than relation_delta",
+          "falsification": {
+            "failure_condition": "global_configuration_metric_does_not_predict_non_terminal_objective_progress_better_than_relation_delta",
+            "metric": "final_game_state",
+            "minimum_effect_size": 1,
+            "support_condition": "global_configuration_metric_predicts_non_terminal_objective_progress_better_than_relation_delta"
+          },
+          "falsification_signal": "global transition does not outperform relation_delta or remains terminal",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "subgoal_target_reselection",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H006",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "global configuration transition predicts objective progress better than relation_delta",
+          "predicted_metric": "final_game_state",
+          "prior_counted_as_proof": false,
+          "rationale": "After terminal-safe stop, a global configuration transition may be a better objective signal than any local relation. Falsification signal: global transition does not outperform relation_delta or remains terminal. Requested experiment style: objective_completion_vs_relation_progress_discriminator. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 4.2,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "After terminal-safe stop, a global configuration transition may be a better objective signal than any local relation."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::006"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "global configuration transition predicts objective progress better than relation_delta",
+            "measurable_by_existing_extractor": true,
+            "metric": "final_game_state",
+            "recommended_test_type": "objective_completion_vs_relation_progress_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ],
+            [
+              "ACTION4"
+            ],
+            [
+              "ACTION6"
+            ]
+          ],
+          "claim": "A readiness condition may be required before any post-safe-stop conversion action is useful.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "conversion actions help only when an objective-readiness signature is present",
+          "falsification": {
+            "failure_condition": "ready_state_conversion_progress <= non_ready_state_conversion_progress",
+            "metric": "objective_progress_proxy",
+            "minimum_effect_size": 1,
+            "support_condition": "ready_state_conversion_progress > non_ready_state_conversion_progress"
+          },
+          "falsification_signal": "conversion actions do not differ between ready and non-ready states",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_readiness_condition",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H007",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "conversion actions help only when an objective-readiness signature is present",
+          "predicted_metric": "objective_progress_proxy",
+          "prior_counted_as_proof": false,
+          "rationale": "A readiness condition may be required before any post-safe-stop conversion action is useful. Falsification signal: conversion actions do not differ between ready and non-ready states. Requested experiment style: objective_completion_vs_relation_progress_discriminator. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 4.0,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "A readiness condition may be required before any post-safe-stop conversion action is useful."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::007"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "conversion actions help only when an objective-readiness signature is present",
+            "measurable_by_existing_extractor": true,
+            "metric": "objective_progress_proxy",
+            "recommended_test_type": "objective_completion_vs_relation_progress_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ],
+            [
+              "ACTION4"
+            ]
+          ],
+          "claim": "Readiness after safe stop may depend on a plateau in relation progress.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "plateau-conditioned conversion beats immediate conversion",
+          "falsification": {
+            "failure_condition": "plateau_conditioned_conversion_progress <= immediate_conversion_progress",
+            "metric": "objective_progress_proxy",
+            "minimum_effect_size": 1,
+            "support_condition": "plateau_conditioned_conversion_progress > immediate_conversion_progress"
+          },
+          "falsification_signal": "plateau-conditioned conversion does not beat immediate conversion",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_readiness_condition",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H008",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "plateau-conditioned conversion beats immediate conversion",
+          "predicted_metric": "objective_progress_proxy",
+          "prior_counted_as_proof": false,
+          "rationale": "Readiness after safe stop may depend on a plateau in relation progress. Falsification signal: plateau-conditioned conversion does not beat immediate conversion. Requested experiment style: objective_completion_vs_relation_progress_discriminator. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 3.9,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "Readiness after safe stop may depend on a plateau in relation progress."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::008"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "plateau-conditioned conversion beats immediate conversion",
+            "measurable_by_existing_extractor": true,
+            "metric": "objective_progress_proxy",
+            "recommended_test_type": "objective_completion_vs_relation_progress_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4",
+            "ACTION6"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3"
+            ],
+            [
+              "ACTION4"
+            ],
+            [
+              "ACTION6"
+            ]
+          ],
+          "claim": "Readiness after safe stop may depend on HUD/horizon or consumed-action budget.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "horizon-aware readiness reduces terminal re-entry while preserving objective progress",
+          "falsification": {
+            "failure_condition": "horizon_ready_conversion_terminal_rate >= horizon_unaware_conversion_terminal_rate or no_objective_gain",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "horizon_ready_conversion_terminal_rate < horizon_unaware_conversion_terminal_rate"
+          },
+          "falsification_signal": "horizon-aware readiness does not reduce terminal re-entry or remains passive",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "objective_readiness_condition",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H009",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "horizon-aware readiness reduces terminal re-entry while preserving objective progress",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "Readiness after safe stop may depend on HUD/horizon or consumed-action budget. Falsification signal: horizon-aware readiness does not reduce terminal re-entry or remains passive. Requested experiment style: objective_completion_vs_relation_progress_discriminator. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "objective_completion_vs_relation_progress_discriminator",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 3.8,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "Readiness after safe stop may depend on HUD/horizon or consumed-action budget."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::009"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "horizon-aware readiness reduces terminal re-entry while preserving objective progress",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "objective_completion_vs_relation_progress_discriminator",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION3",
+          "candidate_actions": [
+            "ACTION3",
+            "ACTION4"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION3",
+              "ACTION4"
+            ]
+          ],
+          "claim": "ACTION3,ACTION4 after safe stop may convert better than either single-step action.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "ACTION3_ACTION4 sequence improves completion or terminal-adjusted progress over single-step controls",
+          "falsification": {
+            "failure_condition": "ACTION3_ACTION4_levels_completed <= best_single_step_levels_completed or sequence_terminal_reentry",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "ACTION3_ACTION4_levels_completed > best_single_step_levels_completed"
+          },
+          "falsification_signal": "ACTION3_ACTION4 fails to beat single-step controls or re-enters terminal",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "terminal_safe_sequence_search",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H010",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "ACTION3_ACTION4 sequence improves completion or terminal-adjusted progress over single-step controls",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "ACTION3,ACTION4 after safe stop may convert better than either single-step action. Falsification signal: ACTION3_ACTION4 fails to beat single-step controls or re-enters terminal. Requested experiment style: post_safe_stop_short_sequence_probe. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "post_safe_stop_short_sequence_probe",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 3.7,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "ACTION3,ACTION4 after safe stop may convert better than either single-step action."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::010"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "ACTION3_ACTION4 sequence improves completion or terminal-adjusted progress over single-step controls",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "post_safe_stop_short_sequence_probe",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION4",
+              "ACTION6"
+            ],
+            "target_action": "ACTION3",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION4",
+          "candidate_actions": [
+            "ACTION4",
+            "ACTION3"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION4",
+              "ACTION3"
+            ]
+          ],
+          "claim": "ACTION4,ACTION3 after safe stop may convert better than either single-step action.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "ACTION4_ACTION3 sequence improves completion or terminal-adjusted progress over single-step controls",
+          "falsification": {
+            "failure_condition": "ACTION4_ACTION3_levels_completed <= best_single_step_levels_completed or sequence_terminal_reentry",
+            "metric": "levels_completed_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "ACTION4_ACTION3_levels_completed > best_single_step_levels_completed"
+          },
+          "falsification_signal": "ACTION4_ACTION3 fails to beat single-step controls or re-enters terminal",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "terminal_safe_sequence_search",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H011",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "ACTION4_ACTION3 sequence improves completion or terminal-adjusted progress over single-step controls",
+          "predicted_metric": "levels_completed_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "ACTION4,ACTION3 after safe stop may convert better than either single-step action. Falsification signal: ACTION4_ACTION3 fails to beat single-step controls or re-enters terminal. Requested experiment style: post_safe_stop_short_sequence_probe. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "post_safe_stop_short_sequence_probe",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 3.6,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "ACTION4,ACTION3 after safe stop may convert better than either single-step action."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::011"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "ACTION4_ACTION3 sequence improves completion or terminal-adjusted progress over single-step controls",
+            "measurable_by_existing_extractor": true,
+            "metric": "levels_completed_after_rollout",
+            "recommended_test_type": "post_safe_stop_short_sequence_probe",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION6"
+            ],
+            "target_action": "ACTION4",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        },
+        {
+          "base_state_family": "terminal_safe_stop_or_avoidance_state",
+          "candidate_action": "ACTION6",
+          "candidate_actions": [
+            "ACTION6",
+            "ACTION3",
+            "ACTION4"
+          ],
+          "candidate_sequences": [
+            [
+              "ACTION6",
+              "ACTION3"
+            ],
+            [
+              "ACTION6",
+              "ACTION4"
+            ]
+          ],
+          "claim": "ACTION6,ACTION3 or ACTION6,ACTION4 after safe stop may convert only with a terminal guard.",
+          "context_snapshot": {
+            "available_actions": [
+              "ACTION3",
+              "ACTION4",
+              "ACTION6"
+            ],
+            "frame_before_hash": null,
+            "live_state_signature": "objective_conversion:terminal_safe_stop_or_avoidance_state:terminal_safe_policy_state_does_not_convert_to_objective_completion",
+            "local_patch": null,
+            "replay_action_args": null,
+            "replay_actions": [],
+            "terminal_state": false
+          },
+          "controlled_test_required": true,
+          "expected_signal": "guarded ACTION6 sequence improves objective progress without terminal re-entry",
+          "falsification": {
+            "failure_condition": "guarded_ACTION6_sequence_terminal_adjusted_progress <= best_non_ACTION6_sequence_terminal_adjusted_progress or terminal_reentry",
+            "metric": "terminal_state_after_rollout",
+            "minimum_effect_size": 1,
+            "support_condition": "guarded_ACTION6_sequence_terminal_adjusted_progress > best_non_ACTION6_sequence_terminal_adjusted_progress"
+          },
+          "falsification_signal": "guarded ACTION6 sequence gives no objective gain or re-enters terminal",
+          "frontier_context_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+          "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+          "frontier_step": null,
+          "game_id": "bp35-0a0ad940",
+          "hypothesis_family": "terminal_safe_sequence_search",
+          "hypothesis_id": "m2g1::bp35-0a0ad940::objective_conversion::H012",
+          "objective_conversion_hypothesis_counted_as_confirmation": false,
+          "policy_result_counted_as_scientific_verdict": false,
+          "predicted_effect": "guarded ACTION6 sequence improves objective progress without terminal re-entry",
+          "predicted_metric": "terminal_state_after_rollout",
+          "prior_counted_as_proof": false,
+          "rationale": "ACTION6,ACTION3 or ACTION6,ACTION4 after safe stop may convert only with a terminal guard. Falsification signal: guarded ACTION6 sequence gives no objective gain or re-enters terminal. Requested experiment style: post_safe_stop_short_sequence_probe. This is an M2 candidate hypothesis, not a policy decision.",
+          "ready_for_m3_candidate_experiment_request": true,
+          "requested_experiment_style": "post_safe_stop_short_sequence_probe",
+          "revision_performed": false,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_generation": {
+            "normalization_warnings": [
+              "objective_conversion_request_not_counted_as_support",
+              "policy_result_not_counted_as_scientific_verdict"
+            ],
+            "priority_score": 3.5,
+            "priority_score_counted_as_support": false,
+            "rationales": [
+              "P2.G3 request is a candidate-only frontier handoff, not evidence.",
+              "ACTION6,ACTION3 or ACTION6,ACTION4 after safe stop may convert only with a terminal guard."
+            ],
+            "raw_proposal_ids": [
+              "raw::objective_conversion::p2g3::bp35-0a0ad940::objective_conversion::001::012"
+            ],
+            "sources": [
+              "heuristic"
+            ]
+          },
+          "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+          "status": "UNRESOLVED",
+          "support": 0,
+          "testability": {
+            "blocking_reason": null,
+            "control_policy": "m3_dynamic_available_controls",
+            "expected_signal_type": "guarded ACTION6 sequence improves objective progress without terminal re-entry",
+            "measurable_by_existing_extractor": true,
+            "metric": "terminal_state_after_rollout",
+            "recommended_test_type": "post_safe_stop_short_sequence_probe",
+            "required_action_args": null,
+            "required_context_replay": [],
+            "suggested_control_actions": [
+              "ACTION3",
+              "ACTION4"
+            ],
+            "target_action": "ACTION6",
+            "testable": true
+          },
+          "trace_support_counted_as_proof": false,
+          "truth_status": "NOT_EVALUATED_BY_M2",
+          "wrong_confirmations": 0
+        }
+      ],
+      "frontier_reason": "TERMINAL_SAFE_BUT_PASSIVE",
+      "frontier_type": "OBJECTIVE_CONVERSION_FRONTIER",
+      "handoff_type": "OBJECTIVE_CONVERSION_FRONTIER_REQUEST",
+      "source_frontier_id": "p2g1::bp35::terminal_safe_but_passive::objective_conversion",
+      "source_request_id": "p2g3::bp35-0a0ad940::objective_conversion::001",
+      "target": "M2_OR_M3",
+      "target_modules": [
+        "M2.G1",
+        "M3.G1"
+      ]
+    }
+  ],
+  "policy_result_counted_as_scientific_verdict": false,
+  "policy_rollout_performed": false,
+  "rejected_objective_conversion_requests": [],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "all_hypotheses_have_falsification_signal": true,
+    "all_hypotheses_map_to_requested_experiment_style": true,
+    "all_requested_hypothesis_families_covered": true,
+    "blocked_not_testable_hypotheses": 0,
+    "execution_performed": false,
+    "final_invalid_hypotheses": 0,
+    "generated_hypothesis_families": [
+      "objective_readiness_condition",
+      "post_safe_stop_objective_conversion",
+      "subgoal_target_reselection",
+      "terminal_safe_sequence_search"
+    ],
+    "generated_requested_experiment_styles": [
+      "objective_completion_vs_relation_progress_discriminator",
+      "post_safe_stop_short_sequence_probe",
+      "relation_target_ablation_after_safe_stop",
+      "stop_state_action_matrix"
+    ],
+    "hypotheses_generated": 12,
+    "hypothesis_batches": 1,
+    "m3_write_performed": false,
+    "objective_conversion_requests_consumed": 1,
+    "objective_conversion_requests_rejected": 0,
+    "objective_conversion_requests_seen": 1,
+    "policy_rollout_performed": false,
+    "ready_for_m3_candidate_experiment_request": 12,
+    "requested_experiment_styles": [
+      "objective_completion_vs_relation_progress_discriminator",
+      "post_safe_stop_short_sequence_probe",
+      "relation_target_ablation_after_safe_stop",
+      "stop_state_action_matrix"
+    ],
+    "requested_hypothesis_families": [
+      "objective_readiness_condition",
+      "post_safe_stop_objective_conversion",
+      "subgoal_target_reselection",
+      "terminal_safe_sequence_search"
+    ],
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "testable_hypotheses": 12,
+    "truth_status": "NOT_EVALUATED_BY_M2",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_M2",
+  "wrong_confirmations": 0
+}

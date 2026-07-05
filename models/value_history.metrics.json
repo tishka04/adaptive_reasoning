@@ -1,0 +1,76 @@
+{
+  "n_train": 16973,
+  "n_test": 4244,
+  "progress_target": "discounted_future_progress",
+  "progress_mae": 0.0011,
+  "level_up_auc": 0.9867,
+  "level_up_within_5_auc": 0.848,
+  "level_up_within_10_auc": 0.8588,
+  "danger_auc": 0.9978,
+  "level_up_positive_rate": 0.0042,
+  "level_up_within_5_positive_rate": 0.0014,
+  "level_up_within_10_positive_rate": 0.0025,
+  "danger_positive_rate": 0.0213,
+  "top_feature_importances": [
+    {
+      "feature": "centroid_spread_y",
+      "importance": 0.33875
+    },
+    {
+      "feature": "centroid_spread_x",
+      "importance": 0.12939
+    },
+    {
+      "feature": "fragmentation_ratio",
+      "importance": 0.09052
+    },
+    {
+      "feature": "mean_component_size",
+      "importance": 0.05305
+    },
+    {
+      "feature": "nearest_distance_mean",
+      "importance": 0.0527
+    },
+    {
+      "feature": "size_bin_3_frac",
+      "importance": 0.03975
+    },
+    {
+      "feature": "color_0_centroid_x",
+      "importance": 0.02858
+    },
+    {
+      "feature": "color_3_size_std",
+      "importance": 0.02802
+    },
+    {
+      "feature": "size_entropy",
+      "importance": 0.02608
+    },
+    {
+      "feature": "color_3_size_mean",
+      "importance": 0.02386
+    },
+    {
+      "feature": "nearest_distance_max",
+      "importance": 0.02109
+    },
+    {
+      "feature": "color_0_size_std",
+      "importance": 0.01689
+    },
+    {
+      "feature": "color_2_centroid_y",
+      "importance": 0.01682
+    },
+    {
+      "feature": "size_bin_1_frac",
+      "importance": 0.01583
+    },
+    {
+      "feature": "top_pair_1_global_correspondence",
+      "importance": 0.01481
+    }
+  ]
+}

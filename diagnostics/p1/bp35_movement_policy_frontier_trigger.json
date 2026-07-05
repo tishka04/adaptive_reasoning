@@ -1,0 +1,137 @@
+{
+  "config": {
+    "artifacts_not_modified": [
+      "M3",
+      "A32",
+      "A33"
+    ],
+    "artifacts_not_read": [
+      "A33",
+      "LLM",
+      "world_model"
+    ],
+    "exhausted_policy": "conditional_movement_refresh",
+    "game_id": "bp35-0a0ad940",
+    "include_synthetic_fixture": true,
+    "inputs_read": [
+      "P1.10"
+    ],
+    "refresh_candidates": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "refresh_matrix_path": "diagnostics\\p1\\bp35_sage_candidate_policy_movement_refresh_matrix.json",
+    "refresh_mode": "movement",
+    "schema_version": "p1.bp35_policy_frontier_trigger.v1",
+    "trigger_condition": "NO_EFFECTIVE_ACTION6_AFTER_SOFT_STALE_AND_CONDITIONAL_MOVEMENT_REFRESH"
+  },
+  "frontier_trigger_counted_as_confirmation": false,
+  "policy_result_counted_as_scientific_verdict": false,
+  "real_rollout_evaluation": {
+    "exhausted_policy": "conditional_movement_refresh",
+    "exhausted_refresh_runs": 0,
+    "frontier_reason": "NO_MOVEMENT_REFRESH_SATURATION_OBSERVED",
+    "frontier_record": null,
+    "frontier_trigger_counted_as_confirmation": false,
+    "frontier_triggered": false,
+    "game_id": "bp35-0a0ad940",
+    "new_action6_affordances_after_refresh_total": 0,
+    "policy_result_counted_as_scientific_verdict": false,
+    "ready_for_p2_frontier_extraction": false,
+    "refresh_candidates": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "refresh_mode": "movement",
+    "refresh_runs_with_triggers": 0,
+    "refresh_summaries_seen": 18,
+    "refresh_total_triggers": 0,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_label": "p1_10_conditional_movement_refresh_matrix",
+    "support": 0,
+    "synthetic_fixture": false,
+    "synthetic_fixture_not_for_scientific_handoff": false,
+    "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "status": "UNRESOLVED",
+  "summary": {
+    "frontier_triggered": false,
+    "policy_result_counted_as_scientific_verdict": false,
+    "ready_for_p2_frontier_extraction": false,
+    "real_frontier_triggered": false,
+    "real_ready_for_p2_frontier_extraction": false,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "support": 0,
+    "synthetic_fixture_frontier_triggered": true,
+    "synthetic_fixture_validates_trigger_logic": true,
+    "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "synthetic_saturation_fixture": {
+    "exhausted_policy": "conditional_movement_refresh",
+    "exhausted_refresh_runs": 1,
+    "frontier_reason": "NO_EFFECTIVE_ACTION6_AFTER_SOFT_STALE_AND_CONDITIONAL_MOVEMENT_REFRESH",
+    "frontier_record": {
+      "exhausted_policy": "conditional_movement_refresh",
+      "exhausted_runs": 1,
+      "frontier_context_id": "after_soft_stale_and_conditional_movement_refresh_exhaustion",
+      "frontier_id": "p1::bp35::conditional_movement_refresh::exhausted_refresh::synthetic_fixture",
+      "frontier_reason": "NO_EFFECTIVE_ACTION6_AFTER_SOFT_STALE_AND_CONDITIONAL_MOVEMENT_REFRESH",
+      "frontier_trigger_counted_as_confirmation": false,
+      "game_id": "bp35-0a0ad940",
+      "policy_result_counted_as_scientific_verdict": false,
+      "ready_for_p2_frontier_extraction": true,
+      "refresh_candidates": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION1",
+        "ACTION2"
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_label": "synthetic_saturation_fixture",
+      "status": "UNRESOLVED",
+      "support": 0,
+      "synthetic_fixture": true,
+      "synthetic_fixture_not_for_scientific_handoff": true,
+      "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+      "wrong_confirmations": 0
+    },
+    "frontier_trigger_counted_as_confirmation": false,
+    "frontier_triggered": true,
+    "game_id": "bp35-0a0ad940",
+    "new_action6_affordances_after_refresh_total": 0,
+    "policy_result_counted_as_scientific_verdict": false,
+    "ready_for_p2_frontier_extraction": true,
+    "refresh_candidates": [
+      "ACTION3",
+      "ACTION4",
+      "ACTION1",
+      "ACTION2"
+    ],
+    "refresh_mode": "movement",
+    "refresh_runs_with_triggers": 1,
+    "refresh_summaries_seen": 1,
+    "refresh_total_triggers": 1,
+    "revision_performed": false,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_label": "synthetic_saturation_fixture",
+    "support": 0,
+    "synthetic_fixture": true,
+    "synthetic_fixture_not_for_scientific_handoff": true,
+    "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+    "wrong_confirmations": 0
+  },
+  "truth_status": "NOT_EVALUATED_BY_P1_AGENT_PROBE",
+  "wrong_confirmations": 0
+}

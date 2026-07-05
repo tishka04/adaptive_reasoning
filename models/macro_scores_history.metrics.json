@@ -1,0 +1,49 @@
+{
+  "n_train": 16973,
+  "n_test": 4244,
+  "targets": [
+    "break",
+    "align",
+    "correspond",
+    "explore",
+    "avoid"
+  ],
+  "per_target": {
+    "break": {
+      "r2": 0.2052,
+      "mae": 0.9833,
+      "target_mean": 1.0719,
+      "target_std": 12.1586,
+      "positive_rate": 0.0483
+    },
+    "align": {
+      "r2": 0.5165,
+      "mae": 0.8929,
+      "target_mean": 1.2274,
+      "target_std": 16.0429,
+      "positive_rate": 0.0606
+    },
+    "correspond": {
+      "r2": 0.557,
+      "mae": 3.7041,
+      "target_mean": 4.4536,
+      "target_std": 93.7832,
+      "positive_rate": 0.3308
+    },
+    "explore": {
+      "r2": 0.8597,
+      "mae": 0.049,
+      "target_mean": 0.6929,
+      "target_std": 0.3581,
+      "positive_rate": 0.873
+    },
+    "avoid": {
+      "r2": 0.7642,
+      "mae": 0.0026,
+      "target_mean": 0.0052,
+      "target_std": 0.0718,
+      "positive_rate": 0.0052
+    }
+  },
+  "mean_r2": 0.5805
+}
