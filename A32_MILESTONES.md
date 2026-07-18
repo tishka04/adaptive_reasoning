@@ -30,6 +30,7 @@ A32 ne doit jamais ecrire de verdict dans :
 | A32.2 - Patch-similarity revision intake | Fait | `theory/a32/patch_similarity_revision_intake.py`, `tests/test_a32_patch_similarity_revision_intake.py`, `diagnostics/a32/patch_similarity_revision_intake.json` | 1 dossier M3.21 accepte pour revision scientifique; HypothesisRecord unresolved; no verdict; support=0 |
 | A32.3 - Patch-similarity scientific revision decision | Fait | `theory/a32/patch_similarity_revision_decisions.py`, `tests/test_a32_patch_similarity_revision_decisions.py`, `diagnostics/a32/patch_similarity_revision_decisions.json` | Decision `SCOPE_LIMITED_CANDIDATE_ONLY`; tests supplementaires demandes; no A33; record unresolved |
 | A32.4 - Unknown-game control protocol decision | Fait - protocole autorise, aucune confirmation | `theory/a32/unknown_game_control_protocol_decisions.py`, `tests/test_a32_unknown_game_control_protocol_decisions.py`, `diagnostics/a32/unknown_game_control_protocol_decisions.json` | Consomme SAGE.5i; autorise une exception candidate-specifique pre-enregistree pour 2 variantes parametrees x 2 contextes exacts par candidat; 8 experiences demandees; les 2 records restent unresolved; aucun write A33 |
+| A32.5 - Unknown-game parameterized-control scientific revision | Fait - 1 confirmation bornee, 1 non-identifiabilite | `theory/a32/unknown_game_parameterized_control_revision_decisions.py`, `tests/test_a32_unknown_game_parameterized_control_revision_decisions.py`, `diagnostics/a32/unknown_game_parameterized_control_revision_decisions.json` | Consomme SAGE.5j; confirme ACTION5 seulement dans le scope sb26 observe (4 supports exacts, 0 contradiction); conserve ACTION6 unresolved car les controles reproduisent son effet; 1 dossier A33-ready; aucun write A33 |
 
 ## A32.0 - Candidate intake preflight
 
@@ -409,12 +410,78 @@ Retour SAGE.5j du 2026-07-18 :
   revoir separement le dossier `ACTION6` non discriminant et le dossier
   `ACTION5` discriminant avant toute ecriture A33.
 
+## A32.5 - Unknown-game parameterized-control scientific revision
+
+Objectif :
+
+- Lire `diagnostics/sage/sage5j_parameterized_control_acquisition.json`.
+- Verifier que SAGE.5j a execute exactement les huit experiences A32.4, sans
+  substitution, support scientifique, revision ni verdict anticipe.
+- Produire une decision scientifique separee pour chaque candidat parmi :
+  - `CONFIRM_SCOPE_LIMITED_AFTER_PARAMETERIZED_CONTROL_REVISION` ;
+  - `KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_CONTROL` ;
+  - `REFUTE_AFTER_PARAMETERIZED_CONTROL_CONTRADICTION` ;
+  - `REQUEST_MORE_TESTS_AFTER_INCOMPLETE_PARAMETERIZED_CONTROL`.
+- Ne confirmer que si les quatre paires pre-enregistrees sont exactes,
+  discriminantes et sans contradiction.
+- Traiter une egalite cible/controle comme une non-identifiabilite du candidat,
+  pas comme une refutation d'un effet generique de l'action.
+- Borner toute confirmation au jeu, au candidat, aux contextes et a la mesure
+  observes.
+- Preparer un handoff A33 sans ecrire le registre A33.
+
+Artefacts :
+
+- `theory/a32/unknown_game_parameterized_control_revision_decisions.py`
+- export dans `theory/a32/__init__.py`
+- `tests/test_a32_unknown_game_parameterized_control_revision_decisions.py`
+- `diagnostics/a32/unknown_game_parameterized_control_revision_decisions.json`
+
+Decision du 2026-07-18 :
+
+- `source_candidates_consumed=2`
+- `scientific_revision_decisions=2`
+- `scope_limited_confirmations=1`
+- `non_identifiable_candidates_kept_unresolved=1`
+- `candidates_refuted=0`
+- `candidates_requesting_more_tests=0`
+- `decision_records_confirmed=1`
+- `decision_records_unresolved=1`
+- `scientific_support_counted_by_a32=4`
+- `a33_ready_candidates=1`
+- `a33_write_performed=false`
+- `wrong_confirmations=0`
+- `outcome_status=A32_SCOPE_LIMITED_CONFIRMATION_AND_NON_IDENTIFIABILITY`
+
+Decisions par candidat :
+
+| candidat | evidence appariee | decision A32.5 | record | A33-ready |
+|---|---|---|---|---|
+| `ACTION6 {"x":26,"y":57}` | 4/4 paires exactes, cible `5`, controles `5` | `KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_CONTROL` | unresolved, support `0` | non |
+| `ACTION5` | 4/4 paires exactes, cible `21`, controles `4`, 0 contradiction | `CONFIRM_SCOPE_LIMITED_AFTER_PARAMETERIZED_CONTROL_REVISION` | confirmed, support `4` | oui |
+
+Lecture scientifique :
+
+- A32.5 est le premier composant qui transforme les quatre evenements
+  discriminants ACTION5 en support scientifique. SAGE.5j les conservait a
+  `support=0` en attente du verdict.
+- La confirmation ACTION5 ne signifie pas que l'agent connait une mecanique
+  generale. Elle vaut seulement pour `sb26-7fbdac44`, le candidat ACTION5, la
+  mesure `local_patch_before_after`, les quatre contextes exacts et les
+  controles ACTION6 pre-enregistres.
+- Le dossier ACTION6 ne permet pas d'isoler un effet propre a `x=26` : les
+  positions `x=18` et `x=42` produisent le meme signal. Cette absence de
+  discrimination n'invalide pas un effet ACTION6 position-invariant et ne peut
+  donc pas etre comptee comme refutation.
+- Le handoff A33 contient uniquement ACTION5. A32.5 ne modifie pas le registre
+  confirme ; A33.2 doit encore verifier et integrer ce dossier borne.
+
 ## Commandes de verification
 
 Tests A32 :
 
 ```powershell
-ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest tests\test_a32_m3_revision_intake.py tests\test_a32_revision_decisions.py tests\test_a32_patch_similarity_revision_intake.py tests\test_a32_patch_similarity_revision_decisions.py tests\test_a32_unknown_game_control_protocol_decisions.py -q
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest tests\test_a32_m3_revision_intake.py tests\test_a32_revision_decisions.py tests\test_a32_patch_similarity_revision_intake.py tests\test_a32_patch_similarity_revision_decisions.py tests\test_a32_unknown_game_control_protocol_decisions.py tests\test_a32_unknown_game_parameterized_control_revision_decisions.py -q
 ```
 
 Generation decision A32 :
@@ -439,6 +506,12 @@ A32.4 decision de protocole unknown-game :
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.unknown_game_control_protocol_decisions --source-sage5i diagnostics\sage\sage5i_control_surface_expansion.json --out diagnostics\a32\unknown_game_control_protocol_decisions.json
+```
+
+A32.5 revision scientifique des controles parametres :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.unknown_game_parameterized_control_revision_decisions --source-sage5j diagnostics\sage\sage5j_parameterized_control_acquisition.json --out diagnostics\a32\unknown_game_parameterized_control_revision_decisions.json
 ```
 
 Guard M3 :

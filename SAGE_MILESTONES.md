@@ -2184,13 +2184,25 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_controlled_followup_acquisition.py -q
 ```
 
-Suite conseillee apres SAGE.5j :
+Retour A32.5 du 2026-07-18 :
 
-1. A32.5 - revoir separement les deux resultats du protocole : maintien ou
-   rejet d'identifiabilite pour `ACTION6`, decision scope-limited pour `ACTION5`.
-2. A33.2 - enregistrer une mecanique unknown-game seulement si A32.5 confirme
-   explicitement un dossier.
-3. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
+- A32.5 confirme ACTION5 uniquement dans le scope borne de `sb26-7fbdac44` :
+  quatre paires exactes discriminantes, support scientifique `4`, aucune
+  contradiction.
+- A32.5 conserve `ACTION6 {"x":26,"y":57}` unresolved et non identifiable :
+  les quatre controles ACTION6 parametres reproduisent le signal cible `5`.
+- Cette non-discrimination n'est pas une refutation d'un eventuel effet ACTION6
+  position-invariant.
+- Un seul dossier, ACTION5, est pret pour revue du registre A33 ; A32.5
+  n'effectue aucun write A33.
+- Artefact :
+  `diagnostics/a32/unknown_game_parameterized_control_revision_decisions.json`.
+
+Suite conseillee apres A32.5 :
+
+1. A33.2 - verifier puis enregistrer la confirmation ACTION5 avec son scope
+   exact, sans importer le candidat ACTION6 unresolved.
+2. SAGE.6 - passer au second jeu inconnu apres fermeture du handoff A33.2.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
 bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
