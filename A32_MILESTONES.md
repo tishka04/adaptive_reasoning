@@ -474,7 +474,9 @@ Lecture scientifique :
   discrimination n'invalide pas un effet ACTION6 position-invariant et ne peut
   donc pas etre comptee comme refutation.
 - Le handoff A33 contient uniquement ACTION5. A32.5 ne modifie pas le registre
-  confirme ; A33.2 doit encore verifier et integrer ce dossier borne.
+  confirme. A33.2 verifie maintenant ce handoff et l'enregistre dans
+  `diagnostics/a33/scoped_unknown_game_registry.json`, sans importer ACTION6 et
+  sans muter le registre A33.1 historique.
 
 ## Commandes de verification
 

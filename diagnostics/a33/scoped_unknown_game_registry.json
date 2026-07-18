@@ -1,0 +1,177 @@
+{
+  "a33_write_performed": true,
+  "config": {
+    "artifacts_not_modified": [
+      "A32.5",
+      "A33.1",
+      "M2",
+      "M3",
+      "A34",
+      "A35",
+      "A36",
+      "A37",
+      "A38",
+      "A39"
+    ],
+    "decisions_path": "diagnostics\\a32\\unknown_game_parameterized_control_revision_decisions.json",
+    "inputs_read": [
+      "A32.5"
+    ],
+    "registration_policy": {
+      "a32_confirmed_record_required": true,
+      "a32_scope_limited_confirmation_required": true,
+      "a33_does_not_reevaluate_truth": true,
+      "exact_game_candidate_context_measurement_scope_required": true,
+      "legacy_a33_1_registry_not_mutated": true,
+      "non_identifiable_candidates_excluded": true,
+      "unresolved_candidates_excluded": true,
+      "zero_contradictions_required": true
+    },
+    "registry_scope": "A33_SCOPE_LOCKED_UNKNOWN_GAME_CONFIRMED_MEMORY",
+    "schema_version": "a33.scoped_unknown_game_registry.v1"
+  },
+  "confirmation_performed": false,
+  "excluded_candidate_audit": [
+    {
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "counted_as_refutation": false,
+      "decision_record_status": "unresolved",
+      "decision_record_support": 0,
+      "exclusion_reason": "NON_IDENTIFIABLE_UNRESOLVED_NOT_REGISTRY_ELIGIBLE",
+      "game_id": "sb26-7fbdac44",
+      "registered": false,
+      "source_decision": "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_CONTROL"
+    }
+  ],
+  "legacy_a33_1_registry_mutated": false,
+  "non_identifiable_candidates_excluded": true,
+  "outcome_status": "A33_SCOPED_UNKNOWN_GAME_REGISTRY_ENTRY_ADDED",
+  "refutation_performed": false,
+  "registration_performed": true,
+  "registry_stage": "A33.2",
+  "registry_validation_performed": true,
+  "revision_performed": false,
+  "scientific_review_performed": false,
+  "scope_generalization_performed": false,
+  "scoped_confirmed_mechanics": [
+    {
+      "a32_confirmation_reused_without_reevaluation": true,
+      "a33_confirmation_performed": false,
+      "action": "ACTION5",
+      "action_args": null,
+      "budgets": [
+        50,
+        300
+      ],
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "confirmed_support": 4,
+      "context_snapshot_hashes": [
+        "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "contradictions": 0,
+      "evidence_notes": [
+        "a32_5_scope_limited_confirmation_reused_without_reevaluation",
+        "four_exact_preregistered_paired_experiments",
+        "parameterized_controls_not_relabelled_as_distinct_actions",
+        "scope_locked_to_game_candidate_contexts_and_measurement"
+      ],
+      "experiments_spent": 4,
+      "game_id": "sb26-7fbdac44",
+      "key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "known_scope": "game_candidate_contexts_measurement",
+      "mechanic_family": "local_patch_change_candidate",
+      "non_identifiable_candidates_excluded": true,
+      "not_generalized_beyond_candidate_scope": true,
+      "not_generalized_beyond_game": true,
+      "not_generalized_to_other_actions": true,
+      "parameterized_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "predicted_metric": "local_patch_before_after",
+      "scope_candidate_locked": true,
+      "scope_contexts_locked": true,
+      "scope_game_locked": true,
+      "scope_measurement_locked": true,
+      "scoped_claim": "Scope-limited sb26-7fbdac44 effect for ACTION5, discriminated from the pre-registered parameterized controls.",
+      "source_artifact": "diagnostics\\a32\\unknown_game_parameterized_control_revision_decisions.json",
+      "source_decision": "CONFIRM_SCOPE_LIMITED_AFTER_PARAMETERIZED_CONTROL_REVISION",
+      "source_experiment_ids": [
+        "a32.4::parameterized_control_experiment::002::001",
+        "a32.4::parameterized_control_experiment::002::002",
+        "a32.4::parameterized_control_experiment::002::003",
+        "a32.4::parameterized_control_experiment::002::004"
+      ],
+      "status": "confirmed",
+      "unresolved_candidates_excluded": true,
+      "wrong_confirmations": 0
+    }
+  ],
+  "source_a32_5_mutated": false,
+  "source_a32_5_summary": {
+    "a33_ready_candidates": 1,
+    "a33_write_performed": false,
+    "candidates_refuted": 0,
+    "candidates_requesting_more_tests": 0,
+    "decision_records_confirmed": 1,
+    "decision_records_refuted": 0,
+    "decision_records_unresolved": 1,
+    "neutral_events_counted_as_refutation": false,
+    "non_discrimination_counted_as_refutation": false,
+    "non_identifiable_candidates_kept_unresolved": 1,
+    "outcome_status": "A32_SCOPE_LIMITED_CONFIRMATION_AND_NON_IDENTIFIABILITY",
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "scientific_revision_decisions": 2,
+    "scientific_support_counted_by_a32": 4,
+    "scope_limited_confirmations": 1,
+    "source_candidates_consumed": 2,
+    "status": "MIXED_CONFIRMED_AND_UNRESOLVED",
+    "wrong_confirmations": 0
+  },
+  "source_stage": "A32.5",
+  "status": "REGISTERED",
+  "summary": {
+    "a32_5_handoff_candidates_consumed": 1,
+    "a33_confirmations_performed": 0,
+    "a33_truth_reevaluations": 0,
+    "confirmed_support_imported_from_a32_5": 4,
+    "experiments_spent_total": 4,
+    "legacy_a33_1_registry_mutated": false,
+    "non_identifiable_candidates_excluded": 1,
+    "outcome_status": "A33_SCOPED_UNKNOWN_GAME_REGISTRY_ENTRY_ADDED",
+    "registered_contexts": 4,
+    "registered_parameterized_control_variants": 2,
+    "scope_generalization_performed": false,
+    "scope_locked_entries": 1,
+    "scoped_confirmed_mechanics_registered": 1,
+    "source_candidates_consumed": 2,
+    "unresolved_candidates_excluded": 1,
+    "wrong_confirmations": 0
+  },
+  "support": 4,
+  "support_origin": "A32.5_DECISION_RECORDS_ONLY",
+  "truth_status": "NOT_REEVALUATED_BY_A33_2",
+  "unresolved_candidates_excluded": true,
+  "wrong_confirmations": 0
+}

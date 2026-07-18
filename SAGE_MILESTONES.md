@@ -2198,11 +2198,21 @@ Retour A32.5 du 2026-07-18 :
 - Artefact :
   `diagnostics/a32/unknown_game_parameterized_control_revision_decisions.json`.
 
-Suite conseillee apres A32.5 :
+Retour A33.2 du 2026-07-18 :
 
-1. A33.2 - verifier puis enregistrer la confirmation ACTION5 avec son scope
-   exact, sans importer le candidat ACTION6 unresolved.
-2. SAGE.6 - passer au second jeu inconnu apres fermeture du handoff A33.2.
+- ACTION5 est enregistree dans
+  `diagnostics/a33/scoped_unknown_game_registry.json` avec son jeu, son
+  candidat, ses quatre contextes, sa mesure, ses budgets et ses deux controles
+  verrouilles.
+- Le support `4` provient exclusivement du verdict A32.5 ; A33.2 ne reconfirme
+  pas la mecanique et ne generalise pas son scope.
+- ACTION6 unresolved est exclue explicitement du registre confirme.
+- Le registre A33.1 et ses consommateurs A34-A39 ne sont pas modifies.
+
+Suite conseillee apres A33.2 :
+
+1. SAGE.6 - passer au second jeu inconnu, la boucle SAGE.5j -> A32.5 -> A33.2
+   etant fermee.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
 bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
