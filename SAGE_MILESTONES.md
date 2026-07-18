@@ -2062,13 +2062,30 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_unknown_game_bounded_probe.py -q
 ```
 
-Suite conseillee apres SAGE.5i :
+Decision A32.4 du 2026-07-18 :
 
-1. A32.4 - prendre explicitement l'une des trois decisions protocolaires,
-   scope-limited, sans confirmation automatique depuis SAGE.5i.
-2. Si A32 autorise le protocole parametre, executer une nouvelle iteration
-   d'acquisition pre-enregistree sur les variantes exposees ci-dessus.
-3. A33.2 - enregistrer une mecanique unknown-game seulement si A32 la confirme.
+- A32.4 choisit
+  `AUTHORIZE_PRE_REGISTERED_PARAMETERIZED_CONTROL_PROTOCOL` pour les deux
+  candidats.
+- L'exigence action-distincte reste la regle par defaut ; l'autorisation est une
+  exception candidate-specifique et bornee.
+- Deux variantes extremes sont pre-enregistrees par candidat :
+  - cible `ACTION6 {"x":26,"y":57}` : controles `x=18` et `x=42` ;
+  - cible `ACTION5` : controles `ACTION6 x=21` et `ACTION6 x=39`, `y=28`.
+- Chaque variante doit etre executee dans deux contextes replay-exacts, budgets
+  50 et 300 : 8 experiences demandees au total.
+- Aucune experience n'est executee par A32.4 ; les deux hypotheses restent
+  unresolved, `support=0`, non A33-ready.
+- Artefact :
+  `diagnostics/a32/unknown_game_control_protocol_decisions.json`.
+
+Suite conseillee apres A32.4 :
+
+1. SAGE.5j - executer exactement les huit experiences pre-enregistrees, sans
+   substitution post-hoc de variante ou de contexte.
+2. Revenir vers A32 pour une decision sur les resultats du protocole parametre.
+3. A33.2 - enregistrer une mecanique unknown-game seulement si cette nouvelle
+   revue A32 la confirme.
 4. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue

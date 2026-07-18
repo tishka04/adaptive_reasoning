@@ -1,6 +1,6 @@
 # A32 milestones - journal de revision scientifique
 
-Derniere mise a jour : 2026-06-19
+Derniere mise a jour : 2026-07-18
 
 Ce fichier suit la mise en place de A32, cote moteur scientifique. A32 consomme
 la file candidate-only produite par M3.6 et produit une decision explicite dans
@@ -29,6 +29,7 @@ A32 ne doit jamais ecrire de verdict dans :
 | A32.1 - Minimal A15 queue consumer | Fait | `theory/a32/revision_decisions.py`, `tests/test_a32_revision_decisions.py`, `diagnostics/a32/a15_revision_decisions.json` | 1 decision `REVISION_ACCEPTED_AS_CONFIRMED`, M3 non mute |
 | A32.2 - Patch-similarity revision intake | Fait | `theory/a32/patch_similarity_revision_intake.py`, `tests/test_a32_patch_similarity_revision_intake.py`, `diagnostics/a32/patch_similarity_revision_intake.json` | 1 dossier M3.21 accepte pour revision scientifique; HypothesisRecord unresolved; no verdict; support=0 |
 | A32.3 - Patch-similarity scientific revision decision | Fait | `theory/a32/patch_similarity_revision_decisions.py`, `tests/test_a32_patch_similarity_revision_decisions.py`, `diagnostics/a32/patch_similarity_revision_decisions.json` | Decision `SCOPE_LIMITED_CANDIDATE_ONLY`; tests supplementaires demandes; no A33; record unresolved |
+| A32.4 - Unknown-game control protocol decision | Fait - protocole autorise, aucune confirmation | `theory/a32/unknown_game_control_protocol_decisions.py`, `tests/test_a32_unknown_game_control_protocol_decisions.py`, `diagnostics/a32/unknown_game_control_protocol_decisions.json` | Consomme SAGE.5i; autorise une exception candidate-specifique pre-enregistree pour 2 variantes parametrees x 2 contextes exacts par candidat; 8 experiences demandees; les 2 records restent unresolved; aucun write A33 |
 
 ## A32.0 - Candidate intake preflight
 
@@ -310,12 +311,94 @@ Lecture :
 - La suite propre est de convertir les tests demandes en nouvelles requests M3,
   puis de revenir vers A32 avec un scope elargi ou une contradiction de succes.
 
+## A32.4 - Unknown-game control protocol decision
+
+Objectif :
+
+- Lire `diagnostics/sage/sage5i_control_surface_expansion.json`.
+- Verifier que SAGE.5i reste candidate-only, `support=0`, unresolved, sans
+  revision ni write A32/A33.
+- Exiger la preuve bornee que les 24 contextes candidats ont tous ete rejoues
+  exactement et qu'aucune troisieme famille d'action n'est disponible.
+- Choisir explicitement parmi :
+  - `AUTHORIZE_PRE_REGISTERED_PARAMETERIZED_CONTROL_PROTOCOL` ;
+  - `RETAIN_STRICT_ACTION_DISTINCT_REQUIREMENT` ;
+  - `REJECT_UNIDENTIFIABLE_CURRENT_ACTION_SURFACE`.
+- Conserver l'exigence de familles d'action distinctes comme contrat par
+  defaut.
+- Autoriser seulement une exception candidate-specifique pre-enregistree quand
+  la diversite des controles est l'unique exigence manquante.
+- Ne compter ni les variantes parametrees comme actions distinctes, ni le
+  protocole non execute comme evidence.
+- Ne confirmer ni refuter les hypotheses et ne pas ecrire A33.
+
+Artefacts :
+
+- `theory/a32/unknown_game_control_protocol_decisions.py`
+- export dans `theory/a32/__init__.py`
+- `tests/test_a32_unknown_game_control_protocol_decisions.py`
+- `diagnostics/a32/unknown_game_control_protocol_decisions.json`
+
+Decision du 2026-07-18 :
+
+- `source_candidates_consumed=2`
+- `protocol_decisions=2`
+- `parameterized_protocols_authorized=2`
+- `strict_action_distinct_requirements_retained_without_exception=0`
+- `candidates_rejected_as_unidentifiable=0`
+- `authorized_parameter_variants=4`
+- `preregistered_followup_experiments=8`
+- `decision_records_unresolved=2`
+- `decision_records_confirmed=0`
+- `decision_records_refuted=0`
+- `experimental_protocol_authorized=true`
+- `execution_performed=false`
+- `revision_performed=false`
+- `confirmation_performed=false`
+- `refutation_performed=false`
+- `a33_ready_candidates=0`
+- `a33_write_performed=false`
+- `wrong_confirmations=0`
+- `support=0`
+- `outcome_status=A32_PARAMETERIZED_CONTROL_PROTOCOL_AUTHORIZED_NO_CONFIRMATION`
+
+Protocole pre-enregistre :
+
+| candidat | variantes retenues | contextes par variante | budgets |
+|---|---|---:|---|
+| `ACTION6 {"x":26,"y":57}` | `ACTION6 {"x":18,"y":57}`, `ACTION6 {"x":42,"y":57}` | 2 | 50 et 300 |
+| `ACTION5` | `ACTION6 {"x":21,"y":28}`, `ACTION6 {"x":39,"y":28}` | 2 | 50 et 300 |
+
+Chaque experience exige :
+
+- un replay exact du contexte source SAGE.5i ;
+- une comparaison appariee cible/controle dans le meme contexte ;
+- la mesure pre-enregistree `local_patch_before_after`, identique pour la cible
+  et le controle ;
+- des arguments de controle fixes avant execution ;
+- `parameterized_control_counted_as_distinct_action=false` ;
+- `status=PRE_REGISTERED_NOT_EXECUTED` et `support=0` avant acquisition.
+
+Lecture scientifique :
+
+- A32.4 autorise un protocole d'experience, pas une revision d'hypothese.
+- Les variantes extremes sont selectionnees deterministiquement pour limiter le
+  choix post-hoc : `18/42` et `21/39`.
+- Chaque variante est pre-enregistree sur un contexte budget 50 et un contexte
+  budget 300, soit quatre experiences par candidat.
+- L'exigence historique de deux familles d'action distinctes reste la regle
+  generale ; l'exception ne vaut que pour ces candidats et cette surface
+  bornee.
+- Les deux `HypothesisRecord` restent `unresolved`, `support=0`.
+- A33 reste interdit tant que les huit acquisitions ne sont pas executees puis
+  reexaminees par A32.
+
 ## Commandes de verification
 
 Tests A32 :
 
 ```powershell
-ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest tests\test_a32_m3_revision_intake.py tests\test_a32_revision_decisions.py tests\test_a32_patch_similarity_revision_intake.py tests\test_a32_patch_similarity_revision_decisions.py -q
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest tests\test_a32_m3_revision_intake.py tests\test_a32_revision_decisions.py tests\test_a32_patch_similarity_revision_intake.py tests\test_a32_patch_similarity_revision_decisions.py tests\test_a32_unknown_game_control_protocol_decisions.py -q
 ```
 
 Generation decision A32 :
@@ -334,6 +417,12 @@ A32.3 decision patch-similarity :
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.patch_similarity_revision_decisions --intake diagnostics\a32\patch_similarity_revision_intake.json --out diagnostics\a32\patch_similarity_revision_decisions.json
+```
+
+A32.4 decision de protocole unknown-game :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.unknown_game_control_protocol_decisions --source-sage5i diagnostics\sage\sage5i_control_surface_expansion.json --out diagnostics\a32\unknown_game_control_protocol_decisions.json
 ```
 
 Guard M3 :

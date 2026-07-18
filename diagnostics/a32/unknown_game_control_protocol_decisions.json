@@ -1,0 +1,744 @@
+{
+  "a33_ready": false,
+  "a33_write_performed": false,
+  "action_distinct_requirement_retained_as_default": true,
+  "bounded_exhaustion_counted_as_refutation": false,
+  "config": {
+    "artifacts_not_modified": [
+      "SAGE.5i",
+      "M2",
+      "M3",
+      "A33"
+    ],
+    "decision_policy": {
+      "a33_write_performed": false,
+      "candidate_specific_parameterized_exception_requires_bounded_exhaustion": true,
+      "confirmation_performed": false,
+      "execution_performed": false,
+      "historical_action_distinct_requirement_retained_as_default": true,
+      "minimum_parameter_variants": 2,
+      "minimum_replay_exact_contexts_per_variant": 2,
+      "refutation_performed": false,
+      "source_support_remains_zero": true,
+      "zero_contradiction_events_required": true
+    },
+    "decision_scope": "A32_UNKNOWN_GAME_CONTROL_PROTOCOL_REVIEW",
+    "inputs_read": [
+      "SAGE.5i"
+    ],
+    "schema_version": "a32.unknown_game_control_protocol_decisions.v1",
+    "source_sage5i_path": "diagnostics\\sage\\sage5i_control_surface_expansion.json"
+  },
+  "confirmation_performed": false,
+  "decision_records": [
+    {
+      "contradictions": 0,
+      "description": "Unknown-game effect candidate for ACTION6 under the bounded SAGE.5i replay surface.",
+      "experiments_spent": 0,
+      "key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "status": "unresolved",
+      "support": 0
+    },
+    {
+      "contradictions": 0,
+      "description": "Unknown-game effect candidate for ACTION5 under the bounded SAGE.5i replay surface.",
+      "experiments_spent": 0,
+      "key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "execution_performed": false,
+  "experimental_protocol_authorized": true,
+  "input_records": [
+    {
+      "contradictions": 0,
+      "description": "Unknown-game effect candidate for ACTION6 under the bounded SAGE.5i replay surface.",
+      "experiments_spent": 0,
+      "key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "status": "unresolved",
+      "support": 0
+    },
+    {
+      "contradictions": 0,
+      "description": "Unknown-game effect candidate for ACTION5 under the bounded SAGE.5i replay surface.",
+      "experiments_spent": 0,
+      "key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "outcome_status": "A32_PARAMETERIZED_CONTROL_PROTOCOL_AUTHORIZED_NO_CONFIRMATION",
+  "parameterized_controls_counted_as_distinct_actions": false,
+  "parameterized_controls_counted_as_evidence_before_execution": false,
+  "protocol_decision_performed": true,
+  "protocol_decisions": [
+    {
+      "a33_ready": false,
+      "a33_write_performed": false,
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "action_distinct_requirement_retained_as_default": true,
+      "authorized_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "same_action_alternative_args"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "same_action_alternative_args"
+        }
+      ],
+      "bounded_exhaustion_counted_as_refutation": false,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "candidate_specific_protocol_exception": true,
+      "confirmation_performed": false,
+      "decision": "AUTHORIZE_PRE_REGISTERED_PARAMETERIZED_CONTROL_PROTOCOL",
+      "decision_record": {
+        "contradictions": 0,
+        "description": "Unknown-game effect candidate for ACTION6 under the bounded SAGE.5i replay surface.",
+        "experiments_spent": 0,
+        "key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+        "status": "unresolved",
+        "support": 0
+      },
+      "evidence_summary": {
+        "bounded_action_distinct_surface_exhausted": true,
+        "bounded_exhaustion_counted_as_refutation": false,
+        "contradiction_events": 0,
+        "distinct_control_action_names": 1,
+        "independent_context_events": 3,
+        "matching_contexts_scanned": 11,
+        "missing_revision_requirements": [
+          "minimum_distinct_control_actions"
+        ],
+        "parameterized_control_options_available": 3,
+        "raw_support_events": 3,
+        "replay_exact_contexts_scanned": 11,
+        "source_support_counted_as_scientific_support": false
+      },
+      "experimental_protocol_authorized": true,
+      "game_id": "sb26-7fbdac44",
+      "input_record": {
+        "contradictions": 0,
+        "description": "Unknown-game effect candidate for ACTION6 under the bounded SAGE.5i replay surface.",
+        "experiments_spent": 0,
+        "key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+        "status": "unresolved",
+        "support": 0
+      },
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "parameterized_controls_counted_as_evidence_before_execution": false,
+      "preregistered_experiments": [
+        {
+          "budget": 50,
+          "candidate_id": "sage5g::a32_review_candidate::001",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+          "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 18,
+            "y": 57
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::001::001",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::001",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "variant_index": 1
+        },
+        {
+          "budget": 300,
+          "candidate_id": "sage5g::a32_review_candidate::001",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+          "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 18,
+            "y": 57
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::001::002",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::008",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "variant_index": 1
+        },
+        {
+          "budget": 50,
+          "candidate_id": "sage5g::a32_review_candidate::001",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+          "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 42,
+            "y": 57
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::001::003",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::002",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0008",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "variant_index": 2
+        },
+        {
+          "budget": 300,
+          "candidate_id": "sage5g::a32_review_candidate::001",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+          "context_snapshot_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 42,
+            "y": 57
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::001::004",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::009",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0022",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "variant_index": 2
+        }
+      ],
+      "reasons": [
+        "only_action_distinct_control_requirement_missing",
+        "bounded_action_distinct_surface_exhausted",
+        "minimum_parameterized_control_variants_available",
+        "candidate_specific_protocol_exception_pre_registered"
+      ],
+      "recommended_next_step": "SAGE_PRE_REGISTERED_PARAMETERIZED_CONTROL_ACQUISITION",
+      "refutation_performed": false,
+      "revision_performed": false,
+      "scientific_review_performed": true,
+      "source_events_counted_as_scientific_support": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "a33_ready": false,
+      "a33_write_performed": false,
+      "action": "ACTION5",
+      "action_args": null,
+      "action_distinct_requirement_retained_as_default": true,
+      "authorized_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "existing_control_parameter_variant"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "existing_control_parameter_variant"
+        }
+      ],
+      "bounded_exhaustion_counted_as_refutation": false,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "candidate_specific_protocol_exception": true,
+      "confirmation_performed": false,
+      "decision": "AUTHORIZE_PRE_REGISTERED_PARAMETERIZED_CONTROL_PROTOCOL",
+      "decision_record": {
+        "contradictions": 0,
+        "description": "Unknown-game effect candidate for ACTION5 under the bounded SAGE.5i replay surface.",
+        "experiments_spent": 0,
+        "key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+        "status": "unresolved",
+        "support": 0
+      },
+      "evidence_summary": {
+        "bounded_action_distinct_surface_exhausted": true,
+        "bounded_exhaustion_counted_as_refutation": false,
+        "contradiction_events": 0,
+        "distinct_control_action_names": 1,
+        "independent_context_events": 3,
+        "matching_contexts_scanned": 13,
+        "missing_revision_requirements": [
+          "minimum_distinct_control_actions"
+        ],
+        "parameterized_control_options_available": 4,
+        "raw_support_events": 3,
+        "replay_exact_contexts_scanned": 13,
+        "source_support_counted_as_scientific_support": false
+      },
+      "experimental_protocol_authorized": true,
+      "game_id": "sb26-7fbdac44",
+      "input_record": {
+        "contradictions": 0,
+        "description": "Unknown-game effect candidate for ACTION5 under the bounded SAGE.5i replay surface.",
+        "experiments_spent": 0,
+        "key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+        "status": "unresolved",
+        "support": 0
+      },
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "parameterized_controls_counted_as_evidence_before_execution": false,
+      "preregistered_experiments": [
+        {
+          "budget": 50,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+          "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 21,
+            "y": 28
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::002::001",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::012",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0001",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION5",
+          "target_action_args": null,
+          "variant_index": 1
+        },
+        {
+          "budget": 300,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+          "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 21,
+            "y": 28
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::002::002",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::021",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION5",
+          "target_action_args": null,
+          "variant_index": 1
+        },
+        {
+          "budget": 50,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+          "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 39,
+            "y": 28
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::002::003",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::013",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0003",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION5",
+          "target_action_args": null,
+          "variant_index": 2
+        },
+        {
+          "budget": 300,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+          "context_snapshot_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_action": "ACTION6",
+          "control_action_args": {
+            "x": 39,
+            "y": 28
+          },
+          "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+          "exact_context_replay_required": true,
+          "experiment_id": "a32.4::parameterized_control_experiment::002::004",
+          "measurement": "local_patch_before_after",
+          "paired_target_control_required": true,
+          "parameterized_control_counted_as_distinct_action": false,
+          "same_measurement_for_target_and_control_required": true,
+          "source_audit_id": "sage5i::context_surface_audit::022",
+          "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0021",
+          "status": "PRE_REGISTERED_NOT_EXECUTED",
+          "support": 0,
+          "target_action": "ACTION5",
+          "target_action_args": null,
+          "variant_index": 2
+        }
+      ],
+      "reasons": [
+        "only_action_distinct_control_requirement_missing",
+        "bounded_action_distinct_surface_exhausted",
+        "minimum_parameterized_control_variants_available",
+        "candidate_specific_protocol_exception_pre_registered"
+      ],
+      "recommended_next_step": "SAGE_PRE_REGISTERED_PARAMETERIZED_CONTROL_ACQUISITION",
+      "refutation_performed": false,
+      "revision_performed": false,
+      "scientific_review_performed": true,
+      "source_events_counted_as_scientific_support": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "refutation_performed": false,
+  "requested_followup_experiments": [
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 18,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::001",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::001",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 1
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 18,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::002",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::008",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 1
+    },
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 42,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::003",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::002",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0008",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 2
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 42,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::004",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::009",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0022",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 2
+    },
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::001",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::012",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0001",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 1
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::002",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::021",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 1
+    },
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 39,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::003",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::013",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0003",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 2
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 39,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::004",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::022",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0021",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 2
+    }
+  ],
+  "revision_performed": false,
+  "scientific_review_performed": true,
+  "source_events_counted_as_scientific_support": false,
+  "source_sage5i_summary": {
+    "a32_parameterized_protocol_proposal_generated": true,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_surface_signature_counts": {
+      "ACTION5,ACTION6": 24
+    },
+    "all_candidate_contexts_audited_exact": true,
+    "bounded_action_distinct_exhaustion_proven": true,
+    "bounded_control_surface_exhaustion_counted_as_refutation": false,
+    "bounded_scope_only": true,
+    "candidate_context_counts": {
+      "ACTION5": 13,
+      "ACTION6": 11
+    },
+    "candidate_contexts_considered": 24,
+    "candidates_evaluated": 2,
+    "candidates_ready_for_A32_intake": 0,
+    "candidates_with_action_distinct_surface_exhausted": 2,
+    "candidates_with_new_distinct_control": 0,
+    "context_surface_audits": 24,
+    "contexts_with_third_action_family": 0,
+    "control_expansion_events_counted_as_scientific_support": false,
+    "control_expansion_experiments_blocked": 0,
+    "control_expansion_experiments_executed": 0,
+    "execution_performed": true,
+    "gate_passed": true,
+    "outcome_status": "SAGE_CONTROL_SURFACE_EXPANSION_ACTION_DISTINCT_EXHAUSTED_CANDIDATE_ONLY",
+    "parameterized_control_option_counts": {
+      "ACTION5": 4,
+      "ACTION6": 3
+    },
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "raw_contradiction_events": 0,
+    "raw_support_events": 0,
+    "replay_exact_context_surface_audits": 24,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_requests_available": 24,
+    "source_sage5e_outcome_status": "SAGE_DISTRIBUTED_LIVE_MINI_FRONTIER_GENERATED_AND_EXECUTED_CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5I",
+    "unique_candidate_contexts": 24
+  },
+  "summary": {
+    "a33_ready_candidates": 0,
+    "a33_write_performed": false,
+    "authorized_parameter_variants": 4,
+    "candidates_rejected_as_unidentifiable": 0,
+    "confirmation_performed": false,
+    "decision_records_confirmed": 0,
+    "decision_records_refuted": 0,
+    "decision_records_unresolved": 2,
+    "execution_performed": false,
+    "experimental_protocol_authorized": true,
+    "outcome_status": "A32_PARAMETERIZED_CONTROL_PROTOCOL_AUTHORIZED_NO_CONFIRMATION",
+    "parameterized_protocols_authorized": 2,
+    "preregistered_followup_experiments": 8,
+    "protocol_decision_performed": true,
+    "protocol_decisions": 2,
+    "refutation_performed": false,
+    "revision_performed": false,
+    "scientific_review_performed": true,
+    "source_candidates_consumed": 2,
+    "strict_action_distinct_requirements_retained_without_exception": 0,
+    "support": 0,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "UNRESOLVED_AFTER_A32_4_PROTOCOL_DECISION",
+  "wrong_confirmations": 0
+}
