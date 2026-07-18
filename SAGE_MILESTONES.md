@@ -38,6 +38,7 @@ de policy en support scientifique.
 | SAGE.5g - A32 review handoff compiler | Fait | `theory/sage/a32_review_handoff.py`, `tests/test_sage_a32_review_handoff.py`, `diagnostics/sage/sage5g_a32_review_handoff.json` | Compile 2 dossiers A32-review candidate-only et 4 followups; `ACTION6` requiert une diversite de controle; `ACTION5` requiert support + diversite de controle et remesure croisee du cluster lie non fusionne; support=0; aucune execution ni write A32/A33 |
 | SAGE.5h - Controlled follow-up acquisition | Fait - partiel, surface de controle epuisee | `theory/sage/controlled_followup_acquisition.py`, `tests/test_sage_controlled_followup_acquisition.py`, `diagnostics/sage/sage5h_controlled_followup_acquisition.json` | Resout les 4 followups : 2 acquis, 2 bloques car seuls ACTION5/ACTION6 sont legaux; ACTION5 atteint 3 evenements comparables; remesure `local_patch` alignee mais `object_delta` divergente entre clusters 002/003; support=0; aucun write A32/A33 |
 | SAGE.5i - Control-surface expansion | Fait - epuisement action-distinct borne | `theory/sage/control_surface_expansion.py`, `tests/test_sage_control_surface_expansion.py`, `diagnostics/sage/sage5i_control_surface_expansion.json` | Audite les 24 contextes candidats SAGE.5e en replay exact; tous exposent seulement ACTION5/ACTION6; aucune troisieme famille d'action; 7 options parametrees conservees sans requalification; proposition de decision protocolaire A32; support=0; aucun write A32/A33 |
+| SAGE.5j - Pre-registered parameterized control acquisition | Fait - resultat mixte candidate-only | `theory/sage/parameterized_control_acquisition.py`, `tests/test_sage_parameterized_control_acquisition.py`, `diagnostics/sage/sage5j_parameterized_control_acquisition.json` | Execute exactement les 8 experiences A32.4 sans substitution; ACTION6 : 4/4 effets non discriminants (5 vs 5); ACTION5 : 4/4 effets discriminants (21 vs 4); 0 contradiction; 2 dossiers prets pour revue A32; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2079,14 +2080,117 @@ Decision A32.4 du 2026-07-18 :
 - Artefact :
   `diagnostics/a32/unknown_game_control_protocol_decisions.json`.
 
-Suite conseillee apres A32.4 :
+Transition :
 
-1. SAGE.5j - executer exactement les huit experiences pre-enregistrees, sans
-   substitution post-hoc de variante ou de contexte.
-2. Revenir vers A32 pour une decision sur les resultats du protocole parametre.
-3. A33.2 - enregistrer une mecanique unknown-game seulement si cette nouvelle
-   revue A32 la confirme.
-4. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
+SAGE.5j a execute les huit experiences A32.4 exactement comme pre-enregistrees.
+Aucune variante, aucun contexte, aucun argument ni aucune mesure n'a ete
+substitue. Les deux candidats donnent des resultats opposes mais parfaitement
+stables sur leurs quatre repetitions : `ACTION6` est non discriminant face aux
+autres positions `ACTION6`, tandis qu'`ACTION5` reste discriminant face aux
+positions `ACTION6` selectionnees.
+
+## SAGE.5j - Pre-registered parameterized control acquisition
+
+Objectif :
+
+- Lire la decision A32.4 et les requests replayables SAGE.5e.
+- Verifier que les deux hypotheses A32.4 sont toujours unresolved, `support=0`,
+  sans confirmation, refutation ni write A33.
+- Consommer uniquement les huit experiences `PRE_REGISTERED_NOT_EXECUTED`.
+- Faire correspondre chaque experience a sa request SAGE.5e par identifiant,
+  cible, arguments, contexte, budget et mesure.
+- Rejouer independamment les bras cible et controle depuis le meme contexte.
+- Exiger les arguments exacts des controles `18/42` et `21/39`.
+- Interdire toute substitution post-hoc de variante, contexte ou mesure.
+- Classer chaque paire comme discriminante, non discriminante ou controle
+  superieur, sans transformer ce resultat en verdict scientifique.
+- Garder `support=0`, aucune revision, aucun write A32/A33.
+
+Ajouts :
+
+- `theory/sage/parameterized_control_acquisition.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_parameterized_control_acquisition.py`
+- `diagnostics/sage/sage5j_parameterized_control_acquisition.json`
+
+Run du 2026-07-18 :
+
+- `source_protocol_decisions=2`
+- `pre_registered_experiments_consumed=8`
+- `experiments_executed=8`
+- `experiments_blocked=0`
+- `live_prefix_replay_exact_experiments=8`
+- `protocol_exact_match_experiments=8`
+- `protocol_substitutions_detected=0`
+- `target_control_pairs_executed=8`
+- `parameterized_variants_executed=4`
+- `variant_replications_completed=4`
+- `raw_support_events=4`
+- `raw_contradiction_events=0`
+- `raw_neutral_events=4`
+- `candidates_evaluated=2`
+- `candidate_protocols_complete=2`
+- `candidates_with_discriminating_parameterized_controls=1`
+- `candidates_with_non_discriminating_parameterized_controls=1`
+- `candidates_with_control_exceeding_target=0`
+- `candidates_ready_for_A32_protocol_result_review=2`
+- `all_pre_registered_experiments_executed_exactly=true`
+- `gate_passed=true`
+- `outcome_status=SAGE_PARAMETERIZED_CONTROL_ACQUISITION_MIXED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_5J`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Resultats par candidat :
+
+| candidat | controles parametres | paires exactes | signal cible | signal controle | resultat |
+|---|---|---:|---:|---:|---|
+| `ACTION6 {"x":26,"y":57}` | `ACTION6 x=18/42,y=57` | 4 | 5 | 5 | `PARAMETERIZED_CONTROLS_NON_DISCRIMINATING_CANDIDATE_ONLY` |
+| `ACTION5` | `ACTION6 x=21/39,y=28` | 4 | 21 | 4 | `PARAMETERIZED_CONTROLS_DISCRIMINATING_CANDIDATE_ONLY` |
+
+Lecture scientifique :
+
+- Les quatre controles parametres du candidat `ACTION6` reproduisent exactement
+  le meme signal local que la cible. Le protocole n'identifie donc pas un effet
+  specifique a `x=26`.
+- Les quatre controles du candidat `ACTION5` restent nettement differents de la
+  cible, avec un delta apparie constant de `17`.
+- Les evenements bruts `4 support / 4 neutral / 0 contradiction` ne sont pas
+  comptes comme support scientifique par SAGE.
+- Les evenements neutres `ACTION6` ne sont pas comptes comme refutation.
+- Les variantes parametrees ne sont toujours pas renommees en familles d'action
+  distinctes.
+- Les deux dossiers sont complets et prets pour une revue A32 du resultat du
+  protocole ; A32 reste seul autorise a decider.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.parameterized_control_acquisition `
+  --source-a32-4 diagnostics\a32\unknown_game_control_protocol_decisions.json `
+  --source-sage5e diagnostics\sage\sage5e_distributed_live_mini_frontier_results.json `
+  --out diagnostics\sage\sage5j_parameterized_control_acquisition.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_parameterized_control_acquisition.py `
+  tests\test_a32_unknown_game_control_protocol_decisions.py `
+  tests\test_sage_control_surface_expansion.py `
+  tests\test_sage_controlled_followup_acquisition.py -q
+```
+
+Suite conseillee apres SAGE.5j :
+
+1. A32.5 - revoir separement les deux resultats du protocole : maintien ou
+   rejet d'identifiabilite pour `ACTION6`, decision scope-limited pour `ACTION5`.
+2. A33.2 - enregistrer une mecanique unknown-game seulement si A32.5 confirme
+   explicitement un dossier.
+3. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
 bornee, non repetitive, produire/executer des mini-frontiers live reparties sur

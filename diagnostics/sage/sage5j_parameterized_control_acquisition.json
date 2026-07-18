@@ -1,0 +1,1851 @@
+{
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "blocked_parameterized_control_experiments": [],
+  "candidate_protocol_assessments": [
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "blocked_experiments": 0,
+      "candidate_assessment_counted_as_a32_decision": false,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "distinct_control_action_names_executed": 1,
+      "distinct_parameterized_interventions_executed": 2,
+      "executed_experiments": 4,
+      "game_id": "sb26-7fbdac44",
+      "neutral_events_counted_as_refutation": false,
+      "parameterized_interventions_counted_as_distinct_actions": false,
+      "parameterized_protocol_result": "PARAMETERIZED_CONTROLS_NON_DISCRIMINATING_CANDIDATE_ONLY",
+      "protocol_decision": "AUTHORIZE_PRE_REGISTERED_PARAMETERIZED_CONTROL_PROTOCOL",
+      "protocol_events_counted_as_scientific_support": false,
+      "protocol_execution_complete": true,
+      "raw_contradiction_events": 0,
+      "raw_neutral_events": 4,
+      "raw_support_events": 0,
+      "ready_for_A32_protocol_result_review": true,
+      "replay_exact_protocol_matches": 4,
+      "requested_experiments": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "scientific_status": "UNRESOLVED",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_replication_complete": true,
+      "variant_replication_counts": {
+        "{\"action\":\"ACTION6\",\"action_args\":{\"x\":18,\"y\":57}}": 2,
+        "{\"action\":\"ACTION6\",\"action_args\":{\"x\":42,\"y\":57}}": 2
+      }
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "action": "ACTION5",
+      "action_args": null,
+      "blocked_experiments": 0,
+      "candidate_assessment_counted_as_a32_decision": false,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "distinct_control_action_names_executed": 1,
+      "distinct_parameterized_interventions_executed": 2,
+      "executed_experiments": 4,
+      "game_id": "sb26-7fbdac44",
+      "neutral_events_counted_as_refutation": false,
+      "parameterized_interventions_counted_as_distinct_actions": false,
+      "parameterized_protocol_result": "PARAMETERIZED_CONTROLS_DISCRIMINATING_CANDIDATE_ONLY",
+      "protocol_decision": "AUTHORIZE_PRE_REGISTERED_PARAMETERIZED_CONTROL_PROTOCOL",
+      "protocol_events_counted_as_scientific_support": false,
+      "protocol_execution_complete": true,
+      "raw_contradiction_events": 0,
+      "raw_neutral_events": 0,
+      "raw_support_events": 4,
+      "ready_for_A32_protocol_result_review": true,
+      "replay_exact_protocol_matches": 4,
+      "requested_experiments": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "scientific_status": "UNRESOLVED",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_replication_complete": true,
+      "variant_replication_counts": {
+        "{\"action\":\"ACTION6\",\"action_args\":{\"x\":21,\"y\":28}}": 2,
+        "{\"action\":\"ACTION6\",\"action_args\":{\"x\":39,\"y\":28}}": 2
+      }
+    }
+  ],
+  "comparison": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "all_pre_registered_experiments_executed_exactly": true,
+    "all_pre_registered_experiments_resolved": true,
+    "candidate_protocols_complete": 2,
+    "candidates_evaluated": 2,
+    "candidates_ready_for_A32_protocol_result_review": 2,
+    "candidates_with_control_exceeding_target": 0,
+    "candidates_with_discriminating_parameterized_controls": 1,
+    "candidates_with_non_discriminating_parameterized_controls": 1,
+    "experiments_blocked": 0,
+    "experiments_executed": 8,
+    "gate_passed": true,
+    "live_prefix_replay_exact_experiments": 8,
+    "neutral_events_counted_as_refutation": false,
+    "outcome_status": "SAGE_PARAMETERIZED_CONTROL_ACQUISITION_MIXED_CANDIDATE_ONLY",
+    "parameterized_control_events_counted_as_scientific_support": false,
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "parameterized_variants_executed": 4,
+    "pre_registered_experiments_consumed": 8,
+    "protocol_exact_match_experiments": 8,
+    "protocol_result_counted_as_a32_decision": false,
+    "protocol_substitutions_detected": 0,
+    "raw_contradiction_events": 0,
+    "raw_neutral_events": 4,
+    "raw_support_events": 4,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_a32_4_outcome_status": "A32_PARAMETERIZED_CONTROL_PROTOCOL_AUTHORIZED_NO_CONFIRMATION",
+    "source_protocol_decisions": 2,
+    "support": 0,
+    "target_control_pairs_executed": 8,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+    "variant_replications_completed": 4
+  },
+  "config": {
+    "artifacts_not_modified": [
+      "A32.4",
+      "M2",
+      "M3",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "environments_dir": null,
+    "execution_mode": "a32_pre_registered_live_prefix_paired_control",
+    "execution_policy": {
+      "context_substitution_allowed": false,
+      "exact_context_replay_required": true,
+      "exact_control_action_args_required": true,
+      "exact_target_action_args_required": true,
+      "execute_only_pre_registered_experiments": true,
+      "parameterized_controls_are_not_action_distinct_controls": true,
+      "results_require_later_a32_review": true,
+      "same_measurement_for_both_arms_required": true,
+      "variant_substitution_allowed": false
+    },
+    "inputs_read": [
+      "A32.4",
+      "SAGE.5e"
+    ],
+    "schema_version": "sage.parameterized_control_acquisition.v1",
+    "source_a32_4_path": "diagnostics\\a32\\unknown_game_control_protocol_decisions.json",
+    "source_sage5e_path": "diagnostics\\sage\\sage5e_distributed_live_mini_frontier_results.json"
+  },
+  "confirmation_performed": false,
+  "executed_parameterized_control_experiments": [
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 18,
+        "y": 57
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 18,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            14,
+            14
+          ],
+          [
+            0,
+            14,
+            14
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            14,
+            14
+          ],
+          [
+            4,
+            14,
+            14
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          17,
+          58,
+          19
+        ]
+      },
+      "control_signal": 5.0,
+      "controlled_delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 5.0,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 1,
+      "paired_effect_signatures_equal": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::001::001",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::001",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0006",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 1,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 18,
+        "y": 57
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 18,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            14,
+            14
+          ],
+          [
+            0,
+            14,
+            14
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            14,
+            14
+          ],
+          [
+            4,
+            14,
+            14
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          17,
+          58,
+          19
+        ]
+      },
+      "control_signal": 5.0,
+      "controlled_delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 5.0,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 1,
+      "paired_effect_signatures_equal": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::001::002",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::008",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0020",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 1,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 42,
+        "y": 57
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 42,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            11,
+            11
+          ],
+          [
+            0,
+            11,
+            11
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            11,
+            11
+          ],
+          [
+            4,
+            11,
+            11
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          41,
+          58,
+          43
+        ]
+      },
+      "control_signal": 5.0,
+      "controlled_delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 5.0,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 1,
+      "paired_effect_signatures_equal": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::001::003",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::002",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0008",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0008",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 2,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 42,
+        "y": 57
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 42,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            11,
+            11
+          ],
+          [
+            0,
+            11,
+            11
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            11,
+            11
+          ],
+          [
+            4,
+            11,
+            11
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          41,
+          58,
+          43
+        ]
+      },
+      "control_signal": 5.0,
+      "controlled_delta": {
+        "absolute_effect_size": 0.0,
+        "baseline_signal": 5.0,
+        "direction": "neutral",
+        "effect_size": 0.0,
+        "perturbation_signal": 5.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 1,
+      "paired_effect_signatures_equal": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::001::004",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::009",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0022",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0022",
+      "support": 0,
+      "support_events": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 20,
+        "local_changed_pixels": 5,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "target_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 26,
+          "y": 57
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.004883,
+        "changed_pixels": 20,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 5,
+        "local_patch_after": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            15,
+            15
+          ],
+          [
+            0,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 5,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          56,
+          25,
+          58,
+          27
+        ]
+      },
+      "target_signal": 5.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 2,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 28
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 53,
+        "local_changed_pixels": 4,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 0,
+      "paired_effect_signatures_equal": false,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::002::001",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::012",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0001",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0001",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 21,
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21.0,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 1,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 28
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 53,
+        "local_changed_pixels": 4,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 21,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          20,
+          29,
+          22
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 0,
+      "paired_effect_signatures_equal": false,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::002::002",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::021",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0019",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 21,
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21.0,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 1,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 39,
+        "y": 28
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 53,
+        "local_changed_pixels": 4,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 39,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            9,
+            9
+          ],
+          [
+            4,
+            9,
+            9
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          38,
+          29,
+          40
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 0,
+      "paired_effect_signatures_equal": false,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::002::003",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::013",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0003",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0003",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 21,
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21.0,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 2,
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "contradiction_events": 0,
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 39,
+        "y": 28
+      },
+      "control_context_signature_verified": true,
+      "control_effect_signature": {
+        "changed": true,
+        "changed_pixels": 53,
+        "local_changed_pixels": 4,
+        "local_patch_available": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4.0,
+        "observed_signal_source": "local_changed_pixels"
+      },
+      "control_measurement": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 39,
+          "y": 28
+        },
+        "changed": true,
+        "changed_cell_ratio": 0.012939,
+        "changed_pixels": 53,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 4,
+        "local_patch_after": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            15,
+            15
+          ],
+          [
+            4,
+            15,
+            15
+          ]
+        ],
+        "local_patch_available": true,
+        "local_patch_before": [
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            4
+          ],
+          [
+            4,
+            4,
+            2
+          ]
+        ],
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 4,
+        "observed_signal_source": "local_changed_pixels",
+        "patch_bbox": [
+          27,
+          38,
+          29,
+          40
+        ]
+      },
+      "control_signal": 4.0,
+      "controlled_delta": {
+        "absolute_effect_size": 17.0,
+        "baseline_signal": 4.0,
+        "direction": "support",
+        "effect_size": 17.0,
+        "perturbation_signal": 21.0,
+        "predicted_metric": "local_patch_before_after"
+      },
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "execution_status": "EXECUTED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "measurement": "local_patch_before_after",
+      "neutral_event_counted_as_refutation": false,
+      "neutral_events": 0,
+      "paired_effect_signatures_equal": false,
+      "parameterized_control_counted_as_distinct_action": false,
+      "parameterized_control_event_counted_as_scientific_support": false,
+      "protocol_exact_match": true,
+      "protocol_experiment_id": "a32.4::parameterized_control_experiment::002::004",
+      "protocol_substitution_detected": false,
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_audit_id": "sage5i::context_surface_audit::022",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0021",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0021",
+      "support": 0,
+      "support_events": 1,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "target_context_signature_verified": true,
+      "target_effect_signature": {
+        "changed": true,
+        "changed_pixels": 21,
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21.0,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_measurement": {
+        "action": "ACTION5",
+        "action_args": {},
+        "changed": true,
+        "changed_cell_ratio": 0.005127,
+        "changed_pixels": 21,
+        "grid_shape_after": [
+          64,
+          64
+        ],
+        "grid_shape_before": [
+          64,
+          64
+        ],
+        "local_changed_pixels": 0,
+        "local_patch_available": false,
+        "measurable": true,
+        "metric": "local_patch_before_after",
+        "observed_signal": 21,
+        "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+      },
+      "target_signal": 21.0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+      "variant_index": 2,
+      "wrong_confirmations": 0
+    }
+  ],
+  "execution_performed": true,
+  "neutral_events_counted_as_refutation": false,
+  "outcome_status": "SAGE_PARAMETERIZED_CONTROL_ACQUISITION_MIXED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "parameterized_control_events_counted_as_scientific_support": false,
+  "parameterized_controls_counted_as_distinct_actions": false,
+  "pre_registered_experiments": [
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 18,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::001",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::001",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 1
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 18,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::002",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::008",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 1
+    },
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 42,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::003",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::002",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0008",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 2
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 42,
+        "y": 57
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::001::004",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::009",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0022",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "variant_index": 2
+    },
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::001",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::012",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0001",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 1
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::002",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::021",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 1
+    },
+    {
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 39,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::003",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::013",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0003",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 2
+    },
+    {
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 39,
+        "y": 28
+      },
+      "evaluation_rule": "compare_paired_target_and_control_effect_signatures_without_post_hoc_metric_change",
+      "exact_context_replay_required": true,
+      "experiment_id": "a32.4::parameterized_control_experiment::002::004",
+      "measurement": "local_patch_before_after",
+      "paired_target_control_required": true,
+      "parameterized_control_counted_as_distinct_action": false,
+      "same_measurement_for_target_and_control_required": true,
+      "source_audit_id": "sage5i::context_surface_audit::022",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0021",
+      "status": "PRE_REGISTERED_NOT_EXECUTED",
+      "support": 0,
+      "target_action": "ACTION5",
+      "target_action_args": null,
+      "variant_index": 2
+    }
+  ],
+  "protocol_result_counted_as_a32_decision": false,
+  "refutation_performed": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_a32_4_summary": {
+    "a33_ready_candidates": 0,
+    "a33_write_performed": false,
+    "authorized_parameter_variants": 4,
+    "candidates_rejected_as_unidentifiable": 0,
+    "confirmation_performed": false,
+    "decision_records_confirmed": 0,
+    "decision_records_refuted": 0,
+    "decision_records_unresolved": 2,
+    "execution_performed": false,
+    "experimental_protocol_authorized": true,
+    "outcome_status": "A32_PARAMETERIZED_CONTROL_PROTOCOL_AUTHORIZED_NO_CONFIRMATION",
+    "parameterized_protocols_authorized": 2,
+    "preregistered_followup_experiments": 8,
+    "protocol_decision_performed": true,
+    "protocol_decisions": 2,
+    "refutation_performed": false,
+    "revision_performed": false,
+    "scientific_review_performed": true,
+    "source_candidates_consumed": 2,
+    "strict_action_distinct_requirements_retained_without_exception": 0,
+    "support": 0,
+    "wrong_confirmations": 0
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "all_pre_registered_experiments_executed_exactly": true,
+    "all_pre_registered_experiments_resolved": true,
+    "candidate_protocols_complete": 2,
+    "candidates_evaluated": 2,
+    "candidates_ready_for_A32_protocol_result_review": 2,
+    "candidates_with_control_exceeding_target": 0,
+    "candidates_with_discriminating_parameterized_controls": 1,
+    "candidates_with_non_discriminating_parameterized_controls": 1,
+    "experiments_blocked": 0,
+    "experiments_executed": 8,
+    "gate_passed": true,
+    "live_prefix_replay_exact_experiments": 8,
+    "neutral_events_counted_as_refutation": false,
+    "outcome_status": "SAGE_PARAMETERIZED_CONTROL_ACQUISITION_MIXED_CANDIDATE_ONLY",
+    "parameterized_control_events_counted_as_scientific_support": false,
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "parameterized_variants_executed": 4,
+    "pre_registered_experiments_consumed": 8,
+    "protocol_exact_match_experiments": 8,
+    "protocol_result_counted_as_a32_decision": false,
+    "protocol_substitutions_detected": 0,
+    "raw_contradiction_events": 0,
+    "raw_neutral_events": 4,
+    "raw_support_events": 4,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_a32_4_outcome_status": "A32_PARAMETERIZED_CONTROL_PROTOCOL_AUTHORIZED_NO_CONFIRMATION",
+    "source_protocol_decisions": 2,
+    "support": 0,
+    "target_control_pairs_executed": 8,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+    "variant_replications_completed": 4
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_5J",
+  "wrong_confirmations": 0
+}

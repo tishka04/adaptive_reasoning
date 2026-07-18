@@ -393,6 +393,22 @@ Lecture scientifique :
 - A33 reste interdit tant que les huit acquisitions ne sont pas executees puis
   reexaminees par A32.
 
+Retour SAGE.5j du 2026-07-18 :
+
+- Les 8 experiences pre-enregistrees ont ete executees en replay exact, sans
+  substitution de variante, contexte, argument ou mesure.
+- Candidat `ACTION6 {"x":26,"y":57}` : 4/4 paires non discriminantes,
+  signal cible `5`, controle `5`.
+- Candidat `ACTION5` : 4/4 paires discriminantes, signal cible `21`, controle
+  `4`, delta `17`.
+- Total brut : `4 support`, `4 neutral`, `0 contradiction` ; SAGE conserve
+  `support=0`.
+- Les deux dossiers sont complets et marques
+  `ready_for_A32_protocol_result_review=true`.
+- Aucune decision A32.5 n'est produite par SAGE.5j. La prochaine etape doit
+  revoir separement le dossier `ACTION6` non discriminant et le dossier
+  `ACTION5` discriminant avant toute ecriture A33.
+
 ## Commandes de verification
 
 Tests A32 :
