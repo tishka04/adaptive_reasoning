@@ -1,0 +1,575 @@
+{
+  "a32_review_candidate_items": [
+    {
+      "a32_intake_recommendation": "FOLLOWUP_REQUIRED_CONTROL_DIVERSITY",
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "budgets": [
+        50,
+        150,
+        300
+      ],
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "candidate_review_item_counted_as_revision": false,
+      "contexts": [
+        {
+          "budget": 50,
+          "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_context_signature_verified": true,
+          "live_prefix_replay_exact": true,
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+          "source_step": 6,
+          "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0006",
+          "target_context_signature_verified": true
+        },
+        {
+          "budget": 150,
+          "context_snapshot_hash": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_context_signature_verified": true,
+          "live_prefix_replay_exact": true,
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0012",
+          "source_step": 12,
+          "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0012",
+          "target_context_signature_verified": true
+        },
+        {
+          "budget": 300,
+          "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_context_signature_verified": true,
+          "live_prefix_replay_exact": true,
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+          "source_step": 20,
+          "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0020",
+          "target_context_signature_verified": true
+        }
+      ],
+      "contradiction_events": 0,
+      "control_interventions": [
+        {
+          "action": "ACTION5",
+          "budget": 50,
+          "context_signature_verified": true,
+          "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+          "signal": 1.0
+        },
+        {
+          "action": "ACTION5",
+          "budget": 150,
+          "context_signature_verified": true,
+          "context_snapshot_hash": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0012",
+          "signal": 1.0
+        },
+        {
+          "action": "ACTION5",
+          "budget": 300,
+          "context_signature_verified": true,
+          "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+          "signal": 1.0
+        }
+      ],
+      "distinct_control_actions": 1,
+      "execution_performed": false,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "independent_context_events": 3,
+      "independent_context_events_counted_as_scientific_support": false,
+      "missing_revision_requirements": [
+        "minimum_distinct_control_actions"
+      ],
+      "predicted_effect_signature": {
+        "bbox_shapes": [
+          "6x6"
+        ],
+        "changed_cells": 20,
+        "color_transitions": {
+          "4->0": 20
+        },
+        "component_delta_by_color": {},
+        "effect_size": 4.0,
+        "levels_delta": 0,
+        "mean_effect_size": 4.0,
+        "replay_exact": true,
+        "same_bbox_shape": true,
+        "terminal_after": false
+      },
+      "predicted_metric": "local_patch_before_after",
+      "raw_support_events": 3,
+      "ready_for_A32_review": true,
+      "ready_for_A32_review_is_not_verdict": true,
+      "related_nonmerged_cluster_ids": [],
+      "requested_followups": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "additional_control_actions_required": 1,
+          "candidate_id": "sage5g::a32_review_candidate::001",
+          "excluded_control_actions": [
+            "ACTION5"
+          ],
+          "execution_performed": false,
+          "followup_id": "sage5g::a32_review_candidate::001::followup::control_diversity",
+          "minimum_replay_exact_contexts": 2,
+          "request_type": "ACQUIRE_DISTINCT_CONTROL_ACTION",
+          "status": "REQUESTED_CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+        }
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_cluster_ids": [
+        "sage5f::candidate_mechanism_cluster::001"
+      ],
+      "status": "UNRESOLVED",
+      "support": 0,
+      "target_interventions": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "budget": 50,
+          "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "effect_size_vs_control": 4.0,
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+          "signal": 5.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "budget": 150,
+          "context_snapshot_hash": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "effect_size_vs_control": 4.0,
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0012",
+          "signal": 5.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          },
+          "budget": 300,
+          "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "effect_size_vs_control": 4.0,
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+          "signal": 5.0
+        }
+      ],
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5G",
+      "wrong_confirmations": 0
+    },
+    {
+      "a32_intake_recommendation": "FOLLOWUP_REQUIRED_SUPPORT_AND_CONTROL_DIVERSITY",
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "action": "ACTION5",
+      "action_args": null,
+      "budgets": [
+        150,
+        300
+      ],
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "candidate_review_item_counted_as_revision": false,
+      "contexts": [
+        {
+          "budget": 150,
+          "context_snapshot_hash": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_context_signature_verified": true,
+          "live_prefix_replay_exact": true,
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0011",
+          "source_step": 11,
+          "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0011",
+          "target_context_signature_verified": true
+        },
+        {
+          "budget": 300,
+          "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "control_context_signature_verified": true,
+          "live_prefix_replay_exact": true,
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+          "source_step": 19,
+          "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0019",
+          "target_context_signature_verified": true
+        }
+      ],
+      "contradiction_events": 0,
+      "control_interventions": [
+        {
+          "action": "ACTION6",
+          "budget": 150,
+          "context_signature_verified": true,
+          "context_snapshot_hash": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0011",
+          "signal": 4.0
+        },
+        {
+          "action": "ACTION6",
+          "budget": 300,
+          "context_signature_verified": true,
+          "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+          "signal": 4.0
+        }
+      ],
+      "distinct_control_actions": 1,
+      "execution_performed": false,
+      "game_id": "sb26-7fbdac44",
+      "hypothesis_family": "local_patch_change_candidate",
+      "independent_context_events": 2,
+      "independent_context_events_counted_as_scientific_support": false,
+      "missing_revision_requirements": [
+        "minimum_support_events",
+        "minimum_distinct_control_actions"
+      ],
+      "predicted_effect_signature": {
+        "bbox_shapes": [
+          "30x9",
+          "34x9"
+        ],
+        "changed_cells": 21,
+        "color_transitions": {
+          "0->4": 20,
+          "2->3": 1
+        },
+        "component_delta_by_color": {},
+        "effect_size": 17.0,
+        "levels_delta": 0,
+        "mean_effect_size": 17.0,
+        "replay_exact": true,
+        "same_bbox_shape": false,
+        "terminal_after": false
+      },
+      "predicted_metric": "local_patch_before_after",
+      "raw_support_events": 2,
+      "ready_for_A32_review": true,
+      "ready_for_A32_review_is_not_verdict": true,
+      "related_nonmerged_cluster_ids": [
+        "sage5f::candidate_mechanism_cluster::002"
+      ],
+      "requested_followups": [
+        {
+          "action": "ACTION5",
+          "action_args": null,
+          "additional_events_required": 1,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "execution_performed": false,
+          "followup_id": "sage5g::a32_review_candidate::002::followup::support",
+          "minimum_replay_exact_contexts": 1,
+          "request_type": "ACQUIRE_ADDITIONAL_COMPARABLE_SUPPORT",
+          "status": "REQUESTED_CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+        },
+        {
+          "action": "ACTION5",
+          "action_args": null,
+          "additional_control_actions_required": 1,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "excluded_control_actions": [
+            "ACTION6"
+          ],
+          "execution_performed": false,
+          "followup_id": "sage5g::a32_review_candidate::002::followup::control_diversity",
+          "minimum_replay_exact_contexts": 1,
+          "request_type": "ACQUIRE_DISTINCT_CONTROL_ACTION",
+          "status": "REQUESTED_CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+        },
+        {
+          "action": "ACTION5",
+          "action_args": null,
+          "candidate_id": "sage5g::a32_review_candidate::002",
+          "clusters_must_remain_unmerged": true,
+          "execution_performed": false,
+          "followup_id": "sage5g::a32_review_candidate::002::followup::cross_measurement",
+          "related_cluster_ids": [
+            "sage5f::candidate_mechanism_cluster::002"
+          ],
+          "request_type": "CROSS_MEASURE_RELATED_NONMERGED_CLUSTER",
+          "required_measurements": [
+            "local_patch",
+            "object_delta"
+          ],
+          "source_cluster_id": "sage5f::candidate_mechanism_cluster::003",
+          "status": "REQUESTED_CANDIDATE_ONLY",
+          "support": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+        }
+      ],
+      "revision_performed": false,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_cluster_ids": [
+        "sage5f::candidate_mechanism_cluster::003"
+      ],
+      "status": "UNRESOLVED",
+      "support": 0,
+      "target_interventions": [
+        {
+          "action": "ACTION5",
+          "action_args": null,
+          "budget": 150,
+          "context_snapshot_hash": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "effect_size_vs_control": 17.0,
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0011",
+          "signal": 21.0
+        },
+        {
+          "action": "ACTION5",
+          "action_args": null,
+          "budget": 300,
+          "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "effect_size_vs_control": 17.0,
+          "metric": "local_patch_before_after",
+          "request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+          "signal": 21.0
+        }
+      ],
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5G",
+      "wrong_confirmations": 0
+    }
+  ],
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "candidate_review_item_counted_as_revision": false,
+  "candidate_review_item_counted_as_scientific_verdict": false,
+  "comparison": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "candidate_review_item_counted_as_revision": false,
+    "execution_performed": false,
+    "followup_requests": 4,
+    "gate_passed": true,
+    "handoff_items": 2,
+    "independent_context_events_counted_as_scientific_support": false,
+    "independent_context_events_in_handoff": 5,
+    "items_ready_for_A32_review": 2,
+    "items_without_followup_requirements": 0,
+    "outcome_status": "SAGE_A32_REVIEW_HANDOFF_COMPILED_CANDIDATE_ONLY",
+    "raw_contradiction_events_in_handoff": 0,
+    "raw_support_events_in_handoff": 5,
+    "recommendation_counts": {
+      "FOLLOWUP_REQUIRED_CONTROL_DIVERSITY": 1,
+      "FOLLOWUP_REQUIRED_SUPPORT_AND_CONTROL_DIVERSITY": 1
+    },
+    "related_nonmerged_cluster_links": 1,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_candidate_mechanism_clusters": 3,
+    "source_ready_for_A32_review_candidates": 2,
+    "source_sage5f_outcome_status": "SAGE_MINI_FRONTIER_EVENTS_CLUSTERED_CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+  },
+  "config": {
+    "a32_revision_thresholds": {
+      "maximum_contradiction_events": 0,
+      "minimum_distinct_control_actions": 2,
+      "minimum_independent_context_events": 2,
+      "minimum_support_events": 3
+    },
+    "artifacts_not_modified": [
+      "M2",
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "compilation_policy": {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "candidate_review_item_is_not_revision": true,
+      "distinct_budgets_are_not_distinct_controls": true,
+      "independent_context_events_are_not_scientific_support": true,
+      "related_clusters_are_linked_not_merged": true
+    },
+    "execution_performed": false,
+    "inputs_read": [
+      "SAGE.5f"
+    ],
+    "schema_version": "sage.a32_review_handoff.v1",
+    "source_sage5f_path": "diagnostics\\sage\\sage5f_mini_frontier_event_consolidation.json"
+  },
+  "execution_performed": false,
+  "independent_context_events_counted_as_scientific_support": false,
+  "outcome_status": "SAGE_A32_REVIEW_HANDOFF_COMPILED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "requested_followups": [
+    {
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "additional_control_actions_required": 1,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_performed": false,
+      "followup_id": "sage5g::a32_review_candidate::001::followup::control_diversity",
+      "minimum_replay_exact_contexts": 2,
+      "request_type": "ACQUIRE_DISTINCT_CONTROL_ACTION",
+      "status": "REQUESTED_CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+    },
+    {
+      "action": "ACTION5",
+      "action_args": null,
+      "additional_events_required": 1,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "execution_performed": false,
+      "followup_id": "sage5g::a32_review_candidate::002::followup::support",
+      "minimum_replay_exact_contexts": 1,
+      "request_type": "ACQUIRE_ADDITIONAL_COMPARABLE_SUPPORT",
+      "status": "REQUESTED_CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+    },
+    {
+      "action": "ACTION5",
+      "action_args": null,
+      "additional_control_actions_required": 1,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_performed": false,
+      "followup_id": "sage5g::a32_review_candidate::002::followup::control_diversity",
+      "minimum_replay_exact_contexts": 1,
+      "request_type": "ACQUIRE_DISTINCT_CONTROL_ACTION",
+      "status": "REQUESTED_CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+    },
+    {
+      "action": "ACTION5",
+      "action_args": null,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "clusters_must_remain_unmerged": true,
+      "execution_performed": false,
+      "followup_id": "sage5g::a32_review_candidate::002::followup::cross_measurement",
+      "related_cluster_ids": [
+        "sage5f::candidate_mechanism_cluster::002"
+      ],
+      "request_type": "CROSS_MEASURE_RELATED_NONMERGED_CLUSTER",
+      "required_measurements": [
+        "local_patch",
+        "object_delta"
+      ],
+      "source_cluster_id": "sage5f::candidate_mechanism_cluster::003",
+      "status": "REQUESTED_CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+    }
+  ],
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_sage5f_summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "actions_covered": {
+      "ACTION5": 3,
+      "ACTION6": 3
+    },
+    "budgets_covered": [
+      50,
+      150,
+      300
+    ],
+    "candidate_a32_frontier_counted_as_revision": false,
+    "candidate_mechanism_clusters": 3,
+    "candidate_status_counts": {
+      "LOCAL_SUPPORT_CANDIDATE_ONLY": 1,
+      "ROBUST_MULTI_BUDGET_CANDIDATE_ONLY": 2
+    },
+    "cluster_status_counted_as_scientific_verdict": false,
+    "clustered_support_events_counted_as_support": false,
+    "dedup_keys_counted_as_independent": false,
+    "event_records": 6,
+    "execution_performed": false,
+    "families_covered": {
+      "local_patch_change_candidate": 5,
+      "object_delta_candidate": 1
+    },
+    "gate_passed": true,
+    "multi_budget_clusters": 2,
+    "outcome_status": "SAGE_MINI_FRONTIER_EVENTS_CLUSTERED_CANDIDATE_ONLY",
+    "policy_result_counted_as_confirmation": false,
+    "raw_contradiction_events": 0,
+    "raw_neutral_events": 0,
+    "raw_support_events": 6,
+    "ready_for_A32_review_candidates": 2,
+    "ready_for_A32_review_is_not_verdict": true,
+    "revision_status": "CANDIDATE_ONLY",
+    "robust_multi_budget_clusters": 2,
+    "source_contradiction_events": 0,
+    "source_requests_executed": 6,
+    "source_requests_generated": 24,
+    "source_sage5e_outcome_status": "SAGE_DISTRIBUTED_LIVE_MINI_FRONTIER_GENERATED_AND_EXECUTED_CANDIDATE_ONLY",
+    "source_support_events": 6,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5F",
+    "unique_contexts": 6,
+    "unique_dedup_keys": 6
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "candidate_review_item_counted_as_revision": false,
+    "execution_performed": false,
+    "followup_requests": 4,
+    "gate_passed": true,
+    "handoff_items": 2,
+    "independent_context_events_counted_as_scientific_support": false,
+    "independent_context_events_in_handoff": 5,
+    "items_ready_for_A32_review": 2,
+    "items_without_followup_requirements": 0,
+    "outcome_status": "SAGE_A32_REVIEW_HANDOFF_COMPILED_CANDIDATE_ONLY",
+    "raw_contradiction_events_in_handoff": 0,
+    "raw_support_events_in_handoff": 5,
+    "recommendation_counts": {
+      "FOLLOWUP_REQUIRED_CONTROL_DIVERSITY": 1,
+      "FOLLOWUP_REQUIRED_SUPPORT_AND_CONTROL_DIVERSITY": 1
+    },
+    "related_nonmerged_cluster_links": 1,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_candidate_mechanism_clusters": 3,
+    "source_ready_for_A32_review_candidates": 2,
+    "source_sage5f_outcome_status": "SAGE_MINI_FRONTIER_EVENTS_CLUSTERED_CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5G"
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_5G",
+  "wrong_confirmations": 0
+}

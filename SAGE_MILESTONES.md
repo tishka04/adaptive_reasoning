@@ -35,6 +35,7 @@ de policy en support scientifique.
 | SAGE.5d - Live-prefix mini-frontier M3 execution | Fait | `theory/sage/live_mini_frontier_m3_executor.py`, `tests/test_sage_live_mini_frontier_m3_executor.py`, `diagnostics/sage/sage5d_live_mini_frontier_m3_results.json` | Execute 8 requests SAGE.5c stratifiees en `LIVE_PREFIX_REPLAY_CONTEXT`; 8/8 replay exact + hash verifie; ACTION5/ACTION6 et object/local couverts; support_events=8, contradiction_events=0, mais support=0 et aucun write A32/A33 |
 | SAGE.5e - Distributed live mini-frontier generation | Fait | `theory/sage/distributed_live_mini_frontier_generation.py`, `tests/test_sage_distributed_live_mini_frontier_generation.py`, `diagnostics/sage/sage5e_distributed_live_mini_frontier_results.json` | Distribue 8 requests par budget 50/150/300 au lieu de consommer tout le cap au budget 50; dedup par contexte/action/args/diff; execute 2 requests par budget; 6/6 replay exact + hash verifie; support_events=6, contradiction_events=0, mais support=0 et aucun write A32/A33 |
 | SAGE.5f - Mini-frontier event consolidation | Fait | `theory/sage/mini_frontier_event_consolidation.py`, `tests/test_sage_mini_frontier_event_consolidation.py`, `diagnostics/sage/sage5f_mini_frontier_event_consolidation.json` | Consolide les 6 events SAGE.5e en 3 clusters candidate-only; 2 clusters robustes multi-budget; 2 frontieres `ready_for_A32_review` non-verdict; support=0; aucun write A32/A33 |
+| SAGE.5g - A32 review handoff compiler | Fait | `theory/sage/a32_review_handoff.py`, `tests/test_sage_a32_review_handoff.py`, `diagnostics/sage/sage5g_a32_review_handoff.json` | Compile 2 dossiers A32-review candidate-only et 4 followups; `ACTION6` requiert une diversite de controle; `ACTION5` requiert support + diversite de controle et remesure croisee du cluster lie non fusionne; support=0; aucune execution ni write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -1702,15 +1703,125 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_unknown_game_bounded_probe.py -q
 ```
 
-Suite conseillee apres SAGE.5f :
+Transition :
 
-1. SAGE.5g - preparer un handoff A32-review candidate-only, sans write A32, qui
-   transforme les deux clusters robustes en items revus/rejetables.
-2. SAGE.6 - second jeu inconnu apres ce handoff, pour tester si des clusters
-   comparables apparaissent hors `sb26`.
+SAGE.5g a maintenant ete compile. Il transforme les deux frontieres robustes de
+SAGE.5f en dossiers auditables pour A32, sans executer de nouveau test, sans
+produire de verdict et sans ecrire dans A32/A33. Les lacunes historiques A32
+sont explicites et converties en demandes de suivi controlees.
+
+## SAGE.5g - A32 review handoff compiler
+
+Objectif :
+
+- Lire `diagnostics/sage/sage5f_mini_frontier_event_consolidation.json`.
+- Verifier que la source SAGE.5f reste candidate-only et `support=0`.
+- Compiler chaque cluster robuste en dossier A32-review auditable.
+- Conserver les contextes, budgets, interventions cibles, controles et motifs
+  d'effet observes.
+- Comparer chaque dossier aux seuils historiques A32 :
+  - au moins 3 support events bruts ;
+  - au moins 2 contextes replay-exacts ;
+  - zero contradiction ;
+  - au moins 2 actions de controle distinctes.
+- Lier les clusters proches sans les fusionner automatiquement.
+- Produire des followups precis, sans execution ni revision.
+- Garder `support=0`, aucun verdict, aucun write A32/A33.
+
+Ajouts :
+
+- `theory/sage/a32_review_handoff.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_a32_review_handoff.py`
+- `diagnostics/sage/sage5g_a32_review_handoff.json`
+
+Run du 2026-07-18 :
+
+- `source_candidate_mechanism_clusters = 3`
+- `source_ready_for_A32_review_candidates = 2`
+- `handoff_items = 2`
+- `items_ready_for_A32_review = 2`
+- `items_without_followup_requirements = 0`
+- `followup_requests = 4`
+- `raw_support_events_in_handoff = 5`
+- `raw_contradiction_events_in_handoff = 0`
+- `independent_context_events_in_handoff = 5`
+- `related_nonmerged_cluster_links = 1`
+- `outcome_status = SAGE_A32_REVIEW_HANDOFF_COMPILED_CANDIDATE_ONLY`
+- `gate_passed = true`
+- `candidate_review_item_counted_as_revision = false`
+- `independent_context_events_counted_as_scientific_support = false`
+- `execution_performed = false`
+- `support = 0`
+- `truth_status = NOT_EVALUATED_BY_SAGE_5G`
+- `revision_status = CANDIDATE_ONLY`
+- `a32_write_performed = false`
+- `a33_write_performed = false`
+
+Dossiers :
+
+| candidat | support brut | contextes | controles distincts | recommandation |
+|---|---:|---:|---:|---|
+| `ACTION6 {"x":26,"y":57}` | 3 | 3 | 1 (`ACTION5`) | `FOLLOWUP_REQUIRED_CONTROL_DIVERSITY` |
+| `ACTION5` | 2 | 2 | 1 (`ACTION6`) | `FOLLOWUP_REQUIRED_SUPPORT_AND_CONTROL_DIVERSITY` |
+
+Followups :
+
+- `ACTION6` : retester contre une action de controle autre que `ACTION5`, dans
+  au moins deux contextes replay-exacts.
+- `ACTION5` : obtenir une troisieme observation comparable.
+- `ACTION5` : retester contre une action de controle autre que `ACTION6`.
+- `ACTION5` : remesurer les clusters `002` et `003` avec les lectures
+  `local_patch` et `object_delta`, en les gardant non fusionnes avant revue.
+
+Lecture :
+
+SAGE.5g ne confirme ni `ACTION6` ni `ACTION5`. Il ferme le contrat de handoff :
+un motif robuste devient un dossier falsifiable, ses insuffisances deviennent
+des demandes d'experience explicites, et A32 reste le premier composant autorise
+a produire une decision scientifique.
+
+Les cinq contextes cumules ne sont pas transformes en support scientifique. Ils
+servent uniquement a documenter la diversite des observations. De meme, les
+budgets 50/150/300 ne sont jamais comptes comme des actions de controle
+distinctes.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.a32_review_handoff `
+  --source-sage5f diagnostics\sage\sage5f_mini_frontier_event_consolidation.json `
+  --out diagnostics\sage\sage5g_a32_review_handoff.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_a32_review_handoff.py `
+  tests\test_sage_mini_frontier_event_consolidation.py `
+  tests\test_sage_distributed_live_mini_frontier_generation.py `
+  tests\test_sage_live_mini_frontier_m3_executor.py `
+  tests\test_sage_live_mini_frontier_generation.py `
+  tests\test_sage_switch_attribution_placeholder_audit.py `
+  tests\test_sage_unknown_game_bounded_probe.py -q
+```
+
+Suite conseillee apres SAGE.5g :
+
+1. SAGE.5h - executer les acquisitions controlees demandees par les quatre
+   followups, sans revision automatique.
+2. A32.4 - consommer les dossiers enrichis et produire une decision explicite :
+   confirmation locale, scope limite, followup ou rejet.
+3. A33.2 - enregistrer une mecanique unknown-game seulement si A32 la confirme.
+4. SAGE.5i - reprendre `sb26` avec la memoire confirmee, puis mesurer la nouvelle
+   frontiere d'usage.
+5. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle de
+   revision et de reinjection.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
 bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
-plusieurs horizons, puis consolider les observations en clusters candidate-only.
-Il ne faut pas dire : SAGE sait jouer, generalise, ou decouvre une mecanique sur
-jeu inconnu.
+plusieurs horizons, consolider les observations en clusters candidate-only, puis
+compiler des dossiers de revue scientifique et leurs followups. Il ne faut pas
+dire : SAGE sait jouer, generalise, decouvre ou confirme une mecanique sur jeu
+inconnu.
