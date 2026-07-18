@@ -37,6 +37,7 @@ de policy en support scientifique.
 | SAGE.5f - Mini-frontier event consolidation | Fait | `theory/sage/mini_frontier_event_consolidation.py`, `tests/test_sage_mini_frontier_event_consolidation.py`, `diagnostics/sage/sage5f_mini_frontier_event_consolidation.json` | Consolide les 6 events SAGE.5e en 3 clusters candidate-only; 2 clusters robustes multi-budget; 2 frontieres `ready_for_A32_review` non-verdict; support=0; aucun write A32/A33 |
 | SAGE.5g - A32 review handoff compiler | Fait | `theory/sage/a32_review_handoff.py`, `tests/test_sage_a32_review_handoff.py`, `diagnostics/sage/sage5g_a32_review_handoff.json` | Compile 2 dossiers A32-review candidate-only et 4 followups; `ACTION6` requiert une diversite de controle; `ACTION5` requiert support + diversite de controle et remesure croisee du cluster lie non fusionne; support=0; aucune execution ni write A32/A33 |
 | SAGE.5h - Controlled follow-up acquisition | Fait - partiel, surface de controle epuisee | `theory/sage/controlled_followup_acquisition.py`, `tests/test_sage_controlled_followup_acquisition.py`, `diagnostics/sage/sage5h_controlled_followup_acquisition.json` | Resout les 4 followups : 2 acquis, 2 bloques car seuls ACTION5/ACTION6 sont legaux; ACTION5 atteint 3 evenements comparables; remesure `local_patch` alignee mais `object_delta` divergente entre clusters 002/003; support=0; aucun write A32/A33 |
+| SAGE.5i - Control-surface expansion | Fait - epuisement action-distinct borne | `theory/sage/control_surface_expansion.py`, `tests/test_sage_control_surface_expansion.py`, `diagnostics/sage/sage5i_control_surface_expansion.json` | Audite les 24 contextes candidats SAGE.5e en replay exact; tous exposent seulement ACTION5/ACTION6; aucune troisieme famille d'action; 7 options parametrees conservees sans requalification; proposition de decision protocolaire A32; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -1940,21 +1941,140 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_unknown_game_bounded_probe.py -q
 ```
 
-Suite conseillee apres SAGE.5h :
+Transition :
 
-1. SAGE.5i - rechercher des contextes replay-exacts ou une troisieme famille
-   d'action est legale, afin de lever le blocage de diversite des controles.
-2. Si aucune telle surface n'existe dans `sb26`, proposer a A32.4 un protocole
-   explicite de controles parametres `ACTION6(args)` sans les confondre avec des
-   actions distinctes.
-3. A32.4 - produire ensuite une decision scope-limited, un nouveau followup ou
-   un rejet ; aucune confirmation automatique depuis SAGE.5h.
-4. A33.2 - enregistrer une mecanique unknown-game seulement si A32 la confirme.
-5. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
+SAGE.5i a maintenant parcouru toute la frontiere candidate SAGE.5e rejouable,
+et non plus seulement les trois contextes necessaires aux followups SAGE.5h.
+Les 24 contextes ont ete reproduits exactement. Aucun ne rend legale une
+troisieme famille d'action : la surface action-distincte est donc epuisee dans
+ce perimetre borne, sans que cet epuisement constitue une refutation globale.
+
+## SAGE.5i - Control-surface expansion
+
+Objectif :
+
+- Lire les artefacts candidate-only SAGE.5e, SAGE.5g et SAGE.5h.
+- Selectionner toutes les requests SAGE.5e qui correspondent exactement aux
+  deux signatures candidates SAGE.5g.
+- Rejouer chaque contexte et exiger un hash identique avant d'auditer les
+  actions legales.
+- Executer un nouveau controle dans au moins deux contextes si une troisieme
+  famille d'action est disponible.
+- Sinon, produire une preuve d'epuisement limitee a cette frontiere rejouable.
+- Inventorier separement les variantes parametrees sans les compter comme des
+  familles d'action distinctes.
+- Proposer les choix protocolaires a A32 sans modifier A32/A33 ni produire de
+  verdict automatique.
+- Garder `support=0`, aucune revision et aucun write A32/A33.
+
+Ajouts :
+
+- `theory/sage/control_surface_expansion.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_control_surface_expansion.py`
+- `diagnostics/sage/sage5i_control_surface_expansion.json`
+
+Run du 2026-07-18 :
+
+- `source_requests_available = 24`
+- `candidates_evaluated = 2`
+- `candidate_contexts_considered = 24`
+- `unique_candidate_contexts = 24`
+- `context_surface_audits = 24`
+- `replay_exact_context_surface_audits = 24`
+- `action_surface_signature_counts = {"ACTION5,ACTION6":24}`
+- `candidate_context_counts = {"ACTION5":13,"ACTION6":11}`
+- `contexts_with_third_action_family = 0`
+- `candidates_with_action_distinct_surface_exhausted = 2`
+- `candidates_with_new_distinct_control = 0`
+- `control_expansion_experiments_executed = 0`
+- `parameterized_control_option_counts = {"ACTION5":4,"ACTION6":3}`
+- `candidates_ready_for_A32_intake = 0`
+- `bounded_action_distinct_exhaustion_proven = true`
+- `bounded_scope_only = true`
+- `all_candidate_contexts_audited_exact = true`
+- `a32_parameterized_protocol_proposal_generated = true`
+- `outcome_status = SAGE_CONTROL_SURFACE_EXPANSION_ACTION_DISTINCT_EXHAUSTED_CANDIDATE_ONLY`
+- `gate_passed = true`
+- `support = 0`
+- `truth_status = NOT_EVALUATED_BY_SAGE_5I`
+- `revision_status = CANDIDATE_ONLY`
+- `a32_write_performed = false`
+- `a33_write_performed = false`
+
+Surface auditee :
+
+| candidat | contextes exacts | familles legales | troisieme famille | options parametrees |
+|---|---:|---|---:|---:|
+| `ACTION6 {"x":26,"y":57}` | 11 | `ACTION5`, `ACTION6` | 0 | 3 |
+| `ACTION5` | 13 | `ACTION5`, `ACTION6` | 0 | 4 |
+
+Les trois options du candidat `ACTION6` sont les autres positions
+`ACTION6 {"x":18|34|42,"y":57}`. Les quatre options du candidat `ACTION5`
+sont `ACTION6 {"x":21|27|33|39,"y":28}`. Elles sont conservees comme
+interventions parametrees potentielles, jamais comme nouvelles familles
+d'action.
+
+Conclusion bornee :
+
+- SAGE.5i prouve uniquement qu'aucune troisieme famille d'action n'est
+  disponible dans les 24 contextes candidats rejouables de SAGE.5e.
+- Cette preuve ne couvre ni tous les etats atteignables de `sb26`, ni un autre
+  jeu, et ne compte pas comme refutation.
+- Les deux candidats conservent 3 observations brutes, 3 contextes independants,
+  zero contradiction et une seule famille de controle distincte.
+- Le seuil historique A32 de deux familles de controle reste donc non satisfait.
+- Aucune variante parametree n'est requalifiee automatiquement et aucune intake
+  confirmatoire A32 n'est declenchee.
+
+Proposition protocolaire A32 :
+
+- Conserver le seuil action-distinct et garder les candidats non resolus ; ou
+- autoriser explicitement un protocole pre-enregistre de controles parametres ;
+  ou
+- rejeter les candidats comme non identifiables dans la surface actuelle.
+- En cas d'autorisation parametree : arguments distincts de la cible, replay
+  exact dans des contextes distincts, au moins deux variantes et zero
+  contradiction, sans les renommer en familles d'action distinctes.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.control_surface_expansion `
+  --source-sage5e diagnostics\sage\sage5e_distributed_live_mini_frontier_results.json `
+  --source-sage5g diagnostics\sage\sage5g_a32_review_handoff.json `
+  --source-sage5h diagnostics\sage\sage5h_controlled_followup_acquisition.json `
+  --out diagnostics\sage\sage5i_control_surface_expansion.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_control_surface_expansion.py `
+  tests\test_sage_controlled_followup_acquisition.py `
+  tests\test_sage_a32_review_handoff.py `
+  tests\test_sage_mini_frontier_event_consolidation.py `
+  tests\test_sage_distributed_live_mini_frontier_generation.py `
+  tests\test_sage_live_mini_frontier_m3_executor.py `
+  tests\test_sage_live_mini_frontier_generation.py `
+  tests\test_sage_switch_attribution_placeholder_audit.py `
+  tests\test_sage_unknown_game_bounded_probe.py -q
+```
+
+Suite conseillee apres SAGE.5i :
+
+1. A32.4 - prendre explicitement l'une des trois decisions protocolaires,
+   scope-limited, sans confirmation automatique depuis SAGE.5i.
+2. Si A32 autorise le protocole parametre, executer une nouvelle iteration
+   d'acquisition pre-enregistree sur les variantes exposees ci-dessus.
+3. A33.2 - enregistrer une mecanique unknown-game seulement si A32 la confirme.
+4. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
 bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
-plusieurs horizons, consolider les observations en clusters candidate-only, puis
-compiler des dossiers de revue scientifique, executer leurs followups et auditer
-les limites de la surface de controle. Il ne faut pas dire : SAGE sait jouer,
-generalise, decouvre ou confirme une mecanique sur jeu inconnu.
+plusieurs horizons, consolider les observations en clusters candidate-only,
+compiler des dossiers de revue scientifique, executer leurs followups, puis
+auditer exhaustivement une surface de controle rejouable et expliciter ses
+limites. Il ne faut pas dire : SAGE sait jouer, generalise, decouvre ou confirme
+une mecanique sur jeu inconnu.

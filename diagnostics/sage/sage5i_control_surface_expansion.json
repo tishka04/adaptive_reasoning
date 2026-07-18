@@ -1,0 +1,2118 @@
+{
+  "a32_parameterized_control_protocol_proposal": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "allowed_decisions": [
+      "retain_strict_action_distinct_requirement_and_keep_unresolved",
+      "authorize_pre_registered_parameterized_control_protocol",
+      "reject_candidate_as_unidentifiable_in_current_action_surface"
+    ],
+    "bounded_evidence_scope": "SAGE.5e_matching_replayable_candidate_contexts",
+    "candidates_affected": [
+      "sage5g::a32_review_candidate::001",
+      "sage5g::a32_review_candidate::002"
+    ],
+    "historical_requirement": {
+      "currently_satisfied": false,
+      "minimum_distinct_control_action_names": 2
+    },
+    "parameterized_control_option_counts": {
+      "sage5g::a32_review_candidate::001": 3,
+      "sage5g::a32_review_candidate::002": 4
+    },
+    "proposal_id": "sage5i::a32_parameterized_control_protocol_proposal::001",
+    "proposal_required": true,
+    "proposal_status": "A32_REVIEW_REQUIRED_DO_NOT_AUTO_RELAX_CRITERION",
+    "proposed_pre_registration_requirements": [
+      "A32_must_explicitly_authorize_parameterized_intervention_controls",
+      "action_args_must_differ_from_target_args",
+      "parameterized_controls_must_run_in_replay_exact_distinct_contexts",
+      "minimum_two_parameter_variants_if_action_name_is_reused",
+      "zero_contradiction_events_required",
+      "parameterized_variants_must_not_be_relabelled_as_distinct_action_names"
+    ],
+    "protocol_proposal_counted_as_revision": false,
+    "recommendation": "A32_DECISION_REQUIRED_NO_AUTOMATIC_CONFIRMATION",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+  },
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "blocked_control_expansion_experiments": [],
+  "bounded_control_surface_exhaustion_counted_as_refutation": false,
+  "candidate_control_expansions": [
+    {
+      "action": "ACTION6",
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "controlled_experiment_ids": [],
+      "expansion_status": "NO_ACTION_DISTINCT_CONTROL_IN_REPLAYABLE_FRONTIER",
+      "minimum_control_contexts": 2,
+      "new_control_action": "",
+      "new_distinct_control_action_acquired": false,
+      "raw_contradiction_events": 0,
+      "raw_support_events": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "action": "ACTION5",
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "controlled_experiment_ids": [],
+      "expansion_status": "NO_ACTION_DISTINCT_CONTROL_IN_REPLAYABLE_FRONTIER",
+      "minimum_control_contexts": 2,
+      "new_control_action": "",
+      "new_distinct_control_action_acquired": false,
+      "raw_contradiction_events": 0,
+      "raw_support_events": 0,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    }
+  ],
+  "candidate_control_surface_results": [
+    {
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "action_surface_signature_counts": {
+        "ACTION5,ACTION6": 11
+      },
+      "audit_ids": [
+        "sage5i::context_surface_audit::001",
+        "sage5i::context_surface_audit::002",
+        "sage5i::context_surface_audit::003",
+        "sage5i::context_surface_audit::004",
+        "sage5i::context_surface_audit::005",
+        "sage5i::context_surface_audit::006",
+        "sage5i::context_surface_audit::007",
+        "sage5i::context_surface_audit::008",
+        "sage5i::context_surface_audit::009",
+        "sage5i::context_surface_audit::010",
+        "sage5i::context_surface_audit::011"
+      ],
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "bounded_exhaustion_counted_as_refutation": false,
+      "bounded_scope": "SAGE.5e_matching_replayable_candidate_contexts",
+      "budgets_scanned": [
+        50,
+        150,
+        300
+      ],
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "contexts_scanned": 11,
+      "contexts_with_new_action_distinct_control": 0,
+      "control_surface_exhausted_action_distinct": true,
+      "eligible_contexts": [],
+      "existing_control_actions": [
+        "ACTION5"
+      ],
+      "game_id": "sb26-7fbdac44",
+      "matching_context_requests": 11,
+      "new_action_distinct_control_candidates": [],
+      "parameterized_control_option_count": 3,
+      "parameterized_control_options": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "same_action_alternative_args"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "same_action_alternative_args"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "same_action_alternative_args"
+        }
+      ],
+      "replay_exact_contexts": 11,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I",
+      "unique_contexts": 11
+    },
+    {
+      "action": "ACTION5",
+      "action_args": null,
+      "action_surface_signature_counts": {
+        "ACTION5,ACTION6": 13
+      },
+      "audit_ids": [
+        "sage5i::context_surface_audit::012",
+        "sage5i::context_surface_audit::013",
+        "sage5i::context_surface_audit::014",
+        "sage5i::context_surface_audit::015",
+        "sage5i::context_surface_audit::016",
+        "sage5i::context_surface_audit::017",
+        "sage5i::context_surface_audit::018",
+        "sage5i::context_surface_audit::019",
+        "sage5i::context_surface_audit::020",
+        "sage5i::context_surface_audit::021",
+        "sage5i::context_surface_audit::022",
+        "sage5i::context_surface_audit::023",
+        "sage5i::context_surface_audit::024"
+      ],
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "bounded_exhaustion_counted_as_refutation": false,
+      "bounded_scope": "SAGE.5e_matching_replayable_candidate_contexts",
+      "budgets_scanned": [
+        50,
+        150,
+        300
+      ],
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "contexts_scanned": 13,
+      "contexts_with_new_action_distinct_control": 0,
+      "control_surface_exhausted_action_distinct": true,
+      "eligible_contexts": [],
+      "existing_control_actions": [
+        "ACTION6"
+      ],
+      "game_id": "sb26-7fbdac44",
+      "matching_context_requests": 13,
+      "new_action_distinct_control_candidates": [],
+      "parameterized_control_option_count": 4,
+      "parameterized_control_options": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "existing_control_parameter_variant"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "existing_control_parameter_variant"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "existing_control_parameter_variant"
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          },
+          "counted_as_action_distinct_control": false,
+          "parameterized_control_role": "existing_control_parameter_variant"
+        }
+      ],
+      "replay_exact_contexts": 13,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I",
+      "unique_contexts": 13
+    }
+  ],
+  "comparison": {
+    "a32_parameterized_protocol_proposal_generated": true,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_surface_signature_counts": {
+      "ACTION5,ACTION6": 24
+    },
+    "all_candidate_contexts_audited_exact": true,
+    "bounded_action_distinct_exhaustion_proven": true,
+    "bounded_control_surface_exhaustion_counted_as_refutation": false,
+    "bounded_scope_only": true,
+    "candidate_context_counts": {
+      "ACTION5": 13,
+      "ACTION6": 11
+    },
+    "candidate_contexts_considered": 24,
+    "candidates_evaluated": 2,
+    "candidates_ready_for_A32_intake": 0,
+    "candidates_with_action_distinct_surface_exhausted": 2,
+    "candidates_with_new_distinct_control": 0,
+    "context_surface_audits": 24,
+    "contexts_with_third_action_family": 0,
+    "control_expansion_events_counted_as_scientific_support": false,
+    "control_expansion_experiments_blocked": 0,
+    "control_expansion_experiments_executed": 0,
+    "execution_performed": true,
+    "gate_passed": true,
+    "outcome_status": "SAGE_CONTROL_SURFACE_EXPANSION_ACTION_DISTINCT_EXHAUSTED_CANDIDATE_ONLY",
+    "parameterized_control_option_counts": {
+      "ACTION5": 4,
+      "ACTION6": 3
+    },
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "raw_contradiction_events": 0,
+    "raw_support_events": 0,
+    "replay_exact_context_surface_audits": 24,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_requests_available": 24,
+    "source_sage5e_outcome_status": "SAGE_DISTRIBUTED_LIVE_MINI_FRONTIER_GENERATED_AND_EXECUTED_CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5I",
+    "unique_candidate_contexts": 24
+  },
+  "config": {
+    "artifacts_not_modified": [
+      "M2",
+      "M3",
+      "A32",
+      "A33",
+      "A40",
+      "P2"
+    ],
+    "environments_dir": null,
+    "execution_performed": true,
+    "expansion_policy": {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "bounded_exhaustion_is_not_refutation": true,
+      "exact_context_replay_required": true,
+      "new_control_must_have_distinct_action_name": true,
+      "parameter_variants_are_not_action_distinct_controls": true,
+      "reset_is_not_a_scientific_control": true,
+      "scan_all_matching_sage5e_requests": true
+    },
+    "inputs_read": [
+      "SAGE.5e",
+      "SAGE.5g",
+      "SAGE.5h"
+    ],
+    "minimum_control_contexts": 2,
+    "schema_version": "sage.control_surface_expansion.v1",
+    "source_sage5e_path": "diagnostics\\sage\\sage5e_distributed_live_mini_frontier_results.json",
+    "source_sage5g_path": "diagnostics\\sage\\sage5g_a32_review_handoff.json",
+    "source_sage5h_path": "diagnostics\\sage\\sage5h_controlled_followup_acquisition.json"
+  },
+  "context_surface_audits": [
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::001",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 6,
+      "replay_state_signature": "{\"digest\":\"73e9d56c952d64e3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0006",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0006",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::002",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 8,
+      "replay_state_signature": "{\"digest\":\"590aa41cac0e8ee7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0008",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0008",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::003",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 10,
+      "replay_state_signature": "{\"digest\":\"731a29e301b1c109\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0010",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0010",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::004",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 12,
+      "replay_state_signature": "{\"digest\":\"7fdce024a09de548\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0012",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0012",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::005",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"426a899f2165cc4d\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 14,
+      "replay_state_signature": "{\"digest\":\"426a899f2165cc4d\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0014",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0014",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::006",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"77ad3efd614b8816\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 16,
+      "replay_state_signature": "{\"digest\":\"77ad3efd614b8816\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0016",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0016",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::007",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"c09ebe33c81d2cfa\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 18,
+      "replay_state_signature": "{\"digest\":\"c09ebe33c81d2cfa\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0018",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0018",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::008",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 20,
+      "replay_state_signature": "{\"digest\":\"3d7ddcb112787649\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0020",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0020",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::009",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 22,
+      "replay_state_signature": "{\"digest\":\"d5774eb70a2f25a2\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0022",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0022",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::010",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"863204839bf21b80\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 24,
+      "replay_state_signature": "{\"digest\":\"863204839bf21b80\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0024",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0024",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::011",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 18,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 26,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 57
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 42,
+            "y": 57
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "context_snapshot_hash": "{\"digest\":\"59c54957509664c6\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION5"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 26,
+      "replay_state_signature": "{\"digest\":\"59c54957509664c6\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0026",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0026",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION6",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::012",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 1,
+      "replay_state_signature": "{\"digest\":\"5416d8d1ca8eee83\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0001",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0001",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::013",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 3,
+      "replay_state_signature": "{\"digest\":\"9a59a4be2210b660\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0003",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0003",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::014",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 5,
+      "replay_state_signature": "{\"digest\":\"4b29f13f5f29bae4\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0005",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0005",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::015",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 7,
+      "replay_state_signature": "{\"digest\":\"a51fd49c883ac71e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0007",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0007",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::016",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 50,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 9,
+      "replay_state_signature": "{\"digest\":\"3f48c7b952570dd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::050::0009",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_050::step_0009",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::017",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 11,
+      "replay_state_signature": "{\"digest\":\"eade9086aeaee699\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0011",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0011",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::018",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"01e54b91d0e5eb23\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 13,
+      "replay_state_signature": "{\"digest\":\"01e54b91d0e5eb23\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0013",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0013",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::019",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"42e8259b2518f502\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 15,
+      "replay_state_signature": "{\"digest\":\"42e8259b2518f502\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0015",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0015",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::020",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 150,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"26e628712f6a7194\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 17,
+      "replay_state_signature": "{\"digest\":\"26e628712f6a7194\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::150::0017",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_150::step_0017",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::021",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 19,
+      "replay_state_signature": "{\"digest\":\"3ac47b596be02665\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0019",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0019",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::022",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 21,
+      "replay_state_signature": "{\"digest\":\"476fe8b28698bdd8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0021",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0021",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::023",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"251f1b6c0f304f57\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 23,
+      "replay_state_signature": "{\"digest\":\"251f1b6c0f304f57\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0023",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0023",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "audit_id": "sage5i::context_surface_audit::024",
+      "available_action_names": [
+        "ACTION5",
+        "ACTION6"
+      ],
+      "available_action_variants": [
+        {
+          "action": "ACTION5",
+          "action_args": {}
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 27,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 33,
+            "y": 28
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 39,
+            "y": 28
+          }
+        }
+      ],
+      "budget": 300,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "context_snapshot_hash": "{\"digest\":\"25793bd44e770254\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_surface_audit_counted_as_refutation": false,
+      "control_surface_exhausted": true,
+      "eligible_distinct_control_actions": [],
+      "excluded_control_actions": [
+        "ACTION6"
+      ],
+      "execution_status": "AUDITED",
+      "game_id": "sb26-7fbdac44",
+      "live_prefix_replay_exact": true,
+      "prefix_env_actions": 25,
+      "replay_state_signature": "{\"digest\":\"25793bd44e770254\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "revision_status": "CANDIDATE_ONLY",
+      "source_request_id": "m2m3::sage5e::distributed_live_mini_frontier::300::0025",
+      "source_transition_id": "sage5e::sb26-7fbdac44::budget_300::step_0025",
+      "source_truth_status": "NOT_EVALUATED_BY_SAGE_5H",
+      "support": 0,
+      "target_action": "ACTION5",
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    }
+  ],
+  "control_expansion_events_counted_as_scientific_support": false,
+  "control_expansion_experiments": [],
+  "execution_performed": true,
+  "outcome_status": "SAGE_CONTROL_SURFACE_EXPANSION_ACTION_DISTINCT_EXHAUSTED_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "parameterized_controls_counted_as_distinct_actions": false,
+  "protocol_proposal_counted_as_revision": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "source_sage5h_summary": {
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "all_followups_resolved": true,
+    "all_requested_followups_completed": false,
+    "candidates_ready_for_A32_intake": 0,
+    "comparable_support_events_acquired": 1,
+    "control_diversity_followups_blocked": 2,
+    "control_diversity_followups_completed": 0,
+    "control_surface_block_counted_as_refutation": false,
+    "control_surface_contexts_audited": 3,
+    "control_surface_exhausted_audits": 3,
+    "controlled_experiments_blocked": 0,
+    "controlled_experiments_executed": 4,
+    "cross_measurement_alignment_counted_as_confirmation": false,
+    "cross_measurement_alignments": 0,
+    "cross_measurement_divergences": 1,
+    "cross_measurement_followups_completed": 1,
+    "execution_performed": true,
+    "followup_events_counted_as_scientific_support": false,
+    "followup_outcomes": 4,
+    "followup_requests_consumed": 4,
+    "followup_resolution_gate_passed": true,
+    "followups_blocked": 2,
+    "followups_completed": 2,
+    "gate_passed": true,
+    "live_prefix_replay_exact_experiments": 4,
+    "outcome_status": "SAGE_CONTROLLED_FOLLOWUP_ACQUISITION_PARTIAL_CONTROL_SURFACE_LIMIT_CANDIDATE_ONLY",
+    "raw_contradiction_events": 0,
+    "raw_neutral_events": 2,
+    "raw_support_events": 2,
+    "replay_exact_control_surface_audits": 3,
+    "resolution_status_counts": {
+      "ACQUIRED_COMPARABLE_SUPPORT_CANDIDATE_ONLY": 1,
+      "ACQUIRED_CROSS_MEASUREMENT_DIVERGENCE_CANDIDATE_ONLY": 1,
+      "BLOCKED_NO_DISTINCT_LEGAL_CONTROL_ACTION": 2
+    },
+    "revision_status": "CANDIDATE_ONLY",
+    "source_sage5g_outcome_status": "SAGE_A32_REVIEW_HANDOFF_COMPILED_CANDIDATE_ONLY",
+    "support": 0,
+    "support_followups_completed": 1,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5H"
+  },
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_parameterized_protocol_proposal_generated": true,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action_surface_signature_counts": {
+      "ACTION5,ACTION6": 24
+    },
+    "all_candidate_contexts_audited_exact": true,
+    "bounded_action_distinct_exhaustion_proven": true,
+    "bounded_control_surface_exhaustion_counted_as_refutation": false,
+    "bounded_scope_only": true,
+    "candidate_context_counts": {
+      "ACTION5": 13,
+      "ACTION6": 11
+    },
+    "candidate_contexts_considered": 24,
+    "candidates_evaluated": 2,
+    "candidates_ready_for_A32_intake": 0,
+    "candidates_with_action_distinct_surface_exhausted": 2,
+    "candidates_with_new_distinct_control": 0,
+    "context_surface_audits": 24,
+    "contexts_with_third_action_family": 0,
+    "control_expansion_events_counted_as_scientific_support": false,
+    "control_expansion_experiments_blocked": 0,
+    "control_expansion_experiments_executed": 0,
+    "execution_performed": true,
+    "gate_passed": true,
+    "outcome_status": "SAGE_CONTROL_SURFACE_EXPANSION_ACTION_DISTINCT_EXHAUSTED_CANDIDATE_ONLY",
+    "parameterized_control_option_counts": {
+      "ACTION5": 4,
+      "ACTION6": 3
+    },
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "raw_contradiction_events": 0,
+    "raw_support_events": 0,
+    "replay_exact_context_surface_audits": 24,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_requests_available": 24,
+    "source_sage5e_outcome_status": "SAGE_DISTRIBUTED_LIVE_MINI_FRONTIER_GENERATED_AND_EXECUTED_CANDIDATE_ONLY",
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_5I",
+    "unique_candidate_contexts": 24
+  },
+  "support": 0,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_5I",
+  "updated_candidate_assessments": [
+    {
+      "a32_intake_recommendation": "A32_PROTOCOL_DECISION_REQUIRED_PARAMETERIZED_CONTROLS_CANDIDATE_ONLY",
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "action": "ACTION6",
+      "action_args": {
+        "x": 26,
+        "y": 57
+      },
+      "bounded_action_distinct_surface_exhausted": true,
+      "bounded_exhaustion_counted_as_refutation": false,
+      "candidate_assessment_counted_as_revision": false,
+      "candidate_id": "sage5g::a32_review_candidate::001",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION6::local_patch_change_candidate::local_patch_before_after::args={\"x\":26,\"y\":57}",
+      "contexts_with_action_distinct_control": 0,
+      "contradiction_events_after": 0,
+      "distinct_control_actions_after": 1,
+      "game_id": "sb26-7fbdac44",
+      "independent_context_events_after": 3,
+      "matching_contexts_scanned": 11,
+      "missing_revision_requirements": [
+        "minimum_distinct_control_actions"
+      ],
+      "new_control_action": "",
+      "new_distinct_control_action_acquired": false,
+      "parameterized_control_option_count": 3,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "raw_support_events_after": 3,
+      "ready_for_A32_intake": false,
+      "replay_exact_contexts_scanned": 11,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    },
+    {
+      "a32_intake_recommendation": "A32_PROTOCOL_DECISION_REQUIRED_PARAMETERIZED_CONTROLS_CANDIDATE_ONLY",
+      "a32_write_performed": false,
+      "a33_write_performed": false,
+      "action": "ACTION5",
+      "action_args": null,
+      "bounded_action_distinct_surface_exhausted": true,
+      "bounded_exhaustion_counted_as_refutation": false,
+      "candidate_assessment_counted_as_revision": false,
+      "candidate_id": "sage5g::a32_review_candidate::002",
+      "candidate_key": "mechanic_prediction::sb26-7fbdac44::ACTION5::local_patch_change_candidate::local_patch_before_after::args=null",
+      "contexts_with_action_distinct_control": 0,
+      "contradiction_events_after": 0,
+      "distinct_control_actions_after": 1,
+      "game_id": "sb26-7fbdac44",
+      "independent_context_events_after": 3,
+      "matching_contexts_scanned": 13,
+      "missing_revision_requirements": [
+        "minimum_distinct_control_actions"
+      ],
+      "new_control_action": "",
+      "new_distinct_control_action_acquired": false,
+      "parameterized_control_option_count": 4,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "raw_support_events_after": 3,
+      "ready_for_A32_intake": false,
+      "replay_exact_contexts_scanned": 13,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_5I"
+    }
+  ],
+  "wrong_confirmations": 0
+}

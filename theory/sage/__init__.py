@@ -17,6 +17,7 @@ __all__ = [
     "DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH",
     "DEFAULT_SAGE5G_A32_REVIEW_HANDOFF_PATH",
     "DEFAULT_SAGE5H_CONTROLLED_FOLLOWUP_ACQUISITION_PATH",
+    "DEFAULT_SAGE5I_CONTROL_SURFACE_EXPANSION_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -36,6 +37,7 @@ __all__ = [
     "run_sage5f_mini_frontier_event_consolidation",
     "run_sage5g_a32_review_handoff",
     "run_sage5h_controlled_followup_acquisition",
+    "run_sage5i_control_surface_expansion",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -51,6 +53,7 @@ __all__ = [
     "write_sage5f_mini_frontier_event_consolidation",
     "write_sage5g_a32_review_handoff",
     "write_sage5h_controlled_followup_acquisition",
+    "write_sage5i_control_surface_expansion",
 ]
 
 
@@ -378,6 +381,28 @@ def __getattr__(name: str):
             ),
             "write_sage5h_controlled_followup_acquisition": (
                 write_sage5h_controlled_followup_acquisition
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5I_CONTROL_SURFACE_EXPANSION_PATH",
+        "run_sage5i_control_surface_expansion",
+        "write_sage5i_control_surface_expansion",
+    }:
+        from .control_surface_expansion import (
+            DEFAULT_SAGE5I_CONTROL_SURFACE_EXPANSION_PATH,
+            run_sage5i_control_surface_expansion,
+            write_sage5i_control_surface_expansion,
+        )
+
+        return {
+            "DEFAULT_SAGE5I_CONTROL_SURFACE_EXPANSION_PATH": (
+                DEFAULT_SAGE5I_CONTROL_SURFACE_EXPANSION_PATH
+            ),
+            "run_sage5i_control_surface_expansion": (
+                run_sage5i_control_surface_expansion
+            ),
+            "write_sage5i_control_surface_expansion": (
+                write_sage5i_control_surface_expansion
             ),
         }[name]
     raise AttributeError(name)
