@@ -16,6 +16,7 @@ __all__ = [
     "DEFAULT_SAGE5E_DISTRIBUTED_LIVE_MINI_FRONTIER_RESULTS_PATH",
     "DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH",
     "DEFAULT_SAGE5G_A32_REVIEW_HANDOFF_PATH",
+    "DEFAULT_SAGE5H_CONTROLLED_FOLLOWUP_ACQUISITION_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -34,6 +35,7 @@ __all__ = [
     "run_sage5e_distributed_live_mini_frontier_generation",
     "run_sage5f_mini_frontier_event_consolidation",
     "run_sage5g_a32_review_handoff",
+    "run_sage5h_controlled_followup_acquisition",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -48,6 +50,7 @@ __all__ = [
     "write_sage5e_distributed_live_mini_frontier_results",
     "write_sage5f_mini_frontier_event_consolidation",
     "write_sage5g_a32_review_handoff",
+    "write_sage5h_controlled_followup_acquisition",
 ]
 
 
@@ -354,5 +357,27 @@ def __getattr__(name: str):
             "A32ReviewCandidateItem": A32ReviewCandidateItem,
             "run_sage5g_a32_review_handoff": run_sage5g_a32_review_handoff,
             "write_sage5g_a32_review_handoff": write_sage5g_a32_review_handoff,
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5H_CONTROLLED_FOLLOWUP_ACQUISITION_PATH",
+        "run_sage5h_controlled_followup_acquisition",
+        "write_sage5h_controlled_followup_acquisition",
+    }:
+        from .controlled_followup_acquisition import (
+            DEFAULT_SAGE5H_CONTROLLED_FOLLOWUP_ACQUISITION_PATH,
+            run_sage5h_controlled_followup_acquisition,
+            write_sage5h_controlled_followup_acquisition,
+        )
+
+        return {
+            "DEFAULT_SAGE5H_CONTROLLED_FOLLOWUP_ACQUISITION_PATH": (
+                DEFAULT_SAGE5H_CONTROLLED_FOLLOWUP_ACQUISITION_PATH
+            ),
+            "run_sage5h_controlled_followup_acquisition": (
+                run_sage5h_controlled_followup_acquisition
+            ),
+            "write_sage5h_controlled_followup_acquisition": (
+                write_sage5h_controlled_followup_acquisition
+            ),
         }[name]
     raise AttributeError(name)

@@ -36,6 +36,7 @@ de policy en support scientifique.
 | SAGE.5e - Distributed live mini-frontier generation | Fait | `theory/sage/distributed_live_mini_frontier_generation.py`, `tests/test_sage_distributed_live_mini_frontier_generation.py`, `diagnostics/sage/sage5e_distributed_live_mini_frontier_results.json` | Distribue 8 requests par budget 50/150/300 au lieu de consommer tout le cap au budget 50; dedup par contexte/action/args/diff; execute 2 requests par budget; 6/6 replay exact + hash verifie; support_events=6, contradiction_events=0, mais support=0 et aucun write A32/A33 |
 | SAGE.5f - Mini-frontier event consolidation | Fait | `theory/sage/mini_frontier_event_consolidation.py`, `tests/test_sage_mini_frontier_event_consolidation.py`, `diagnostics/sage/sage5f_mini_frontier_event_consolidation.json` | Consolide les 6 events SAGE.5e en 3 clusters candidate-only; 2 clusters robustes multi-budget; 2 frontieres `ready_for_A32_review` non-verdict; support=0; aucun write A32/A33 |
 | SAGE.5g - A32 review handoff compiler | Fait | `theory/sage/a32_review_handoff.py`, `tests/test_sage_a32_review_handoff.py`, `diagnostics/sage/sage5g_a32_review_handoff.json` | Compile 2 dossiers A32-review candidate-only et 4 followups; `ACTION6` requiert une diversite de controle; `ACTION5` requiert support + diversite de controle et remesure croisee du cluster lie non fusionne; support=0; aucune execution ni write A32/A33 |
+| SAGE.5h - Controlled follow-up acquisition | Fait - partiel, surface de controle epuisee | `theory/sage/controlled_followup_acquisition.py`, `tests/test_sage_controlled_followup_acquisition.py`, `diagnostics/sage/sage5h_controlled_followup_acquisition.json` | Resout les 4 followups : 2 acquis, 2 bloques car seuls ACTION5/ACTION6 sont legaux; ACTION5 atteint 3 evenements comparables; remesure `local_patch` alignee mais `object_delta` divergente entre clusters 002/003; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -1807,21 +1808,153 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_unknown_game_bounded_probe.py -q
 ```
 
-Suite conseillee apres SAGE.5g :
+Transition :
 
-1. SAGE.5h - executer les acquisitions controlees demandees par les quatre
-   followups, sans revision automatique.
-2. A32.4 - consommer les dossiers enrichis et produire une decision explicite :
-   confirmation locale, scope limite, followup ou rejet.
-3. A33.2 - enregistrer une mecanique unknown-game seulement si A32 la confirme.
-4. SAGE.5i - reprendre `sb26` avec la memoire confirmee, puis mesurer la nouvelle
-   frontiere d'usage.
-5. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle de
-   revision et de reinjection.
+SAGE.5h a maintenant execute les quatre followups SAGE.5g. Deux acquisitions
+sont obtenues et deux sont bloquees avec une raison structurelle reproductible :
+aux contextes replayes, les seules familles d'action legales sont `ACTION5` et
+`ACTION6`. Apres exclusion de l'action cible et du controle deja utilise, aucune
+troisieme action distincte n'est disponible.
+
+## SAGE.5h - Controlled follow-up acquisition
+
+Objectif :
+
+- Lire les dossiers et followups SAGE.5g.
+- Retrouver les requests replayables SAGE.5e et les clusters SAGE.5f.
+- Auditer la surface d'actions legales avant toute acquisition de nouveau
+  controle.
+- Exiger un replay exact et un hash de contexte identique.
+- Acquerir un troisieme evenement comparable pour `ACTION5`.
+- Remesurer les clusters lies `002` et `003` avec :
+  - `local_patch_before_after` ;
+  - `object_counts_before_after` comme lecture object-delta.
+- Garder les clusters non fusionnes en cas de divergence de mesure.
+- Resoudre chaque followup comme acquis ou bloque avec une raison auditable.
+- Garder `support=0`, aucune revision, aucun write A32/A33.
+
+Ajouts :
+
+- `theory/sage/controlled_followup_acquisition.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_controlled_followup_acquisition.py`
+- `diagnostics/sage/sage5h_controlled_followup_acquisition.json`
+
+Run du 2026-07-18 :
+
+- `followup_requests_consumed = 4`
+- `followup_outcomes = 4`
+- `followups_completed = 2`
+- `followups_blocked = 2`
+- `control_diversity_followups_completed = 0`
+- `control_diversity_followups_blocked = 2`
+- `support_followups_completed = 1`
+- `cross_measurement_followups_completed = 1`
+- `control_surface_contexts_audited = 3`
+- `replay_exact_control_surface_audits = 3`
+- `control_surface_exhausted_audits = 3`
+- `controlled_experiments_executed = 4`
+- `controlled_experiments_blocked = 0`
+- `live_prefix_replay_exact_experiments = 4`
+- `raw_support_events = 2`
+- `raw_contradiction_events = 0`
+- `raw_neutral_events = 2`
+- `comparable_support_events_acquired = 1`
+- `cross_measurement_alignments = 0`
+- `cross_measurement_divergences = 1`
+- `candidates_ready_for_A32_intake = 0`
+- `all_followups_resolved = true`
+- `all_requested_followups_completed = false`
+- `outcome_status = SAGE_CONTROLLED_FOLLOWUP_ACQUISITION_PARTIAL_CONTROL_SURFACE_LIMIT_CANDIDATE_ONLY`
+- `gate_passed = true`
+- `support = 0`
+- `truth_status = NOT_EVALUATED_BY_SAGE_5H`
+- `revision_status = CANDIDATE_ONLY`
+- `a32_write_performed = false`
+- `a33_write_performed = false`
+
+Resolution des followups :
+
+| candidat | followup | resolution |
+|---|---|---|
+| `ACTION6 {"x":26,"y":57}` | controle distinct dans 2 contextes | `BLOCKED_NO_DISTINCT_LEGAL_CONTROL_ACTION` |
+| `ACTION5` | troisieme support comparable | `ACQUIRED_COMPARABLE_SUPPORT_CANDIDATE_ONLY` |
+| `ACTION5` | controle distinct | `BLOCKED_NO_DISTINCT_LEGAL_CONTROL_ACTION` |
+| `ACTION5` | remesure clusters 002/003 | `ACQUIRED_CROSS_MEASUREMENT_DIVERGENCE_CANDIDATE_ONLY` |
+
+Surface de controle :
+
+- Pour `ACTION6`, les contextes audites exposent uniquement `ACTION5` et
+  plusieurs variantes parametrees de `ACTION6`.
+- Pour `ACTION5`, le contexte audite expose uniquement `ACTION5` et plusieurs
+  variantes parametrees de `ACTION6`.
+- `RESET` reste exclu des controles scientifiques.
+- Les variantes d'arguments d'`ACTION6` ne sont pas comptees comme de nouvelles
+  actions de controle distinctes par le contrat A32 historique.
+
+Remesure croisee `ACTION5` :
+
+- Lecture locale alignee sur les deux clusters :
+  - `changed_pixels = 21` ;
+  - `local_patch_available = false` ;
+  - `local_changed_pixels = 0`.
+- Lecture object-delta divergente :
+  - cluster `002` : `object_count_delta = 0`, deltas couleur
+    `{"0":-1,"3":1}` ;
+  - cluster `003` : `object_count_delta = -1`, delta couleur `{"0":-1}`.
+- Les clusters restent donc explicitement lies mais non fusionnes.
+- Cette divergence n'est ni une contradiction scientifique ni une refutation :
+  elle montre que l'effet object-centric depend du contexte.
+
+Mise a jour des dossiers :
+
+| candidat | support brut avant | nouveau support comparable | support brut apres | contextes | controles distincts | statut |
+|---|---:|---:|---:|---:|---:|---|
+| `ACTION6 {"x":26,"y":57}` | 3 | 0 | 3 | 3 | 1 | controle distinct indisponible |
+| `ACTION5` | 2 | 1 | 3 | 3 | 1 | support atteint, controle distinct indisponible |
+
+Les deux dossiers restent `CANDIDATE_ONLY` et ne sont pas prets pour une intake
+A32 confirmatoire avec les seuils historiques.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.controlled_followup_acquisition `
+  --source-sage5g diagnostics\sage\sage5g_a32_review_handoff.json `
+  --source-sage5e diagnostics\sage\sage5e_distributed_live_mini_frontier_results.json `
+  --source-sage5f diagnostics\sage\sage5f_mini_frontier_event_consolidation.json `
+  --out diagnostics\sage\sage5h_controlled_followup_acquisition.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_controlled_followup_acquisition.py `
+  tests\test_sage_a32_review_handoff.py `
+  tests\test_sage_mini_frontier_event_consolidation.py `
+  tests\test_sage_distributed_live_mini_frontier_generation.py `
+  tests\test_sage_live_mini_frontier_m3_executor.py `
+  tests\test_sage_live_mini_frontier_generation.py `
+  tests\test_sage_switch_attribution_placeholder_audit.py `
+  tests\test_sage_unknown_game_bounded_probe.py -q
+```
+
+Suite conseillee apres SAGE.5h :
+
+1. SAGE.5i - rechercher des contextes replay-exacts ou une troisieme famille
+   d'action est legale, afin de lever le blocage de diversite des controles.
+2. Si aucune telle surface n'existe dans `sb26`, proposer a A32.4 un protocole
+   explicite de controles parametres `ACTION6(args)` sans les confondre avec des
+   actions distinctes.
+3. A32.4 - produire ensuite une decision scope-limited, un nouveau followup ou
+   un rejet ; aucune confirmation automatique depuis SAGE.5h.
+4. A33.2 - enregistrer une mecanique unknown-game seulement si A32 la confirme.
+5. SAGE.6 - passer au second jeu inconnu apres fermeture de cette boucle.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
 bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
 plusieurs horizons, consolider les observations en clusters candidate-only, puis
-compiler des dossiers de revue scientifique et leurs followups. Il ne faut pas
-dire : SAGE sait jouer, generalise, decouvre ou confirme une mecanique sur jeu
-inconnu.
+compiler des dossiers de revue scientifique, executer leurs followups et auditer
+les limites de la surface de controle. Il ne faut pas dire : SAGE sait jouer,
+generalise, decouvre ou confirme une mecanique sur jeu inconnu.
