@@ -174,6 +174,9 @@ Lecture :
   ACTION5 hors des quatre contextes observes.
 - La boucle SAGE.5j -> A32.5 -> A33.2 est maintenant fermee sans enregistrer le
   candidat ACTION6 non identifiable.
+- SAGE.6 consomme ensuite A33.2 en lecture seule comme garde de quarantaine :
+  l'entree ACTION5 reste sur `sb26` et n'est pas appliquee au second jeu
+  `wa30-ee6fef47`.
 
 ## Commandes de verification
 

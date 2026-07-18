@@ -39,6 +39,7 @@ de policy en support scientifique.
 | SAGE.5h - Controlled follow-up acquisition | Fait - partiel, surface de controle epuisee | `theory/sage/controlled_followup_acquisition.py`, `tests/test_sage_controlled_followup_acquisition.py`, `diagnostics/sage/sage5h_controlled_followup_acquisition.json` | Resout les 4 followups : 2 acquis, 2 bloques car seuls ACTION5/ACTION6 sont legaux; ACTION5 atteint 3 evenements comparables; remesure `local_patch` alignee mais `object_delta` divergente entre clusters 002/003; support=0; aucun write A32/A33 |
 | SAGE.5i - Control-surface expansion | Fait - epuisement action-distinct borne | `theory/sage/control_surface_expansion.py`, `tests/test_sage_control_surface_expansion.py`, `diagnostics/sage/sage5i_control_surface_expansion.json` | Audite les 24 contextes candidats SAGE.5e en replay exact; tous exposent seulement ACTION5/ACTION6; aucune troisieme famille d'action; 7 options parametrees conservees sans requalification; proposition de decision protocolaire A32; support=0; aucun write A32/A33 |
 | SAGE.5j - Pre-registered parameterized control acquisition | Fait - resultat mixte candidate-only | `theory/sage/parameterized_control_acquisition.py`, `tests/test_sage_parameterized_control_acquisition.py`, `diagnostics/sage/sage5j_parameterized_control_acquisition.json` | Execute exactement les 8 experiences A32.4 sans substitution; ACTION6 : 4/4 effets non discriminants (5 vs 5); ACTION5 : 4/4 effets discriminants (21 vs 4); 0 contradiction; 2 dossiers prets pour revue A32; support=0; aucun write A32/A33 |
+| SAGE.6 - Second unknown-game bounded transfer | Fait - 3/3 gates passes sur wa30 | `theory/sage/second_unknown_game_transfer.py`, `tests/test_sage_second_unknown_game_transfer.py`, `diagnostics/sage/sage6_second_unknown_game_transfer_results.json` | Selectionne wa30 par ordre public_unseen fixe avant execution; exclut les jeux connus et sb26 source; budgets 50/150/300 passes; progress-stall detecte sur les 3 budgets; 98 switches; quarantaine A33.2 respectee; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2209,15 +2210,128 @@ Retour A33.2 du 2026-07-18 :
 - ACTION6 unresolved est exclue explicitement du registre confirme.
 - Le registre A33.1 et ses consommateurs A34-A39 ne sont pas modifies.
 
-Suite conseillee apres A33.2 :
+## SAGE.6 - Second unknown-game bounded transfer
 
-1. SAGE.6 - passer au second jeu inconnu, la boucle SAGE.5j -> A32.5 -> A33.2
-   etant fermee.
+Objectif :
 
-SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
-bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
-plusieurs horizons, consolider les observations en clusters candidate-only,
-compiler des dossiers de revue scientifique, executer leurs followups, puis
-auditer exhaustivement une surface de controle rejouable et expliciter ses
-limites. Il ne faut pas dire : SAGE sait jouer, generalise, decouvre ou confirme
-une mecanique sur jeu inconnu.
+- Fermer explicitement la boucle source SAGE.5j -> A32.5 -> A33.2 avant de
+  changer de jeu.
+- Auditer les jeux `public_unseen` dans leur ordre fixe, sans lire de metrique
+  d'outcome pour choisir le second jeu.
+- Exiger pour le jeu selectionne : aucune trace humaine, aucune trace M2, aucun
+  prior specifique et une identite differente de `sb26`.
+- Rejouer la discipline bornee SAGE.5 sur budgets `50`, `150`, `300`.
+- Verifier la legalite des actions, les switches, le trigger progress-stall, la
+  repetition, le taux terminal et la nouveaute d'etat.
+- Lire A33.2 uniquement comme garde de quarantaine : ne reutiliser ni ACTION5
+  confirmee sur `sb26`, ni le candidat ACTION6 unresolved.
+- Garder le resultat candidate-only, `support=0`, sans write A32/A33.
+
+Selection pre-execution :
+
+| rang fixe | jeu | hygiene unknown | decision |
+|---:|---|---|---|
+| 1 | `wa30-ee6fef47` | oui | selectionne |
+| 2 | `tn36-ab4f63cc` | oui | eligible, non selectionne |
+| 3 | `ft09-0d8bbf25` | non, traces humaines et M2 | exclu connu |
+| 4 | `cn04-65d47d14` | non, traces humaines et M2 | exclu connu |
+| 5 | `sb26-7fbdac44` | oui | exclu car jeu source |
+
+La selection de `wa30` provient uniquement de
+`PUBLIC_UNSEEN_FIXED_ORDER_BEFORE_EXECUTION`. Les resultats de `wa30` et
+`tn36` n'interviennent jamais dans ce choix.
+
+Ajouts :
+
+- `theory/sage/second_unknown_game_transfer.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_second_unknown_game_transfer.py`
+- `diagnostics/sage/sage6_second_unknown_game_transfer_results.json`
+
+Run du 2026-07-18 :
+
+- `source_game_id=sb26-7fbdac44`
+- `selected_second_game_id=wa30-ee6fef47`
+- `candidate_games_audited=5`
+- `eligible_unknown_games=2`
+- `known_or_seen_candidates_excluded=2`
+- `source_or_registry_scope_candidates_excluded=1`
+- `budgets_evaluated=[50,150,300]`
+- `budgets_gate_passed=3`
+- `budgets_total=3`
+- `all_budgets_gate_passed=true`
+- `budgets_with_progress_stall_detected=[50,150,300]`
+- `subgoal_switches_total=98`
+- `max_repeated_action_arg_rate=0.5`
+- `max_terminal_rate=0.005`
+- `min_unique_state_signatures=37`
+- `max_unique_state_signatures=132`
+- `levels_completed_max=0`
+- `source_a33_2_entries_quarantined=1`
+- `source_scoped_mechanics_reused=0`
+- `cross_game_mechanics_imported=0`
+- `gate_passed=true`
+- `outcome_status=SAGE_SECOND_UNKNOWN_GAME_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_6`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+- `wrong_confirmations=0`
+
+Resultats par budget :
+
+| budget | gate | switches | progress-stall | repetition | terminal | signatures uniques | niveaux |
+|---:|---|---:|---|---:|---:|---:|---:|
+| 50 | passe | 12 | oui, 12 switches | 0.48 | 0.0 | 37 | 0 |
+| 150 | passe | 37 | oui, 37 switches | 0.493333 | 0.0 | 101 | 0 |
+| 300 | passe | 49 | oui, 49 switches | 0.5 | 0.005 | 132 | 0 |
+
+Lecture :
+
+- SAGE.6 etend le probe technique borne a un deuxieme jeu inconnu reel. Il ne
+  constitue toujours ni un benchmark ni une preuve de competence de jeu.
+- Contrairement a `sb26`, le trigger progress-stall est effectivement detecte
+  sur les trois budgets de `wa30`. SAGE.6 fournit donc une seconde validation
+  de transfert de la discipline de boucle, sur une famille warehouse/navigation.
+- La repetition reste sous le seuil catastrophique `0.9` et le taux terminal
+  sous `0.05`, mais `levels_completed=0` : aucune reussite ludique n'est
+  revendiquee.
+- L'entree ACTION5 A33.2 reste verrouillee a `sb26`; aucune action, mecanique ou
+  evidence de cette memoire n'est appliquee a `wa30`.
+- Les observations `wa30` restent candidate-only et ne sont pas du support
+  scientifique.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.second_unknown_game_transfer `
+  --source-sage5 diagnostics\sage\sage5_unknown_game_bounded_probe_results.json `
+  --source-a33-2 diagnostics\a33\scoped_unknown_game_registry.json `
+  --m2-dataset-manifest diagnostics\m2\arc_lewm_dataset_manifest.json `
+  --human-traces-dir human_traces `
+  --budgets 50 150 300 `
+  --out diagnostics\sage\sage6_second_unknown_game_transfer_results.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_second_unknown_game_transfer.py `
+  tests\test_sage_unknown_game_bounded_probe.py `
+  tests\test_a33_scoped_unknown_game_registry.py -q
+```
+
+Suite conseillee apres SAGE.6 :
+
+1. SAGE.6a - attribuer les 98 switches `wa30`, puis convertir un sous-ensemble
+   des placeholders en mini-frontiere live candidate-only propre a `wa30`.
+2. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
+   sur la base de son outcome.
+
+SAGE.6 autorise maintenant a dire : SAGE peut transferer une discipline de
+boucle inconnue bornee sur deux jeux mecaniquement differents, tout en isolant
+la memoire scientifique scopee du premier jeu. Il ne faut pas dire : SAGE sait
+jouer, generalise une mecanique, decouvre ou confirme une mecanique sur jeu
+inconnu.
