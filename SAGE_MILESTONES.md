@@ -1,6 +1,6 @@
 # SAGE milestones - closed-loop integration
 
-Derniere mise a jour : 2026-07-05
+Derniere mise a jour : 2026-07-18
 
 SAGE orchestre les briques M1/M2/M3/P1 dans une boucle agentique. SAGE ne
 confirme pas une mecanique, ne refute rien, et ne transforme jamais un resultat
@@ -33,6 +33,8 @@ de policy en support scientifique.
 | SAGE.5b - Switch attribution and placeholder audit | Fait - dependance placeholder elevee | `theory/sage/switch_attribution_placeholder_audit.py`, `tests/test_sage_switch_attribution_placeholder_audit.py`, `diagnostics/sage/sage5b_switch_attribution_placeholder_audit.json` | Attribue 308 switches SAGE.5 : 306 success-like/loop-guard, 0 progress-stall, 2 terminal-guard; 297 placeholders `rerun_m2_m3`, 0 requests effectives; `outcome_status=SAGE_SWITCH_ATTRIBUTION_PLACEHOLDER_DEPENDENCY_HIGH_CANDIDATE_ONLY`; support=0; aucun write A32/A33 |
 | SAGE.5c - Live mini-frontier generation from unknown state | Fait | `theory/sage/live_mini_frontier_generation.py`, `tests/test_sage_live_mini_frontier_generation.py`, `diagnostics/sage/sage5c_live_mini_frontier_results.json` | Convertit 20 placeholders `rerun_m2_m3` en 20 hypotheses + 20 requests M3 live-prefix candidate-only; effective_request_ratio=0.06734; residual placeholder ratio 0.905229; support=0; aucun write A32/A33 |
 | SAGE.5d - Live-prefix mini-frontier M3 execution | Fait | `theory/sage/live_mini_frontier_m3_executor.py`, `tests/test_sage_live_mini_frontier_m3_executor.py`, `diagnostics/sage/sage5d_live_mini_frontier_m3_results.json` | Execute 8 requests SAGE.5c stratifiees en `LIVE_PREFIX_REPLAY_CONTEXT`; 8/8 replay exact + hash verifie; ACTION5/ACTION6 et object/local couverts; support_events=8, contradiction_events=0, mais support=0 et aucun write A32/A33 |
+| SAGE.5e - Distributed live mini-frontier generation | Fait | `theory/sage/distributed_live_mini_frontier_generation.py`, `tests/test_sage_distributed_live_mini_frontier_generation.py`, `diagnostics/sage/sage5e_distributed_live_mini_frontier_results.json` | Distribue 8 requests par budget 50/150/300 au lieu de consommer tout le cap au budget 50; dedup par contexte/action/args/diff; execute 2 requests par budget; 6/6 replay exact + hash verifie; support_events=6, contradiction_events=0, mais support=0 et aucun write A32/A33 |
+| SAGE.5f - Mini-frontier event consolidation | Fait | `theory/sage/mini_frontier_event_consolidation.py`, `tests/test_sage_mini_frontier_event_consolidation.py`, `diagnostics/sage/sage5f_mini_frontier_event_consolidation.json` | Consolide les 6 events SAGE.5e en 3 clusters candidate-only; 2 clusters robustes multi-budget; 2 frontieres `ready_for_A32_review` non-verdict; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -1423,16 +1425,292 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_unknown_game_bounded_probe.py -q
 ```
 
-Suite conseillee apres SAGE.5d :
+Transition :
 
-1. SAGE.5e - augmenter progressivement le cap ou distribuer la generation sur
-   les budgets 150/300 au lieu d'epuiser tout le budget sur le budget 50.
-2. SAGE.5f - executer davantage de requests SAGE.5c/SAGE.5e, avec dedup par
-   contexte et action pour distinguer support local et redondance.
-3. SAGE.6 - second jeu inconnu seulement apres une generation moins concentree
-   et un second run M3 live-prefix.
+SAGE.5e a maintenant ete execute. Il corrige la limite principale de SAGE.5c :
+la generation n'est plus concentree sur le budget 50. Le signal candidate-only
+est distribue sur plusieurs profondeurs de trajectoire, avec dedup strict et
+execution M3 live-prefix sur chaque budget.
+
+## SAGE.5e - Distributed live mini-frontier generation
+
+Objectif :
+
+- Lire `SAGE.5`, `SAGE.5b` et `SAGE.5c` comme contexte candidate-only.
+- Generer une mini-frontier live inconnue avec quota par budget.
+- Deduplicater par `(context_hash, target_action, target_args, diff_signature)`.
+- Prioriser les contextes non redondants.
+- Executer un petit nombre de requests par budget en `LIVE_PREFIX_REPLAY_CONTEXT`.
+- Garder `support=0`, aucun verdict, aucun write A32/A33.
+
+Ajouts :
+
+- `theory/sage/distributed_live_mini_frontier_generation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_distributed_live_mini_frontier_generation.py`
+- `diagnostics/sage/sage5e_distributed_live_mini_frontier_results.json`
+
+Run du 2026-07-18 :
+
+- `game_id = sb26-7fbdac44`
+- budgets = `[50, 150, 300]`
+- `requests_per_budget = 8`
+- `execute_requests_per_budget = 2`
+- `distributed_generation = true`
+- `dedup_policy = context_hash,target_action,target_args,diff_signature`
+- `rerun_m2_m3_requested = 297`
+- `effective_requests_generated = 24`
+- `effective_request_ratio = 0.080808`
+- `source_sage5c_effective_requests_generated = 20`
+- `mini_frontier_hypotheses_generated = 24`
+- `mini_frontier_m3_requests = 24`
+- `dedup_key_count = 24`
+- `duplicate_candidates_skipped = 24`
+- `selected_execution_requests = 6`
+- `requests_executed = 6`
+- `requests_blocked = 0`
+- `live_prefix_replay_exact_events = 6`
+- `context_snapshot_hash_verified_events = 6`
+- `support_events = 6`
+- `contradiction_events = 0`
+- `neutral_events = 0`
+- `blocked_replay_events = 0`
+- `execution_failures = 0`
+- `outcome_status = SAGE_DISTRIBUTED_LIVE_MINI_FRONTIER_GENERATED_AND_EXECUTED_CANDIDATE_ONLY`
+- `gate_passed = true`
+- `generated_requests_counted_as_support = false`
+- `mini_frontier_counted_as_evidence = false`
+- `mini_frontier_execution_counted_as_evidence = false`
+- `support_events_counted_as_support = false`
+- `policy_result_counted_as_confirmation = false`
+- `support = 0`
+- `truth_status = NOT_EVALUATED_BY_SAGE_5E`
+- `revision_status = CANDIDATE_ONLY`
+- `a32_write_performed = false`
+- `a33_write_performed = false`
+
+Par budget :
+
+| budget | placeholders | generated | effective_ratio | duplicates_skipped | execution_selected | executed |
+|---|---:|---:|---:|---:|---:|---:|
+| 50 | 47 | 8 | 0.170213 | 0 | 2 | 2 |
+| 150 | 125 | 8 | 0.064 | 8 | 2 | 2 |
+| 300 | 125 | 8 | 0.064 | 16 | 2 | 2 |
+
+Familles :
+
+- `families_generated = {"local_patch_change_candidate":23, "object_delta_candidate":1}`
+- `families_executed = {"local_patch_change_candidate":5, "object_delta_candidate":1}`
+- `target_actions_generated = {"ACTION5":13, "ACTION6":11}`
+- `target_actions_executed = {"ACTION5":3, "ACTION6":3}`
+
+Requests executees :
+
+| request | family | budget | target | control | target_signal | control_signal | support_events | contradiction_events |
+|---|---|---:|---|---|---:|---:|---:|---:|
+| `...::050::0001` | `object_delta_candidate` | 50 | `ACTION5` | `ACTION6` | 21 | 4 | 1 | 0 |
+| `...::050::0006` | `local_patch_change_candidate` | 50 | `ACTION6` | `ACTION5` | 5 | 1 | 1 | 0 |
+| `...::150::0011` | `local_patch_change_candidate` | 150 | `ACTION5` | `ACTION6` | 21 | 4 | 1 | 0 |
+| `...::150::0012` | `local_patch_change_candidate` | 150 | `ACTION6` | `ACTION5` | 5 | 1 | 1 | 0 |
+| `...::300::0019` | `local_patch_change_candidate` | 300 | `ACTION5` | `ACTION6` | 21 | 4 | 1 | 0 |
+| `...::300::0020` | `local_patch_change_candidate` | 300 | `ACTION6` | `ACTION5` | 5 | 1 | 1 | 0 |
+
+Lecture :
+
+SAGE.5e valide la repartition de la mini-frontier live sur plusieurs profondeurs
+de trajectoire inconnue. La chaine reste strictement candidate-only : les
+support_events locaux montrent seulement que les mesures target depassent les
+controles dynamiques dans ces contextes replayes, mais ils ne sont pas convertis
+en support scientifique.
+
+La correction principale par rapport a SAGE.5c est nette : SAGE.5c generait
+20/20 requests sur le budget 50, alors que SAGE.5e genere 8 requests sur chacun
+des budgets 50, 150 et 300, puis execute 2 requests par budget avec replay exact
+et hash de contexte verifie.
+
+Limites :
+
+- Le test reste sur un seul jeu inconnu : `sb26-7fbdac44`.
+- `levels_completed` reste hors validation ; aucune competence de jeu n'est
+  confirmee.
+- Les familles restent dominees par `local_patch_change_candidate` avec une
+  seule `object_delta_candidate`.
+- Les 6 support_events sont locaux, potentiellement redondants, et ne comptent
+  ni comme evidence ni comme support.
+- Des placeholders restent non transformes : la boucle apprenante existe, mais
+  elle n'est pas encore continue.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.distributed_live_mini_frontier_generation `
+  --m2-fused-requests diagnostics\m2\fused_llm_wm_m3_candidate_requests.json `
+  --m3-fused-results diagnostics\m3\fused_llm_wm_experiment_results.json `
+  --m3-counterfactual-feasibility diagnostics\m3\offline_frame_counterfactual_feasibility.json `
+  --p1-policy-probe diagnostics\p1\bp35_sage_candidate_policy_probe.json `
+  --p1-utility-handoff diagnostics\p1\bp35_candidate_policy_utility_handoff.json `
+  --source-sage5 diagnostics\sage\sage5_unknown_game_bounded_probe_results.json `
+  --source-sage5b diagnostics\sage\sage5b_switch_attribution_placeholder_audit.json `
+  --source-sage5c diagnostics\sage\sage5c_live_mini_frontier_results.json `
+  --out diagnostics\sage\sage5e_distributed_live_mini_frontier_results.json `
+  --requests-per-budget 8 `
+  --execute-requests-per-budget 2 `
+  --max-counterfactual-collections 8 `
+  --progress-stall-window 8 `
+  --same-action-arg-repeats 4 `
+  --low-state-novelty-threshold 3 `
+  --repeated-action-arg-rate-threshold 0.75
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_distributed_live_mini_frontier_generation.py `
+  tests\test_sage_live_mini_frontier_m3_executor.py `
+  tests\test_sage_live_mini_frontier_generation.py `
+  tests\test_sage_switch_attribution_placeholder_audit.py `
+  tests\test_sage_unknown_game_bounded_probe.py `
+  tests\test_sage_long_horizon_progress_stall_transfer.py `
+  tests\test_sage_progress_stall_trigger.py `
+  tests\test_sage_long_horizon_transfer.py `
+  tests\test_sage_subgoal_switcher.py `
+  tests\test_sage_known_game_policy_probe.py `
+  tests\test_sage_policy_loop_guard.py `
+  tests\test_sage_live_prefix_counterfactual_collector.py `
+  tests\test_sage_known_game_closed_loop_runner.py `
+  tests\test_sage_known_game_closed_loop_scaffold.py -q
+```
+
+Transition :
+
+SAGE.5f a maintenant ete execute. Il ne genere pas de nouvelles observations et
+ne rejoue pas l'environnement : il consolide les observations SAGE.5e en motifs
+candidate-only pour distinguer support local, redondance, robustesse multi-budget
+et frontieres candidates A32-review sans write.
+
+## SAGE.5f - Mini-frontier event consolidation
+
+Objectif :
+
+- Lire `diagnostics/sage/sage5e_distributed_live_mini_frontier_results.json`.
+- Verifier que la source SAGE.5e reste candidate-only.
+- Construire des event records normalises depuis les executions M3 live-prefix.
+- Regrouper les observations par regularite :
+  - famille d'hypothese
+  - action cible et arguments
+  - transitions de couleurs
+  - taille de patch / `changed_cells`
+  - deltas de composantes
+  - terminal / level delta
+- Mesurer la stabilite par budget, action et contexte.
+- Emettre seulement des clusters candidate-only, jamais un verdict.
+- Garder `support=0`, aucun write A32/A33.
+
+Ajouts :
+
+- `theory/sage/mini_frontier_event_consolidation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_mini_frontier_event_consolidation.py`
+- `diagnostics/sage/sage5f_mini_frontier_event_consolidation.json`
+
+Run du 2026-07-18 :
+
+- source = `diagnostics/sage/sage5e_distributed_live_mini_frontier_results.json`
+- `source_requests_generated = 24`
+- `source_requests_executed = 6`
+- `event_records = 6`
+- `candidate_mechanism_clusters = 3`
+- `multi_budget_clusters = 2`
+- `robust_multi_budget_clusters = 2`
+- `ready_for_A32_review_candidates = 2`
+- `unique_contexts = 6`
+- `unique_dedup_keys = 6`
+- `raw_support_events = 6`
+- `raw_contradiction_events = 0`
+- `raw_neutral_events = 0`
+- `actions_covered = {"ACTION5":3, "ACTION6":3}`
+- `families_covered = {"local_patch_change_candidate":5, "object_delta_candidate":1}`
+- `candidate_status_counts = {"LOCAL_SUPPORT_CANDIDATE_ONLY":1, "ROBUST_MULTI_BUDGET_CANDIDATE_ONLY":2}`
+- `outcome_status = SAGE_MINI_FRONTIER_EVENTS_CLUSTERED_CANDIDATE_ONLY`
+- `gate_passed = true`
+- `support = 0`
+- `truth_status = NOT_EVALUATED_BY_SAGE_5F`
+- `revision_status = CANDIDATE_ONLY`
+- `clustered_support_events_counted_as_support = false`
+- `cluster_status_counted_as_scientific_verdict = false`
+- `candidate_a32_frontier_counted_as_revision = false`
+- `ready_for_A32_review_is_not_verdict = true`
+- `a32_write_performed = false`
+- `a33_write_performed = false`
+
+Clusters :
+
+| cluster | family | action | budgets | status | raw_support | contradictions | pattern |
+|---|---|---|---|---|---:|---:|---|
+| `001` | `local_patch_change_candidate` | `ACTION6 {"x":26,"y":57}` | 50/150/300 | `ROBUST_MULTI_BUDGET_CANDIDATE_ONLY` | 3 | 0 | `4->0` x20, `changed_cells=20`, effect size 4 |
+| `002` | `object_delta_candidate` | `ACTION5` | 50 | `LOCAL_SUPPORT_CANDIDATE_ONLY` | 1 | 0 | `0->4` x20 + `2->3` x1, effect size 17 |
+| `003` | `local_patch_change_candidate` | `ACTION5` | 150/300 | `ROBUST_MULTI_BUDGET_CANDIDATE_ONLY` | 2 | 0 | `0->4` x20 + `2->3` x1, `changed_cells=21`, effect size 17 |
+
+Frontieres candidates A32-review :
+
+- `sage5f::candidate_a32_frontier::001` derive du cluster `001`.
+- `sage5f::candidate_a32_frontier::002` derive du cluster `003`.
+- Ces frontieres sont marquees `ready_for_A32_review=true`, mais
+  `ready_for_A32_review_is_not_verdict=true` et
+  `candidate_a32_frontier_counted_as_revision=false`.
+- Aucun fichier A32/A33 n'est modifie.
+
+Lecture :
+
+SAGE.5f valide la premiere memoire experimentale candidate-only sur jeu inconnu :
+les observations locales SAGE.5e ne restent plus une liste plate de support_events.
+Elles sont regroupees en motifs d'effet, avec une distinction entre support local
+single-budget et robustesse multi-budget.
+
+Deux motifs sont assez stables pour etre proposes a une revue A32 candidate-only :
+`ACTION6` produit un motif local `4->0` sur les budgets 50/150/300, et `ACTION5`
+produit un motif `0->4` + `2->3` sur les budgets 150/300. Cela ne confirme pas
+une mecanique : c'est seulement une consolidation structurante pour une future
+revue.
+
+Limites :
+
+- Le test reste sur `sb26-7fbdac44` uniquement.
+- Les clusters viennent de 6 executions seulement.
+- Les 2 frontieres A32-review candidates ne sont pas des decisions A32.
+- `levels_completed` reste absent : aucune competence de jeu n'est validee.
+- Les effets sont locaux et peuvent encore etre redondants ou contextuels.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.mini_frontier_event_consolidation `
+  --source-sage5e diagnostics\sage\sage5e_distributed_live_mini_frontier_results.json `
+  --out diagnostics\sage\sage5f_mini_frontier_event_consolidation.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_mini_frontier_event_consolidation.py `
+  tests\test_sage_distributed_live_mini_frontier_generation.py `
+  tests\test_sage_live_mini_frontier_m3_executor.py `
+  tests\test_sage_live_mini_frontier_generation.py `
+  tests\test_sage_switch_attribution_placeholder_audit.py `
+  tests\test_sage_unknown_game_bounded_probe.py -q
+```
+
+Suite conseillee apres SAGE.5f :
+
+1. SAGE.5g - preparer un handoff A32-review candidate-only, sans write A32, qui
+   transforme les deux clusters robustes en items revus/rejetables.
+2. SAGE.6 - second jeu inconnu apres ce handoff, pour tester si des clusters
+   comparables apparaissent hors `sb26`.
 
 SAGE.5 autorise maintenant a dire : SAGE peut executer une boucle inconnue
-bornee et candidate-only sans action illegale ni collapse repetitif. Il ne faut
-pas dire : SAGE sait jouer, generalise, ou decouvre une mecanique sur jeu
-inconnu.
+bornee, non repetitive, produire/executer des mini-frontiers live reparties sur
+plusieurs horizons, puis consolider les observations en clusters candidate-only.
+Il ne faut pas dire : SAGE sait jouer, generalise, ou decouvre une mecanique sur
+jeu inconnu.

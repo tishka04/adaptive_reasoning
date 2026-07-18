@@ -13,6 +13,8 @@ __all__ = [
     "DEFAULT_SAGE5B_SWITCH_AUDIT_RESULTS_PATH",
     "DEFAULT_SAGE5C_LIVE_MINI_FRONTIER_RESULTS_PATH",
     "DEFAULT_SAGE5D_LIVE_MINI_FRONTIER_M3_RESULTS_PATH",
+    "DEFAULT_SAGE5E_DISTRIBUTED_LIVE_MINI_FRONTIER_RESULTS_PATH",
+    "DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
     "evaluate_progress_stall_trigger",
@@ -27,6 +29,8 @@ __all__ = [
     "run_sage5b_switch_attribution_placeholder_audit",
     "run_sage5c_live_mini_frontier_generation",
     "run_sage5d_live_mini_frontier_m3_execution",
+    "run_sage5e_distributed_live_mini_frontier_generation",
+    "run_sage5f_mini_frontier_event_consolidation",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -38,6 +42,8 @@ __all__ = [
     "write_sage5b_switch_attribution_placeholder_audit",
     "write_sage5c_live_mini_frontier_generation",
     "write_sage5d_live_mini_frontier_m3_results",
+    "write_sage5e_distributed_live_mini_frontier_results",
+    "write_sage5f_mini_frontier_event_consolidation",
 ]
 
 
@@ -278,6 +284,50 @@ def __getattr__(name: str):
             ),
             "write_sage5d_live_mini_frontier_m3_results": (
                 write_sage5d_live_mini_frontier_m3_results
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5E_DISTRIBUTED_LIVE_MINI_FRONTIER_RESULTS_PATH",
+        "run_sage5e_distributed_live_mini_frontier_generation",
+        "write_sage5e_distributed_live_mini_frontier_results",
+    }:
+        from .distributed_live_mini_frontier_generation import (
+            DEFAULT_SAGE5E_DISTRIBUTED_LIVE_MINI_FRONTIER_RESULTS_PATH,
+            run_sage5e_distributed_live_mini_frontier_generation,
+            write_sage5e_distributed_live_mini_frontier_results,
+        )
+
+        return {
+            "DEFAULT_SAGE5E_DISTRIBUTED_LIVE_MINI_FRONTIER_RESULTS_PATH": (
+                DEFAULT_SAGE5E_DISTRIBUTED_LIVE_MINI_FRONTIER_RESULTS_PATH
+            ),
+            "run_sage5e_distributed_live_mini_frontier_generation": (
+                run_sage5e_distributed_live_mini_frontier_generation
+            ),
+            "write_sage5e_distributed_live_mini_frontier_results": (
+                write_sage5e_distributed_live_mini_frontier_results
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH",
+        "run_sage5f_mini_frontier_event_consolidation",
+        "write_sage5f_mini_frontier_event_consolidation",
+    }:
+        from .mini_frontier_event_consolidation import (
+            DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH,
+            run_sage5f_mini_frontier_event_consolidation,
+            write_sage5f_mini_frontier_event_consolidation,
+        )
+
+        return {
+            "DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH": (
+                DEFAULT_SAGE5F_MINI_FRONTIER_EVENT_CONSOLIDATION_PATH
+            ),
+            "run_sage5f_mini_frontier_event_consolidation": (
+                run_sage5f_mini_frontier_event_consolidation
+            ),
+            "write_sage5f_mini_frontier_event_consolidation": (
+                write_sage5f_mini_frontier_event_consolidation
             ),
         }[name]
     raise AttributeError(name)
