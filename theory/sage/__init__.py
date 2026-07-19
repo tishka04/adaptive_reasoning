@@ -39,6 +39,7 @@ __all__ = [
     "DEFAULT_SAGE8F_GOAL_GROUNDED_SIGNAL_ACQUISITION_PATH",
     "DEFAULT_SAGE8G_TARGET_GOAL_SIGNAL_ACTIVE_ACQUISITION_PATH",
     "DEFAULT_SAGE8H_GOAL_GROUNDED_RELATIONAL_MEMORY_EVALUATION_PATH",
+    "DEFAULT_SAGE8I_GOAL_GROUNDED_MEMORY_HELD_OUT_EVALUATION_PATH",
     "A32ReviewCandidateItem",
     "PolicyActionOption",
     "RelationalMemoryPolicyEntry",
@@ -84,6 +85,7 @@ __all__ = [
     "run_sage8f_goal_grounded_signal_acquisition",
     "run_sage8g_target_goal_signal_active_acquisition",
     "run_sage8h_goal_grounded_relational_memory_evaluation",
+    "run_sage8i_goal_grounded_memory_held_out_evaluation",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -121,6 +123,7 @@ __all__ = [
     "write_sage8f_goal_grounded_signal_acquisition",
     "write_sage8g_target_goal_signal_active_acquisition",
     "write_sage8h_goal_grounded_relational_memory_evaluation",
+    "write_sage8i_goal_grounded_memory_held_out_evaluation",
 ]
 
 
@@ -934,6 +937,28 @@ def __getattr__(name: str):
             ),
             "write_sage8h_goal_grounded_relational_memory_evaluation": (
                 write_sage8h_goal_grounded_relational_memory_evaluation
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE8I_GOAL_GROUNDED_MEMORY_HELD_OUT_EVALUATION_PATH",
+        "run_sage8i_goal_grounded_memory_held_out_evaluation",
+        "write_sage8i_goal_grounded_memory_held_out_evaluation",
+    }:
+        from .goal_grounded_memory_held_out_evaluation import (
+            DEFAULT_SAGE8I_GOAL_GROUNDED_MEMORY_HELD_OUT_EVALUATION_PATH,
+            run_sage8i_goal_grounded_memory_held_out_evaluation,
+            write_sage8i_goal_grounded_memory_held_out_evaluation,
+        )
+
+        return {
+            "DEFAULT_SAGE8I_GOAL_GROUNDED_MEMORY_HELD_OUT_EVALUATION_PATH": (
+                DEFAULT_SAGE8I_GOAL_GROUNDED_MEMORY_HELD_OUT_EVALUATION_PATH
+            ),
+            "run_sage8i_goal_grounded_memory_held_out_evaluation": (
+                run_sage8i_goal_grounded_memory_held_out_evaluation
+            ),
+            "write_sage8i_goal_grounded_memory_held_out_evaluation": (
+                write_sage8i_goal_grounded_memory_held_out_evaluation
             ),
         }[name]
     raise AttributeError(name)

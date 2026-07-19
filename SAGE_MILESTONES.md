@@ -4084,3 +4084,76 @@ exemple sur les niveaux suivants atteints apres les deux level-ups ou sur des
 etats de depart held-out. La memoire exacte doit alors rester en quarantaine hors
 scope, et toute generalisation structurelle doit etre comparee a ce fallback
 sans utiliser les outcomes SAGE.8i pour apprendre ou regler la politique.
+
+## SAGE.8i - exact memory held-out next-level evaluation
+
+Objectif :
+
+- Rejouer la trajectoire positive admise de chaque jeu uniquement comme setup
+  pour atteindre son niveau suivant, puis commencer la mesure.
+- Exclure le level-up du setup des metriques ARC de l'evaluation held-out.
+- Evaluer les deux bras depuis le meme digest de niveau suivant, avec le meme
+  horizon et le meme planner state-conditioned de fallback.
+- Desactiver la memoire exacte dans le temoin et l'activer dans le traitement,
+  sans elargir son scope `game_id|visual_digest` ni autoriser de fuzzy matching.
+- Mettre en quarantaine chaque miss de scope et n'executer que des actions
+  legales choisies par le fallback partage.
+- Mesurer la progression uniquement apres l'entree dans le niveau held-out.
+- Ne pas utiliser les outcomes SAGE.8i pour apprendre, regler ou classer les
+  actions et ne pas presenter la memoire exacte comme une politique structurelle.
+
+Ajouts :
+
+- `theory/sage/goal_grounded_memory_held_out_evaluation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_goal_grounded_memory_held_out_evaluation.py`
+- `diagnostics/sage/sage8i_goal_grounded_memory_held_out_evaluation.json`
+
+Run du 2026-07-19 :
+
+- `paired_held_out_rollouts_evaluated=2`
+- `held_out_levels_evaluated=2`
+- `games_evaluated=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `training_memory_entries=57`
+- `setup_actions_executed_total=114`
+- `held_out_scope_keys_observed=57`
+- `held_out_scope_keys_matching_training_memory=0`
+- `no_memory_steps_executed=57`
+- `with_memory_steps_executed=57`
+- `no_memory_applications=0`
+- `with_memory_applications=0`
+- `with_memory_scope_misses=57`
+- `with_memory_fallback_applications=57`
+- `with_memory_exact_coverage_rate=0.0`
+- `episodes_with_identical_action_trajectories=2`
+- `episodes_with_identical_final_states=2`
+- `no_memory_levels_completed_delta_total=0`
+- `with_memory_levels_completed_delta_total=0`
+- `levels_completed_absolute_gain=0`
+- `no_memory_win_rate=0.0`
+- `with_memory_win_rate=0.0`
+- `win_rate_absolute_gain=0.0`
+- `held_out_generalization_evaluated=true`
+- `held_out_generalization_observed=false`
+- `exact_memory_quarantined_out_of_scope=true`
+- `structural_generalization_policy_applied=false`
+- `evaluation_outcomes_used_for_training_or_tuning=false`
+- `future_outcomes_used_for_planning=false`
+- `cross_game_transfer_performed=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_EXACT_GOAL_MEMORY_HELD_OUT_NEXT_LEVEL_SCOPE_SAFE_NO_GENERALIZATION`
+
+Lecture : SAGE.8i etablit un vrai holdout par rapport aux 57 etats ayant servi
+a compiler la memoire. Apres le setup, les deux niveaux suivants produisent 57
+cles exactes nouvelles. La memoire n'en reconnait aucune, reste entierement en
+quarantaine et laisse le meme fallback produire des trajectoires et des etats
+finaux identiques dans les deux bras. Cette absence de gain n'est pas une
+regression : elle confirme que le gain SAGE.8h etait une conversion de replay
+scopee et que la memoire exacte ne fuit pas hors distribution. Elle confirme
+aussi que SAGE ne generalise pas encore vers ces niveaux non vus.
+
+Suite requise : SAGE.8j doit construire une representation structurelle a partir
+des seules donnees anterieures a SAGE.8i, figer cette politique avant evaluation,
+puis la comparer au meme fallback sur ces niveaux held-out. Le critere de succes
+reste une hausse de `levels_completed` ou de `win_rate`, sans reutiliser les
+outcomes SAGE.8i pour choisir ou regler la representation.
