@@ -4009,3 +4009,78 @@ politique de progression strictement scopee aux etats exacts de leur jeu, puis
 reprendre une evaluation fermee appariee avec/sans memoire relationnelle. Les
 outcomes SAGE.8h resteront reserves a l'evaluation ; ils ne devront ni choisir
 les trajectoires d'apprentissage, ni regler le planner.
+
+## SAGE.8h - exact goal-grounded memory closed-loop evaluation
+
+Objectif :
+
+- Compiler chaque etat pre-action des deux trajectoires positives SAGE.8g en
+  une memoire `game_id|visual_digest -> action`.
+- Rejouer les sources pendant la compilation et verifier les digests RESET et
+  finaux sans utiliser les outcomes de SAGE.8h.
+- Interdire le matching flou, le transfert inter-jeux et toute action devenue
+  illegale ; revenir au planner state-conditioned SAGE.8d hors scope.
+- Evaluer un episode depuis RESET par jeu, avec le meme reset, le meme horizon
+  et le meme fallback dans les deux bras.
+- Desactiver completement la memoire dans le temoin et l'activer avant le
+  fallback dans le traitement.
+- Arreter un bras seulement apres une hausse observee de `levels_completed` ou
+  un etat terminal ; ces outcomes ne participent jamais au classement d'action.
+- Mesurer `levels_completed` et `win_rate` comme metriques ARC principales.
+- Etiqueter explicitement ce protocole comme conversion sur les trajectoires
+  d'apprentissage exactes, et non comme generalisation held-out.
+
+Ajouts :
+
+- `theory/sage/goal_grounded_relational_memory_evaluation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_goal_grounded_relational_memory_evaluation.py`
+- `diagnostics/sage/sage8h_goal_grounded_relational_memory_evaluation.json`
+
+Run du 2026-07-19 :
+
+- `paired_rollouts_evaluated=2`
+- `games_evaluated=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `compiled_demonstration_transitions=57`
+- `compiled_exact_visual_states=57`
+- `ambiguous_exact_states=0`
+- `no_memory_steps_executed=57`
+- `with_memory_steps_executed=57`
+- `no_memory_applications=0`
+- `with_memory_applications=57`
+- `with_memory_fallback_applications=0`
+- `with_memory_exact_coverage_rate=1.0`
+- `exact_source_sequences_replayed=2`
+- `source_positive_final_digests_reproduced=2`
+- `episodes_with_divergent_action_trajectories=2`
+- `no_memory_levels_completed_delta_total=0`
+- `with_memory_levels_completed_delta_total=2`
+- `levels_completed_absolute_gain=2`
+- `no_memory_wins=0`
+- `with_memory_wins=0`
+- `no_memory_win_rate=0.0`
+- `with_memory_win_rate=0.0`
+- `win_rate_absolute_gain=0.0`
+- `primary_arc_progress_improved=true`
+- `primary_arc_progress_regressed=false`
+- `evaluation_outcomes_used_for_training_or_tuning=false`
+- `future_outcomes_used_for_planning=false`
+- `cross_game_transfer_performed=false`
+- `held_out_generalization_evaluated=false`
+- `primary_gain_is_replay_conversion_not_generalization=true`
+- `gate_passed=true`
+- `outcome_status=SAGE_GOAL_GROUNDED_MEMORY_EXACT_REPLAY_ARC_SCORE_GAIN_OBSERVED`
+
+Lecture : pour la premiere fois dans SAGE.8, l'intervention memoire convertit
+un signal local en progression ARC principale. Le temoin generique termine les
+57 actions sans level-up ; le traitement reproduit les 57 decisions positives,
+sans fallback, et gagne un niveau dans chaque jeu. Ce gain de +2 est causal dans
+l'ablation exacte de la memoire sur ces resets, mais reste un resultat de
+resubstitution : les memes trajectoires ont servi a compiler et a evaluer la
+memoire. Il ne prouve ni transfert relationnel, ni resolution d'un niveau non vu.
+
+Suite requise : SAGE.8i doit evaluer hors trajectoire d'apprentissage, par
+exemple sur les niveaux suivants atteints apres les deux level-ups ou sur des
+etats de depart held-out. La memoire exacte doit alors rester en quarantaine hors
+scope, et toute generalisation structurelle doit etre comparee a ce fallback
+sans utiliser les outcomes SAGE.8i pour apprendre ou regler la politique.
