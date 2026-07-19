@@ -41,6 +41,7 @@ def _controller(**config_overrides) -> tuple[
         available_actions=["ACTION6"],
         config=UnifiedCognitiveConfig(
             max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
             **config_overrides,
         ),
     )
@@ -116,19 +117,33 @@ def test_delayed_level_completion_credits_recent_distance_reduction():
     )
 
     summary = controller.summary()["terminal_objectives"]
-    assert summary["terminal_supported_objectives"] == 1
+    assert summary["terminal_supported_objectives"] == 0
+    assert summary["objectives_needing_contrast"] == 1
     assert summary["credited_terminal_events"] == 1
     assert summary["hypotheses"][0]["terminal_support"] == 1
 
     controller.on_reset()
     fresh = _grid(source_position=(4, 4))
-    grounded = controller.select_action(
+    contrast = controller.select_action(
         current_grid=fresh,
         available_actions=["ACTION6"],
         legacy_action="ACTION6",
     )
-    assert grounded.source == "terminal_objective_option"
-    assert grounded.objective_status == "terminal_supported"
+    assert contrast.source == "terminal_objective_probe"
+    assert contrast.objective_status == "needs_contrast"
+    fresh_after = fresh.copy()
+    fresh_after[fresh_after == 3] = 4
+    controller.observe_transition(
+        action="ACTION6",
+        action_data=contrast.action_data,
+        grid_before=fresh,
+        grid_after=fresh_after,
+        available_actions=["ACTION6"],
+        levels_completed_after=1,
+    )
+    confirmed = controller.summary()["terminal_objectives"]
+    assert confirmed["terminal_supported_objectives"] == 1
+    assert confirmed["hypotheses"][0]["terminal_support"] == 2
 
 
 def test_one_terminal_event_counts_once_after_multiple_reductions():
@@ -224,7 +239,7 @@ def test_reset_closes_uncredited_completed_objective_as_nonterminal():
     assert hypothesis["nonterminal_completions"] == 1
 
 
-def test_repeated_completed_objective_followed_by_game_over_is_refuted():
+def test_game_over_quarantines_the_plan_without_refuting_the_goal():
     controller, _ = _controller(
         max_terminal_objective_probes_per_objective=2,
         max_terminal_objective_probes_total=2,
@@ -246,5 +261,6 @@ def test_repeated_completed_objective_followed_by_game_over_is_refuted():
 
     hypothesis = controller.summary()["terminal_objectives"]["hypotheses"][0]
     assert hypothesis["terminal_support"] == 0
-    assert hypothesis["terminal_contradictions"] == 2
-    assert hypothesis["status"] == "refuted"
+    assert hypothesis["terminal_contradictions"] == 0
+    assert hypothesis["unsafe_plan_failures"] == 2
+    assert hypothesis["status"] == "candidate"

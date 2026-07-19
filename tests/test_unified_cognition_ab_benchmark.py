@@ -91,4 +91,10 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "experiment_actions" in metrics["unified"]
     assert "terminal_objective_probe_actions" in metrics["unified"]
     assert "terminal_objective_grounded_actions" in metrics["unified"]
+    assert "terminal_objective_discriminator_actions" in metrics["unified"]
+    assert "terminal_objective_ablation_actions" in metrics["unified"]
+    assert "generated_goal_hypotheses" in metrics["unified"]
+    assert "objective_distance_reductions" in metrics["unified"]
+    assert "objective_ambiguous_terminal_events" in metrics["unified"]
+    assert "terminal_supported_objectives" in metrics["unified"]
     assert "failure_causes" in payload

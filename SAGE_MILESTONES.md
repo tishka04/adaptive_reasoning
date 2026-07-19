@@ -4303,3 +4303,89 @@ regles apprises ne decrivent que `absent`/`preserved`. Il faudra proposer des
 interventions qui peuvent faire apparaitre, casser, epuiser, atteindre ou
 convertir une structure, puis laisser exclusivement le signal terminal en ligne
 departager ces objectifs concurrents sur de nouveaux episodes held-out.
+
+## SAGE.8l - active online goal generation and terminal discrimination
+
+Objectif :
+
+- Generer en ligne cinq familles de buts mesurables : `appear`, `break`,
+  `exhaust`, `reach` et `convert`.
+- Deriver les candidats uniquement de la structure live, des actions legales et
+  des mecaniques apprises ; les priorites de generation ne comptent jamais comme
+  support de but.
+- Borner globalement la banque a 10 candidats et a 2 candidats par famille,
+  avec eviction seulement des candidats plus faibles encore intacts.
+- Choisir des interventions qui devraient reduire un sous-ensemble des distances
+  concurrentes, et exposer les buts affectes/non affectes dans chaque decision.
+- Utiliser la meme action pour reviser simultanement les hypotheses mecaniques,
+  sans convertir ce succes mecanique en preuve terminale.
+- Mesurer toutes les reductions reelles avant l'evenement terminal, mais limiter
+  la transition de changement d'ecran `level_complete` aux reductions annoncees
+  avant l'action.
+- Mettre en quarantaine tout level-up precede de plusieurs buts reduits comme
+  `ambiguous_terminal`, sans confirmation automatique.
+- Exiger deux contextes terminaux independants ou un contraste terminal par
+  intervention alternative avant `terminal_supported`.
+- Programmer une ablation apres le premier support provisoire ; un terminal sans
+  reduction du but conteste sa necessite sans refuter sa mecanique.
+- Imputer GAME_OVER a l'intervention dangereuse, pas au but, et exclure ensuite
+  cette intervention pour ce but.
+- Compiler aussi les mecaniques relationnelles `broken` en options dirigees.
+
+Ajouts :
+
+- `theory/online_goal_hypothesis.py`
+- extension de `theory/online_terminal_objective.py`
+- integration dans `theory/unified_cognitive_controller.py`
+- extension `broken` dans `theory/promoted_relational_rule.py` et
+  `theory/online_relational_option.py`
+- metriques v3 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_goal_hypothesis.py`
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`
+
+Run du 2026-07-19, memes 5 jeux public-unseen, seeds 0/1, 2 resets,
+40 actions par reset :
+
+- `paired_protocol.protocol_gate_passed=true`
+- `legacy_only.actions_executed=768`
+- `unified.actions_executed=800`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=356`
+- `unified.experiment_cost_rate=0.445`
+- `unified.generated_goal_hypotheses=76` sommes des banques finales des 10 runs
+- `unified.terminal_objective_discriminator_actions=88`
+- `unified.terminal_objective_probe_actions=12`
+- `unified.terminal_objective_ablation_actions=0`
+- `unified.terminal_objective_grounded_actions=0`
+- `unified.objective_distance_reductions=667`
+- `unified.objective_nonterminal_completions=10`
+- `unified.refuted_objectives=2`
+- `unified.objective_ambiguous_terminal_events=0`
+- `unified.terminal_supported_objectives=0`
+- `unified.unsafe_goal_plan_failures=0`
+- `online_mechanic_hypothesis_revisions=332`
+- `promoted_relational_rules_observed=34` sommes des 10 runs
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+- `targeted_tests=30 passed` apres le dernier test d'ablation
+- `full_repository_tests=1338 passed`
+- `ruff_and_compileall=passed`
+
+Lecture : SAGE ne reste plus bloque lorsque les premieres regles promues sont
+`absent` ou `preserved`. Il construit une banque diversifiee, mesure les cinq
+types de deficit et consomme 100 actions explicitement orientees vers la
+discrimination de buts. Dix completions locales sans signal terminal produisent
+de l'evidence negative et deux objectifs sont refutes. Aucun level-up ni WIN
+n'est cependant observe ; il n'existe donc honnetement ni support terminal, ni
+ablation declenchee, ni objectif exploitable dans ce run. Les 667 reductions de
+distance restent des observations locales, pas un gain ARC.
+
+Suite requise : le prochain verrou est la composition temporelle. Les hypotheses
+de but sont maintenant generees et testees, mais les interventions restent
+principalement primitives. Il faut apprendre des sous-objectifs ordonnes et des
+sequences state-conditioned qui maintiennent une direction de deficit sur un
+horizon plus long, tout en conservant le meme arbitre terminal et sans regler la
+politique sur les outcomes de ce benchmark.

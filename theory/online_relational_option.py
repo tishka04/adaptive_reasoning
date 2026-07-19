@@ -52,6 +52,7 @@ class FunctionalOptionProgress:
     target_gain: int = 0
     source_to_target_pixels: int = 0
     relation_appeared: bool = False
+    relation_broken: bool = False
     relation_preserved: bool = False
     signals: Tuple[str, ...] = ()
 
@@ -66,6 +67,7 @@ class FunctionalOptionProgress:
             "target_gain": self.target_gain,
             "source_to_target_pixels": self.source_to_target_pixels,
             "relation_appeared": self.relation_appeared,
+            "relation_broken": self.relation_broken,
             "relation_preserved": self.relation_preserved,
             "signals": list(self.signals),
         }
@@ -266,6 +268,7 @@ def observe_option_progress(
             target,
         )
     relation_appeared = not before_relation and after_relation
+    relation_broken = before_relation and not after_relation
     relation_preserved = before_relation and after_relation
     level_progressed = bool(
         record.obs_after.levels_completed > record.obs_before.levels_completed
@@ -281,6 +284,7 @@ def observe_option_progress(
         rule.family == "relation"
         and (
             (rule.expected_outcome == "appears" and relation_appeared)
+            or (rule.expected_outcome == "broken" and relation_broken)
             or (rule.expected_outcome == "preserved" and level_progressed and relation_preserved)
         )
     )
@@ -293,6 +297,8 @@ def observe_option_progress(
         signals.append("source_transformed_to_target")
     if relation_appeared:
         signals.append("target_relation_appeared")
+    if relation_broken:
+        signals.append("target_relation_broken")
     if relation_preserved:
         signals.append("target_relation_preserved")
     if visual_change and not functional:
@@ -307,6 +313,7 @@ def observe_option_progress(
         target_gain=target_after - target_before,
         source_to_target_pixels=source_to_target,
         relation_appeared=relation_appeared,
+        relation_broken=relation_broken,
         relation_preserved=relation_preserved,
         signals=tuple(signals),
     )
@@ -412,6 +419,9 @@ def _compile_rule(rule: PromotedRelationalRule) -> CompiledRelationalOption:
         if rule.expected_outcome == "appears":
             required.append(f"{relation}_absent")
             postconditions.append(f"{relation}_present")
+        elif rule.expected_outcome == "broken":
+            required.append(f"{relation}_present")
+            postconditions.append(f"{relation}_absent")
         elif rule.expected_outcome == "preserved":
             required.append(f"{relation}_present")
             postconditions.append(f"{relation}_present")
@@ -461,7 +471,10 @@ def _postcondition_satisfied(
     option: CompiledRelationalOption,
     present: set[str],
 ) -> bool:
-    if option.family == "relation" and option.expected_outcome == "appears":
+    if option.family == "relation" and option.expected_outcome in {
+        "appears",
+        "broken",
+    }:
         return bool(option.postconditions) and all(
             predicate in present for predicate in option.postconditions
         )

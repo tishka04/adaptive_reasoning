@@ -78,6 +78,7 @@ class PromotedRelationalRule:
         if self.family == "relation":
             return self.target_color is not None and self.expected_outcome in {
                 "appears",
+                "broken",
                 "preserved",
             }
         return False

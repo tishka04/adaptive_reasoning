@@ -82,6 +82,7 @@ def test_click_experiment_uses_objects_and_revises_relational_predictions():
     controller = UnifiedCognitiveController(
         "synthetic",
         available_actions=["ACTION6"],
+        config=UnifiedCognitiveConfig(enable_active_goal_hypotheses=False),
     )
     before = np.zeros((12, 12), dtype=np.int32)
     before[2, 2] = 2

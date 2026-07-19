@@ -40,13 +40,15 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v2"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v3"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
     "discriminating_experiment",
     "relational_experiment",
     "terminal_objective_probe",
+    "terminal_objective_discriminator",
+    "terminal_objective_ablation",
 }
 
 EnvFactory = Callable[[str], Any]
@@ -245,6 +247,10 @@ def _run_arm(
         for source, count in decision_sources.items()
         if source in EXPERIMENT_SOURCES
     )
+    controller_summary = controller.summary() if controller is not None else {}
+    terminal_summary = dict(
+        controller_summary.get("terminal_objectives", {}) or {}
+    )
     return {
         "arm": arm,
         "game_id": game_id,
@@ -272,7 +278,6 @@ def _run_arm(
         else 0.0,
         "promoted_option_actions": (
             decision_sources["terminal_objective_option"]
-            + decision_sources["terminal_objective_probe"]
             + decision_sources["terminal_objective_preparation"]
         ),
         "option_preparation_actions": (
@@ -281,14 +286,41 @@ def _run_arm(
         "terminal_objective_probe_actions": decision_sources[
             "terminal_objective_probe"
         ],
+        "terminal_objective_discriminator_actions": decision_sources[
+            "terminal_objective_discriminator"
+        ],
+        "terminal_objective_ablation_actions": decision_sources[
+            "terminal_objective_ablation"
+        ],
         "terminal_objective_grounded_actions": decision_sources[
             "terminal_objective_option"
         ],
+        "generated_goal_hypotheses": int(
+            terminal_summary.get("objectives", 0) or 0
+        ),
+        "objective_distance_reductions": int(
+            terminal_summary.get("distance_reductions", 0) or 0
+        ),
+        "objective_nonterminal_completions": int(
+            terminal_summary.get("nonterminal_completions", 0) or 0
+        ),
+        "objective_ambiguous_terminal_events": int(
+            terminal_summary.get("ambiguous_terminal_events", 0) or 0
+        ),
+        "terminal_supported_objectives": int(
+            terminal_summary.get("terminal_supported_objectives", 0) or 0
+        ),
+        "refuted_objectives": int(
+            terminal_summary.get("refuted_objectives", 0) or 0
+        ),
+        "unsafe_goal_plan_failures": int(
+            terminal_summary.get("unsafe_plan_failures", 0) or 0
+        ),
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
         "controller_errors": controller_errors,
         "attempts": attempts,
-        "controller_summary": controller.summary() if controller is not None else None,
+        "controller_summary": controller_summary if controller is not None else None,
     }
 
 
@@ -577,6 +609,33 @@ def _aggregate_arm(
         "terminal_objective_grounded_actions": sum(
             int(row["terminal_objective_grounded_actions"]) for row in rows
         ),
+        "terminal_objective_discriminator_actions": sum(
+            int(row["terminal_objective_discriminator_actions"]) for row in rows
+        ),
+        "terminal_objective_ablation_actions": sum(
+            int(row["terminal_objective_ablation_actions"]) for row in rows
+        ),
+        "generated_goal_hypotheses": sum(
+            int(row["generated_goal_hypotheses"]) for row in rows
+        ),
+        "objective_distance_reductions": sum(
+            int(row["objective_distance_reductions"]) for row in rows
+        ),
+        "objective_nonterminal_completions": sum(
+            int(row["objective_nonterminal_completions"]) for row in rows
+        ),
+        "objective_ambiguous_terminal_events": sum(
+            int(row["objective_ambiguous_terminal_events"]) for row in rows
+        ),
+        "terminal_supported_objectives": sum(
+            int(row["terminal_supported_objectives"]) for row in rows
+        ),
+        "refuted_objectives": sum(
+            int(row["refuted_objectives"]) for row in rows
+        ),
+        "unsafe_goal_plan_failures": sum(
+            int(row["unsafe_goal_plan_failures"]) for row in rows
+        ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows
         ),
@@ -606,13 +665,22 @@ def _pair_delta(
 
 
 def _omit_step_traces(payload: Dict[str, Any]) -> None:
-    """Keep committed benchmark artifacts compact while retaining accounting."""
+    """Keep committed artifacts compact while retaining exact accounting."""
     for pair in payload.get("pairs", []) or []:
         for arm in ("legacy_only", "unified"):
             for attempt in pair.get(arm, {}).get("attempts", []) or []:
                 trace = list(attempt.pop("trace", []) or [])
                 attempt["step_trace_omitted"] = True
                 attempt["step_trace_length"] = len(trace)
+        summary = pair.get("unified", {}).get("controller_summary") or {}
+        terminal = summary.get("terminal_objectives") or {}
+        hypotheses = list(terminal.pop("hypotheses", []) or [])
+        if hypotheses:
+            terminal["hypothesis_details_omitted"] = True
+            terminal["hypothesis_detail_count"] = len(hypotheses)
+            terminal["objective_family_counts"] = dict(Counter(
+                str(item.get("family", "unknown")) for item in hypotheses
+            ))
 
 
 def _blocked_attempt(reset_index: int, reason: str) -> Dict[str, Any]:

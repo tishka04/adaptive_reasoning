@@ -48,9 +48,15 @@ from .online_relational_option import (
     OptionExecutionMemory,
     observe_option_progress,
 )
+from .online_goal_hypothesis import (
+    GoalHypothesisGenerator,
+    ObjectiveDiscriminatingExperimentDesigner,
+    intervention_id,
+)
 from .online_terminal_objective import (
     OnlineTerminalObjectiveStore,
     TerminalObjectiveAssessment,
+    TerminalObjectiveStatus,
 )
 from .promoted_relational_rule import PromotedRelationalRule
 from .theory_conditioned_planner import TheoryConditionedPlanner
@@ -74,11 +80,15 @@ class UnifiedCognitiveConfig:
     max_terminal_objective_probes_per_objective: int = 2
     max_terminal_objective_probes_total: int = 16
     terminal_objective_credit_window: int = 6
-    terminal_objective_min_support: int = 1
+    terminal_objective_min_support: int = 2
+    max_terminal_objective_ablations_per_objective: int = 1
+    max_generated_goal_candidates: int = 10
+    max_generated_goals_per_family: int = 2
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
     enable_promoted_options: bool = True
+    enable_active_goal_hypotheses: bool = True
 
 
 @dataclass(frozen=True)
@@ -91,6 +101,7 @@ class CognitiveDecision:
     reason: str = ""
     confidence: float = 0.0
     competing_hypotheses: Tuple[str, ...] = ()
+    mechanic_hypotheses: Tuple[str, ...] = ()
     operator_id: str = ""
     source_rule_key: str = ""
     option_id: str = ""
@@ -98,6 +109,9 @@ class CognitiveDecision:
     objective_id: str = ""
     objective_status: str = ""
     objective_distance: float | None = None
+    intervention_id: str = ""
+    ablation_of_objective_id: str = ""
+    predicted_goal_reductions: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -107,6 +121,7 @@ class CognitiveDecision:
             "reason": self.reason,
             "confidence": round(float(self.confidence), 4),
             "competing_hypotheses": list(self.competing_hypotheses),
+            "mechanic_hypotheses": list(self.mechanic_hypotheses),
             "operator_id": self.operator_id,
             "source_rule_key": self.source_rule_key,
             "option_id": self.option_id,
@@ -114,6 +129,9 @@ class CognitiveDecision:
             "objective_id": self.objective_id,
             "objective_status": self.objective_status,
             "objective_distance": self.objective_distance,
+            "intervention_id": self.intervention_id,
+            "ablation_of_objective_id": self.ablation_of_objective_id,
+            "predicted_goal_reductions": list(self.predicted_goal_reductions),
         }
 
 
@@ -153,6 +171,15 @@ class UnifiedCognitiveController:
         self.theory_planner = TheoryConditionedPlanner()
         self.option_compiler = OnlineRelationalOptionCompiler()
         self.option_memory = OptionExecutionMemory()
+        self.goal_generator = GoalHypothesisGenerator(
+            max_candidates_total=self.config.max_generated_goal_candidates,
+            max_candidates_per_family=(
+                self.config.max_generated_goals_per_family
+            ),
+        )
+        self.objective_experiment_designer = (
+            ObjectiveDiscriminatingExperimentDesigner()
+        )
         self.terminal_objectives = OnlineTerminalObjectiveStore(
             max_probe_actions_per_objective=(
                 self.config.max_terminal_objective_probes_per_objective
@@ -165,6 +192,9 @@ class UnifiedCognitiveController:
             ),
             minimum_terminal_support=(
                 self.config.terminal_objective_min_support
+            ),
+            max_ablation_actions_per_objective=(
+                self.config.max_terminal_objective_ablations_per_objective
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
@@ -192,6 +222,10 @@ class UnifiedCognitiveController:
         self._option_preparation_decisions = 0
         self._option_outcomes: List[Dict[str, Any]] = []
         self._objective_outcomes: List[Dict[str, Any]] = []
+        self._generated_goal_candidates = 0
+        self._objective_experiment_decisions = 0
+        self._objective_discriminator_decisions = 0
+        self._objective_ablation_decisions = 0
 
     @property
     def theory(self):
@@ -245,6 +279,9 @@ class UnifiedCognitiveController:
             and pending.source in {
                 "discriminating_experiment",
                 "relational_experiment",
+                "terminal_objective_probe",
+                "terminal_objective_discriminator",
+                "terminal_objective_ablation",
             }
         )
         aligned_before, aligned_after = _align_grids(grid_before, grid_after)
@@ -357,10 +394,13 @@ class UnifiedCognitiveController:
         safe_actions = self._safe_actions(observation.grid_hash, actions)
         if not safe_actions:
             safe_actions = list(actions)
+        self._generate_goal_hypotheses(observation, safe_actions)
 
         decision = self._select_escape(observation, safe_actions)
         if decision is None:
             decision = self._select_promoted_option(observation, safe_actions)
+        if decision is None:
+            decision = self._select_objective_experiment(observation, safe_actions)
         if decision is None:
             decision = self._select_theory_plan(observation, safe_actions)
         if decision is None and self._should_experiment():
@@ -418,6 +458,12 @@ class UnifiedCognitiveController:
             "recent_option_outcomes": self._option_outcomes[-10:],
             "terminal_objectives": self.terminal_objectives.summary(),
             "recent_objective_outcomes": self._objective_outcomes[-10:],
+            "generated_goal_candidates": self._generated_goal_candidates,
+            "objective_experiment_decisions": self._objective_experiment_decisions,
+            "objective_discriminator_decisions": (
+                self._objective_discriminator_decisions
+            ),
+            "objective_ablation_decisions": self._objective_ablation_decisions,
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
@@ -483,6 +529,122 @@ class UnifiedCognitiveController:
             confidence=1.0,
         )
 
+    def _generate_goal_hypotheses(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+    ) -> None:
+        """Create bounded measurable counterfactuals without granting proof."""
+        if not self.config.enable_active_goal_hypotheses:
+            return
+        candidates = self.goal_generator.generate(
+            observation=observation,
+            rules=self.theory.promoted_relational_rules(),
+            available_actions=safe_actions,
+        )
+        for candidate in candidates:
+            self.terminal_objectives.register_generated_bounded(
+                candidate,
+                max_objectives=self.config.max_generated_goal_candidates,
+                max_per_family=self.config.max_generated_goals_per_family,
+            )
+        self._generated_goal_candidates = len(self.terminal_objectives.objectives())
+
+    def _select_objective_experiment(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        """Discriminate generated goals before spending mechanic-only probes."""
+        if not self.config.enable_active_goal_hypotheses:
+            return None
+        choice = self.objective_experiment_designer.design(
+            observation=observation,
+            store=self.terminal_objectives,
+            safe_actions=safe_actions,
+            click_actions=(
+                self._click_actions(observation)
+                if "ACTION6" in safe_actions else ()
+            ),
+            operators=self.operator_inducer.operators.values(),
+        )
+        if choice is None:
+            return None
+        mechanic_hypotheses: Tuple[str, ...] = ()
+        if choice.action_name == "ACTION6":
+            concrete = DesignedExperimentAction(
+                name=choice.action_name,
+                raw_action=choice.action_name,
+                action_args=dict(choice.action_data),
+            )
+            self.register_predictions(
+                self._live_predictions(observation, [concrete])
+            )
+            mechanic_choice = self.generic_designer.design(
+                hypotheses=list(self._predictions.values()),
+                live_grid=observation.raw_grid,
+                available_actions=[concrete],
+            )
+            if mechanic_choice is not None:
+                mechanic_hypotheses = tuple(mechanic_choice.competing_keys)
+        objective = self.terminal_objectives.objective(choice.objective_id)
+        assessment = (
+            None
+            if objective is None
+            else self.terminal_objectives.assess_objective(
+                objective,
+                observation,
+            )
+        )
+        if objective is not None and assessment is not None:
+            self.terminal_objectives.record_selection(
+                objective.objective_id,
+                observation,
+                is_probe=choice.is_probe,
+                intervention_id=choice.intervention_id,
+            )
+
+        self._objective_experiment_decisions += 1
+        if choice.ablation_of_objective_id:
+            source = "terminal_objective_ablation"
+            self._objective_ablation_decisions += 1
+        elif assessment is not None and (
+            assessment.status == TerminalObjectiveStatus.TERMINAL_SUPPORTED
+        ):
+            source = "terminal_objective_option"
+        elif len(choice.competing_objective_ids) >= 2:
+            source = "terminal_objective_discriminator"
+            self._objective_discriminator_decisions += 1
+        else:
+            source = "terminal_objective_probe"
+        return CognitiveDecision(
+            action_name=choice.action_name,
+            action_data=dict(choice.action_data),
+            source=source,
+            reason=(
+                f"{choice.reason}; predicted reductions="
+                f"{choice.predicted_reduction_objective_ids}"
+            ),
+            confidence=max(
+                0.0,
+                min(1.0, float(choice.expected_divergence) / 3.0),
+            ),
+            competing_hypotheses=choice.competing_objective_ids,
+            mechanic_hypotheses=mechanic_hypotheses,
+            objective_id=choice.objective_id,
+            objective_status=(
+                "" if assessment is None else assessment.status.value
+            ),
+            objective_distance=(
+                None if assessment is None else assessment.distance
+            ),
+            intervention_id=choice.intervention_id,
+            ablation_of_objective_id=choice.ablation_of_objective_id,
+            predicted_goal_reductions=(
+                choice.predicted_reduction_objective_ids
+            ),
+        )
+
     def _select_promoted_option(
         self,
         observation: GameObservation,
@@ -518,7 +680,15 @@ class UnifiedCognitiveController:
             if option is None or option.action not in safe_actions:
                 continue
             objective = self.terminal_objectives.assess_rule(rule, observation)
-            if objective is None or not objective.selectable:
+            if (
+                objective is None
+                or not objective.selectable
+                or (
+                    self.config.enable_active_goal_hypotheses
+                    and objective.status
+                    != TerminalObjectiveStatus.TERMINAL_SUPPORTED
+                )
+            ):
                 continue
             candidates.append((rule, option, objective))
 
@@ -586,6 +756,8 @@ class UnifiedCognitiveController:
         confidence = 0.0 if rule is None else rule.confidence
         self._option_context_attempts[(option.rule_key, observation.grid_hash)] += 1
         operator = self._best_operator_for_option(option, observation)
+        action_data = self._option_action_data(option, observation, operator)
+        selected_intervention = intervention_id(option.action, action_data)
         source = "terminal_objective_preparation" if preparation_for_rule_key else (
             "terminal_objective_probe"
             if objective.is_probe
@@ -595,6 +767,7 @@ class UnifiedCognitiveController:
             objective.objective_id,
             observation,
             is_probe=objective.is_probe,
+            intervention_id=selected_intervention,
         )
         if preparation_for_rule_key:
             self._option_preparation_decisions += 1
@@ -602,7 +775,7 @@ class UnifiedCognitiveController:
             self._promoted_option_decisions += 1
         return CognitiveDecision(
             action_name=option.action,
-            action_data=self._option_action_data(option, observation, operator),
+            action_data=action_data,
             source=source,
             reason=(
                 f"{objective.reason}: {objective.objective_id} via "
@@ -621,6 +794,8 @@ class UnifiedCognitiveController:
             objective_id=objective.objective_id,
             objective_status=objective.status.value,
             objective_distance=objective.distance,
+            intervention_id=selected_intervention,
+            predicted_goal_reductions=(objective.objective_id,),
         )
 
     def _best_operator_for_option(
@@ -705,19 +880,22 @@ class UnifiedCognitiveController:
             key=lambda item: (item.confidence, item.support, -item.cost_estimate),
         )
         self._option_preparation_decisions += 1
+        action = _normalize_action(operator.primitive_action)
+        action_data = _operator_action_data(
+            operator,
+            operator.parameters,
+            observation,
+        )
+        selected_intervention = intervention_id(action, action_data)
         self.terminal_objectives.record_selection(
             objective.objective_id,
             observation,
             is_probe=objective.is_probe,
+            intervention_id=selected_intervention,
         )
-        action = _normalize_action(operator.primitive_action)
         return CognitiveDecision(
             action_name=action,
-            action_data=_operator_action_data(
-                operator,
-                operator.parameters,
-                observation,
-            ),
+            action_data=action_data,
             source="terminal_objective_preparation",
             reason=(
                 f"induced operator {operator.operator_id} prepares "
@@ -730,6 +908,8 @@ class UnifiedCognitiveController:
             objective_id=objective.objective_id,
             objective_status=objective.status.value,
             objective_distance=objective.distance,
+            intervention_id=selected_intervention,
+            predicted_goal_reductions=(objective.objective_id,),
         )
 
     def _select_theory_plan(
@@ -1021,9 +1201,19 @@ class UnifiedCognitiveController:
         update: LiveTransitionUpdate,
         pending: CognitiveDecision | None,
     ) -> None:
-        if pending is None or pending.source != "relational_experiment":
+        if pending is None or pending.source not in {
+            "relational_experiment",
+            "terminal_objective_probe",
+            "terminal_objective_discriminator",
+            "terminal_objective_ablation",
+        }:
             return
-        for key in pending.competing_hypotheses:
+        prediction_keys = (
+            pending.competing_hypotheses
+            if pending.source == "relational_experiment"
+            else pending.mechanic_hypotheses
+        )
+        for key in prediction_keys:
             prediction = self._predictions.get(key)
             if prediction is None:
                 continue
@@ -1111,6 +1301,13 @@ class UnifiedCognitiveController:
             update,
             objective_id="" if pending is None else pending.objective_id,
             rule_key="" if pending is None else pending.source_rule_key,
+            intervention_id="" if pending is None else pending.intervention_id,
+            ablation_of_objective_id=(
+                "" if pending is None else pending.ablation_of_objective_id
+            ),
+            predicted_objective_ids=(
+                () if pending is None else pending.predicted_goal_reductions
+            ),
             context_signature=context,
         )
         if (

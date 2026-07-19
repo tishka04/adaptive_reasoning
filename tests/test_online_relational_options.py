@@ -55,7 +55,10 @@ def test_independent_live_confirmations_promote_and_execute_a_rule_option():
     controller = UnifiedCognitiveController(
         "synthetic",
         available_actions=["ACTION6"],
-        config=UnifiedCognitiveConfig(max_bootstrap_experiments=8),
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=8,
+            enable_active_goal_hypotheses=False,
+        ),
     )
     controller.register_predictions([
         DiscriminatingPrediction(
@@ -203,7 +206,10 @@ def test_preservation_mechanic_is_not_invented_as_a_terminal_objective():
     controller = UnifiedCognitiveController(
         "synthetic",
         available_actions=["ACTION6"],
-        config=UnifiedCognitiveConfig(max_bootstrap_experiments=0),
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+        ),
     )
     rule = _confirmed_rule(
         key="preserve-visual-only",
@@ -260,6 +266,47 @@ def test_repeated_option_contradictions_remove_rule_from_active_compilation():
     assert compiler.compile([rule]) == []
 
 
+def test_confirmed_break_mechanic_compiles_as_a_directional_option():
+    controller = UnifiedCognitiveController(
+        "synthetic-break",
+        available_actions=["ACTION6"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+        ),
+    )
+    rule = _confirmed_rule(
+        key="break-alignment",
+        family="relation",
+        outcome="broken",
+    )
+    controller.theory.add_promoted_relational_rule(rule)
+    before = np.zeros((12, 12), dtype=np.int32)
+    before[2, 2] = 3
+    before[2, 8] = 4
+    after = before.copy()
+    after[2, 2] = 0
+    after[5, 5] = 3
+
+    decision = controller.select_action(
+        current_grid=before,
+        available_actions=["ACTION6"],
+        legacy_action="ACTION6",
+    )
+    assert decision.source == "terminal_objective_probe"
+    controller.observe_transition(
+        action="ACTION6",
+        action_data=decision.action_data,
+        grid_before=before,
+        grid_after=after,
+        available_actions=["ACTION6"],
+    )
+
+    outcome = controller.summary()["recent_option_outcomes"][-1]
+    assert outcome["relation_broken"] is True
+    assert outcome["functional_progress"] is True
+
+
 def test_mechanically_true_preservation_never_consumes_goal_probe_budget():
     controller = UnifiedCognitiveController(
         "synthetic",
@@ -267,6 +314,7 @@ def test_mechanically_true_preservation_never_consumes_goal_probe_budget():
         config=UnifiedCognitiveConfig(
             max_bootstrap_experiments=0,
             min_option_executions_before_quarantine=3,
+            enable_active_goal_hypotheses=False,
         ),
     )
     rule = _confirmed_rule(
