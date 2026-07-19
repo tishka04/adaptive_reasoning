@@ -1,0 +1,678 @@
+{
+  "a33_write_performed": true,
+  "autonomous_target_effect_registered": false,
+  "config": {
+    "artifacts_not_modified": [
+      "A32.7",
+      "A33.1",
+      "A33.2",
+      "A33.3",
+      "M2",
+      "M3",
+      "A34"
+    ],
+    "decisions_path": "diagnostics\\a32\\third_unknown_game_parameterized_relation_revision_decisions.json",
+    "inputs_read": [
+      "A32.7"
+    ],
+    "registration_policy": {
+      "a32_confirmed_record_required": true,
+      "a32_parameterized_relation_confirmation_required": true,
+      "a33_does_not_reevaluate_truth": true,
+      "autonomous_target_effect_must_remain_unresolved": true,
+      "exact_game_metric_target_controls_context_scope_required": true,
+      "existing_a33_registries_not_mutated": true,
+      "one_support_per_independent_exact_context_required": true,
+      "raw_events_are_provenance_not_direct_support": true,
+      "technical_repetitions_are_provenance_not_support": true,
+      "zero_contradictions_required": true
+    },
+    "registry_scope": "A33_PARAMETERIZED_RELATIONAL_CONFIRMED_MEMORY",
+    "schema_version": "a33.parameterized_relational_registry.v1"
+  },
+  "confirmation_performed": false,
+  "excluded_claim_audit": [
+    {
+      "candidate_key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "claim": "AUTONOMOUS_PARAMETERIZED_TARGET_EFFECT",
+      "claim_decision": "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_TARGET_EFFECT",
+      "claim_status": "unresolved",
+      "claim_support": 0,
+      "counted_as_refutation": false,
+      "exclusion_reason": "AUTONOMOUS_TARGET_EFFECT_NON_IDENTIFIABLE_NOT_REGISTRY_ELIGIBLE",
+      "game_id": "tn36-ab4f63cc",
+      "registered": false,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      }
+    }
+  ],
+  "gate": {
+    "autonomous_target_effect_excluded": true,
+    "every_confirmed_parameterized_handoff_registered_once": true,
+    "existing_a33_registries_quarantined": true,
+    "independent_context_support_preserved": true,
+    "no_a33_scientific_verdict_created": true,
+    "parameterized_relation_scope_fully_locked": true,
+    "raw_and_technical_events_not_recounted": true,
+    "source_a32_7_gate_passed": true,
+    "support_imported_from_a32_decision_only": true,
+    "wrong_confirmations_zero": true
+  },
+  "legacy_a33_1_registry_mutated": false,
+  "outcome_status": "A33_PARAMETERIZED_RELATIONAL_REGISTRY_ENTRY_ADDED",
+  "parameterized_controls_counted_as_distinct_actions": false,
+  "parameterized_relational_contrasts": [
+    {
+      "a32_confirmation_reused_without_reevaluation": true,
+      "a33_confirmation_performed": false,
+      "autonomous_target_effect_excluded": true,
+      "autonomous_target_effect_status": "unresolved",
+      "budgets": [
+        50,
+        150,
+        300
+      ],
+      "candidate_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "confirmed_support": 8,
+      "context_assessment_ids": [
+        "sage7c::context::5bba12e778fb7fdf",
+        "sage7c::context::582af421f6369502",
+        "sage7c::context::fbda4ab1f8d9f126",
+        "sage7c::context::15f1b9ced6955f1b",
+        "sage7c::context::f466f05b5857153e",
+        "sage7c::context::86f5692a48a41fbd",
+        "sage7c::context::88d93d9f9ad06435",
+        "sage7c::context::8026154e9b5284a6"
+      ],
+      "context_manifest": [
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::5bba12e778fb7fdf",
+          "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::d4ac775097c7dab7",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::f3f982e506e16d95",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::d4ac775097c7dab7",
+            "sage7c::comparison::f3f982e506e16d95"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::582af421f6369502",
+          "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::a75a738b909097ae",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::e25a70143162dbe8",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::a75a738b909097ae",
+            "sage7c::comparison::e25a70143162dbe8"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::fbda4ab1f8d9f126",
+          "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::fa19773a0758b27e",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::332921584de19f25",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 4,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::fa19773a0758b27e",
+            "sage7c::comparison::332921584de19f25"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 2,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50,
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::15f1b9ced6955f1b",
+          "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::d9ec890095638fc6",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::26e8168b7b8bab31",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 6,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::d9ec890095638fc6",
+            "sage7c::comparison::26e8168b7b8bab31"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 4,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::f466f05b5857153e",
+          "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::039d94ce676785e3",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::7bae15f58979181b",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::039d94ce676785e3",
+            "sage7c::comparison::7bae15f58979181b"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::86f5692a48a41fbd",
+          "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::da1b652ea1c64e0f",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::3b378dcc35c8ccca",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 4,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::da1b652ea1c64e0f",
+            "sage7c::comparison::3b378dcc35c8ccca"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 2,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::88d93d9f9ad06435",
+          "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::2240b6b27072f013",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::e106d9a2b1665713",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::2240b6b27072f013",
+            "sage7c::comparison::e106d9a2b1665713"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::8026154e9b5284a6",
+          "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::c5bee9a26c02b768",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::59bee93174c8ad67",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 4,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::c5bee9a26c02b768",
+            "sage7c::comparison::59bee93174c8ad67"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 2,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        }
+      ],
+      "context_snapshot_hashes": [
+        "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "contradictions": 0,
+      "differentiating_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          }
+        }
+      ],
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          }
+        }
+      ],
+      "evidence_notes": [
+        "a32_7_relational_confirmation_reused_without_reevaluation",
+        "eight_independent_exact_parameterized_contexts",
+        "target_minus_differentiating_control_positive",
+        "target_minus_equivalent_control_neutral",
+        "autonomous_target_effect_remains_unresolved",
+        "raw_events_and_technical_repetitions_are_provenance_only",
+        "scope_locked_to_game_metric_parameters_and_contexts"
+      ],
+      "experiments_spent": 8,
+      "game_id": "tn36-ab4f63cc",
+      "handoff_id": "sage7d::a32_7_handoff::001",
+      "key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "known_scope": "game_metric_target_parameterized_controls_exact_contexts",
+      "not_generalized_beyond_exact_contexts": true,
+      "not_generalized_beyond_game": true,
+      "not_generalized_beyond_metric": true,
+      "not_generalized_beyond_parameter_variants": true,
+      "predicted_metric": "local_patch_before_after",
+      "raw_comparison_events_provenance": 26,
+      "raw_events_excluded_from_direct_support": true,
+      "registry_entry_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "scope_budgets_locked": true,
+      "scope_contexts_locked": true,
+      "scope_control_parameters_locked": true,
+      "scope_game_locked": true,
+      "scope_metric_locked": true,
+      "scope_target_parameter_locked": true,
+      "scoped_claim": "A32.7 confirmed only the exact tn36 target/differentiating/equivalent control relation in the eight reviewed contexts.",
+      "source_artifact": "diagnostics\\a32\\third_unknown_game_parameterized_relation_revision_decisions.json",
+      "source_comparison_group_ids": [
+        "sage7c::comparison::d4ac775097c7dab7",
+        "sage7c::comparison::f3f982e506e16d95",
+        "sage7c::comparison::a75a738b909097ae",
+        "sage7c::comparison::e25a70143162dbe8",
+        "sage7c::comparison::fa19773a0758b27e",
+        "sage7c::comparison::332921584de19f25",
+        "sage7c::comparison::d9ec890095638fc6",
+        "sage7c::comparison::26e8168b7b8bab31",
+        "sage7c::comparison::039d94ce676785e3",
+        "sage7c::comparison::7bae15f58979181b",
+        "sage7c::comparison::da1b652ea1c64e0f",
+        "sage7c::comparison::3b378dcc35c8ccca",
+        "sage7c::comparison::2240b6b27072f013",
+        "sage7c::comparison::e106d9a2b1665713",
+        "sage7c::comparison::c5bee9a26c02b768",
+        "sage7c::comparison::59bee93174c8ad67"
+      ],
+      "source_decision": "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION",
+      "status": "confirmed",
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_repetitions_excluded_from_support": true,
+      "technical_replication_events_provenance": 10,
+      "wrong_confirmations": 0
+    }
+  ],
+  "raw_comparison_events_imported_as_support": 0,
+  "refutation_performed": false,
+  "registration_performed": true,
+  "registry_stage": "A33.4",
+  "registry_validation_performed": true,
+  "relational_a33_3_registry_mutated": false,
+  "revision_performed": false,
+  "scientific_review_performed": false,
+  "scope_generalization_performed": false,
+  "scoped_a33_2_registry_mutated": false,
+  "source_a32_7_mutated": false,
+  "source_a32_7_summary": {
+    "a33_ready_candidates": 1,
+    "a33_write_performed": false,
+    "autonomous_target_effects_confirmed": 0,
+    "autonomous_target_effects_kept_unresolved": 1,
+    "decision_records_confirmed": 1,
+    "decision_records_refuted": 0,
+    "decision_records_unresolved": 0,
+    "equivalent_control_counted_as_refutation": false,
+    "gate_passed": true,
+    "independent_contexts_counted_as_support": 8,
+    "outcome_status": "A32_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION_CONFIRMED",
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "parameterized_relations_refuted": 0,
+    "parameterized_relations_unresolved": 0,
+    "raw_comparison_events_promoted_directly": 0,
+    "scientific_revision_decisions": 1,
+    "scientific_support_counted_by_a32": 8,
+    "scope_generalization_performed": false,
+    "scope_limited_parameterized_relations_confirmed": 1,
+    "source_handoffs_consumed": 1,
+    "status": "CONFIRMED",
+    "technical_replication_events_counted_as_support": 0,
+    "wrong_confirmations": 0
+  },
+  "source_stage": "A32.7",
+  "status": "REGISTERED",
+  "summary": {
+    "a32_7_handoff_candidates_consumed": 1,
+    "a33_confirmations_performed": 0,
+    "a33_truth_reevaluations": 0,
+    "autonomous_target_effects_excluded": 1,
+    "confirmed_support_imported_from_a32_7": 8,
+    "experiments_spent_total": 8,
+    "gate_passed": true,
+    "legacy_a33_1_registry_mutated": false,
+    "outcome_status": "A33_PARAMETERIZED_RELATIONAL_REGISTRY_ENTRY_ADDED",
+    "parameterized_relational_contrasts_registered": 1,
+    "raw_comparison_events_imported_as_support": 0,
+    "raw_comparison_events_preserved_as_provenance": 26,
+    "registered_budgets": 3,
+    "registered_exact_contexts": 8,
+    "registered_parameterized_control_variants": 2,
+    "relational_a33_3_registry_mutated": false,
+    "scope_generalization_performed": false,
+    "scope_locked_entries": 1,
+    "scoped_a33_2_registry_mutated": false,
+    "source_candidates_consumed": 1,
+    "technical_replication_events_imported_as_support": 0,
+    "technical_replications_preserved_as_provenance": 10,
+    "wrong_confirmations": 0
+  },
+  "support": 8,
+  "support_origin": "A32.7_DECISION_RECORDS_ONLY",
+  "technical_replication_events_imported_as_support": 0,
+  "truth_status": "NOT_REEVALUATED_BY_A33_4",
+  "wrong_confirmations": 0
+}

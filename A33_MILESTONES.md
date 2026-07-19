@@ -262,12 +262,94 @@ Lecture :
 - Ce registre devient une garde de quarantaine pour SAGE.7 : aucune relation
   wa30 ne peut etre appliquee au troisieme jeu inconnu.
 
+## A33.4 - Parameterized Relational Registry
+
+Objectif :
+
+- Lire uniquement
+  `diagnostics/a32/third_unknown_game_parameterized_relation_revision_decisions.json`.
+- Verifier que la decision A32.7 :
+  - confirme uniquement la relation parametree ternaire ACTION6 cible / controle
+    discriminant / controle equivalent ;
+  - possede un `decision_record.status=confirmed`, `support=8` et zero
+    contradiction ;
+  - compte un support par contexte exact independant ;
+  - conserve l'effet autonome de la cible `unresolved` ;
+  - fournit un handoff de type
+    `CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST`.
+- Enregistrer la relation sans reevaluer sa verite et sans produire une
+  confirmation A33 supplementaire.
+- Verrouiller le jeu, la metrique, les trois variantes ACTION6 parametrees, les
+  huit contextes exacts et les budgets 50/150/300.
+- Conserver les 26 comparaisons brutes et 10 repetitions techniques comme
+  provenance uniquement, sans les recompter comme support.
+- Ne modifier aucun registre A33.1, A33.2 ou A33.3.
+
+Artefacts :
+
+- `theory/a33/parameterized_relational_registry.py`
+- export dans `theory/a33/__init__.py`
+- `tests/test_a33_parameterized_relational_registry.py`
+- `diagnostics/a33/parameterized_relational_registry.json`
+
+Run du 2026-07-19 :
+
+- `source_candidates_consumed=1`
+- `a32_7_handoff_candidates_consumed=1`
+- `parameterized_relational_contrasts_registered=1`
+- `autonomous_target_effects_excluded=1`
+- `confirmed_support_imported_from_a32_7=8`
+- `raw_comparison_events_imported_as_support=0`
+- `technical_replication_events_imported_as_support=0`
+- `raw_comparison_events_preserved_as_provenance=26`
+- `technical_replications_preserved_as_provenance=10`
+- `experiments_spent_total=8`
+- `registered_exact_contexts=8`
+- `registered_parameterized_control_variants=2`
+- `registered_budgets=3`
+- `scope_locked_entries=1`
+- `a33_truth_reevaluations=0`
+- `a33_confirmations_performed=0`
+- `legacy_a33_1_registry_mutated=false`
+- `scoped_a33_2_registry_mutated=false`
+- `relational_a33_3_registry_mutated=false`
+- `scope_generalization_performed=false`
+- `wrong_confirmations=0`
+- `outcome_status=A33_PARAMETERIZED_RELATIONAL_REGISTRY_ENTRY_ADDED`
+
+Relation inscrite :
+
+- `registry_entry_type=CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST`
+- `game_id=tn36-ab4f63cc`
+- cible : `ACTION6 {"x":25,"y":42}`
+- controle discriminant : `ACTION6 {"x":34,"y":51}`, contraste `+2`
+- controle equivalent : `ACTION6 {"x":41,"y":44}`, contraste `0`
+- `predicted_metric=local_patch_before_after`
+- `confirmed_support=8`
+- `contradictions=0`
+- `budgets=[50,150,300]`
+- huit contextes exacts verrouilles ;
+- `autonomous_target_effect_status=unresolved`.
+
+Lecture :
+
+- A33.4 transporte fidelement le verdict A32.7 ; il ne reconfirme pas la
+  relation et ne recompte aucun evenement SAGE.
+- Le support `8` vient exclusivement du `decision_record` A32.7, un par
+  contexte exact independant.
+- L'effet autonome de la cible parametree est audite comme exclu avec
+  `support=0`, sans refutation.
+- Les parametres sont des coordonnees d'une meme famille ACTION6, pas trois
+  actions distinctes.
+- Le nouveau registre reste separe des memoires A33 historiques pour interdire
+  toute application silencieuse hors des huit contextes tn36 observes.
+
 ## Commandes de verification
 
 Tests A33 :
 
 ```powershell
-ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest tests\test_a33_confirmed_mechanics_registry.py tests\test_a33_scoped_unknown_game_registry.py tests\test_a33_control_dependent_relational_registry.py -q
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest tests\test_a33_confirmed_mechanics_registry.py tests\test_a33_scoped_unknown_game_registry.py tests\test_a33_control_dependent_relational_registry.py tests\test_a33_parameterized_relational_registry.py -q
 ```
 
 Generation registre :
@@ -286,4 +368,10 @@ Generation registre relationnel dependant du controle :
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a33.control_dependent_relational_registry --decisions diagnostics\a32\second_unknown_game_control_dependence_revision_decisions.json --out diagnostics\a33\control_dependent_relational_registry.json
+```
+
+Generation registre relationnel parametre :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a33.parameterized_relational_registry --decisions diagnostics\a32\third_unknown_game_parameterized_relation_revision_decisions.json --out diagnostics\a33\parameterized_relational_registry.json
 ```
