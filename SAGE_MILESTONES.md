@@ -4152,8 +4152,87 @@ regression : elle confirme que le gain SAGE.8h etait une conversion de replay
 scopee et que la memoire exacte ne fuit pas hors distribution. Elle confirme
 aussi que SAGE ne generalise pas encore vers ces niveaux non vus.
 
-Suite requise : SAGE.8j doit construire une representation structurelle a partir
-des seules donnees anterieures a SAGE.8i, figer cette politique avant evaluation,
-puis la comparer au meme fallback sur ces niveaux held-out. Le critere de succes
-reste une hausse de `levels_completed` ou de `win_rate`, sans reutiliser les
-outcomes SAGE.8i pour choisir ou regler la representation.
+Suite requise : SAGE.8j doit figer le mecanisme d'apprentissage avant l'examen,
+mais laisser ses croyances, sa memoire causale et sa politique evoluer apres
+chaque consequence observee. Les niveaux SAGE.8i n'etant plus vierges, cette
+evaluation doit employer de nouveaux jeux ou etats sans charger leurs traces.
+Le critere de succes reste une hausse de `levels_completed` ou de `win_rate` ;
+une consequence deja observee peut guider l'action suivante, contrairement au
+resultat futur d'une action qui n'a pas encore ete executee.
+
+## SAGE.8j - online causal learning during a fresh ARC examination
+
+Objectif :
+
+- Selectionner deux nouveaux jeux click depuis leurs metadonnees uniquement et
+  exclure explicitement les jeux et traces SAGE.8i.
+- Figer avant la premiere action le code d'apprentissage, les budgets, les
+  primitives structurelles et les criteres de mesure, mais pas l'etat interne
+  de la politique.
+- Extraire en ligne les composantes connexes, leurs formes, couleurs, positions
+  et relations spatiales, tout en conservant un digest visuel exact pour audit.
+- Formuler chaque sequence depuis RESET comme une hypothese action-effet et
+  compter toutes les actions de replay dans le budget d'examen.
+- Apres chaque effet observe, mettre a jour les croyances causales par famille
+  d'action, creer les nouveaux noeuds d'etat et eliminer les doublons.
+- Autoriser les outcomes deja observes a classer l'experience suivante, sans
+  jamais consulter l'outcome d'une action non executee.
+- Comparer cette exploration adaptative a une enumeration lexicographique dont
+  l'ordre complet est fixe avant les outcomes, avec les memes bornes.
+- Conserver sans retouche le premier resultat des jeux vierges ; ne verifier une
+  sequence apprise sur une nouvelle instance qu'apres sa decouverte.
+
+Ajouts :
+
+- `theory/sage/online_causal_exam_learning.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_online_causal_exam_learning.py`
+- `diagnostics/sage/sage8j_online_causal_exam_learning.json`
+
+Run du 2026-07-19 :
+
+- `fresh_games_evaluated=2`
+- `games_evaluated=[lf52-271a04aa, lp85-305b61c3]`
+- `max_action_executions_per_game_per_arm=512`
+- `max_trials_per_game_per_arm=256`
+- `max_sequence_depth=4`
+- `control_action_executions=608`
+- `adaptive_action_executions=514`
+- `control_trials_executed=233`
+- `adaptive_trials_executed=166`
+- `adaptive_belief_updates=166`
+- `adaptive_hypothesis_revisions=6`
+- `adaptive_discovered_structural_states=26`
+- `adaptive_duplicate_states_pruned=71`
+- `adaptive_no_effect_states_pruned=0`
+- `control_levels_completed_delta_total=0`
+- `adaptive_levels_completed_delta_total=0`
+- `levels_completed_absolute_gain=0`
+- `control_wins=0`
+- `adaptive_wins=0`
+- `adaptive_answers_learned_during_exam=0`
+- `online_learning_during_exam_performed=true`
+- `learning_algorithm_frozen_before_exam=true`
+- `agent_policy_state_frozen_during_exam=false`
+- `observed_outcomes_used_for_next_action_selection=true`
+- `future_outcomes_used_for_action_selection=false`
+- `sage8i_action_traces_loaded=false`
+- `game_source_files_inspected_by_agent=[]`
+- `primary_arc_progress_improved=false`
+- `primary_arc_progress_regressed=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_ONLINE_CAUSAL_EXAM_LEARNING_ACTIVE_NO_ARC_GAIN`
+
+Lecture : SAGE.8j apprend desormais pendant l'examen au sens demande par ARC.
+Son algorithme reste fixe, mais ses hypotheses et son graphe causal changent
+apres chaque action. Sur les deux premiers jeux vierges, il a caracterise six
+familles d'action, revise six hypotheses, construit 26 etats structurels et
+evite 71 explorations redondantes. Il n'a cependant trouve ni level-up ni WIN
+dans les bornes fixees. Ce jalon valide donc la boucle d'apprentissage en ligne,
+pas encore son efficacite pour resoudre une tache ARC inconnue.
+
+Suite requise : SAGE.8k doit exploiter ce diagnostic pour apprendre des effets
+orientes objet et objectif, puis planifier des experiences discriminantes plutot
+que seulement explorer le graphe en profondeur. Cette nouvelle regle devra etre
+figee avant de nouveaux jeux vierges ; `lf52` et `lp85` deviennent des jeux de
+developp et ne pourront plus servir de preuve held-out.
