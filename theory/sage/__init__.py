@@ -27,6 +27,7 @@ __all__ = [
     "DEFAULT_SAGE6E_FOLLOWUP_EXECUTION_PATH",
     "DEFAULT_SAGE6F_CONTROL_DEPENDENCE_CONSOLIDATION_PATH",
     "DEFAULT_SAGE7_THIRD_UNKNOWN_GAME_TRANSFER_PATH",
+    "DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -56,6 +57,7 @@ __all__ = [
     "run_sage6e_second_unknown_game_followup_execution",
     "run_sage6f_second_unknown_game_control_dependence_consolidation",
     "run_sage7_third_unknown_game_transfer",
+    "run_sage7a_parameterized_mini_frontier",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -81,6 +83,7 @@ __all__ = [
     "write_sage6e_second_unknown_game_followup_execution",
     "write_sage6f_second_unknown_game_control_dependence_consolidation",
     "write_sage7_third_unknown_game_transfer",
+    "write_sage7a_parameterized_mini_frontier",
 ]
 
 
@@ -624,6 +627,28 @@ def __getattr__(name: str):
             ),
             "write_sage7_third_unknown_game_transfer": (
                 write_sage7_third_unknown_game_transfer
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH",
+        "run_sage7a_parameterized_mini_frontier",
+        "write_sage7a_parameterized_mini_frontier",
+    }:
+        from .third_unknown_game_parameterized_frontier import (
+            DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH,
+            run_sage7a_parameterized_mini_frontier,
+            write_sage7a_parameterized_mini_frontier,
+        )
+
+        return {
+            "DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH": (
+                DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH
+            ),
+            "run_sage7a_parameterized_mini_frontier": (
+                run_sage7a_parameterized_mini_frontier
+            ),
+            "write_sage7a_parameterized_mini_frontier": (
+                write_sage7a_parameterized_mini_frontier
             ),
         }[name]
     raise AttributeError(name)

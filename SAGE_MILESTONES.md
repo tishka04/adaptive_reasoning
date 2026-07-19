@@ -3105,3 +3105,118 @@ trois jeux inconnus successifs et sait detecter qu'une surface mono-action exige
 des controles parametres. Il ne faut pas dire : ACTION6 a une mecanique
 confirmee, les onze coordonnees constituent onze actions distinctes, ou tn36 est
 deja eligible a une revue A32.
+
+## SAGE.7a - Third-game parameterized live mini-frontier
+
+Objectif :
+
+- Relire uniquement SAGE.7 comme contrat de transfert et de quarantaine.
+- Reproduire les trois runs bornes de `tn36-ab4f63cc` avant tout replay de
+  prefixe live.
+- Attribuer les 172 switches et les 145 placeholders observes par SAGE.7.
+- Selectionner six placeholders par budget selon des ordinaux espaces fixes,
+  sans lire les outcomes.
+- Transformer chaque placeholder selectionne en requete M3 live-prefix dont la
+  cible et les deux controles appartiennent tous a ACTION6, avec des arguments
+  `x/y` differents.
+- Pre-enregistrer les controles live-legaux avant leur execution selon la regle
+  `MAX_MANHATTAN_DISTANCE_FROM_TARGET_THEN_CANONICAL_ARGS`.
+- Ne jamais recompter les variantes parametrees comme familles d'action.
+- Conserver les hypotheses et requetes candidate-only, `support=0`, sans intake
+  ni write A32/A33.
+
+Ajouts :
+
+- `theory/sage/third_unknown_game_parameterized_frontier.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_third_unknown_game_parameterized_frontier.py`
+- `diagnostics/sage/sage7a_third_unknown_game_parameterized_frontier.json`
+
+Run du 2026-07-19 :
+
+- `game_id=tn36-ab4f63cc`
+- `budgets_evaluated=[50,150,300]`
+- `source_switches_expected=172`
+- `switches_reproduced=172`
+- `total_switch_events_observed=174`
+- `terminal_guard_events_outside_source_switch_count=2`
+- `true_exploratory_switches=27`
+- `new_candidate_target_switches=27`
+- `placeholder_rerun_m2_m3_switches=145`
+- `requests_per_budget_target=6`
+- `requests_by_budget={50:6,150:6,300:6}`
+- `mini_frontier_hypotheses_generated=18`
+- `effective_requests_generated=18`
+- `parameterized_control_variants_pre_registered=36`
+- `controls_per_request=2`
+- `action_families=[ACTION6]`
+- `distinct_action_families=1`
+- `distinct_target_parameter_variants=3`
+- `distinct_control_parameter_variants=4`
+- `unique_context_snapshot_hashes=10`
+- `parameterized_variants_counted_as_distinct_actions=false`
+- `all_requests_ready_for_m3=true`
+- `all_requests_live_prefix_replayable=true`
+- `ready_for_parameterized_m3_execution=true`
+- `required_next_step=SAGE7B_PARAMETERIZED_ACTION6_EXECUTION_REQUIRED_CANDIDATE_ONLY`
+- `gate_passed=true`
+- `outcome_status=SAGE_THIRD_UNKNOWN_GAME_PARAMETERIZED_FRONTIER_GENERATED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_7A`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_intake_requested=false`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Distribution pre-enregistree :
+
+| budget | placeholders | ordinaux selectionnes | requetes | controles |
+|---:|---:|---|---:|---:|
+| 50 | 41 | `0,8,16,24,32,40` | 6 | 12 |
+| 150 | 52 | `0,10,20,30,40,51` | 6 | 12 |
+| 300 | 52 | `0,10,20,30,40,51` | 6 | 12 |
+
+Lecture :
+
+- Le generateur generique SAGE.5c excluait une action portant le meme nom que
+  la cible et bloquait donc toute surface mono-action. SAGE.7a remplace ce faux
+  blocage par une identite experimentale `(ACTION6,x,y)` tout en conservant une
+  seule famille ACTION6.
+- Chaque controle est disponible dans le meme contexte live-prefix que sa cible,
+  utilise ACTION6 et porte des arguments differents. Les variantes sont choisies
+  avant toute execution M3 et ne sont pas du support.
+- Les runs 150 et 300 atteignent les memes prefixes aux ordinaux communs. Les 18
+  requetes couvrent donc 10 contextes uniques et fournissent volontairement des
+  repetitions inter-budget, sans deduplication post-outcome.
+- SAGE.7a ne mesure aucun effet cible/controle. Il materialise un plan
+  experimental strictement rejouable ; il ne produit ni confirmation, ni
+  refutation, ni dossier A32.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.third_unknown_game_parameterized_frontier `
+  --source-sage7 diagnostics\sage\sage7_third_unknown_game_transfer_results.json `
+  --out diagnostics\sage\sage7a_third_unknown_game_parameterized_frontier.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_third_unknown_game_parameterized_frontier.py `
+  tests\test_sage_third_unknown_game_transfer.py -q
+```
+
+Suite requise apres SAGE.7a :
+
+1. SAGE.7b - executer exactement les 18 cibles et leurs 36 controles
+   pre-enregistres, dans les memes contextes live-prefix et sans substitution.
+2. Conserver les mesures comme evenements candidate-only avec `support=0`.
+3. Consolider ensuite les repetitions inter-budget avant de decider si un
+   dossier A32.7 est identifiable, non identifiable ou encore incomplet.
+
+SAGE.7a autorise maintenant a dire : SAGE sait construire une mini-frontiere
+controlee sur une surface mono-action en separant famille d'action et arguments.
+Il ne faut pas dire : une coordonnee ACTION6 est une nouvelle action, l'une des
+variantes a un effet propre, ou le dossier est deja eligible a A32.7.
