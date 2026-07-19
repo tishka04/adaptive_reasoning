@@ -21,6 +21,7 @@ __all__ = [
     "DEFAULT_SAGE5J_PARAMETERIZED_CONTROL_ACQUISITION_PATH",
     "DEFAULT_SAGE6_SECOND_UNKNOWN_GAME_TRANSFER_PATH",
     "DEFAULT_SAGE6A_SWITCH_FRONTIER_PATH",
+    "DEFAULT_SAGE6B_M3_EXECUTION_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -44,6 +45,7 @@ __all__ = [
     "run_sage5j_parameterized_control_acquisition",
     "run_sage6_second_unknown_game_transfer",
     "run_sage6a_switch_attribution_mini_frontier",
+    "run_sage6b_second_unknown_game_m3_execution",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -63,6 +65,7 @@ __all__ = [
     "write_sage5j_parameterized_control_acquisition",
     "write_sage6_second_unknown_game_transfer",
     "write_sage6a_switch_attribution_mini_frontier",
+    "write_sage6b_second_unknown_game_m3_execution",
 ]
 
 
@@ -478,6 +481,26 @@ def __getattr__(name: str):
             ),
             "write_sage6a_switch_attribution_mini_frontier": (
                 write_sage6a_switch_attribution_mini_frontier
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE6B_M3_EXECUTION_PATH",
+        "run_sage6b_second_unknown_game_m3_execution",
+        "write_sage6b_second_unknown_game_m3_execution",
+    }:
+        from .second_unknown_game_m3_execution import (
+            DEFAULT_SAGE6B_M3_EXECUTION_PATH,
+            run_sage6b_second_unknown_game_m3_execution,
+            write_sage6b_second_unknown_game_m3_execution,
+        )
+
+        return {
+            "DEFAULT_SAGE6B_M3_EXECUTION_PATH": DEFAULT_SAGE6B_M3_EXECUTION_PATH,
+            "run_sage6b_second_unknown_game_m3_execution": (
+                run_sage6b_second_unknown_game_m3_execution
+            ),
+            "write_sage6b_second_unknown_game_m3_execution": (
+                write_sage6b_second_unknown_game_m3_execution
             ),
         }[name]
     raise AttributeError(name)

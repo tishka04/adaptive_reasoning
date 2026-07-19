@@ -41,6 +41,7 @@ de policy en support scientifique.
 | SAGE.5j - Pre-registered parameterized control acquisition | Fait - resultat mixte candidate-only | `theory/sage/parameterized_control_acquisition.py`, `tests/test_sage_parameterized_control_acquisition.py`, `diagnostics/sage/sage5j_parameterized_control_acquisition.json` | Execute exactement les 8 experiences A32.4 sans substitution; ACTION6 : 4/4 effets non discriminants (5 vs 5); ACTION5 : 4/4 effets discriminants (21 vs 4); 0 contradiction; 2 dossiers prets pour revue A32; support=0; aucun write A32/A33 |
 | SAGE.6 - Second unknown-game bounded transfer | Fait - 3/3 gates passes sur wa30 | `theory/sage/second_unknown_game_transfer.py`, `tests/test_sage_second_unknown_game_transfer.py`, `diagnostics/sage/sage6_second_unknown_game_transfer_results.json` | Selectionne wa30 par ordre public_unseen fixe avant execution; exclut les jeux connus et sb26 source; budgets 50/150/300 passes; progress-stall detecte sur les 3 budgets; 98 switches; quarantaine A33.2 respectee; support=0; aucun write A32/A33 |
 | SAGE.6a - Second-game switch attribution and live mini-frontier | Fait - 20 requests M3 candidate-only | `theory/sage/second_unknown_game_switch_frontier.py`, `tests/test_sage_second_unknown_game_switch_frontier.py`, `diagnostics/sage/sage6a_switch_attribution_mini_frontier.json` | Reproduit et attribue les 98 switches wa30 : 32 contrefactuels actifs, 34 repositionnements, 32 placeholders; distingue 1 garde terminale hors compteur source; convertit 20 placeholders en hypotheses + requests M3 live-prefix, reparties 4/12/4; support=0; aucun write A32/A33 |
+| SAGE.6b - Stratified second-game M3 execution | Fait - 6/6 replays exacts | `theory/sage/second_unknown_game_m3_execution.py`, `tests/test_sage_second_unknown_game_m3_execution.py`, `diagnostics/sage/sage6b_second_unknown_game_m3_execution.json` | Selectionne 2 requests wa30 par budget avec 6 hashes distincts; execute ACTION2 contre ACTION1; 6/6 replay exact + hash verifie, 0 blocage; 5 effets bruts positifs et 1 neutre, mais support=0 et aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2422,17 +2423,112 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_switch_attribution_placeholder_audit.py -q
 ```
 
-Suite conseillee apres SAGE.6a :
+## SAGE.6b - Stratified second-game M3 execution
 
-1. SAGE.6b - executer dans M3 un sous-ensemble stratifie des 20 requests
-   `wa30`, avec replay exact, verification du hash et couverture des trois
-   budgets.
-2. Consolider les evenements obtenus avant toute revue A32, sans convertir un
-   resultat de policy en preuve.
+Objectif :
+
+- Selectionner exactement deux requests SAGE.6a par budget `50`, `150`, `300`.
+- Maximiser la diversite globale des hashes de contexte, puis la dispersion des
+  steps, sans consulter les resultats d'execution.
+- Rejouer le meme prefixe live pour la cible et le controle dynamique.
+- Exiger la verification du hash avant chaque action cible ou controle.
+- Executer `ACTION2` contre le premier controle distinct pre-enregistre,
+  `ACTION1`, et conserver les deltas comme evenements bruts candidate-only.
+- Preserver la quarantaine A33.2, `support=0` et l'absence de write A32/A33.
+
+Ajouts :
+
+- `theory/sage/second_unknown_game_m3_execution.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_second_unknown_game_m3_execution.py`
+- `diagnostics/sage/sage6b_second_unknown_game_m3_execution.json`
+
+Run du 2026-07-19 :
+
+- `game_id=wa30-ee6fef47`
+- `budgets_available=[50,150,300]`
+- `requests_available=20`
+- `requests_per_budget=2`
+- `requests_selected=6`
+- `requests_selected_by_budget={50:2,150:2,300:2}`
+- `unique_selected_context_snapshot_hashes=6`
+- `selected_source_steps_by_budget={50:[12,48],150:[132,144],300:[24,36]}`
+- `requests_executed=6`
+- `requests_executed_by_budget={50:2,150:2,300:2}`
+- `requests_blocked=0`
+- `live_prefix_replay_exact_events=6`
+- `context_snapshot_hash_verified_events=6`
+- `target_actions_executed={ACTION2:6}`
+- `control_actions_executed={ACTION1:6}`
+- `hypothesis_families_executed={local_patch_change_candidate:6}`
+- `target_signal_total=194`
+- `control_signal_total=34`
+- `controlled_effect_sizes=[0,32,32,32,32,32]`
+- `positive_effect_events=5`
+- `zero_effect_events=1`
+- `negative_effect_events=0`
+- `raw_support_events=5`
+- `raw_contradiction_events=0`
+- `raw_neutral_events=1`
+- `source_scoped_mechanics_reused=0`
+- `cross_game_mechanics_imported=0`
+- `gate_passed=true`
+- `outcome_status=SAGE_SECOND_UNKNOWN_GAME_M3_EXECUTION_COMPLETED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_6B`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Resultats par budget :
+
+| budget | steps | execution | replay/hash | signal cible | signal controle | effets bruts |
+|---:|---|---:|---:|---:|---:|---|
+| 50 | 12, 48 | 2/2 | 2/2 | 65 | 33 | 1 positif, 1 neutre |
+| 150 | 132, 144 | 2/2 | 2/2 | 65 | 1 | 2 positifs |
+| 300 | 24, 36 | 2/2 | 2/2 | 64 | 0 | 2 positifs |
+
+La selection est pre-execution. Les budgets disposant du moins de contextes
+sont alloues en premier pour que les budgets 50 et 300 se partagent leurs
+quatre hashes communs. Le budget 150 fournit ensuite deux contexts tardifs
+encore distincts. Les six hashes selectionnes sont donc uniques.
+
+Les cinq `raw_support_events` indiquent seulement que, dans ces contextes live,
+le signal local mesure apres ACTION2 depasse celui mesure apres ACTION1. Le
+sixieme contexte donne un delta nul. SAGE.6b ne compte aucun de ces evenements
+comme support scientifique, ne traite pas l'evenement neutre comme refutation
+et ne produit aucun verdict.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.second_unknown_game_m3_execution `
+  --source-sage6a diagnostics\sage\sage6a_switch_attribution_mini_frontier.json `
+  --requests-per-budget 2 `
+  --out diagnostics\sage\sage6b_second_unknown_game_m3_execution.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_second_unknown_game_m3_execution.py `
+  tests\test_sage_second_unknown_game_switch_frontier.py `
+  tests\test_sage_live_mini_frontier_m3_executor.py -q
+```
+
+Suite conseillee apres SAGE.6b :
+
+1. SAGE.6c - consolider les six evenements en clusters de contexte
+   candidate-only et verifier si l'effet ACTION2/ACTION1 est stable entre
+   budgets sans fusionner artificiellement les contextes.
+2. Si une frontiere reste robuste, compiler un handoff de revue A32 distinct du
+   scope `sb26`; A32 seul pourra demander des controles supplementaires ou
+   statuer.
 3. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
    sur la base de son outcome.
 
-SAGE.6a autorise maintenant a dire : SAGE sait expliquer ses switches sur un
-deuxieme jeu inconnu et transformer des placeholders en experiences M3 live
-rejouables. Il ne faut pas dire : SAGE sait jouer a `wa30`, generalise une
-mecanique de `sb26`, ou a decouvert/confirme une mecanique sur jeu inconnu.
+SAGE.6b autorise maintenant a dire : SAGE sait executer proprement des
+experiences M3 live stratifiees sur un deuxieme jeu inconnu et en conserver les
+deltas controles. Il ne faut pas dire : SAGE a prouve une mecanique ACTION2,
+sait jouer a `wa30`, ou generalise une mecanique de `sb26`.
