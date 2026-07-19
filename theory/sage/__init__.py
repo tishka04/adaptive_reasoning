@@ -24,6 +24,7 @@ __all__ = [
     "DEFAULT_SAGE6B_M3_EXECUTION_PATH",
     "DEFAULT_SAGE6C_EVENT_CONSOLIDATION_PATH",
     "DEFAULT_SAGE6D_HANDOFF_PATH",
+    "DEFAULT_SAGE6E_FOLLOWUP_EXECUTION_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -50,6 +51,7 @@ __all__ = [
     "run_sage6b_second_unknown_game_m3_execution",
     "run_sage6c_second_unknown_game_event_consolidation",
     "run_sage6d_second_unknown_game_handoff",
+    "run_sage6e_second_unknown_game_followup_execution",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -72,6 +74,7 @@ __all__ = [
     "write_sage6b_second_unknown_game_m3_execution",
     "write_sage6c_second_unknown_game_event_consolidation",
     "write_sage6d_second_unknown_game_handoff",
+    "write_sage6e_second_unknown_game_followup_execution",
 ]
 
 
@@ -549,6 +552,28 @@ def __getattr__(name: str):
             ),
             "write_sage6d_second_unknown_game_handoff": (
                 write_sage6d_second_unknown_game_handoff
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE6E_FOLLOWUP_EXECUTION_PATH",
+        "run_sage6e_second_unknown_game_followup_execution",
+        "write_sage6e_second_unknown_game_followup_execution",
+    }:
+        from .second_unknown_game_followup_execution import (
+            DEFAULT_SAGE6E_FOLLOWUP_EXECUTION_PATH,
+            run_sage6e_second_unknown_game_followup_execution,
+            write_sage6e_second_unknown_game_followup_execution,
+        )
+
+        return {
+            "DEFAULT_SAGE6E_FOLLOWUP_EXECUTION_PATH": (
+                DEFAULT_SAGE6E_FOLLOWUP_EXECUTION_PATH
+            ),
+            "run_sage6e_second_unknown_game_followup_execution": (
+                run_sage6e_second_unknown_game_followup_execution
+            ),
+            "write_sage6e_second_unknown_game_followup_execution": (
+                write_sage6e_second_unknown_game_followup_execution
             ),
         }[name]
     raise AttributeError(name)
