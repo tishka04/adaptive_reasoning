@@ -3788,3 +3788,80 @@ en niveau ou victoire : l'exploration generique manque d'un objectif de jeu.
 Suite requise : SAGE.8e doit ajouter au planner un objectif de progression
 appris et scope-safe, sans optimiser sur les outcomes de ces onze episodes, puis
 repeter l'evaluation appariee sur `levels_completed` et `win_rate`.
+
+## SAGE.8e - scope-safe learned-objective closed-loop evaluation
+
+Objectif :
+
+- Remplacer l'exploration generique de SAGE.8d par un objectif de progression
+  appris avant l'evaluation.
+- Apprendre seulement dans les historiques de replay exacts A34.2 et A34.3 la
+  prochaine action des prefixes qui atteignent les contextes relationnels
+  enregistres.
+- Limiter chaque prediction a la cle exacte `game_id|visual_digest` : aucune
+  correspondance floue et aucun transfert inter-jeux.
+- Mettre en quarantaine toute prediction hors scope ou devenue illegale, puis
+  revenir au planner state-conditioned de SAGE.8d.
+- Ne lire aucun outcome SAGE.8b, SAGE.8c, SAGE.8d ou SAGE.8e pour apprendre,
+  regler ou choisir une action.
+- Garder `levels_completed` et `win_rate` comme seules metriques ARC principales.
+
+Le modele appris est explicitement un proxy de joignabilite des contextes
+enregistres, pas une verite de progression ARC. Il contient 456 transitions de
+demonstration reparties sur 137 etats visuels exacts, dont 24 ambigus, a partir
+des onze replays verifies. Les deux bras emploient ensuite le meme planner et le
+meme horizon de 16 actions ; seule l'intervention memoire initiale differe.
+
+Ajouts :
+
+- `theory/sage/relational_memory_objective_closed_loop_evaluation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_relational_memory_objective_closed_loop_evaluation.py`
+- `diagnostics/sage/sage8e_relational_memory_objective_closed_loop_evaluation.json`
+
+Run du 2026-07-19 :
+
+- `paired_rollouts_evaluated=11`
+- `games_evaluated=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `continuation_horizon=16`
+- `memory_policy_applications=11`
+- `exact_paired_replays=11`
+- `objective_model_demonstration_transitions=456`
+- `objective_model_exact_visual_states=137`
+- `no_memory_replanning_decisions=171`
+- `with_memory_replanning_decisions=171`
+- `no_memory_objective_applications=28`
+- `with_memory_objective_applications=112`
+- `no_memory_objective_coverage_rate=0.16374269005847952`
+- `with_memory_objective_coverage_rate=0.6549707602339181`
+- `no_memory_objective_quarantines=143`
+- `with_memory_objective_quarantines=59`
+- `episodes_with_divergent_replanned_trajectories=10`
+- `divergent_replanning_positions=134`
+- `no_memory_levels_completed_delta_total=0`
+- `with_memory_levels_completed_delta_total=0`
+- `levels_completed_absolute_gain=0`
+- `no_memory_wins=0`
+- `with_memory_wins=0`
+- `no_memory_win_rate=0.0`
+- `with_memory_win_rate=0.0`
+- `win_rate_absolute_gain=0.0`
+- `secondary_initial_local_signal_gain=112.0`
+- `training_or_tuning_used_evaluation_outcomes=false`
+- `future_outcomes_used_for_planning=false`
+- `counterfactual_rollouts_performed=0`
+- `scope_generalization_performed=false`
+- `primary_arc_progress_improved=false`
+- `primary_arc_progress_regressed=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_RELATIONAL_MEMORY_OBJECTIVE_CLOSED_LOOP_LOCAL_GAIN_WITHOUT_ARC_SCORE_CONVERSION`
+
+Lecture : l'intervention memoire maintient la trajectoire dans le manifold exact
+du proxy appris beaucoup plus longtemps : 112 decisions couvertes contre 28,
+soit 65,5 % contre 16,4 %. C'est un gain structurel net par rapport a SAGE.8d,
+mais il ne se convertit toujours pas en niveau ou victoire. Le proxy reproduit
+fidelement des prefixes connus ; il ne connait pas encore l'objectif reel du jeu.
+
+Suite requise : SAGE.8f doit acquerir ou construire un signal d'objectif relie a
+une transition de niveau ou de victoire, sans requalifier le proxy SAGE.8e et
+sans regler le planner sur les outcomes de cette evaluation.
