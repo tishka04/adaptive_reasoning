@@ -14,6 +14,7 @@ as proof.
 
 from __future__ import annotations
 
+import hashlib
 from collections import Counter
 from dataclasses import dataclass, field, replace
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
@@ -40,6 +41,14 @@ from .live_transition_loop import (
     LiveTransitionUpdate,
     build_observation,
 )
+from .online_relational_option import (
+    CompiledRelationalOption,
+    OnlineRelationalOptionCompiler,
+    OptionAssessment,
+    OptionExecutionMemory,
+    observe_option_progress,
+)
+from .promoted_relational_rule import PromotedRelationalRule
 from .theory_conditioned_planner import TheoryConditionedPlanner
 
 
@@ -53,10 +62,15 @@ class UnifiedCognitiveConfig:
     max_relation_target_colors: int = 4
     generic_confirmation_evidence: int = 2
     generic_refutation_evidence: int = 2
+    promotion_min_support: int = 2
+    promotion_min_independent_contexts: int = 2
     operator_induction_interval: int = 1
+    max_option_attempts_per_context: int = 2
+    min_option_executions_before_quarantine: int = 3
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
+    enable_promoted_options: bool = True
 
 
 @dataclass(frozen=True)
@@ -71,6 +85,8 @@ class CognitiveDecision:
     competing_hypotheses: Tuple[str, ...] = ()
     operator_id: str = ""
     source_rule_key: str = ""
+    option_id: str = ""
+    preparation_for_rule_key: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -82,6 +98,8 @@ class CognitiveDecision:
             "competing_hypotheses": list(self.competing_hypotheses),
             "operator_id": self.operator_id,
             "source_rule_key": self.source_rule_key,
+            "option_id": self.option_id,
+            "preparation_for_rule_key": self.preparation_for_rule_key,
         }
 
 
@@ -119,6 +137,8 @@ class UnifiedCognitiveController:
             max_competing_hypotheses=2,
         )
         self.theory_planner = TheoryConditionedPlanner()
+        self.option_compiler = OnlineRelationalOptionCompiler()
+        self.option_memory = OptionExecutionMemory()
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -130,13 +150,19 @@ class UnifiedCognitiveController:
         self._click_cursor = 0
         self._pending_decision: CognitiveDecision | None = None
         self._predictions: Dict[str, DiscriminatingPrediction] = {}
-        self._prediction_evidence: Dict[str, Dict[str, int]] = {}
+        self._prediction_evidence: Dict[str, Dict[str, Any]] = {}
+        self._promoted_prediction_keys: set[str] = set()
+        self._option_context_attempts: Counter[Tuple[str, int]] = Counter()
         self._decision_sources: Counter[str] = Counter()
         self._observed_transitions = 0
         self._operator_plans = 0
         self._theory_plans = 0
         self._safety_vetoes = 0
         self._generic_revisions = 0
+        self._rules_promoted = 0
+        self._promoted_option_decisions = 0
+        self._option_preparation_decisions = 0
+        self._option_outcomes: List[Dict[str, Any]] = []
 
     @property
     def theory(self):
@@ -254,6 +280,8 @@ class UnifiedCognitiveController:
                 )
 
         self._revise_pending_predictions(update, pending)
+        self._promote_confirmed_predictions()
+        self._observe_pending_option(update, pending)
         self.progress.on_action(
             grid_hash=after_hash,
             diff_signature=_diff_signature(update),
@@ -264,9 +292,7 @@ class UnifiedCognitiveController:
             num_changed=int(update.record.diff.num_changed),
             objects=update.record.obs_after.objects,
             current_validated_ops=self.operator_inducer.num_locked(),
-            current_validated_rules=len(
-                self.belief_loop.rule_engine.high_confidence_rules()
-            ),
+            current_validated_rules=self._validated_rule_count(),
             operator_predicted_ok=operator_predicted_ok,
             is_click=action_name == "ACTION6",
             is_transform=int(update.record.diff.num_changed) >= 5,
@@ -304,6 +330,8 @@ class UnifiedCognitiveController:
 
         decision = self._select_escape(observation, safe_actions)
         if decision is None:
+            decision = self._select_promoted_option(observation, safe_actions)
+        if decision is None:
             decision = self._select_theory_plan(observation, safe_actions)
         if decision is None and self._should_experiment():
             decision = self._select_experiment(observation, safe_actions)
@@ -329,9 +357,7 @@ class UnifiedCognitiveController:
         self._pending_decision = None
         self.progress.start_new_branch(
             current_validated_ops=self.operator_inducer.num_locked(),
-            current_validated_rules=len(
-                self.belief_loop.rule_engine.high_confidence_rules()
-            ),
+            current_validated_rules=self._validated_rule_count(),
         )
 
     def on_level_change(self) -> None:
@@ -351,6 +377,14 @@ class UnifiedCognitiveController:
             "generic_hypothesis_revisions": self._generic_revisions,
             "generic_predictions": len(self._predictions),
             "generic_prediction_statuses": dict(prediction_statuses),
+            "promoted_relational_rules": self._rules_promoted,
+            "active_promoted_relational_rules": len(
+                self.theory.promoted_relational_rules()
+            ),
+            "promoted_option_decisions": self._promoted_option_decisions,
+            "option_preparation_decisions": self._option_preparation_decisions,
+            "option_execution": self.option_memory.summary(),
+            "recent_option_outcomes": self._option_outcomes[-10:],
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
@@ -406,9 +440,7 @@ class UnifiedCognitiveController:
         if branch_stalled:
             self.progress.start_new_branch(
                 current_validated_ops=self.operator_inducer.num_locked(),
-                current_validated_rules=len(
-                    self.belief_loop.rule_engine.high_confidence_rules()
-                ),
+                current_validated_rules=self._validated_rule_count(),
             )
         return CognitiveDecision(
             action_name=action,
@@ -416,6 +448,220 @@ class UnifiedCognitiveController:
             source="anti_attractor_escape",
             reason="observed no-op/repetition/novelty stall",
             confidence=1.0,
+        )
+
+    def _select_promoted_option(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        """Execute or prepare the most valuable confirmed online option."""
+        if not self.config.enable_promoted_options:
+            return None
+        rules = self.theory.promoted_relational_rules()
+        if not rules:
+            return None
+        options = self.option_compiler.compile(rules)
+        if not options:
+            return None
+        by_key = {option.rule_key: option for option in options}
+        ranked_rules = sorted(
+            rules,
+            key=lambda rule: (
+                self.option_memory.value(rule),
+                rule.level_successes,
+                rule.functional_successes,
+                rule.confidence,
+                rule.key,
+            ),
+            reverse=True,
+        )
+        for rule in ranked_rules:
+            if self.option_memory.is_sterile(
+                rule.key,
+                min_executions=(
+                    self.config.min_option_executions_before_quarantine
+                ),
+            ):
+                continue
+            option = by_key.get(rule.key)
+            if option is None or option.action not in safe_actions:
+                continue
+            context_key = (rule.key, observation.grid_hash)
+            if self._option_context_attempts[context_key] >= max(
+                1,
+                int(self.config.max_option_attempts_per_context),
+            ):
+                continue
+            assessment = self.option_compiler.assess(option, observation)
+            if assessment.already_satisfied:
+                continue
+            if assessment.ready:
+                return self._option_decision(
+                    option,
+                    observation,
+                    preparation_for_rule_key="",
+                )
+            chain = self.option_compiler.preparation_chain(
+                option,
+                options,
+                observation,
+            )
+            if chain:
+                preparer = chain[0]
+                if preparer.action in safe_actions:
+                    return self._option_decision(
+                        preparer,
+                        observation,
+                        preparation_for_rule_key=rule.key,
+                    )
+            preparer = self._select_induced_precondition_operator(
+                option,
+                assessment,
+                observation,
+                safe_actions,
+            )
+            if preparer is not None:
+                return preparer
+        return None
+
+    def _option_decision(
+        self,
+        option: CompiledRelationalOption,
+        observation: GameObservation,
+        *,
+        preparation_for_rule_key: str,
+    ) -> CognitiveDecision:
+        rule = self.theory.promoted_relational_rule(option.rule_key)
+        confidence = 0.0 if rule is None else rule.confidence
+        self._option_context_attempts[(option.rule_key, observation.grid_hash)] += 1
+        operator = self._best_operator_for_option(option, observation)
+        source = (
+            "option_precondition_option"
+            if preparation_for_rule_key
+            else "promoted_option"
+        )
+        if preparation_for_rule_key:
+            self._option_preparation_decisions += 1
+        else:
+            self._promoted_option_decisions += 1
+        return CognitiveDecision(
+            action_name=option.action,
+            action_data=self._option_action_data(option, observation, operator),
+            source=source,
+            reason=(
+                f"compiled confirmed rule {option.rule_key}"
+                + (
+                    f" prepares {preparation_for_rule_key}"
+                    if preparation_for_rule_key
+                    else ""
+                )
+            ),
+            confidence=confidence,
+            operator_id="" if operator is None else operator.operator_id,
+            source_rule_key=option.rule_key,
+            option_id=option.option_id,
+            preparation_for_rule_key=preparation_for_rule_key,
+        )
+
+    def _best_operator_for_option(
+        self,
+        option: CompiledRelationalOption,
+        observation: GameObservation,
+    ) -> Operator | None:
+        candidates = [
+            operator
+            for operator in self.operator_inducer.operators.values()
+            if _normalize_action(operator.primitive_action) == option.action
+            and operator.preconditions_met(observation)
+        ]
+        if not candidates:
+            return None
+        return max(
+            candidates,
+            key=lambda operator: (
+                int(
+                    operator.parameters.get("target_value")
+                    == option.source_color
+                ),
+                operator.confidence,
+                operator.support,
+            ),
+        )
+
+    def _option_action_data(
+        self,
+        option: CompiledRelationalOption,
+        observation: GameObservation,
+        operator: Operator | None,
+    ) -> Dict[str, Any]:
+        if option.action != "ACTION6":
+            return {}
+        candidates = [
+            obj for obj in observation.objects
+            if int(obj.value) == int(option.source_color)
+        ]
+        if candidates:
+            target = min(candidates, key=lambda obj: (obj.area, obj.object_id))
+            return {
+                "x": int(round(target.center[1])),
+                "y": int(round(target.center[0])),
+            }
+        if operator is not None:
+            return _operator_action_data(operator, operator.parameters, observation)
+        return self._default_action_data(option.action, observation)
+
+    def _select_induced_precondition_operator(
+        self,
+        target_option: CompiledRelationalOption,
+        assessment: OptionAssessment,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        missing_colors = {
+            int(predicate.split("_")[1])
+            for predicate in assessment.missing_predicates
+            if predicate.startswith("color_") and predicate.endswith("_present")
+            and predicate.split("_")[1].isdigit()
+        }
+        if not missing_colors:
+            return None
+        candidates: List[Operator] = []
+        for operator in self.operator_inducer.operators.values():
+            action = _normalize_action(operator.primitive_action)
+            if action not in safe_actions or not operator.preconditions_met(observation):
+                continue
+            creates_missing = any(
+                effect.__class__.__name__ == "CreatesObject"
+                and getattr(effect, "value", None) in missing_colors
+                for effect in operator.expected_effects
+            )
+            if creates_missing:
+                candidates.append(operator)
+        if not candidates:
+            return None
+        operator = max(
+            candidates,
+            key=lambda item: (item.confidence, item.support, -item.cost_estimate),
+        )
+        self._option_preparation_decisions += 1
+        action = _normalize_action(operator.primitive_action)
+        return CognitiveDecision(
+            action_name=action,
+            action_data=_operator_action_data(
+                operator,
+                operator.parameters,
+                observation,
+            ),
+            source="option_precondition_plan",
+            reason=(
+                f"induced operator {operator.operator_id} prepares "
+                f"{target_option.rule_key}: {assessment.missing_predicates}"
+            ),
+            confidence=operator.confidence,
+            operator_id=operator.operator_id,
+            option_id=target_option.option_id,
+            preparation_for_rule_key=target_option.rule_key,
         )
 
     def _select_theory_plan(
@@ -718,9 +964,17 @@ class UnifiedCognitiveController:
                 continue
             evidence = self._prediction_evidence.setdefault(
                 key,
-                {"support": 0, "contradictions": 0, "experiments": 0},
+                {
+                    "support": 0,
+                    "contradictions": 0,
+                    "experiments": 0,
+                    "contexts": set(),
+                },
             )
             evidence["experiments"] += 1
+            evidence["contexts"].add(
+                _transition_context_signature(update, pending.action_data)
+            )
             if observed == prediction.outcome:
                 evidence["support"] += 1
             else:
@@ -740,6 +994,84 @@ class UnifiedCognitiveController:
                 status = HypothesisStatus.REFUTED
             self._predictions[key] = replace(prediction, status=status)
             self._generic_revisions += 1
+
+    def _promote_confirmed_predictions(self) -> None:
+        """Move live-confirmed predictions into GameTheory after the gate."""
+        for key, prediction in self._predictions.items():
+            if key in self._promoted_prediction_keys:
+                continue
+            if prediction.status != HypothesisStatus.CONFIRMED:
+                continue
+            evidence = self._prediction_evidence.get(key, {})
+            contexts = set(evidence.get("contexts", set()) or set())
+            support = int(evidence.get("support", 0) or 0)
+            if support < max(1, int(self.config.promotion_min_support)):
+                continue
+            if len(contexts) < max(
+                1,
+                int(self.config.promotion_min_independent_contexts),
+            ):
+                continue
+            rule = PromotedRelationalRule.from_prediction(
+                prediction,
+                support=support,
+                contradictions=int(evidence.get("contradictions", 0) or 0),
+                experiments_spent=int(evidence.get("experiments", 0) or 0),
+                independent_contexts=contexts,
+                minimum_support=self.config.promotion_min_support,
+                minimum_independent_contexts=(
+                    self.config.promotion_min_independent_contexts
+                ),
+            )
+            if rule.status != HypothesisStatus.CONFIRMED:
+                continue
+            self.theory.add_promoted_relational_rule(rule)
+            self._promoted_prediction_keys.add(key)
+            self._rules_promoted += 1
+
+    def _observe_pending_option(
+        self,
+        update: LiveTransitionUpdate,
+        pending: CognitiveDecision | None,
+    ) -> None:
+        if pending is None or not pending.source_rule_key:
+            return
+        if pending.source not in {"promoted_option", "option_precondition_option"}:
+            return
+        rule = self.theory.promoted_relational_rule(pending.source_rule_key)
+        if rule is None:
+            return
+        progress = observe_option_progress(update, rule)
+        used_as_preparation = bool(pending.preparation_for_rule_key)
+        self.option_memory.record(
+            rule.key,
+            progress,
+            used_as_preparation=used_as_preparation,
+        )
+        rule.observe_application(
+            expected_outcome_observed=progress.expected_outcome_observed,
+            functional_progress=progress.functional_progress,
+            level_progress=progress.level_progressed,
+            visual_change=progress.visual_change,
+            context_signature=_transition_context_signature(
+                update,
+                pending.action_data,
+            ),
+        )
+        self._option_outcomes.append({
+            "rule_key": rule.key,
+            "option_id": pending.option_id,
+            "used_as_preparation": used_as_preparation,
+            "preparation_for_rule_key": pending.preparation_for_rule_key,
+            "rule_status_after": rule.status.value,
+            **progress.to_dict(),
+        })
+
+    def _validated_rule_count(self) -> int:
+        return (
+            len(self.belief_loop.rule_engine.high_confidence_rules())
+            + len(self.theory.promoted_relational_rules())
+        )
 
 
 def _normalize_action(action: Any) -> str:
@@ -827,6 +1159,24 @@ def _diff_signature(update: LiveTransitionUpdate) -> str:
         str(len(diff.removed_objects)),
         str(bool(diff.game_over)),
         str(bool(diff.level_complete)),
+    ))
+
+
+def _transition_context_signature(
+    update: LiveTransitionUpdate,
+    action_data: Mapping[str, Any] | None,
+) -> str:
+    """Stable independent-context identity for live promotion evidence."""
+    before = np.asarray(update.record.obs_before.raw_grid, dtype=np.int32)
+    digest = hashlib.sha1(before.tobytes()).hexdigest()[:16]
+    args = tuple(
+        sorted((str(key), str(value)) for key, value in dict(action_data or {}).items())
+    )
+    return "|".join((
+        str(before.shape),
+        digest,
+        str(update.record.obs_before.levels_completed),
+        str(args),
     ))
 
 

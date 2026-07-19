@@ -16,7 +16,7 @@ To stay light and unit-testable, this module depends only on a small
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 from .epistemic_metrics import (
@@ -34,6 +34,7 @@ from .precondition_hypothesis import (
     PreconditionHypothesis,
     PreconditionObservation,
 )
+from .promoted_relational_rule import PromotedRelationalRule
 from .role_hypotheses import ActionRoleHypothesis, GoalFamilyHypothesis
 
 # A change of >= this many cells is treated as a global/transform-like effect
@@ -197,6 +198,9 @@ class GameTheory:
             str,
             Dict[str, PreconditionHypothesis],
         ] = {}
+        # Generic live predictions enter this store only after an explicit
+        # independent-context promotion gate.  Refuted rules remain auditable.
+        self._promoted_relational_rules: Dict[str, PromotedRelationalRule] = {}
 
     # ── construction ────────────────────────────────────────────
     def seed_actions(
@@ -290,6 +294,17 @@ class GameTheory:
         existing.experiments_spent += hypothesis.experiments_spent
         existing._recompute_status()
 
+    def add_promoted_relational_rule(
+        self,
+        rule: PromotedRelationalRule,
+    ) -> PromotedRelationalRule:
+        """Register one independently confirmed generic relational rule."""
+        existing = self._promoted_relational_rules.get(rule.key)
+        if existing is None:
+            self._promoted_relational_rules[rule.key] = rule
+            return rule
+        return existing
+
     # ── learning ────────────────────────────────────────────────
     def observe(
         self,
@@ -368,6 +383,24 @@ class GameTheory:
     def preconditions_for_rule(self, target_rule: str) -> List[PreconditionHypothesis]:
         return list(self._preconditions_by_target.get(str(target_rule), {}).values())
 
+    def promoted_relational_hypotheses(self) -> List[PromotedRelationalRule]:
+        """Return promoted rules at every revision status for audit/scoring."""
+        return list(self._promoted_relational_rules.values())
+
+    def promoted_relational_rules(self) -> List[PromotedRelationalRule]:
+        """Return only currently confirmed rules available to option planning."""
+        return [
+            rule
+            for rule in self.promoted_relational_hypotheses()
+            if rule.status == HypothesisStatus.CONFIRMED
+        ]
+
+    def promoted_relational_rule(
+        self,
+        key: str,
+    ) -> PromotedRelationalRule | None:
+        return self._promoted_relational_rules.get(str(key))
+
     def for_action(self, action: str) -> List[MechanicHypothesis]:
         return list(self._by_action.get(str(action).upper(), {}).values())
 
@@ -398,6 +431,7 @@ class GameTheory:
         records.extend(h.to_record() for h in self.goal_family_hypotheses())
         records.extend(h.to_record() for h in self.correspondence_hypotheses())
         records.extend(h.to_record() for h in self.precondition_hypotheses())
+        records.extend(h.to_record() for h in self.promoted_relational_hypotheses())
         return records
 
     def summary(self) -> Dict[str, Any]:
@@ -411,6 +445,7 @@ class GameTheory:
                 + self.goal_family_hypotheses()
                 + self.correspondence_hypotheses()
                 + self.precondition_hypotheses()
+                + self.promoted_relational_hypotheses()
             )
             if h.status == HypothesisStatus.CONFIRMED
         ]
@@ -421,6 +456,12 @@ class GameTheory:
             "goal_family_hypotheses": len(self.goal_family_hypotheses()),
             "correspondence_hypotheses": len(self.correspondence_hypotheses()),
             "precondition_hypotheses": len(self.precondition_hypotheses()),
+            "promoted_relational_hypotheses": len(
+                self.promoted_relational_hypotheses()
+            ),
+            "promoted_relational_rules": [
+                rule.key for rule in self.promoted_relational_rules()
+            ],
             "preconditions_confirmed": [
                 h.key for h in self.precondition_hypotheses()
                 if h.status == HypothesisStatus.CONFIRMED

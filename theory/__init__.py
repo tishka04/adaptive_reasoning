@@ -225,6 +225,21 @@ from .unified_cognitive_controller import (
     UnifiedCognitiveConfig,
     UnifiedCognitiveController,
 )
+from .promoted_relational_rule import (
+    PromotedRelationalRule,
+    promoted_relational_rule_key,
+)
+from .online_relational_option import (
+    CompiledRelationalOption,
+    FunctionalOptionProgress,
+    OnlineRelationalOptionCompiler,
+    OptionAssessment,
+    OptionExecutionMemory,
+    OptionOutcomeStats,
+    observe_option_progress,
+    observed_rule_outcome,
+    relation_holds,
+)
 
 __all__ = [
     "EpistemicScore",
@@ -379,4 +394,15 @@ __all__ = [
     "CognitiveDecision",
     "UnifiedCognitiveConfig",
     "UnifiedCognitiveController",
+    "PromotedRelationalRule",
+    "promoted_relational_rule_key",
+    "CompiledRelationalOption",
+    "FunctionalOptionProgress",
+    "OnlineRelationalOptionCompiler",
+    "OptionAssessment",
+    "OptionExecutionMemory",
+    "OptionOutcomeStats",
+    "observe_option_progress",
+    "observed_rule_outcome",
+    "relation_holds",
 ]

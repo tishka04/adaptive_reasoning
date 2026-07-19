@@ -29,16 +29,35 @@ V3/V5/theory components instead of introducing another agent architecture:
 2. `DiscriminatingExperimentDesigner` probes unresolved action effects;
    `GenericDiscriminatingExperimentDesigner` chooses coordinates whose
    observable structural or relational predictions disagree.
-3. `OperatorInducer` compiles repeated effects into state-conditioned
+3. Generic predictions are promoted into `GameTheory` only after repeated
+   support in distinct live contexts. Confirmed directed rules are compiled
+   into options that can establish a missing precondition, apply a known
+   operator/action, and revise themselves from the resulting transition.
+4. Option value uses directed relation/color/level progress. A raw visual
+   change is recorded separately, and a mechanically true but functionally
+   sterile option is quarantined instead of monopolising control.
+5. `OperatorInducer` compiles repeated effects into state-conditioned
    operators. Confirmed theory rules and induced operators are planning inputs,
    not one-step score decorations.
-4. V5 danger memory and anti-attractor provide observation-dominated vetoes
+6. V5 danger memory and anti-attractor provide observation-dominated vetoes
    for lethal actions, repeated no-ops, and low-novelty loops.
-5. The former v4_1 trajectory decision remains the explicit fallback when the
+7. The former v4_1 trajectory decision remains the explicit fallback when the
    scientific path has no justified experiment or plan.
 
 Candidate hypotheses and transferred priors never count as proof: statuses are
 revised only after the corresponding live action has been observed.
+
+The paired controller-boundary benchmark is reproducible with:
+
+```bash
+python -m theory.unified_cognition_ab_benchmark --seeds 0,1 --budget 40 --resets 2
+```
+
+It creates fresh environments for both arms and checks identical reset frames,
+games, seeds, reset counts, and budgets. The current five-game public-unseen
+run records 20 reset attempts per arm, 800 unified actions, 286 deliberate
+experiments, and 34 promoted-option actions. It found no level or win gain in
+either arm; this is recorded as a negative result, not relabelled as progress.
 
 ## Sampler Roadmap
 
