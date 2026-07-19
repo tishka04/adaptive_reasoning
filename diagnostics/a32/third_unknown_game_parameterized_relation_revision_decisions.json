@@ -1,0 +1,942 @@
+{
+  "a33_handoff_candidates": [
+    {
+      "a33_write_performed": false,
+      "autonomous_target_effect_confirmed": false,
+      "autonomous_target_effect_status": "unresolved",
+      "candidate_key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "candidate_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "context_manifest": [
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::5bba12e778fb7fdf",
+          "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::d4ac775097c7dab7",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::f3f982e506e16d95",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::d4ac775097c7dab7",
+            "sage7c::comparison::f3f982e506e16d95"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::582af421f6369502",
+          "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::a75a738b909097ae",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::e25a70143162dbe8",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::a75a738b909097ae",
+            "sage7c::comparison::e25a70143162dbe8"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::fbda4ab1f8d9f126",
+          "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::fa19773a0758b27e",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::332921584de19f25",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 4,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::fa19773a0758b27e",
+            "sage7c::comparison::332921584de19f25"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 2,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50,
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::15f1b9ced6955f1b",
+          "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::d9ec890095638fc6",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::26e8168b7b8bab31",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 6,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::d9ec890095638fc6",
+            "sage7c::comparison::26e8168b7b8bab31"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 4,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::f466f05b5857153e",
+          "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::039d94ce676785e3",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::7bae15f58979181b",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::039d94ce676785e3",
+            "sage7c::comparison::7bae15f58979181b"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::86f5692a48a41fbd",
+          "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::da1b652ea1c64e0f",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::3b378dcc35c8ccca",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 4,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::da1b652ea1c64e0f",
+            "sage7c::comparison::3b378dcc35c8ccca"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 2,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            50
+          ],
+          "context_assessment_id": "sage7c::context::88d93d9f9ad06435",
+          "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": false,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::2240b6b27072f013",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::e106d9a2b1665713",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 2,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::2240b6b27072f013",
+            "sage7c::comparison::e106d9a2b1665713"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 0,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        },
+        {
+          "all_repetitions_consistent": true,
+          "budgets_observed": [
+            150,
+            300
+          ],
+          "context_assessment_id": "sage7c::context::8026154e9b5284a6",
+          "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+          "cross_budget_replicated": true,
+          "game_id": "tn36-ab4f63cc",
+          "independent_context_count": 1,
+          "metric": "local_patch_before_after",
+          "parameterized_controls": [
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 34,
+                "y": 51
+              },
+              "comparison_group_id": "sage7c::comparison::c5bee9a26c02b768",
+              "control_signal": 0.0,
+              "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 2.0,
+              "target_signal": 2.0
+            },
+            {
+              "action": "ACTION6",
+              "action_args": {
+                "x": 41,
+                "y": 44
+              },
+              "comparison_group_id": "sage7c::comparison::59bee93174c8ad67",
+              "control_signal": 2.0,
+              "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+              "effect_size": 0.0,
+              "target_signal": 2.0
+            }
+          ],
+          "raw_event_count": 4,
+          "revision_status": "CANDIDATE_ONLY",
+          "source_comparison_group_ids": [
+            "sage7c::comparison::c5bee9a26c02b768",
+            "sage7c::comparison::59bee93174c8ad67"
+          ],
+          "support": 0,
+          "target_action": "ACTION6",
+          "target_action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "technical_replication_events": 2,
+          "truth_status": "NOT_EVALUATED_BY_SAGE_7D"
+        }
+      ],
+      "contradictions": 0,
+      "differentiating_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          }
+        }
+      ],
+      "equivalent_control_counted_as_refutation": false,
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          }
+        }
+      ],
+      "experiments_spent": 8,
+      "game_id": "tn36-ab4f63cc",
+      "handoff_id": "sage7d::a32_7_handoff::001",
+      "metric": "local_patch_before_after",
+      "not_generalized_beyond_exact_contexts": true,
+      "not_generalized_beyond_game": true,
+      "not_generalized_beyond_metric": true,
+      "not_generalized_beyond_parameter_variants": true,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "ready_for_A33_4_registry_review": true,
+      "registry_entry_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "scoped_claim": "A32.7 confirmed only the exact tn36 target/differentiating/equivalent control relation in the eight reviewed contexts.",
+      "source_comparison_group_ids": [
+        "sage7c::comparison::d4ac775097c7dab7",
+        "sage7c::comparison::f3f982e506e16d95",
+        "sage7c::comparison::a75a738b909097ae",
+        "sage7c::comparison::e25a70143162dbe8",
+        "sage7c::comparison::fa19773a0758b27e",
+        "sage7c::comparison::332921584de19f25",
+        "sage7c::comparison::d9ec890095638fc6",
+        "sage7c::comparison::26e8168b7b8bab31",
+        "sage7c::comparison::039d94ce676785e3",
+        "sage7c::comparison::7bae15f58979181b",
+        "sage7c::comparison::da1b652ea1c64e0f",
+        "sage7c::comparison::3b378dcc35c8ccca",
+        "sage7c::comparison::2240b6b27072f013",
+        "sage7c::comparison::e106d9a2b1665713",
+        "sage7c::comparison::c5bee9a26c02b768",
+        "sage7c::comparison::59bee93174c8ad67"
+      ],
+      "source_context_assessment_ids": [
+        "sage7c::context::5bba12e778fb7fdf",
+        "sage7c::context::582af421f6369502",
+        "sage7c::context::fbda4ab1f8d9f126",
+        "sage7c::context::15f1b9ced6955f1b",
+        "sage7c::context::f466f05b5857153e",
+        "sage7c::context::86f5692a48a41fbd",
+        "sage7c::context::88d93d9f9ad06435",
+        "sage7c::context::8026154e9b5284a6"
+      ],
+      "source_context_snapshot_hashes": [
+        "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "status": "confirmed",
+      "support": 8,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_repetitions_counted_as_support": false
+    }
+  ],
+  "a33_ready": true,
+  "a33_write_performed": false,
+  "autonomous_claim_dispositions": [
+    {
+      "confirmation_performed": false,
+      "decision": "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_TARGET_EFFECT",
+      "reason": "target matches an exact pre-registered equivalent control in every reviewed context",
+      "refutation_performed": false,
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "autonomous_target_effect_confirmed": false,
+  "autonomous_target_effect_refuted": false,
+  "autonomous_target_effect_status": "unresolved",
+  "config": {
+    "artifacts_not_modified": [
+      "SAGE.7d",
+      "SAGE.7c",
+      "SAGE.7b",
+      "M2",
+      "M3",
+      "A33.1",
+      "A33.2",
+      "A33.3"
+    ],
+    "decision_policy": {
+      "a33_write_performed": false,
+      "confirmation_is_game_context_metric_and_parameter_scoped": true,
+      "confirmation_requires_complete_sage7d_handoff": true,
+      "confirmation_requires_cross_budget_replication": true,
+      "confirmation_requires_independent_exact_contexts": true,
+      "confirmation_requires_stable_positive_differentiating_effect": true,
+      "confirmation_requires_stable_zero_equivalent_control_effect": true,
+      "confirmation_requires_two_common_parameterized_controls": true,
+      "equivalent_control_is_not_refutation": true,
+      "equivalent_control_makes_autonomous_effect_non_identifiable": true,
+      "raw_sage_events_are_not_direct_scientific_support": true,
+      "scientific_support_is_one_per_independent_context": true,
+      "technical_repetitions_are_not_scientific_support": true
+    },
+    "decision_scope": "A32_THIRD_UNKNOWN_GAME_PARAMETERIZED_RELATION_REVISION",
+    "inputs_read": [
+      "SAGE.7d"
+    ],
+    "schema_version": "a32.third_unknown_game_parameterized_relation_revision_decisions.v1",
+    "source_sage7d_path": "diagnostics\\sage\\sage7d_third_unknown_game_a32_handoff.json"
+  },
+  "confirmation_performed": true,
+  "decision_records": [
+    {
+      "contradictions": 0,
+      "description": "A32.7 confirmed only the exact tn36 target/differentiating/equivalent control relation in the eight reviewed contexts.",
+      "experiments_spent": 8,
+      "key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "status": "confirmed",
+      "support": 8
+    }
+  ],
+  "equivalent_control_counted_as_refutation": false,
+  "gate": {
+    "a33_handoff_matches_confirmed_relational_decision": true,
+    "confirmation_is_relational_only": true,
+    "equivalent_control_keeps_autonomous_effect_unresolved": true,
+    "every_handoff_decided_once": true,
+    "input_records_preserve_sage_support_zero": true,
+    "no_a33_write_performed": true,
+    "scientific_support_equals_independent_contexts": true,
+    "scope_locks_preserved": true,
+    "source_sage7d_gate_passed": true,
+    "technical_repetitions_excluded_from_support": true,
+    "wrong_confirmations_zero": true
+  },
+  "input_records": [
+    {
+      "contradictions": 0,
+      "description": "SAGE.7d control-dependent parameterized relation before A32.7 review.",
+      "experiments_spent": 0,
+      "key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "outcome_status": "A32_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION_CONFIRMED",
+  "refutation_performed": false,
+  "revision_decisions": [
+    {
+      "a33_ready": true,
+      "a33_write_performed": false,
+      "autonomous_target_effect_confirmed": false,
+      "autonomous_target_effect_decision": "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_TARGET_EFFECT",
+      "autonomous_target_effect_refuted": false,
+      "candidate_key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "candidate_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "claim_dispositions": {
+        "autonomous_parameterized_target_effect": {
+          "confirmation_performed": false,
+          "decision": "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_TARGET_EFFECT",
+          "reason": "target matches an exact pre-registered equivalent control in every reviewed context",
+          "refutation_performed": false,
+          "status": "unresolved",
+          "support": 0
+        },
+        "control_dependent_parameterized_relation": {
+          "confirmation_performed": true,
+          "decision": "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION",
+          "refutation_performed": false,
+          "status": "confirmed",
+          "support": 8
+        }
+      },
+      "confirmation_performed": true,
+      "decision": "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION",
+      "decision_record": {
+        "contradictions": 0,
+        "description": "A32.7 confirmed only the exact tn36 target/differentiating/equivalent control relation in the eight reviewed contexts.",
+        "experiments_spent": 8,
+        "key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+        "status": "confirmed",
+        "support": 8
+      },
+      "differentiating_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          }
+        }
+      ],
+      "equivalent_control_counted_as_refutation": false,
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          }
+        }
+      ],
+      "evidence_summary": {
+        "candidate_support_events": 8,
+        "cross_budget_replicated_contexts": 4,
+        "differentiating_control_effect_sizes": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "differentiating_control_signals": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "equivalent_control_effect_sizes": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "equivalent_control_signals": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "independent_contexts": 8,
+        "negative_effect_events": 0,
+        "raw_comparison_events": 26,
+        "raw_comparison_events_promoted_directly": 0,
+        "scientific_support_after_a32_review": 8,
+        "scientific_support_basis": "ONE_PER_INDEPENDENT_EXACT_CONTEXT",
+        "source_contexts_reviewed": 8,
+        "source_support_before_a32_review": 0,
+        "target_signals": [
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0,
+          2.0
+        ],
+        "technical_replication_events": 10,
+        "technical_replication_events_counted_as_support": 0
+      },
+      "game_id": "tn36-ab4f63cc",
+      "handoff_id": "sage7d::a32_7_handoff::001",
+      "input_record": {
+        "contradictions": 0,
+        "description": "SAGE.7d control-dependent parameterized relation before A32.7 review.",
+        "experiments_spent": 0,
+        "key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+        "status": "unresolved",
+        "support": 0
+      },
+      "metric": "local_patch_before_after",
+      "reasons": [
+        "sage7d_parameterized_relation_review_dossier_complete",
+        "reviewed_contexts_are_independent",
+        "cross_budget_replication_threshold_met",
+        "two_pre_registered_controls_preserved_per_context",
+        "differentiating_control_effect_is_stable_positive",
+        "equivalent_control_matches_target_in_every_context",
+        "autonomous_target_effect_is_not_identifiable",
+        "equivalent_control_is_not_refutation",
+        "all_contexts_exact_consistent_and_support_free_before_review",
+        "scope_limited_parameterized_relation_confirmation_criteria_satisfied",
+        "technical_repetitions_not_counted_as_support",
+        "raw_sage_events_not_counted_as_support_before_a32_review",
+        "scientific_support_limited_to_independent_exact_contexts",
+        "confirmation_not_generalized_beyond_exact_parameter_variants"
+      ],
+      "recommended_next_step": "SUBMIT_SCOPE_LOCKED_PARAMETERIZED_RELATION_TO_A33_4",
+      "refutation_performed": false,
+      "revision_performed": true,
+      "sage_candidate_events_counted_as_support_before_a32_review": false,
+      "scientific_review_performed": true,
+      "scope_limited_confirmation_generalized_beyond_game": false,
+      "scope_limits": {
+        "autonomous_target_effect_excluded_from_confirmation": true,
+        "budgets_observed": [
+          50,
+          150,
+          300
+        ],
+        "candidate_key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+        "candidate_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+        "context_assessment_ids": [
+          "sage7c::context::5bba12e778fb7fdf",
+          "sage7c::context::582af421f6369502",
+          "sage7c::context::fbda4ab1f8d9f126",
+          "sage7c::context::15f1b9ced6955f1b",
+          "sage7c::context::f466f05b5857153e",
+          "sage7c::context::86f5692a48a41fbd",
+          "sage7c::context::88d93d9f9ad06435",
+          "sage7c::context::8026154e9b5284a6"
+        ],
+        "context_snapshot_hashes": [
+          "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+        ],
+        "differentiating_control_variants": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 34,
+              "y": 51
+            }
+          }
+        ],
+        "equivalent_control_variants": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 41,
+              "y": 44
+            }
+          }
+        ],
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "not_generalized_beyond_exact_contexts": true,
+        "not_generalized_beyond_game": true,
+        "not_generalized_beyond_metric": true,
+        "not_generalized_beyond_parameter_variants": true,
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "technical_repetitions_excluded_from_support": true
+      },
+      "source_comparison_group_ids": [
+        "sage7c::comparison::d4ac775097c7dab7",
+        "sage7c::comparison::f3f982e506e16d95",
+        "sage7c::comparison::a75a738b909097ae",
+        "sage7c::comparison::e25a70143162dbe8",
+        "sage7c::comparison::fa19773a0758b27e",
+        "sage7c::comparison::332921584de19f25",
+        "sage7c::comparison::d9ec890095638fc6",
+        "sage7c::comparison::26e8168b7b8bab31",
+        "sage7c::comparison::039d94ce676785e3",
+        "sage7c::comparison::7bae15f58979181b",
+        "sage7c::comparison::da1b652ea1c64e0f",
+        "sage7c::comparison::3b378dcc35c8ccca",
+        "sage7c::comparison::2240b6b27072f013",
+        "sage7c::comparison::e106d9a2b1665713",
+        "sage7c::comparison::c5bee9a26c02b768",
+        "sage7c::comparison::59bee93174c8ad67"
+      ],
+      "source_context_assessment_ids": [
+        "sage7c::context::5bba12e778fb7fdf",
+        "sage7c::context::582af421f6369502",
+        "sage7c::context::fbda4ab1f8d9f126",
+        "sage7c::context::15f1b9ced6955f1b",
+        "sage7c::context::f466f05b5857153e",
+        "sage7c::context::86f5692a48a41fbd",
+        "sage7c::context::88d93d9f9ad06435",
+        "sage7c::context::8026154e9b5284a6"
+      ],
+      "source_context_snapshot_hashes": [
+        "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_repetitions_counted_as_support": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": true,
+  "sage_candidate_events_counted_as_support_before_a32_review": false,
+  "scientific_review_performed": true,
+  "scope_limited_confirmation_generalized_beyond_game": false,
+  "source_sage7d_summary": {
+    "a32_decision_preselected": false,
+    "a32_intake_requested": false,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "allowed_a32_7_decisions": [
+      "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION",
+      "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_TARGET_EFFECT",
+      "REQUEST_MORE_TESTS_FOR_PARAMETERIZED_RELATION",
+      "REFUTE_CONTROL_DEPENDENT_PARAMETERIZED_RELATION"
+    ],
+    "autonomous_target_effects_confirmed": 0,
+    "autonomous_target_effects_unresolved": 1,
+    "cross_game_mechanics_imported": 0,
+    "excluded_candidate_items": 2,
+    "game_id": "tn36-ab4f63cc",
+    "gate_passed": true,
+    "handoff_candidate_support_events": 8,
+    "handoff_contexts": 8,
+    "handoff_cross_budget_replicated_contexts": 4,
+    "handoff_items": 1,
+    "handoff_raw_comparison_events": 26,
+    "handoff_technical_replication_events": 10,
+    "outcome_status": "SAGE_THIRD_UNKNOWN_GAME_A32_HANDOFF_COMPILED_CANDIDATE_ONLY",
+    "parameterized_variants_counted_as_distinct_actions": false,
+    "ready_for_a32_7_scientific_review": true,
+    "required_next_step": "A32_7_CONTROL_DEPENDENT_PARAMETERIZED_SCIENTIFIC_REVIEW_REQUIRED",
+    "revision_status": "CANDIDATE_ONLY",
+    "source_a32_handoff_eligible_candidates": 1,
+    "source_candidate_dossiers": 3,
+    "source_sage7c_outcome_status": "SAGE_THIRD_UNKNOWN_GAME_CONTROL_DEPENDENT_PARAMETERIZED_DOSSIER_CANDIDATE_ONLY",
+    "source_scoped_mechanics_reused": 0,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_7D",
+    "wrong_confirmations": 0
+  },
+  "status": "CONFIRMED",
+  "summary": {
+    "a33_ready_candidates": 1,
+    "a33_write_performed": false,
+    "autonomous_target_effects_confirmed": 0,
+    "autonomous_target_effects_kept_unresolved": 1,
+    "decision_records_confirmed": 1,
+    "decision_records_refuted": 0,
+    "decision_records_unresolved": 0,
+    "equivalent_control_counted_as_refutation": false,
+    "gate_passed": true,
+    "independent_contexts_counted_as_support": 8,
+    "outcome_status": "A32_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION_CONFIRMED",
+    "parameterized_controls_counted_as_distinct_actions": false,
+    "parameterized_relations_refuted": 0,
+    "parameterized_relations_unresolved": 0,
+    "raw_comparison_events_promoted_directly": 0,
+    "scientific_revision_decisions": 1,
+    "scientific_support_counted_by_a32": 8,
+    "scope_generalization_performed": false,
+    "scope_limited_parameterized_relations_confirmed": 1,
+    "source_handoffs_consumed": 1,
+    "status": "CONFIRMED",
+    "technical_replication_events_counted_as_support": 0,
+    "wrong_confirmations": 0
+  },
+  "support": 8,
+  "technical_repetitions_counted_as_support": false,
+  "truth_status": "SCOPED_A32_PARAMETERIZED_RELATION_DECISION_WITHOUT_EXTERNAL_ORACLE",
+  "wrong_confirmations": 0
+}

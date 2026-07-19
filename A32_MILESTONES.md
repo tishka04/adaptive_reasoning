@@ -537,6 +537,64 @@ Lecture scientifique :
 - Le handoff A33.3 porte le type
   `CONTROL_DEPENDENT_RELATIONAL_CONTRAST`. A32.6 ne modifie aucun registre A33.
 
+## A32.7 - Third unknown-game parameterized relation revision
+
+Objectif :
+
+- Lire `diagnostics/sage/sage7d_third_unknown_game_a32_handoff.json`.
+- Verifier que SAGE.7d est reste candidate-only : `support=0`, aucun verdict,
+  aucune revision et aucune ecriture A32/A33.
+- Revoir separement la relation dependante du controle et l'effet autonome de
+  la cible parametree.
+- Compter au plus un support scientifique par contexte exact independant, sans
+  promouvoir directement les evenements bruts ni les repetitions techniques.
+- Borner toute confirmation au jeu, a la metrique, aux variantes parametrees et
+  aux huit contextes exacts observes.
+- Preparer un handoff relationnel A33.4 sans modifier le registre A33.
+
+Artefacts :
+
+- `theory/a32/third_unknown_game_parameterized_relation_revision_decisions.py`
+- export dans `theory/a32/__init__.py`
+- `tests/test_a32_third_unknown_game_parameterized_relation_revision_decisions.py`
+- `diagnostics/a32/third_unknown_game_parameterized_relation_revision_decisions.json`
+
+Decision du 2026-07-19 :
+
+- `source_handoffs_consumed=1`
+- `scientific_revision_decisions=1`
+- `scope_limited_parameterized_relations_confirmed=1`
+- `parameterized_relations_refuted=0`
+- `parameterized_relations_unresolved=0`
+- `autonomous_target_effects_confirmed=0`
+- `autonomous_target_effects_kept_unresolved=1`
+- `scientific_support_counted_by_a32=8`
+- `raw_comparison_events_promoted_directly=0` sur 26 evenements bruts
+- `technical_replication_events_counted_as_support=0` sur 10 repetitions
+- `independent_contexts_counted_as_support=8`
+- `a33_ready_candidates=1`
+- `a33_write_performed=false`
+- `wrong_confirmations=0`
+- `outcome_status=A32_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION_CONFIRMED`
+
+Lecture scientifique :
+
+- Dans les huit contextes independants, ACTION6 `{"x":25,"y":42}` garde un
+  contraste local-patch stable de `+2` face au controle ACTION6
+  `{"x":34,"y":51}` et de `0` face au controle ACTION6
+  `{"x":41,"y":44}`.
+- A32.7 confirme uniquement cette relation ternaire exacte. La confirmation ne
+  porte ni sur une mecanique generale de `tn36-ab4f63cc`, ni sur toutes les
+  coordonnees ACTION6.
+- L'egalite avec le second controle empeche d'identifier un effet autonome de
+  la cible `x=25,y=42`. Cet effet reste unresolved sans etre refute.
+- Le support scientifique vaut huit, un par contexte exact independant. Les 26
+  comparaisons brutes et les 10 repetitions techniques restent de la provenance
+  experimentale, pas des soutiens additionnels.
+- Le handoff A33.4 porte le type
+  `CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST`. A32.7 ne modifie aucun
+  registre A33.
+
 ## Commandes de verification
 
 Tests A32 :
@@ -579,6 +637,12 @@ A32.6 revision scientifique de la dependance au controle :
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.second_unknown_game_control_dependence_revision_decisions --source-sage6f diagnostics\sage\sage6f_second_unknown_game_control_dependence_consolidation.json --out diagnostics\a32\second_unknown_game_control_dependence_revision_decisions.json
+```
+
+A32.7 revision scientifique de la relation parametree :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.third_unknown_game_parameterized_relation_revision_decisions --source-sage7d diagnostics\sage\sage7d_third_unknown_game_a32_handoff.json --out diagnostics\a32\third_unknown_game_parameterized_relation_revision_decisions.json
 ```
 
 Guard M3 :
