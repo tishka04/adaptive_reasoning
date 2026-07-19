@@ -1,0 +1,2282 @@
+{
+  "a32_handoff_candidates": [
+    {
+      "a32_decision_performed": false,
+      "a32_eligibility_status": "A32_REVIEW_ELIGIBLE_CONTROL_DEPENDENT_PARAMETERIZED_CONTRAST_CANDIDATE_ONLY",
+      "a32_handoff_eligible": true,
+      "all_repetitions_consistent": true,
+      "autonomous_target_effect_status": "UNRESOLVED_CONTROL_DEPENDENT_TARGET_EFFECT",
+      "candidate_id": "sage7c::candidate::b98c89c514d9b4ff",
+      "candidate_signature": {
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "candidate_support_events": 8,
+      "candidate_support_events_counted_as_scientific_support": false,
+      "candidate_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "context_assessment_ids": [
+        "sage7c::context::5bba12e778fb7fdf",
+        "sage7c::context::582af421f6369502",
+        "sage7c::context::fbda4ab1f8d9f126",
+        "sage7c::context::15f1b9ced6955f1b",
+        "sage7c::context::f466f05b5857153e",
+        "sage7c::context::86f5692a48a41fbd",
+        "sage7c::context::88d93d9f9ad06435",
+        "sage7c::context::8026154e9b5284a6"
+      ],
+      "context_snapshot_hashes": [
+        "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "contradictory_contexts": 0,
+      "control_dependent_contexts": 8,
+      "cross_budget_replicated_contexts": 4,
+      "differentiating_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          }
+        }
+      ],
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          }
+        }
+      ],
+      "game_id": "tn36-ab4f63cc",
+      "independent_contexts": 8,
+      "metric": "local_patch_before_after",
+      "minimum_controls_met": true,
+      "minimum_controls_per_context_required": 2,
+      "minimum_cross_budget_replicated_contexts_required": 1,
+      "minimum_independent_contexts_required": 3,
+      "negative_control_events": 0,
+      "non_discriminating_contexts": 0,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "raw_comparison_events": 26,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_repetitions_counted_as_independent_contexts": false,
+      "technical_replication_events": 10,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    }
+  ],
+  "a32_intake_requested": false,
+  "a32_write_performed": false,
+  "a33_write_performed": false,
+  "candidate_eligibility_counted_as_a32_decision": false,
+  "config": {
+    "artifacts_not_modified": [
+      "SAGE.7b",
+      "SAGE.7a",
+      "SAGE.7",
+      "A32",
+      "A33.1",
+      "A33.2",
+      "A33.3",
+      "M2",
+      "M3",
+      "A40",
+      "P2"
+    ],
+    "autonomous_target_effect_requires_discrimination_from_all_controls": true,
+    "candidate_grouping_key": [
+      "game_id",
+      "target_action",
+      "target_action_args",
+      "metric"
+    ],
+    "comparison_grouping_key": [
+      "game_id",
+      "context_snapshot_hash",
+      "target_action",
+      "target_action_args",
+      "control_action",
+      "control_action_args",
+      "metric"
+    ],
+    "context_grouping_key": [
+      "game_id",
+      "context_snapshot_hash",
+      "target_action",
+      "target_action_args",
+      "metric"
+    ],
+    "cross_budget_replays_counted_as_independent_contexts": false,
+    "eligibility_criteria_fixed_before_a32_verdict": true,
+    "inputs_read": [
+      "SAGE.7b"
+    ],
+    "minimum_controls_per_context": 2,
+    "minimum_cross_budget_replicated_contexts": 1,
+    "minimum_independent_contexts": 3,
+    "parameterized_variants_are_distinct_action_families": false,
+    "relational_control_dependence_is_a_separate_candidate_type": true,
+    "schema_version": "sage.third_unknown_game_parameterized_consolidation.v1",
+    "scientific_policy": {
+      "a32_a33_write_performed": false,
+      "candidate_eligibility_is_not_an_a32_decision": true,
+      "control_dependence_does_not_confirm_an_autonomous_effect": true,
+      "raw_events_are_not_scientific_support": true,
+      "technical_repetitions_are_not_independent_contexts": true
+    },
+    "source_sage7b_path": "diagnostics\\sage\\sage7b_third_unknown_game_parameterized_execution.json"
+  },
+  "confirmation_performed": false,
+  "consolidated_comparison_groups": [
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::f4570ffe0fd3baf7",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "terminal_state_after_rollout",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 30,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "terminal_state_after_rollout",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0060::control_1",
+        "m2m3::sage7a::live_mini_frontier::300::0060::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0060",
+        "m2m3::sage7a::live_mini_frontier::300::0060"
+      ],
+      "source_steps": [
+        60
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 30,
+        "y": 42
+      },
+      "target_signal": 0.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::e606c1c93b0431bc",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "terminal_state_after_rollout",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 30,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "terminal_state_after_rollout",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0060::control_2",
+        "m2m3::sage7a::live_mini_frontier::300::0060::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0060",
+        "m2m3::sage7a::live_mini_frontier::300::0060"
+      ],
+      "source_steps": [
+        60
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 30,
+        "y": 42
+      },
+      "target_signal": 0.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50,
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::d7eb19f6cc743112",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 20,
+          "y": 42
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 35,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 20,
+        "y": 42
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 3,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0001::control_2",
+        "m2m3::sage7a::live_mini_frontier::150::0001::control_2",
+        "m2m3::sage7a::live_mini_frontier::300::0001::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0001",
+        "m2m3::sage7a::live_mini_frontier::150::0001",
+        "m2m3::sage7a::live_mini_frontier::300::0001"
+      ],
+      "source_steps": [
+        1
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 35,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50,
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::18315c4e8c1c015a",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 21,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 35,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 21,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 3,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0001::control_1",
+        "m2m3::sage7a::live_mini_frontier::150::0001::control_1",
+        "m2m3::sage7a::live_mini_frontier::300::0001::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0001",
+        "m2m3::sage7a::live_mini_frontier::150::0001",
+        "m2m3::sage7a::live_mini_frontier::300::0001"
+      ],
+      "source_steps": [
+        1
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 35,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::d4ac775097c7dab7",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0033::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0033"
+      ],
+      "source_steps": [
+        33
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::f3f982e506e16d95",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0033::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0033"
+      ],
+      "source_steps": [
+        33
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::a75a738b909097ae",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0025::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0025"
+      ],
+      "source_steps": [
+        25
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::e25a70143162dbe8",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0025::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0025"
+      ],
+      "source_steps": [
+        25
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::fa19773a0758b27e",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0029::control_1",
+        "m2m3::sage7a::live_mini_frontier::300::0029::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0029",
+        "m2m3::sage7a::live_mini_frontier::300::0029"
+      ],
+      "source_steps": [
+        29
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::332921584de19f25",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0029::control_2",
+        "m2m3::sage7a::live_mini_frontier::300::0029::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0029",
+        "m2m3::sage7a::live_mini_frontier::300::0029"
+      ],
+      "source_steps": [
+        29
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50,
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::d9ec890095638fc6",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 3,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0049::control_1",
+        "m2m3::sage7a::live_mini_frontier::150::0049::control_1",
+        "m2m3::sage7a::live_mini_frontier::300::0049::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0049",
+        "m2m3::sage7a::live_mini_frontier::150::0049",
+        "m2m3::sage7a::live_mini_frontier::300::0049"
+      ],
+      "source_steps": [
+        49
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50,
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::26e8168b7b8bab31",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 3,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0049::control_2",
+        "m2m3::sage7a::live_mini_frontier::150::0049::control_2",
+        "m2m3::sage7a::live_mini_frontier::300::0049::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0049",
+        "m2m3::sage7a::live_mini_frontier::150::0049",
+        "m2m3::sage7a::live_mini_frontier::300::0049"
+      ],
+      "source_steps": [
+        49
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::039d94ce676785e3",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0041::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0041"
+      ],
+      "source_steps": [
+        41
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::7bae15f58979181b",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0041::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0041"
+      ],
+      "source_steps": [
+        41
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::da1b652ea1c64e0f",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0039::control_1",
+        "m2m3::sage7a::live_mini_frontier::300::0039::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0039",
+        "m2m3::sage7a::live_mini_frontier::300::0039"
+      ],
+      "source_steps": [
+        39
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::3b378dcc35c8ccca",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0039::control_2",
+        "m2m3::sage7a::live_mini_frontier::300::0039::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0039",
+        "m2m3::sage7a::live_mini_frontier::300::0039"
+      ],
+      "source_steps": [
+        39
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::2240b6b27072f013",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0017::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0017"
+      ],
+      "source_steps": [
+        17
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        50
+      ],
+      "comparison_group_id": "sage7c::comparison::e106d9a2b1665713",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": false,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 1,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0017::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::050::0017"
+      ],
+      "source_steps": [
+        17
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::c5bee9a26c02b768",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "control_signal": 0.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 2.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0019::control_1",
+        "m2m3::sage7a::live_mini_frontier::300::0019::control_1"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0019",
+        "m2m3::sage7a::live_mini_frontier::300::0019"
+      ],
+      "source_steps": [
+        19
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "comparison_group_id": "sage7c::comparison::59bee93174c8ad67",
+      "comparison_signature": {
+        "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "control_action": "ACTION6",
+        "control_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "control_action": "ACTION6",
+      "control_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "control_signal": 2.0,
+      "cross_budget_replicated": true,
+      "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+      "effect_size": 0.0,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "raw_event_count": 2,
+      "raw_events_counted_as_scientific_support": false,
+      "replication_consistent": true,
+      "revision_status": "CANDIDATE_ONLY",
+      "source_comparison_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0019::control_2",
+        "m2m3::sage7a::live_mini_frontier::300::0019::control_2"
+      ],
+      "source_request_ids": [
+        "m2m3::sage7a::live_mini_frontier::150::0019",
+        "m2m3::sage7a::live_mini_frontier::300::0019"
+      ],
+      "source_steps": [
+        19
+      ],
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "target_signal": 2.0,
+      "technical_replication_events": 1,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    }
+  ],
+  "cross_game_mechanics_imported": 0,
+  "execution_performed": false,
+  "gate": {
+    "all_exact_repetitions_consistent": true,
+    "all_outputs_candidate_only": true,
+    "all_raw_events_consolidated": true,
+    "autonomous_effect_kept_unresolved": true,
+    "candidate_dossiers_unique": true,
+    "comparison_groups_unique": true,
+    "context_assessments_unique": true,
+    "control_dependent_candidate_eligible": true,
+    "every_context_has_two_parameterized_controls": true,
+    "parameterized_variants_not_relabelled_as_actions": true,
+    "raw_events_not_relabelled_as_independent_contexts": true,
+    "source_registry_quarantine_preserved": true,
+    "source_sage7b_gate_passed": true
+  },
+  "outcome_status": "SAGE_THIRD_UNKNOWN_GAME_CONTROL_DEPENDENT_PARAMETERIZED_DOSSIER_CANDIDATE_ONLY",
+  "outcome_status_is_candidate_only": true,
+  "parameterized_candidate_dossiers": [
+    {
+      "a32_decision_performed": false,
+      "a32_eligibility_status": "A32_REVIEW_ELIGIBLE_CONTROL_DEPENDENT_PARAMETERIZED_CONTRAST_CANDIDATE_ONLY",
+      "a32_handoff_eligible": true,
+      "all_repetitions_consistent": true,
+      "autonomous_target_effect_status": "UNRESOLVED_CONTROL_DEPENDENT_TARGET_EFFECT",
+      "candidate_id": "sage7c::candidate::b98c89c514d9b4ff",
+      "candidate_signature": {
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "candidate_support_events": 8,
+      "candidate_support_events_counted_as_scientific_support": false,
+      "candidate_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "context_assessment_ids": [
+        "sage7c::context::5bba12e778fb7fdf",
+        "sage7c::context::582af421f6369502",
+        "sage7c::context::fbda4ab1f8d9f126",
+        "sage7c::context::15f1b9ced6955f1b",
+        "sage7c::context::f466f05b5857153e",
+        "sage7c::context::86f5692a48a41fbd",
+        "sage7c::context::88d93d9f9ad06435",
+        "sage7c::context::8026154e9b5284a6"
+      ],
+      "context_snapshot_hashes": [
+        "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "contradictory_contexts": 0,
+      "control_dependent_contexts": 8,
+      "cross_budget_replicated_contexts": 4,
+      "differentiating_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          }
+        }
+      ],
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          }
+        }
+      ],
+      "game_id": "tn36-ab4f63cc",
+      "independent_contexts": 8,
+      "metric": "local_patch_before_after",
+      "minimum_controls_met": true,
+      "minimum_controls_per_context_required": 2,
+      "minimum_cross_budget_replicated_contexts_required": 1,
+      "minimum_independent_contexts_required": 3,
+      "negative_control_events": 0,
+      "non_discriminating_contexts": 0,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "raw_comparison_events": 26,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_repetitions_counted_as_independent_contexts": false,
+      "technical_replication_events": 10,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "a32_decision_performed": false,
+      "a32_eligibility_status": "A32_REVIEW_INELIGIBLE_NON_DISCRIMINATING_PARAMETERIZED_CANDIDATE_ONLY",
+      "a32_handoff_eligible": false,
+      "all_repetitions_consistent": true,
+      "autonomous_target_effect_status": "UNRESOLVED_CONTROL_DEPENDENT_TARGET_EFFECT",
+      "candidate_id": "sage7c::candidate::07f7fa0329430ccb",
+      "candidate_signature": {
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 35,
+          "y": 42
+        }
+      },
+      "candidate_support_events": 0,
+      "candidate_support_events_counted_as_scientific_support": false,
+      "candidate_type": "PARAMETERIZED_ACTION6_TARGET_CANDIDATE",
+      "context_assessment_ids": [
+        "sage7c::context::6eb0661b24de4440"
+      ],
+      "context_snapshot_hashes": [
+        "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "contradictory_contexts": 0,
+      "control_dependent_contexts": 0,
+      "cross_budget_replicated_contexts": 1,
+      "differentiating_control_variants": [],
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 20,
+            "y": 42
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 44
+          }
+        }
+      ],
+      "game_id": "tn36-ab4f63cc",
+      "independent_contexts": 1,
+      "metric": "local_patch_before_after",
+      "minimum_controls_met": true,
+      "minimum_controls_per_context_required": 2,
+      "minimum_cross_budget_replicated_contexts_required": 1,
+      "minimum_independent_contexts_required": 3,
+      "negative_control_events": 0,
+      "non_discriminating_contexts": 1,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "raw_comparison_events": 6,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 35,
+        "y": 42
+      },
+      "technical_repetitions_counted_as_independent_contexts": false,
+      "technical_replication_events": 4,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "a32_decision_performed": false,
+      "a32_eligibility_status": "A32_REVIEW_INELIGIBLE_NON_DISCRIMINATING_PARAMETERIZED_CANDIDATE_ONLY",
+      "a32_handoff_eligible": false,
+      "all_repetitions_consistent": true,
+      "autonomous_target_effect_status": "UNRESOLVED_CONTROL_DEPENDENT_TARGET_EFFECT",
+      "candidate_id": "sage7c::candidate::b559b6b171cbffb6",
+      "candidate_signature": {
+        "game_id": "tn36-ab4f63cc",
+        "metric": "terminal_state_after_rollout",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 30,
+          "y": 42
+        }
+      },
+      "candidate_support_events": 0,
+      "candidate_support_events_counted_as_scientific_support": false,
+      "candidate_type": "PARAMETERIZED_ACTION6_TARGET_CANDIDATE",
+      "context_assessment_ids": [
+        "sage7c::context::fba6fd4c9d1bfa5c"
+      ],
+      "context_snapshot_hashes": [
+        "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "contradictory_contexts": 0,
+      "control_dependent_contexts": 0,
+      "cross_budget_replicated_contexts": 1,
+      "differentiating_control_variants": [],
+      "equivalent_control_variants": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          }
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          }
+        }
+      ],
+      "game_id": "tn36-ab4f63cc",
+      "independent_contexts": 1,
+      "metric": "terminal_state_after_rollout",
+      "minimum_controls_met": true,
+      "minimum_controls_per_context_required": 2,
+      "minimum_cross_budget_replicated_contexts_required": 1,
+      "minimum_independent_contexts_required": 3,
+      "negative_control_events": 0,
+      "non_discriminating_contexts": 1,
+      "parameterized_controls_counted_as_distinct_actions": false,
+      "raw_comparison_events": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 30,
+        "y": 42
+      },
+      "technical_repetitions_counted_as_independent_contexts": false,
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    }
+  ],
+  "parameterized_context_assessments": [
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::fba6fd4c9d1bfa5c",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "terminal_state_after_rollout",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 30,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"044af7385c222dad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "ALL_PARAMETERIZED_CONTROLS_NON_DISCRIMINATING_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": true,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "terminal_state_after_rollout",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 2,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::f4570ffe0fd3baf7",
+          "control_signal": 0.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 0.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::e606c1c93b0431bc",
+          "control_signal": 0.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 0.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 0,
+      "raw_event_count": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 30,
+        "y": 42
+      },
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        50,
+        150,
+        300
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::6eb0661b24de4440",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 35,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"36545d308055b3b9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "ALL_PARAMETERIZED_CONTROLS_NON_DISCRIMINATING_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": true,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 2,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 20,
+            "y": 42
+          },
+          "comparison_group_id": "sage7c::comparison::d7eb19f6cc743112",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 21,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::18315c4e8c1c015a",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 0,
+      "raw_event_count": 6,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 35,
+        "y": 42
+      },
+      "technical_replication_events": 4,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        50
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::5bba12e778fb7fdf",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": false,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::d4ac775097c7dab7",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::f3f982e506e16d95",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 2,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        50
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::582af421f6369502",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": false,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::a75a738b909097ae",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::e25a70143162dbe8",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 2,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::fbda4ab1f8d9f126",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": true,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::fa19773a0758b27e",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::332921584de19f25",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        50,
+        150,
+        300
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::15f1b9ced6955f1b",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": true,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::d9ec890095638fc6",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::26e8168b7b8bab31",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 6,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 4,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        50
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::f466f05b5857153e",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": false,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::039d94ce676785e3",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::7bae15f58979181b",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 2,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::86f5692a48a41fbd",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": true,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::da1b652ea1c64e0f",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::3b378dcc35c8ccca",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        50
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::88d93d9f9ad06435",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": false,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::2240b6b27072f013",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::e106d9a2b1665713",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 2,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 0,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    },
+    {
+      "all_repetitions_consistent": true,
+      "budgets_observed": [
+        150,
+        300
+      ],
+      "context_assessment_counted_as_scientific_support": false,
+      "context_assessment_id": "sage7c::context::8026154e9b5284a6",
+      "context_signature": {
+        "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "game_id": "tn36-ab4f63cc",
+        "metric": "local_patch_before_after",
+        "target_action": "ACTION6",
+        "target_action_args": {
+          "x": 25,
+          "y": 42
+        }
+      },
+      "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "context_status": "CONTROL_DEPENDENT_PARAMETERIZED_CONTEXT_CANDIDATE_ONLY",
+      "cross_budget_replicated": true,
+      "game_id": "tn36-ab4f63cc",
+      "independent_context_count": 1,
+      "metric": "local_patch_before_after",
+      "negative_control_contrasts": 0,
+      "neutral_control_contrasts": 1,
+      "parameterized_controls": [
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "comparison_group_id": "sage7c::comparison::c5bee9a26c02b768",
+          "control_signal": 0.0,
+          "discrimination_status": "DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 2.0,
+          "target_signal": 2.0
+        },
+        {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 41,
+            "y": 44
+          },
+          "comparison_group_id": "sage7c::comparison::59bee93174c8ad67",
+          "control_signal": 2.0,
+          "discrimination_status": "NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY",
+          "effect_size": 0.0,
+          "target_signal": 2.0
+        }
+      ],
+      "parameterized_controls_count": 2,
+      "positive_control_contrasts": 1,
+      "raw_event_count": 4,
+      "revision_status": "CANDIDATE_ONLY",
+      "support": 0,
+      "target_action": "ACTION6",
+      "target_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "technical_replication_events": 2,
+      "truth_status": "NOT_EVALUATED_BY_SAGE_7C"
+    }
+  ],
+  "parameterized_controls_counted_as_distinct_actions": false,
+  "raw_events_counted_as_scientific_support": false,
+  "refutation_performed": false,
+  "revision_performed": false,
+  "revision_status": "CANDIDATE_ONLY",
+  "scope_generalization_performed": false,
+  "source_sage7b_context": {
+    "budgets": [
+      50,
+      150,
+      300
+    ],
+    "comparison_events": 36,
+    "cross_game_mechanics_imported": 0,
+    "game_id": "tn36-ab4f63cc",
+    "negative_delta_events": 0,
+    "parameterized_variants_counted_as_distinct_actions": false,
+    "positive_delta_events": 13,
+    "ready_for_event_consolidation": true,
+    "requests_executed": 18,
+    "required_next_step": "SAGE7C_PARAMETERIZED_EVENT_CONSOLIDATION_REQUIRED_CANDIDATE_ONLY",
+    "source_counted_as_scientific_support": false,
+    "source_outcome_status": "SAGE_THIRD_UNKNOWN_GAME_PARAMETERIZED_EXECUTION_COMPLETED_CANDIDATE_ONLY",
+    "source_scoped_mechanics_reused": 0,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_7C",
+    "zero_delta_events": 23
+  },
+  "source_scoped_mechanics_reused": 0,
+  "status": "UNRESOLVED",
+  "summary": {
+    "a32_handoff_eligible_candidates": 1,
+    "a32_intake_requested": false,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "autonomous_target_effects_confirmed": 0,
+    "autonomous_target_effects_unresolved": 3,
+    "consolidated_comparison_groups": 20,
+    "contradictory_contexts": 0,
+    "control_dependent_contexts": 8,
+    "cross_budget_replicated_contexts": 6,
+    "cross_game_mechanics_imported": 0,
+    "eligible_candidate_cross_budget_replicated_contexts": 4,
+    "eligible_candidate_ids": [
+      "sage7c::candidate::b98c89c514d9b4ff"
+    ],
+    "eligible_candidate_independent_contexts": 8,
+    "eligible_candidate_raw_comparison_events": 26,
+    "eligible_candidate_target_args": [
+      {
+        "x": 25,
+        "y": 42
+      }
+    ],
+    "eligible_candidate_technical_replication_events": 10,
+    "game_id": "tn36-ab4f63cc",
+    "gate_passed": true,
+    "independent_parameterized_contexts": 10,
+    "non_discriminating_contexts": 2,
+    "outcome_status": "SAGE_THIRD_UNKNOWN_GAME_CONTROL_DEPENDENT_PARAMETERIZED_DOSSIER_CANDIDATE_ONLY",
+    "parameterized_candidate_dossiers": 3,
+    "parameterized_variants_counted_as_distinct_actions": false,
+    "raw_comparison_events": 36,
+    "ready_for_a32_handoff_compilation": true,
+    "required_next_step": "SAGE7D_A32_CONTROL_DEPENDENT_HANDOFF_REQUIRED_CANDIDATE_ONLY",
+    "revision_status": "CANDIDATE_ONLY",
+    "source_sage7b_outcome_status": "SAGE_THIRD_UNKNOWN_GAME_PARAMETERIZED_EXECUTION_COMPLETED_CANDIDATE_ONLY",
+    "source_scoped_mechanics_reused": 0,
+    "support": 0,
+    "technical_replication_events": 16,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_7C",
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "technical_repetitions_counted_as_independent_contexts": false,
+  "truth_status": "NOT_EVALUATED_BY_SAGE_7C",
+  "wrong_confirmations": 0
+}

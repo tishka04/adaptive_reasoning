@@ -3333,3 +3333,125 @@ SAGE.7b autorise maintenant a dire : SAGE execute exactement une experience
 parametree multi-controles sur une surface mono-action et observe un contraste
 dependant du controle. Il ne faut pas dire : `{x:25,y:42}` a un effet autonome,
 les 13 deltas sont 13 supports independants, ou A32.7 est deja autorise.
+
+## SAGE.7c - Context-aware parameterized event consolidation
+
+Objectif :
+
+- Consommer uniquement les evenements exacts SAGE.7b.
+- Consolider chaque comparaison par jeu, hash de contexte, cible, controle et
+  metrique.
+- Compter un hash de contexte comme un seul contexte independant, meme lorsqu'il
+  est rejoue sous plusieurs budgets.
+- Construire une evaluation multi-controles par contexte puis un dossier par
+  variante cible et metrique.
+- Fixer avant verdict les criteres d'eligibilite : au moins trois contextes
+  independants, deux controles communs par contexte, au moins un contexte
+  replique entre budgets, aucune inversion et des repetitions exactes coherentes.
+- Separer le contraste relationnel dependant du controle de tout effet autonome
+  de la cible.
+- Produire seulement une eligibilite de handoff, jamais une decision A32.
+
+Ajouts :
+
+- `theory/sage/third_unknown_game_parameterized_consolidation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_third_unknown_game_parameterized_consolidation.py`
+- `diagnostics/sage/sage7c_third_unknown_game_parameterized_consolidation.json`
+
+Run du 2026-07-19 :
+
+- `game_id=tn36-ab4f63cc`
+- `raw_comparison_events=36`
+- `consolidated_comparison_groups=20`
+- `technical_replication_events=16`
+- `independent_parameterized_contexts=10`
+- `cross_budget_replicated_contexts=6`
+- `control_dependent_contexts=8`
+- `non_discriminating_contexts=2`
+- `contradictory_contexts=0`
+- `parameterized_candidate_dossiers=3`
+- `a32_handoff_eligible_candidates=1`
+- `eligible_candidate_target_args=[{x:25,y:42}]`
+- `eligible_candidate_independent_contexts=8`
+- `eligible_candidate_cross_budget_replicated_contexts=4`
+- `eligible_candidate_raw_comparison_events=26`
+- `eligible_candidate_technical_replication_events=10`
+- `autonomous_target_effects_confirmed=0`
+- `autonomous_target_effects_unresolved=3`
+- `parameterized_variants_counted_as_distinct_actions=false`
+- `ready_for_a32_handoff_compilation=true`
+- `required_next_step=SAGE7D_A32_CONTROL_DEPENDENT_HANDOFF_REQUIRED_CANDIDATE_ONLY`
+- `gate_passed=true`
+- `outcome_status=SAGE_THIRD_UNKNOWN_GAME_CONTROL_DEPENDENT_PARAMETERIZED_DOSSIER_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_7C`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_intake_requested=false`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Dossiers cibles :
+
+| cible ACTION6 | metrique | contextes independants | statut contextuel | handoff A32 |
+|---|---|---:|---|---|
+| `{x:25,y:42}` | `local_patch_before_after` | 8 | 8 dependants du controle | eligible |
+| `{x:35,y:42}` | `local_patch_before_after` | 1 | non discriminant | non |
+| `{x:30,y:42}` | `terminal_state_after_rollout` | 1 | non discriminant | non |
+
+Contraste eligible :
+
+- cible : `ACTION6 {x:25,y:42}` ;
+- controle discriminant commun aux huit contextes :
+  `ACTION6 {x:34,y:51}`, delta `+2` ;
+- comparateur equivalent commun aux huit contextes :
+  `ACTION6 {x:41,y:44}`, delta `0` ;
+- contextes independants : `8` ;
+- contextes repliques entre budgets : `4` ;
+- evenements bruts : `26`, dont `10` repetitions techniques ;
+- effet autonome de la cible : `UNRESOLVED_CONTROL_DEPENDENT_TARGET_EFFECT` ;
+- support scientifique compte par SAGE.7c : `0`.
+
+Lecture :
+
+- Les 13 deltas positifs SAGE.7b deviennent huit contrastes contextuels
+  independants ; cinq sont des repetitions techniques. La meme reduction est
+  appliquee aux evenements neutres.
+- Dans chacun des huit contextes eligibles, la cible differe du controle
+  `{x:34,y:51}` mais reste equivalente au controle `{x:41,y:44}`. Le dossier
+  porte donc une relation cible/controles, pas un effet propre a la cible.
+- Les deux controles sont communs a tous les contextes eligibles et leurs roles
+  ne changent jamais. Quatre contextes sont reproduits sous plusieurs budgets.
+- Cette regularite satisfait les criteres de handoff fixes, mais SAGE.7c ne
+  transforme ni les huit contextes ni leurs repetitions en support scientifique.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.third_unknown_game_parameterized_consolidation `
+  --source-sage7b diagnostics\sage\sage7b_third_unknown_game_parameterized_execution.json `
+  --out diagnostics\sage\sage7c_third_unknown_game_parameterized_consolidation.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_third_unknown_game_parameterized_consolidation.py `
+  tests\test_sage_third_unknown_game_parameterized_execution.py -q
+```
+
+Suite requise apres SAGE.7c :
+
+1. SAGE.7d - compiler un handoff A32.7 portant uniquement le contraste
+   relationnel `{x:25,y:42}` / `{x:34,y:51}` / `{x:41,y:44}`, les huit hashes
+   exacts, les metriques et les identifiants source.
+2. Ne pas inclure les cibles non discriminantes `{x:35,y:42}` et `{x:30,y:42}`.
+3. A32.7 devra choisir scientifiquement entre confirmation relationnelle
+   limitee au scope, non-identifiabilite ou demande d'experiences ; SAGE.7d ne
+   doit programmer aucun de ces verdicts.
+
+SAGE.7c autorise maintenant a dire : SAGE sait dedupliquer les repetitions
+inter-budget et preparer un candidat relationnel dependant du controle dans huit
+contextes independants. Il ne faut pas dire : huit supports sont confirmes,
+`{x:25,y:42}` a un effet autonome, ou A32.7 a deja rendu son verdict.

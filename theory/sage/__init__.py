@@ -29,6 +29,7 @@ __all__ = [
     "DEFAULT_SAGE7_THIRD_UNKNOWN_GAME_TRANSFER_PATH",
     "DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH",
     "DEFAULT_SAGE7B_PARAMETERIZED_EXECUTION_PATH",
+    "DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -60,6 +61,7 @@ __all__ = [
     "run_sage7_third_unknown_game_transfer",
     "run_sage7a_parameterized_mini_frontier",
     "run_sage7b_parameterized_execution",
+    "run_sage7c_parameterized_consolidation",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -87,6 +89,7 @@ __all__ = [
     "write_sage7_third_unknown_game_transfer",
     "write_sage7a_parameterized_mini_frontier",
     "write_sage7b_parameterized_execution",
+    "write_sage7c_parameterized_consolidation",
 ]
 
 
@@ -674,6 +677,28 @@ def __getattr__(name: str):
             ),
             "write_sage7b_parameterized_execution": (
                 write_sage7b_parameterized_execution
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH",
+        "run_sage7c_parameterized_consolidation",
+        "write_sage7c_parameterized_consolidation",
+    }:
+        from .third_unknown_game_parameterized_consolidation import (
+            DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH,
+            run_sage7c_parameterized_consolidation,
+            write_sage7c_parameterized_consolidation,
+        )
+
+        return {
+            "DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH": (
+                DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH
+            ),
+            "run_sage7c_parameterized_consolidation": (
+                run_sage7c_parameterized_consolidation
+            ),
+            "write_sage7c_parameterized_consolidation": (
+                write_sage7c_parameterized_consolidation
             ),
         }[name]
     raise AttributeError(name)
