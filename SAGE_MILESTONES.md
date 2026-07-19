@@ -42,6 +42,7 @@ de policy en support scientifique.
 | SAGE.6 - Second unknown-game bounded transfer | Fait - 3/3 gates passes sur wa30 | `theory/sage/second_unknown_game_transfer.py`, `tests/test_sage_second_unknown_game_transfer.py`, `diagnostics/sage/sage6_second_unknown_game_transfer_results.json` | Selectionne wa30 par ordre public_unseen fixe avant execution; exclut les jeux connus et sb26 source; budgets 50/150/300 passes; progress-stall detecte sur les 3 budgets; 98 switches; quarantaine A33.2 respectee; support=0; aucun write A32/A33 |
 | SAGE.6a - Second-game switch attribution and live mini-frontier | Fait - 20 requests M3 candidate-only | `theory/sage/second_unknown_game_switch_frontier.py`, `tests/test_sage_second_unknown_game_switch_frontier.py`, `diagnostics/sage/sage6a_switch_attribution_mini_frontier.json` | Reproduit et attribue les 98 switches wa30 : 32 contrefactuels actifs, 34 repositionnements, 32 placeholders; distingue 1 garde terminale hors compteur source; convertit 20 placeholders en hypotheses + requests M3 live-prefix, reparties 4/12/4; support=0; aucun write A32/A33 |
 | SAGE.6b - Stratified second-game M3 execution | Fait - 6/6 replays exacts | `theory/sage/second_unknown_game_m3_execution.py`, `tests/test_sage_second_unknown_game_m3_execution.py`, `diagnostics/sage/sage6b_second_unknown_game_m3_execution.json` | Selectionne 2 requests wa30 par budget avec 6 hashes distincts; execute ACTION2 contre ACTION1; 6/6 replay exact + hash verifie, 0 blocage; 5 effets bruts positifs et 1 neutre, mais support=0 et aucun write A32/A33 |
+| SAGE.6c - Context-preserving event consolidation | Fait - motif +32 stable, exception neutre conservee | `theory/sage/second_unknown_game_event_consolidation.py`, `tests/test_sage_second_unknown_game_event_consolidation.py`, `diagnostics/sage/sage6c_second_unknown_game_event_consolidation.json` | Conserve 6 clusters singleton sans fusion; groupe 5 effets +32 sur les 3 budgets et 1 contexte neutre separe; frontiere compilable pour handoff mais non prete A32 car un seul controle distinct; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2517,18 +2518,126 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_live_mini_frontier_m3_executor.py -q
 ```
 
-Suite conseillee apres SAGE.6b :
+## SAGE.6c - Context-preserving event consolidation
 
-1. SAGE.6c - consolider les six evenements en clusters de contexte
-   candidate-only et verifier si l'effet ACTION2/ACTION1 est stable entre
-   budgets sans fusionner artificiellement les contextes.
-2. Si une frontiere reste robuste, compiler un handoff de revue A32 distinct du
-   scope `sb26`; A32 seul pourra demander des controles supplementaires ou
-   statuer.
+Objectif :
+
+- Transformer les six executions SAGE.6b en enregistrements comparables sans
+  rejouer l'environnement.
+- Conserver exactement un cluster par hash de contexte live.
+- Interdire toute fusion inter-contexte et utiliser les groupes d'effet comme
+  index de comparaison uniquement.
+- Evaluer la stabilite du delta ACTION2/ACTION1 entre budgets avec des seuils
+  explicites de contextes, budgets et dispersion d'effet.
+- Conserver l'evenement neutre comme exception contextuelle, jamais comme
+  contradiction ou refutation.
+- Bloquer la revue A32 tant que la diversite de controle reste insuffisante.
+- Garder `support=0`, la quarantaine A33.2 et l'absence de write A32/A33.
+
+Ajouts :
+
+- `theory/sage/second_unknown_game_event_consolidation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_second_unknown_game_event_consolidation.py`
+- `diagnostics/sage/sage6c_second_unknown_game_event_consolidation.json`
+
+Run du 2026-07-19 :
+
+- `game_id=wa30-ee6fef47`
+- `budgets=[50,150,300]`
+- `event_records=6`
+- `context_clusters=6`
+- `singleton_context_clusters=6`
+- `cross_context_merges_performed=0`
+- `all_contexts_preserved_without_merge=true`
+- `effect_signature_groups=2`
+- `stable_positive_multi_budget_groups=1`
+- `neutral_effect_groups=1`
+- `stable_positive_contexts=5`
+- `stable_positive_events=5`
+- `stable_positive_budgets=[50,150,300]`
+- `stable_positive_effect_size=32`
+- `stable_positive_effect_spread=0`
+- `stable_positive_across_all_budgets=true`
+- `neutral_context_exceptions=1`
+- `negative_context_exceptions=0`
+- `context_sensitive_exception_detected=true`
+- `distinct_control_actions=1`
+- `control_diversity_sufficient_for_a32_review=false`
+- `candidate_handoff_frontiers=1`
+- `ready_for_A32_handoff_compilation=1`
+- `ready_for_A32_review=0`
+- `raw_support_events=5`
+- `raw_contradiction_events=0`
+- `raw_neutral_events=1`
+- `gate_passed=true`
+- `outcome_status=SAGE_SECOND_UNKNOWN_GAME_EVENTS_CONSOLIDATED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_6C`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Clusters de contexte :
+
+| cluster | budget | step | effet ACTION2-ACTION1 | statut candidate-only |
+|---|---:|---:|---:|---|
+| `001` | 50 | 12 | 0 | `NEUTRAL_CONTEXT_CANDIDATE_ONLY` |
+| `002` | 50 | 48 | +32 | `POSITIVE_CONTEXT_CANDIDATE_ONLY` |
+| `003` | 150 | 132 | +32 | `POSITIVE_CONTEXT_CANDIDATE_ONLY` |
+| `004` | 150 | 144 | +32 | `POSITIVE_CONTEXT_CANDIDATE_ONLY` |
+| `005` | 300 | 24 | +32 | `POSITIVE_CONTEXT_CANDIDATE_ONLY` |
+| `006` | 300 | 36 | +32 | `POSITIVE_CONTEXT_CANDIDATE_ONLY` |
+
+Groupes de comparaison :
+
+| groupe | contexts | budgets | effet | statut |
+|---|---:|---|---:|---|
+| `001` | 1 | 50 | 0 | `LOCAL_NEUTRAL_CANDIDATE_ONLY` |
+| `002` | 5 | 50/150/300 | +32, dispersion 0 | `STABLE_POSITIVE_MULTI_BUDGET_CANDIDATE_ONLY` |
+
+Le groupe `002` indexe cinq clusters distincts mais ne les fusionne pas. Le
+cluster neutre `001` reste une exception explicite du meme protocole
+ACTION2/ACTION1. Le statut global est donc
+`STABLE_POSITIVE_MULTI_BUDGET_WITH_NEUTRAL_EXCEPTION_CANDIDATE_ONLY`.
+
+La frontiere est prete pour compilation d'un handoff, pas pour revue A32. Un
+seul controle distinct, ACTION1, a ete execute alors que le seuil est fixe a
+deux. Les followups requis sont : ajouter un controle distinct par budget,
+repliquer le contexte neutre et conserver les frontieres entre clusters.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.second_unknown_game_event_consolidation `
+  --source-sage6b diagnostics\sage\sage6b_second_unknown_game_m3_execution.json `
+  --min-stable-contexts 3 `
+  --min-stable-budgets 2 `
+  --max-positive-effect-spread 0 `
+  --min-distinct-controls-for-a32-review 2 `
+  --out diagnostics\sage\sage6c_second_unknown_game_event_consolidation.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_second_unknown_game_event_consolidation.py `
+  tests\test_sage_second_unknown_game_m3_execution.py `
+  tests\test_sage_mini_frontier_event_consolidation.py -q
+```
+
+Suite conseillee apres SAGE.6c :
+
+1. SAGE.6d - compiler la frontiere en handoff candidate-only avec un protocole
+   pre-enregistre de controle distinct par budget et de replication du contexte
+   neutre, sans execution ni write A32/A33.
+2. Executer ensuite ces followups dans une iteration separee avant toute revue
+   A32.
 3. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
    sur la base de son outcome.
 
-SAGE.6b autorise maintenant a dire : SAGE sait executer proprement des
-experiences M3 live stratifiees sur un deuxieme jeu inconnu et en conserver les
-deltas controles. Il ne faut pas dire : SAGE a prouve une mecanique ACTION2,
-sait jouer a `wa30`, ou generalise une mecanique de `sb26`.
+SAGE.6c autorise maintenant a dire : SAGE sait distinguer un motif controle
+stable multi-budget d'une exception contextuelle tout en preservant les
+frontieres entre contexts. Il ne faut pas dire : SAGE a prouve une mecanique
+ACTION2, que l'effet est universel sur `wa30`, ou qu'un verdict A32 est pret.
