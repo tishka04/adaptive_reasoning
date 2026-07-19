@@ -3721,3 +3721,70 @@ n'aide ni ne degrade donc les metriques ARC principales dans ce protocole.
 Suite requise : SAGE.8d doit remplacer la continuation historique fixe par une
 politique fermee qui replanifie a partir de l'etat courant, tout en gardant une
 selection aveugle aux outcomes et une evaluation avec/sans memoire appariee.
+
+## SAGE.8d - relational memory state-conditioned closed-loop evaluation
+
+Objectif :
+
+- Remplacer la continuation fixe de SAGE.8c par un replanning apres chaque pas.
+- Donner aux deux bras le meme algorithme et le meme horizon de 16 actions.
+- Selectionner uniquement parmi les actions legales, a partir du digest visuel
+  courant, des comptes d'actions passes et des visites etat/action.
+- Compter toutes les variantes parametrees ACTION6 dans une seule famille.
+- Exclure du planner les outcomes futurs, les niveaux, victoires et rollouts
+  contrefactuels ; ils ne servent qu'a l'evaluation apres execution.
+- Autoriser les trajectoires a diverger apres l'intervention memoire initiale.
+
+Politique fermee :
+
+1. privilegier une action non encore essayee dans l'etat visuel courant ;
+2. eviter la repetition immediate ;
+3. privilegier la famille d'action la moins utilisee ;
+4. privilegier la variante concrete la moins utilisee ;
+5. departager deterministement avec le digest visuel courant.
+
+Ajouts :
+
+- `theory/sage/relational_memory_closed_loop_evaluation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_relational_memory_closed_loop_evaluation.py`
+- `diagnostics/sage/sage8d_relational_memory_closed_loop_evaluation.json`
+
+Run du 2026-07-19 :
+
+- `paired_rollouts_evaluated=11`
+- `games_evaluated=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `continuation_horizon=16`
+- `memory_policy_applications=11`
+- `exact_paired_replays=11`
+- `no_memory_replanning_decisions=171`
+- `with_memory_replanning_decisions=171`
+- `episodes_with_divergent_replanned_trajectories=11`
+- `divergent_replanning_positions=119`
+- `no_memory_terminal_episodes=1`
+- `with_memory_terminal_episodes=1`
+- `no_memory_levels_completed_delta_total=0`
+- `with_memory_levels_completed_delta_total=0`
+- `levels_completed_absolute_gain=0`
+- `no_memory_wins=0`
+- `with_memory_wins=0`
+- `no_memory_win_rate=0.0`
+- `with_memory_win_rate=0.0`
+- `win_rate_absolute_gain=0.0`
+- `secondary_initial_local_signal_gain=112.0`
+- `primary_arc_progress_improved=false`
+- `primary_arc_progress_regressed=false`
+- `future_outcomes_used_for_planning=false`
+- `counterfactual_rollouts_performed=0`
+- `gate_passed=true`
+- `outcome_status=SAGE_RELATIONAL_MEMORY_CLOSED_LOOP_LOCAL_GAIN_WITHOUT_ARC_SCORE_CONVERSION`
+
+Lecture : SAGE.8d prouve que SAGE peut replanifier en ligne a partir de l'etat
+courant. Les onze paires divergent apres la decision initiale, sur 119 positions
+de replanning, tout en restant legales et en utilisant exactement le meme
+algorithme. Cette adaptativite ne convertit cependant toujours pas le gain local
+en niveau ou victoire : l'exploration generique manque d'un objectif de jeu.
+
+Suite requise : SAGE.8e doit ajouter au planner un objectif de progression
+appris et scope-safe, sans optimiser sur les outcomes de ces onze episodes, puis
+repeter l'evaluation appariee sur `levels_completed` et `win_rate`.
