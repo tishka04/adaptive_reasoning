@@ -3,18 +3,37 @@
 __all__ = [
     "ConfirmedMechanicUsageProbeResult",
     "ControlDependentRelationalUsageProbeResult",
+    "ParameterizedRelationalUsageProbeResult",
     "DEFAULT_A34_USAGE_PROBE_OUTPUT_PATH",
     "DEFAULT_A34_CONTROL_DEPENDENT_RELATIONAL_USAGE_PROBE_PATH",
+    "DEFAULT_A34_PARAMETERIZED_RELATIONAL_USAGE_PROBE_PATH",
     "build_usage_probe_for_mechanic",
     "build_a34_2_replay_contexts",
+    "build_a34_3_replay_contexts",
     "run_confirmed_mechanic_usage_probe",
     "run_control_dependent_relational_usage_probe",
+    "run_parameterized_relational_usage_probe",
     "write_confirmed_mechanic_usage_probe",
     "write_control_dependent_relational_usage_probe",
+    "write_parameterized_relational_usage_probe",
 ]
 
 
 def __getattr__(name: str):
+    parameterized_relational_names = {
+        "ParameterizedRelationalUsageProbeResult",
+        "DEFAULT_A34_PARAMETERIZED_RELATIONAL_USAGE_PROBE_PATH",
+        "build_a34_3_replay_contexts",
+        "run_parameterized_relational_usage_probe",
+        "write_parameterized_relational_usage_probe",
+    }
+    if name in parameterized_relational_names:
+        import importlib
+
+        module = importlib.import_module(
+            ".parameterized_relational_usage_probe", __name__
+        )
+        return getattr(module, name)
     relational_names = {
         "ControlDependentRelationalUsageProbeResult",
         "DEFAULT_A34_CONTROL_DEPENDENT_RELATIONAL_USAGE_PROBE_PATH",
@@ -29,7 +48,7 @@ def __getattr__(name: str):
             ".control_dependent_relational_usage_probe", __name__
         )
         return getattr(module, name)
-    if name in set(__all__) - relational_names:
+    if name in set(__all__) - relational_names - parameterized_relational_names:
         import importlib
 
         module = importlib.import_module(".confirmed_mechanic_usage_probe", __name__)

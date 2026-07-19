@@ -27,6 +27,7 @@ Le champ `truth_status` reste toujours :
 |---|---|---|---|
 | A34.1 - Confirmed mechanic usage probe | Fait | `theory/a34/confirmed_mechanic_usage_probe.py`, `tests/test_a34_confirmed_mechanic_usage_probe.py`, `diagnostics/a34/confirmed_mechanic_usage_probe.json` | ACTION6 priorisee depuis A33; usage local utile observe |
 | A34.2 - Control-dependent relational usage probe | Fait | `theory/a34/control_dependent_relational_usage_probe.py`, `tests/test_a34_control_dependent_relational_usage_probe.py`, `diagnostics/a34/control_dependent_relational_usage_probe.json` | ACTION2 priorisee dans les 3 contextes A33.3; gain local +32 face a ACTION1, egalite avec ACTION3; aucun niveau ni win |
+| A34.3 - Parameterized relational usage probe | Fait | `theory/a34/parameterized_relational_usage_probe.py`, `tests/test_a34_parameterized_relational_usage_probe.py`, `diagnostics/a34/parameterized_relational_usage_probe.json` | ACTION6 x25/y42 priorisee dans les 8 contextes A33.4; gain local +2 face a x34/y51, egalite avec x41/y44; aucun niveau ni win |
 
 ## A34.1 - Confirmed mechanic usage probe
 
@@ -144,6 +145,66 @@ Lecture :
   ni aucune victoire. C'est une preuve d'utilite decisionnelle intermediaire,
   pas encore un progres ARC-AGI-3.
 
+## A34.3 - Parameterized relational usage probe
+
+Entrees :
+
+- `diagnostics/a33/parameterized_relational_registry.json` pour la relation et
+  le choix des coordonnees ACTION6 ;
+- `diagnostics/sage/sage7a_third_unknown_game_parameterized_frontier.json`
+  uniquement pour reconstruire les prefixes live exacts.
+
+Sortie :
+
+- `diagnostics/a34/parameterized_relational_usage_probe.json`
+
+Contrat :
+
+- Baseline sans memoire : ACTION6 `{"x":34,"y":51}`, variante discriminante
+  de plus faible effet enregistree par A33.4.
+- Treatment avec memoire : ACTION6 `{"x":25,"y":42}`, uniquement dans les
+  huit hashes exacts A33.4.
+- Audit de limite : ACTION6 `{"x":41,"y":44}`, variante equivalente.
+- Quand un hash possede plusieurs replays inter-budget, selectionner le budget
+  le plus faible puis le step et l'identifiant, sans lire les outcomes.
+- Les trois variantes restent une seule famille ACTION6.
+- A34.3 mesure l'utilite sans reconfirmer la relation ni recompter son support.
+
+Run du 2026-07-19 :
+
+- `registered_relations_probed=1`
+- `exact_contexts_probed=8`
+- `technical_replay_requests_preserved=5`
+- `parameter_choices_changed=8`
+- baseline `{34,51}`, signal `[0,0,0,0,0,0,0,0]`
+- treatment A33.4 `{25,42}`, signal `[2,2,2,2,2,2,2,2]`
+- audit equivalent `{41,44}`, signal `[2,2,2,2,2,2,2,2]`
+- `registry_gain_over_baseline=[2,2,2,2,2,2,2,2]`
+- `registry_gain_over_equivalent=[0,0,0,0,0,0,0,0]`
+- `contextual_relational_utility_events=8`
+- `functional_local_progress_events=8`
+- `distinct_action_families=1`
+- `parameterized_variants_counted_as_distinct_actions=false`
+- `registry_levels_completed_delta_total=0`
+- `registry_levels_completed_max=0`
+- `registry_wins=0`
+- `registry_win_rate=0`
+- `level_or_win_progress_demonstrated=false`
+- `support_counted=0`
+- `wrong_confirmations=0`
+- `outcome_status=A34_PARAMETERIZED_RELATION_CONTEXTUALLY_USEFUL`
+
+Lecture :
+
+- La memoire A33.4 choisit une variante localement meilleure que `{34,51}`
+  dans chacun des huit contextes autorises et reproduit le contraste `+2`.
+- La variante `{41,44}` reste equivalente a la cible. A34.3 confirme donc une
+  utilite de priorisation relationnelle, jamais un effet autonome de `{25,42}`.
+- Les cinq replays inter-budget supplementaires restent de la provenance ; ils
+  ne deviennent ni contextes independants ni support.
+- Comme A34.2, ce probe ne franchit aucun niveau et ne gagne aucune partie.
+  L'integration dans une politique multi-step reste necessaire.
+
 ## Commandes de verification
 
 Tests A34 :
@@ -162,4 +223,10 @@ Run A34.2 :
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a34.control_dependent_relational_usage_probe --registry diagnostics\a33\control_dependent_relational_registry.json --source-sage6f diagnostics\sage\sage6f_second_unknown_game_control_dependence_consolidation.json --source-sage6a diagnostics\sage\sage6a_switch_attribution_mini_frontier.json --out diagnostics\a34\control_dependent_relational_usage_probe.json
+```
+
+Run A34.3 :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a34.parameterized_relational_usage_probe --registry diagnostics\a33\parameterized_relational_registry.json --source-sage7a diagnostics\sage\sage7a_third_unknown_game_parameterized_frontier.json --out diagnostics\a34\parameterized_relational_usage_probe.json
 ```
