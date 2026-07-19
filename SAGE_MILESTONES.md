@@ -3936,3 +3936,76 @@ Suite requise : SAGE.8g doit acquerir au moins une demonstration positive
 rejouable dans chacun de `wa30` et `tn36`, ou produire un protocole actif borne
 capable d'en trouver une sans lire le code des jeux. L'evaluation appariee ne
 reprendra qu'apres admission exacte de ce signal cible.
+
+## SAGE.8g - bounded active target-signal acquisition
+
+Objectif :
+
+- Acquerir une vraie transition de niveau dans chacun des deux jeux cibles a
+  partir de l'API d'observation et d'actions legales uniquement.
+- Ne lire aucun fichier source des jeux et ne reutiliser aucune demonstration
+  provenant d'un autre `game_id`.
+- Borner explicitement chaque protocole d'acquisition et n'utiliser
+  `levels_completed` ou `game_state` que comme condition d'arret positive.
+- Conserver la sequence complete depuis RESET et l'action positive finale.
+- Rejouer chaque sequence sur une nouvelle instance et exiger l'egalite exacte
+  des digests RESET, pre-action et post-action ainsi que de l'outcome.
+- Indexer les signaux admis par `game_id|visual_digest`, sans fuzzy matching.
+- Autoriser la prochaine evaluation seulement lorsque les deux jeux sont
+  couverts ; ne pas lancer cette evaluation dans SAGE.8g.
+
+Protocoles black-box :
+
+- `tn36` : calibration des onze actions legales par delta de pixels, detection
+  unique du bouton de validation par le plus petit delta, puis enumeration des
+  1 024 configurations des dix commutateurs.
+- `wa30` : replay borne de la trajectoire de transport obtenue par exploration
+  des objets saillants visibles ; les trois objets 4x4 sont places dans le
+  receptacle visible 12x4 en 50 actions.
+
+Ajouts :
+
+- `theory/sage/target_goal_signal_active_acquisition.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_target_goal_signal_active_acquisition.py`
+- `diagnostics/sage/sage8g_target_goal_signal_active_acquisition.json`
+
+Run du 2026-07-19 :
+
+- `target_games_audited=2`
+- `target_games_with_positive_transition=2`
+- `target_games_with_exact_positive_replay=2`
+- `verified_target_goal_transitions=2`
+- `verified_target_level_up_transitions=2`
+- `verified_target_win_transitions=0`
+- `exact_target_goal_states=2`
+- `exact_target_goal_signal_entries=2`
+- `tn36_toggle_configuration_space=1024`
+- `tn36_toggle_configurations_tested=859`
+- `tn36_positive_configuration_mask=858`
+- `tn36_positive_sequence_length=7`
+- `wa30_positive_sequence_length=50`
+- `discovery_action_executions=4965`
+- `independent_replay_action_executions=57`
+- `total_live_action_executions=5022`
+- `game_source_files_opened=0`
+- `future_outcomes_used_for_action_ranking=false`
+- `cross_game_transfer_performed=false`
+- `planner_activation_authorized=true`
+- `paired_closed_loop_evaluation_performed=false`
+- `evaluation_episodes_executed=0`
+- `gate_passed=true`
+- `outcome_status=SAGE_TARGET_GOAL_SIGNAL_ACTIVE_ACQUISITION_READY`
+
+Lecture : le blocage de couverture cible de SAGE.8f est leve sans analogie
+inter-jeux. `tn36` progresse avec le masque 858 puis ACTION6(34,51) ; `wa30`
+progresse a la cinquantieme action avec ACTION5. Pour les deux jeux, une seconde
+instance reproduit exactement l'etat initial, l'etat avant l'action positive,
+l'etat suivant et le passage de `levels_completed=0` a `1`. Ces deux exemples
+sont des signaux objectifs propres au domaine cible, pas des confirmations A33.
+
+Suite requise : SAGE.8h doit compiler les deux trajectoires positives en une
+politique de progression strictement scopee aux etats exacts de leur jeu, puis
+reprendre une evaluation fermee appariee avec/sans memoire relationnelle. Les
+outcomes SAGE.8h resteront reserves a l'evaluation ; ils ne devront ni choisir
+les trajectoires d'apprentissage, ni regler le planner.

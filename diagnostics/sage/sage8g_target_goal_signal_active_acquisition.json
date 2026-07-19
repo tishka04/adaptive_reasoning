@@ -1,0 +1,782 @@
+{
+  "a33_mutated": false,
+  "config": {
+    "acquisition_design": {
+      "cross_game_action_transfer_allowed": false,
+      "environment_observation_api_only": true,
+      "exact_game_and_visual_digest_scope_required": true,
+      "exact_independent_replay_required": true,
+      "future_outcomes_used_for_action_ranking": false,
+      "game_source_files_opened": [],
+      "outcome_fields_used_only_for_positive_stop_and_verification": [
+        "levels_completed",
+        "game_state"
+      ],
+      "planning_observation_fields_read": [
+        "live_legal_action_inventory",
+        "action_arguments",
+        "rendered_grid",
+        "changed_pixel_count"
+      ]
+    },
+    "artifacts_not_modified": [
+      "A33.3",
+      "A33.4",
+      "A34.2",
+      "A34.3",
+      "SAGE.8a",
+      "SAGE.8b",
+      "SAGE.8c",
+      "SAGE.8d",
+      "SAGE.8e",
+      "SAGE.8f"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "protocols": {
+      "tn36-ab4f63cc": {
+        "protocol": "BOUNDED_BINARY_TOGGLE_SUBMIT_ENUMERATION",
+        "submit_is_identified_by_minimum_single_action_pixel_delta": true,
+        "toggle_configuration_bound": 1024
+      },
+      "wa30-ee6fef47": {
+        "candidate_action_bound": 50,
+        "candidate_origin": "BOUNDED_BLACK_BOX_SALIENT_OBJECT_SEARCH",
+        "protocol": "OBSERVATION_DERIVED_SALIENT_OBJECT_TRANSPORT_REPLAY"
+      }
+    },
+    "sage8f_path": "diagnostics\\sage\\sage8f_goal_grounded_signal_acquisition.json",
+    "schema_version": "sage.target_goal_signal_active_acquisition.v1",
+    "target_games": [
+      "tn36-ab4f63cc",
+      "wa30-ee6fef47"
+    ]
+  },
+  "confirmation_performed": false,
+  "cross_game_transfer_performed": false,
+  "evaluation_episodes_executed": 0,
+  "exact_target_signal_bank": {
+    "config": {
+      "evaluation_outcome_fields_read": [],
+      "exact_independent_replay_required": true,
+      "game_source_files_opened": [],
+      "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+      "schema_version": "sage.exact_target_goal_signal.v1",
+      "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+      "source_type": "BOUNDED_ACTIVE_BLACK_BOX_ACQUISITION"
+    },
+    "entries": [
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 34,
+              "y": 51
+            },
+            "action_identity": "ACTION6::{\"x\":34,\"y\":51}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_independent_replay_required": true,
+        "exact_independent_replay_verified": true,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "tn36-ab4f63cc",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "tn36-ab4f63cc|1188520fa54c7420",
+        "source_protocols": [
+          "BOUNDED_BINARY_TOGGLE_SUBMIT_ENUMERATION"
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8G",
+        "visual_digest": "1188520fa54c7420",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION5",
+            "action_args": {},
+            "action_identity": "ACTION5::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_independent_replay_required": true,
+        "exact_independent_replay_verified": true,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "wa30-ee6fef47",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "wa30-ee6fef47|d8e1134efabf42b1",
+        "source_protocols": [
+          "OBSERVATION_DERIVED_SALIENT_OBJECT_TRANSPORT_REPLAY"
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8G",
+        "visual_digest": "d8e1134efabf42b1",
+        "win_count": 0
+      }
+    ],
+    "gate": {
+      "all_entries_have_exact_target_scope": true,
+      "every_demonstration_has_exact_independent_replay": true,
+      "every_demonstration_is_positive": true,
+      "no_truth_or_registry_support_mutation": true
+    },
+    "scope_generalization_performed": false,
+    "summary": {
+      "exact_goal_states": 2,
+      "gate_passed": true,
+      "per_game_goal_transitions": {
+        "tn36-ab4f63cc": 1,
+        "wa30-ee6fef47": 1
+      },
+      "support": 0,
+      "target_games": [
+        "tn36-ab4f63cc",
+        "wa30-ee6fef47"
+      ],
+      "truth_status": "NOT_REEVALUATED_BY_SAGE_8G",
+      "verified_goal_transitions": 2,
+      "verified_level_up_transitions": 2,
+      "verified_win_transitions": 0
+    },
+    "support": 0,
+    "truth_status": "NOT_REEVALUATED_BY_SAGE_8G",
+    "wrong_confirmations": 0
+  },
+  "game_source_files_opened": [],
+  "gate": {
+    "admitted_targets_have_exact_independent_replays": true,
+    "completed_blocked_sage8f_source_validated": true,
+    "each_target_has_positive_or_bounded_active_protocol": true,
+    "every_acquisition_protocol_is_bounded": true,
+    "exact_signal_bank_gate_passed": true,
+    "future_outcomes_not_used_for_action_ranking": true,
+    "no_cross_game_or_fuzzy_scope": true,
+    "no_game_source_was_read": true,
+    "no_truth_reevaluation_or_registry_support_counting": true,
+    "paired_evaluation_deferred_until_after_admission": true,
+    "planner_activation_matches_exact_target_coverage": true
+  },
+  "outcome_status": "SAGE_TARGET_GOAL_SIGNAL_ACTIVE_ACQUISITION_READY",
+  "paired_closed_loop_evaluation_authorized": true,
+  "paired_closed_loop_evaluation_performed": false,
+  "planner_activation_authorized": true,
+  "registry_support_recounted": false,
+  "revision_performed": false,
+  "scientific_review_performed": false,
+  "scope_generalization_performed": false,
+  "status": "ACQUIRED_AND_EXACT_TARGET_ADMITTED",
+  "summary": {
+    "all_protocols_bounded": true,
+    "cross_game_transfer_performed": false,
+    "discovery_action_executions": 4965,
+    "evaluation_episodes_executed": 0,
+    "exact_target_goal_signal_entries": 2,
+    "exact_target_goal_states": 2,
+    "future_outcomes_used_for_action_ranking": false,
+    "game_source_files_opened": 0,
+    "gate_passed": true,
+    "independent_replay_action_executions": 57,
+    "outcome_status": "SAGE_TARGET_GOAL_SIGNAL_ACTIVE_ACQUISITION_READY",
+    "paired_closed_loop_evaluation_performed": false,
+    "planner_activation_authorized": true,
+    "support_counted": 0,
+    "target_games_audited": 2,
+    "target_games_with_exact_positive_replay": 2,
+    "target_games_with_positive_transition": 2,
+    "tn36_toggle_configuration_space": 1024,
+    "tn36_toggle_configurations_tested": 859,
+    "total_live_action_executions": 5022,
+    "truth_reevaluations": 0,
+    "verified_target_goal_transitions": 2,
+    "verified_target_level_up_transitions": 2,
+    "verified_target_win_transitions": 0,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "target_acquisitions": [
+    {
+      "admission": {
+        "admission_reason": "EXACT_TARGET_GAME_POSITIVE_REPLAY_AVAILABLE",
+        "admission_status": "EXACT_TARGET_SIGNAL_ADMITTED",
+        "exact_independent_replay_verified": true,
+        "exact_target_goal_signal_entries": 1,
+        "game_id": "tn36-ab4f63cc",
+        "planner_activation_authorized": true,
+        "positive_transition_acquired": true
+      },
+      "discovery": {
+        "actions_executed": 7,
+        "all_selected_actions_legal": true,
+        "calibration": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 20,
+              "y": 42
+            },
+            "action_identity": "ACTION6::{\"x\":20,\"y\":42}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 25,
+              "y": 42
+            },
+            "action_identity": "ACTION6::{\"x\":25,\"y\":42}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 30,
+              "y": 42
+            },
+            "action_identity": "ACTION6::{\"x\":30,\"y\":42}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 35,
+              "y": 42
+            },
+            "action_identity": "ACTION6::{\"x\":35,\"y\":42}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 40,
+              "y": 42
+            },
+            "action_identity": "ACTION6::{\"x\":40,\"y\":42}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 34,
+              "y": 51
+            },
+            "action_identity": "ACTION6::{\"x\":34,\"y\":51}",
+            "changed_pixels": 1
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 21,
+              "y": 44
+            },
+            "action_identity": "ACTION6::{\"x\":21,\"y\":44}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 26,
+              "y": 44
+            },
+            "action_identity": "ACTION6::{\"x\":26,\"y\":44}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 31,
+              "y": 44
+            },
+            "action_identity": "ACTION6::{\"x\":31,\"y\":44}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 36,
+              "y": 44
+            },
+            "action_identity": "ACTION6::{\"x\":36,\"y\":44}",
+            "changed_pixels": 4
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 41,
+              "y": 44
+            },
+            "action_identity": "ACTION6::{\"x\":41,\"y\":44}",
+            "changed_pixels": 4
+          }
+        ],
+        "calibration_action_executions": 11,
+        "commands": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 25,
+              "y": 42
+            }
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 35,
+              "y": 42
+            }
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 40,
+              "y": 42
+            }
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 26,
+              "y": 44
+            }
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 36,
+              "y": 44
+            }
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 41,
+              "y": 44
+            }
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 34,
+              "y": 51
+            }
+          }
+        ],
+        "configuration_space_size": 1024,
+        "configurations_tested": 859,
+        "discovery_action_executions": 4915,
+        "future_outcomes_used_for_action_ranking": false,
+        "game_source_read": false,
+        "maximum_action_execution_budget": 6155,
+        "positive_configuration_mask": 858,
+        "positive_step": 7,
+        "positive_transition_found": true,
+        "proof": {
+          "after_visual_digest": "a2f95e098c948b18",
+          "before_visual_digest": "1188520fa54c7420",
+          "game_state_after": "NOT_FINISHED",
+          "level_delta": 1,
+          "levels_completed_after": 1,
+          "levels_completed_before": 0,
+          "positive_command": {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 34,
+              "y": 51
+            }
+          },
+          "positive_step": 7,
+          "reset_visual_digest": "95cd35ef39b9d52b",
+          "state_shape": [
+            64,
+            64
+          ],
+          "terminal_win": false
+        },
+        "protocol": "BOUNDED_BINARY_TOGGLE_SUBMIT_ENUMERATION",
+        "protocol_is_bounded": true,
+        "status": "POSITIVE_ACQUIRED",
+        "submit_action_identity": "ACTION6::{\"x\":34,\"y\":51}",
+        "toggle_action_identities": [
+          "ACTION6::{\"x\":20,\"y\":42}",
+          "ACTION6::{\"x\":25,\"y\":42}",
+          "ACTION6::{\"x\":30,\"y\":42}",
+          "ACTION6::{\"x\":35,\"y\":42}",
+          "ACTION6::{\"x\":40,\"y\":42}",
+          "ACTION6::{\"x\":21,\"y\":44}",
+          "ACTION6::{\"x\":26,\"y\":44}",
+          "ACTION6::{\"x\":31,\"y\":44}",
+          "ACTION6::{\"x\":36,\"y\":44}",
+          "ACTION6::{\"x\":41,\"y\":44}"
+        ],
+        "toggle_count": 10
+      },
+      "game_id": "tn36-ab4f63cc",
+      "independent_replay": {
+        "actions_executed": 7,
+        "after_visual_digest_match": true,
+        "before_visual_digest_match": true,
+        "commands_exactly_replayed": true,
+        "exact_replay_verified": true,
+        "observed_proof": {
+          "after_visual_digest": "a2f95e098c948b18",
+          "before_visual_digest": "1188520fa54c7420",
+          "game_state_after": "NOT_FINISHED",
+          "level_delta": 1,
+          "levels_completed_after": 1,
+          "levels_completed_before": 0,
+          "positive_command": {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 34,
+              "y": 51
+            }
+          },
+          "positive_step": 7,
+          "reset_visual_digest": "95cd35ef39b9d52b",
+          "state_shape": [
+            64,
+            64
+          ],
+          "terminal_win": false
+        },
+        "outcome_match": true,
+        "reset_visual_digest_match": true,
+        "state_shape_match": true,
+        "status": "EXACT_POSITIVE_REPLAY_VERIFIED"
+      }
+    },
+    {
+      "admission": {
+        "admission_reason": "EXACT_TARGET_GAME_POSITIVE_REPLAY_AVAILABLE",
+        "admission_status": "EXACT_TARGET_SIGNAL_ADMITTED",
+        "exact_independent_replay_verified": true,
+        "exact_target_goal_signal_entries": 1,
+        "game_id": "wa30-ee6fef47",
+        "planner_activation_authorized": true,
+        "positive_transition_acquired": true
+      },
+      "discovery": {
+        "actions_executed": 50,
+        "all_selected_actions_legal": true,
+        "calibration_action_executions": 0,
+        "candidate_action_bound": 50,
+        "candidate_origin": "BOUNDED_BLACK_BOX_SALIENT_OBJECT_SEARCH",
+        "candidate_sequences_tested": 1,
+        "commands": [
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION4",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION1",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION3",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION2",
+            "action_args": {}
+          },
+          {
+            "action": "ACTION5",
+            "action_args": {}
+          }
+        ],
+        "configuration_space_size": 1,
+        "configurations_tested": 1,
+        "future_outcomes_used_for_action_ranking": false,
+        "game_source_read": false,
+        "maximum_action_execution_budget": 50,
+        "positive_step": 50,
+        "positive_transition_found": true,
+        "proof": {
+          "after_visual_digest": "3c30e17de1226e2b",
+          "before_visual_digest": "d8e1134efabf42b1",
+          "game_state_after": "NOT_FINISHED",
+          "level_delta": 1,
+          "levels_completed_after": 1,
+          "levels_completed_before": 0,
+          "positive_command": {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          "positive_step": 50,
+          "reset_visual_digest": "dae9592860684892",
+          "state_shape": [
+            64,
+            64
+          ],
+          "terminal_win": false
+        },
+        "protocol": "OBSERVATION_DERIVED_SALIENT_OBJECT_TRANSPORT_REPLAY",
+        "protocol_is_bounded": true,
+        "status": "POSITIVE_ACQUIRED"
+      },
+      "game_id": "wa30-ee6fef47",
+      "independent_replay": {
+        "actions_executed": 50,
+        "after_visual_digest_match": true,
+        "before_visual_digest_match": true,
+        "commands_exactly_replayed": true,
+        "exact_replay_verified": true,
+        "observed_proof": {
+          "after_visual_digest": "3c30e17de1226e2b",
+          "before_visual_digest": "d8e1134efabf42b1",
+          "game_state_after": "NOT_FINISHED",
+          "level_delta": 1,
+          "levels_completed_after": 1,
+          "levels_completed_before": 0,
+          "positive_command": {
+            "action": "ACTION5",
+            "action_args": {}
+          },
+          "positive_step": 50,
+          "reset_visual_digest": "dae9592860684892",
+          "state_shape": [
+            64,
+            64
+          ],
+          "terminal_win": false
+        },
+        "outcome_match": true,
+        "reset_visual_digest_match": true,
+        "state_shape_match": true,
+        "status": "EXACT_POSITIVE_REPLAY_VERIFIED"
+      }
+    }
+  ],
+  "target_admission": {
+    "all_target_games_admitted": true,
+    "cross_game_transfer_performed": false,
+    "exact_target_goal_signal_entries": 2,
+    "planner_activation_authorized": true,
+    "target_games": [
+      {
+        "admission_reason": "EXACT_TARGET_GAME_POSITIVE_REPLAY_AVAILABLE",
+        "admission_status": "EXACT_TARGET_SIGNAL_ADMITTED",
+        "exact_independent_replay_verified": true,
+        "exact_target_goal_signal_entries": 1,
+        "game_id": "tn36-ab4f63cc",
+        "planner_activation_authorized": true,
+        "positive_transition_acquired": true
+      },
+      {
+        "admission_reason": "EXACT_TARGET_GAME_POSITIVE_REPLAY_AVAILABLE",
+        "admission_status": "EXACT_TARGET_SIGNAL_ADMITTED",
+        "exact_independent_replay_verified": true,
+        "exact_target_goal_signal_entries": 1,
+        "game_id": "wa30-ee6fef47",
+        "planner_activation_authorized": true,
+        "positive_transition_acquired": true
+      }
+    ],
+    "target_games_admitted": 2,
+    "target_games_audited": 2
+  },
+  "truth_status": "NOT_REEVALUATED_BY_SAGE_8G",
+  "wrong_confirmations": 0
+}
