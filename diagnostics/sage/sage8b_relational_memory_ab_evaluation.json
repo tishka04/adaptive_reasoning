@@ -1,0 +1,3566 @@
+{
+  "a33_mutated": false,
+  "comparative_evaluation_performed": true,
+  "config": {
+    "a34_2_path": "diagnostics\\a34\\control_dependent_relational_usage_probe.json",
+    "a34_3_path": "diagnostics\\a34\\parameterized_relational_usage_probe.json",
+    "artifacts_not_modified": [
+      "A33.3",
+      "A33.4",
+      "A34.2",
+      "A34.3"
+    ],
+    "environments_dir": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\environment_files",
+    "evaluation_design": {
+      "all_eleven_registered_contexts_required": true,
+      "local_signal_gain_is_not_arc_score_gain": true,
+      "no_memory_arm_uses_registered_lower_effect_comparator": true,
+      "paired_exact_context_replays": true,
+      "policy_target_must_pass_live_action_selection": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "same_prefix_between_arms": true,
+      "secondary_metrics": [
+        "local_patch_before_after"
+      ],
+      "technical_replays_not_counted_as_independent_episodes": true,
+      "with_memory_arm_uses_sage8a_policy_decision": true
+    },
+    "inputs_read": [
+      "SAGE.8a_POLICY",
+      "A34.2_REPLAYS",
+      "A34.3_REPLAYS"
+    ],
+    "policy_path": "diagnostics\\sage\\sage8a_relational_memory_policy.json",
+    "schema_version": "sage.relational_memory_ab_evaluation.v1"
+  },
+  "confirmation_performed": false,
+  "evaluation_specifications": [
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION3",
+      "equivalent_action_args": {},
+      "evaluation_id": "sage8b::paired::001",
+      "game_id": "wa30-ee6fef47",
+      "memory_action": "ACTION2",
+      "memory_action_args": {},
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION1",
+      "no_memory_action_args": {},
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.2",
+      "source_request_id": "m2m3::sage6a::live_mini_frontier::050::0048",
+      "source_step": 48,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION3",
+      "equivalent_action_args": {},
+      "evaluation_id": "sage8b::paired::002",
+      "game_id": "wa30-ee6fef47",
+      "memory_action": "ACTION2",
+      "memory_action_args": {},
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION1",
+      "no_memory_action_args": {},
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.2",
+      "source_request_id": "m2m3::sage6a::live_mini_frontier::150::0132",
+      "source_step": 132,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 300,
+      "context_snapshot_hash": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION3",
+      "equivalent_action_args": {},
+      "evaluation_id": "sage8b::paired::003",
+      "game_id": "wa30-ee6fef47",
+      "memory_action": "ACTION2",
+      "memory_action_args": {},
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION1",
+      "no_memory_action_args": {},
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.2",
+      "source_request_id": "m2m3::sage6a::live_mini_frontier::300::0024",
+      "source_step": 24,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::004",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0033",
+      "source_step": 33,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::005",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0025",
+      "source_step": 25,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::006",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::150::0029",
+      "source_step": 29,
+      "technical_replay_count": 1
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::007",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0049",
+      "source_step": 49,
+      "technical_replay_count": 2
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::008",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0041",
+      "source_step": 41,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::009",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::150::0039",
+      "source_step": 39,
+      "technical_replay_count": 1
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::010",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0017",
+      "source_step": 17,
+      "technical_replay_count": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evaluation_id": "sage8b::paired::011",
+      "game_id": "tn36-ab4f63cc",
+      "memory_action": "ACTION6",
+      "memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "replay_selected_without_outcome_read": true,
+      "replay_source": "A34.3",
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::150::0019",
+      "source_step": 19,
+      "technical_replay_count": 1
+    }
+  ],
+  "gate": {
+    "all_eleven_exact_contexts_evaluated_once": true,
+    "all_paired_replays_exact": true,
+    "both_games_evaluated": true,
+    "levels_completed_recorded_as_primary": true,
+    "memory_policy_applied_in_every_treatment_arm": true,
+    "no_truth_reevaluation_or_support_counting": true,
+    "policy_targets_pass_live_selection": true,
+    "same_prefix_used_between_arms": true,
+    "win_rate_recorded_as_primary": true
+  },
+  "levels_completed": 0,
+  "live_replay_execution_performed": true,
+  "outcome_status": "SAGE_RELATIONAL_MEMORY_LOCAL_GAIN_WITHOUT_ARC_SCORE_GAIN",
+  "paired_episodes": [
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::001",
+      "game_id": "wa30-ee6fef47",
+      "levels_completed_before": 0,
+      "local_signal_gain": 32.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION1",
+      "no_memory_action_args": {},
+      "no_memory_arm": {
+        "action": "ACTION1",
+        "action_args": {},
+        "after_signature": "{\"digest\":\"a5ef53e347ba0d1e\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION1",
+          "action_args": {},
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 1,
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 1,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "replay_state_signature": "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 1.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::wa30::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.3",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION2",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.2",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage6a::live_mini_frontier::050::0048",
+      "source_step": 48,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION2",
+      "with_memory_action_args": {},
+      "with_memory_arm": {
+        "action": "ACTION2",
+        "action_args": {},
+        "after_signature": "{\"digest\":\"c126c352c55fef3a\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION2",
+          "action_args": {},
+          "changed": true,
+          "changed_cell_ratio": 0.008057,
+          "changed_pixels": 33,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 33,
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.008057,
+          "changed_pixels": 33,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 33,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "replay_state_signature": "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 33.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::002",
+      "game_id": "wa30-ee6fef47",
+      "levels_completed_before": 0,
+      "local_signal_gain": 32.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION1",
+      "no_memory_action_args": {},
+      "no_memory_arm": {
+        "action": "ACTION1",
+        "action_args": {},
+        "after_signature": "{\"digest\":\"060b6f7a6e7642ad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION1",
+          "action_args": {},
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 1,
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 1,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "replay_state_signature": "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 1.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::wa30::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.3",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION2",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.2",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage6a::live_mini_frontier::150::0132",
+      "source_step": 132,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION2",
+      "with_memory_action_args": {},
+      "with_memory_arm": {
+        "action": "ACTION2",
+        "action_args": {},
+        "after_signature": "{\"digest\":\"46be7fdd1b94ecad\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION2",
+          "action_args": {},
+          "changed": true,
+          "changed_cell_ratio": 0.008057,
+          "changed_pixels": 33,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 33,
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.008057,
+          "changed_pixels": 33,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 33,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "replay_state_signature": "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 33.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 300,
+      "context_snapshot_hash": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::003",
+      "game_id": "wa30-ee6fef47",
+      "levels_completed_before": 0,
+      "local_signal_gain": 32.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION1",
+      "no_memory_action_args": {},
+      "no_memory_arm": {
+        "action": "ACTION1",
+        "action_args": {},
+        "after_signature": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION1",
+          "action_args": {},
+          "changed": false,
+          "changed_cell_ratio": 0.0,
+          "changed_pixels": 0,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "measurement_for_delta": {
+          "changed": false,
+          "changed_cell_ratio": 0.0,
+          "changed_pixels": 0,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "replay_state_signature": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::wa30::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.3",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION2",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.2",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage6a::live_mini_frontier::300::0024",
+      "source_step": 24,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION2",
+      "with_memory_action_args": {},
+      "with_memory_arm": {
+        "action": "ACTION2",
+        "action_args": {},
+        "after_signature": "{\"digest\":\"7e84b1bfe41d08c9\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION2",
+          "action_args": {},
+          "changed": true,
+          "changed_cell_ratio": 0.007812,
+          "changed_pixels": 32,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 32,
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.007812,
+          "changed_pixels": 32,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 32,
+          "local_patch_available": false,
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "changed_pixels_fallback_for_unparameterized_local_patch"
+        },
+        "replay_state_signature": "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 32.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::004",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"3fa3771eea9e56f8\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0033",
+      "source_step": 33,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"38e2993ff96e0c6b\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::005",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"e5018d5ddc0e71ee\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0025",
+      "source_step": 25,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"3be6e02c357e0b27\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::006",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"7ed30912dc51b0a1\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::150::0029",
+      "source_step": 29,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"db71c670d14daeec\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::007",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"7eb4c6869ea734a3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0049",
+      "source_step": 49,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"c03a4fc6b678dd5a\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::008",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"c5b57e9271262fbc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0041",
+      "source_step": 41,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"cfb8c53f3a071981\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::009",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"77cb5c2ec0cd5e2a\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::150::0039",
+      "source_step": 39,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"e6bab2b91679ca30\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 50,
+      "context_snapshot_hash": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::010",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"0ba3b56e023fdfec\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::050::0017",
+      "source_step": 17,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"ca0308b5f22d29c0\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "budget": 150,
+      "context_snapshot_hash": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+      "evaluation_id": "sage8b::paired::011",
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed_before": 0,
+      "local_signal_gain": 2.0,
+      "local_signal_is_secondary_only": true,
+      "metric": "local_patch_before_after",
+      "no_memory_action": "ACTION6",
+      "no_memory_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "no_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "after_signature": "{\"digest\":\"f18d4b0619c842a7\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_no_memory",
+        "before_signature": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 34,
+            "y": 51
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 0,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000244,
+          "changed_pixels": 1,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 0,
+          "local_patch_after": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              5,
+              5,
+              5
+            ],
+            [
+              5,
+              9,
+              9
+            ],
+            [
+              9,
+              9,
+              9
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            50,
+            33,
+            52,
+            35
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "no_memory_levels_completed_after": 0,
+      "no_memory_levels_completed_delta": 0,
+      "no_memory_local_signal": 0.0,
+      "no_memory_win": false,
+      "policy_decision": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "policy_target_live_action_selection_passed": true,
+      "primary_metrics": [
+        "levels_completed",
+        "win_rate"
+      ],
+      "relational_memory_applied": true,
+      "relational_memory_consulted": true,
+      "replay_exact_both_arms": true,
+      "replay_source": "A34.3",
+      "same_prefix_between_arms": true,
+      "source_request_id": "m2m3::sage7a::live_mini_frontier::150::0019",
+      "source_step": 19,
+      "support_counted": 0,
+      "truth_reevaluated": false,
+      "with_memory_action": "ACTION6",
+      "with_memory_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "with_memory_arm": {
+        "action": "ACTION6",
+        "action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "after_signature": "{\"digest\":\"769f72b82fee634f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "arm": "sage8b_with_relational_memory",
+        "before_signature": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "context_snapshot_hash_verified": true,
+        "measurement": {
+          "action": "ACTION6",
+          "action_args": {
+            "x": 25,
+            "y": 42
+          },
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal": 2,
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "measurement_for_delta": {
+          "changed": true,
+          "changed_cell_ratio": 0.000977,
+          "changed_pixels": 4,
+          "grid_shape_after": [
+            64,
+            64
+          ],
+          "grid_shape_before": [
+            64,
+            64
+          ],
+          "local_changed_pixels": 2,
+          "local_patch_after": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "local_patch_available": true,
+          "local_patch_before": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "measurable": true,
+          "metric": "local_patch_before_after",
+          "observed_signal_source": "local_changed_pixels",
+          "patch_bbox": [
+            41,
+            24,
+            43,
+            26
+          ]
+        },
+        "replay_state_signature": "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "status": "EXECUTED"
+      },
+      "with_memory_levels_completed_after": 0,
+      "with_memory_levels_completed_delta": 0,
+      "with_memory_local_signal": 2.0,
+      "with_memory_win": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "primary_arc_progress_improved": false,
+  "primary_metrics": {
+    "levels_completed": {
+      "absolute_delta_gain": 0,
+      "improved": false,
+      "no_memory_max_after": 0,
+      "no_memory_total_delta": 0,
+      "with_memory_max_after": 0,
+      "with_memory_total_delta": 0
+    },
+    "primary_metric_order": [
+      "levels_completed",
+      "win_rate"
+    ],
+    "win_rate": {
+      "absolute_gain": 0.0,
+      "episodes_per_arm": 11,
+      "improved": false,
+      "no_memory": 0.0,
+      "no_memory_wins": 0,
+      "with_memory": 0.0,
+      "with_memory_wins": 0
+    }
+  },
+  "refutation_performed": false,
+  "registry_support_recounted": false,
+  "revision_performed": false,
+  "scientific_review_performed": false,
+  "scope_generalization_performed": false,
+  "secondary_metrics": {
+    "absolute_gain": 112.0,
+    "classification": "SECONDARY_DIAGNOSTIC_ONLY",
+    "counted_as_level_completion": false,
+    "counted_as_win": false,
+    "episodes_with_positive_gain": 11,
+    "improved": true,
+    "metric": "local_patch_before_after",
+    "no_memory_total": 2.0,
+    "with_memory_total": 114.0
+  },
+  "status": "EVALUATED",
+  "summary": {
+    "exact_paired_replays": 11,
+    "games_evaluated": [
+      "tn36-ab4f63cc",
+      "wa30-ee6fef47"
+    ],
+    "gate_passed": true,
+    "levels_completed_absolute_gain": 0,
+    "levels_completed_improved": false,
+    "local_signal_counted_as_arc_progress": false,
+    "memory_policy_applications": 11,
+    "no_memory_levels_completed_delta_total": 0,
+    "no_memory_win_rate": 0.0,
+    "no_memory_wins": 0,
+    "outcome_status": "SAGE_RELATIONAL_MEMORY_LOCAL_GAIN_WITHOUT_ARC_SCORE_GAIN",
+    "paired_episodes_evaluated": 11,
+    "primary_arc_progress_improved": false,
+    "scope_generalization_performed": false,
+    "secondary_local_signal_gain": 112.0,
+    "secondary_local_signal_improved": true,
+    "support_counted": 0,
+    "truth_reevaluations": 0,
+    "win_rate_absolute_gain": 0.0,
+    "win_rate_improved": false,
+    "with_memory_levels_completed_delta_total": 0,
+    "with_memory_win_rate": 0.0,
+    "with_memory_wins": 0,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_REEVALUATED_BY_SAGE_8B",
+  "win_rate": 0.0,
+  "wrong_confirmations": 0
+}

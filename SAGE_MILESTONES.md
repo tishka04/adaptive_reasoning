@@ -3612,3 +3612,55 @@ niveau ou de victoire.
 Suite requise : SAGE.8b doit comparer avec et sans memoire sur les memes replays,
 en prenant `levels_completed` et `win_rate` comme metriques principales et le
 signal local uniquement comme metrique secondaire.
+
+## SAGE.8b - relational memory paired A/B evaluation
+
+Objectif :
+
+- Rejouer les onze contextes scope-locked avec un bras sans memoire et un bras
+  utilisant la decision executable de SAGE.8a.
+- Utiliser exactement le meme prefixe dans les deux bras et verifier le hash de
+  contexte avant l'action evaluee.
+- Mesurer en premier `levels_completed` et `win_rate`.
+- Garder `local_patch_before_after` comme diagnostic secondaire, sans le
+  convertir en victoire ou en niveau termine.
+
+Ajouts :
+
+- `theory/sage/relational_memory_ab_evaluation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_relational_memory_ab_evaluation.py`
+- `diagnostics/sage/sage8b_relational_memory_ab_evaluation.json`
+
+Run du 2026-07-19 :
+
+- `paired_episodes_evaluated=11`
+- `games_evaluated=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `memory_policy_applications=11`
+- `exact_paired_replays=11`
+- `no_memory_levels_completed_delta_total=0`
+- `with_memory_levels_completed_delta_total=0`
+- `levels_completed_absolute_gain=0`
+- `levels_completed_improved=false`
+- `no_memory_wins=0`
+- `with_memory_wins=0`
+- `no_memory_win_rate=0.0`
+- `with_memory_win_rate=0.0`
+- `win_rate_absolute_gain=0.0`
+- `win_rate_improved=false`
+- `secondary_local_signal_gain=112.0`
+- `secondary_local_signal_improved=true`
+- `primary_arc_progress_improved=false`
+- `local_signal_counted_as_arc_progress=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_RELATIONAL_MEMORY_LOCAL_GAIN_WITHOUT_ARC_SCORE_GAIN`
+
+Lecture : la memoire relationnelle influence correctement les onze decisions et
+ameliore le signal local dans chacune d'elles (+96 sur wa30, +16 sur tn36).
+Cependant, dans cet horizon d'une action apres le prefixe, elle n'augmente ni le
+nombre de niveaux termines ni le taux de victoire. Le resultat est donc un gain
+fonctionnel local prouve, mais pas encore un gain ARC-AGI-3 primaire.
+
+Suite requise : prolonger les traitements apres la decision memoire sur un
+horizon multi-action et evaluer si le gain local se convertit en progression de
+niveau ou en victoire, sans reutiliser les outcomes pour choisir les actions.
