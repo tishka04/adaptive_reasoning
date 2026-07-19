@@ -31,7 +31,12 @@ __all__ = [
     "DEFAULT_SAGE7B_PARAMETERIZED_EXECUTION_PATH",
     "DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH",
     "DEFAULT_SAGE7D_A32_HANDOFF_PATH",
+    "DEFAULT_SAGE8A_RELATIONAL_MEMORY_POLICY_PATH",
     "A32ReviewCandidateItem",
+    "PolicyActionOption",
+    "RelationalMemoryPolicyEntry",
+    "apply_relational_memory_policy",
+    "build_relational_memory_policy_entries",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
     "evaluate_progress_stall_trigger",
@@ -64,6 +69,7 @@ __all__ = [
     "run_sage7b_parameterized_execution",
     "run_sage7c_parameterized_consolidation",
     "run_sage7d_a32_handoff",
+    "run_sage8a_relational_memory_policy_integration",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -93,6 +99,7 @@ __all__ = [
     "write_sage7b_parameterized_execution",
     "write_sage7c_parameterized_consolidation",
     "write_sage7d_a32_handoff",
+    "write_sage8a_relational_memory_policy",
 ]
 
 
@@ -675,9 +682,7 @@ def __getattr__(name: str):
             "DEFAULT_SAGE7B_PARAMETERIZED_EXECUTION_PATH": (
                 DEFAULT_SAGE7B_PARAMETERIZED_EXECUTION_PATH
             ),
-            "run_sage7b_parameterized_execution": (
-                run_sage7b_parameterized_execution
-            ),
+            "run_sage7b_parameterized_execution": (run_sage7b_parameterized_execution),
             "write_sage7b_parameterized_execution": (
                 write_sage7b_parameterized_execution
             ),
@@ -719,5 +724,41 @@ def __getattr__(name: str):
             "DEFAULT_SAGE7D_A32_HANDOFF_PATH": DEFAULT_SAGE7D_A32_HANDOFF_PATH,
             "run_sage7d_a32_handoff": run_sage7d_a32_handoff,
             "write_sage7d_a32_handoff": write_sage7d_a32_handoff,
+        }[name]
+    if name in {
+        "DEFAULT_SAGE8A_RELATIONAL_MEMORY_POLICY_PATH",
+        "PolicyActionOption",
+        "RelationalMemoryPolicyEntry",
+        "apply_relational_memory_policy",
+        "build_relational_memory_policy_entries",
+        "run_sage8a_relational_memory_policy_integration",
+        "write_sage8a_relational_memory_policy",
+    }:
+        from .relational_memory_policy import (
+            DEFAULT_SAGE8A_RELATIONAL_MEMORY_POLICY_PATH,
+            PolicyActionOption,
+            RelationalMemoryPolicyEntry,
+            apply_relational_memory_policy,
+            build_relational_memory_policy_entries,
+            run_sage8a_relational_memory_policy_integration,
+            write_sage8a_relational_memory_policy,
+        )
+
+        return {
+            "DEFAULT_SAGE8A_RELATIONAL_MEMORY_POLICY_PATH": (
+                DEFAULT_SAGE8A_RELATIONAL_MEMORY_POLICY_PATH
+            ),
+            "PolicyActionOption": PolicyActionOption,
+            "RelationalMemoryPolicyEntry": RelationalMemoryPolicyEntry,
+            "apply_relational_memory_policy": apply_relational_memory_policy,
+            "build_relational_memory_policy_entries": (
+                build_relational_memory_policy_entries
+            ),
+            "run_sage8a_relational_memory_policy_integration": (
+                run_sage8a_relational_memory_policy_integration
+            ),
+            "write_sage8a_relational_memory_policy": (
+                write_sage8a_relational_memory_policy
+            ),
         }[name]
     raise AttributeError(name)

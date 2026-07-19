@@ -1,0 +1,428 @@
+{
+  "a33_mutated": false,
+  "comparative_evaluation_performed": false,
+  "config": {
+    "a33_3_registry_path": "diagnostics\\a33\\control_dependent_relational_registry.json",
+    "a33_4_registry_path": "diagnostics\\a33\\parameterized_relational_registry.json",
+    "application_policy": {
+      "autonomous_effect_is_never_assumed": true,
+      "equivalent_comparator_is_never_overridden": true,
+      "exact_context_hash_match_required": true,
+      "exact_game_match_required": true,
+      "exact_lower_effect_comparator_match_required": true,
+      "out_of_scope_falls_back_unchanged": true,
+      "registry_support_is_not_recounted": true,
+      "registry_truth_is_not_reevaluated": true,
+      "selected_action_must_be_live_legal": true
+    },
+    "artifacts_not_modified": [
+      "A33.1",
+      "A33.2",
+      "A33.3",
+      "A33.4"
+    ],
+    "inputs_read": [
+      "A33.3",
+      "A33.4"
+    ],
+    "schema_version": "sage.relational_memory_policy.v1"
+  },
+  "confirmation_performed": false,
+  "gate": {
+    "all_equivalent_comparators_preserved": true,
+    "all_exact_lower_comparators_replaced": true,
+    "both_relational_registries_compiled_once": true,
+    "policy_does_not_reevaluate_or_recount": true,
+    "wa30_and_tn36_scopes_present": true,
+    "wrong_confirmations_zero": true,
+    "wrong_contexts_fall_back_unchanged": true,
+    "wrong_games_fall_back_unchanged": true
+  },
+  "integration_audit": [
+    {
+      "equivalent_comparator_audit": {
+        "context_scope_match": true,
+        "decision_reason": "EQUIVALENT_COMPARATOR_PRESERVED",
+        "equivalent_comparator_preserved": true,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::wa30::001",
+        "proposed_lower_effect_comparator_match": false,
+        "registry_source": "A33.3",
+        "relational_memory_applied": false,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION3",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "exact_context_application": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::wa30::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.3",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION2",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "game_id": "wa30-ee6fef47",
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "registry_source": "A33.3",
+      "wrong_context_audit": {
+        "context_scope_match": false,
+        "decision_reason": "CONTEXT_OUT_OF_SCOPE",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": false,
+        "policy_entry_id": "",
+        "proposed_lower_effect_comparator_match": false,
+        "registry_source": "",
+        "relational_memory_applied": false,
+        "relational_memory_consulted": true,
+        "scope_match": false,
+        "selected_action": "ACTION1",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "wrong_game_audit": {
+        "context_scope_match": false,
+        "decision_reason": "GAME_OUT_OF_SCOPE",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": false,
+        "metric_scope_match": false,
+        "policy_entry_id": "",
+        "proposed_lower_effect_comparator_match": false,
+        "registry_source": "",
+        "relational_memory_applied": false,
+        "relational_memory_consulted": true,
+        "scope_match": false,
+        "selected_action": "ACTION1",
+        "selected_action_args": {},
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      }
+    },
+    {
+      "equivalent_comparator_audit": {
+        "context_scope_match": true,
+        "decision_reason": "EQUIVALENT_COMPARATOR_PRESERVED",
+        "equivalent_comparator_preserved": true,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": false,
+        "registry_source": "A33.4",
+        "relational_memory_applied": false,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "exact_context_application": {
+        "context_scope_match": true,
+        "decision_reason": "LOWER_EFFECT_COMPARATOR_MATCH",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": true,
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "proposed_lower_effect_comparator_match": true,
+        "registry_source": "A33.4",
+        "relational_memory_applied": true,
+        "relational_memory_consulted": true,
+        "scope_match": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "game_id": "tn36-ab4f63cc",
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "registry_source": "A33.4",
+      "wrong_context_audit": {
+        "context_scope_match": false,
+        "decision_reason": "CONTEXT_OUT_OF_SCOPE",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": true,
+        "metric_scope_match": false,
+        "policy_entry_id": "",
+        "proposed_lower_effect_comparator_match": false,
+        "registry_source": "",
+        "relational_memory_applied": false,
+        "relational_memory_consulted": true,
+        "scope_match": false,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      },
+      "wrong_game_audit": {
+        "context_scope_match": false,
+        "decision_reason": "GAME_OUT_OF_SCOPE",
+        "equivalent_comparator_preserved": false,
+        "game_scope_match": false,
+        "metric_scope_match": false,
+        "policy_entry_id": "",
+        "proposed_lower_effect_comparator_match": false,
+        "registry_source": "",
+        "relational_memory_applied": false,
+        "relational_memory_consulted": true,
+        "scope_match": false,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "selected_action_live_legal": true,
+        "support_counted": 0,
+        "truth_reevaluated": false,
+        "wrong_confirmations": 0
+      }
+    }
+  ],
+  "outcome_status": "SAGE_RELATIONAL_MEMORY_POLICY_READY_FOR_COMPARISON",
+  "policy": {
+    "application_mode": "EXACT_SCOPE_LOWER_EFFECT_COMPARATOR_REPLACEMENT",
+    "enabled": true,
+    "entries": [
+      {
+        "autonomous_effect_not_assumed": true,
+        "confirmed_support": 3,
+        "context_snapshot_hashes": [
+          "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+        ],
+        "equivalent_action": "ACTION3",
+        "equivalent_action_args": {},
+        "evidence_notes": [
+          "replace_only_recorded_action1_lower_effect_comparator",
+          "preserve_action3_equivalent_comparator",
+          "apply_only_in_three_exact_wa30_context_hashes"
+        ],
+        "game_id": "wa30-ee6fef47",
+        "lower_effect_action": "ACTION1",
+        "lower_effect_action_args": {},
+        "metric": "local_patch_before_after",
+        "policy_entry_id": "sage8a::relational_memory::wa30::001",
+        "registry_entry_type": "CONTROL_DEPENDENT_RELATIONAL_CONTRAST",
+        "registry_key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+        "registry_source": "A33.3",
+        "scope_action_identity_locked": true,
+        "scope_contexts_locked": true,
+        "scope_game_locked": true,
+        "scope_metric_locked": true,
+        "selected_action": "ACTION2",
+        "selected_action_args": {},
+        "support_recounted_by_policy": false,
+        "truth_reevaluated_by_policy": false,
+        "wrong_confirmations": 0
+      },
+      {
+        "autonomous_effect_not_assumed": true,
+        "confirmed_support": 8,
+        "context_snapshot_hashes": [
+          "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+        ],
+        "equivalent_action": "ACTION6",
+        "equivalent_action_args": {
+          "x": 41,
+          "y": 44
+        },
+        "evidence_notes": [
+          "replace_only_recorded_x34_y51_lower_effect_variant",
+          "preserve_x41_y44_equivalent_variant",
+          "apply_only_in_eight_exact_tn36_context_hashes",
+          "parameter_variants_remain_one_action_family"
+        ],
+        "game_id": "tn36-ab4f63cc",
+        "lower_effect_action": "ACTION6",
+        "lower_effect_action_args": {
+          "x": 34,
+          "y": 51
+        },
+        "metric": "local_patch_before_after",
+        "policy_entry_id": "sage8a::relational_memory::tn36::001",
+        "registry_entry_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+        "registry_key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+        "registry_source": "A33.4",
+        "scope_action_identity_locked": true,
+        "scope_contexts_locked": true,
+        "scope_game_locked": true,
+        "scope_metric_locked": true,
+        "selected_action": "ACTION6",
+        "selected_action_args": {
+          "x": 25,
+          "y": 42
+        },
+        "support_recounted_by_policy": false,
+        "truth_reevaluated_by_policy": false,
+        "wrong_confirmations": 0
+      }
+    ],
+    "fallback_policy": "PRESERVE_PROPOSED_ACTION_UNCHANGED",
+    "parameterized_variants_counted_as_distinct_actions": false,
+    "policy_id": "sage8a::scope_locked_relational_memory_policy",
+    "policy_version": 1,
+    "support": 0,
+    "truth_status": "NOT_REEVALUATED_BY_SAGE_8A",
+    "wrong_confirmations": 0
+  },
+  "policy_entries": [
+    {
+      "autonomous_effect_not_assumed": true,
+      "confirmed_support": 3,
+      "context_snapshot_hashes": [
+        "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "equivalent_action": "ACTION3",
+      "equivalent_action_args": {},
+      "evidence_notes": [
+        "replace_only_recorded_action1_lower_effect_comparator",
+        "preserve_action3_equivalent_comparator",
+        "apply_only_in_three_exact_wa30_context_hashes"
+      ],
+      "game_id": "wa30-ee6fef47",
+      "lower_effect_action": "ACTION1",
+      "lower_effect_action_args": {},
+      "metric": "local_patch_before_after",
+      "policy_entry_id": "sage8a::relational_memory::wa30::001",
+      "registry_entry_type": "CONTROL_DEPENDENT_RELATIONAL_CONTRAST",
+      "registry_key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+      "registry_source": "A33.3",
+      "scope_action_identity_locked": true,
+      "scope_contexts_locked": true,
+      "scope_game_locked": true,
+      "scope_metric_locked": true,
+      "selected_action": "ACTION2",
+      "selected_action_args": {},
+      "support_recounted_by_policy": false,
+      "truth_reevaluated_by_policy": false,
+      "wrong_confirmations": 0
+    },
+    {
+      "autonomous_effect_not_assumed": true,
+      "confirmed_support": 8,
+      "context_snapshot_hashes": [
+        "{\"digest\":\"55120233a065f1c3\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"5792cf39df794ebd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"6f2d44f1aba6b011\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"7802d57ee54bcdde\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"93ad24c04bc41f38\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c0ad3eb55d4d2f07\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"c33f1b391687acfd\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"cffe20b1c4e1ea6f\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "equivalent_action": "ACTION6",
+      "equivalent_action_args": {
+        "x": 41,
+        "y": 44
+      },
+      "evidence_notes": [
+        "replace_only_recorded_x34_y51_lower_effect_variant",
+        "preserve_x41_y44_equivalent_variant",
+        "apply_only_in_eight_exact_tn36_context_hashes",
+        "parameter_variants_remain_one_action_family"
+      ],
+      "game_id": "tn36-ab4f63cc",
+      "lower_effect_action": "ACTION6",
+      "lower_effect_action_args": {
+        "x": 34,
+        "y": 51
+      },
+      "metric": "local_patch_before_after",
+      "policy_entry_id": "sage8a::relational_memory::tn36::001",
+      "registry_entry_type": "CONTROL_DEPENDENT_PARAMETERIZED_RELATIONAL_CONTRAST",
+      "registry_key": "a32.7::tn36-ab4f63cc::ACTION6::{\"x\":25,\"y\":42}::control_dependent_parameterized_relation::local_patch_before_after",
+      "registry_source": "A33.4",
+      "scope_action_identity_locked": true,
+      "scope_contexts_locked": true,
+      "scope_game_locked": true,
+      "scope_metric_locked": true,
+      "selected_action": "ACTION6",
+      "selected_action_args": {
+        "x": 25,
+        "y": 42
+      },
+      "support_recounted_by_policy": false,
+      "truth_reevaluated_by_policy": false,
+      "wrong_confirmations": 0
+    }
+  ],
+  "policy_integration_performed": true,
+  "ready_for_comparative_evaluation": true,
+  "refutation_performed": false,
+  "registry_support_recounted": false,
+  "revision_performed": false,
+  "scientific_review_performed": false,
+  "scope_generalization_performed": false,
+  "status": "READY",
+  "summary": {
+    "autonomous_effects_assumed": 0,
+    "comparative_evaluation_performed": false,
+    "equivalent_comparators_preserved": 2,
+    "exact_application_audits": 2,
+    "exact_context_hashes_scoped": 11,
+    "games_scoped": [
+      "tn36-ab4f63cc",
+      "wa30-ee6fef47"
+    ],
+    "gate_passed": true,
+    "outcome_status": "SAGE_RELATIONAL_MEMORY_POLICY_READY_FOR_COMPARISON",
+    "policy_entries_compiled": 2,
+    "ready_for_comparative_evaluation": true,
+    "registry_entries_consumed": 2,
+    "registry_support_recounted": 0,
+    "registry_truth_reevaluations": 0,
+    "scope_generalization_performed": false,
+    "wrong_confirmations": 0,
+    "wrong_context_overrides": 0,
+    "wrong_game_overrides": 0
+  },
+  "support": 0,
+  "truth_status": "NOT_REEVALUATED_BY_SAGE_8A",
+  "wrong_confirmations": 0
+}

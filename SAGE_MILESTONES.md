@@ -3567,3 +3567,48 @@ Suite requise apres SAGE.7d :
 SAGE.7d autorise maintenant a dire : le dossier tn36 est pret pour une revue
 A32.7 exacte. Il ne faut pas dire : A32.7 a confirme la relation, les huit
 contextes sont deja du support scientifique, ou A33.4 est autorise.
+
+## SAGE.8a - relational memory policy integration
+
+Objectif :
+
+- Consommer les relations scope-limited confirmees dans A33.3 et A33.4.
+- Compiler une politique executable qui remplace uniquement le comparateur de
+  moindre effet dans le jeu, la metrique et les hashes de contexte exacts.
+- Preserver les comparateurs equivalents et toute proposition hors scope.
+- Exiger que l'action memoire choisie soit legalement disponible au moment de
+  la decision.
+- Ne pas reevaluer la verite, recompter le support ou supposer un effet autonome.
+
+Ajouts :
+
+- `theory/sage/relational_memory_policy.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_relational_memory_policy.py`
+- `diagnostics/sage/sage8a_relational_memory_policy.json`
+
+Run du 2026-07-19 :
+
+- `registry_entries_consumed=2`
+- `policy_entries_compiled=2`
+- `games_scoped=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `exact_context_hashes_scoped=11`
+- `exact_application_audits=2`
+- `equivalent_comparators_preserved=2`
+- `wrong_context_overrides=0`
+- `wrong_game_overrides=0`
+- `registry_truth_reevaluations=0`
+- `registry_support_recounted=0`
+- `comparative_evaluation_performed=false`
+- `ready_for_comparative_evaluation=true`
+- `gate_passed=true`
+- `outcome_status=SAGE_RELATIONAL_MEMORY_POLICY_READY_FOR_COMPARISON`
+
+Lecture : SAGE sait maintenant consulter ses deux memoires relationnelles pour
+modifier une decision concrete, mais uniquement dans les onze contextes
+enregistres. SAGE.8a prouve l'integration de la politique, pas encore un gain de
+niveau ou de victoire.
+
+Suite requise : SAGE.8b doit comparer avec et sans memoire sur les memes replays,
+en prenant `levels_completed` et `win_rate` comme metriques principales et le
+signal local uniquement comme metrique secondaire.
