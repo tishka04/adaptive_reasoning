@@ -45,6 +45,7 @@ de policy en support scientifique.
 | SAGE.6c - Context-preserving event consolidation | Fait - motif +32 stable, exception neutre conservee | `theory/sage/second_unknown_game_event_consolidation.py`, `tests/test_sage_second_unknown_game_event_consolidation.py`, `diagnostics/sage/sage6c_second_unknown_game_event_consolidation.json` | Conserve 6 clusters singleton sans fusion; groupe 5 effets +32 sur les 3 budgets et 1 contexte neutre separe; frontiere compilable pour handoff mais non prete A32 car un seul controle distinct; support=0; aucun write A32/A33 |
 | SAGE.6d - Second-game handoff compiler | Fait - 4 followups pre-enregistres | `theory/sage/second_unknown_game_handoff_compiler.py`, `tests/test_sage_second_unknown_game_handoff_compiler.py`, `diagnostics/sage/sage6d_second_unknown_game_handoff.json` | Compile 1 handoff candidate-only; pre-enregistre ACTION2/ACTION3 sur un contexte stable par budget et une replication exacte ACTION2/ACTION1 du contexte neutre; conserve les 6 frontieres de contexte; aucune execution, support=0, aucun write A32/A33 |
 | SAGE.6e - Exact pre-registered followup execution | Fait - effet depend du controle candidate-only | `theory/sage/second_unknown_game_followup_execution.py`, `tests/test_sage_second_unknown_game_followup_execution.py`, `diagnostics/sage/sage6e_second_unknown_game_followup_execution.json` | Execute les 4 protocoles sans substitution; 4/4 replays exacts; ACTION2-ACTION3=0 sur les 3 budgets alors que ACTION2-ACTION1 valait +32; replication neutre ACTION2-ACTION1=0; 3 deviations pre-enregistrees, 1 condition satisfaite; support=0; aucun write A32/A33 |
+| SAGE.6f - Control-dependence consolidation and A32 eligibility | Fait - 1 frontier A32 non-verdict eligible | `theory/sage/second_unknown_game_control_dependence_consolidation.py`, `tests/test_sage_second_unknown_game_control_dependence_consolidation.py`, `diagnostics/sage/sage6f_second_unknown_game_control_dependence_consolidation.json` | Consolide 10 observations dans 6 contextes non fusionnes; garde ACTION1/ACTION3 separes; 3 paires multi-budget avec gap stable 32; exception neutre repliquee; 14/14 criteres d'eligibilite; reformule le candidat comme contraste dependant du controle; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2833,16 +2834,143 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_sage_second_unknown_game_m3_execution.py -q
 ```
 
-Suite conseillee apres SAGE.6e :
-
-1. SAGE.6f - consolider les resultats ACTION1 et ACTION3 en conservant les
-   identites de controle et les frontieres de contexte.
-2. Reevaluer ensuite l'eligibilite du dossier pour une revue A32, sans convertir
-   automatiquement la diversite de controle acquise en support scientifique.
-3. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
-   sur la base de son outcome.
+La consolidation et la reevaluation demandees ici sont realisees par SAGE.6f
+ci-dessous.
 
 SAGE.6e autorise maintenant a dire : SAGE sait executer un plan de falsification
 pre-enregistre et detecter qu'un effet apparent depend du controle choisi. Il ne
 faut pas dire : ACTION2 est sans effet, ACTION1 ou ACTION3 definit la bonne
 baseline scientifique, ou le dossier est deja eligible a une revision A32.
+
+## SAGE.6f - Control-dependence consolidation and A32 eligibility
+
+Objectif :
+
+- Consolider les six observations ACTION2/ACTION1 de SAGE.6c avec les quatre
+  followups SAGE.6e, sans nouvelle execution.
+- Conserver exactement les six clusters de contexte SAGE.6c et rattacher la
+  replication neutre a son contexte d'origine sans la compter comme contexte
+  independant.
+- Garder les identites ACTION1 et ACTION3 separees dans les groupes d'effet.
+- Construire trois comparaisons appairees ACTION1/ACTION3, une par budget.
+- Reformuler le candidat comme contraste local dependant du controle, jamais
+  comme effet ACTION2 autonome et inconditionnel.
+- Evaluer l'eligibilite a une revue A32 avec des criteres explicites : volume
+  brut, deux controles, trois contextes appaires, couverture multi-budget,
+  replication neutre, absence d'effet negatif et preservation des contextes.
+- Emettre un frontier A32 candidate-only si tous les criteres passent, sans
+  demander l'intake ni ecrire A32/A33.
+- Garder `support=0`, la quarantaine A33.2 et l'absence de verdict SAGE.
+
+Ajouts :
+
+- `theory/sage/second_unknown_game_control_dependence_consolidation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_second_unknown_game_control_dependence_consolidation.py`
+- `diagnostics/sage/sage6f_second_unknown_game_control_dependence_consolidation.json`
+
+Run du 2026-07-19 :
+
+- `game_id=wa30-ee6fef47`
+- `budgets=[50,150,300]`
+- `observation_records=10`
+- `source_sage6c_observations=6`
+- `source_sage6e_observations=4`
+- `context_clusters=6`
+- `context_clusters_preserved=6`
+- `cross_context_merges_performed=0`
+- `control_actions=[ACTION1,ACTION3]`
+- `distinct_control_actions=2`
+- `control_conditioned_effect_groups=3`
+- `paired_control_contexts=3`
+- `paired_control_budgets=[50,150,300]`
+- `paired_control_effect_gaps=[32,32,32]`
+- `paired_control_effect_gap_spread=0`
+- `action1_positive_contexts=5`
+- `action1_neutral_observations=2`
+- `action3_neutral_contexts=3`
+- `replicated_neutral_contexts=1`
+- `negative_effect_events=0`
+- `raw_support_events=5`
+- `raw_contradiction_events=0`
+- `raw_neutral_events=5`
+- `eligibility_requirements_passed=14`
+- `eligibility_requirements_total=14`
+- `missing_eligibility_requirements=[]`
+- `candidate_a32_review_frontiers=1`
+- `ready_for_A32_review=1`
+- `ready_for_A32_review_is_not_verdict=true`
+- `a32_intake_requested=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_SECOND_UNKNOWN_GAME_CONTROL_DEPENDENCE_CONSOLIDATED_A32_REVIEW_ELIGIBLE_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_6F`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Groupes conditionnes par controle :
+
+| controle | direction | observations | contextes independants | budgets | effets |
+|---|---|---:|---:|---|---|
+| ACTION1 | positive | 5 | 5 | 50/150/300 | 32/32/32/32/32 |
+| ACTION1 | neutre | 2 | 1 | 50 | 0/0 |
+| ACTION3 | neutre | 3 | 3 | 50/150/300 | 0/0/0 |
+
+Clusters consolides :
+
+| cluster | budget | step | observations | controles | statut candidate-only |
+|---|---:|---:|---:|---|---|
+| `001` | 50 | 12 | 2 | ACTION1 | neutre replique |
+| `002` | 50 | 48 | 2 | ACTION1/ACTION3 | contraste dependant du controle |
+| `003` | 150 | 132 | 2 | ACTION1/ACTION3 | contraste dependant du controle |
+| `004` | 150 | 144 | 1 | ACTION1 | positif non apparie |
+| `005` | 300 | 24 | 2 | ACTION1/ACTION3 | contraste dependant du controle |
+| `006` | 300 | 36 | 1 | ACTION1 | positif non apparie |
+
+Dans chacun des trois contextes appaires, le signal cible est reproduit entre
+les deux experiences, le delta ACTION2/ACTION1 vaut 32 et le delta
+ACTION2/ACTION3 vaut 0. Le gap conditionne par controle vaut donc 32 avec une
+dispersion nulle sur les trois budgets. La replication du cluster `001` reste
+neutre et n'ajoute pas artificiellement un contexte independant.
+
+Les quatorze criteres d'eligibilite passent. Le frontier demande a A32 de revoir
+la proposition suivante : le contraste local ACTION2 est positif contre ACTION1
+mais neutre contre ACTION3 dans les contextes wa30 appaires. Il interdit une
+revue sous la forme `STANDALONE_UNCONDITIONAL_ACTION2_EFFECT`. Cette eligibilite
+n'est ni une confirmation, ni une revision, ni une demande d'intake automatique.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.second_unknown_game_control_dependence_consolidation `
+  --source-sage6c diagnostics\sage\sage6c_second_unknown_game_event_consolidation.json `
+  --source-sage6e diagnostics\sage\sage6e_second_unknown_game_followup_execution.json `
+  --out diagnostics\sage\sage6f_second_unknown_game_control_dependence_consolidation.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_second_unknown_game_control_dependence_consolidation.py `
+  tests\test_sage_second_unknown_game_followup_execution.py `
+  tests\test_sage_second_unknown_game_handoff_compiler.py `
+  tests\test_sage_second_unknown_game_event_consolidation.py -q
+```
+
+Suite conseillee apres SAGE.6f :
+
+1. A32.6 - effectuer la revue scientifique du candidat dependant du controle,
+   en decidant notamment si ACTION1 est un comparateur valide et si
+   l'equivalence ACTION3 rend la revendication ACTION2 autonome non identifiable.
+2. Ne soumettre a A33 qu'une eventuelle decision confirmee et strictement limitee
+   a `wa30-ee6fef47` et aux conditions de controle/contextes revues.
+3. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
+   sur la base de son outcome.
+
+SAGE.6f autorise maintenant a dire : SAGE sait consolider des observations
+multi-controles sans confondre baseline, contexte et support scientifique, puis
+preparer un dossier A32 correctement reformule. Il ne faut pas dire : ACTION2 a
+une mecanique confirmee, ACTION1 est la baseline correcte, ou le frontier A32 est
+deja une decision scientifique.
