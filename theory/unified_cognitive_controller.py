@@ -58,6 +58,10 @@ from .online_terminal_objective import (
     TerminalObjectiveAssessment,
     TerminalObjectiveStatus,
 )
+from .online_temporal_goal_composition import (
+    OnlineTemporalGoalComposer,
+    TemporalPlanStatus,
+)
 from .promoted_relational_rule import PromotedRelationalRule
 from .theory_conditioned_planner import TheoryConditionedPlanner
 
@@ -84,11 +88,17 @@ class UnifiedCognitiveConfig:
     max_terminal_objective_ablations_per_objective: int = 1
     max_generated_goal_candidates: int = 10
     max_generated_goals_per_family: int = 2
+    max_temporal_plans: int = 12
+    max_temporal_plan_starts_total: int = 12
+    max_temporal_starts_per_plan: int = 2
+    max_temporal_actions_per_plan: int = 8
+    max_temporal_stalls_per_step: int = 2
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
     enable_promoted_options: bool = True
     enable_active_goal_hypotheses: bool = True
+    enable_temporal_goal_composition: bool = True
 
 
 @dataclass(frozen=True)
@@ -112,6 +122,12 @@ class CognitiveDecision:
     intervention_id: str = ""
     ablation_of_objective_id: str = ""
     predicted_goal_reductions: Tuple[str, ...] = ()
+    temporal_plan_id: str = ""
+    temporal_target_objective_id: str = ""
+    temporal_plan_status: str = ""
+    temporal_step_index: int | None = None
+    temporal_step_count: int = 0
+    temporal_step_target_distance: float | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -132,6 +148,14 @@ class CognitiveDecision:
             "intervention_id": self.intervention_id,
             "ablation_of_objective_id": self.ablation_of_objective_id,
             "predicted_goal_reductions": list(self.predicted_goal_reductions),
+            "temporal_plan_id": self.temporal_plan_id,
+            "temporal_target_objective_id": self.temporal_target_objective_id,
+            "temporal_plan_status": self.temporal_plan_status,
+            "temporal_step_index": self.temporal_step_index,
+            "temporal_step_count": self.temporal_step_count,
+            "temporal_step_target_distance": (
+                self.temporal_step_target_distance
+            ),
         }
 
 
@@ -197,6 +221,21 @@ class UnifiedCognitiveController:
                 self.config.max_terminal_objective_ablations_per_objective
             ),
         )
+        self.temporal_goals = OnlineTemporalGoalComposer(
+            max_plans=self.config.max_temporal_plans,
+            max_plan_starts_total=(
+                self.config.max_temporal_plan_starts_total
+            ),
+            max_starts_per_plan=self.config.max_temporal_starts_per_plan,
+            max_actions_per_plan=self.config.max_temporal_actions_per_plan,
+            max_stalls_per_step=self.config.max_temporal_stalls_per_step,
+            terminal_credit_window=(
+                self.config.terminal_objective_credit_window
+            ),
+            minimum_terminal_support=(
+                self.config.terminal_objective_min_support
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -226,6 +265,8 @@ class UnifiedCognitiveController:
         self._objective_experiment_decisions = 0
         self._objective_discriminator_decisions = 0
         self._objective_ablation_decisions = 0
+        self._temporal_plan_decisions = 0
+        self._temporal_outcomes: List[Dict[str, Any]] = []
 
     @property
     def theory(self):
@@ -282,6 +323,7 @@ class UnifiedCognitiveController:
                 "terminal_objective_probe",
                 "terminal_objective_discriminator",
                 "terminal_objective_ablation",
+                "temporal_subgoal_probe",
             }
         )
         aligned_before, aligned_after = _align_grids(grid_before, grid_after)
@@ -348,6 +390,7 @@ class UnifiedCognitiveController:
         self._revise_pending_predictions(update, pending)
         self._promote_confirmed_predictions()
         self._observe_pending_terminal_objective(update, pending)
+        self._observe_pending_temporal_plan(update, pending)
         self._observe_pending_option(update, pending)
         self.progress.on_action(
             grid_hash=after_hash,
@@ -398,6 +441,8 @@ class UnifiedCognitiveController:
 
         decision = self._select_escape(observation, safe_actions)
         if decision is None:
+            decision = self._select_temporal_plan(observation, safe_actions)
+        if decision is None:
             decision = self._select_promoted_option(observation, safe_actions)
         if decision is None:
             decision = self._select_objective_experiment(observation, safe_actions)
@@ -426,6 +471,7 @@ class UnifiedCognitiveController:
         """Start a fresh behavioral branch while retaining learned theory."""
         self._pending_decision = None
         self.terminal_objectives.start_branch()
+        self.temporal_goals.start_branch()
         self.progress.start_new_branch(
             current_validated_ops=self.operator_inducer.num_locked(),
             current_validated_rules=self._validated_rule_count(),
@@ -464,6 +510,9 @@ class UnifiedCognitiveController:
                 self._objective_discriminator_decisions
             ),
             "objective_ablation_decisions": self._objective_ablation_decisions,
+            "temporal_goal_composition": self.temporal_goals.summary(),
+            "temporal_plan_decisions": self._temporal_plan_decisions,
+            "recent_temporal_outcomes": self._temporal_outcomes[-10:],
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
@@ -549,6 +598,112 @@ class UnifiedCognitiveController:
                 max_per_family=self.config.max_generated_goals_per_family,
             )
         self._generated_goal_candidates = len(self.terminal_objectives.objectives())
+
+    def _select_temporal_plan(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        """Execute one guarded subgoal intervention, then force re-observation."""
+        if (
+            not self.config.enable_active_goal_hypotheses
+            or not self.config.enable_temporal_goal_composition
+        ):
+            return None
+        self.temporal_goals.compose(observation, self.terminal_objectives)
+        selection = self.temporal_goals.select_step(
+            observation,
+            self.terminal_objectives,
+        )
+        if selection is None:
+            return None
+        choice = self.objective_experiment_designer.design(
+            observation=observation,
+            store=self.terminal_objectives,
+            safe_actions=safe_actions,
+            click_actions=(
+                self._click_actions(observation)
+                if "ACTION6" in safe_actions else ()
+            ),
+            operators=self.operator_inducer.operators.values(),
+            preferred_objective_id=selection.objective_id,
+            allow_ablation=False,
+            require_selectable=False,
+        )
+        if choice is None:
+            self.temporal_goals.reject_active_step(
+                "no_safe_intervention_for_enabled_guard"
+            )
+            return None
+
+        mechanic_hypotheses: Tuple[str, ...] = ()
+        if choice.action_name == "ACTION6":
+            concrete = DesignedExperimentAction(
+                name=choice.action_name,
+                raw_action=choice.action_name,
+                action_args=dict(choice.action_data),
+            )
+            self.register_predictions(self._live_predictions(observation, [concrete]))
+            mechanic_choice = self.generic_designer.design(
+                hypotheses=list(self._predictions.values()),
+                live_grid=observation.raw_grid,
+                available_actions=[concrete],
+            )
+            if mechanic_choice is not None:
+                mechanic_hypotheses = tuple(mechanic_choice.competing_keys)
+
+        objective = self.terminal_objectives.objective(selection.objective_id)
+        assessment = (
+            None
+            if objective is None
+            else self.terminal_objectives.assess_objective(
+                objective,
+                observation,
+            )
+        )
+        if objective is not None:
+            self.terminal_objectives.record_selection(
+                objective.objective_id,
+                observation,
+                is_probe=choice.is_probe,
+                intervention_id=choice.intervention_id,
+            )
+        self._temporal_plan_decisions += 1
+        source = (
+            "temporal_subgoal_option"
+            if selection.plan_status == TemporalPlanStatus.TERMINAL_SUPPORTED
+            else "temporal_subgoal_probe"
+        )
+        return CognitiveDecision(
+            action_name=choice.action_name,
+            action_data=dict(choice.action_data),
+            source=source,
+            reason=(
+                f"{selection.reason}; execute one intervention then re-observe"
+            ),
+            confidence=(
+                0.9
+                if selection.plan_status == TemporalPlanStatus.TERMINAL_SUPPORTED
+                else 0.45
+            ),
+            competing_hypotheses=choice.competing_objective_ids,
+            mechanic_hypotheses=mechanic_hypotheses,
+            objective_id=selection.objective_id,
+            objective_status=(
+                "" if assessment is None else assessment.status.value
+            ),
+            objective_distance=selection.current_distance,
+            intervention_id=choice.intervention_id,
+            predicted_goal_reductions=(
+                choice.predicted_reduction_objective_ids
+            ),
+            temporal_plan_id=selection.plan_id,
+            temporal_target_objective_id=selection.target_objective_id,
+            temporal_plan_status=selection.plan_status.value,
+            temporal_step_index=selection.step_index,
+            temporal_step_count=selection.step_count,
+            temporal_step_target_distance=selection.target_distance,
+        )
 
     def _select_objective_experiment(
         self,
@@ -1067,6 +1222,8 @@ class UnifiedCognitiveController:
         )
         if alternative is None:
             return decision
+        if decision.temporal_plan_id:
+            self.temporal_goals.reject_active_step("safety_veto")
         return CognitiveDecision(
             action_name=alternative,
             action_data=self._default_action_data(alternative, observation),
@@ -1206,6 +1363,8 @@ class UnifiedCognitiveController:
             "terminal_objective_probe",
             "terminal_objective_discriminator",
             "terminal_objective_ablation",
+            "temporal_subgoal_probe",
+            "temporal_subgoal_option",
         }:
             return
         prediction_keys = (
@@ -1316,6 +1475,39 @@ class UnifiedCognitiveController:
             or outcome["expired_nonterminal_completions"]
         ):
             self._objective_outcomes.append(outcome)
+
+    def _observe_pending_temporal_plan(
+        self,
+        update: LiveTransitionUpdate,
+        pending: CognitiveDecision | None,
+    ) -> None:
+        """Revise ordered guards while reserving plan value for terminals."""
+        context = "" if pending is None else _transition_context_signature(
+            update,
+            pending.action_data,
+        )
+        outcome = self.temporal_goals.observe_transition(
+            update,
+            store=self.terminal_objectives,
+            plan_id="" if pending is None else pending.temporal_plan_id,
+            step_index=(
+                None if pending is None else pending.temporal_step_index
+            ),
+            objective_id="" if pending is None else pending.objective_id,
+            target_distance=(
+                None
+                if pending is None
+                else pending.temporal_step_target_distance
+            ),
+            intervention_id="" if pending is None else pending.intervention_id,
+            context_signature=context,
+        )
+        if (
+            outcome["plan_id"]
+            or outcome["terminal_success"]
+            or outcome["expired_nonterminal_completions"]
+        ):
+            self._temporal_outcomes.append(outcome)
 
     def _observe_pending_option(
         self,

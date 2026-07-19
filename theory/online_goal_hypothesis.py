@@ -318,6 +318,9 @@ class ObjectiveDiscriminatingExperimentDesigner:
         safe_actions: Sequence[str],
         click_actions: Sequence[Any] = (),
         operators: Iterable[Operator] = (),
+        preferred_objective_id: str = "",
+        allow_ablation: bool = True,
+        require_selectable: bool = True,
     ) -> ObjectiveExperimentChoice | None:
         assessments = {
             objective.objective_id: store.assess_objective(objective, observation)
@@ -328,6 +331,20 @@ class ObjectiveDiscriminatingExperimentDesigner:
             for key, assessment in assessments.items()
             if assessment.selectable
         }
+        preferred = str(preferred_objective_id)
+        if preferred:
+            objective = store.objective(preferred)
+            assessment = assessments.get(preferred)
+            if (
+                objective is None
+                or assessment is None
+                or assessment.distance is None
+                or assessment.distance <= 0.0
+                or assessment.status == TerminalObjectiveStatus.REFUTED
+                or (require_selectable and not assessment.selectable)
+            ):
+                return None
+            selectable = {preferred: assessment}
         if not selectable and not store.ablation_targets():
             return None
         interventions = _candidate_interventions(
@@ -340,12 +357,14 @@ class ObjectiveDiscriminatingExperimentDesigner:
         if not interventions:
             return None
 
-        ablation = self._design_ablation(
-            observation=observation,
-            store=store,
-            selectable=selectable,
-            interventions=interventions,
-        )
+        ablation = None
+        if allow_ablation and not preferred:
+            ablation = self._design_ablation(
+                observation=observation,
+                store=store,
+                selectable=selectable,
+                interventions=interventions,
+            )
         if ablation is not None:
             return ablation
         if not selectable:
@@ -363,7 +382,11 @@ class ObjectiveDiscriminatingExperimentDesigner:
             )
             if not affected:
                 continue
-            primary = max(affected, key=lambda key: selectable[key].priority)
+            primary = (
+                preferred
+                if preferred and preferred in affected
+                else max(affected, key=lambda key: selectable[key].priority)
+            )
             unaffected = tuple(key for key in selectable if key not in affected)
             competitor = (
                 max(unaffected, key=lambda key: selectable[key].priority)
@@ -374,6 +397,12 @@ class ObjectiveDiscriminatingExperimentDesigner:
             )
             divergence = 2.0 if competitor else (1.0 / max(1, len(affected)))
             assessment = selectable[primary]
+            effective_priority = assessment.priority
+            if effective_priority == float("-inf"):
+                objective = store.objective(primary)
+                effective_priority = (
+                    0.0 if objective is None else objective.prior_priority
+                ) + 1.0 / (1.0 + float(assessment.distance or 0.0))
             choice = ObjectiveExperimentChoice(
                 action_name=intervention.action_name,
                 action_data=dict(intervention.action_data),
@@ -382,7 +411,11 @@ class ObjectiveDiscriminatingExperimentDesigner:
                 competing_objective_ids=competing,
                 predicted_reduction_objective_ids=affected,
                 expected_divergence=divergence,
-                is_probe=assessment.is_probe,
+                is_probe=(
+                    assessment.status
+                    != TerminalObjectiveStatus.TERMINAL_SUPPORTED
+                    if preferred else assessment.is_probe
+                ),
                 reason=(
                     "selective terminal-goal discriminator"
                     if competitor
@@ -393,7 +426,7 @@ class ObjectiveDiscriminatingExperimentDesigner:
                 (
                     int(assessment.status == TerminalObjectiveStatus.TERMINAL_SUPPORTED),
                     divergence,
-                    assessment.priority,
+                    effective_priority,
                     -len(affected),
                 ),
                 choice,

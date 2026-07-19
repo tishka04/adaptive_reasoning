@@ -40,7 +40,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v3"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v4"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -49,6 +49,7 @@ EXPERIMENT_SOURCES = {
     "terminal_objective_probe",
     "terminal_objective_discriminator",
     "terminal_objective_ablation",
+    "temporal_subgoal_probe",
 }
 
 EnvFactory = Callable[[str], Any]
@@ -251,6 +252,9 @@ def _run_arm(
     terminal_summary = dict(
         controller_summary.get("terminal_objectives", {}) or {}
     )
+    temporal_summary = dict(
+        controller_summary.get("temporal_goal_composition", {}) or {}
+    )
     return {
         "arm": arm,
         "game_id": game_id,
@@ -295,6 +299,12 @@ def _run_arm(
         "terminal_objective_grounded_actions": decision_sources[
             "terminal_objective_option"
         ],
+        "temporal_subgoal_probe_actions": decision_sources[
+            "temporal_subgoal_probe"
+        ],
+        "temporal_subgoal_option_actions": decision_sources[
+            "temporal_subgoal_option"
+        ],
         "generated_goal_hypotheses": int(
             terminal_summary.get("objectives", 0) or 0
         ),
@@ -315,6 +325,45 @@ def _run_arm(
         ),
         "unsafe_goal_plan_failures": int(
             terminal_summary.get("unsafe_plan_failures", 0) or 0
+        ),
+        "temporal_plans_generated": int(
+            temporal_summary.get("plans_generated_total", 0) or 0
+        ),
+        "temporal_plan_starts": int(
+            temporal_summary.get("plan_starts", 0) or 0
+        ),
+        "temporal_plan_actions": int(
+            temporal_summary.get("actions", 0) or 0
+        ),
+        "temporal_progress_events": int(
+            temporal_summary.get("progress_events", 0) or 0
+        ),
+        "temporal_step_completions": int(
+            temporal_summary.get("step_completions", 0) or 0
+        ),
+        "temporal_local_completions": int(
+            temporal_summary.get("local_completions", 0) or 0
+        ),
+        "temporal_nonterminal_completions": int(
+            temporal_summary.get("nonterminal_completions", 0) or 0
+        ),
+        "temporal_plan_stalls": int(
+            temporal_summary.get("stalls", 0) or 0
+        ),
+        "temporal_plan_abandonments": int(
+            temporal_summary.get("abandonments", 0) or 0
+        ),
+        "temporal_unsafe_failures": int(
+            temporal_summary.get("unsafe_failures", 0) or 0
+        ),
+        "temporal_terminal_bypasses": int(
+            temporal_summary.get("terminal_bypasses", 0) or 0
+        ),
+        "terminal_supported_temporal_plans": int(
+            temporal_summary.get("terminal_supported_plans", 0) or 0
+        ),
+        "refuted_temporal_plans": int(
+            temporal_summary.get("refuted_plans", 0) or 0
         ),
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
@@ -615,6 +664,12 @@ def _aggregate_arm(
         "terminal_objective_ablation_actions": sum(
             int(row["terminal_objective_ablation_actions"]) for row in rows
         ),
+        "temporal_subgoal_probe_actions": sum(
+            int(row["temporal_subgoal_probe_actions"]) for row in rows
+        ),
+        "temporal_subgoal_option_actions": sum(
+            int(row["temporal_subgoal_option_actions"]) for row in rows
+        ),
         "generated_goal_hypotheses": sum(
             int(row["generated_goal_hypotheses"]) for row in rows
         ),
@@ -635,6 +690,45 @@ def _aggregate_arm(
         ),
         "unsafe_goal_plan_failures": sum(
             int(row["unsafe_goal_plan_failures"]) for row in rows
+        ),
+        "temporal_plans_generated": sum(
+            int(row["temporal_plans_generated"]) for row in rows
+        ),
+        "temporal_plan_starts": sum(
+            int(row["temporal_plan_starts"]) for row in rows
+        ),
+        "temporal_plan_actions": sum(
+            int(row["temporal_plan_actions"]) for row in rows
+        ),
+        "temporal_progress_events": sum(
+            int(row["temporal_progress_events"]) for row in rows
+        ),
+        "temporal_step_completions": sum(
+            int(row["temporal_step_completions"]) for row in rows
+        ),
+        "temporal_local_completions": sum(
+            int(row["temporal_local_completions"]) for row in rows
+        ),
+        "temporal_nonterminal_completions": sum(
+            int(row["temporal_nonterminal_completions"]) for row in rows
+        ),
+        "temporal_plan_stalls": sum(
+            int(row["temporal_plan_stalls"]) for row in rows
+        ),
+        "temporal_plan_abandonments": sum(
+            int(row["temporal_plan_abandonments"]) for row in rows
+        ),
+        "temporal_unsafe_failures": sum(
+            int(row["temporal_unsafe_failures"]) for row in rows
+        ),
+        "temporal_terminal_bypasses": sum(
+            int(row["temporal_terminal_bypasses"]) for row in rows
+        ),
+        "terminal_supported_temporal_plans": sum(
+            int(row["terminal_supported_temporal_plans"]) for row in rows
+        ),
+        "refuted_temporal_plans": sum(
+            int(row["refuted_temporal_plans"]) for row in rows
         ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows
@@ -681,6 +775,11 @@ def _omit_step_traces(payload: Dict[str, Any]) -> None:
             terminal["objective_family_counts"] = dict(Counter(
                 str(item.get("family", "unknown")) for item in hypotheses
             ))
+        temporal = summary.get("temporal_goal_composition") or {}
+        temporal_hypotheses = list(temporal.pop("hypotheses", []) or [])
+        if temporal_hypotheses:
+            temporal["hypothesis_details_omitted"] = True
+            temporal["hypothesis_detail_count"] = len(temporal_hypotheses)
 
 
 def _blocked_attempt(reset_index: int, reason: str) -> Dict[str, Any]:

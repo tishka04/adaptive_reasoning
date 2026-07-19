@@ -4389,3 +4389,83 @@ principalement primitives. Il faut apprendre des sous-objectifs ordonnes et des
 sequences state-conditioned qui maintiennent une direction de deficit sur un
 horizon plus long, tout en conservant le meme arbitre terminal et sans regler la
 politique sur les outcomes de ce benchmark.
+
+## SAGE.8m - online state-conditioned temporal goal composition
+
+Objectif :
+
+- Composer des plans de sous-objectifs plutot que des listes d'actions figees.
+- Decomposer tout deficit superieur a un en paliers de distance ordonnes, puis
+  reevaluer la garde d'etat apres chaque intervention primitive.
+- Construire aussi des dependances entre hypotheses live, par exemple convertir
+  une structure pour faire apparaitre une couleur absente avant de poursuivre
+  `appear` ou `reach`.
+- Cibler explicitement le sous-objectif courant dans le designer d'experiences,
+  sans perdre la revision simultanee des hypotheses mecaniques.
+- N'executer qu'une intervention a la fois ; continuer seulement si la distance
+  mesuree baisse, avancer seulement si le seuil courant est atteint.
+- Abandonner et autoriser une autre chaine apres stagnation, garde devenue
+  non mesurable, budget epuise, intervention indisponible ou veto de securite.
+- Imputer GAME_OVER a la chaine et a son intervention, sans refuter le but
+  terminal sous-jacent.
+- Conserver les completions locales comme evidence de controle uniquement.
+  Une chaine ne recoit du support qu'apres un vrai level-up/WIN dans sa fenetre
+  causale, et exige deux contextes terminaux independants avant exploitation.
+- Exposer dans chaque decision l'identite de la chaine, son statut terminal,
+  l'index du sous-objectif, le nombre d'etapes, la distance courante et le seuil.
+
+Ajouts :
+
+- `theory/online_temporal_goal_composition.py`
+- extension ciblee de `theory/online_goal_hypothesis.py`
+- integration dans `theory/unified_cognitive_controller.py`
+- metriques v4 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_temporal_goal_composition.py`
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`
+
+Run du 2026-07-19, memes 5 jeux public-unseen, seeds 0/1, 2 resets,
+40 actions par reset :
+
+- `paired_protocol.protocol_gate_passed=true`
+- `legacy_only.actions_executed=768`
+- `unified.actions_executed=800`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=464`
+- `unified.experiment_cost_rate=0.58`
+- `unified.generated_goal_hypotheses=76`
+- `unified.temporal_plans_generated=132`
+- `unified.temporal_plan_starts=120`
+- `unified.temporal_subgoal_probe_actions=188`
+- `unified.temporal_progress_events=40`
+- `unified.temporal_step_completions=12`
+- `unified.temporal_local_completions=2`
+- `unified.temporal_plan_stalls=148`
+- `unified.temporal_plan_abandonments=118`
+- `unified.temporal_unsafe_failures=0`
+- `unified.terminal_supported_temporal_plans=0`
+- `unified.objective_distance_reductions=646`
+- `unified.terminal_supported_objectives=0`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+- `new_temporal_composition_tests=8 passed`
+- `full_repository_tests=1346 passed`
+- `ruff_and_py_compile=passed`
+
+Lecture : le verrou logiciel de composition temporelle est leve. SAGE a
+effectivement transforme les buts primitifs en 132 hypotheses de chaines, a
+execute 188 interventions par sous-objectif et a reevalue l'etat entre chacune.
+Quarante transitions ont maintenu la direction du deficit, douze paliers ont ete
+franchis et deux chaines ont ete completees localement. Elles ne sont pas
+promues : aucun level-up ni WIN n'a fourni le credit terminal requis.
+
+Le diagnostic est egalement net : 148 stagnations conduisent a 118 abandons et
+le cout experimental monte a 58 %. Le prochain verrou n'est donc plus
+l'ordonnancement temporel lui-meme, mais l'induction de preconditions causales
+et de sous-objectifs intermediaires réellement habilitants. Il faudra apprendre
+depuis les transitions quelles transformations rendent une intervention future
+possible, construire ce graphe de dependances au-dela du seul cas de couleur
+manquante, puis arbitrer les chaines par probabilite de progres observee et cout
+avant de les deployer sur de nouveaux episodes held-out.

@@ -73,6 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v4"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -97,4 +98,12 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "objective_distance_reductions" in metrics["unified"]
     assert "objective_ambiguous_terminal_events" in metrics["unified"]
     assert "terminal_supported_objectives" in metrics["unified"]
+    assert "temporal_subgoal_probe_actions" in metrics["unified"]
+    assert "temporal_subgoal_option_actions" in metrics["unified"]
+    assert "temporal_plans_generated" in metrics["unified"]
+    assert "temporal_plan_starts" in metrics["unified"]
+    assert "temporal_plan_actions" in metrics["unified"]
+    assert "temporal_step_completions" in metrics["unified"]
+    assert "temporal_plan_abandonments" in metrics["unified"]
+    assert "terminal_supported_temporal_plans" in metrics["unified"]
     assert "failure_causes" in payload
