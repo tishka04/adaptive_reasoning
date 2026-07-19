@@ -88,6 +88,15 @@ Cible du prototype : prouver la boucle hypothèse→expérience→révision sur 
 
 ## 4bis. État d'avancement
 
+- **Consolidation runtime — fait.** `theory/unified_cognitive_controller.py`
+  orchestre désormais la perception V3, `GameTheory`, les expériences
+  discriminantes simples et multi-familles, l'induction d'opérateurs, les
+  planners conditionnés par la théorie/opérateurs, le suivi de progression et
+  les gardes V5 danger/anti-attracteur. Le point d'entrée enregistré
+  `adaptivereasoning` l'utilise pour `choose_action`, l'exploration rapide et
+  les replays ; v4_1 reste un fallback explicite lorsque le chemin causal ne
+  possède encore ni expérience utile ni plan justifié.
+
 - **C — fait.** `theory/epistemic_metrics.py` (6 métriques + contrat), `theory/ar25_oracle.py` (22 faits, sans replay env), `tests/test_epistemic_metrics.py`. Critère de succès **épistémique**, pas ludique.
 - **A — prototype fait.** `theory/mechanic_hypothesis.py` (MechanicHypothesis prédictif + GameTheory), `theory/experiment_designer.py` (DiscriminatingExperimentDesigner = divergence entre théories), `theory/revision.py` (réutilise `v3` BeliefDebugger + pont `RuleEngine`), `theory/ar25_replay.py` (boucle ferm\u00e9e hors-ligne). Mesure ar25 : 6 confirmations correctes (précision 1.0), 0 fausse confirmation, efficacité 0.41, 1 `wrong_refutation` (incohérence réelle du label ACTION5), `human_alignment=0`.
 - **A1b — fait.** `theory/role_hypotheses.py` ajoute `ActionRoleHypothesis` et `GoalFamilyHypothesis`, raccordées au ledger de `GameTheory` sans changer le designer. Mesure ar25 après correction ACTION5 : 9 confirmations correctes (précision 1.0), 0 fausse confirmation, efficacité 0.5, 0 `wrong_refutation`, `human_alignment=1.0`.

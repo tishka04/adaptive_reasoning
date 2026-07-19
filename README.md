@@ -16,6 +16,30 @@ Each ARC-AGI-3 game is unique and its rules are unknown. The agent must:
 3. **Plan** from a small trajectory-sampling core that stays measurable as we extend it
 4. **Learn online** from every action, transferring knowledge across games
 
+## Unified Live Cognitive Path
+
+`adaptivereasoning`, the registered competition agent, routes normal planning,
+fast exploration, and procedure replay through one
+`UnifiedCognitiveController` in `theory/`. The controller reuses the existing
+V3/V5/theory components instead of introducing another agent architecture:
+
+1. `LiveTransitionBeliefLoop` turns every real before/action/after frame into
+   objects, affordances, a structured diff, mechanic hypotheses, and verified
+   symbolic rules.
+2. `DiscriminatingExperimentDesigner` probes unresolved action effects;
+   `GenericDiscriminatingExperimentDesigner` chooses coordinates whose
+   observable structural or relational predictions disagree.
+3. `OperatorInducer` compiles repeated effects into state-conditioned
+   operators. Confirmed theory rules and induced operators are planning inputs,
+   not one-step score decorations.
+4. V5 danger memory and anti-attractor provide observation-dominated vetoes
+   for lethal actions, repeated no-ops, and low-novelty loops.
+5. The former v4_1 trajectory decision remains the explicit fallback when the
+   scientific path has no justified experiment or plan.
+
+Candidate hypotheses and transferred priors never count as proof: statuses are
+revised only after the corresponding live action has been observed.
+
 ## Sampler Roadmap
 
 The current branch recentres planning around a deliberately minimal sampler:

@@ -49,6 +49,7 @@ from v4_1_reasoning_system.arc_agi.runtime_bootstrap import (
     build_adaptive_loop_config,
     resolve_checkpoint_path,
 )
+from theory.unified_cognitive_controller import UnifiedCognitiveController
 
 logger = logging.getLogger(__name__)
 
@@ -109,6 +110,7 @@ class AdaptiveReasoning(Agent):
     ENABLE_VISUAL_CORTEX_WARMUP: bool = DEFAULT_ENABLE_VISUAL_CORTEX_WARMUP
     REASONING_MODE: str = DEFAULT_REASONING_MODE
     ABLATION_STAGE: Optional[str] = DEFAULT_ABLATION_STAGE
+    ENABLE_UNIFIED_COGNITION: bool = True
 
     def __init__(self, *args: Any, cross_game: Optional[CrossGameMemory] = None, arcade: Any = None, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -141,11 +143,19 @@ class AdaptiveReasoning(Agent):
         self._needs_reset: bool = False
         self._game_started: bool = False
         self._last_action_name: Optional[str] = None
+        self._last_action_data: Dict[str, Any] = {}
         self._last_click_pos: Optional[tuple] = None
+        self._prev_game_state: str = "NOT_FINISHED"
         self._available_action_names: List[str] = [
             "ACTION1", "ACTION2", "ACTION3", "ACTION4",
             "ACTION5", "ACTION6", "ACTION7",
         ]
+        self.cognitive_controller: Optional[UnifiedCognitiveController] = None
+        if self.ENABLE_UNIFIED_COGNITION:
+            self.cognitive_controller = UnifiedCognitiveController(
+                self.game_id,
+                available_actions=self._available_action_names,
+            )
         # ── Env-persistence across outer-loop iterations ──────────
         # When True, the next `_run_*_iteration()` call will NOT rebuild
         # the arcade env or send a RESET; it continues from the current
@@ -706,6 +716,44 @@ class AdaptiveReasoning(Agent):
         self, frames: list[FrameData], latest_frame: FrameData
     ) -> GameAction:
 
+        # Parse first so terminal transitions are learned before the mandatory
+        # RESET. The former ordering returned early on GAME_OVER and hid the
+        # most important negative observation from every learner.
+        current_grid = self.analyzer.parse_frame(latest_frame.frame)
+        if latest_frame.available_actions:
+            self._available_action_names = [
+                _normalize_action_name(a)
+                for a in latest_frame.available_actions
+                if _normalize_action_name(a) != "RESET"
+            ]
+
+        diff = None
+        if self._prev_grid is not None and self._last_action_name is not None:
+            diff = self.analyzer.compute_diff(self._prev_grid, current_grid)
+            if (
+                self.cognitive_controller is not None
+                and self._last_action_name != "RESET"
+            ):
+                try:
+                    self.cognitive_controller.observe_transition(
+                        action=self._last_action_name,
+                        action_data=self._last_action_data,
+                        grid_before=self._prev_grid,
+                        grid_after=current_grid,
+                        available_actions=self._available_action_names,
+                        game_state_before=self._prev_game_state,
+                        game_state_after=latest_frame.state.name,
+                        levels_completed_before=self._prev_levels,
+                        levels_completed_after=latest_frame.levels_completed,
+                    )
+                except Exception as exc:
+                    logger.warning(
+                        "[%s] unified cognition observation failed: %s",
+                        self.game_id,
+                        exc,
+                        exc_info=True,
+                    )
+
         # ── Handle mandatory resets ─────────────────────────────
         if latest_frame.state in (GameState.NOT_PLAYED, GameState.GAME_OVER):
             self._needs_reset = True
@@ -713,7 +761,34 @@ class AdaptiveReasoning(Agent):
         if self._needs_reset:
             self._needs_reset = False
             self._game_started = True
+            if (
+                latest_frame.state == GameState.GAME_OVER
+                and self._prev_grid is not None
+                and self._last_action_name not in (None, "RESET")
+                and diff is not None
+            ):
+                self.memory.record_action(
+                    action_name=self._last_action_name,
+                    grid_before=self._prev_grid,
+                    grid_after=current_grid,
+                    diff=diff,
+                    game_state=latest_frame.state.name,
+                    levels_completed=latest_frame.levels_completed,
+                )
+                if self._last_action_name == "ACTION6" and self._last_click_pos is not None:
+                    self.memory.record_click(
+                        pos=self._last_click_pos,
+                        grid_before=self._prev_grid,
+                        changed=diff.anything_changed,
+                        level_changed=False,
+                    )
             self._last_action_name = "RESET"
+            self._last_action_data = {}
+            self._prev_grid = current_grid.copy()
+            self._prev_levels = latest_frame.levels_completed
+            self._prev_game_state = latest_frame.state.name
+            if self.cognitive_controller is not None:
+                self.cognitive_controller.on_reset()
             if latest_frame.state == GameState.GAME_OVER:
                 self.memory.on_game_over()
                 self.reasoning.on_game_over()
@@ -725,6 +800,12 @@ class AdaptiveReasoning(Agent):
 
         if latest_frame.full_reset and self._last_action_name != "RESET":
             self._last_action_name = "RESET"
+            self._last_action_data = {}
+            self._prev_grid = current_grid.copy()
+            self._prev_levels = latest_frame.levels_completed
+            self._prev_game_state = latest_frame.state.name
+            if self.cognitive_controller is not None:
+                self.cognitive_controller.on_reset()
             return GameAction.RESET
 
         # ── Parse current frame ─────────────────────────────────
@@ -763,6 +844,8 @@ class AdaptiveReasoning(Agent):
         if level_changed:
             self.memory.on_level_change(latest_frame.levels_completed)
             self.reasoning.on_level_change(latest_frame.levels_completed)
+            if self.cognitive_controller is not None:
+                self.cognitive_controller.on_level_change()
             logger.info(
                 f"[{self.game_id}] Level up! Now at level {latest_frame.levels_completed}"
             )
@@ -801,6 +884,8 @@ class AdaptiveReasoning(Agent):
 
         action_name: str = result["action"]
         action_data = result.get("action_data")
+        legacy_action_name = action_name
+        legacy_action_data = dict(action_data or {})
         strategy = result.get("strategy")
         trajectory = result.get("trajectory")
         subgoal = result.get("subgoal")
@@ -809,6 +894,28 @@ class AdaptiveReasoning(Agent):
         goal_hypothesis = result.get("goal_hypothesis")
         observation = result.get("observation")
         trajectory_debug = result.get("trajectory_debug")
+
+        cognitive_decision = None
+        if self.cognitive_controller is not None:
+            try:
+                cognitive_decision = self.cognitive_controller.select_action(
+                    current_grid=current_grid,
+                    available_actions=self._available_action_names,
+                    legacy_action=legacy_action_name,
+                    legacy_action_data=legacy_action_data,
+                    game_state=latest_frame.state.name,
+                    levels_completed=latest_frame.levels_completed,
+                )
+            except Exception as exc:
+                logger.warning(
+                    "[%s] unified cognition decision failed; using legacy: %s",
+                    self.game_id,
+                    exc,
+                    exc_info=True,
+                )
+            if cognitive_decision is not None:
+                action_name = cognitive_decision.action_name
+                action_data = dict(cognitive_decision.action_data)
 
         # ── Convert to GameAction ───────────────────────────────
         action = _NAME_TO_ACTION.get(action_name, GameAction.ACTION1)
@@ -882,16 +989,32 @@ class AdaptiveReasoning(Agent):
             "level": latest_frame.levels_completed,
             "exploration_score": self.memory.get_exploration_score(),
             "loop_stats": loop_stats,
+            "unified_cognition_decision": (
+                cognitive_decision.to_dict()
+                if cognitive_decision is not None
+                else None
+            ),
+            "unified_cognition": (
+                self.cognitive_controller.summary()
+                if self.cognitive_controller is not None
+                else None
+            ),
         }
 
         # ── Update tracking ─────────────────────────────────────
         self._last_action_name = action_name
+        self._last_action_data = dict(action_data or {})
         self._prev_grid = current_grid.copy()
         self._prev_levels = latest_frame.levels_completed
+        self._prev_game_state = latest_frame.state.name
         self._prev_obs = observation
-        self._prev_strategy = strategy
-        self._prev_trajectory = trajectory
-        self._prev_goal_context = goal_context
+        executed_legacy_plan = (
+            cognitive_decision is None
+            or cognitive_decision.source == "legacy_fallback"
+        )
+        self._prev_strategy = strategy if executed_legacy_plan else None
+        self._prev_trajectory = trajectory if executed_legacy_plan else None
+        self._prev_goal_context = goal_context if executed_legacy_plan else None
 
         return action
 
@@ -1056,6 +1179,91 @@ class AdaptiveReasoning(Agent):
             return {"x": int(min(w - 1, (col + 0.5) * w / 16)),
                     "y": int(min(h - 1, (row + 0.5) * h / 16))}
 
+        def _unified_fast_choice(grid, legacy_int, legacy_data, frame_data):
+            """Route fast-path and replay decisions through the same controller."""
+            if self.cognitive_controller is None or grid is None:
+                return legacy_int, legacy_data, None
+            legacy_name = _INT_TO_ACTION_NAME.get(
+                legacy_int,
+                f"ACTION{legacy_int}",
+            )
+            available_names = [
+                _INT_TO_ACTION_NAME.get(value, f"ACTION{value}")
+                for value in avail_ints
+            ]
+            try:
+                decision = self.cognitive_controller.select_action(
+                    current_grid=grid,
+                    available_actions=available_names,
+                    legacy_action=legacy_name,
+                    legacy_action_data=legacy_data or {},
+                    game_state=getattr(
+                        getattr(frame_data, "state", None),
+                        "name",
+                        "NOT_FINISHED",
+                    ),
+                    levels_completed=int(
+                        getattr(frame_data, "levels_completed", 0) or 0
+                    ),
+                )
+            except Exception as exc:
+                logger.warning(
+                    "[%s] fast unified decision failed; using legacy: %s",
+                    self.game_id,
+                    exc,
+                    exc_info=True,
+                )
+                return legacy_int, legacy_data, None
+            try:
+                selected_int = int(decision.action_name.replace("ACTION", ""))
+            except (TypeError, ValueError):
+                selected_int = legacy_int
+            return selected_int, dict(decision.action_data), decision
+
+        def _unified_fast_observe(
+            before_grid,
+            after_grid,
+            action_name,
+            action_data,
+            before_level,
+            frame_data,
+        ):
+            if (
+                self.cognitive_controller is None
+                or before_grid is None
+                or after_grid is None
+                or action_name == "RESET"
+            ):
+                return
+            try:
+                self.cognitive_controller.observe_transition(
+                    action=action_name,
+                    action_data=action_data or {},
+                    grid_before=before_grid,
+                    grid_after=after_grid,
+                    available_actions=[
+                        _INT_TO_ACTION_NAME.get(value, f"ACTION{value}")
+                        for value in avail_ints
+                    ],
+                    game_state_before="NOT_FINISHED",
+                    game_state_after=getattr(
+                        getattr(frame_data, "state", None),
+                        "name",
+                        "NOT_FINISHED",
+                    ),
+                    levels_completed_before=int(before_level),
+                    levels_completed_after=int(
+                        getattr(frame_data, "levels_completed", before_level) or 0
+                    ),
+                )
+            except Exception as exc:
+                logger.warning(
+                    "[%s] fast unified observation failed: %s",
+                    self.game_id,
+                    exc,
+                    exc_info=True,
+                )
+
         def _run_exploration_iteration():
             """One fast informed-exploration iteration. Returns (level, sequence)."""
             nonlocal avail_ints
@@ -1073,6 +1281,9 @@ class AdaptiveReasoning(Agent):
                     return 0, []
             except Exception:
                 return 0, []
+
+            if self.cognitive_controller is not None:
+                self.cognitive_controller.on_reset()
 
             prev_grid = _fast_parse(f)
             self.action_counter += 1
@@ -1093,6 +1304,12 @@ class AdaptiveReasoning(Agent):
                     if iter_actions >= fast_iter_size:
                         break
                     act_int, act_data = procedure[ri]
+                    act_int, act_data, cognitive_decision = _unified_fast_choice(
+                        prev_grid,
+                        act_int,
+                        act_data,
+                        f,
+                    )
                     act = _NAME_TO_ACTION.get(
                         _INT_TO_ACTION_NAME.get(act_int, f"ACTION{act_int}"),
                         GameAction.ACTION1,
@@ -1106,6 +1323,14 @@ class AdaptiveReasoning(Agent):
                     if f is None or f.frame is None:
                         break
                     cur_grid = _fast_parse(f)
+                    _unified_fast_observe(
+                        prev_grid,
+                        cur_grid,
+                        _INT_TO_ACTION_NAME.get(act_int, f"ACTION{act_int}"),
+                        act_data,
+                        level,
+                        f,
+                    )
                     changed = prev_grid is not None and cur_grid is not None and not np.array_equal(prev_grid, cur_grid)
                     lvl_changed = f.levels_completed > level
                     game_over = (f.state == GS.GAME_OVER)
@@ -1155,6 +1380,8 @@ class AdaptiveReasoning(Agent):
                         if f is None or f.frame is None:
                             break
                         prev_grid = _fast_parse(f)
+                        if self.cognitive_controller is not None:
+                            self.cognitive_controller.on_reset()
                     except Exception:
                         break
                     self.action_counter += 1
@@ -1189,6 +1416,12 @@ class AdaptiveReasoning(Agent):
                     act_int = self.reasoning.assoc_memory.pick_novel_action(avail_ints, episode_actions)
                     act_data = None
 
+                act_int, act_data, cognitive_decision = _unified_fast_choice(
+                    prev_grid,
+                    act_int,
+                    act_data,
+                    f,
+                )
                 act_name = _INT_TO_ACTION_NAME.get(act_int, f"ACTION{act_int}")
                 act = _NAME_TO_ACTION.get(act_name, GameAction.ACTION1)
 
@@ -1205,6 +1438,14 @@ class AdaptiveReasoning(Agent):
                     break
 
                 cur_grid = _fast_parse(f)
+                _unified_fast_observe(
+                    prev_grid,
+                    cur_grid,
+                    act_name,
+                    act_data,
+                    level,
+                    f,
+                )
                 changed = prev_grid is not None and cur_grid is not None and not np.array_equal(prev_grid, cur_grid)
                 lvl_changed = f.levels_completed > level
                 game_over = (f.state == GS.GAME_OVER)
@@ -1310,8 +1551,12 @@ class AdaptiveReasoning(Agent):
                 self._prev_trajectory = None
                 self._prev_goal_context = None
                 self._last_action_name = "RESET"
+                self._last_action_data = {}
+                self._prev_game_state = "NOT_FINISHED"
                 self._needs_reset = False
                 self._game_started = True
+                if self.cognitive_controller is not None:
+                    self.cognitive_controller.on_reset()
                 iter_level = 0
                 self._live_levels_completed = 0
 
@@ -1331,6 +1576,12 @@ class AdaptiveReasoning(Agent):
                 if _time_left() <= 0:
                     break
                 act_int, act_data = best_seq[ri]
+                act_int, act_data, cognitive_decision = _unified_fast_choice(
+                    self._prev_grid,
+                    act_int,
+                    act_data,
+                    frame,
+                )
                 act_name = _INT_TO_ACTION_NAME.get(act_int, f"ACTION{act_int}")
                 action = _NAME_TO_ACTION.get(act_name, GameAction.ACTION1)
                 if act_int == 6 and act_data:
@@ -1338,6 +1589,19 @@ class AdaptiveReasoning(Agent):
                 frame = self.take_action(action)
                 if frame:
                     self.append_frame(frame)
+                    observed_grid = (
+                        self.analyzer.parse_frame(frame.frame)
+                        if frame.frame is not None
+                        else None
+                    )
+                    _unified_fast_observe(
+                        self._prev_grid,
+                        observed_grid,
+                        act_name,
+                        act_data,
+                        iter_level,
+                        frame,
+                    )
                     if frame.state == GS.WIN:
                         break
                     if frame.state == GS.GAME_OVER:

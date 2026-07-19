@@ -220,6 +220,11 @@ from .multi_game_stress_test import (
     run_stress_curve_point,
     select_stress_traces,
 )
+from .unified_cognitive_controller import (
+    CognitiveDecision,
+    UnifiedCognitiveConfig,
+    UnifiedCognitiveController,
+)
 
 __all__ = [
     "EpistemicScore",
@@ -371,4 +376,7 @@ __all__ = [
     "run_multi_game_stress_test",
     "run_stress_curve_point",
     "select_stress_traces",
+    "CognitiveDecision",
+    "UnifiedCognitiveConfig",
+    "UnifiedCognitiveController",
 ]

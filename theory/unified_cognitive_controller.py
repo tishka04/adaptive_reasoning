@@ -1,0 +1,1012 @@
+"""Single live execution path for the repository's cognitive components.
+
+The repository historically grew several capable but disconnected stacks.
+This controller is deliberately thin: it does not implement another agent.
+It orchestrates the existing perception, belief revision, experiment design,
+operator induction, theory-conditioned planning, safety memory, and legacy
+planner behind one decision interface that can be used by the registered ARC
+agent.
+
+Every belief update is caused by an observed before/action/after transition.
+The controller never steps an environment and never treats a prior or a trace
+as proof.
+"""
+
+from __future__ import annotations
+
+from collections import Counter
+from dataclasses import dataclass, field, replace
+from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
+
+import numpy as np
+
+from v3.control.operator_search import OperatorSearcher
+from v3.control.progress_tracker import ProgressTracker
+from v3.mechanics.operator_inducer import OperatorInducer
+from v3.schemas import GameObservation, Operator
+from v5.control.anti_attractor import AntiAttractor
+from v5.control.danger_memory import DangerMemoryV5, action_key
+from v5.schemas import PrimitiveAction
+
+from .epistemic_metrics import HypothesisStatus
+from .experiment_designer import DiscriminatingExperimentDesigner
+from .generic_discriminating_experiment_designer import (
+    DesignedExperimentAction,
+    DiscriminatingPrediction,
+    GenericDiscriminatingExperimentDesigner,
+)
+from .live_transition_loop import (
+    LiveTransitionBeliefLoop,
+    LiveTransitionUpdate,
+    build_observation,
+)
+from .theory_conditioned_planner import TheoryConditionedPlanner
+
+
+@dataclass(frozen=True)
+class UnifiedCognitiveConfig:
+    """Bounded runtime policy for the consolidated controller."""
+
+    max_bootstrap_experiments: int = 32
+    reprobe_interval: int = 12
+    max_click_targets: int = 12
+    max_relation_target_colors: int = 4
+    generic_confirmation_evidence: int = 2
+    generic_refutation_evidence: int = 2
+    operator_induction_interval: int = 1
+    enable_relational_experiments: bool = True
+    enable_operator_planning: bool = True
+    enable_theory_planning: bool = True
+
+
+@dataclass(frozen=True)
+class CognitiveDecision:
+    """One auditable primitive decision emitted by the unified controller."""
+
+    action_name: str
+    action_data: Dict[str, Any] = field(default_factory=dict)
+    source: str = "legacy_fallback"
+    reason: str = ""
+    confidence: float = 0.0
+    competing_hypotheses: Tuple[str, ...] = ()
+    operator_id: str = ""
+    source_rule_key: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "action": self.action_name,
+            "action_data": dict(self.action_data),
+            "source": self.source,
+            "reason": self.reason,
+            "confidence": round(float(self.confidence), 4),
+            "competing_hypotheses": list(self.competing_hypotheses),
+            "operator_id": self.operator_id,
+            "source_rule_key": self.source_rule_key,
+        }
+
+
+class UnifiedCognitiveController:
+    """Orchestrate existing cognitive modules in one live control loop.
+
+    Decision priority is intentionally causal rather than score-only:
+
+    1. escape an observed lethal/no-op attractor;
+    2. execute a plan justified by a confirmed theory rule;
+    3. run a bounded discriminating experiment while beliefs are unresolved;
+    4. plan with induced, state-conditioned operators;
+    5. fall back to the existing v4_1 decision.
+    """
+
+    def __init__(
+        self,
+        game_id: str,
+        *,
+        available_actions: Sequence[Any] | None = None,
+        config: UnifiedCognitiveConfig | None = None,
+    ) -> None:
+        self.game_id = str(game_id)
+        self.config = config or UnifiedCognitiveConfig()
+        actions = _normalize_actions(available_actions or [])
+        self.belief_loop = LiveTransitionBeliefLoop(
+            game_id=self.game_id,
+            available_actions=actions,
+            infer_players=True,
+            verify_every=1,
+        )
+        self.operator_inducer = OperatorInducer()
+        self.experiment_designer = DiscriminatingExperimentDesigner()
+        self.generic_designer = GenericDiscriminatingExperimentDesigner(
+            max_competing_hypotheses=2,
+        )
+        self.theory_planner = TheoryConditionedPlanner()
+        self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
+        self.progress = ProgressTracker()
+        self.danger_memory = DangerMemoryV5()
+        self.anti_attractor = AntiAttractor()
+
+        self._step = 0
+        self._experiment_decisions = 0
+        self._generic_experiment_decisions = 0
+        self._click_cursor = 0
+        self._pending_decision: CognitiveDecision | None = None
+        self._predictions: Dict[str, DiscriminatingPrediction] = {}
+        self._prediction_evidence: Dict[str, Dict[str, int]] = {}
+        self._decision_sources: Counter[str] = Counter()
+        self._observed_transitions = 0
+        self._operator_plans = 0
+        self._theory_plans = 0
+        self._safety_vetoes = 0
+        self._generic_revisions = 0
+
+    @property
+    def theory(self):
+        return self.belief_loop.theory
+
+    def seed_task_program(self, path: Any) -> None:
+        """Feed the same Task Program to the scientific belief store."""
+        self.belief_loop.seed_task_program(path)
+
+    def register_predictions(
+        self,
+        predictions: Iterable[DiscriminatingPrediction],
+    ) -> None:
+        """Register candidate-only predictions without counting them as proof."""
+        for prediction in predictions:
+            existing = self._predictions.get(prediction.key)
+            if existing is None:
+                self._predictions[prediction.key] = prediction
+            elif existing.status == HypothesisStatus.UNRESOLVED:
+                # Keep live evidence/status local while allowing a stronger
+                # epistemic prior to improve experiment ordering.
+                self._predictions[prediction.key] = replace(
+                    existing,
+                    epistemic_prior=max(
+                        existing.epistemic_prior,
+                        prediction.epistemic_prior,
+                    ),
+                )
+
+    def observe_transition(
+        self,
+        *,
+        action: Any,
+        grid_before: Any,
+        grid_after: Any,
+        available_actions: Sequence[Any] | None = None,
+        game_state_before: str = "NOT_FINISHED",
+        game_state_after: str = "NOT_FINISHED",
+        levels_completed_before: int = 0,
+        levels_completed_after: int = 0,
+        action_data: Mapping[str, Any] | None = None,
+    ) -> LiveTransitionUpdate:
+        """Ingest one real transition into every consolidated memory layer."""
+        action_name = _normalize_action(action)
+        actions = _normalize_actions(available_actions or self.theory.actions())
+        self.theory.seed_actions(actions)
+        pending = self._pending_decision
+        was_experiment = bool(
+            pending is not None
+            and pending.action_name == action_name
+            and pending.source in {
+                "discriminating_experiment",
+                "relational_experiment",
+            }
+        )
+        aligned_before, aligned_after = _align_grids(grid_before, grid_after)
+        update = self.belief_loop.observe_grids(
+            action=action_name,
+            action_args=dict(action_data or {}),
+            grid_before=aligned_before,
+            grid_after=aligned_after,
+            available_actions=actions,
+            game_state_before=game_state_before,
+            game_state_after=game_state_after,
+            levels_completed_before=levels_completed_before,
+            levels_completed_after=levels_completed_after,
+            timestamp=self._observed_transitions,
+            was_experiment=was_experiment,
+        )
+        self._observed_transitions += 1
+
+        if (
+            self._observed_transitions
+            % max(1, int(self.config.operator_induction_interval))
+            == 0
+        ):
+            self.operator_inducer.induce(
+                self.belief_loop.profiler,
+                self.belief_loop.profiler.transitions,
+            )
+
+        before_hash = _grid_hash(grid_before)
+        after_hash = _grid_hash(grid_after)
+        is_noop = bool(update.record.diff.is_noop)
+        if is_noop:
+            self.anti_attractor.note_no_effect(before_hash, action_name)
+        self.anti_attractor.observe(
+            grid_hash=after_hash,
+            action_name=action_name,
+            is_noop=is_noop,
+        )
+        if update.record.diff.game_over:
+            primitive = PrimitiveAction(
+                action_name,
+                x=_optional_int((action_data or {}).get("x")),
+                y=_optional_int((action_data or {}).get("y")),
+            )
+            self.danger_memory.record_death(before_hash, action_key(primitive))
+
+        operator_predicted_ok = False
+        if pending is not None and pending.operator_id:
+            operator = self.operator_inducer.operators.get(pending.operator_id)
+            if operator is not None:
+                operator_predicted_ok = _operator_prediction_matches(
+                    operator,
+                    update,
+                )
+                self.operator_inducer.record_validation(
+                    pending.operator_id,
+                    predicted_ok=operator_predicted_ok,
+                    had_progress=bool(
+                        update.record.diff.num_changed
+                        or update.record.diff.level_complete
+                    ),
+                )
+
+        self._revise_pending_predictions(update, pending)
+        self.progress.on_action(
+            grid_hash=after_hash,
+            diff_signature=_diff_signature(update),
+            macro_id=pending.operator_id if pending else None,
+            is_noop=is_noop,
+            game_over=bool(update.record.diff.game_over),
+            player_moved=update.record.diff.player_displacement is not None,
+            num_changed=int(update.record.diff.num_changed),
+            objects=update.record.obs_after.objects,
+            current_validated_ops=self.operator_inducer.num_locked(),
+            current_validated_rules=len(
+                self.belief_loop.rule_engine.high_confidence_rules()
+            ),
+            operator_predicted_ok=operator_predicted_ok,
+            is_click=action_name == "ACTION6",
+            is_transform=int(update.record.diff.num_changed) >= 5,
+        )
+        self._pending_decision = None
+        return update
+
+    def select_action(
+        self,
+        *,
+        current_grid: Any,
+        available_actions: Sequence[Any],
+        legacy_action: Any,
+        legacy_action_data: Mapping[str, Any] | None = None,
+        game_state: str = "NOT_FINISHED",
+        levels_completed: int = 0,
+    ) -> CognitiveDecision:
+        """Choose the next action through the consolidated decision path."""
+        self._step += 1
+        actions = _normalize_actions(available_actions)
+        legacy_name = _normalize_action(legacy_action)
+        if legacy_name not in actions and actions:
+            legacy_name = actions[0]
+        self.theory.seed_actions(actions)
+        observation = build_observation(
+            current_grid,
+            available_actions=actions,
+            game_state=game_state,
+            levels_completed=levels_completed,
+            infer_players=True,
+        )
+        safe_actions = self._safe_actions(observation.grid_hash, actions)
+        if not safe_actions:
+            safe_actions = list(actions)
+
+        decision = self._select_escape(observation, safe_actions)
+        if decision is None:
+            decision = self._select_theory_plan(observation, safe_actions)
+        if decision is None and self._should_experiment():
+            decision = self._select_experiment(observation, safe_actions)
+        if decision is None:
+            decision = self._select_operator_plan(observation, safe_actions)
+        if decision is None and self._should_reprobe():
+            decision = self._select_experiment(observation, safe_actions)
+        if decision is None:
+            decision = CognitiveDecision(
+                action_name=legacy_name,
+                action_data=dict(legacy_action_data or {}),
+                source="legacy_fallback",
+                reason="no confirmed theory plan or useful experiment/operator plan",
+            )
+
+        decision = self._guard_decision(decision, observation, safe_actions)
+        self._pending_decision = decision
+        self._decision_sources[decision.source] += 1
+        return decision
+
+    def on_reset(self) -> None:
+        """Start a fresh behavioral branch while retaining learned theory."""
+        self._pending_decision = None
+        self.progress.start_new_branch(
+            current_validated_ops=self.operator_inducer.num_locked(),
+            current_validated_rules=len(
+                self.belief_loop.rule_engine.high_confidence_rules()
+            ),
+        )
+
+    def on_level_change(self) -> None:
+        """Keep transferable mechanics but reset branch-local control state."""
+        self.on_reset()
+
+    def summary(self) -> Dict[str, Any]:
+        prediction_statuses = Counter(
+            prediction.status.value for prediction in self._predictions.values()
+        )
+        return {
+            "execution_path": "unified_cognitive_controller",
+            "transitions_observed": self._observed_transitions,
+            "decision_sources": dict(self._decision_sources),
+            "experiments_selected": self._experiment_decisions,
+            "relational_experiments_selected": self._generic_experiment_decisions,
+            "generic_hypothesis_revisions": self._generic_revisions,
+            "generic_predictions": len(self._predictions),
+            "generic_prediction_statuses": dict(prediction_statuses),
+            "operators_induced": len(self.operator_inducer.operators),
+            "operators_locked": self.operator_inducer.num_locked(),
+            "operator_plans": self._operator_plans,
+            "rules": len(self.belief_loop.rule_engine.rules),
+            "high_confidence_rules": len(
+                self.belief_loop.rule_engine.high_confidence_rules()
+            ),
+            "theory_plans": self._theory_plans,
+            "theory": self.theory.summary(),
+            "danger_records": len(self.danger_memory),
+            "safety_vetoes": self._safety_vetoes,
+            "progress": self.progress.summary(),
+        }
+
+    def _should_experiment(self) -> bool:
+        return self._experiment_decisions < max(
+            0,
+            int(self.config.max_bootstrap_experiments),
+        )
+
+    def _should_reprobe(self) -> bool:
+        interval = max(1, int(self.config.reprobe_interval))
+        return self._step % interval == 0
+
+    def _safe_actions(self, grid_hash: int, actions: Sequence[str]) -> List[str]:
+        result = []
+        for action in actions:
+            if action == "RESET":
+                continue
+            if self.danger_memory.is_lethal(grid_hash, action):
+                continue
+            if self.anti_attractor.is_banned_noop(grid_hash, action):
+                continue
+            result.append(action)
+        return result
+
+    def _select_escape(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        branch_stalled = self.progress.should_kill_branch()
+        if not branch_stalled and not self.anti_attractor.should_escape(self._step):
+            return None
+        action = self.anti_attractor.pick_escape_action(
+            available=safe_actions,
+            grid_hash=observation.grid_hash,
+            is_lethal=self.danger_memory.is_lethal,
+        )
+        if action is None:
+            return None
+        self.anti_attractor.note_escape(self._step)
+        if branch_stalled:
+            self.progress.start_new_branch(
+                current_validated_ops=self.operator_inducer.num_locked(),
+                current_validated_rules=len(
+                    self.belief_loop.rule_engine.high_confidence_rules()
+                ),
+            )
+        return CognitiveDecision(
+            action_name=action,
+            action_data=self._default_action_data(action, observation),
+            source="anti_attractor_escape",
+            reason="observed no-op/repetition/novelty stall",
+            confidence=1.0,
+        )
+
+    def _select_theory_plan(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        if not self.config.enable_theory_planning:
+            return None
+        plan = self.theory_planner.plan(self.theory, safe_actions)
+        if plan is None or not plan.planned_actions:
+            return None
+        planned = plan.planned_actions[0]
+        action = _normalize_action(planned.action)
+        if action not in safe_actions:
+            return None
+        self._theory_plans += 1
+        return CognitiveDecision(
+            action_name=action,
+            action_data=self._default_action_data(action, observation),
+            source="theory_plan",
+            reason=planned.reason,
+            confidence=1.0,
+            source_rule_key=planned.rule_key,
+        )
+
+    def _select_experiment(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        choice = self.experiment_designer.design(self.theory, safe_actions)
+        if choice is None:
+            return None
+        self._experiment_decisions += 1
+        if (
+            choice.action == "ACTION6"
+            and self.config.enable_relational_experiments
+        ):
+            relational = self._select_relational_experiment(
+                observation,
+                safe_actions,
+            )
+            if relational is not None:
+                return relational
+        return CognitiveDecision(
+            action_name=choice.action,
+            action_data=self._default_action_data(choice.action, observation),
+            source="discriminating_experiment",
+            reason=choice.rationale,
+            confidence=max(0.0, min(1.0, choice.expected_divergence / 2.0)),
+            competing_hypotheses=tuple(choice.competing_keys),
+        )
+
+    def _select_relational_experiment(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        if "ACTION6" not in safe_actions:
+            return None
+        concrete = self._click_actions(observation)
+        if not concrete:
+            return None
+        self.register_predictions(
+            self._live_predictions(observation, concrete)
+        )
+        choice = self.generic_designer.design(
+            hypotheses=list(self._predictions.values()),
+            live_grid=observation.raw_grid,
+            available_actions=concrete,
+        )
+        if choice is None:
+            return None
+        self._generic_experiment_decisions += 1
+        return CognitiveDecision(
+            action_name=choice.action.name,
+            action_data=dict(choice.action.action_args),
+            source="relational_experiment",
+            reason=(
+                f"{choice.selection_reason}: {choice.divergence_reason}"
+            ),
+            confidence=max(0.0, min(1.0, choice.expected_divergence / 4.0)),
+            competing_hypotheses=tuple(choice.competing_keys),
+        )
+
+    def _select_operator_plan(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        if not self.config.enable_operator_planning:
+            return None
+        if not self.operator_inducer.operators:
+            return None
+        target = _nearest_non_player_target(observation)
+        trace = self.operator_searcher.search(
+            observation,
+            self.operator_inducer,
+            self.belief_loop.rule_engine,
+            target=target,
+        )
+        if not trace:
+            return None
+        call = trace[0]
+        operator = self.operator_inducer.operators.get(call.operator_id)
+        if operator is None or not operator.primitive_action:
+            return None
+        action = _normalize_action(operator.primitive_action)
+        if action not in safe_actions:
+            return None
+        self._operator_plans += 1
+        return CognitiveDecision(
+            action_name=action,
+            action_data=_operator_action_data(operator, call.args, observation),
+            source="operator_plan",
+            reason=(
+                f"induced operator {operator.operator_id} "
+                f"(confidence={operator.confidence:.3f})"
+            ),
+            confidence=float(operator.confidence),
+            operator_id=operator.operator_id,
+        )
+
+    def _guard_decision(
+        self,
+        decision: CognitiveDecision,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision:
+        primitive = PrimitiveAction(
+            decision.action_name,
+            x=_optional_int(decision.action_data.get("x")),
+            y=_optional_int(decision.action_data.get("y")),
+        )
+        lethal = self.danger_memory.is_lethal(
+            observation.grid_hash,
+            action_key(primitive),
+        )
+        banned_noop = self.anti_attractor.is_banned_noop(
+            observation.grid_hash,
+            decision.action_name,
+        )
+        if not lethal and not banned_noop:
+            return decision
+        self._safety_vetoes += 1
+        alternatives = [
+            action for action in safe_actions
+            if action != decision.action_name
+        ]
+        alternative = self.anti_attractor.pick_escape_action(
+            available=alternatives,
+            grid_hash=observation.grid_hash,
+            is_lethal=self.danger_memory.is_lethal,
+        )
+        if alternative is None:
+            return decision
+        return CognitiveDecision(
+            action_name=alternative,
+            action_data=self._default_action_data(alternative, observation),
+            source="safety_veto",
+            reason=f"vetoed observed unsafe decision from {decision.source}",
+            confidence=1.0,
+            competing_hypotheses=decision.competing_hypotheses,
+        )
+
+    def _default_action_data(
+        self,
+        action: str,
+        observation: GameObservation,
+    ) -> Dict[str, Any]:
+        if action != "ACTION6":
+            return {}
+        clicks = self._click_actions(observation)
+        if not clicks:
+            height, width = observation.raw_grid.shape
+            return {"x": int(width // 2), "y": int(height // 2)}
+        selected = clicks[self._click_cursor % len(clicks)]
+        self._click_cursor += 1
+        return dict(selected.action_args)
+
+    def _click_actions(
+        self,
+        observation: GameObservation,
+    ) -> List[DesignedExperimentAction]:
+        actions: List[DesignedExperimentAction] = []
+        seen: set[Tuple[int, int]] = set()
+        objects = sorted(
+            observation.objects,
+            key=lambda obj: (obj.area, obj.value, obj.object_id),
+        )
+        for obj in objects:
+            x = int(round(obj.center[1]))
+            y = int(round(obj.center[0]))
+            coord = (x, y)
+            if coord in seen:
+                continue
+            seen.add(coord)
+            actions.append(DesignedExperimentAction(
+                name="ACTION6",
+                raw_action="ACTION6",
+                action_args={"x": x, "y": y},
+            ))
+            if len(actions) >= max(1, int(self.config.max_click_targets)):
+                break
+        return actions
+
+    def _live_predictions(
+        self,
+        observation: GameObservation,
+        click_actions: Sequence[DesignedExperimentAction],
+    ) -> List[DiscriminatingPrediction]:
+        grid = observation.raw_grid
+        background = _background_value(grid)
+        color_counts = Counter(int(value) for value in grid.ravel())
+        target_colors = [
+            color for color, _ in color_counts.most_common()
+            if color != background
+        ][: max(1, int(self.config.max_relation_target_colors))]
+        predictions: List[DiscriminatingPrediction] = []
+        for action in click_actions:
+            x = int(action.action_args["x"])
+            y = int(action.action_args["y"])
+            source = int(grid[y, x])
+            for outcome in ("local", "global"):
+                predictions.append(DiscriminatingPrediction(
+                    key=f"effect_scope::ACTION6::source{source}::{outcome}",
+                    action="ACTION6",
+                    source_color=source,
+                    family="effect_scope",
+                    predicate="effect_scope",
+                    predicted_outcome=outcome,
+                ))
+            for outcome in ("changed", "stable"):
+                predictions.append(DiscriminatingPrediction(
+                    key=f"object_count::ACTION6::source{source}::{outcome}",
+                    action="ACTION6",
+                    source_color=source,
+                    family="object_count",
+                    predicate="object_count",
+                    predicted_outcome=outcome,
+                ))
+            for target in target_colors:
+                if target == source:
+                    continue
+                predictions.append(DiscriminatingPrediction(
+                    key=f"color_transform::ACTION6::source{source}::{source}_{target}",
+                    action="ACTION6",
+                    source_color=source,
+                    target_color=target,
+                    family="color_transform",
+                    predicate="source_target_color_transform",
+                    predicted_outcome=f"{source}->{target}",
+                ))
+                for predicate in (
+                    "same_shape",
+                    "aligned_with",
+                    "adjacent_to",
+                    "paired_with",
+                ):
+                    holds = _relation_holds(
+                        observation,
+                        predicate,
+                        source,
+                        target,
+                    )
+                    outcomes = (
+                        ("preserved", "broken")
+                        if holds
+                        else ("appears", "absent")
+                    )
+                    for outcome in outcomes:
+                        predictions.append(DiscriminatingPrediction(
+                            key=(
+                                f"relation::ACTION6::{predicate}::"
+                                f"colors{source}_{target}::{outcome}"
+                            ),
+                            action="ACTION6",
+                            source_color=source,
+                            target_color=target,
+                            family="relation",
+                            predicate=predicate,
+                            predicted_outcome=outcome,
+                        ))
+        return _dedupe_predictions(predictions)
+
+    def _revise_pending_predictions(
+        self,
+        update: LiveTransitionUpdate,
+        pending: CognitiveDecision | None,
+    ) -> None:
+        if pending is None or pending.source != "relational_experiment":
+            return
+        for key in pending.competing_hypotheses:
+            prediction = self._predictions.get(key)
+            if prediction is None:
+                continue
+            observed = _observe_prediction_outcome(update, prediction)
+            if observed == "unobservable":
+                continue
+            evidence = self._prediction_evidence.setdefault(
+                key,
+                {"support": 0, "contradictions": 0, "experiments": 0},
+            )
+            evidence["experiments"] += 1
+            if observed == prediction.outcome:
+                evidence["support"] += 1
+            else:
+                evidence["contradictions"] += 1
+            status = HypothesisStatus.UNRESOLVED
+            if (
+                evidence["support"]
+                >= max(1, int(self.config.generic_confirmation_evidence))
+                and evidence["support"] > evidence["contradictions"]
+            ):
+                status = HypothesisStatus.CONFIRMED
+            elif (
+                evidence["contradictions"]
+                >= max(1, int(self.config.generic_refutation_evidence))
+                and evidence["contradictions"] >= evidence["support"]
+            ):
+                status = HypothesisStatus.REFUTED
+            self._predictions[key] = replace(prediction, status=status)
+            self._generic_revisions += 1
+
+
+def _normalize_action(action: Any) -> str:
+    if isinstance(action, (int, np.integer)):
+        return "RESET" if int(action) == 0 else f"ACTION{int(action)}"
+    raw = getattr(action, "name", action)
+    text = str(raw or "").strip().upper()
+    if "." in text:
+        text = text.split(".")[-1]
+    if text.isdigit():
+        return "RESET" if int(text) == 0 else f"ACTION{int(text)}"
+    return text
+
+
+def _normalize_actions(actions: Iterable[Any]) -> List[str]:
+    result: List[str] = []
+    for action in actions:
+        name = _normalize_action(action)
+        if name and name != "RESET" and name not in result:
+            result.append(name)
+    return result
+
+
+def _grid_hash(grid: Any) -> int:
+    return hash(np.asarray(grid, dtype=np.int32).tobytes())
+
+
+def _align_grids(grid_before: Any, grid_after: Any) -> Tuple[np.ndarray, np.ndarray]:
+    """Pad resized frames to a shared canvas before structured differencing."""
+    before = np.asarray(grid_before, dtype=np.int32)
+    after = np.asarray(grid_after, dtype=np.int32)
+    if before.ndim != 2 or after.ndim != 2:
+        raise ValueError(
+            f"expected two 2D grids, got {before.shape} and {after.shape}"
+        )
+    if before.shape == after.shape:
+        return before, after
+    height = max(before.shape[0], after.shape[0])
+    width = max(before.shape[1], after.shape[1])
+    before_canvas = np.full(
+        (height, width),
+        _background_value(before),
+        dtype=np.int32,
+    )
+    after_canvas = np.full(
+        (height, width),
+        _background_value(after),
+        dtype=np.int32,
+    )
+    before_canvas[: before.shape[0], : before.shape[1]] = before
+    after_canvas[: after.shape[0], : after.shape[1]] = after
+    return before_canvas, after_canvas
+
+
+def _background_value(grid: np.ndarray) -> int:
+    values, counts = np.unique(grid, return_counts=True)
+    return int(values[int(np.argmax(counts))])
+
+
+def _optional_int(value: Any) -> int | None:
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _operator_prediction_matches(
+    operator: Operator,
+    update: LiveTransitionUpdate,
+) -> bool:
+    if not operator.expected_effects:
+        return update.record.diff.num_changed > 0
+    return all(effect.matches(update.record.diff) for effect in operator.expected_effects)
+
+
+def _diff_signature(update: LiveTransitionUpdate) -> str:
+    diff = update.record.diff
+    return "|".join((
+        update.action,
+        str(diff.num_changed),
+        str(diff.player_displacement),
+        str(len(diff.created_objects)),
+        str(len(diff.removed_objects)),
+        str(bool(diff.game_over)),
+        str(bool(diff.level_complete)),
+    ))
+
+
+def _nearest_non_player_target(
+    observation: GameObservation,
+) -> Dict[str, Any] | None:
+    player = observation.best_player
+    if player is None:
+        return None
+    pr, pc = player.position
+    candidates = [
+        obj for obj in observation.objects
+        if obj.value != player.value and obj.area <= 30
+    ]
+    if not candidates:
+        return None
+    target = min(
+        candidates,
+        key=lambda obj: (
+            abs(float(obj.center[0]) - pr) + abs(float(obj.center[1]) - pc),
+            obj.area,
+        ),
+    )
+    return {
+        "position": (
+            int(round(target.center[0])),
+            int(round(target.center[1])),
+        ),
+        "value": int(target.value),
+    }
+
+
+def _operator_action_data(
+    operator: Operator,
+    call_args: Mapping[str, Any],
+    observation: GameObservation,
+) -> Dict[str, Any]:
+    if operator.primitive_action != "ACTION6":
+        return {}
+    x = _optional_int(call_args.get("x", operator.primitive_x))
+    y = _optional_int(call_args.get("y", operator.primitive_y))
+    if x is not None and y is not None:
+        return {"x": x, "y": y}
+    target_value = call_args.get(
+        "target_value",
+        operator.parameters.get("target_value"),
+    )
+    for obj in observation.objects:
+        if target_value is None or int(obj.value) == int(target_value):
+            return {
+                "x": int(round(obj.center[1])),
+                "y": int(round(obj.center[0])),
+            }
+    height, width = observation.raw_grid.shape
+    return {"x": int(width // 2), "y": int(height // 2)}
+
+
+def _observe_prediction_outcome(
+    update: LiveTransitionUpdate,
+    prediction: DiscriminatingPrediction,
+) -> str:
+    record = update.record
+    before = record.obs_before.raw_grid
+    after = record.obs_after.raw_grid
+    family = prediction.normalized_family
+    if family == "color_transform":
+        if prediction.target_color is None:
+            return "unobservable"
+        mask = (before != after) & (before == int(prediction.source_color))
+        if not bool(mask.any()):
+            return "none"
+        values, counts = np.unique(after[mask], return_counts=True)
+        target = int(values[int(np.argmax(counts))])
+        return f"{prediction.source_color}->{target}"
+    if family == "effect_scope":
+        changed = record.diff.changed_cells
+        if not changed:
+            return "none"
+        if record.action.x is None or record.action.y is None:
+            return "global" if record.diff.num_changed >= 10 else "local"
+        local = sum(
+            1 for row, col in changed
+            if max(
+                abs(int(row) - int(record.action.y)),
+                abs(int(col) - int(record.action.x)),
+            ) <= 8
+        )
+        return "local" if local / max(1, len(changed)) >= 0.8 else "global"
+    if family == "object_count":
+        changed = (
+            len(record.obs_before.objects) != len(record.obs_after.objects)
+            or bool(record.diff.created_objects)
+            or bool(record.diff.removed_objects)
+        )
+        return "changed" if changed else "stable"
+    if family == "relation" and prediction.target_color is not None:
+        before_holds = _relation_holds(
+            record.obs_before,
+            prediction.predicate_name,
+            prediction.source_color,
+            int(prediction.target_color),
+        )
+        after_holds = _relation_holds(
+            record.obs_after,
+            prediction.predicate_name,
+            prediction.source_color,
+            int(prediction.target_color),
+        )
+        if not before_holds and after_holds:
+            return "appears"
+        if before_holds and not after_holds:
+            return "broken"
+        if before_holds and after_holds:
+            return "preserved"
+        return "absent"
+    return "unobservable"
+
+
+def _relation_holds(
+    observation: GameObservation,
+    predicate: str,
+    source_color: int,
+    target_color: int,
+) -> bool:
+    source = [obj for obj in observation.objects if obj.value == int(source_color)]
+    target = [obj for obj in observation.objects if obj.value == int(target_color)]
+    if not source or not target:
+        return False
+    predicate = str(predicate)
+    if predicate == "paired_with":
+        return True
+    if predicate == "same_shape":
+        return any(
+            first.shape_signature == second.shape_signature
+            and first.area == second.area
+            for first in source for second in target
+        )
+    if predicate == "aligned_with":
+        return any(
+            int(round(first.center[0])) == int(round(second.center[0]))
+            or int(round(first.center[1])) == int(round(second.center[1]))
+            for first in source for second in target
+        )
+    if predicate == "adjacent_to":
+        return any(
+            _objects_adjacent(first.cells, second.cells)
+            for first in source for second in target
+        )
+    return False
+
+
+def _objects_adjacent(
+    first_cells: Sequence[Tuple[int, int]],
+    second_cells: Sequence[Tuple[int, int]],
+) -> bool:
+    second = set(second_cells)
+    for row, col in first_cells:
+        if any(
+            (row + drow, col + dcol) in second
+            for drow, dcol in ((-1, 0), (1, 0), (0, -1), (0, 1))
+        ):
+            return True
+    return False
+
+
+def _dedupe_predictions(
+    predictions: Iterable[DiscriminatingPrediction],
+) -> List[DiscriminatingPrediction]:
+    result: List[DiscriminatingPrediction] = []
+    seen: set[str] = set()
+    for prediction in predictions:
+        if prediction.key in seen:
+            continue
+        seen.add(prediction.key)
+        result.append(prediction)
+    return result
+
+
+__all__ = [
+    "CognitiveDecision",
+    "UnifiedCognitiveConfig",
+    "UnifiedCognitiveController",
+]
