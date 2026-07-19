@@ -46,6 +46,7 @@ de policy en support scientifique.
 | SAGE.6d - Second-game handoff compiler | Fait - 4 followups pre-enregistres | `theory/sage/second_unknown_game_handoff_compiler.py`, `tests/test_sage_second_unknown_game_handoff_compiler.py`, `diagnostics/sage/sage6d_second_unknown_game_handoff.json` | Compile 1 handoff candidate-only; pre-enregistre ACTION2/ACTION3 sur un contexte stable par budget et une replication exacte ACTION2/ACTION1 du contexte neutre; conserve les 6 frontieres de contexte; aucune execution, support=0, aucun write A32/A33 |
 | SAGE.6e - Exact pre-registered followup execution | Fait - effet depend du controle candidate-only | `theory/sage/second_unknown_game_followup_execution.py`, `tests/test_sage_second_unknown_game_followup_execution.py`, `diagnostics/sage/sage6e_second_unknown_game_followup_execution.json` | Execute les 4 protocoles sans substitution; 4/4 replays exacts; ACTION2-ACTION3=0 sur les 3 budgets alors que ACTION2-ACTION1 valait +32; replication neutre ACTION2-ACTION1=0; 3 deviations pre-enregistrees, 1 condition satisfaite; support=0; aucun write A32/A33 |
 | SAGE.6f - Control-dependence consolidation and A32 eligibility | Fait - 1 frontier A32 non-verdict eligible | `theory/sage/second_unknown_game_control_dependence_consolidation.py`, `tests/test_sage_second_unknown_game_control_dependence_consolidation.py`, `diagnostics/sage/sage6f_second_unknown_game_control_dependence_consolidation.json` | Consolide 10 observations dans 6 contextes non fusionnes; garde ACTION1/ACTION3 separes; 3 paires multi-budget avec gap stable 32; exception neutre repliquee; 14/14 criteres d'eligibilite; reformule le candidat comme contraste dependant du controle; support=0; aucun write A32/A33 |
+| SAGE.7 - Third unknown-game bounded transfer | Fait - 3/3 gates passes, mini-frontiere parametree requise | `theory/sage/third_unknown_game_transfer.py`, `tests/test_sage_third_unknown_game_transfer.py`, `diagnostics/sage/sage7_third_unknown_game_transfer_results.json` | Selectionne tn36 par ordre public_unseen fixe apres exclusion de sb26/wa30; budgets 50/150/300 passes; 172 switches, 0 repetition d'argument; quarantaine A33.2/A33.3 respectee; surface live=11 variantes ACTION6 d'une seule famille; 145 placeholders M2/M3 non materialises; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2974,3 +2975,133 @@ multi-controles sans confondre baseline, contexte et support scientifique, puis
 preparer un dossier A32 correctement reformule. Il ne faut pas dire : ACTION2 a
 une mecanique confirmee, ACTION1 est la baseline correcte, ou le frontier A32 est
 deja une decision scientifique.
+
+## SAGE.7 - Third unknown-game bounded transfer
+
+Objectif :
+
+- Fermer la boucle SAGE.6f -> A32.6 -> A33.3 avant de changer de jeu.
+- Reprendre l'ordre `public_unseen` fixe sans lire aucune metrique d'outcome.
+- Exclure les deux jeux inconnus deja utilises et les scopes enregistres :
+  `sb26-7fbdac44` et `wa30-ee6fef47`.
+- Selectionner `tn36-ab4f63cc`, prochain jeu inconnu eligible pre-enregistre.
+- Rejouer la discipline bornee sur budgets 50, 150 et 300.
+- Lire A33.2 et A33.3 uniquement comme gardes de quarantaine ; ne reutiliser ni
+  ACTION5/sb26, ni la relation ACTION2/ACTION1/ACTION3 de wa30.
+- Auditer la surface d'action live au RESET et conserver les variantes
+  parametrees ACTION6 comme variantes d'une seule famille d'action.
+- Garder le resultat candidate-only, `support=0`, sans intake ni write A32/A33.
+
+Ajouts :
+
+- `theory/sage/third_unknown_game_transfer.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_third_unknown_game_transfer.py`
+- `diagnostics/sage/sage7_third_unknown_game_transfer_results.json`
+
+Run du 2026-07-19 :
+
+- `first_unknown_game_id=sb26-7fbdac44`
+- `second_unknown_game_id=wa30-ee6fef47`
+- `selected_third_game_id=tn36-ab4f63cc`
+- `candidate_games_audited=5`
+- `eligible_unknown_games=1`
+- `known_or_seen_candidates_excluded=2`
+- `prior_or_registry_scope_candidates_excluded=2`
+- `outcome_metrics_read_for_selection=false`
+- `source_a33_2_entries_quarantined=1`
+- `source_a33_3_entries_quarantined=1`
+- `budgets_evaluated=[50,150,300]`
+- `budgets_gate_passed=3`
+- `all_budgets_gate_passed=true`
+- `env_steps_total=172`
+- `subgoal_switches_total=172`
+- `new_candidate_targets_discovered_total=27`
+- `rerun_m2_m3_requested_total=145`
+- `rerun_m2_m3_effective_requests_generated_total=0`
+- `budgets_with_progress_stall_detected=[]`
+- `max_terminal_rate=0.016393`
+- `max_repeated_action_arg_rate=0`
+- `min_unique_state_signatures=51`
+- `max_unique_state_signatures=62`
+- `levels_completed_max=0`
+- `action_families=[ACTION6]`
+- `distinct_action_families=1`
+- `legal_action_options_count=11`
+- `parameterized_action_options_count=11`
+- `parameterized_action_variants_counted_as_distinct_actions=false`
+- `ready_for_parameterized_mini_frontier=true`
+- `required_next_step=PARAMETERIZED_ACTION6_MINI_FRONTIER_REQUIRED_CANDIDATE_ONLY`
+- `gate_passed=true`
+- `outcome_status=SAGE_THIRD_UNKNOWN_GAME_ALL_BUDGETS_GATE_PASSED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_7`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_intake_requested=false`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Selection pre-execution :
+
+| rang fixe | jeu | decision |
+|---:|---|---|
+| 1 | `wa30-ee6fef47` | exclu, jeu inconnu deja utilise et scope A33.3 |
+| 2 | `tn36-ab4f63cc` | eligible, selectionne avant execution |
+| 3 | `ft09-0d8bbf25` | exclu connu |
+| 4 | `cn04-65d47d14` | exclu connu |
+| 5 | `sb26-7fbdac44` | exclu, jeu inconnu deja utilise et scope A33.2 |
+
+Surface d'action live au RESET :
+
+- une seule famille : `ACTION6` ;
+- onze options legales parametrees par `x/y` ;
+- aucune variante n'est recomptee comme famille d'action distincte ;
+- cette surface autorise une mini-frontiere parametree, pas une conclusion sur
+  la mecanique du jeu.
+
+Lecture :
+
+- La discipline de boucle transfere techniquement sur un troisieme jeu inconnu :
+  toutes les actions sont legales, aucune repetition catastrophique n'apparait
+  et les taux terminaux restent sous le seuil.
+- Le trigger progress-stall ne se declenche pas : chaque action change l'etat et
+  la boucle alterne entre exploration de cibles ACTION6 et placeholders M2/M3.
+- Les 145 demandes `rerun_m2_m3` restent des placeholders, avec zero requete
+  effective. SAGE.7 n'est donc pas une boucle d'hypotheses complete.
+- Les onze options ACTION6 montrent qu'une diversite parametree est disponible
+  des le RESET. SAGE.7a doit la transformer en mini-frontieres live-prefix
+  multi-budget sans feindre une diversite de familles d'action.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.third_unknown_game_transfer `
+  --source-sage6 diagnostics\sage\sage6_second_unknown_game_transfer_results.json `
+  --source-a33-2 diagnostics\a33\scoped_unknown_game_registry.json `
+  --source-a33-3 diagnostics\a33\control_dependent_relational_registry.json `
+  --out diagnostics\sage\sage7_third_unknown_game_transfer_results.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_third_unknown_game_transfer.py `
+  tests\test_sage_second_unknown_game_transfer.py `
+  tests\test_a33_control_dependent_relational_registry.py -q
+```
+
+Suite requise apres SAGE.7 :
+
+1. SAGE.7a - materialiser une mini-frontiere ACTION6 parametree a partir des
+   placeholders, avec contextes live-prefix et budgets distribues.
+2. Ne compter aucune variante parametree comme action distincte et conserver
+   `support=0`.
+3. N'ouvrir A32.7/A33.4 que si les executions controlees ulterieures produisent
+   un dossier eligible selon des criteres fixes avant verdict.
+
+SAGE.7 autorise maintenant a dire : SAGE transfere sa discipline bornee sur
+trois jeux inconnus successifs et sait detecter qu'une surface mono-action exige
+des controles parametres. Il ne faut pas dire : ACTION6 a une mecanique
+confirmee, les onze coordonnees constituent onze actions distinctes, ou tn36 est
+deja eligible a une revue A32.
