@@ -20,6 +20,7 @@ __all__ = [
     "DEFAULT_SAGE5I_CONTROL_SURFACE_EXPANSION_PATH",
     "DEFAULT_SAGE5J_PARAMETERIZED_CONTROL_ACQUISITION_PATH",
     "DEFAULT_SAGE6_SECOND_UNKNOWN_GAME_TRANSFER_PATH",
+    "DEFAULT_SAGE6A_SWITCH_FRONTIER_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -42,6 +43,7 @@ __all__ = [
     "run_sage5i_control_surface_expansion",
     "run_sage5j_parameterized_control_acquisition",
     "run_sage6_second_unknown_game_transfer",
+    "run_sage6a_switch_attribution_mini_frontier",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -60,6 +62,7 @@ __all__ = [
     "write_sage5i_control_surface_expansion",
     "write_sage5j_parameterized_control_acquisition",
     "write_sage6_second_unknown_game_transfer",
+    "write_sage6a_switch_attribution_mini_frontier",
 ]
 
 
@@ -453,6 +456,28 @@ def __getattr__(name: str):
             ),
             "write_sage6_second_unknown_game_transfer": (
                 write_sage6_second_unknown_game_transfer
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE6A_SWITCH_FRONTIER_PATH",
+        "run_sage6a_switch_attribution_mini_frontier",
+        "write_sage6a_switch_attribution_mini_frontier",
+    }:
+        from .second_unknown_game_switch_frontier import (
+            DEFAULT_SAGE6A_SWITCH_FRONTIER_PATH,
+            run_sage6a_switch_attribution_mini_frontier,
+            write_sage6a_switch_attribution_mini_frontier,
+        )
+
+        return {
+            "DEFAULT_SAGE6A_SWITCH_FRONTIER_PATH": (
+                DEFAULT_SAGE6A_SWITCH_FRONTIER_PATH
+            ),
+            "run_sage6a_switch_attribution_mini_frontier": (
+                run_sage6a_switch_attribution_mini_frontier
+            ),
+            "write_sage6a_switch_attribution_mini_frontier": (
+                write_sage6a_switch_attribution_mini_frontier
             ),
         }[name]
     raise AttributeError(name)

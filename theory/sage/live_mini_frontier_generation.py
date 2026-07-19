@@ -212,6 +212,11 @@ def generate_live_mini_frontiers_for_run(
     environments_dir: str | Path,
     max_generated_requests: int,
     env_factory: EnvFactory | None = None,
+    id_prefix: str = "sage5c",
+    generator_label: str = "SAGE.5c_live_mini_frontier",
+    context_state_origin: str = "sage5_live_prefix_frame_before",
+    source_placeholder_id: str = "sage5_placeholder::rerun_m2_m3",
+    generation_truth_status: str = SAGE5C_TRUTH_STATUS,
 ) -> Dict[str, Any]:
     """Replay a SAGE run and generate mini-frontiers for rerun placeholders."""
     env_dir = Path(environments_dir)
@@ -280,6 +285,11 @@ def generate_live_mini_frontiers_for_run(
                     action_args=selected_args,
                     valid_actions_before=valid_actions,
                     prefix_actions=prefix,
+                    id_prefix=id_prefix,
+                    generator_label=generator_label,
+                    context_state_origin=context_state_origin,
+                    source_placeholder_id=source_placeholder_id,
+                    generation_truth_status=generation_truth_status,
                 )
                 hypotheses.append(frontier["hypothesis"])
                 request = frontier["m3_request"]
@@ -305,7 +315,7 @@ def generate_live_mini_frontiers_for_run(
         "effective_requests_generated": len(requests),
         "generation_budget_exhausted": generation_budget_exhausted,
         "support": 0,
-        "truth_status": SAGE5C_TRUTH_STATUS,
+        "truth_status": generation_truth_status,
     }
 
 
@@ -322,6 +332,11 @@ def generate_live_mini_frontier(
     action_args: Mapping[str, Any],
     valid_actions_before: Sequence[Any],
     prefix_actions: Sequence[LivePrefixAction],
+    id_prefix: str = "sage5c",
+    generator_label: str = "SAGE.5c_live_mini_frontier",
+    context_state_origin: str = "sage5_live_prefix_frame_before",
+    source_placeholder_id: str = "sage5_placeholder::rerun_m2_m3",
+    generation_truth_status: str = SAGE5C_TRUTH_STATUS,
 ) -> Dict[str, Any]:
     diff = live_transition_diff(
         before_snapshot.grid,
@@ -333,16 +348,16 @@ def generate_live_mini_frontier(
     hypothesis_family = _hypothesis_family(diff)
     metric = _metric_for_family(hypothesis_family)
     expected_signal = _expected_signal_for_family(hypothesis_family)
-    hypothesis_id = f"sage5c::live_mini_frontier::{budget:03d}::{step:04d}"
+    hypothesis_id = f"{id_prefix}::live_mini_frontier::{budget:03d}::{step:04d}"
     source_transition_id = (
-        f"sage5c::{game_id}::budget_{budget:03d}::step_{step:04d}"
+        f"{id_prefix}::{game_id}::budget_{budget:03d}::step_{step:04d}"
     )
     context_replay = tuple(action.name for action in prefix_actions)
     context_replay_args = tuple(dict(action.action_args) for action in prefix_actions)
     controls = _suggested_controls(valid_actions_before, action_name)
     hypothesis = {
         "hypothesis_id": hypothesis_id,
-        "source_request_id": "sage5_placeholder::rerun_m2_m3",
+        "source_request_id": source_placeholder_id,
         "game_id": game_id,
         "frontier_context_id": source_transition_id,
         "frontier_reason": "live_rerun_m2_m3_placeholder_replaced_by_mini_frontier",
@@ -394,6 +409,8 @@ def generate_live_mini_frontier(
         metric=metric,
         expected_signal=expected_signal,
         hypothesis_family=hypothesis_family,
+        context_state_origin=context_state_origin,
+        generated_by=generator_label,
     )
     return {
         "hypothesis": hypothesis,
@@ -407,7 +424,7 @@ def generate_live_mini_frontier(
             "hypothesis_family": hypothesis_family,
             "controls_available": len(controls),
             "support": 0,
-            "truth_status": SAGE5C_TRUTH_STATUS,
+            "truth_status": generation_truth_status,
         },
     }
 
@@ -477,6 +494,8 @@ def _m3_request(
     metric: str,
     expected_signal: str,
     hypothesis_family: str,
+    context_state_origin: str = "sage5_live_prefix_frame_before",
+    generated_by: str = "SAGE.5c_live_mini_frontier",
 ) -> Dict[str, Any]:
     falsification = FalsificationCriterion(
         metric=metric,
@@ -503,7 +522,7 @@ def _m3_request(
         source_episode_id=None,
         source_step=int(step),
         source_transition_id=source_transition_id,
-        context_state_origin="sage5_live_prefix_frame_before",
+        context_state_origin=context_state_origin,
         replayability="LIVE_PREFIX_REPLAY_CONTEXT",
         blocking_reason=None if status == M2_READY_FOR_M3_STATUS else "NO_DYNAMIC_CONTROL_AVAILABLE",
         truth_status=M2_TRUTH_STATUS,
@@ -517,7 +536,7 @@ def _m3_request(
         raise ValueError(f"invalid sage5c request {request.request_id}: {result.errors}")
     payload = request.to_dict()
     payload["hypothesis_family"] = hypothesis_family
-    payload["generated_by"] = "SAGE.5c_live_mini_frontier"
+    payload["generated_by"] = generated_by
     payload["generated_request_counted_as_support"] = False
     return payload
 

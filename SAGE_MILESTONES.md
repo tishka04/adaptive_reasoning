@@ -1,6 +1,6 @@
 # SAGE milestones - closed-loop integration
 
-Derniere mise a jour : 2026-07-18
+Derniere mise a jour : 2026-07-19
 
 SAGE orchestre les briques M1/M2/M3/P1 dans une boucle agentique. SAGE ne
 confirme pas une mecanique, ne refute rien, et ne transforme jamais un resultat
@@ -40,6 +40,7 @@ de policy en support scientifique.
 | SAGE.5i - Control-surface expansion | Fait - epuisement action-distinct borne | `theory/sage/control_surface_expansion.py`, `tests/test_sage_control_surface_expansion.py`, `diagnostics/sage/sage5i_control_surface_expansion.json` | Audite les 24 contextes candidats SAGE.5e en replay exact; tous exposent seulement ACTION5/ACTION6; aucune troisieme famille d'action; 7 options parametrees conservees sans requalification; proposition de decision protocolaire A32; support=0; aucun write A32/A33 |
 | SAGE.5j - Pre-registered parameterized control acquisition | Fait - resultat mixte candidate-only | `theory/sage/parameterized_control_acquisition.py`, `tests/test_sage_parameterized_control_acquisition.py`, `diagnostics/sage/sage5j_parameterized_control_acquisition.json` | Execute exactement les 8 experiences A32.4 sans substitution; ACTION6 : 4/4 effets non discriminants (5 vs 5); ACTION5 : 4/4 effets discriminants (21 vs 4); 0 contradiction; 2 dossiers prets pour revue A32; support=0; aucun write A32/A33 |
 | SAGE.6 - Second unknown-game bounded transfer | Fait - 3/3 gates passes sur wa30 | `theory/sage/second_unknown_game_transfer.py`, `tests/test_sage_second_unknown_game_transfer.py`, `diagnostics/sage/sage6_second_unknown_game_transfer_results.json` | Selectionne wa30 par ordre public_unseen fixe avant execution; exclut les jeux connus et sb26 source; budgets 50/150/300 passes; progress-stall detecte sur les 3 budgets; 98 switches; quarantaine A33.2 respectee; support=0; aucun write A32/A33 |
+| SAGE.6a - Second-game switch attribution and live mini-frontier | Fait - 20 requests M3 candidate-only | `theory/sage/second_unknown_game_switch_frontier.py`, `tests/test_sage_second_unknown_game_switch_frontier.py`, `diagnostics/sage/sage6a_switch_attribution_mini_frontier.json` | Reproduit et attribue les 98 switches wa30 : 32 contrefactuels actifs, 34 repositionnements, 32 placeholders; distingue 1 garde terminale hors compteur source; convertit 20 placeholders en hypotheses + requests M3 live-prefix, reparties 4/12/4; support=0; aucun write A32/A33 |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -2323,15 +2324,115 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
   tests\test_a33_scoped_unknown_game_registry.py -q
 ```
 
-Suite conseillee apres SAGE.6 :
+## SAGE.6a - Second-game switch attribution and live mini-frontier
 
-1. SAGE.6a - attribuer les 98 switches `wa30`, puis convertir un sous-ensemble
-   des placeholders en mini-frontiere live candidate-only propre a `wa30`.
-2. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
+Objectif :
+
+- Reproduire exactement les 98 switches `wa30` de SAGE.6 sur les budgets
+  pre-enregistres `50`, `150`, `300`.
+- Attribuer chaque switch a son trigger et a son sous-but, sans confondre une
+  garde terminale avec le compteur de switches source.
+- Mesurer la dependance au placeholder `rerun_m2_m3`.
+- Rejouer les prefixes live correspondants et convertir un sous-ensemble borne
+  de ces placeholders en hypotheses et requests M3 testables.
+- Preserver la quarantaine A33.2 de `sb26`, `support=0` et l'absence de write
+  A32/A33.
+
+Ajouts :
+
+- `theory/sage/second_unknown_game_switch_frontier.py`
+- generalisation parametree, retrocompatible SAGE.5c, de
+  `theory/sage/live_mini_frontier_generation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_second_unknown_game_switch_frontier.py`
+- `diagnostics/sage/sage6a_switch_attribution_mini_frontier.json`
+
+Run du 2026-07-19 :
+
+- `game_id=wa30-ee6fef47`
+- `budgets_evaluated=[50,150,300]`
+- `source_switches_expected=98`
+- `switches_reproduced=98`
+- `source_switch_count_reproduced_exactly=true`
+- `switches_due_to_progress_stall_or_repeat_collapse=98`
+- `true_exploratory_switches=66`
+- `active_counterfactual_switches=32`
+- `reposition_switches=34`
+- `placeholder_rerun_m2_m3_switches=32`
+- `source_placeholder_switch_ratio=0.326531`
+- `source_placeholder_dependency_under_threshold=true`
+- `total_switch_events_observed=99`
+- `terminal_guard_events_outside_source_switch_count=1`
+- `max_generated_requests=20`
+- `mini_frontier_hypotheses_generated=20`
+- `effective_requests_generated=20`
+- `effective_request_ratio=0.625`
+- `unresolved_placeholder_switches_after_generation=12`
+- `residual_placeholder_switch_ratio=0.122449`
+- `unique_context_snapshot_hashes=12`
+- `all_requests_ready_for_m3=true`
+- `all_requests_live_prefix_replayable=true`
+- `source_scoped_mechanics_reused=0`
+- `cross_game_mechanics_imported=0`
+- `gate_passed=true`
+- `outcome_status=SAGE_SECOND_UNKNOWN_GAME_SWITCH_FRONTIER_GENERATED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_6A`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Attribution et generation par budget :
+
+| budget | switches source | evenements observes | contrefactuels | repositionnements | placeholders | requests generees | placeholders residuels |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 50 | 12 | 12 | 4 | 4 | 4 | 4 | 0 |
+| 150 | 37 | 37 | 12 | 13 | 12 | 12 | 0 |
+| 300 | 49 | 50 | 16 | 17 | 16 | 4 | 12 |
+
+Le cinquantieme evenement du budget 300 est un `stop_safe_hold` terminal. Il
+est conserve dans l'audit mais reste hors des 49 switches de sous-objectif
+comptes par SAGE.6. Cette separation explique les 99 evenements observes sans
+alterer la reproduction exacte des 98 switches source.
+
+Les 20 hypotheses appartiennent a la famille candidate
+`local_patch_change_candidate` et ciblent `ACTION2`. Leur distribution suit
+l'ordre fixe des budgets sous un plafond global : 4 au budget 50, 12 au budget
+150 et 4 au budget 300. Chaque request porte un prefixe live rejouable, un hash
+de contexte et le statut `READY_FOR_M3`. Les 20 generations ne sont ni du
+support, ni une evidence, ni une confirmation.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.second_unknown_game_switch_frontier `
+  --source-sage6 diagnostics\sage\sage6_second_unknown_game_transfer_results.json `
+  --budgets 50 150 300 `
+  --max-generated-requests 20 `
+  --out diagnostics\sage\sage6a_switch_attribution_mini_frontier.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_second_unknown_game_switch_frontier.py `
+  tests\test_sage_second_unknown_game_transfer.py `
+  tests\test_sage_live_mini_frontier_generation.py `
+  tests\test_sage_switch_attribution_placeholder_audit.py -q
+```
+
+Suite conseillee apres SAGE.6a :
+
+1. SAGE.6b - executer dans M3 un sous-ensemble stratifie des 20 requests
+   `wa30`, avec replay exact, verification du hash et couverture des trois
+   budgets.
+2. Consolider les evenements obtenus avant toute revue A32, sans convertir un
+   resultat de policy en preuve.
+3. Conserver `tn36` comme troisieme jeu inconnu pre-enregistre, sans le choisir
    sur la base de son outcome.
 
-SAGE.6 autorise maintenant a dire : SAGE peut transferer une discipline de
-boucle inconnue bornee sur deux jeux mecaniquement differents, tout en isolant
-la memoire scientifique scopee du premier jeu. Il ne faut pas dire : SAGE sait
-jouer, generalise une mecanique, decouvre ou confirme une mecanique sur jeu
-inconnu.
+SAGE.6a autorise maintenant a dire : SAGE sait expliquer ses switches sur un
+deuxieme jeu inconnu et transformer des placeholders en experiences M3 live
+rejouables. Il ne faut pas dire : SAGE sait jouer a `wa30`, generalise une
+mecanique de `sb26`, ou a decouvert/confirme une mecanique sur jeu inconnu.
