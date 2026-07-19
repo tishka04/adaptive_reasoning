@@ -4236,3 +4236,70 @@ orientes objet et objectif, puis planifier des experiences discriminantes plutot
 que seulement explorer le graphe en profondeur. Cette nouvelle regle devra etre
 figee avant de nouveaux jeux vierges ; `lf52` et `lp85` deviennent des jeux de
 developp et ne pourront plus servir de preuve held-out.
+
+## SAGE.8k - online terminal-objective grounding in the unified controller
+
+Objectif :
+
+- Separer strictement une regle mecanique confirmee d'une hypothese de but.
+- Deriver seulement des objectifs directionnels et mesurables : transformer
+  une couleur source vers une cible, ou etablir une relation actuellement
+  absente.
+- Ne pas transformer une relation simplement preservee en objectif terminal.
+- Mesurer une distance avant/apres chaque option sans compter le changement
+  visuel ou le succes mecanique comme preuve terminale.
+- Autoriser un petit budget de sondes par objectif candidat, puis arreter les
+  repetitions quand le deficit est nul ou le budget epuise.
+- Crediter une reduction seulement si un `level_complete` ou un WIN est observe
+  dans une fenetre causale courte ; refuter les completions repetees suivies de
+  GAME_OVER.
+- Exploiter sans budget de sonde uniquement les objectifs ayant recu ce support
+  terminal observe.
+- Exposer objectif, statut et distance dans chaque decision et dans le benchmark
+  apparie held-out.
+
+Ajouts :
+
+- `theory/online_terminal_objective.py`
+- branchement dans `theory/unified_cognitive_controller.py`
+- metriques v2 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_terminal_objectives.py`
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`
+
+Run du 2026-07-19, memes 5 jeux public-unseen, seeds 0/1, 2 resets,
+40 actions par reset :
+
+- `paired_protocol.protocol_gate_passed=true`
+- `legacy_only.actions_executed=768`
+- `unified.actions_executed=798`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=294`
+- `unified.promoted_relational_rules_observed=19` sur les 10 runs
+- `unified.terminal_objective_probe_actions=0`
+- `unified.terminal_objective_grounded_actions=0`
+- `unified.promoted_option_actions=0`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+- `targeted_grounding_tests=20 passed`
+- `full_repository_tests=1327 passed`
+- `ruff_and_compileall=passed`
+
+Lecture : le nouveau grounding retire les 34 actions d'options du run precedent.
+Les 19 regles promues dans ce benchmark sont des relations `absent` ou
+`preserved`; aucune ne definit un deficit terminal directionnel. Elles restent
+des connaissances mecaniques mais ne sont plus poursuivies comme des buts.
+Les tests synthetiques prouvent separement les quatre comportements requis : un
+effet mecanique seul reste candidat, une reduction suivie d'un level-up devient
+`terminal_supported`, un level-up hors fenetre ne donne aucun credit, et deux
+completions suivies de GAME_OVER refutent l'objectif. Il n'y a encore aucun gain
+ARC held-out.
+
+Suite requise : le prochain verrou n'est plus l'execution des options mais la
+generation active d'hypotheses de but directionnelles lorsque les premieres
+regles apprises ne decrivent que `absent`/`preserved`. Il faudra proposer des
+interventions qui peuvent faire apparaitre, casser, epuiser, atteindre ou
+convertir une structure, puis laisser exclusivement le signal terminal en ligne
+departager ces objectifs concurrents sur de nouveaux episodes held-out.

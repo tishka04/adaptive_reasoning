@@ -89,4 +89,6 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "levels_completed" in metrics["unified"]
     assert "wins" in metrics["unified"]
     assert "experiment_actions" in metrics["unified"]
+    assert "terminal_objective_probe_actions" in metrics["unified"]
+    assert "terminal_objective_grounded_actions" in metrics["unified"]
     assert "failure_causes" in payload

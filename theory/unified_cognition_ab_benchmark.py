@@ -40,10 +40,14 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v1"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v2"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
-EXPERIMENT_SOURCES = {"discriminating_experiment", "relational_experiment"}
+EXPERIMENT_SOURCES = {
+    "discriminating_experiment",
+    "relational_experiment",
+    "terminal_objective_probe",
+}
 
 EnvFactory = Callable[[str], Any]
 
@@ -267,13 +271,19 @@ def _run_arm(
         if total_actions
         else 0.0,
         "promoted_option_actions": (
-            decision_sources["promoted_option"]
-            + decision_sources["option_precondition_option"]
+            decision_sources["terminal_objective_option"]
+            + decision_sources["terminal_objective_probe"]
+            + decision_sources["terminal_objective_preparation"]
         ),
         "option_preparation_actions": (
-            decision_sources["option_precondition_option"]
-            + decision_sources["option_precondition_plan"]
+            decision_sources["terminal_objective_preparation"]
         ),
+        "terminal_objective_probe_actions": decision_sources[
+            "terminal_objective_probe"
+        ],
+        "terminal_objective_grounded_actions": decision_sources[
+            "terminal_objective_option"
+        ],
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
         "controller_errors": controller_errors,
@@ -560,6 +570,12 @@ def _aggregate_arm(
         ),
         "option_preparation_actions": sum(
             int(row["option_preparation_actions"]) for row in rows
+        ),
+        "terminal_objective_probe_actions": sum(
+            int(row["terminal_objective_probe_actions"]) for row in rows
+        ),
+        "terminal_objective_grounded_actions": sum(
+            int(row["terminal_objective_grounded_actions"]) for row in rows
         ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows

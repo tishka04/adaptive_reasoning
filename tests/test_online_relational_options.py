@@ -105,9 +105,11 @@ def test_independent_live_confirmations_promote_and_execute_a_rule_option():
         available_actions=["ACTION6"],
         legacy_action="ACTION6",
     )
-    assert option.source == "promoted_option"
+    assert option.source == "terminal_objective_probe"
     assert option.action_data == {"x": 4, "y": 4}
     assert option.source_rule_key == rules[0].key
+    assert option.objective_status == "candidate"
+    assert option.objective_distance == 1.0
     controller.observe_transition(
         action="ACTION6",
         action_data=option.action_data,
@@ -197,7 +199,7 @@ def test_game_theory_ledger_keeps_promoted_rule_revision_state():
     assert rule.key in summary["promoted_relational_rules"]
 
 
-def test_visual_change_without_directed_progress_is_not_rewarded_as_progress():
+def test_preservation_mechanic_is_not_invented_as_a_terminal_objective():
     controller = UnifiedCognitiveController(
         "synthetic",
         available_actions=["ACTION6"],
@@ -221,7 +223,7 @@ def test_visual_change_without_directed_progress_is_not_rewarded_as_progress():
         available_actions=["ACTION6"],
         legacy_action="ACTION6",
     )
-    assert decision.source == "promoted_option"
+    assert decision.source == "legacy_fallback"
     controller.observe_transition(
         action="ACTION6",
         action_data=decision.action_data,
@@ -231,9 +233,11 @@ def test_visual_change_without_directed_progress_is_not_rewarded_as_progress():
     )
 
     execution = controller.summary()["option_execution"]
-    assert execution["expected_successes"] == 1
+    assert execution["executions"] == 0
+    assert execution["expected_successes"] == 0
     assert execution["functional_successes"] == 0
-    assert execution["visual_only_outcomes"] == 1
+    assert execution["visual_only_outcomes"] == 0
+    assert controller.summary()["terminal_objectives"]["objectives"] == 0
 
 
 def test_repeated_option_contradictions_remove_rule_from_active_compilation():
@@ -256,7 +260,7 @@ def test_repeated_option_contradictions_remove_rule_from_active_compilation():
     assert compiler.compile([rule]) == []
 
 
-def test_mechanically_true_but_functionally_sterile_option_is_quarantined():
+def test_mechanically_true_preservation_never_consumes_goal_probe_budget():
     controller = UnifiedCognitiveController(
         "synthetic",
         available_actions=["ACTION6"],
@@ -284,7 +288,7 @@ def test_mechanically_true_but_functionally_sterile_option_is_quarantined():
             available_actions=["ACTION6"],
             legacy_action="ACTION6",
         )
-        assert decision.source == "promoted_option"
+        assert decision.source == "legacy_fallback"
         controller.observe_transition(
             action="ACTION6",
             action_data=decision.action_data,
@@ -302,6 +306,8 @@ def test_mechanically_true_but_functionally_sterile_option_is_quarantined():
         legacy_action="ACTION6",
     )
 
-    assert fallback.source != "promoted_option"
+    assert not fallback.source.startswith("terminal_objective")
     assert rule.status.value == "confirmed"
-    assert rule.key in controller.summary()["option_execution"]["sterile_rule_keys"]
+    objective_summary = controller.summary()["terminal_objectives"]
+    assert objective_summary["objectives"] == 0
+    assert objective_summary["probe_actions"] == 0

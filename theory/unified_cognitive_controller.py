@@ -48,6 +48,10 @@ from .online_relational_option import (
     OptionExecutionMemory,
     observe_option_progress,
 )
+from .online_terminal_objective import (
+    OnlineTerminalObjectiveStore,
+    TerminalObjectiveAssessment,
+)
 from .promoted_relational_rule import PromotedRelationalRule
 from .theory_conditioned_planner import TheoryConditionedPlanner
 
@@ -67,6 +71,10 @@ class UnifiedCognitiveConfig:
     operator_induction_interval: int = 1
     max_option_attempts_per_context: int = 2
     min_option_executions_before_quarantine: int = 3
+    max_terminal_objective_probes_per_objective: int = 2
+    max_terminal_objective_probes_total: int = 16
+    terminal_objective_credit_window: int = 6
+    terminal_objective_min_support: int = 1
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
@@ -87,6 +95,9 @@ class CognitiveDecision:
     source_rule_key: str = ""
     option_id: str = ""
     preparation_for_rule_key: str = ""
+    objective_id: str = ""
+    objective_status: str = ""
+    objective_distance: float | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -100,6 +111,9 @@ class CognitiveDecision:
             "source_rule_key": self.source_rule_key,
             "option_id": self.option_id,
             "preparation_for_rule_key": self.preparation_for_rule_key,
+            "objective_id": self.objective_id,
+            "objective_status": self.objective_status,
+            "objective_distance": self.objective_distance,
         }
 
 
@@ -139,6 +153,20 @@ class UnifiedCognitiveController:
         self.theory_planner = TheoryConditionedPlanner()
         self.option_compiler = OnlineRelationalOptionCompiler()
         self.option_memory = OptionExecutionMemory()
+        self.terminal_objectives = OnlineTerminalObjectiveStore(
+            max_probe_actions_per_objective=(
+                self.config.max_terminal_objective_probes_per_objective
+            ),
+            max_probe_actions_total=(
+                self.config.max_terminal_objective_probes_total
+            ),
+            terminal_credit_window=(
+                self.config.terminal_objective_credit_window
+            ),
+            minimum_terminal_support=(
+                self.config.terminal_objective_min_support
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -163,6 +191,7 @@ class UnifiedCognitiveController:
         self._promoted_option_decisions = 0
         self._option_preparation_decisions = 0
         self._option_outcomes: List[Dict[str, Any]] = []
+        self._objective_outcomes: List[Dict[str, Any]] = []
 
     @property
     def theory(self):
@@ -281,6 +310,7 @@ class UnifiedCognitiveController:
 
         self._revise_pending_predictions(update, pending)
         self._promote_confirmed_predictions()
+        self._observe_pending_terminal_objective(update, pending)
         self._observe_pending_option(update, pending)
         self.progress.on_action(
             grid_hash=after_hash,
@@ -355,6 +385,7 @@ class UnifiedCognitiveController:
     def on_reset(self) -> None:
         """Start a fresh behavioral branch while retaining learned theory."""
         self._pending_decision = None
+        self.terminal_objectives.start_branch()
         self.progress.start_new_branch(
             current_validated_ops=self.operator_inducer.num_locked(),
             current_validated_rules=self._validated_rule_count(),
@@ -385,6 +416,8 @@ class UnifiedCognitiveController:
             "option_preparation_decisions": self._option_preparation_decisions,
             "option_execution": self.option_memory.summary(),
             "recent_option_outcomes": self._option_outcomes[-10:],
+            "terminal_objectives": self.terminal_objectives.summary(),
+            "recent_objective_outcomes": self._objective_outcomes[-10:],
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
@@ -455,7 +488,7 @@ class UnifiedCognitiveController:
         observation: GameObservation,
         safe_actions: List[str],
     ) -> CognitiveDecision | None:
-        """Execute or prepare the most valuable confirmed online option."""
+        """Probe or exploit options only through a measurable goal deficit."""
         if not self.config.enable_promoted_options:
             return None
         rules = self.theory.promoted_relational_rules()
@@ -465,18 +498,15 @@ class UnifiedCognitiveController:
         if not options:
             return None
         by_key = {option.rule_key: option for option in options}
-        ranked_rules = sorted(
-            rules,
-            key=lambda rule: (
-                self.option_memory.value(rule),
-                rule.level_successes,
-                rule.functional_successes,
-                rule.confidence,
-                rule.key,
-            ),
-            reverse=True,
-        )
-        for rule in ranked_rules:
+        self.terminal_objectives.seed_rules(rules)
+        candidates: List[
+            Tuple[
+                PromotedRelationalRule,
+                CompiledRelationalOption,
+                TerminalObjectiveAssessment,
+            ]
+        ] = []
+        for rule in rules:
             if self.option_memory.is_sterile(
                 rule.key,
                 min_executions=(
@@ -487,6 +517,22 @@ class UnifiedCognitiveController:
             option = by_key.get(rule.key)
             if option is None or option.action not in safe_actions:
                 continue
+            objective = self.terminal_objectives.assess_rule(rule, observation)
+            if objective is None or not objective.selectable:
+                continue
+            candidates.append((rule, option, objective))
+
+        candidates.sort(
+            key=lambda item: (
+                item[2].priority,
+                self.option_memory.value(item[0]),
+                item[0].level_successes,
+                item[0].confidence,
+                item[0].key,
+            ),
+            reverse=True,
+        )
+        for rule, option, objective in candidates:
             context_key = (rule.key, observation.grid_hash)
             if self._option_context_attempts[context_key] >= max(
                 1,
@@ -501,6 +547,7 @@ class UnifiedCognitiveController:
                     option,
                     observation,
                     preparation_for_rule_key="",
+                    objective=objective,
                 )
             chain = self.option_compiler.preparation_chain(
                 option,
@@ -514,10 +561,12 @@ class UnifiedCognitiveController:
                         preparer,
                         observation,
                         preparation_for_rule_key=rule.key,
+                        objective=objective,
                     )
             preparer = self._select_induced_precondition_operator(
                 option,
                 assessment,
+                objective,
                 observation,
                 safe_actions,
             )
@@ -531,15 +580,21 @@ class UnifiedCognitiveController:
         observation: GameObservation,
         *,
         preparation_for_rule_key: str,
+        objective: TerminalObjectiveAssessment,
     ) -> CognitiveDecision:
         rule = self.theory.promoted_relational_rule(option.rule_key)
         confidence = 0.0 if rule is None else rule.confidence
         self._option_context_attempts[(option.rule_key, observation.grid_hash)] += 1
         operator = self._best_operator_for_option(option, observation)
-        source = (
-            "option_precondition_option"
-            if preparation_for_rule_key
-            else "promoted_option"
+        source = "terminal_objective_preparation" if preparation_for_rule_key else (
+            "terminal_objective_probe"
+            if objective.is_probe
+            else "terminal_objective_option"
+        )
+        self.terminal_objectives.record_selection(
+            objective.objective_id,
+            observation,
+            is_probe=objective.is_probe,
         )
         if preparation_for_rule_key:
             self._option_preparation_decisions += 1
@@ -550,6 +605,7 @@ class UnifiedCognitiveController:
             action_data=self._option_action_data(option, observation, operator),
             source=source,
             reason=(
+                f"{objective.reason}: {objective.objective_id} via "
                 f"compiled confirmed rule {option.rule_key}"
                 + (
                     f" prepares {preparation_for_rule_key}"
@@ -562,6 +618,9 @@ class UnifiedCognitiveController:
             source_rule_key=option.rule_key,
             option_id=option.option_id,
             preparation_for_rule_key=preparation_for_rule_key,
+            objective_id=objective.objective_id,
+            objective_status=objective.status.value,
+            objective_distance=objective.distance,
         )
 
     def _best_operator_for_option(
@@ -615,6 +674,7 @@ class UnifiedCognitiveController:
         self,
         target_option: CompiledRelationalOption,
         assessment: OptionAssessment,
+        objective: TerminalObjectiveAssessment,
         observation: GameObservation,
         safe_actions: List[str],
     ) -> CognitiveDecision | None:
@@ -645,6 +705,11 @@ class UnifiedCognitiveController:
             key=lambda item: (item.confidence, item.support, -item.cost_estimate),
         )
         self._option_preparation_decisions += 1
+        self.terminal_objectives.record_selection(
+            objective.objective_id,
+            observation,
+            is_probe=objective.is_probe,
+        )
         action = _normalize_action(operator.primitive_action)
         return CognitiveDecision(
             action_name=action,
@@ -653,7 +718,7 @@ class UnifiedCognitiveController:
                 operator.parameters,
                 observation,
             ),
-            source="option_precondition_plan",
+            source="terminal_objective_preparation",
             reason=(
                 f"induced operator {operator.operator_id} prepares "
                 f"{target_option.rule_key}: {assessment.missing_predicates}"
@@ -662,6 +727,9 @@ class UnifiedCognitiveController:
             operator_id=operator.operator_id,
             option_id=target_option.option_id,
             preparation_for_rule_key=target_option.rule_key,
+            objective_id=objective.objective_id,
+            objective_status=objective.status.value,
+            objective_distance=objective.distance,
         )
 
     def _select_theory_plan(
@@ -1029,6 +1097,29 @@ class UnifiedCognitiveController:
             self._promoted_prediction_keys.add(key)
             self._rules_promoted += 1
 
+    def _observe_pending_terminal_objective(
+        self,
+        update: LiveTransitionUpdate,
+        pending: CognitiveDecision | None,
+    ) -> None:
+        """Keep mechanic effects separate from observed terminal credit."""
+        context = "" if pending is None else _transition_context_signature(
+            update,
+            pending.action_data,
+        )
+        outcome = self.terminal_objectives.observe_transition(
+            update,
+            objective_id="" if pending is None else pending.objective_id,
+            rule_key="" if pending is None else pending.source_rule_key,
+            context_signature=context,
+        )
+        if (
+            outcome["objective_id"]
+            or outcome["terminal_success"]
+            or outcome["expired_nonterminal_completions"]
+        ):
+            self._objective_outcomes.append(outcome)
+
     def _observe_pending_option(
         self,
         update: LiveTransitionUpdate,
@@ -1036,7 +1127,11 @@ class UnifiedCognitiveController:
     ) -> None:
         if pending is None or not pending.source_rule_key:
             return
-        if pending.source not in {"promoted_option", "option_precondition_option"}:
+        if pending.source not in {
+            "terminal_objective_option",
+            "terminal_objective_probe",
+            "terminal_objective_preparation",
+        }:
             return
         rule = self.theory.promoted_relational_rule(pending.source_rule_key)
         if rule is None:
