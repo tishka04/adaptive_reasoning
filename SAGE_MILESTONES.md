@@ -3220,3 +3220,116 @@ SAGE.7a autorise maintenant a dire : SAGE sait construire une mini-frontiere
 controlee sur une surface mono-action en separant famille d'action et arguments.
 Il ne faut pas dire : une coordonnee ACTION6 est une nouvelle action, l'une des
 variantes a un effet propre, ou le dossier est deja eligible a A32.7.
+
+## SAGE.7b - Exact parameterized ACTION6 execution
+
+Objectif :
+
+- Consommer uniquement les 18 requetes pre-enregistrees par SAGE.7a.
+- Executer chaque cible ACTION6 une fois et ses deux controles ACTION6 exacts,
+  soit 54 bras live-prefix sans deduplication inter-budget.
+- Verifier le hash du contexte avant chaque bras et interdire toute substitution
+  d'action, de coordonnees ou de prefixe.
+- Comparer chaque cible a chacun de ses controles avec la metrique inscrite dans
+  la requete, sans transformer les deltas en support ou refutation.
+- Preserver les repetitions entre budgets pour une consolidation ulterieure.
+- Garder le resultat candidate-only, `support=0`, sans intake A32 ni write A33.
+
+Ajouts :
+
+- `theory/sage/third_unknown_game_parameterized_execution.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_third_unknown_game_parameterized_execution.py`
+- `diagnostics/sage/sage7b_third_unknown_game_parameterized_execution.json`
+
+Run du 2026-07-19 :
+
+- `game_id=tn36-ab4f63cc`
+- `budgets_evaluated=[50,150,300]`
+- `requests_available=18`
+- `requests_executed=18`
+- `requests_blocked=0`
+- `requests_executed_by_budget={50:6,150:6,300:6}`
+- `target_arm_executions=18`
+- `control_arm_executions=36`
+- `total_arm_executions=54`
+- `comparison_events=36`
+- `live_prefix_replay_exact_events=18`
+- `protocol_exact_match_events=18`
+- `protocol_substitution_events=0`
+- `metrics_executed={local_patch_before_after:32,terminal_state_after_rollout:4}`
+- `positive_delta_events=13`
+- `negative_delta_events=0`
+- `zero_delta_events=23`
+- `distinct_effect_sizes=[0.0,2.0]`
+- `discrimination_statuses={DISCRIMINATING_TARGET_EFFECT_CANDIDATE_ONLY:13,NON_DISCRIMINATING_EQUAL_EFFECT_CANDIDATE_ONLY:23}`
+- `action_families=[ACTION6]`
+- `distinct_action_families=1`
+- `parameterized_variants_counted_as_distinct_actions=false`
+- `ready_for_event_consolidation=true`
+- `required_next_step=SAGE7C_PARAMETERIZED_EVENT_CONSOLIDATION_REQUIRED_CANDIDATE_ONLY`
+- `gate_passed=true`
+- `outcome_status=SAGE_THIRD_UNKNOWN_GAME_PARAMETERIZED_EXECUTION_COMPLETED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_7B`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_intake_requested=false`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Observations par budget :
+
+| budget | requetes | bras cible | bras controle | deltas positifs | deltas negatifs | deltas nuls |
+|---:|---:|---:|---:|---:|---:|---:|
+| 50 | 6 | 6 | 12 | 5 | 0 | 7 |
+| 150 | 6 | 6 | 12 | 4 | 0 | 8 |
+| 300 | 6 | 6 | 12 | 4 | 0 | 8 |
+
+Lecture :
+
+- Pour la cible `ACTION6 {x:25,y:42}`, les treize comparaisons contre
+  `ACTION6 {x:34,y:51}` donnent un signal cible `2`, un signal controle `0` et
+  un delta `+2`.
+- Les treize comparaisons de la meme cible contre
+  `ACTION6 {x:41,y:44}` donnent `2` des deux cotes et un delta nul. L'effet
+  observe depend donc du controle parametre ; il ne peut pas etre attribue a la
+  seule cible ACTION6.
+- Les six comparaisons du premier contexte, cible `{x:35,y:42}`, sont neutres.
+  Les quatre comparaisons terminales, cible `{x:30,y:42}`, sont aussi neutres.
+- Les runs 150 et 300 reproduisent exactement leurs contextes communs. Ces
+  duplications sont conservees comme repetitions techniques mais ne doivent pas
+  etre recomptees comme contextes independants.
+- SAGE.7b fournit des evenements bruts mixtes. Il ne conclut ni mecanique
+  autonome, ni non-identifiabilite globale, ni eligibilite A32.7.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.third_unknown_game_parameterized_execution `
+  --source-sage7a diagnostics\sage\sage7a_third_unknown_game_parameterized_frontier.json `
+  --out diagnostics\sage\sage7b_third_unknown_game_parameterized_execution.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_third_unknown_game_parameterized_execution.py `
+  tests\test_sage_third_unknown_game_parameterized_frontier.py -q
+```
+
+Suite requise apres SAGE.7b :
+
+1. SAGE.7c - consolider les 36 comparaisons par hash de contexte, cible,
+   controle et metrique, en separant repetitions inter-budget et contextes
+   independants.
+2. Identifier si les deltas `+2` contre `{x:34,y:51}` restent strictement
+   dependants du controle nul `{x:41,y:44}`.
+3. N'ouvrir A32.7 que si la consolidation produit un dossier identifiable selon
+   des criteres fixes, sans convertir automatiquement les 13 deltas positifs en
+   support scientifique.
+
+SAGE.7b autorise maintenant a dire : SAGE execute exactement une experience
+parametree multi-controles sur une surface mono-action et observe un contraste
+dependant du controle. Il ne faut pas dire : `{x:25,y:42}` a un effet autonome,
+les 13 deltas sont 13 supports independants, ou A32.7 est deja autorise.
