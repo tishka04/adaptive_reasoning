@@ -36,6 +36,7 @@ __all__ = [
     "DEFAULT_SAGE8C_RELATIONAL_MEMORY_MULTI_ACTION_EVALUATION_PATH",
     "DEFAULT_SAGE8D_RELATIONAL_MEMORY_CLOSED_LOOP_EVALUATION_PATH",
     "DEFAULT_SAGE8E_RELATIONAL_MEMORY_OBJECTIVE_CLOSED_LOOP_EVALUATION_PATH",
+    "DEFAULT_SAGE8F_GOAL_GROUNDED_SIGNAL_ACQUISITION_PATH",
     "A32ReviewCandidateItem",
     "PolicyActionOption",
     "RelationalMemoryPolicyEntry",
@@ -78,6 +79,7 @@ __all__ = [
     "run_sage8c_relational_memory_multi_action_evaluation",
     "run_sage8d_relational_memory_closed_loop_evaluation",
     "run_sage8e_relational_memory_objective_closed_loop_evaluation",
+    "run_sage8f_goal_grounded_signal_acquisition",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -112,6 +114,7 @@ __all__ = [
     "write_sage8c_relational_memory_multi_action_evaluation",
     "write_sage8d_relational_memory_closed_loop_evaluation",
     "write_sage8e_relational_memory_objective_closed_loop_evaluation",
+    "write_sage8f_goal_grounded_signal_acquisition",
 ]
 
 
@@ -859,6 +862,28 @@ def __getattr__(name: str):
             ),
             "write_sage8e_relational_memory_objective_closed_loop_evaluation": (
                 write_sage8e_relational_memory_objective_closed_loop_evaluation
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE8F_GOAL_GROUNDED_SIGNAL_ACQUISITION_PATH",
+        "run_sage8f_goal_grounded_signal_acquisition",
+        "write_sage8f_goal_grounded_signal_acquisition",
+    }:
+        from .goal_grounded_signal_acquisition import (
+            DEFAULT_SAGE8F_GOAL_GROUNDED_SIGNAL_ACQUISITION_PATH,
+            run_sage8f_goal_grounded_signal_acquisition,
+            write_sage8f_goal_grounded_signal_acquisition,
+        )
+
+        return {
+            "DEFAULT_SAGE8F_GOAL_GROUNDED_SIGNAL_ACQUISITION_PATH": (
+                DEFAULT_SAGE8F_GOAL_GROUNDED_SIGNAL_ACQUISITION_PATH
+            ),
+            "run_sage8f_goal_grounded_signal_acquisition": (
+                run_sage8f_goal_grounded_signal_acquisition
+            ),
+            "write_sage8f_goal_grounded_signal_acquisition": (
+                write_sage8f_goal_grounded_signal_acquisition
             ),
         }[name]
     raise AttributeError(name)

@@ -1,0 +1,2852 @@
+{
+  "a33_mutated": false,
+  "closed_loop_live_rollout_performed": false,
+  "comparative_evaluation_performed": false,
+  "config": {
+    "acquisition_design": {
+      "cross_game_action_transfer_allowed": false,
+      "exact_game_and_visual_digest_required": true,
+      "frame_continuity_required": true,
+      "fuzzy_matching_allowed": false,
+      "non_goal_transitions_excluded": true,
+      "positive_label": "OBSERVED_LEVELS_COMPLETED_INCREASE_OR_TERMINAL_WIN",
+      "predecessor_observation_required": true,
+      "reset_actions_excluded": true,
+      "sage8e_evaluation_outcomes_used_for_training_or_tuning": false,
+      "source_outcomes_are_preexisting_human_demonstrations": true
+    },
+    "artifacts_not_modified": [
+      "A33.3",
+      "A33.4",
+      "A34.2",
+      "A34.3",
+      "SAGE.8a",
+      "SAGE.8b",
+      "SAGE.8c",
+      "SAGE.8d",
+      "SAGE.8e"
+    ],
+    "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+    "goal_signal_scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+    "human_traces_dir": "human_traces",
+    "sage8e_path": "diagnostics\\sage\\sage8e_relational_memory_objective_closed_loop_evaluation.json",
+    "schema_version": "sage.goal_grounded_signal_acquisition.v1",
+    "target_admission_design": {
+      "action_schema_overlap_is_not_sufficient": true,
+      "activation_requires_exact_target_game_signal": true,
+      "no_target_signal_means_no_closed_loop_evaluation": true,
+      "source_game_signal_is_quarantined_on_target_games": true
+    },
+    "target_games": [
+      "tn36-ab4f63cc",
+      "wa30-ee6fef47"
+    ],
+    "target_transition_paths": [
+      "training\\data\\wa30_ee6fef47.json",
+      "training\\data\\tn36_ab4f63cc.json"
+    ]
+  },
+  "confirmation_performed": false,
+  "evaluation_episodes_executed": 0,
+  "evaluation_outcomes_used_for_training_or_tuning": false,
+  "gate": {
+    "all_goal_candidates_have_exact_frame_continuity": true,
+    "all_target_games_have_transition_audits": true,
+    "at_least_one_real_win_anchors_the_signal": true,
+    "completed_sage8e_source_validated": true,
+    "no_closed_loop_evaluation_without_admitted_signal": true,
+    "no_sage8e_evaluation_outcomes_used_for_training_or_tuning": true,
+    "no_truth_reevaluation_or_registry_support_counting": true,
+    "signal_scope_is_exact_without_cross_game_transfer": true,
+    "target_admission_depends_only_on_exact_target_signal": true,
+    "uncovered_targets_are_quarantined_instead_of_generalized": true,
+    "verified_goal_signal_was_acquired": true
+  },
+  "goal_grounded_signal_acquisition_performed": true,
+  "goal_signal_bank": {
+    "config": {
+      "action_fields_read": [
+        "action",
+        "action_args"
+      ],
+      "evaluation_outcome_fields_read": [],
+      "exact_predecessor_required": true,
+      "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+      "positive_fields_read": [
+        "levels_completed_after",
+        "game_state_after"
+      ],
+      "schema_version": "sage.goal_grounded_exact_state_signal.v1",
+      "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+      "source_paths": [
+        "human_traces\\ar25-e3c63847.20260420-163550.steps.jsonl",
+        "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+        "human_traces\\ar25-e3c63847.20260617-160929.steps.jsonl",
+        "human_traces\\bp35-0a0ad940.20260615-174132.steps.jsonl",
+        "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+        "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+        "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+        "human_traces\\bp35-0a0ad940.20260618-122730.steps.jsonl",
+        "human_traces\\cd82-fb555c5d.20260615-211618.steps.jsonl",
+        "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+        "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+        "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+        "human_traces\\dc22-4c9bff3e.20260616-134833.steps.jsonl",
+        "human_traces\\dc22-4c9bff3e.20260616-145945.steps.jsonl",
+        "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+        "human_traces\\ft09-0d8bbf25.20260617-142254.steps.jsonl",
+        "human_traces\\ft09-0d8bbf25.20260617-142428.steps.jsonl",
+        "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl"
+      ],
+      "source_type": "PREEXISTING_HUMAN_STEP_TRACES",
+      "state_fields_read": [
+        "frame_before",
+        "frame_after"
+      ]
+    },
+    "entries": [
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|045e5cf18713f3a0",
+        "source_references": [
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 486,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 485
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "045e5cf18713f3a0",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|17de8138388c1905",
+        "source_references": [
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 30,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 29
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "17de8138388c1905",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|1b25bba2ad9a1a51",
+        "source_references": [
+          {
+            "episode_id": "be48a96d70f0",
+            "source_line_number": 24,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-163550.steps.jsonl",
+            "step": 23
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "1b25bba2ad9a1a51",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|3a2ac7d74bf856e7",
+        "source_references": [
+          {
+            "episode_id": "be48a96d70f0",
+            "source_line_number": 127,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-163550.steps.jsonl",
+            "step": 126
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "3a2ac7d74bf856e7",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 2,
+            "level_up_count": 2,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|7c9de4244c67becd",
+        "source_references": [
+          {
+            "episode_id": "be48a96d70f0",
+            "source_line_number": 152,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-163550.steps.jsonl",
+            "step": 151
+          },
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 147,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 146
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "7c9de4244c67becd",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|83624735b0402166",
+        "source_references": [
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 16,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 15
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "83624735b0402166",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|999f56c311794020",
+        "source_references": [
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 122,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 121
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "999f56c311794020",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|c3d740897f1a7c84",
+        "source_references": [
+          {
+            "episode_id": "be48a96d70f0",
+            "source_line_number": 55,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-163550.steps.jsonl",
+            "step": 54
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "c3d740897f1a7c84",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|de335cc6707afffa",
+        "source_references": [
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 206,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 205
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "de335cc6707afffa",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|fb8e8097d1e91755",
+        "source_references": [
+          {
+            "episode_id": "2c1fde70ccbd",
+            "source_line_number": 18,
+            "source_path": "human_traces\\ar25-e3c63847.20260617-160929.steps.jsonl",
+            "step": 17
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "fb8e8097d1e91755",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ar25-e3c63847",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ar25-e3c63847|fe2e15edfb227b9a",
+        "source_references": [
+          {
+            "episode_id": "f0fe23029ffa",
+            "source_line_number": 350,
+            "source_path": "human_traces\\ar25-e3c63847.20260420-172856.steps.jsonl",
+            "step": 349
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "fe2e15edfb227b9a",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|09e4405e5d95ca1a",
+        "source_references": [
+          {
+            "episode_id": "c1d81b2b408a",
+            "source_line_number": 489,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 81
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "09e4405e5d95ca1a",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 28,
+              "y": 40
+            },
+            "action_identity": "ACTION6::{\"x\":28,\"y\":40}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|1899e8d958c0d29e",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 158,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 157
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "1899e8d958c0d29e",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|19535daf7295c228",
+        "source_references": [
+          {
+            "episode_id": "182270820f60",
+            "source_line_number": 22,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+            "step": 21
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "19535daf7295c228",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 26,
+              "y": 41
+            },
+            "action_identity": "ACTION6::{\"x\":26,\"y\":41}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|21cac46dc203f07f",
+        "source_references": [
+          {
+            "episode_id": "91d75254dd01",
+            "source_line_number": 151,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 116
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "21cac46dc203f07f",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|25c41a5cbc2a1c39",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 30,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 29
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "25c41a5cbc2a1c39",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 33,
+              "y": 33
+            },
+            "action_identity": "ACTION6::{\"x\":33,\"y\":33}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|36099fc0beda000b",
+        "source_references": [
+          {
+            "episode_id": "f2a11848d51d",
+            "source_line_number": 70,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+            "step": 42
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "36099fc0beda000b",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 2,
+            "level_up_count": 2,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|3af5062662c05dff",
+        "source_references": [
+          {
+            "episode_id": "f2a11848d51d",
+            "source_line_number": 111,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+            "step": 83
+          },
+          {
+            "episode_id": "91d75254dd01",
+            "source_line_number": 120,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 85
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "3af5062662c05dff",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 28,
+              "y": 41
+            },
+            "action_identity": "ACTION6::{\"x\":28,\"y\":41}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|59a952399f103a8f",
+        "source_references": [
+          {
+            "episode_id": "f2a11848d51d",
+            "source_line_number": 144,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+            "step": 116
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "59a952399f103a8f",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|79ca8407b92922ac",
+        "source_references": [
+          {
+            "episode_id": "c2982e04c493",
+            "source_line_number": 28,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 27
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "79ca8407b92922ac",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 33,
+              "y": 34
+            },
+            "action_identity": "ACTION6::{\"x\":33,\"y\":34}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 35,
+              "y": 34
+            },
+            "action_identity": "ACTION6::{\"x\":35,\"y\":34}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|80bf90069f2e32ef",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 95,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 94
+          },
+          {
+            "episode_id": "91d75254dd01",
+            "source_line_number": 79,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 44
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "80bf90069f2e32ef",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 5,
+              "y": 34
+            },
+            "action_identity": "ACTION6::{\"x\":5,\"y\":34}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|8d452918874bba3e",
+        "source_references": [
+          {
+            "episode_id": "73dd8a6e40e1",
+            "source_line_number": 351,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 60
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "8d452918874bba3e",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|b51cfa882782e78c",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 191,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 190
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "b51cfa882782e78c",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 2,
+            "level_up_count": 2,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|c41801b4e800f9e9",
+        "source_references": [
+          {
+            "episode_id": "f2a11848d51d",
+            "source_line_number": 179,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-174246.steps.jsonl",
+            "step": 151
+          },
+          {
+            "episode_id": "91d75254dd01",
+            "source_line_number": 186,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 151
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "c41801b4e800f9e9",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|c63757d8630b5931",
+        "source_references": [
+          {
+            "episode_id": "91d75254dd01",
+            "source_line_number": 234,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-180542.steps.jsonl",
+            "step": 199
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "c63757d8630b5931",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|c7667dc240c3691c",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 51,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 50
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "c7667dc240c3691c",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|da6be3a8a16fb479",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 238,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 237
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "da6be3a8a16fb479",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "bp35-0a0ad940",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "bp35-0a0ad940|e24aa6d55c5ed7bf",
+        "source_references": [
+          {
+            "episode_id": "0b0b3abeb8c0",
+            "source_line_number": 131,
+            "source_path": "human_traces\\bp35-0a0ad940.20260615-175552.steps.jsonl",
+            "step": 130
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "e24aa6d55c5ed7bf",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION5",
+            "action_args": {},
+            "action_identity": "ACTION5::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|2f478fbb50dba431",
+        "source_references": [
+          {
+            "episode_id": "5e28e7ad7ce6",
+            "source_line_number": 31,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+            "step": 30
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "2f478fbb50dba431",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 33,
+              "y": 20
+            },
+            "action_identity": "ACTION6::{\"x\":33,\"y\":20}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|39f5f61a54ef6616",
+        "source_references": [
+          {
+            "episode_id": "5e28e7ad7ce6",
+            "source_line_number": 222,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+            "step": 221
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "39f5f61a54ef6616",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 13,
+              "y": 38
+            },
+            "action_identity": "ACTION6::{\"x\":13,\"y\":38}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|8147aa78899a28b4",
+        "source_references": [
+          {
+            "episode_id": "5e28e7ad7ce6",
+            "source_line_number": 125,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+            "step": 124
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "8147aa78899a28b4",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION5",
+            "action_args": {},
+            "action_identity": "ACTION5::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|8ca3e8f24c9743ae",
+        "source_references": [
+          {
+            "episode_id": "5e28e7ad7ce6",
+            "source_line_number": 47,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+            "step": 46
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "8ca3e8f24c9743ae",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION5",
+            "action_args": {},
+            "action_identity": "ACTION5::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|bda36de532f57652",
+        "source_references": [
+          {
+            "episode_id": "7dad6c3b911e",
+            "source_line_number": 89,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-211618.steps.jsonl",
+            "step": 88
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "bda36de532f57652",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 31,
+              "y": 21
+            },
+            "action_identity": "ACTION6::{\"x\":31,\"y\":21}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|d08fbf242650058e",
+        "source_references": [
+          {
+            "episode_id": "5e28e7ad7ce6",
+            "source_line_number": 91,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+            "step": 90
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "d08fbf242650058e",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 32,
+              "y": 21
+            },
+            "action_identity": "ACTION6::{\"x\":32,\"y\":21}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 1
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|e0aa5093a645d94b",
+        "source_references": [
+          {
+            "episode_id": "5e28e7ad7ce6",
+            "source_line_number": 335,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-213749.steps.jsonl",
+            "step": 334
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "e0aa5093a645d94b",
+        "win_count": 1
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION5",
+            "action_args": {},
+            "action_identity": "ACTION5::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cd82-fb555c5d",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cd82-fb555c5d|e6195d5994be8162",
+        "source_references": [
+          {
+            "episode_id": "13b274c3dd23",
+            "source_line_number": 220,
+            "source_path": "human_traces\\cd82-fb555c5d.20260615-211618.steps.jsonl",
+            "step": 30
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "e6195d5994be8162",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 1
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|03988ad788509fa3",
+        "source_references": [
+          {
+            "episode_id": "c5c05a73b917",
+            "source_line_number": 148,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+            "step": 147
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "03988ad788509fa3",
+        "win_count": 1
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 1
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|0635845c9d778caf",
+        "source_references": [
+          {
+            "episode_id": "c83bbf509988",
+            "source_line_number": 256,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+            "step": 255
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "0635845c9d778caf",
+        "win_count": 1
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|0f2bbeccdbc72846",
+        "source_references": [
+          {
+            "episode_id": "c5c05a73b917",
+            "source_line_number": 106,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+            "step": 105
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "0f2bbeccdbc72846",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|3e6817dae49841d2",
+        "source_references": [
+          {
+            "episode_id": "c83bbf509988",
+            "source_line_number": 39,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+            "step": 38
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "3e6817dae49841d2",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|5775369624749f87",
+        "source_references": [
+          {
+            "episode_id": "c83bbf509988",
+            "source_line_number": 16,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+            "step": 15
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "5775369624749f87",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|76f2ef28307b67fc",
+        "source_references": [
+          {
+            "episode_id": "c83bbf509988",
+            "source_line_number": 68,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+            "step": 67
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "76f2ef28307b67fc",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|840f96605250acbf",
+        "source_references": [
+          {
+            "episode_id": "c5c05a73b917",
+            "source_line_number": 26,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+            "step": 25
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "840f96605250acbf",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|a368c13bf7ae8543",
+        "source_references": [
+          {
+            "episode_id": "c5c05a73b917",
+            "source_line_number": 52,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+            "step": 51
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "a368c13bf7ae8543",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|c6347ea9e915ac07",
+        "source_references": [
+          {
+            "episode_id": "c5c05a73b917",
+            "source_line_number": 76,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-102926.steps.jsonl",
+            "step": 75
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "c6347ea9e915ac07",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "cn04-65d47d14",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "cn04-65d47d14|f13bd318cbf03a95",
+        "source_references": [
+          {
+            "episode_id": "c83bbf509988",
+            "source_line_number": 188,
+            "source_path": "human_traces\\cn04-65d47d14.20260616-101425.steps.jsonl",
+            "step": 187
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "f13bd318cbf03a95",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|240fc14dfac96abc",
+        "source_references": [
+          {
+            "episode_id": "acf499d39b45",
+            "source_line_number": 244,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-145945.steps.jsonl",
+            "step": 243
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "240fc14dfac96abc",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|24b24a315ad8fa2e",
+        "source_references": [
+          {
+            "episode_id": "acf499d39b45",
+            "source_line_number": 123,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-145945.steps.jsonl",
+            "step": 122
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "24b24a315ad8fa2e",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|2db62adb6b478560",
+        "source_references": [
+          {
+            "episode_id": "3e97cd4dc956",
+            "source_line_number": 232,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-134833.steps.jsonl",
+            "step": 231
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "2db62adb6b478560",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 2,
+            "level_up_count": 2,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|32f0ac9c2bab5615",
+        "source_references": [
+          {
+            "episode_id": "acf499d39b45",
+            "source_line_number": 175,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-145945.steps.jsonl",
+            "step": 174
+          },
+          {
+            "episode_id": "3c719b36eb4d",
+            "source_line_number": 154,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+            "step": 153
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "32f0ac9c2bab5615",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|39eef0f0ac13f796",
+        "source_references": [
+          {
+            "episode_id": "3c719b36eb4d",
+            "source_line_number": 103,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+            "step": 102
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "39eef0f0ac13f796",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|44d48e87b7a1aedc",
+        "source_references": [
+          {
+            "episode_id": "bca7921bf3db",
+            "source_line_number": 410,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-134833.steps.jsonl",
+            "step": 95
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "44d48e87b7a1aedc",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|5cbedc7d4bf5d127",
+        "source_references": [
+          {
+            "episode_id": "acf499d39b45",
+            "source_line_number": 38,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-145945.steps.jsonl",
+            "step": 37
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "5cbedc7d4bf5d127",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION3",
+            "action_args": {},
+            "action_identity": "ACTION3::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|6a5d72b1d168c3f9",
+        "source_references": [
+          {
+            "episode_id": "e724342879b8",
+            "source_line_number": 472,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+            "step": 231
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "6a5d72b1d168c3f9",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION2",
+            "action_args": {},
+            "action_identity": "ACTION2::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|7bcedaf70057637c",
+        "source_references": [
+          {
+            "episode_id": "e724342879b8",
+            "source_line_number": 310,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+            "step": 69
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "7bcedaf70057637c",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 1
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|85256cd384efa841",
+        "source_references": [
+          {
+            "episode_id": "e724342879b8",
+            "source_line_number": 1113,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+            "step": 872
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "85256cd384efa841",
+        "win_count": 1
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|aeae10f6fabb720f",
+        "source_references": [
+          {
+            "episode_id": "3e97cd4dc956",
+            "source_line_number": 152,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-134833.steps.jsonl",
+            "step": 151
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "aeae10f6fabb720f",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION4",
+            "action_args": {},
+            "action_identity": "ACTION4::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|d003fefffae0afe1",
+        "source_references": [
+          {
+            "episode_id": "3e97cd4dc956",
+            "source_line_number": 77,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-134833.steps.jsonl",
+            "step": 76
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "d003fefffae0afe1",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION1",
+            "action_args": {},
+            "action_identity": "ACTION1::{}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "dc22-4c9bff3e",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "dc22-4c9bff3e|e18cdb8a9c474fcf",
+        "source_references": [
+          {
+            "episode_id": "3c719b36eb4d",
+            "source_line_number": 30,
+            "source_path": "human_traces\\dc22-4c9bff3e.20260616-150906.steps.jsonl",
+            "step": 29
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "e18cdb8a9c474fcf",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 53,
+              "y": 47
+            },
+            "action_identity": "ACTION6::{\"x\":53,\"y\":47}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 54,
+              "y": 47
+            },
+            "action_identity": "ACTION6::{\"x\":54,\"y\":47}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|1ff1bdf27fdeab2d",
+        "source_references": [
+          {
+            "episode_id": "1415edf27a19",
+            "source_line_number": 5,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-142428.steps.jsonl",
+            "step": 4
+          },
+          {
+            "episode_id": "b9b14d976dcc",
+            "source_line_number": 5,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl",
+            "step": 4
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "1ff1bdf27fdeab2d",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 49,
+              "y": 41
+            },
+            "action_identity": "ACTION6::{\"x\":49,\"y\":41}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|25059c904ea7a32e",
+        "source_references": [
+          {
+            "episode_id": "1415edf27a19",
+            "source_line_number": 60,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-142428.steps.jsonl",
+            "step": 59
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "25059c904ea7a32e",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 16,
+              "y": 23
+            },
+            "action_identity": "ACTION6::{\"x\":16,\"y\":23}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|4160f728b549c7fd",
+        "source_references": [
+          {
+            "episode_id": "b9b14d976dcc",
+            "source_line_number": 99,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl",
+            "step": 98
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "4160f728b549c7fd",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 39,
+              "y": 49
+            },
+            "action_identity": "ACTION6::{\"x\":39,\"y\":49}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|4ba7711118c44ab3",
+        "source_references": [
+          {
+            "episode_id": "b9b14d976dcc",
+            "source_line_number": 71,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl",
+            "step": 70
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "4ba7711118c44ab3",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 28,
+              "y": 49
+            },
+            "action_identity": "ACTION6::{\"x\":28,\"y\":49}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          },
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 30,
+              "y": 48
+            },
+            "action_identity": "ACTION6::{\"x\":30,\"y\":48}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 2,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 2,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|9024e1d48c35864f",
+        "source_references": [
+          {
+            "episode_id": "1415edf27a19",
+            "source_line_number": 12,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-142428.steps.jsonl",
+            "step": 11
+          },
+          {
+            "episode_id": "b9b14d976dcc",
+            "source_line_number": 13,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl",
+            "step": 12
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "9024e1d48c35864f",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 39,
+              "y": 35
+            },
+            "action_identity": "ACTION6::{\"x\":39,\"y\":35}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 1
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|90dfa7e57cb156ef",
+        "source_references": [
+          {
+            "episode_id": "b9b14d976dcc",
+            "source_line_number": 142,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl",
+            "step": 141
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "90dfa7e57cb156ef",
+        "win_count": 1
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 47,
+              "y": 39
+            },
+            "action_identity": "ACTION6::{\"x\":47,\"y\":39}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|b440e8bfff9656fd",
+        "source_references": [
+          {
+            "episode_id": "b9b14d976dcc",
+            "source_line_number": 46,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-144230.steps.jsonl",
+            "step": 45
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "b440e8bfff9656fd",
+        "win_count": 0
+      },
+      {
+        "action_candidates": [
+          {
+            "action": "ACTION6",
+            "action_args": {
+              "x": 47,
+              "y": 14
+            },
+            "action_identity": "ACTION6::{\"x\":47,\"y\":14}",
+            "demonstration_count": 1,
+            "level_up_count": 1,
+            "win_count": 0
+          }
+        ],
+        "cross_game_transfer_allowed": false,
+        "demonstration_count": 1,
+        "exact_match_required": true,
+        "fuzzy_match_allowed": false,
+        "game_id": "ft09-0d8bbf25",
+        "goal_signal_id": "OBSERVED_LEVEL_UP_OR_WIN_TRANSITION",
+        "level_up_count": 1,
+        "scope": "EXACT_GAME_AND_VISUAL_DIGEST_ONLY",
+        "scope_key": "ft09-0d8bbf25|e9bb22d97651dfee",
+        "source_references": [
+          {
+            "episode_id": "1415edf27a19",
+            "source_line_number": 135,
+            "source_path": "human_traces\\ft09-0d8bbf25.20260617-142428.steps.jsonl",
+            "step": 134
+          }
+        ],
+        "state_shape": [
+          64,
+          64
+        ],
+        "support": 0,
+        "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+        "visual_digest": "e9bb22d97651dfee",
+        "win_count": 0
+      }
+    ],
+    "gate": {
+      "all_checked_frame_continuity_is_exact": true,
+      "all_entries_are_exact_scope_without_generalization": true,
+      "at_least_one_verified_goal_transition": true,
+      "every_goal_transition_has_a_verified_predecessor": true,
+      "every_signal_is_level_up_or_win": true,
+      "no_truth_or_registry_support_mutation": true,
+      "reset_rows_are_excluded": true
+    },
+    "scope_generalization_performed": false,
+    "summary": {
+      "ambiguous_exact_goal_states": 3,
+      "exact_goal_states": 67,
+      "frame_continuity_checks": 5661,
+      "frame_continuity_mismatches": 0,
+      "gate_passed": true,
+      "goal_candidates_quarantined": 0,
+      "malformed_rows": 0,
+      "missing_predecessor_rows_quarantined": 0,
+      "non_goal_rows_excluded": 5587,
+      "per_action_family_goal_transitions": {
+        "ACTION1": 8,
+        "ACTION2": 17,
+        "ACTION3": 16,
+        "ACTION4": 8,
+        "ACTION5": 4,
+        "ACTION6": 21
+      },
+      "per_game_goal_transitions": {
+        "ar25-e3c63847": 12,
+        "bp35-0a0ad940": 20,
+        "cd82-fb555c5d": 8,
+        "cn04-65d47d14": 10,
+        "dc22-4c9bff3e": 14,
+        "ft09-0d8bbf25": 10
+      },
+      "repeat_exact_goal_states": 7,
+      "reset_rows_excluded": 50,
+      "source_files": 18,
+      "source_games": [
+        "ar25-e3c63847",
+        "bp35-0a0ad940",
+        "cd82-fb555c5d",
+        "cn04-65d47d14",
+        "dc22-4c9bff3e",
+        "ft09-0d8bbf25"
+      ],
+      "source_games_count": 6,
+      "source_rows_scanned": 5711,
+      "support": 0,
+      "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+      "verified_goal_transitions": 74,
+      "verified_level_up_transitions": 74,
+      "verified_win_transitions": 5
+    },
+    "support": 0,
+    "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+    "wrong_confirmations": 0
+  },
+  "outcome_status": "SAGE_GOAL_GROUNDED_SIGNAL_ACQUIRED_TARGET_DOMAIN_COVERAGE_BLOCKED",
+  "planner_activation_authorized": false,
+  "refutation_performed": false,
+  "registry_support_recounted": false,
+  "revision_performed": false,
+  "scientific_review_performed": false,
+  "scope_generalization_performed": false,
+  "status": "ACQUIRED_AND_ADMISSION_AUDITED",
+  "summary": {
+    "ambiguous_exact_goal_states": 3,
+    "closed_loop_evaluation_performed": false,
+    "cross_game_transfer_performed": false,
+    "evaluation_episodes_executed": 0,
+    "exact_goal_states": 67,
+    "exact_target_goal_signal_entries": 0,
+    "frame_continuity_mismatches": 0,
+    "gate_passed": true,
+    "observed_target_goal_transitions": 0,
+    "outcome_status": "SAGE_GOAL_GROUNDED_SIGNAL_ACQUIRED_TARGET_DOMAIN_COVERAGE_BLOCKED",
+    "planner_activation_authorized": false,
+    "sage8e_evaluation_outcomes_used_for_training_or_tuning": false,
+    "source_games_count": 6,
+    "source_goal_signal_demonstrations_quarantined_from_transfer": 74,
+    "source_rows_scanned": 5711,
+    "source_trace_files": 18,
+    "support_counted": 0,
+    "target_games_audited": 2,
+    "target_transitions_scanned": 1788,
+    "truth_reevaluations": 0,
+    "verified_goal_transitions": 74,
+    "verified_level_up_transitions": 74,
+    "verified_win_transitions": 5,
+    "wrong_confirmations": 0
+  },
+  "support": 0,
+  "target_coverage_audit": {
+    "summary": {
+      "admission_status": "TARGET_DOMAIN_BLOCKED",
+      "closed_loop_evaluation_authorized": false,
+      "cross_game_transfer_performed": false,
+      "exact_target_goal_signal_entries": 0,
+      "malformed_target_rows": 0,
+      "observed_target_goal_transitions": 0,
+      "planner_activation_authorized": false,
+      "source_goal_signal_demonstrations_quarantined_from_transfer": 74,
+      "target_games_audited": 2,
+      "target_transitions_scanned": 1788
+    },
+    "target_games": [
+      {
+        "admission_reason": "NO_EXACT_TARGET_GAME_GOAL_TRANSITION_AVAILABLE",
+        "cross_game_signal_entries_quarantined": 67,
+        "exact_human_goal_signal_entries": 0,
+        "game_id": "tn36-ab4f63cc",
+        "observed_target_goal_transitions": 0,
+        "planner_activation_authorized": false,
+        "source_game_signal_entries_considered_for_transfer": 0,
+        "target_transition_path": "training\\data\\tn36_ab4f63cc.json",
+        "target_transitions_scanned": 894
+      },
+      {
+        "admission_reason": "NO_EXACT_TARGET_GAME_GOAL_TRANSITION_AVAILABLE",
+        "cross_game_signal_entries_quarantined": 67,
+        "exact_human_goal_signal_entries": 0,
+        "game_id": "wa30-ee6fef47",
+        "observed_target_goal_transitions": 0,
+        "planner_activation_authorized": false,
+        "source_game_signal_entries_considered_for_transfer": 0,
+        "target_transition_path": "training\\data\\wa30_ee6fef47.json",
+        "target_transitions_scanned": 894
+      }
+    ]
+  },
+  "target_scope_admission_audit_performed": true,
+  "truth_status": "NOT_REEVALUATED_BY_SAGE_8F",
+  "wrong_confirmations": 0
+}

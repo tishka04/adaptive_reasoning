@@ -3865,3 +3865,74 @@ fidelement des prefixes connus ; il ne connait pas encore l'objectif reel du jeu
 Suite requise : SAGE.8f doit acquerir ou construire un signal d'objectif relie a
 une transition de niveau ou de victoire, sans requalifier le proxy SAGE.8e et
 sans regler le planner sur les outcomes de cette evaluation.
+
+## SAGE.8f - goal-grounded signal acquisition and target admission
+
+Objectif :
+
+- Remplacer le proxy de joignabilite SAGE.8e par une banque de signaux dont
+  chaque exemple est relie a une hausse observee de `levels_completed` ou a
+  l'etat terminal `WIN`.
+- Deriver le niveau avant l'action a partir du pas precedent du meme episode et
+  verifier l'egalite exacte entre sa frame apres et la frame avant courante.
+- Exclure les RESET, les transitions sans progression, les lignes sans
+  predecesseur et toute rupture de continuite.
+- Indexer chaque signal par la cle exacte `game_id|visual_digest`, sans fuzzy
+  matching ni transfert inter-jeux.
+- Auditer separement les 1 788 transitions preexistantes de `wa30` et `tn36`.
+- N'autoriser le planner et une nouvelle evaluation fermee que si un signal
+  positif existe dans chacun des jeux cibles eux-memes.
+- Ne jamais utiliser les outcomes de l'evaluation SAGE.8e comme donnees
+  d'apprentissage ou de tuning.
+
+Cette etape distingue explicitement l'acquisition d'un signal objectif reel de
+son admissibilite sur le domaine SAGE.8. Le partage d'un nom d'action entre deux
+jeux n'autorise aucune reutilisation : sans exemple positif du meme jeu, le
+signal reste en quarantaine.
+
+Ajouts :
+
+- `theory/sage/goal_grounded_signal_acquisition.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_goal_grounded_signal_acquisition.py`
+- `diagnostics/sage/sage8f_goal_grounded_signal_acquisition.json`
+
+Run du 2026-07-19 :
+
+- `source_trace_files=18`
+- `source_rows_scanned=5711`
+- `source_games_count=6`
+- `frame_continuity_checks=5661`
+- `frame_continuity_mismatches=0`
+- `reset_rows_excluded=50`
+- `non_goal_rows_excluded=5587`
+- `verified_goal_transitions=74`
+- `verified_level_up_transitions=74`
+- `verified_win_transitions=5`
+- `exact_goal_states=67`
+- `ambiguous_exact_goal_states=3`
+- `target_games_audited=2`
+- `target_transitions_scanned=1788`
+- `observed_target_goal_transitions=0`
+- `exact_target_goal_signal_entries=0`
+- `source_goal_signal_demonstrations_quarantined_from_transfer=74`
+- `cross_game_transfer_performed=false`
+- `planner_activation_authorized=false`
+- `closed_loop_evaluation_performed=false`
+- `evaluation_episodes_executed=0`
+- `sage8e_evaluation_outcomes_used_for_training_or_tuning=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_GOAL_GROUNDED_SIGNAL_ACQUIRED_TARGET_DOMAIN_COVERAGE_BLOCKED`
+
+Lecture : SAGE possede desormais un signal d'objectif ancre dans de vraies
+transitions de niveau et cinq victoires, avec continuite exacte. Cependant, les
+six jeux sources ne comprennent ni `wa30` ni `tn36`. Leurs 1 788 transitions de
+collecte ne contiennent elles-memes aucun level-up ou WIN. Appliquer les 74
+demonstrations par simple analogie d'action serait donc une generalisation non
+validee. SAGE.8f bloque volontairement le planner au lieu de produire une
+nouvelle evaluation sans fondement cible.
+
+Suite requise : SAGE.8g doit acquerir au moins une demonstration positive
+rejouable dans chacun de `wa30` et `tn36`, ou produire un protocole actif borne
+capable d'en trouver une sans lire le code des jeux. L'evaluation appariee ne
+reprendra qu'apres admission exacte de ce signal cible.
