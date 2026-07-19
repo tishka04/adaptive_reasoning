@@ -1,6 +1,6 @@
 # A32 milestones - journal de revision scientifique
 
-Derniere mise a jour : 2026-07-18
+Derniere mise a jour : 2026-07-19
 
 Ce fichier suit la mise en place de A32, cote moteur scientifique. A32 consomme
 la file candidate-only produite par M3.6 et produit une decision explicite dans
@@ -31,6 +31,7 @@ A32 ne doit jamais ecrire de verdict dans :
 | A32.3 - Patch-similarity scientific revision decision | Fait | `theory/a32/patch_similarity_revision_decisions.py`, `tests/test_a32_patch_similarity_revision_decisions.py`, `diagnostics/a32/patch_similarity_revision_decisions.json` | Decision `SCOPE_LIMITED_CANDIDATE_ONLY`; tests supplementaires demandes; no A33; record unresolved |
 | A32.4 - Unknown-game control protocol decision | Fait - protocole autorise, aucune confirmation | `theory/a32/unknown_game_control_protocol_decisions.py`, `tests/test_a32_unknown_game_control_protocol_decisions.py`, `diagnostics/a32/unknown_game_control_protocol_decisions.json` | Consomme SAGE.5i; autorise une exception candidate-specifique pre-enregistree pour 2 variantes parametrees x 2 contextes exacts par candidat; 8 experiences demandees; les 2 records restent unresolved; aucun write A33 |
 | A32.5 - Unknown-game parameterized-control scientific revision | Fait - 1 confirmation bornee, 1 non-identifiabilite | `theory/a32/unknown_game_parameterized_control_revision_decisions.py`, `tests/test_a32_unknown_game_parameterized_control_revision_decisions.py`, `diagnostics/a32/unknown_game_parameterized_control_revision_decisions.json` | Consomme SAGE.5j; confirme ACTION5 seulement dans le scope sb26 observe (4 supports exacts, 0 contradiction); conserve ACTION6 unresolved car les controles reproduisent son effet; 1 dossier A33-ready; aucun write A33 |
+| A32.6 - Second unknown-game control-dependence scientific revision | Fait - contraste relationnel confirme, effet autonome non identifiable | `theory/a32/second_unknown_game_control_dependence_revision_decisions.py`, `tests/test_a32_second_unknown_game_control_dependence_revision_decisions.py`, `diagnostics/a32/second_unknown_game_control_dependence_revision_decisions.json` | Consomme SAGE.6f; confirme dans 3 contextes apparies wa30 que le contraste ACTION2 est positif face a ACTION1 et neutre face a ACTION3; conserve l'effet autonome ACTION2 unresolved; 1 dossier relationnel A33.3-ready; aucun write A33 |
 
 ## A32.0 - Candidate intake preflight
 
@@ -478,6 +479,64 @@ Lecture scientifique :
   `diagnostics/a33/scoped_unknown_game_registry.json`, sans importer ACTION6 et
   sans muter le registre A33.1 historique.
 
+## A32.6 - Second unknown-game control-dependence scientific revision
+
+Objectif :
+
+- Lire
+  `diagnostics/sage/sage6f_second_unknown_game_control_dependence_consolidation.json`.
+- Verifier que SAGE.6f est reste candidate-only : `support=0`, aucun verdict,
+  aucune revision et aucune ecriture A32/A33.
+- Revoir le candidat reformule comme contraste dependant du controle, et non
+  comme effet autonome inconditionnel d'ACTION2.
+- Compter au plus un support scientifique par contexte de controle apparie
+  independant.
+- Borner toute confirmation au jeu, aux contextes apparies exacts, aux budgets,
+  a la metrique, a ACTION2 et aux controles ACTION1/ACTION3 observes.
+- Preparer un handoff relationnel A33.3 sans modifier le registre A33.
+
+Artefacts :
+
+- `theory/a32/second_unknown_game_control_dependence_revision_decisions.py`
+- export dans `theory/a32/__init__.py`
+- `tests/test_a32_second_unknown_game_control_dependence_revision_decisions.py`
+- `diagnostics/a32/second_unknown_game_control_dependence_revision_decisions.json`
+
+Decision du 2026-07-19 :
+
+- `source_frontiers_consumed=1`
+- `scientific_revision_decisions=1`
+- `scope_limited_control_dependent_contrasts_confirmed=1`
+- `control_dependent_contrasts_refuted=0`
+- `control_dependent_contrasts_unresolved=0`
+- `standalone_action2_effects_confirmed=0`
+- `standalone_action2_effects_kept_unresolved=1`
+- `decision_records_confirmed=1`
+- `scientific_support_counted_by_a32=3`
+- `raw_support_events_promoted_directly=0`
+- `independent_paired_contexts_counted_as_support=3`
+- `a33_ready_candidates=1`
+- `a33_write_performed=false`
+- `wrong_confirmations=0`
+- `outcome_status=A32_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST_CONFIRMED`
+
+Lecture scientifique :
+
+- Dans les trois contextes apparies independants, couvrant les budgets 50, 150
+  et 300, le signal ACTION2 est reproduit a l'identique entre les comparaisons.
+- Le contraste local-patch vaut `+32` face a ACTION1 et `0` face a ACTION3 dans
+  chacune des trois paires. A32.6 confirme donc cette relation bornee avec un
+  support scientifique de `3`.
+- Les cinq evenements `raw_support` de SAGE.6f ne sont pas promus directement :
+  seuls les trois contextes apparies independants comptent comme support A32.
+- ACTION3 reproduit ACTION2 dans chaque paire. Un effet propre, autonome et
+  inconditionnel d'ACTION2 reste donc non identifiable, sans etre refute.
+- ACTION1 est un comparateur de plus faible effet uniquement dans les contextes
+  apparies exacts. Sa replication neutre interdit de le generaliser en baseline
+  universelle.
+- Le handoff A33.3 porte le type
+  `CONTROL_DEPENDENT_RELATIONAL_CONTRAST`. A32.6 ne modifie aucun registre A33.
+
 ## Commandes de verification
 
 Tests A32 :
@@ -514,6 +573,12 @@ A32.5 revision scientifique des controles parametres :
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.unknown_game_parameterized_control_revision_decisions --source-sage5j diagnostics\sage\sage5j_parameterized_control_acquisition.json --out diagnostics\a32\unknown_game_parameterized_control_revision_decisions.json
+```
+
+A32.6 revision scientifique de la dependance au controle :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.a32.second_unknown_game_control_dependence_revision_decisions --source-sage6f diagnostics\sage\sage6f_second_unknown_game_control_dependence_consolidation.json --out diagnostics\a32\second_unknown_game_control_dependence_revision_decisions.json
 ```
 
 Guard M3 :

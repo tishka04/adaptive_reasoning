@@ -6,11 +6,13 @@ __all__ = [
     "A32PatchSimilarityRevisionDecision",
     "A32UnknownGameControlProtocolDecision",
     "A32UnknownGameParameterizedControlRevisionDecision",
+    "A32SecondUnknownGameControlDependenceRevisionDecision",
     "DEFAULT_A32_REVISION_DECISIONS_OUTPUT_PATH",
     "DEFAULT_A32_PATCH_SIMILARITY_REVISION_INTAKE_OUTPUT_PATH",
     "DEFAULT_A32_PATCH_SIMILARITY_REVISION_DECISIONS_OUTPUT_PATH",
     "DEFAULT_A32_UNKNOWN_GAME_CONTROL_PROTOCOL_DECISIONS_OUTPUT_PATH",
     "DEFAULT_A32_UNKNOWN_GAME_PARAMETERIZED_CONTROL_REVISION_OUTPUT_PATH",
+    "DEFAULT_A32_SECOND_UNKNOWN_GAME_CONTROL_DEPENDENCE_REVISION_OUTPUT_PATH",
     "FOLLOWUP_REQUIRED",
     "REVISION_ACCEPTED_AS_CONFIRMED",
     "REVISION_REJECTED_AS_INSUFFICIENT",
@@ -27,21 +29,28 @@ __all__ = [
     "KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_CONTROL",
     "REFUTE_AFTER_PARAMETERIZED_CONTROL_CONTRADICTION",
     "REQUEST_MORE_TESTS_AFTER_INCOMPLETE_PARAMETERIZED_CONTROL",
+    "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST",
+    "KEEP_STANDALONE_ACTION2_EFFECT_UNRESOLVED_NON_IDENTIFIABLE",
+    "REFUTE_CONTROL_DEPENDENT_CONTRAST",
+    "REQUEST_MORE_TESTS_FOR_CONTROL_DEPENDENCE",
     "build_a32_patch_similarity_revision_decisions",
     "build_a32_patch_similarity_revision_intake_candidates",
     "build_a32_revision_decisions",
     "build_a32_unknown_game_control_protocol_decisions",
     "build_a32_unknown_game_parameterized_control_revision_decisions",
+    "build_a32_second_unknown_game_control_dependence_revision_decisions",
     "run_a32_patch_similarity_revision_decision_consumer",
     "run_a32_patch_similarity_revision_intake",
     "run_a32_revision_decision_consumer",
     "run_a32_unknown_game_control_protocol_decision_consumer",
     "run_a32_unknown_game_parameterized_control_revision_consumer",
+    "run_a32_second_unknown_game_control_dependence_revision_consumer",
     "write_a32_patch_similarity_revision_decisions",
     "write_a32_patch_similarity_revision_intake",
     "write_a32_revision_decisions",
     "write_a32_unknown_game_control_protocol_decisions",
     "write_a32_unknown_game_parameterized_control_revision_decisions",
+    "write_a32_second_unknown_game_control_dependence_revision_decisions",
 ]
 
 
@@ -87,6 +96,25 @@ def __getattr__(name: str):
         "run_a32_unknown_game_parameterized_control_revision_consumer",
         "write_a32_unknown_game_parameterized_control_revision_decisions",
     }
+    second_unknown_game_control_dependence_revision_names = {
+        "A32SecondUnknownGameControlDependenceRevisionDecision",
+        "DEFAULT_A32_SECOND_UNKNOWN_GAME_CONTROL_DEPENDENCE_REVISION_OUTPUT_PATH",
+        "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST",
+        "KEEP_STANDALONE_ACTION2_EFFECT_UNRESOLVED_NON_IDENTIFIABLE",
+        "REFUTE_CONTROL_DEPENDENT_CONTRAST",
+        "REQUEST_MORE_TESTS_FOR_CONTROL_DEPENDENCE",
+        "build_a32_second_unknown_game_control_dependence_revision_decisions",
+        "run_a32_second_unknown_game_control_dependence_revision_consumer",
+        "write_a32_second_unknown_game_control_dependence_revision_decisions",
+    }
+    if name in second_unknown_game_control_dependence_revision_names:
+        import importlib
+
+        module = importlib.import_module(
+            ".second_unknown_game_control_dependence_revision_decisions",
+            __name__,
+        )
+        return getattr(module, name)
     if name in unknown_game_parameterized_revision_names:
         import importlib
 
@@ -121,6 +149,7 @@ def __getattr__(name: str):
         - patch_decision_names
         - unknown_game_protocol_names
         - unknown_game_parameterized_revision_names
+        - second_unknown_game_control_dependence_revision_names
     )
     if name in decision_names:
         import importlib

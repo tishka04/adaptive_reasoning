@@ -1,0 +1,444 @@
+{
+  "a33_handoff_candidates": [
+    {
+      "a33_write_performed": false,
+      "action1_counted_as_universal_baseline": false,
+      "budgets": [
+        50,
+        150,
+        300
+      ],
+      "candidate_key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+      "candidate_mechanism_family": "control_dependent_local_patch_change_candidate",
+      "contradictions": 0,
+      "control_actions": [
+        "ACTION1",
+        "ACTION3"
+      ],
+      "controlled_effects_by_pair": [
+        {
+          "action2_minus_action1": 32.0,
+          "action2_minus_action3": 0.0,
+          "paired_comparison_id": "sage6f::paired_control_comparison::001"
+        },
+        {
+          "action2_minus_action1": 32.0,
+          "action2_minus_action3": 0.0,
+          "paired_comparison_id": "sage6f::paired_control_comparison::002"
+        },
+        {
+          "action2_minus_action1": 32.0,
+          "action2_minus_action3": 0.0,
+          "paired_comparison_id": "sage6f::paired_control_comparison::003"
+        }
+      ],
+      "experiments_spent": 10,
+      "frontier_id": "sage6f::candidate_a32_control_dependence_frontier::001",
+      "game_id": "wa30-ee6fef47",
+      "metric": "local_patch_before_after",
+      "not_generalized_beyond_exact_paired_contexts": true,
+      "not_generalized_beyond_game": true,
+      "not_generalized_beyond_recorded_controls": true,
+      "paired_context_cluster_ids": [
+        "sage6c::context_cluster::002",
+        "sage6c::context_cluster::003",
+        "sage6c::context_cluster::005"
+      ],
+      "paired_context_snapshot_hashes": [
+        "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+        "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+      ],
+      "ready_for_A33_registry_review": true,
+      "registry_entry_type": "CONTROL_DEPENDENT_RELATIONAL_CONTRAST",
+      "scoped_claim": "In the exact paired wa30-ee6fef47 contexts, ACTION2 has a positive local-patch contrast versus ACTION1 and a neutral contrast versus ACTION3; no standalone ACTION2 effect is claimed.",
+      "source_observation_ids": [
+        "sage6f::control_observation::001",
+        "sage6f::control_observation::002",
+        "sage6f::control_observation::003",
+        "sage6f::control_observation::004",
+        "sage6f::control_observation::005",
+        "sage6f::control_observation::006",
+        "sage6f::control_observation::007",
+        "sage6f::control_observation::008",
+        "sage6f::control_observation::009",
+        "sage6f::control_observation::010"
+      ],
+      "source_paired_comparison_ids": [
+        "sage6f::paired_control_comparison::001",
+        "sage6f::paired_control_comparison::002",
+        "sage6f::paired_control_comparison::003"
+      ],
+      "standalone_action2_effect_confirmed": false,
+      "standalone_action2_effect_status": "unresolved",
+      "status": "confirmed",
+      "support": 3,
+      "target_action": "ACTION2"
+    }
+  ],
+  "a33_ready": true,
+  "a33_write_performed": false,
+  "action1_counted_as_universal_baseline": false,
+  "action3_equivalence_counted_as_refutation": false,
+  "config": {
+    "artifacts_not_modified": [
+      "SAGE.6f",
+      "M2",
+      "M3",
+      "A33"
+    ],
+    "decision_policy": {
+      "a33_write_performed": false,
+      "action1_is_not_a_universal_baseline": true,
+      "action3_equivalence_is_not_refutation": true,
+      "action3_equivalence_makes_standalone_effect_non_identifiable": true,
+      "confirmation_is_game_context_control_and_metric_scoped": true,
+      "confirmation_requires_all_source_budgets": true,
+      "confirmation_requires_complete_sage6f_eligibility": true,
+      "confirmation_requires_independent_paired_control_contexts": true,
+      "confirmation_requires_reproduced_target_signal": true,
+      "confirmation_requires_stable_positive_control_effect_gap": true,
+      "raw_sage_events_are_not_direct_scientific_support": true,
+      "scientific_support_is_one_per_independent_paired_context": true
+    },
+    "decision_scope": "A32_SECOND_UNKNOWN_GAME_CONTROL_DEPENDENCE_REVISION",
+    "inputs_read": [
+      "SAGE.6f"
+    ],
+    "schema_version": "a32.second_unknown_game_control_dependence_revision_decisions.v1",
+    "source_sage6f_path": "diagnostics\\sage\\sage6f_second_unknown_game_control_dependence_consolidation.json"
+  },
+  "confirmation_performed": true,
+  "decision_records": [
+    {
+      "contradictions": 0,
+      "description": "In the exact paired wa30-ee6fef47 contexts, ACTION2 has a positive local-patch contrast versus ACTION1 and a neutral contrast versus ACTION3; no standalone ACTION2 effect is claimed.",
+      "experiments_spent": 10,
+      "key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+      "status": "confirmed",
+      "support": 3
+    }
+  ],
+  "gate": {
+    "a33_handoff_matches_confirmed_relational_decisions": true,
+    "action3_equivalence_kept_non_identifiable_not_refuted": true,
+    "confirmation_is_relational_only": true,
+    "every_eligible_frontier_decided_once": true,
+    "input_records_preserve_sage_support_zero": true,
+    "no_a33_write_performed": true,
+    "scientific_support_equals_independent_paired_contexts": true,
+    "scope_locks_preserved": true,
+    "source_sage6f_gate_passed": true,
+    "wrong_confirmations_zero": true
+  },
+  "input_records": [
+    {
+      "contradictions": 0,
+      "description": "SAGE.6f control-dependent local-patch candidate before A32.6 review.",
+      "experiments_spent": 10,
+      "key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "outcome_status": "A32_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST_CONFIRMED",
+  "refutation_performed": false,
+  "revision_decisions": [
+    {
+      "a33_ready": true,
+      "a33_write_performed": false,
+      "action1_counted_as_universal_baseline": false,
+      "action3_equivalence_counted_as_refutation": false,
+      "candidate_key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+      "candidate_mechanism_family": "control_dependent_local_patch_change_candidate",
+      "claim_dispositions": {
+        "action1_universal_baseline": {
+          "claim": "ACTION1_IS_A_UNIVERSAL_LOWER_EFFECT_BASELINE",
+          "confirmation_performed": false,
+          "reason": "ACTION1 is accepted only as the recorded comparator in the exact paired contexts and has a replicated neutral exception.",
+          "refutation_performed": false,
+          "status": "unresolved",
+          "support": 0
+        },
+        "reformulated_control_dependent_contrast": {
+          "claim": "ACTION2 local-patch contrast is control-dependent: positive versus ACTION1 but neutral versus ACTION3 in paired wa30 contexts.",
+          "confirmation_performed": true,
+          "decision": "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST",
+          "refutation_performed": false,
+          "status": "confirmed",
+          "support": 3
+        },
+        "standalone_unconditional_action2_effect": {
+          "claim": "STANDALONE_UNCONDITIONAL_ACTION2_EFFECT",
+          "confirmation_performed": false,
+          "decision": "KEEP_STANDALONE_ACTION2_EFFECT_UNRESOLVED_NON_IDENTIFIABLE",
+          "reason": "ACTION3 reproduces the ACTION2 target signal in every paired context, so an unconditional ACTION2 effect is not identifiable.",
+          "refutation_performed": false,
+          "status": "unresolved",
+          "support": 0
+        }
+      },
+      "confirmation_performed": true,
+      "control_actions": [
+        "ACTION1",
+        "ACTION3"
+      ],
+      "decision": "CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST",
+      "decision_record": {
+        "contradictions": 0,
+        "description": "In the exact paired wa30-ee6fef47 contexts, ACTION2 has a positive local-patch contrast versus ACTION1 and a neutral contrast versus ACTION3; no standalone ACTION2 effect is claimed.",
+        "experiments_spent": 10,
+        "key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+        "status": "confirmed",
+        "support": 3
+      },
+      "evidence_summary": {
+        "action1_controlled_effect_sizes": [
+          32.0,
+          32.0,
+          32.0
+        ],
+        "action3_controlled_effect_sizes": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "independent_paired_control_contexts": 3,
+        "negative_effect_events": 0,
+        "paired_control_budgets": [
+          50,
+          150,
+          300
+        ],
+        "paired_control_effect_gap_spread": 0.0,
+        "paired_control_effect_gaps": [
+          32.0,
+          32.0,
+          32.0
+        ],
+        "raw_contradiction_events": 0,
+        "raw_neutral_events": 5,
+        "raw_support_events": 5,
+        "raw_support_events_promoted_directly": 0,
+        "replicated_neutral_contexts": 1,
+        "scientific_support_after_a32_review": 3,
+        "scientific_support_basis": "ONE_PER_INDEPENDENT_PAIRED_CONTROL_CONTEXT",
+        "source_context_clusters_reviewed": 6,
+        "source_observations_reviewed": 10,
+        "source_support_before_a32_review": 0,
+        "target_signals_reproduced_across_control_pairs": 3,
+        "unpaired_action1_positive_contexts": 2
+      },
+      "frontier_id": "sage6f::candidate_a32_control_dependence_frontier::001",
+      "game_id": "wa30-ee6fef47",
+      "input_record": {
+        "contradictions": 0,
+        "description": "SAGE.6f control-dependent local-patch candidate before A32.6 review.",
+        "experiments_spent": 10,
+        "key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+        "status": "unresolved",
+        "support": 0
+      },
+      "metric": "local_patch_before_after",
+      "reasons": [
+        "sage6f_control_dependence_review_dossier_complete",
+        "paired_control_contexts_are_independent",
+        "target_signal_reproduced_across_every_control_pair",
+        "paired_control_effect_gap_is_stable_positive",
+        "action1_is_lower_effect_comparator_in_exact_paired_contexts",
+        "action3_reproduces_target_signal_in_exact_paired_contexts",
+        "standalone_action2_effect_is_not_identifiable",
+        "action3_equivalence_is_not_refutation",
+        "action1_neutral_exception_is_exactly_replicated",
+        "scope_limited_control_dependent_confirmation_criteria_satisfied",
+        "action1_not_generalized_as_universal_baseline",
+        "sage_raw_events_not_counted_as_support_before_a32_review",
+        "scientific_support_limited_to_independent_paired_contexts"
+      ],
+      "recommended_next_step": "Submit only the relational, game- and context-scoped contrast to A33.3 registry review; keep the standalone ACTION2 claim unresolved.",
+      "refutation_performed": false,
+      "revision_performed": true,
+      "sage_raw_events_counted_as_support_before_a32_review": false,
+      "scientific_review_performed": true,
+      "scope_limited_confirmation_generalized_beyond_game": false,
+      "scope_limits": {
+        "action1_valid_only_as_recorded_lower_effect_comparator": true,
+        "budgets": [
+          50,
+          150,
+          300
+        ],
+        "candidate_key": "control_dependent_local_patch::wa30-ee6fef47::ACTION2::ACTION1_vs_ACTION3",
+        "candidate_mechanism_family": "control_dependent_local_patch_change_candidate",
+        "confirmed_paired_context_cluster_ids": [
+          "sage6c::context_cluster::002",
+          "sage6c::context_cluster::003",
+          "sage6c::context_cluster::005"
+        ],
+        "confirmed_paired_context_snapshot_hashes": [
+          "{\"digest\":\"cee711e164dcf771\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"2fd24ab52132f6bc\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}",
+          "{\"digest\":\"fd06017864128f48\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+        ],
+        "control_actions": [
+          "ACTION1",
+          "ACTION3"
+        ],
+        "expected_action2_minus_action1_local_patch_effect": 32.0,
+        "expected_action2_minus_action3_local_patch_effect": 0.0,
+        "game_id": "wa30-ee6fef47",
+        "metric": "local_patch_before_after",
+        "neutral_exception_context_cluster_ids": [
+          "sage6c::context_cluster::001"
+        ],
+        "not_generalized_beyond_exact_paired_contexts": true,
+        "not_generalized_beyond_game": true,
+        "not_generalized_to_other_controls": true,
+        "not_generalized_to_other_metrics": true,
+        "not_generalized_to_other_target_actions": true,
+        "reviewed_context_cluster_ids": [
+          "sage6c::context_cluster::001",
+          "sage6c::context_cluster::002",
+          "sage6c::context_cluster::003",
+          "sage6c::context_cluster::004",
+          "sage6c::context_cluster::005",
+          "sage6c::context_cluster::006"
+        ],
+        "standalone_action2_effect_excluded_from_confirmation": true,
+        "target_action": "ACTION2",
+        "unpaired_action1_positive_context_cluster_ids": [
+          "sage6c::context_cluster::004",
+          "sage6c::context_cluster::006"
+        ]
+      },
+      "source_observation_ids": [
+        "sage6f::control_observation::001",
+        "sage6f::control_observation::002",
+        "sage6f::control_observation::003",
+        "sage6f::control_observation::004",
+        "sage6f::control_observation::005",
+        "sage6f::control_observation::006",
+        "sage6f::control_observation::007",
+        "sage6f::control_observation::008",
+        "sage6f::control_observation::009",
+        "sage6f::control_observation::010"
+      ],
+      "source_paired_comparison_ids": [
+        "sage6f::paired_control_comparison::001",
+        "sage6f::paired_control_comparison::002",
+        "sage6f::paired_control_comparison::003"
+      ],
+      "standalone_action2_effect_confirmed": false,
+      "standalone_action2_effect_refuted": false,
+      "target_action": "ACTION2",
+      "wrong_confirmations": 0
+    }
+  ],
+  "revision_performed": true,
+  "sage_raw_events_counted_as_support_before_a32_review": false,
+  "scientific_review_performed": true,
+  "scope_limited_confirmation_generalized_beyond_game": false,
+  "source_sage6f_summary": {
+    "a32_intake_requested": false,
+    "a32_write_performed": false,
+    "a33_write_performed": false,
+    "action1_neutral_observations": 2,
+    "action1_positive_contexts": 5,
+    "action3_neutral_contexts": 3,
+    "budgets": [
+      50,
+      150,
+      300
+    ],
+    "candidate_a32_review_frontiers": 1,
+    "candidate_status": "CONTROL_DEPENDENT_MULTI_BUDGET_WITH_REPLICATED_NEUTRAL_EXCEPTION_CANDIDATE_ONLY",
+    "context_clusters": 6,
+    "context_clusters_preserved": 6,
+    "control_actions": [
+      "ACTION1",
+      "ACTION3"
+    ],
+    "control_conditioned_effect_groups": 3,
+    "cross_context_merges_performed": 0,
+    "cross_game_mechanics_imported": 0,
+    "distinct_control_actions": 2,
+    "eligibility_requirements_passed": 14,
+    "eligibility_requirements_total": 14,
+    "game_id": "wa30-ee6fef47",
+    "gate_passed": true,
+    "missing_eligibility_requirements": [],
+    "negative_effect_events": 0,
+    "observation_records": 10,
+    "outcome_status": "SAGE_SECOND_UNKNOWN_GAME_CONTROL_DEPENDENCE_CONSOLIDATED_A32_REVIEW_ELIGIBLE_CANDIDATE_ONLY",
+    "paired_control_budgets": [
+      50,
+      150,
+      300
+    ],
+    "paired_control_contexts": 3,
+    "paired_control_effect_gap_spread": 0.0,
+    "paired_control_effect_gaps": [
+      32.0,
+      32.0,
+      32.0
+    ],
+    "raw_contradiction_events": 0,
+    "raw_neutral_events": 5,
+    "raw_support_events": 5,
+    "ready_for_A32_review": 1,
+    "ready_for_A32_review_is_not_verdict": true,
+    "replicated_neutral_contexts": 1,
+    "revision_status": "CANDIDATE_ONLY",
+    "source_sage6c_observations": 6,
+    "source_sage6c_outcome_status": "SAGE_SECOND_UNKNOWN_GAME_EVENTS_CONSOLIDATED_CANDIDATE_ONLY",
+    "source_sage6e_observations": 4,
+    "source_sage6e_outcome_status": "SAGE_SECOND_UNKNOWN_GAME_FOLLOWUPS_EXECUTED_CANDIDATE_ONLY",
+    "source_scoped_mechanics_reused": 0,
+    "support": 0,
+    "truth_status": "NOT_EVALUATED_BY_SAGE_6F",
+    "wrong_confirmations": 0
+  },
+  "standalone_action2_effect_confirmed": false,
+  "standalone_action2_effect_refuted": false,
+  "standalone_action2_effect_status": "unresolved",
+  "standalone_claim_dispositions": [
+    {
+      "claim": "STANDALONE_UNCONDITIONAL_ACTION2_EFFECT",
+      "confirmation_performed": false,
+      "decision": "KEEP_STANDALONE_ACTION2_EFFECT_UNRESOLVED_NON_IDENTIFIABLE",
+      "reason": "ACTION3 reproduces the ACTION2 target signal in every paired context, so an unconditional ACTION2 effect is not identifiable.",
+      "refutation_performed": false,
+      "status": "unresolved",
+      "support": 0
+    }
+  ],
+  "status": "CONFIRMED",
+  "summary": {
+    "a33_ready_candidates": 1,
+    "a33_write_performed": false,
+    "action1_counted_as_universal_baseline": false,
+    "action1_universal_baselines_confirmed": 0,
+    "action3_equivalence_counted_as_refutation": false,
+    "control_dependent_contrasts_refuted": 0,
+    "control_dependent_contrasts_unresolved": 0,
+    "decision_records_confirmed": 1,
+    "decision_records_refuted": 0,
+    "decision_records_unresolved": 0,
+    "gate_passed": true,
+    "independent_paired_contexts_counted_as_support": 3,
+    "outcome_status": "A32_SCOPE_LIMITED_CONTROL_DEPENDENT_CONTRAST_CONFIRMED",
+    "raw_support_events_promoted_directly": 0,
+    "scientific_revision_decisions": 1,
+    "scientific_support_counted_by_a32": 3,
+    "scope_generalization_performed": false,
+    "scope_limited_control_dependent_contrasts_confirmed": 1,
+    "source_frontiers_consumed": 1,
+    "standalone_action2_effects_confirmed": 0,
+    "standalone_action2_effects_kept_unresolved": 1,
+    "status": "CONFIRMED",
+    "wrong_confirmations": 0
+  },
+  "support": 3,
+  "truth_status": "SCOPED_A32_CONTROL_DEPENDENCE_DECISION_WITHOUT_EXTERNAL_ORACLE",
+  "wrong_confirmations": 0
+}
