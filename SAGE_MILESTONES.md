@@ -3455,3 +3455,115 @@ SAGE.7c autorise maintenant a dire : SAGE sait dedupliquer les repetitions
 inter-budget et preparer un candidat relationnel dependant du controle dans huit
 contextes independants. Il ne faut pas dire : huit supports sont confirmes,
 `{x:25,y:42}` a un effet autonome, ou A32.7 a deja rendu son verdict.
+
+## SAGE.7d - A32.7 relational handoff compiler
+
+Objectif :
+
+- Consommer uniquement SAGE.7c.
+- Inclure le seul candidat marque `a32_handoff_eligible=true`.
+- Verrouiller le jeu, la cible, les deux controles parametres, la metrique, les
+  huit hashes de contexte et tous les liens vers les groupes consolides.
+- Conserver les 26 evenements bruts et les 10 repetitions techniques sans les
+  recompter comme contextes ou support.
+- Exclure explicitement les deux cibles non discriminantes.
+- Presenter a A32.7 les quatre decisions autorisees sans en preselectionner une.
+- Garder l'effet autonome de la cible unresolved et ne produire aucun verdict.
+
+Ajouts :
+
+- `theory/sage/third_unknown_game_a32_handoff.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_third_unknown_game_a32_handoff.py`
+- `diagnostics/sage/sage7d_third_unknown_game_a32_handoff.json`
+
+Run du 2026-07-19 :
+
+- `game_id=tn36-ab4f63cc`
+- `source_candidate_dossiers=3`
+- `source_a32_handoff_eligible_candidates=1`
+- `handoff_items=1`
+- `excluded_candidate_items=2`
+- `handoff_contexts=8`
+- `handoff_cross_budget_replicated_contexts=4`
+- `handoff_raw_comparison_events=26`
+- `handoff_technical_replication_events=10`
+- `handoff_candidate_support_events=8`
+- `a32_decision_preselected=false`
+- `autonomous_target_effects_confirmed=0`
+- `autonomous_target_effects_unresolved=1`
+- `parameterized_variants_counted_as_distinct_actions=false`
+- `ready_for_a32_7_scientific_review=true`
+- `required_next_step=A32_7_CONTROL_DEPENDENT_PARAMETERIZED_SCIENTIFIC_REVIEW_REQUIRED`
+- `gate_passed=true`
+- `outcome_status=SAGE_THIRD_UNKNOWN_GAME_A32_HANDOFF_COMPILED_CANDIDATE_ONLY`
+- `support=0`
+- `truth_status=NOT_EVALUATED_BY_SAGE_7D`
+- `revision_status=CANDIDATE_ONLY`
+- `a32_intake_requested=false`
+- `a32_write_performed=false`
+- `a33_write_performed=false`
+
+Handoff A32.7 :
+
+- cible : `ACTION6 {x:25,y:42}` ;
+- controle discriminant : `ACTION6 {x:34,y:51}` ;
+- comparateur equivalent : `ACTION6 {x:41,y:44}` ;
+- metrique : `local_patch_before_after` ;
+- scope : `EXACT_TN36_LIVE_PREFIX_CONTEXTS_AND_PARAMETER_VARIANTS` ;
+- huit contextes independants, dont quatre reproduits entre budgets ;
+- `candidate_support_events=8`, tous non comptes comme support scientifique ;
+- `autonomous_target_effect_status=UNRESOLVED_CONTROL_DEPENDENT_TARGET_EFFECT` ;
+- `handoff_status=READY_FOR_A32_7_SCIENTIFIC_REVIEW_CANDIDATE_ONLY`.
+
+Decisions A32.7 autorisees, non preselectionnees :
+
+1. `CONFIRM_SCOPE_LIMITED_CONTROL_DEPENDENT_PARAMETERIZED_RELATION` ;
+2. `KEEP_UNRESOLVED_NON_IDENTIFIABLE_PARAMETERIZED_TARGET_EFFECT` ;
+3. `REQUEST_MORE_TESTS_FOR_PARAMETERIZED_RELATION` ;
+4. `REFUTE_CONTROL_DEPENDENT_PARAMETERIZED_RELATION`.
+
+Exclusions :
+
+- `ACTION6 {x:35,y:42}` / `local_patch_before_after` : non discriminant ;
+- `ACTION6 {x:30,y:42}` / `terminal_state_after_rollout` : non discriminant.
+
+Lecture :
+
+- SAGE.7d preserve la topologie complete du contraste : chaque contexte porte
+  le signal cible `2`, le controle discriminant `0` et le comparateur equivalent
+  `2`, avec les identifiants de comparaison correspondants.
+- Le handoff ne demande pas a A32.7 de confirmer la cible autonome. Il lui
+  demande d'evaluer une relation precise et de conserver explicitement la
+  possibilite de non-identifiabilite ou de nouvelles experiences.
+- Les deux candidats non discriminants ne sont ni refutes ni transferes ; ils
+  restent simplement hors du scope de la revue.
+
+Commande :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage.third_unknown_game_a32_handoff `
+  --source-sage7c diagnostics\sage\sage7c_third_unknown_game_parameterized_consolidation.json `
+  --out diagnostics\sage\sage7d_third_unknown_game_a32_handoff.json
+```
+
+Verification :
+
+```powershell
+ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest `
+  tests\test_sage_third_unknown_game_a32_handoff.py `
+  tests\test_sage_third_unknown_game_parameterized_consolidation.py -q
+```
+
+Suite requise apres SAGE.7d :
+
+1. A32.7 - effectuer la revue scientifique du contraste relationnel dans son
+   scope exact, sans recompter les repetitions techniques.
+2. Decider separement le statut de la relation cible/controles et celui de
+   l'effet autonome de `{x:25,y:42}`.
+3. Ne produire un handoff A33.4 que si A32.7 emet une confirmation relationnelle
+   scope-limited avec support scientifique explicitement compte par A32.
+
+SAGE.7d autorise maintenant a dire : le dossier tn36 est pret pour une revue
+A32.7 exacte. Il ne faut pas dire : A32.7 a confirme la relation, les huit
+contextes sont deja du support scientifique, ou A33.4 est autorise.

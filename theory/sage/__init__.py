@@ -30,6 +30,7 @@ __all__ = [
     "DEFAULT_SAGE7A_PARAMETERIZED_FRONTIER_PATH",
     "DEFAULT_SAGE7B_PARAMETERIZED_EXECUTION_PATH",
     "DEFAULT_SAGE7C_PARAMETERIZED_CONSOLIDATION_PATH",
+    "DEFAULT_SAGE7D_A32_HANDOFF_PATH",
     "A32ReviewCandidateItem",
     "collect_live_prefix_counterfactual",
     "decide_subgoal_switch",
@@ -62,6 +63,7 @@ __all__ = [
     "run_sage7a_parameterized_mini_frontier",
     "run_sage7b_parameterized_execution",
     "run_sage7c_parameterized_consolidation",
+    "run_sage7d_a32_handoff",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -90,6 +92,7 @@ __all__ = [
     "write_sage7a_parameterized_mini_frontier",
     "write_sage7b_parameterized_execution",
     "write_sage7c_parameterized_consolidation",
+    "write_sage7d_a32_handoff",
 ]
 
 
@@ -700,5 +703,21 @@ def __getattr__(name: str):
             "write_sage7c_parameterized_consolidation": (
                 write_sage7c_parameterized_consolidation
             ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE7D_A32_HANDOFF_PATH",
+        "run_sage7d_a32_handoff",
+        "write_sage7d_a32_handoff",
+    }:
+        from .third_unknown_game_a32_handoff import (
+            DEFAULT_SAGE7D_A32_HANDOFF_PATH,
+            run_sage7d_a32_handoff,
+            write_sage7d_a32_handoff,
+        )
+
+        return {
+            "DEFAULT_SAGE7D_A32_HANDOFF_PATH": DEFAULT_SAGE7D_A32_HANDOFF_PATH,
+            "run_sage7d_a32_handoff": run_sage7d_a32_handoff,
+            "write_sage7d_a32_handoff": write_sage7d_a32_handoff,
         }[name]
     raise AttributeError(name)
