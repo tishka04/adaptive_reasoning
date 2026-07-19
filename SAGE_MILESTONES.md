@@ -3664,3 +3664,60 @@ fonctionnel local prouve, mais pas encore un gain ARC-AGI-3 primaire.
 Suite requise : prolonger les traitements apres la decision memoire sur un
 horizon multi-action et evaluer si le gain local se convertit en progression de
 niveau ou en victoire, sans reutiliser les outcomes pour choisir les actions.
+
+## SAGE.8c - relational memory multi-action conversion evaluation
+
+Objectif :
+
+- Prolonger les onze paires de SAGE.8b de 16 actions apres la decision initiale.
+- Construire avant execution une continuation commune aux deux bras a partir
+  des 16 dernieres actions du prefixe, sans lire aucun outcome futur.
+- Ne faire diverger les bras que sur la decision initiale : comparateur de
+  moindre effet sans memoire, choix SAGE.8a avec memoire.
+- Arreter avant l'horizon uniquement si un etat terminal est atteint.
+- Evaluer en premier `levels_completed` et `win_rate`, le changement local
+  initial restant strictement secondaire.
+
+Ajouts :
+
+- `theory/sage/relational_memory_multi_action_evaluation.py`
+- export dans `theory/sage/__init__.py`
+- `tests/test_sage_relational_memory_multi_action_evaluation.py`
+- `diagnostics/sage/sage8c_relational_memory_multi_action_evaluation.json`
+
+Run du 2026-07-19 :
+
+- `paired_rollouts_evaluated=11`
+- `games_evaluated=[tn36-ab4f63cc, wa30-ee6fef47]`
+- `continuation_horizon=16`
+- `memory_policy_applications=11`
+- `exact_paired_replays=11`
+- `continuation_steps_requested_per_arm=176`
+- `no_memory_continuation_steps_executed=171`
+- `with_memory_continuation_steps_executed=171`
+- `no_memory_terminal_episodes=1`
+- `with_memory_terminal_episodes=1`
+- `no_memory_levels_completed_delta_total=0`
+- `with_memory_levels_completed_delta_total=0`
+- `levels_completed_absolute_gain=0`
+- `no_memory_wins=0`
+- `with_memory_wins=0`
+- `no_memory_win_rate=0.0`
+- `with_memory_win_rate=0.0`
+- `win_rate_absolute_gain=0.0`
+- `secondary_initial_local_signal_gain=112.0`
+- `primary_arc_progress_improved=false`
+- `primary_arc_progress_regressed=false`
+- `continuation_selected_from_outcomes=false`
+- `gate_passed=true`
+- `outcome_status=SAGE_RELATIONAL_MEMORY_MULTI_ACTION_LOCAL_GAIN_WITHOUT_ARC_SCORE_CONVERSION`
+
+Lecture : le gain local produit par la memoire survit comme difference initiale,
+mais ne se convertit pas en niveau ou victoire sous cette continuation fixe. Les
+deux bras executent 171 actions legales ; le seul arret anticipe est le meme
+`GAME_OVER` tn36 dans les deux bras apres 11 actions de continuation. La memoire
+n'aide ni ne degrade donc les metriques ARC principales dans ce protocole.
+
+Suite requise : SAGE.8d doit remplacer la continuation historique fixe par une
+politique fermee qui replanifie a partir de l'etat courant, tout en gardant une
+selection aveugle aux outcomes et une evaluation avec/sans memoire appariee.

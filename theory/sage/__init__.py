@@ -33,6 +33,7 @@ __all__ = [
     "DEFAULT_SAGE7D_A32_HANDOFF_PATH",
     "DEFAULT_SAGE8A_RELATIONAL_MEMORY_POLICY_PATH",
     "DEFAULT_SAGE8B_RELATIONAL_MEMORY_AB_EVALUATION_PATH",
+    "DEFAULT_SAGE8C_RELATIONAL_MEMORY_MULTI_ACTION_EVALUATION_PATH",
     "A32ReviewCandidateItem",
     "PolicyActionOption",
     "RelationalMemoryPolicyEntry",
@@ -72,6 +73,7 @@ __all__ = [
     "run_sage7d_a32_handoff",
     "run_sage8a_relational_memory_policy_integration",
     "run_sage8b_relational_memory_ab_evaluation",
+    "run_sage8c_relational_memory_multi_action_evaluation",
     "write_sage0_known_game_scaffold",
     "write_sage1_known_game_results",
     "write_sage2_policy_probe_results",
@@ -103,6 +105,7 @@ __all__ = [
     "write_sage7d_a32_handoff",
     "write_sage8a_relational_memory_policy",
     "write_sage8b_relational_memory_ab_evaluation",
+    "write_sage8c_relational_memory_multi_action_evaluation",
 ]
 
 
@@ -784,6 +787,28 @@ def __getattr__(name: str):
             ),
             "write_sage8b_relational_memory_ab_evaluation": (
                 write_sage8b_relational_memory_ab_evaluation
+            ),
+        }[name]
+    if name in {
+        "DEFAULT_SAGE8C_RELATIONAL_MEMORY_MULTI_ACTION_EVALUATION_PATH",
+        "run_sage8c_relational_memory_multi_action_evaluation",
+        "write_sage8c_relational_memory_multi_action_evaluation",
+    }:
+        from .relational_memory_multi_action_evaluation import (
+            DEFAULT_SAGE8C_RELATIONAL_MEMORY_MULTI_ACTION_EVALUATION_PATH,
+            run_sage8c_relational_memory_multi_action_evaluation,
+            write_sage8c_relational_memory_multi_action_evaluation,
+        )
+
+        return {
+            "DEFAULT_SAGE8C_RELATIONAL_MEMORY_MULTI_ACTION_EVALUATION_PATH": (
+                DEFAULT_SAGE8C_RELATIONAL_MEMORY_MULTI_ACTION_EVALUATION_PATH
+            ),
+            "run_sage8c_relational_memory_multi_action_evaluation": (
+                run_sage8c_relational_memory_multi_action_evaluation
+            ),
+            "write_sage8c_relational_memory_multi_action_evaluation": (
+                write_sage8c_relational_memory_multi_action_evaluation
             ),
         }[name]
     raise AttributeError(name)
