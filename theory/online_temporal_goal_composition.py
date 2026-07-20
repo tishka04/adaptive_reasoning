@@ -90,6 +90,7 @@ class TemporalGoalPlan:
     prior_priority: float = 0.0
     causal_edge_key: str = ""
     causal_edge_utility: float = 0.0
+    causal_confirmation_priority: bool = False
     minimum_independent_terminal_contexts: int = 2
     starts: int = 0
     actions: int = 0
@@ -164,6 +165,7 @@ class TemporalGoalPlan:
             "prior_priority": round(float(self.prior_priority), 4),
             "causal_edge_key": self.causal_edge_key,
             "causal_edge_utility": round(float(self.causal_edge_utility), 4),
+            "causal_confirmation_priority": self.causal_confirmation_priority,
             "status": self.status.value,
             "expected_progress_probability": round(
                 self.expected_progress_probability, 4
@@ -214,6 +216,7 @@ class TemporalStepSelection:
     target_distance: float
     current_distance: float
     causal_edge_key: str
+    causal_confirmation_priority: bool
     expected_progress_probability: float
     expected_cost: float
     selection_utility: float
@@ -242,6 +245,7 @@ class OnlineTemporalGoalComposer:
         max_stalls_per_step: int = 2,
         terminal_credit_window: int = 6,
         minimum_terminal_support: int = 2,
+        max_confirmation_starts_per_branch: int = 2,
     ) -> None:
         self.max_plans = max(1, int(max_plans))
         self.max_plan_starts_total = max(0, int(max_plan_starts_total))
@@ -250,6 +254,9 @@ class OnlineTemporalGoalComposer:
         self.max_stalls_per_step = max(1, int(max_stalls_per_step))
         self.terminal_credit_window = max(0, int(terminal_credit_window))
         self.minimum_terminal_support = max(1, int(minimum_terminal_support))
+        self.max_confirmation_starts_per_branch = max(
+            0, int(max_confirmation_starts_per_branch)
+        )
         self._plans: Dict[str, TemporalGoalPlan] = {}
         self._active: ActiveTemporalPlan | None = None
         self._recent_completions: List[_RecentPlanCompletion] = []
@@ -257,6 +264,8 @@ class OnlineTemporalGoalComposer:
         self._transition_index = 0
         self._branch_index = 0
         self._plan_starts_total = 0
+        self._confirmation_starts_total = 0
+        self._confirmation_starts_this_branch = 0
         self._plans_generated_total = 0
         self._step_decisions = 0
         self._terminal_events = 0
@@ -385,6 +394,10 @@ class OnlineTemporalGoalComposer:
                 dependency=source,
                 causal_edge_key=edge.edge_key,
                 priority_bonus=edge.utility,
+                causal_confirmation_priority=(
+                    edge.needs_independent_confirmation
+                    and edge.confirmation_priority_bonus > 0.0
+                ),
             ))
 
         ranked = sorted(
@@ -411,14 +424,23 @@ class OnlineTemporalGoalComposer:
             if selection is not None:
                 self._step_decisions += 1
                 return selection
-        if self._plan_starts_total >= self.max_plan_starts_total:
-            return None
+        normal_budget_available = (
+            self._plan_starts_total < self.max_plan_starts_total
+        )
 
         candidates: List[Tuple[Tuple[float, ...], TemporalGoalPlan]] = []
         for plan in self.plans():
             if plan.status == TemporalPlanStatus.REFUTED:
                 continue
             if plan.starts >= self.max_starts_per_plan:
+                continue
+            reserved_confirmation = bool(
+                not normal_budget_available
+                and plan.causal_confirmation_priority
+                and self._confirmation_starts_this_branch
+                < self.max_confirmation_starts_per_branch
+            )
+            if not normal_budget_available and not reserved_confirmation:
                 continue
             if not plan.steps:
                 continue
@@ -452,6 +474,9 @@ class OnlineTemporalGoalComposer:
         )
         plan.starts += 1
         self._plan_starts_total += 1
+        if not normal_budget_available and plan.causal_confirmation_priority:
+            self._confirmation_starts_total += 1
+            self._confirmation_starts_this_branch += 1
         self._attempted_contexts.add(
             (plan.plan_id, self._branch_index, observation.grid_hash)
         )
@@ -615,6 +640,7 @@ class OnlineTemporalGoalComposer:
         if self._active is not None:
             self._abandon_active("branch_reset")
         self._branch_index += 1
+        self._confirmation_starts_this_branch = 0
         self._recent_completions.clear()
 
     def summary(self) -> Dict[str, Any]:
@@ -629,6 +655,7 @@ class OnlineTemporalGoalComposer:
             "statuses": statuses,
             "active_plan_id": self.active_plan_id,
             "plan_starts": self._plan_starts_total,
+            "reserved_confirmation_starts": self._confirmation_starts_total,
             "step_decisions": self._step_decisions,
             "actions": sum(plan.actions for plan in plans),
             "progress_events": sum(plan.progress_events for plan in plans),
@@ -681,6 +708,7 @@ class OnlineTemporalGoalComposer:
         dependency: TerminalObjectiveHypothesis | None = None,
         causal_edge_key: str = "",
         priority_bonus: float = 0.0,
+        causal_confirmation_priority: bool = False,
     ) -> TemporalGoalPlan:
         signature = "__then__".join(
             f"{step.objective_id}@{step.target_distance:g}" for step in steps
@@ -696,6 +724,7 @@ class OnlineTemporalGoalComposer:
             prior_priority=priority,
             causal_edge_key=str(causal_edge_key),
             causal_edge_utility=float(priority_bonus),
+            causal_confirmation_priority=bool(causal_confirmation_priority),
             minimum_independent_terminal_contexts=self.minimum_terminal_support,
         )
 
@@ -708,6 +737,9 @@ class OnlineTemporalGoalComposer:
             if candidate.causal_edge_key:
                 existing.causal_edge_key = candidate.causal_edge_key
                 existing.causal_edge_utility = candidate.causal_edge_utility
+                existing.causal_confirmation_priority = (
+                    candidate.causal_confirmation_priority
+                )
             return
         if len(self._plans) >= self.max_plans:
             evictable = [
@@ -755,6 +787,9 @@ class OnlineTemporalGoalComposer:
                     target_distance=step.target_distance,
                     current_distance=float(distance),
                     causal_edge_key=plan.causal_edge_key,
+                    causal_confirmation_priority=(
+                        plan.causal_confirmation_priority
+                    ),
                     expected_progress_probability=(
                         plan.expected_progress_probability
                     ),

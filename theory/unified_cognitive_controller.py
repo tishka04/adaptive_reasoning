@@ -52,6 +52,7 @@ from .online_goal_hypothesis import (
     GoalHypothesisGenerator,
     ObjectiveDiscriminatingExperimentDesigner,
     intervention_id,
+    semantic_intervention_signature,
 )
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_terminal_objective import (
@@ -97,6 +98,8 @@ class UnifiedCognitiveConfig:
     max_causal_subgoal_edges: int = 24
     max_causal_edges_per_blocked_target: int = 3
     causal_edge_min_support: int = 2
+    causal_effect_credit_window: int = 6
+    max_causal_confirmation_starts_per_branch: int = 2
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
@@ -104,6 +107,7 @@ class UnifiedCognitiveConfig:
     enable_active_goal_hypotheses: bool = True
     enable_temporal_goal_composition: bool = True
     enable_causal_subgoal_induction: bool = True
+    enable_causal_effect_credit: bool = True
 
 
 @dataclass(frozen=True)
@@ -137,6 +141,9 @@ class CognitiveDecision:
     temporal_expected_progress_probability: float | None = None
     temporal_expected_cost: float | None = None
     temporal_selection_utility: float | None = None
+    causal_intervention_signature: str = ""
+    causal_intervention_utility: float | None = None
+    causal_confirmation_trial: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -171,6 +178,9 @@ class CognitiveDecision:
             ),
             "temporal_expected_cost": self.temporal_expected_cost,
             "temporal_selection_utility": self.temporal_selection_utility,
+            "causal_intervention_signature": self.causal_intervention_signature,
+            "causal_intervention_utility": self.causal_intervention_utility,
+            "causal_confirmation_trial": self.causal_confirmation_trial,
         }
 
 
@@ -242,6 +252,8 @@ class UnifiedCognitiveController:
                 self.config.max_causal_edges_per_blocked_target
             ),
             minimum_independent_support=self.config.causal_edge_min_support,
+            delayed_credit_window=self.config.causal_effect_credit_window,
+            enable_effect_credit=self.config.enable_causal_effect_credit,
         )
         self.temporal_goals = OnlineTemporalGoalComposer(
             max_plans=self.config.max_temporal_plans,
@@ -256,6 +268,10 @@ class UnifiedCognitiveController:
             ),
             minimum_terminal_support=(
                 self.config.terminal_objective_min_support
+            ),
+            max_confirmation_starts_per_branch=(
+                self.config.max_causal_confirmation_starts_per_branch
+                if self.config.enable_causal_effect_credit else 0
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
@@ -656,6 +672,12 @@ class UnifiedCognitiveController:
         )
         if selection is None:
             return None
+        causal_intervention_utilities = (
+            self.causal_subgoals.intervention_utilities(
+                selection.causal_edge_key
+            )
+            if selection.causal_edge_key else {}
+        )
         choice = self.objective_experiment_designer.design(
             observation=observation,
             store=self.terminal_objectives,
@@ -666,6 +688,7 @@ class UnifiedCognitiveController:
             ),
             operators=self.operator_inducer.operators.values(),
             preferred_objective_id=selection.objective_id,
+            intervention_utilities=causal_intervention_utilities,
             allow_ablation=False,
             require_selectable=False,
         )
@@ -747,12 +770,21 @@ class UnifiedCognitiveController:
             if selection.plan_status == TemporalPlanStatus.TERMINAL_SUPPORTED
             else "temporal_subgoal_probe"
         )
+        causal_intervention = (
+            semantic_intervention_signature(
+                choice.action_name,
+                choice.action_data,
+                observation,
+            )
+            if selection.causal_edge_key else ""
+        )
         return CognitiveDecision(
             action_name=choice.action_name,
             action_data=dict(choice.action_data),
             source=source,
             reason=(
-                f"{selection.reason}; execute one intervention then re-observe"
+                f"{selection.reason}; {choice.reason}; "
+                "execute one intervention then re-observe"
             ),
             confidence=(
                 0.9
@@ -782,6 +814,14 @@ class UnifiedCognitiveController:
             ),
             temporal_expected_cost=selection.expected_cost,
             temporal_selection_utility=selection.selection_utility,
+            causal_intervention_signature=causal_intervention,
+            causal_intervention_utility=(
+                causal_intervention_utilities.get(causal_intervention, 0.0)
+                if causal_intervention else None
+            ),
+            causal_confirmation_trial=(
+                selection.causal_confirmation_priority
+            ),
         )
 
     def _select_objective_experiment(
@@ -1602,6 +1642,10 @@ class UnifiedCognitiveController:
             ),
             plan_abandoned=bool(outcome["plan_abandoned"]),
             context_signature=context,
+            intervention_signature=(
+                "" if pending is None
+                else pending.causal_intervention_signature
+            ),
         )
         if (
             causal_outcome["edge_key"]

@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v5"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v6"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -63,6 +63,15 @@ def _causal_disabled_controller(game_id: str) -> UnifiedCognitiveController:
     return UnifiedCognitiveController(
         game_id,
         config=UnifiedCognitiveConfig(enable_causal_subgoal_induction=False),
+    )
+
+
+def _causal_effect_credit_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(enable_causal_effect_credit=False),
     )
 
 
@@ -129,6 +138,7 @@ def run_unified_cognition_ab_benchmark(
     env_factory: EnvFactory | None = None,
     controller_factory: ControllerFactory | None = None,
     enable_causal_subgoal_induction: bool = True,
+    enable_causal_effect_credit: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -142,6 +152,8 @@ def run_unified_cognition_ab_benchmark(
     effective_controller_factory = controller_factory
     if effective_controller_factory is None and not enable_causal_subgoal_induction:
         effective_controller_factory = _causal_disabled_controller
+    elif effective_controller_factory is None and not enable_causal_effect_credit:
+        effective_controller_factory = _causal_effect_credit_disabled_controller
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -197,6 +209,7 @@ def run_unified_cognition_ab_benchmark(
         action_budget_per_reset=budget,
         resets=reset_count,
         causal_subgoal_induction_enabled=enable_causal_subgoal_induction,
+        causal_effect_credit_enabled=enable_causal_effect_credit,
     )
     if not include_traces:
         _omit_step_traces(payload)
@@ -446,6 +459,30 @@ def _run_arm(
         "causal_edge_unsafe_failures": int(
             causal_summary.get("unsafe_failures", 0) or 0
         ),
+        "causal_effect_observations": int(
+            causal_summary.get("effect_observations", 0) or 0
+        ),
+        "causal_effect_guided_actions": int(
+            causal_summary.get("effect_guided_actions", 0) or 0
+        ),
+        "causal_productive_effect_signatures": int(
+            causal_summary.get("productive_effect_signatures", 0) or 0
+        ),
+        "causal_productive_intervention_signatures": int(
+            causal_summary.get("productive_intervention_signatures", 0) or 0
+        ),
+        "causal_delayed_credit_events": int(
+            causal_summary.get("delayed_credit_events", 0) or 0
+        ),
+        "causal_expired_credit_windows": int(
+            causal_summary.get("expired_credit_windows", 0) or 0
+        ),
+        "causal_cross_branch_confirmations": int(
+            causal_summary.get("cross_branch_confirmations", 0) or 0
+        ),
+        "causal_reserved_confirmation_starts": int(
+            temporal_summary.get("reserved_confirmation_starts", 0) or 0
+        ),
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
         "controller_errors": controller_errors,
@@ -636,6 +673,7 @@ def _summarize_benchmark(
     action_budget_per_reset: int,
     resets: int,
     causal_subgoal_induction_enabled: bool,
+    causal_effect_credit_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -669,6 +707,9 @@ def _summarize_benchmark(
             "evaluation_outcomes_used_for_training_or_tuning": False,
             "causal_subgoal_induction_enabled_in_unified": bool(
                 causal_subgoal_induction_enabled
+            ),
+            "causal_effect_credit_enabled_in_unified": bool(
+                causal_effect_credit_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -872,6 +913,32 @@ def _aggregate_arm(
         "causal_edge_unsafe_failures": sum(
             int(row["causal_edge_unsafe_failures"]) for row in rows
         ),
+        "causal_effect_observations": sum(
+            int(row["causal_effect_observations"]) for row in rows
+        ),
+        "causal_effect_guided_actions": sum(
+            int(row["causal_effect_guided_actions"]) for row in rows
+        ),
+        "causal_productive_effect_signatures": sum(
+            int(row["causal_productive_effect_signatures"]) for row in rows
+        ),
+        "causal_productive_intervention_signatures": sum(
+            int(row["causal_productive_intervention_signatures"])
+            for row in rows
+        ),
+        "causal_delayed_credit_events": sum(
+            int(row["causal_delayed_credit_events"]) for row in rows
+        ),
+        "causal_expired_credit_windows": sum(
+            int(row["causal_expired_credit_windows"]) for row in rows
+        ),
+        "causal_cross_branch_confirmations": sum(
+            int(row["causal_cross_branch_confirmations"]) for row in rows
+        ),
+        "causal_reserved_confirmation_starts": sum(
+            int(row["causal_reserved_confirmation_starts"])
+            for row in rows
+        ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows
         ),
@@ -1024,6 +1091,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Run an auditable unified-controller ablation without SAGE.8n.",
     )
+    parser.add_argument(
+        "--disable-causal-effect-credit",
+        action="store_true",
+        help="Ablate SAGE.8o effect memory and reserved confirmations only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1045,6 +1117,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         include_traces=args.include_traces,
         enable_causal_subgoal_induction=(
             not args.disable_causal_subgoals
+        ),
+        enable_causal_effect_credit=(
+            not args.disable_causal_effect_credit
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

@@ -8,10 +8,15 @@ import numpy as np
 
 from theory.live_transition_loop import build_observation, build_transition_record
 from theory.online_causal_subgoal_graph import (
+    CausalMechanicEvidence,
     CausalSubgoalEdgeStatus,
     OnlineCausalSubgoalGraph,
+    transition_effect_signature,
 )
-from theory.online_goal_hypothesis import GeneratedGoalHypothesis
+from theory.online_goal_hypothesis import (
+    GeneratedGoalHypothesis,
+    ObjectiveDiscriminatingExperimentDesigner,
+)
 from theory.online_temporal_goal_composition import (
     OnlineTemporalGoalComposer,
     TemporalGoalPlan,
@@ -192,6 +197,7 @@ def test_two_independent_availability_recoveries_confirm_an_edge_only():
     assert edge is not None and target is not None
     assert edge.availability_successes == 2
     assert edge.status == CausalSubgoalEdgeStatus.CONFIRMED
+    assert graph.summary()["cross_branch_confirmations"] == 1
     assert target.status.value == "candidate"
 
 
@@ -403,3 +409,200 @@ def test_controller_uses_a_discovered_precondition_with_full_audit_fields():
     assert decision.temporal_expected_progress_probability is not None
     assert decision.temporal_expected_cost is not None
     assert decision.temporal_selection_utility is not None
+    assert decision.causal_intervention_signature
+    assert decision.causal_intervention_utility is not None
+
+
+def test_effect_signature_transfers_across_absolute_positions():
+    first_before = _grid(source_positions=((1, 1), (1, 3)))
+    first_after = first_before.copy()
+    first_after[1, 1] = 4
+    second_before = _grid(source_positions=((3, 2), (6, 1)))
+    second_after = second_before.copy()
+    second_after[3, 2] = 4
+
+    assert transition_effect_signature(
+        _update(first_before, first_after)
+    ) == transition_effect_signature(_update(second_before, second_after))
+
+
+def test_partial_source_progress_receives_delayed_effect_credit_when_target_opens():
+    store, source_id, target_id = _store()
+    graph = OnlineCausalSubgoalGraph(delayed_credit_window=3)
+    before = _grid()
+    graph.note_blocked(target_id, _observation(before), store)
+    edge = _edge_for(graph, source_id, target_id)
+    graph.begin_trial(edge.edge_key, context_signature="before-progress")
+    after = before.copy()
+    after[1, 1] = 4
+    graph.observe_transition(
+        _update(before, after),
+        store=store,
+        source_objective_id=source_id,
+        edge_key=edge.edge_key,
+        source_step_completed=False,
+        intervention_signature="ACTION6::color:3",
+        context_signature="progress",
+    )
+    # Credit may arrive after unrelated observations, not only on the source step.
+    graph.observe_transition(
+        _update(after, after),
+        store=store,
+        context_signature="intervening-observation",
+    )
+    graph.note_intervention_availability(
+        target_id,
+        available=True,
+        observation=_observation(after),
+        store=store,
+        context_signature="target-open",
+    )
+
+    assert edge.support_events == 1
+    assert edge.availability_successes == 1
+    assert len(edge.effect_evidence) == 1
+    evidence = next(iter(edge.effect_evidence.values()))
+    assert evidence.enablement_successes == 1
+    assert (
+        edge.intervention_evidence["ACTION6::color:3"].enablement_successes
+        == 1
+    )
+    assert graph.summary()["delayed_credit_events"] == 1
+
+
+def test_two_supports_in_one_branch_do_not_confirm_a_causal_mechanic():
+    store, source_id, target_id = _store()
+    graph = OnlineCausalSubgoalGraph(minimum_independent_support=2)
+    edge = None
+    for index, position in enumerate(((1, 1), (1, 3))):
+        before = _grid()
+        graph.note_blocked(target_id, _observation(before), store)
+        edge = _edge_for(graph, source_id, target_id)
+        graph.begin_trial(edge.edge_key, context_signature=f"same-branch-{index}")
+        after = before.copy()
+        after[position] = 4
+        graph.observe_transition(
+            _update(before, after),
+            store=store,
+            source_objective_id=source_id,
+            edge_key=edge.edge_key,
+            context_signature=f"progress-{index}",
+        )
+        graph.note_intervention_availability(
+            target_id,
+            available=True,
+            observation=_observation(after),
+            store=store,
+            context_signature=f"open-{index}",
+        )
+
+    assert edge is not None
+    assert edge.support_events == 2
+    assert len(edge.support_branches) == 1
+    assert edge.status == CausalSubgoalEdgeStatus.CANDIDATE
+
+
+def test_two_failures_in_one_branch_do_not_refute_a_causal_mechanic():
+    store, source_id, target_id = _store()
+    graph = OnlineCausalSubgoalGraph(minimum_independent_support=2)
+    edge = None
+    for index, position in enumerate(((1, 1), (1, 3))):
+        before = _grid()
+        graph.note_blocked(target_id, _observation(before), store)
+        edge = _edge_for(graph, source_id, target_id)
+        graph.begin_trial(edge.edge_key, context_signature=f"same-branch-{index}")
+        after = before.copy()
+        after[position] = 4
+        graph.observe_transition(
+            _update(before, after),
+            store=store,
+            source_objective_id=source_id,
+            edge_key=edge.edge_key,
+        )
+        graph.note_intervention_availability(
+            target_id,
+            available=False,
+            observation=_observation(after),
+            store=store,
+            context_signature=f"closed-{index}",
+        )
+
+    assert edge is not None
+    assert edge.contradictions == 2
+    assert len(edge.contradiction_branches) == 1
+    assert edge.status == CausalSubgoalEdgeStatus.CANDIDATE
+
+
+def test_supported_edge_gets_a_reserved_confirmation_start_on_new_branch():
+    store, source_id, target_id = _store()
+    graph = OnlineCausalSubgoalGraph(minimum_independent_support=2)
+    before = _grid()
+    graph.note_blocked(target_id, _observation(before), store)
+    edge = _edge_for(graph, source_id, target_id)
+    graph.begin_trial(edge.edge_key, context_signature="branch-zero")
+    after = before.copy()
+    after[1, 1] = 4
+    graph.observe_transition(
+        _update(before, after),
+        store=store,
+        source_objective_id=source_id,
+        edge_key=edge.edge_key,
+    )
+    graph.note_intervention_availability(
+        target_id,
+        available=True,
+        observation=_observation(after),
+        store=store,
+        context_signature="open-zero",
+    )
+    graph.start_branch()
+    graph.note_blocked(target_id, _observation(before), store)
+    candidates = graph.candidate_edges(_observation(before), store)
+    composer = OnlineTemporalGoalComposer(
+        max_plans=20,
+        max_plan_starts_total=0,
+        max_confirmation_starts_per_branch=1,
+    )
+    composer.start_branch()
+    composer.compose(_observation(before), store, causal_edges=candidates)
+
+    selection = composer.select_step(_observation(before), store)
+
+    assert selection is not None
+    assert selection.causal_edge_key == edge.edge_key
+    assert selection.causal_confirmation_priority is True
+    assert composer.summary()["reserved_confirmation_starts"] == 1
+
+
+def test_learned_semantic_intervention_utility_guides_same_goal_choice():
+    store = OnlineTerminalObjectiveStore()
+    objective_id = "goal-appear-3-4"
+    store.register_generated(_candidate(
+        objective_id,
+        "appear",
+        source=3,
+        target=4,
+        predicate="adjacent_to",
+        actions=("ACTION1", "ACTION2"),
+    ))
+    observation = _observation(_grid())
+    designer = ObjectiveDiscriminatingExperimentDesigner()
+    evidence = CausalMechanicEvidence(
+        signature="ACTION2",
+        observations=2,
+        source_progress_events=2,
+        enablement_successes=1,
+    )
+
+    choice = designer.design(
+        observation=observation,
+        store=store,
+        safe_actions=("ACTION1", "ACTION2"),
+        preferred_objective_id=objective_id,
+        intervention_utilities={"ACTION2": evidence.utility},
+        require_selectable=False,
+    )
+
+    assert choice is not None
+    assert choice.action_name == "ACTION2"
+    assert choice.reason == "effect-guided causal intervention"

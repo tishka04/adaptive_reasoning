@@ -319,6 +319,7 @@ class ObjectiveDiscriminatingExperimentDesigner:
         click_actions: Sequence[Any] = (),
         operators: Iterable[Operator] = (),
         preferred_objective_id: str = "",
+        intervention_utilities: Mapping[str, float] | None = None,
         allow_ablation: bool = True,
         require_selectable: bool = True,
     ) -> ObjectiveExperimentChoice | None:
@@ -371,6 +372,7 @@ class ObjectiveDiscriminatingExperimentDesigner:
             return None
 
         choices: List[Tuple[Tuple[float, ...], ObjectiveExperimentChoice]] = []
+        learned_utilities = dict(intervention_utilities or {})
         for intervention in interventions:
             affected = tuple(
                 objective_id
@@ -417,14 +419,34 @@ class ObjectiveDiscriminatingExperimentDesigner:
                     if preferred else assessment.is_probe
                 ),
                 reason=(
-                    "selective terminal-goal discriminator"
-                    if competitor
-                    else "bounded measurable terminal-goal probe"
+                    "effect-guided causal intervention"
+                    if learned_utilities.get(
+                        semantic_intervention_signature(
+                            intervention.action_name,
+                            intervention.action_data,
+                            observation,
+                        ),
+                        0.0,
+                    ) > 0.0
+                    else (
+                        "selective terminal-goal discriminator"
+                        if competitor
+                        else "bounded measurable terminal-goal probe"
+                    )
                 ),
+            )
+            learned_utility = learned_utilities.get(
+                semantic_intervention_signature(
+                    intervention.action_name,
+                    intervention.action_data,
+                    observation,
+                ),
+                0.0,
             )
             choices.append((
                 (
                     int(assessment.status == TerminalObjectiveStatus.TERMINAL_SUPPORTED),
+                    float(learned_utility),
                     divergence,
                     effective_priority,
                     -len(affected),
@@ -496,6 +518,19 @@ class _CandidateIntervention:
 
 def intervention_id(action_name: str, action_data: Mapping[str, Any]) -> str:
     return f"{_normalize_action(action_name)}::{json.dumps(dict(action_data), sort_keys=True, separators=(',', ':'))}"
+
+
+def semantic_intervention_signature(
+    action_name: str,
+    action_data: Mapping[str, Any],
+    observation: GameObservation,
+) -> str:
+    """Return a position-invariant identity for transferable interventions."""
+    normalized = _normalize_action(action_name)
+    if normalized != "ACTION6":
+        return normalized
+    color = _clicked_color(observation, action_data)
+    return f"ACTION6::color:{'unknown' if color is None else int(color)}"
 
 
 def _candidate_interventions(

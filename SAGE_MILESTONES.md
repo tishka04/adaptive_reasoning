@@ -4583,3 +4583,124 @@ une intervention, attribuer le credit sur plusieurs etapes et resets, puis
 obtenir des confirmations independantes transferables sans relacher la preuve
 terminale. C'est seulement ensuite que ces dependances pourront devenir des
 options hierarchiques capables de gagner davantage de niveaux.
+
+## SAGE.8o - effect-conditioned causal credit and cross-reset confirmation
+
+Objectif :
+
+- Abstraire chaque effet causal observe sans memoriser les positions absolues :
+  variations de couleurs, volume de changement, mouvement, redimensionnement et
+  signaux terminaux restent separes.
+- Memoriser, par arete causale, quelles interventions semantiques produisent un
+  progres de source puis rendent effectivement la cible testable.
+- Transferer les clics par couleur et les actions non parametrees par famille
+  d'intervention plutot que par coordonnees exactes.
+- Conserver un essai causal apres une progression partielle et lui attribuer le
+  credit lorsque la disponibilite de la cible est constatee plus tard.
+- Expirer ce credit apres une fenetre bornee sans transformer une censure de
+  budget en contradiction.
+- Exiger des branches distinctes, et non seulement des signatures d'etat
+  distinctes dans un meme reset, pour confirmer ou refuter une arete.
+- Donner a une arete soutenue une priorite de confirmation au reset suivant.
+- Reserver au plus deux demarrages de confirmation par branche lorsque le
+  budget normal des plans temporels est deja epuise.
+- Guider le nouvel essai avec l'intervention productive apprise et continuer a
+  executer une seule action avant re-observation.
+- Garder la confirmation mecanique strictement separee de la preuve que le but
+  ou le plan a une valeur terminale.
+- Fournir une ablation qui conserve SAGE.8n mais desactive uniquement la memoire
+  d'effets, le credit retarde et les confirmations reservees de SAGE.8o.
+
+Ajouts :
+
+- extension de `theory/online_causal_subgoal_graph.py`
+- extension de `theory/online_goal_hypothesis.py`
+- extension de `theory/online_temporal_goal_composition.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v6 dans `theory/unified_cognition_ab_benchmark.py`
+- extension de `tests/test_online_causal_subgoal_graph.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8o_cn04_causal_confirmation.json`
+- `diagnostics/sage/sage8o_effect_credit_ablation.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v6`
+- `paired_protocol.protocol_gate_passed=true`
+- `paired_protocol.causal_subgoal_induction_enabled_in_unified=true`
+- `paired_protocol.causal_effect_credit_enabled_in_unified=true`
+- `legacy_only.actions_executed=768`
+- `unified.actions_executed=800`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=476`
+- `unified.experiment_cost_rate=0.595`
+- `unified.causal_edge_actions=83`
+- `unified.causal_edge_source_progress_events=6`
+- `unified.causal_edge_support_events=4`
+- `unified.causal_availability_successes=4`
+- `unified.causal_effect_observations=83`
+- `unified.causal_effect_guided_actions=5`
+- `unified.causal_productive_effect_signatures=2`
+- `unified.causal_productive_intervention_signatures=2`
+- `unified.causal_delayed_credit_events=4`
+- `unified.causal_reserved_confirmation_starts=3`
+- `unified.causal_cross_branch_confirmations=2`
+- `unified.confirmed_causal_edges=2`
+- `unified.refuted_causal_edges=0`
+- `unified.objective_distance_reductions=730`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `causal_effect_credit_enabled_in_unified=false`
+- `causal_edge_actions=78`
+- `causal_edge_source_progress_events=4`
+- `causal_edge_support_events=2`
+- `causal_effect_observations=0`
+- `causal_effect_guided_actions=0`
+- `causal_reserved_confirmation_starts=0`
+- `causal_cross_branch_confirmations=0`
+- `confirmed_causal_edges=0`
+- `levels_completed=0`
+
+Audit cible `cn04-65d47d14`, seed 1, 2 resets x 40 :
+
+- l'arete `reach(color8) -> appear(same_shape(colors4,8))` recoit deux supports
+  sur deux branches, zero contradiction et devient `confirmed` ;
+- `ACTION1` est apprise comme intervention productive transferable avec trois
+  progres sources et deux ouvertures de la cible ;
+- `causal_effect_guided_actions=3` ;
+- `causal_reserved_confirmation_starts=2` ;
+- `confirmed_causal_edges=1` contre zero avant SAGE.8o ;
+- `levels_completed=0` et aucun objectif ou plan n'est `terminal_supported`.
+
+Validation :
+
+- `new_sage8o_tests=7 passed`
+- `targeted_cognitive_tests=41 passed`
+- `full_repository_tests=1363 passed`
+- `ruff_and_compileall=passed`
+
+Lecture : le verrou de consolidation causale multi-reset est franchi. SAGE ne
+se contente plus de proposer des dependances : il reconnait un effet productif,
+le rejoue dans une branche independante et confirme la meme relation mecanique.
+L'ablation reproduit exactement l'ancien plafond de SAGE.8n, avec deux supports
+isoles et aucune arete confirmee. Le cout experimental augmente legerement de
+`0.5925` a `0.595`, tandis que les reductions d'objectif passent de 740 a 730 :
+il ne faut donc pas presenter cette etape comme un gain d'efficacite ou de
+niveau. Elle transforme une intuition causale fragile en connaissance
+transferable et falsifiable.
+
+Le prochain verrou est l'exploitation terminale des dependances confirmees.
+Apres avoir ouvert une intervention, SAGE doit tester activement les buts aval,
+attribuer un eventuel level-up a la chaine complete, ou refuter rapidement les
+buts aval non terminaux. Les aretes confirmees doivent alors etre compilees en
+options hierarchiques reutilisables qui liberent du budget pour chercher la
+derniere transformation terminale plutot que rejouer indefiniment la
+preparation.
