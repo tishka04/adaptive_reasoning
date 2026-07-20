@@ -268,6 +268,7 @@ class OnlineTemporalGoalComposer:
         self._confirmation_starts_this_branch = 0
         self._mediated_replication_starts_total = 0
         self._mediated_discrimination_starts_total = 0
+        self._mediated_exploitation_starts_total = 0
         self._plans_generated_total = 0
         self._step_decisions = 0
         self._terminal_events = 0
@@ -422,6 +423,7 @@ class OnlineTemporalGoalComposer:
         *,
         preferred_causal_edge_key: str = "",
         preferred_discrimination_edge_key: str = "",
+        preferred_exploitation_edge_key: str = "",
     ) -> TemporalStepSelection | None:
         """Return one enabled subgoal; callers still select only one action."""
         if self._active is not None:
@@ -446,8 +448,15 @@ class OnlineTemporalGoalComposer:
                 and plan.causal_edge_key
                 == str(preferred_discrimination_edge_key)
             )
+            mediated_exploitation = bool(
+                str(preferred_exploitation_edge_key)
+                and plan.causal_edge_key
+                == str(preferred_exploitation_edge_key)
+            )
             mediated_reservation = bool(
-                mediated_discrimination or mediated_replication
+                mediated_exploitation
+                or mediated_discrimination
+                or mediated_replication
             )
             if (
                 plan.starts >= self.max_starts_per_plan
@@ -484,6 +493,7 @@ class OnlineTemporalGoalComposer:
                 TemporalPlanStatus.CANDIDATE: 1.0,
             }.get(plan.status, 0.0)
             candidates.append(((
+                int(mediated_exploitation),
                 int(mediated_discrimination),
                 int(mediated_replication),
                 status_bonus,
@@ -501,6 +511,12 @@ class OnlineTemporalGoalComposer:
         plan.starts += 1
         self._plan_starts_total += 1
         if (
+            str(preferred_exploitation_edge_key)
+            and plan.causal_edge_key
+            == str(preferred_exploitation_edge_key)
+        ):
+            self._mediated_exploitation_starts_total += 1
+        elif (
             str(preferred_discrimination_edge_key)
             and plan.causal_edge_key
             == str(preferred_discrimination_edge_key)
@@ -698,6 +714,9 @@ class OnlineTemporalGoalComposer:
             ),
             "mediated_discrimination_preparation_starts": (
                 self._mediated_discrimination_starts_total
+            ),
+            "mediated_exploitation_preparation_starts": (
+                self._mediated_exploitation_starts_total
             ),
             "step_decisions": self._step_decisions,
             "actions": sum(plan.actions for plan in plans),

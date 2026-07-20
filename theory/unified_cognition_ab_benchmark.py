@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v17"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v18"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -57,6 +57,8 @@ EXPERIMENT_SOURCES = {
     "causal_option_effect_subgoal_probe",
     "causal_option_mediated_discrimination",
     "causal_option_mode_restoration",
+    "causal_option_mediated_exploitation",
+    "causal_option_mediated_exploitation_restoration",
     "causal_option_mediated_replication",
 }
 
@@ -190,6 +192,17 @@ def _active_mode_restoration_disabled_controller(
     )
 
 
+def _terminal_mediated_exploitation_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_terminal_mediated_exploitation=False
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -275,6 +288,7 @@ def run_unified_cognition_ab_benchmark(
     enable_online_mediated_anti_unification: bool = True,
     enable_active_mediated_discrimination: bool = True,
     enable_active_mode_restoration: bool = True,
+    enable_terminal_mediated_exploitation: bool = True,
     enable_active_mediated_replication: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
@@ -360,6 +374,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _active_mode_restoration_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_terminal_mediated_exploitation
+    ):
+        effective_controller_factory = (
+            _terminal_mediated_exploitation_disabled_controller
         )
     elif (
         effective_controller_factory is None
@@ -452,6 +473,9 @@ def run_unified_cognition_ab_benchmark(
             enable_active_mediated_discrimination
         ),
         active_mode_restoration_enabled=enable_active_mode_restoration,
+        terminal_mediated_exploitation_enabled=(
+            enable_terminal_mediated_exploitation
+        ),
         active_mediated_replication_enabled=(
             enable_active_mediated_replication
         ),
@@ -580,6 +604,12 @@ def _run_arm(
     mediated_discrimination_summary = dict(
         causal_option_summary.get(
             "active_mediated_discrimination",
+            {},
+        ) or {}
+    )
+    mediated_exploitation_summary = dict(
+        causal_option_summary.get(
+            "terminal_mediated_exploitation",
             {},
         ) or {}
     )
@@ -1085,6 +1115,92 @@ def _run_arm(
                 "restoration_unavailable_contexts", 0
             ) or 0
         ),
+        "mediated_exploitation_actions": decision_sources[
+            "causal_option_mediated_exploitation"
+        ],
+        "mediated_exploitation_restoration_actions": decision_sources[
+            "causal_option_mediated_exploitation_restoration"
+        ],
+        "mediated_exploitation_policies_compiled": int(
+            mediated_exploitation_summary.get("compiled", 0) or 0
+        ),
+        "mediated_exploitation_policy_revisions": int(
+            mediated_exploitation_summary.get("revisions", 0) or 0
+        ),
+        "mediated_exploitation_activations": int(
+            mediated_exploitation_summary.get("activations", 0) or 0
+        ),
+        "mediated_exploitation_predictions": int(
+            mediated_exploitation_summary.get("predictions", 0) or 0
+        ),
+        "mediated_exploitation_mode_mismatch_blocks": int(
+            mediated_exploitation_summary.get(
+                "mode_mismatch_blocks", 0
+            ) or 0
+        ),
+        "mediated_exploitation_constraint_mismatch_blocks": int(
+            mediated_exploitation_summary.get(
+                "constraint_mismatch_blocks", 0
+            ) or 0
+        ),
+        "mediated_exploitation_duplicate_action_blocks": int(
+            mediated_exploitation_summary.get(
+                "duplicate_action_blocks", 0
+            ) or 0
+        ),
+        "mediated_exploitation_selections": int(
+            mediated_exploitation_summary.get("selections", 0) or 0
+        ),
+        "mediated_exploitation_preparation_actions": int(
+            mediated_exploitation_summary.get(
+                "preparation_actions", 0
+            ) or 0
+        ),
+        "mediated_exploitation_preparation_starts": int(
+            temporal_summary.get(
+                "mediated_exploitation_preparation_starts", 0
+            ) or 0
+        ),
+        "mediated_exploitation_progress_events": int(
+            mediated_exploitation_summary.get("progress_events", 0) or 0
+        ),
+        "mediated_exploitation_nonprogress_events": int(
+            mediated_exploitation_summary.get("nonprogress_events", 0) or 0
+        ),
+        "mediated_exploitation_terminal_events": int(
+            mediated_exploitation_summary.get("terminal_events", 0) or 0
+        ),
+        "mediated_exploitation_refutations": int(
+            mediated_exploitation_summary.get("refutations", 0) or 0
+        ),
+        "mediated_exploitation_unsafe_failures": int(
+            mediated_exploitation_summary.get("unsafe_failures", 0) or 0
+        ),
+        "mediated_exploitation_restoration_predictions": int(
+            mediated_exploitation_summary.get(
+                "restoration_predictions", 0
+            ) or 0
+        ),
+        "mediated_exploitation_restoration_selections": int(
+            mediated_exploitation_summary.get(
+                "restoration_selections", 0
+            ) or 0
+        ),
+        "mediated_exploitation_restoration_steps_confirmed": int(
+            mediated_exploitation_summary.get(
+                "restoration_steps_confirmed", 0
+            ) or 0
+        ),
+        "mediated_exploitation_restoration_targets_reached": int(
+            mediated_exploitation_summary.get(
+                "restoration_targets_reached", 0
+            ) or 0
+        ),
+        "mediated_exploitation_restoration_failures": int(
+            mediated_exploitation_summary.get(
+                "restoration_failures", 0
+            ) or 0
+        ),
         "mediated_replication_requests_created": int(
             mediated_replication_summary.get("requests_created", 0) or 0
         ),
@@ -1520,6 +1636,7 @@ def _summarize_benchmark(
     online_mediated_anti_unification_enabled: bool,
     active_mediated_discrimination_enabled: bool,
     active_mode_restoration_enabled: bool,
+    terminal_mediated_exploitation_enabled: bool,
     active_mediated_replication_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
@@ -1587,6 +1704,9 @@ def _summarize_benchmark(
             ),
             "active_mode_restoration_enabled_in_unified": bool(
                 active_mode_restoration_enabled
+            ),
+            "terminal_mediated_exploitation_enabled_in_unified": bool(
+                terminal_mediated_exploitation_enabled
             ),
             "active_mediated_replication_enabled_in_unified": bool(
                 active_mediated_replication_enabled
@@ -2101,6 +2221,97 @@ def _aggregate_arm(
             int(row["mediated_restoration_unavailable_contexts"])
             for row in rows
         ),
+        "mediated_exploitation_actions": sum(
+            int(row["mediated_exploitation_actions"]) for row in rows
+        ),
+        "mediated_exploitation_restoration_actions": sum(
+            int(row["mediated_exploitation_restoration_actions"])
+            for row in rows
+        ),
+        "mediated_exploitation_policies_compiled": sum(
+            int(row["mediated_exploitation_policies_compiled"])
+            for row in rows
+        ),
+        "mediated_exploitation_policy_revisions": sum(
+            int(row["mediated_exploitation_policy_revisions"])
+            for row in rows
+        ),
+        "mediated_exploitation_activations": sum(
+            int(row["mediated_exploitation_activations"])
+            for row in rows
+        ),
+        "mediated_exploitation_predictions": sum(
+            int(row["mediated_exploitation_predictions"])
+            for row in rows
+        ),
+        "mediated_exploitation_mode_mismatch_blocks": sum(
+            int(row["mediated_exploitation_mode_mismatch_blocks"])
+            for row in rows
+        ),
+        "mediated_exploitation_constraint_mismatch_blocks": sum(
+            int(row["mediated_exploitation_constraint_mismatch_blocks"])
+            for row in rows
+        ),
+        "mediated_exploitation_duplicate_action_blocks": sum(
+            int(row["mediated_exploitation_duplicate_action_blocks"])
+            for row in rows
+        ),
+        "mediated_exploitation_selections": sum(
+            int(row["mediated_exploitation_selections"])
+            for row in rows
+        ),
+        "mediated_exploitation_preparation_actions": sum(
+            int(row["mediated_exploitation_preparation_actions"])
+            for row in rows
+        ),
+        "mediated_exploitation_preparation_starts": sum(
+            int(row["mediated_exploitation_preparation_starts"])
+            for row in rows
+        ),
+        "mediated_exploitation_progress_events": sum(
+            int(row["mediated_exploitation_progress_events"])
+            for row in rows
+        ),
+        "mediated_exploitation_nonprogress_events": sum(
+            int(row["mediated_exploitation_nonprogress_events"])
+            for row in rows
+        ),
+        "mediated_exploitation_terminal_events": sum(
+            int(row["mediated_exploitation_terminal_events"])
+            for row in rows
+        ),
+        "mediated_exploitation_refutations": sum(
+            int(row["mediated_exploitation_refutations"])
+            for row in rows
+        ),
+        "mediated_exploitation_unsafe_failures": sum(
+            int(row["mediated_exploitation_unsafe_failures"])
+            for row in rows
+        ),
+        "mediated_exploitation_restoration_predictions": sum(
+            int(row["mediated_exploitation_restoration_predictions"])
+            for row in rows
+        ),
+        "mediated_exploitation_restoration_selections": sum(
+            int(row["mediated_exploitation_restoration_selections"])
+            for row in rows
+        ),
+        "mediated_exploitation_restoration_steps_confirmed": sum(
+            int(row[
+                "mediated_exploitation_restoration_steps_confirmed"
+            ])
+            for row in rows
+        ),
+        "mediated_exploitation_restoration_targets_reached": sum(
+            int(row[
+                "mediated_exploitation_restoration_targets_reached"
+            ])
+            for row in rows
+        ),
+        "mediated_exploitation_restoration_failures": sum(
+            int(row["mediated_exploitation_restoration_failures"])
+            for row in rows
+        ),
         "mediated_replication_requests_created": sum(
             int(row["mediated_replication_requests_created"])
             for row in rows
@@ -2606,6 +2817,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8z learned latent-mode restoration only.",
     )
+    parser.add_argument(
+        "--disable-terminal-mediated-exploitation",
+        action="store_true",
+        help="Ablate SAGE.9 revised-lattice terminal exploitation only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -2660,6 +2876,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_active_mode_restoration=(
             not args.disable_active_mode_restoration
+        ),
+        enable_terminal_mediated_exploitation=(
+            not args.disable_terminal_mediated_exploitation
         ),
         enable_active_mediated_replication=(
             not args.disable_active_mediated_replication

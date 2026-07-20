@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v17"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v18"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -112,6 +112,10 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         is True
     )
     assert protocol["active_mode_restoration_enabled_in_unified"] is True
+    assert (
+        protocol["terminal_mediated_exploitation_enabled_in_unified"]
+        is True
+    )
     assert protocol["active_mediated_replication_enabled_in_unified"] is True
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
@@ -209,6 +213,10 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "mediated_restoration_steps_confirmed" in metrics["unified"]
     assert "mediated_restoration_targets_reached" in metrics["unified"]
     assert "mediated_restoration_failures" in metrics["unified"]
+    assert "mediated_exploitation_policies_compiled" in metrics["unified"]
+    assert "mediated_exploitation_actions" in metrics["unified"]
+    assert "mediated_exploitation_progress_events" in metrics["unified"]
+    assert "mediated_exploitation_terminal_events" in metrics["unified"]
     assert (
         "mediated_discrimination_feature_requirements" in metrics["unified"]
     )
@@ -551,3 +559,26 @@ def test_ab_benchmark_exposes_active_mode_restoration_ablation():
     assert metrics["mediated_restoration_predictions"] == 0
     assert metrics["mediated_restoration_selections"] == 0
     assert metrics["mediated_restoration_targets_reached"] == 0
+
+
+def test_ab_benchmark_exposes_terminal_mediated_exploitation_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-mediated-exploitation-ablation"],
+        seeds=[47],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_terminal_mediated_exploitation=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["active_mode_restoration_enabled_in_unified"] is True
+    assert (
+        protocol["terminal_mediated_exploitation_enabled_in_unified"]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["mediated_exploitation_policies_compiled"] == 0
+    assert metrics["mediated_exploitation_predictions"] == 0
+    assert metrics["mediated_exploitation_selections"] == 0
+    assert metrics["mediated_exploitation_terminal_events"] == 0

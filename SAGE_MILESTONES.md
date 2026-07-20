@@ -6189,3 +6189,139 @@ avoir appris qu'une propriete du porteur est requise, SAGE doit compiler les
 contraintes encore soutenues avec la recette de restauration et l'intervention
 productive en une politique persistante, l'executer jusqu'a une transition de
 niveau et ne lui attribuer une valeur terminale qu'apres ce resultat reel.
+
+## SAGE.9 - online terminal exploitation of the revised carrier lattice
+
+Objectif :
+
+- Ne plus laisser une discrimination SAGE.8y resolue sans effet sur le
+  controle : compiler immediatement son resultat en politique executable.
+- Conserver les proprietes requises, retirer les proprietes eliminees et
+  n'autoriser que la meme classe semantique d'intervention dans le meme mode
+  latent appris.
+- Reouvrir cette politique sur les branches suivantes, restaurer son mode avec
+  les recettes SAGE.8z et lui donner priorite sur la question suivante de la
+  lattice.
+- Borner les essais par action et par branche, refuter sur deux branches de
+  non-progres independantes ou au premier echec dangereux.
+- Distinguer strictement support de progres et support terminal : une reduction
+  de distance soutient la politique, mais seul un changement de niveau ou WIN
+  observe peut lui attribuer une valeur terminale.
+- Preserver exactement SAGE.8z derriere une ablation isolee.
+
+Representation et controle :
+
+- `OnlineMediatedExploitationStore` recoit uniquement une requete de
+  discrimination resolue `feature_required` ou `feature_eliminated`. Sa cle
+  contient option, objectif, mode latent, transfert semantique et abstraction ;
+  aucune identite de niveau ni trajectoire-reponse n'est stockee.
+- Une revision de la meme cle met a jour les ensembles de proprietes requises
+  et eliminees au lieu de creer une competence concurrente.
+- La prediction reconstruit les porteurs prospectifs de la scene courante et
+  exige une correspondance exacte sur toutes les proprietes effectives. Une
+  action concrete deja essayee dans la branche ne peut pas boucler.
+- Les statuts sont `candidate`, `progress_supported`, `terminal_supported`,
+  `refuted` et `expired`. Le statut terminal ne depend jamais de la distance
+  locale ni du statut terminal suppose du sous-but.
+- La preparation temporelle, la reservation du sous-but mesurable et la
+  restauration de mode sont persistantes entre branches. Les decisions sont
+  exposees sous `causal_option_mediated_exploitation` et
+  `causal_option_mediated_exploitation_restoration`.
+- Une seule cause de controle recoit le credit d'une action : l'exploitation
+  domine sa restauration, puis SAGE.8z, SAGE.8y et SAGE.8w. Cela evite le double
+  comptage d'une meme transition comme restauration de deux experiences.
+- Le benchmark A/B v18 expose compilation, revisions, activations, predictions,
+  selections, progres, non-progres, support terminal, refutations, preparation
+  et restauration ; `--disable-terminal-mediated-exploitation` isole SAGE.9.
+
+Ajouts :
+
+- nouvelle politique dans `theory/online_mediated_exploitation.py` ;
+- integration, priorite, restauration, budgets et credit dans
+  `theory/online_causal_option.py` ;
+- reservation de preparation dans
+  `theory/online_temporal_goal_composition.py` ;
+- configuration et audit dans `theory/unified_cognitive_controller.py` ;
+- schema, metriques, CLI et ablation v18 dans
+  `theory/unified_cognition_ab_benchmark.py` ;
+- 11 tests synthetiques dans
+  `tests/test_online_mediated_exploitation.py` et extension du benchmark ;
+- `diagnostics/sage/sage9_cn04_terminal_exploitation.json` ;
+- `diagnostics/sage/sage9_terminal_exploitation_ablation.json` ;
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`.
+
+Audit actif cible `cn04-65d47d14`, seed 0, 5 resets x 40 :
+
+- la conclusion SAGE.8z `proximity=adjacent` compile exactement 1 politique ;
+- la politique est activee 2 fois, dont une reouverture preparee sur une branche
+  ulterieure ;
+- 2 actions de restauration sont selectionnees, les 2 transitions attendues
+  sont confirmees et le mode cible est atteint ;
+- 2 predictions d'exploitation sont produites, 1 action est selectionnee et
+  cette action produit 1 progres objectif avec le porteur conforme observe ;
+- aucun non-progres fiable, echec dangereux ou refutation n'est enregistre ;
+- `experiment_actions=84`, contre 86 dans l'ablation ;
+- `objective_distance_reductions=180` dans les deux bras : SAGE.9 conserve le
+  gain local de SAGE.8z avec deux experiences de moins ;
+- `controller_errors=0`, `levels_completed=0`, `wins=0` et donc aucun faux
+  support terminal.
+
+Ablation cible, memes jeu, seed, resets et budgets :
+
+- `terminal_mediated_exploitation_enabled_in_unified=false` ;
+- toutes les metriques `mediated_exploitation_*` valent zero ;
+- la trajectoire SAGE.8z est reproduite : 86 experiences, 180 reductions,
+  4 actions de restauration discriminante et aucune politique compilee ;
+- aucun niveau ni WIN n'est obtenu.
+
+Run principal du 2026-07-21, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v18` ;
+- `paired_protocol.protocol_gate_passed=true` ;
+- `terminal_mediated_exploitation_enabled_in_unified=true` ;
+- `unified.controller_errors=0` ;
+- `unified.actions_executed=800` ;
+- `unified.experiment_actions=488` ;
+- `unified.objective_distance_reductions=782` ;
+- aucune discrimination SAGE.8y n'est resolue dans cet horizon : aucune
+  politique SAGE.9 n'est compilee et la trajectoire reste identique a SAGE.8z ;
+- `legacy_only.levels_completed=0`, `unified.levels_completed=0`,
+  `legacy_only.wins=0` et `unified.wins=0`.
+
+Validation synthetique en ligne :
+
+- une propriete requise reste une garde et une propriete eliminee disparait de
+  la correspondance ;
+- une action au mauvais mode, au mauvais transfert ou au mauvais porteur est
+  bloquee ;
+- une action concrete ne peut pas etre repetee dans la meme branche ;
+- un progres local ne promeut jamais la politique comme terminale ;
+- seul un evenement terminal reel la promeut ;
+- deux branches independantes sans progres la refutent ;
+- la restauration observee atteint le mode de la politique ;
+- l'option causale choisit la politique avant la recherche generique ;
+- l'ablation ne compile ni ne selectionne aucune politique.
+
+Validation :
+
+- `new_sage9_tests=11 passed` ;
+- `targeted_cognitive_tests=77 passed` ;
+- `scoped_ruff_and_compileall=passed` ;
+- `broad_repository_tests=1259 passed` sous le Python 3.11 disponible ; les
+  tests historiques dependants des environnements ARC reels n'ont pas pu etre
+  valides dans ce runtime, qui tente de charger des extensions `pydantic_core`
+  et `scikit-learn` compilees pour Python 3.12/3.13. Les trois diagnostics reels
+  SAGE.9 ont bien ete executes avec le paquet ARC 3.13 du depot precharge.
+
+Lecture : le verrou apprentissage-vers-action est franchi. Pour la premiere
+fois, une propriete de porteur apprise pendant l'examen modifie directement la
+politique, restaure son contexte et produit un nouveau progres causal sans
+template de solution. Ce progres ne suffit pas encore a gagner un niveau.
+
+Le prochain verrou est la continuation multi-etape apres le premier progres de
+politique. L'action SAGE.9 change le mode et la structure disponibles ; la
+politique actuelle decrit seulement son etat d'entree. Il faut apprendre en
+ligne une chaine de politiques sur les etats successeurs, reevaluer les
+contraintes du porteur apres chaque progres et poursuivre jusqu'a un evenement
+terminal, toujours sans transformer le progres local en preuve de but.
