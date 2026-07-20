@@ -17,6 +17,10 @@ from typing import Any, Dict, Mapping, Sequence, Tuple
 
 from v3.schemas import GameObservation, ObjectInfo
 
+from .online_mediated_abstraction import (
+    MediatedAbstractionHypothesis,
+    induce_mediated_abstraction,
+)
 from .online_semantic_intervention import (
     SemanticInterventionAnchor,
     entity_signature,
@@ -106,6 +110,8 @@ class MediatedEntityEffectEvidence:
     objective_id: str
     mode_signature: str
     action_transfer_signature: str
+    objective_colors: Tuple[int, ...] = ()
+    anti_unification_enabled: bool = True
     attempts: int = 0
     progress_events: int = 0
     regression_events: int = 0
@@ -120,6 +126,8 @@ class MediatedEntityEffectEvidence:
     contexts: set[str] = field(default_factory=set)
     branches: set[int] = field(default_factory=set)
     progress_candidate_sets: list[Tuple[str, ...]] = field(default_factory=list)
+    control_candidate_sets: list[Tuple[str, ...]] = field(default_factory=list)
+    regression_candidate_sets: list[Tuple[str, ...]] = field(default_factory=list)
     candidate_supports: Dict[str, int] = field(default_factory=dict)
     candidate_controls: Dict[str, int] = field(default_factory=dict)
     candidate_regressions: Dict[str, int] = field(default_factory=dict)
@@ -151,14 +159,48 @@ class MediatedEntityEffectEvidence:
             candidate = next(iter(candidates))
             if self.candidate_supports.get(candidate, 0) >= 2:
                 return candidate
-        return ""
+        abstraction = self.mediator_abstraction
+        return (
+            abstraction.signature
+            if abstraction is not None and abstraction.supported
+            else ""
+        )
+
+    @property
+    def mediator_abstraction(self) -> MediatedAbstractionHypothesis | None:
+        if not self.anti_unification_enabled:
+            return None
+        return induce_mediated_abstraction(
+            self.progress_candidate_sets,
+            control_candidate_sets=self.control_candidate_sets,
+            regression_candidate_sets=self.regression_candidate_sets,
+            preferred_colors=self.objective_colors,
+        )
+
+    @property
+    def supported_mediator_is_abstract(self) -> bool:
+        return self.supported_mediator_signature.startswith(
+            "mediated-abstract::"
+        )
+
+    @property
+    def active_candidate_signatures(self) -> Tuple[str, ...]:
+        exact = tuple(sorted(self.candidate_intersection))
+        if exact:
+            return exact
+        abstraction = self.mediator_abstraction
+        return () if abstraction is None else (abstraction.signature,)
 
     @property
     def status(self) -> MediatedEffectStatus:
         if self.supported_mediator_signature:
             return MediatedEffectStatus.SUPPORTED
         if self.progress_events > 0:
-            if self.progress_candidate_sets and not self.candidate_intersection:
+            if (
+                len(self.progress_candidate_sets) >= 2
+                and not self.candidate_intersection
+                and self.mediator_abstraction is None
+            ):
                 return MediatedEffectStatus.CONTRADICTED
             return MediatedEffectStatus.NEEDS_MEDIATOR_CONTRAST
         if self.regression_events > 0:
@@ -182,6 +224,7 @@ class MediatedEntityEffectEvidence:
             | set(self.candidate_controls)
             | set(self.candidate_regressions)
         )
+        abstraction = self.mediator_abstraction
         return {
             "option_id": self.option_id,
             "objective_id": self.objective_id,
@@ -206,9 +249,24 @@ class MediatedEntityEffectEvidence:
             "progress_candidate_sets": [
                 list(items) for items in self.progress_candidate_sets
             ],
+            "control_candidate_sets": [
+                list(items) for items in self.control_candidate_sets
+            ],
+            "regression_candidate_sets": [
+                list(items) for items in self.regression_candidate_sets
+            ],
             "candidate_intersection": sorted(self.candidate_intersection),
+            "active_candidate_signatures": list(
+                self.active_candidate_signatures
+            ),
             "supported_mediator_signature": (
                 self.supported_mediator_signature
+            ),
+            "supported_mediator_is_abstract": (
+                self.supported_mediator_is_abstract
+            ),
+            "mediator_abstraction": (
+                None if abstraction is None else abstraction.to_dict()
             ),
             "candidate_hyperedges": [
                 {
@@ -238,6 +296,9 @@ class MediatedEffectPrediction:
     supported_mediator_signature: str
     candidate_mediator_signatures: Tuple[str, ...]
     reason: str
+    mediator_abstraction: bool = False
+    mediator_abstraction_specificity: int = 0
+    mediator_abstraction_features: Tuple[Tuple[str, str], ...] = ()
 
     @property
     def selection_rank(self) -> int:
@@ -252,8 +313,14 @@ class MediatedEffectPrediction:
 class OnlineMediatedEntityEffectStore:
     """Induce indirect action-target -> relation -> affected-entity edges."""
 
-    def __init__(self, *, enabled: bool = True) -> None:
+    def __init__(
+        self,
+        *,
+        enabled: bool = True,
+        enable_anti_unification: bool = True,
+    ) -> None:
         self.enabled = bool(enabled)
+        self.enable_anti_unification = bool(enable_anti_unification)
         self._evidence: Dict[
             Tuple[str, str, str, str],
             MediatedEntityEffectEvidence,
@@ -343,6 +410,12 @@ class OnlineMediatedEntityEffectStore:
                 objective_id=objective.objective_id,
                 mode_signature=mode,
                 action_transfer_signature=transfer,
+                objective_colors=tuple(sorted({
+                    int(color)
+                    for color in (objective.source_color, objective.target_color)
+                    if color is not None
+                })),
+                anti_unification_enabled=self.enable_anti_unification,
             )
             self._evidence[key] = evidence
         evidence.attempts += 1
@@ -380,12 +453,16 @@ class OnlineMediatedEntityEffectStore:
         elif gain < 0.0:
             evidence.regression_events += 1
             evidence.total_regression += abs(gain)
+            if signatures:
+                evidence.regression_candidate_sets.append(signatures)
             for signature in signatures:
                 evidence.candidate_regressions[signature] = (
                     evidence.candidate_regressions.get(signature, 0) + 1
                 )
         else:
             evidence.stall_events += 1
+            if signatures:
+                evidence.control_candidate_sets.append(signatures)
             for signature in signatures:
                 evidence.candidate_controls[signature] = (
                     evidence.candidate_controls.get(signature, 0) + 1
@@ -400,6 +477,14 @@ class OnlineMediatedEntityEffectStore:
             "status": evidence.status.value,
             "supported_mediator_signature": (
                 evidence.supported_mediator_signature
+            ),
+            "supported_mediator_is_abstract": (
+                evidence.supported_mediator_is_abstract
+            ),
+            "mediator_abstraction": (
+                None
+                if evidence.mediator_abstraction is None
+                else evidence.mediator_abstraction.to_dict()
             ),
             "candidate_mediator_signatures": list(signatures),
             "ambiguous_scene_correspondence": ambiguous,
@@ -446,6 +531,7 @@ class OnlineMediatedEntityEffectStore:
                 reason="no observed indirect carrier evidence in this mode",
             )
         status = evidence.status
+        abstraction = evidence.mediator_abstraction
         if record_prediction and self.enabled:
             if status == MediatedEffectStatus.SUPPORTED:
                 self._supported_predictions += 1
@@ -468,7 +554,7 @@ class OnlineMediatedEntityEffectStore:
                 evidence.supported_mediator_signature
             ),
             candidate_mediator_signatures=tuple(
-                sorted(evidence.candidate_intersection)
+                evidence.active_candidate_signatures
             ),
             reason={
                 MediatedEffectStatus.SUPPORTED: (
@@ -485,6 +571,19 @@ class OnlineMediatedEntityEffectStore:
                     "scene changes observed without indirect progress evidence"
                 ),
             }[status],
+            mediator_abstraction=bool(
+                evidence.supported_mediator_is_abstract
+                or (
+                    abstraction is not None
+                    and not evidence.candidate_intersection
+                )
+            ),
+            mediator_abstraction_specificity=(
+                0 if abstraction is None else abstraction.specificity
+            ),
+            mediator_abstraction_features=(
+                () if abstraction is None else abstraction.features
+            ),
         )
 
     def note_selection(self, prediction: MediatedEffectPrediction) -> None:
@@ -509,6 +608,7 @@ class OnlineMediatedEntityEffectStore:
         )
         return {
             "enabled": self.enabled,
+            "anti_unification_enabled": self.enable_anti_unification,
             "observations": self._observations,
             "scene_correspondences": self._scene_correspondences,
             "changed_entities": self._changed_entities,
@@ -532,6 +632,24 @@ class OnlineMediatedEntityEffectStore:
             "mediated_effect_models": len(evidence),
             "supported_hyperedges": sum(
                 bool(item.supported_mediator_signature) for item in evidence
+            ),
+            "abstract_hyperedge_hypotheses": sum(
+                item.mediator_abstraction is not None for item in evidence
+            ),
+            "supported_abstract_hyperedges": sum(
+                item.supported_mediator_is_abstract for item in evidence
+            ),
+            "abstract_control_contexts": sum(
+                0
+                if item.mediator_abstraction is None
+                else item.mediator_abstraction.control_contexts
+                for item in evidence
+            ),
+            "abstract_regression_contexts": sum(
+                0
+                if item.mediator_abstraction is None
+                else item.mediator_abstraction.regression_contexts
+                for item in evidence
             ),
             "predictions": self._predictions,
             "supported_predictions": self._supported_predictions,

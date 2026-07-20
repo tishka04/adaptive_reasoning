@@ -289,6 +289,9 @@ class CausalOptionSelection:
     mediated_effect_controlled_contrast: bool = False
     supported_mediator_signature: str = ""
     candidate_mediator_signatures: Tuple[str, ...] = ()
+    mediator_abstraction: bool = False
+    mediator_abstraction_specificity: int = 0
+    mediator_abstraction_features: Tuple[Tuple[str, str], ...] = ()
     mediated_replication_request_id: str = ""
     mediated_cross_branch_replication: bool = False
     mediated_exact_semantic_replication: bool = False
@@ -317,6 +320,7 @@ class OnlineCausalOptionStore:
         enable_entity_anchored_interventions: bool = True,
         enable_active_entity_causal_binding: bool = True,
         enable_mediated_entity_effect_induction: bool = True,
+        enable_online_mediated_anti_unification: bool = True,
         enable_active_mediated_replication: bool = True,
         max_mediated_replication_attempts: int = 2,
         persistent_actions_per_progress: int = 2,
@@ -342,6 +346,7 @@ class OnlineCausalOptionStore:
         )
         self.mediated_entity_effects = OnlineMediatedEntityEffectStore(
             enabled=enable_mediated_entity_effect_induction,
+            enable_anti_unification=enable_online_mediated_anti_unification,
         )
         self.mediated_replications = OnlineMediatedReplicationStore(
             enabled=(
@@ -1131,6 +1136,18 @@ class OnlineCausalOptionStore:
                 () if mediated_prediction is None
                 else mediated_prediction.candidate_mediator_signatures
             ),
+            mediator_abstraction=(
+                False if mediated_prediction is None
+                else mediated_prediction.mediator_abstraction
+            ),
+            mediator_abstraction_specificity=(
+                0 if mediated_prediction is None
+                else mediated_prediction.mediator_abstraction_specificity
+            ),
+            mediator_abstraction_features=(
+                () if mediated_prediction is None
+                else mediated_prediction.mediator_abstraction_features
+            ),
             mediated_replication_request_id=(
                 "" if replication_prediction is None
                 else replication_prediction.request_id
@@ -1395,6 +1412,9 @@ class OnlineCausalOptionStore:
             "supported_mediator_signature": "",
             "candidate_mediator_signatures": [],
             "mediated_scene_changes": 0,
+            "mediator_abstraction": False,
+            "mediator_abstraction_specificity": 0,
+            "mediator_abstraction_features": {},
             "mediated_replication_request_id": str(
                 mediated_replication_request_id
             ),
@@ -1729,6 +1749,24 @@ class OnlineCausalOptionStore:
                     for item in mediated_outcome.get(
                         "scene_correspondences",
                         [],
+                    )
+                ),
+                "mediator_abstraction": bool(
+                    mediated_outcome.get(
+                        "supported_mediator_is_abstract",
+                        False,
+                    )
+                ),
+                "mediator_abstraction_specificity": int(
+                    (mediated_outcome.get("mediator_abstraction") or {}).get(
+                        "specificity",
+                        0,
+                    )
+                ),
+                "mediator_abstraction_features": dict(
+                    (mediated_outcome.get("mediator_abstraction") or {}).get(
+                        "features",
+                        {},
                     )
                 ),
                 "persistent_pursuit": bool(persistent_pursuit),

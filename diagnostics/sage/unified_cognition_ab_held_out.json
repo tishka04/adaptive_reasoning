@@ -136,6 +136,10 @@
       "game_seed_runs": 10,
       "generated_goal_hypotheses": 0,
       "levels_completed": 0,
+      "mediated_abstraction_control_contexts": 0,
+      "mediated_abstraction_hypotheses": 0,
+      "mediated_abstraction_regression_contexts": 0,
+      "mediated_abstraction_supported_hyperedges": 0,
       "mediated_effect_ambiguous_entities": 0,
       "mediated_effect_ambiguous_progress_candidate_sets": 0,
       "mediated_effect_appeared_entities": 0,
@@ -331,6 +335,10 @@
       "game_seed_runs": 10,
       "generated_goal_hypotheses": 76,
       "levels_completed": 0,
+      "mediated_abstraction_control_contexts": 0,
+      "mediated_abstraction_hypotheses": 0,
+      "mediated_abstraction_regression_contexts": 0,
+      "mediated_abstraction_supported_hyperedges": 0,
       "mediated_effect_ambiguous_entities": 0,
       "mediated_effect_ambiguous_progress_candidate_sets": 0,
       "mediated_effect_appeared_entities": 0,
@@ -430,6 +438,7 @@
     "fresh_environment_per_reset": true,
     "mediated_entity_effect_induction_enabled_in_unified": true,
     "online_learning_within_arm_only": true,
+    "online_mediated_anti_unification_enabled_in_unified": true,
     "persistent_directional_pursuit_enabled_in_unified": true,
     "protocol_gate_passed": true,
     "same_action_budget": true,
@@ -594,6 +603,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -883,8 +896,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 0,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -901,6 +918,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -1540,6 +1558,10 @@
         "generated_goal_hypotheses": 2,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -1786,6 +1808,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -2075,8 +2101,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 0,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -2093,6 +2123,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -2732,6 +2763,10 @@
         "generated_goal_hypotheses": 2,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -2978,6 +3013,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -3267,8 +3306,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 3,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -3285,6 +3328,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -4047,6 +4091,10 @@
         "generated_goal_hypotheses": 8,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -4293,6 +4341,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -4582,8 +4634,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 3,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -4600,6 +4656,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -5362,6 +5419,10 @@
         "generated_goal_hypotheses": 8,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -5608,6 +5669,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -5897,8 +5962,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 1,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -5915,6 +5984,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -6418,6 +6488,10 @@
         "generated_goal_hypotheses": 8,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -6664,6 +6738,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -6953,8 +7031,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 1,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -6971,6 +7053,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -7474,6 +7557,10 @@
         "generated_goal_hypotheses": 8,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -7720,6 +7807,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -7915,7 +8006,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -7948,7 +8039,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -7981,7 +8072,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -8046,7 +8137,7 @@
                   "request_id": "mediated-replication:1",
                   "selected_actions": 0,
                   "source_branch": 2,
-                  "source_context": "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5",
+                  "source_context": "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5",
                   "status": "pending",
                   "supported_mediator_signature": ""
                 }
@@ -8141,8 +8232,12 @@
             "hypothesis_detail_count": 1,
             "hypothesis_details_omitted": true,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 3,
@@ -8153,6 +8248,7 @@
               "hypotheses": [
                 {
                   "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
+                  "active_candidate_signatures": [],
                   "ambiguous_progress_events": 0,
                   "attempts": 1,
                   "branches": [
@@ -8177,10 +8273,16 @@
                   "candidate_intersection": [],
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                  ],
+                  "control_candidate_sets": [
+                    [
+                      "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
+                    ]
                   ],
                   "direct_target_progress_events": 0,
                   "expected_gain": 0.0,
+                  "mediator_abstraction": null,
                   "mode_signature": "latent-mode:appear|shape:64x64|distance:1|source:4:17-64:1|target:8:17-64:4|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
                   "no_candidate_progress_events": 0,
                   "objective_id": "terminal::appear::same_shape::colors4_8",
@@ -8189,15 +8291,18 @@
                   "progress_candidate_sets": [],
                   "progress_contexts": [],
                   "progress_events": 0,
+                  "regression_candidate_sets": [],
                   "regression_events": 0,
                   "stall_events": 1,
                   "status": "unknown",
+                  "supported_mediator_is_abstract": false,
                   "supported_mediator_signature": "",
                   "total_gain": 0.0,
                   "total_regression": 0.0
                 },
                 {
                   "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
+                  "active_candidate_signatures": [],
                   "ambiguous_progress_events": 0,
                   "attempts": 1,
                   "branches": [
@@ -8222,10 +8327,12 @@
                   "candidate_intersection": [],
                   "confidence": 0.5,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
                   ],
+                  "control_candidate_sets": [],
                   "direct_target_progress_events": 0,
                   "expected_gain": -0.5,
+                  "mediator_abstraction": null,
                   "mode_signature": "latent-mode:exhaust|shape:64x64|distance:1|source:0:1:1|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,12:65+,8:17-64,4:17-64",
                   "no_candidate_progress_events": 0,
                   "objective_id": "terminal::exhaust::color0",
@@ -8234,15 +8341,24 @@
                   "progress_candidate_sets": [],
                   "progress_contexts": [],
                   "progress_events": 0,
+                  "regression_candidate_sets": [
+                    [
+                      "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
+                    ]
+                  ],
                   "regression_events": 1,
                   "stall_events": 0,
                   "status": "contradicted",
+                  "supported_mediator_is_abstract": false,
                   "supported_mediator_signature": "",
                   "total_gain": 0.0,
                   "total_regression": 1.0
                 },
                 {
                   "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
+                  "active_candidate_signatures": [
+                    "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
+                  ],
                   "ambiguous_progress_events": 0,
                   "attempts": 1,
                   "branches": [
@@ -8269,10 +8385,12 @@
                   ],
                   "confidence": 0.5,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
+                  "control_candidate_sets": [],
                   "direct_target_progress_events": 0,
                   "expected_gain": 0.5,
+                  "mediator_abstraction": null,
                   "mode_signature": "latent-mode:exhaust|shape:64x64|distance:2|source:0:65+:2|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
                   "no_candidate_progress_events": 0,
                   "objective_id": "terminal::exhaust::color0",
@@ -8286,12 +8404,14 @@
                     ]
                   ],
                   "progress_contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
                   "progress_events": 1,
+                  "regression_candidate_sets": [],
                   "regression_events": 0,
                   "stall_events": 0,
                   "status": "needs_mediator_contrast",
+                  "supported_mediator_is_abstract": false,
                   "supported_mediator_signature": "",
                   "total_gain": 1.0,
                   "total_regression": 0.0
@@ -8305,6 +8425,7 @@
               "progress_with_indirect_candidates": 1,
               "removed_entities": 0,
               "scene_correspondences": 24,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -8487,6 +8608,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 1,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8523,6 +8647,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 0,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8568,6 +8695,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 1,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8609,6 +8739,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 0,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8655,6 +8788,9 @@
               "mediated_replication_request_id": "mediated-replication:1",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 1,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8691,6 +8827,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 0,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -9317,6 +9456,10 @@
         "generated_goal_hypotheses": 10,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -9563,6 +9706,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -9758,7 +9905,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -9791,7 +9938,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -9824,7 +9971,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -9889,7 +10036,7 @@
                   "request_id": "mediated-replication:1",
                   "selected_actions": 0,
                   "source_branch": 2,
-                  "source_context": "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5",
+                  "source_context": "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5",
                   "status": "pending",
                   "supported_mediator_signature": ""
                 }
@@ -9984,8 +10131,12 @@
             "hypothesis_detail_count": 1,
             "hypothesis_details_omitted": true,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 3,
@@ -9996,6 +10147,7 @@
               "hypotheses": [
                 {
                   "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
+                  "active_candidate_signatures": [],
                   "ambiguous_progress_events": 0,
                   "attempts": 1,
                   "branches": [
@@ -10020,10 +10172,16 @@
                   "candidate_intersection": [],
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                  ],
+                  "control_candidate_sets": [
+                    [
+                      "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
+                    ]
                   ],
                   "direct_target_progress_events": 0,
                   "expected_gain": 0.0,
+                  "mediator_abstraction": null,
                   "mode_signature": "latent-mode:appear|shape:64x64|distance:1|source:4:17-64:1|target:8:17-64:4|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
                   "no_candidate_progress_events": 0,
                   "objective_id": "terminal::appear::same_shape::colors4_8",
@@ -10032,15 +10190,18 @@
                   "progress_candidate_sets": [],
                   "progress_contexts": [],
                   "progress_events": 0,
+                  "regression_candidate_sets": [],
                   "regression_events": 0,
                   "stall_events": 1,
                   "status": "unknown",
+                  "supported_mediator_is_abstract": false,
                   "supported_mediator_signature": "",
                   "total_gain": 0.0,
                   "total_regression": 0.0
                 },
                 {
                   "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
+                  "active_candidate_signatures": [],
                   "ambiguous_progress_events": 0,
                   "attempts": 1,
                   "branches": [
@@ -10065,10 +10226,12 @@
                   "candidate_intersection": [],
                   "confidence": 0.5,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
                   ],
+                  "control_candidate_sets": [],
                   "direct_target_progress_events": 0,
                   "expected_gain": -0.5,
+                  "mediator_abstraction": null,
                   "mode_signature": "latent-mode:exhaust|shape:64x64|distance:1|source:0:1:1|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,12:65+,8:17-64,4:17-64",
                   "no_candidate_progress_events": 0,
                   "objective_id": "terminal::exhaust::color0",
@@ -10077,15 +10240,24 @@
                   "progress_candidate_sets": [],
                   "progress_contexts": [],
                   "progress_events": 0,
+                  "regression_candidate_sets": [
+                    [
+                      "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
+                    ]
+                  ],
                   "regression_events": 1,
                   "stall_events": 0,
                   "status": "contradicted",
+                  "supported_mediator_is_abstract": false,
                   "supported_mediator_signature": "",
                   "total_gain": 0.0,
                   "total_regression": 1.0
                 },
                 {
                   "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
+                  "active_candidate_signatures": [
+                    "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
+                  ],
                   "ambiguous_progress_events": 0,
                   "attempts": 1,
                   "branches": [
@@ -10112,10 +10284,12 @@
                   ],
                   "confidence": 0.5,
                   "contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
+                  "control_candidate_sets": [],
                   "direct_target_progress_events": 0,
                   "expected_gain": 0.5,
+                  "mediator_abstraction": null,
                   "mode_signature": "latent-mode:exhaust|shape:64x64|distance:2|source:0:65+:2|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
                   "no_candidate_progress_events": 0,
                   "objective_id": "terminal::exhaust::color0",
@@ -10129,12 +10303,14 @@
                     ]
                   ],
                   "progress_contexts": [
-                    "branch:2:state:-3113116806979036846|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:-3892520742901733747|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
                   "progress_events": 1,
+                  "regression_candidate_sets": [],
                   "regression_events": 0,
                   "stall_events": 0,
                   "status": "needs_mediator_contrast",
+                  "supported_mediator_is_abstract": false,
                   "supported_mediator_signature": "",
                   "total_gain": 1.0,
                   "total_regression": 0.0
@@ -10148,6 +10324,7 @@
               "progress_with_indirect_candidates": 1,
               "removed_entities": 0,
               "scene_correspondences": 24,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -10331,6 +10508,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 1,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10367,6 +10547,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 0,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10412,6 +10595,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 1,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10453,6 +10639,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 0,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10499,6 +10688,9 @@
               "mediated_replication_request_id": "mediated-replication:1",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 1,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10535,6 +10727,9 @@
               "mediated_replication_request_id": "",
               "mediated_replication_resolution": "",
               "mediated_scene_changes": 0,
+              "mediator_abstraction": false,
+              "mediator_abstraction_features": {},
+              "mediator_abstraction_specificity": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -11162,6 +11357,10 @@
         "generated_goal_hypotheses": 10,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -11408,6 +11607,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -11697,8 +11900,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 1,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -11715,6 +11922,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -12440,6 +12648,10 @@
         "generated_goal_hypotheses": 10,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -12686,6 +12898,10 @@
         "generated_goal_hypotheses": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -12975,8 +13191,12 @@
             "entity_anchored_selections": 0,
             "entity_anchored_transfer_signatures": 1,
             "mediated_entity_effect_induction": {
+              "abstract_control_contexts": 0,
+              "abstract_hyperedge_hypotheses": 0,
+              "abstract_regression_contexts": 0,
               "ambiguous_entities": 0,
               "ambiguous_progress_candidate_sets": 0,
+              "anti_unification_enabled": true,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
               "changed_entities": 0,
@@ -12993,6 +13213,7 @@
               "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
               "scene_correspondences": 0,
+              "supported_abstract_hyperedges": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
@@ -13670,6 +13891,10 @@
         "generated_goal_hypotheses": 10,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "mediated_abstraction_control_contexts": 0,
+        "mediated_abstraction_hypotheses": 0,
+        "mediated_abstraction_regression_contexts": 0,
+        "mediated_abstraction_supported_hyperedges": 0,
         "mediated_effect_ambiguous_entities": 0,
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
@@ -13765,7 +13990,7 @@
     }
   ],
   "resets_per_game_seed_arm": 2,
-  "schema_version": "sage.unified_cognition_ab_held_out.v14",
+  "schema_version": "sage.unified_cognition_ab_held_out.v15",
   "seeds": [
     0,
     1

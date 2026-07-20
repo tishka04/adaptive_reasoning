@@ -5808,3 +5808,124 @@ d'abstractions des hyperaretes, conserver le niveau le plus precis compatible
 avec les contextes progressifs, l'opposer aux controles sans progres, puis
 selectionner de nouvelles interventions qui discriminent ces abstractions sans
 jamais figer la representation avant l'examen.
+
+## SAGE.8x - online structural anti-unification of mediated carriers
+
+Objectif :
+
+- Ne plus refuter automatiquement un mecanisme lorsque deux transitions
+  progressives affectent des instances de forme, role ou relation differents.
+- Construire la representation commune uniquement depuis les observations
+  acquises pendant l'episode, sans catalogue de reponses ni structure figee
+  avant l'evaluation.
+- Conserver le motif structurel le plus specifique compatible avec tous les
+  contextes progressifs et relie a l'objectif courant.
+- Opposer chaque motif aux transitions sans progres et regressives ; deux
+  supports independants sont requis, un contexte regressif le veto et des
+  controles aussi nombreux que les supports empechent sa promotion.
+- Preserver le comportement exact SAGE.8w derriere une ablation isolee.
+
+Representation et controle :
+
+- Chaque signature descriptive SAGE.8v est decomposee en attributs generiques
+  de changement, couleur, forme, aire, position, multiplicite, role structural
+  et relation.
+- L'intersection de chaque nouveau contexte progressif construit en ligne une
+  petite lattice bornee a 64 motifs. Un motif doit conserver le type de
+  changement et au moins une identite causale parmi couleur, forme ou aire.
+- Lorsque chaque contexte contient un candidat portant une couleur de
+  l'objectif, la lattice est ancree sur ces candidats ; elle ne peut donc pas
+  preferer une structure concomitante plus detaillee mais sans rapport avec le
+  but poursuivi.
+- Les motifs sont classes par ancrage objectif, specificite ponderee et marge
+  supports-controles. Une egalite au meilleur rang reste ambigue.
+- Une hyperarete abstraite soutenue est exposee dans les predictions et les
+  decisions exactement comme une hyperarete concrete, avec ses attributs et sa
+  specificite auditables.
+- Le chemin complet propage cette preuve a travers le magasin d'options, le
+  controleur unifie, les transitions, le resume et le benchmark A/B v15.
+
+Ajouts :
+
+- `theory/online_mediated_abstraction.py`
+- extension de `theory/online_mediated_entity_effect.py`
+- integration dans `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema, metriques et ablation v15 dans
+  `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_mediated_abstraction.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/sage8x_cn04_mediated_abstraction.json`
+- `diagnostics/sage/sage8x_mediated_abstraction_ablation.json`
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`
+
+Audit actif cible `cn04-65d47d14`, seed 0, 4 resets x 40 :
+
+- les deux contextes progressifs ne partagent aucune signature concrete ;
+- la lattice apprend apres observation un porteur `transformed`, `color0`,
+  `area9+`, `interior`, `unique`, adjacent et decale, sans imposer la forme ni
+  l'orientation verticale/horizontale qui changent entre les contextes ;
+- `mediated_abstraction_hypotheses=1` ;
+- `mediated_abstraction_supported_hyperedges=1` ;
+- `mediated_effect_supported_hyperedges=1`, contre 0 avec l'ablation ;
+- `mediated_abstraction_control_contexts=0` et
+  `mediated_abstraction_regression_contexts=0` : aucun controle observe ne
+  satisfait le motif appris ;
+- les 160 actions, 73 experiences et 136 reductions objectives sont identiques
+  dans les deux bras, ce qui isole la nouvelle connaissance de toute variation
+  de trajectoire ;
+- la refutation de replication SAGE.8w reste valide : elle concerne un autre
+  mode latent regressif (`exhaust`, distance 1), tandis que l'abstraction est
+  soutenue dans le mode `exhaust`, distance 2 ;
+- `levels_completed=0` et `wins=0` dans les deux bras.
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v15` ;
+- `paired_protocol.protocol_gate_passed=true` ;
+- `online_mediated_anti_unification_enabled_in_unified=true` ;
+- `unified.controller_errors=0` ;
+- `unified.actions_executed=800` ;
+- `unified.experiment_actions=488` ;
+- `unified.objective_distance_reductions=782` ;
+- les 2 requetes SAGE.8w restent en attente a la fin du dernier reset ;
+- aucune paire n'offre deux contextes progressifs pour le meme mecanisme : les
+  quatre metriques d'abstraction restent donc a zero et la politique est
+  strictement identique a SAGE.8w ;
+- `legacy_only.levels_completed=0`, `unified.levels_completed=0`,
+  `legacy_only.wins=0` et `unified.wins=0`.
+
+Validation synthetique en ligne :
+
+- le parseur expose tous les attributs generiques d'un porteur ;
+- l'anti-unification elimine forme, role et relation non invariants ;
+- l'ancrage objectif evite un candidat concomitant de mauvaise couleur ;
+- deux controles correspondants bloquent la promotion ;
+- un seul contexte regressif correspondant oppose un veto ;
+- l'evidence mediee promeut l'hyperarete abstraite lorsque l'intersection exacte
+  est vide ;
+- l'ablation conserve la refutation exacte SAGE.8w.
+
+Validation :
+
+- `targeted_cognitive_tests=50 passed` ;
+- `full_repository_tests=1438 passed` (1431 groupes ensemble et les 7 tests du
+  fichier historique a namespace collisionne executes isolement) ;
+- `scoped_ruff_and_compileall=passed`.
+
+Lecture : le verrou de representation est franchi. SAGE sait maintenant
+decouvrir pendant l'examen qu'un meme mecanisme peut etre porte par des
+instances structurellement differentes et ne generalise que ce qui survit aux
+observations positives, controles et regressions. Sur `cn04`, cette etape
+remplace une fausse refutation concrete par une hyperarete abstraite soutenue,
+mais elle est apprise au dernier contexte disponible et ne produit encore
+aucun niveau ARC-AGI-3 supplementaire.
+
+Le prochain verrou est la discrimination active de la lattice. SAGE doit
+transformer les attributs encore presents dans le motif en interventions
+contre-factuelles appariees, faire varier une propriete a la fois, reserver une
+nouvelle ouverture inter-branche meme lorsqu'un motif est deja soutenu, puis
+confirmer sa necessite ou l'eliminer exclusivement depuis le progres terminal
+en ligne. Ce n'est qu'apres ces controles actifs que l'hyperarete abstraite
+doit devenir une politique composee vers le but terminal.

@@ -131,6 +131,7 @@ class UnifiedCognitiveConfig:
     enable_entity_anchored_interventions: bool = True
     enable_active_entity_causal_binding: bool = True
     enable_mediated_entity_effect_induction: bool = True
+    enable_online_mediated_anti_unification: bool = True
     enable_active_mediated_replication: bool = True
 
 
@@ -213,6 +214,11 @@ class CognitiveDecision:
     causal_option_mediated_effect_controlled_contrast: bool = False
     causal_option_supported_mediator_signature: str = ""
     causal_option_candidate_mediator_signatures: Tuple[str, ...] = ()
+    causal_option_mediator_abstraction: bool = False
+    causal_option_mediator_abstraction_specificity: int = 0
+    causal_option_mediator_abstraction_features: Tuple[
+        Tuple[str, str], ...
+    ] = ()
     causal_option_mediated_replication_request_id: str = ""
     causal_option_mediated_cross_branch_replication: bool = False
     causal_option_mediated_exact_semantic_replication: bool = False
@@ -380,6 +386,15 @@ class CognitiveDecision:
             "causal_option_candidate_mediator_signatures": list(
                 self.causal_option_candidate_mediator_signatures
             ),
+            "causal_option_mediator_abstraction": (
+                self.causal_option_mediator_abstraction
+            ),
+            "causal_option_mediator_abstraction_specificity": (
+                self.causal_option_mediator_abstraction_specificity
+            ),
+            "causal_option_mediator_abstraction_features": dict(
+                self.causal_option_mediator_abstraction_features
+            ),
             "causal_option_mediated_replication_request_id": (
                 self.causal_option_mediated_replication_request_id
             ),
@@ -528,6 +543,9 @@ class UnifiedCognitiveController:
             ),
             enable_mediated_entity_effect_induction=(
                 self.config.enable_mediated_entity_effect_induction
+            ),
+            enable_online_mediated_anti_unification=(
+                self.config.enable_online_mediated_anti_unification
             ),
             enable_active_mediated_replication=(
                 self.config.enable_active_mediated_replication
@@ -1295,6 +1313,15 @@ class UnifiedCognitiveController:
             ),
             causal_option_candidate_mediator_signatures=(
                 selection.candidate_mediator_signatures
+            ),
+            causal_option_mediator_abstraction=(
+                selection.mediator_abstraction
+            ),
+            causal_option_mediator_abstraction_specificity=(
+                selection.mediator_abstraction_specificity
+            ),
+            causal_option_mediator_abstraction_features=(
+                selection.mediator_abstraction_features
             ),
             causal_option_mediated_replication_request_id=(
                 selection.mediated_replication_request_id

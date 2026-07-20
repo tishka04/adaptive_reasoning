@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v14"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v15"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -166,6 +166,17 @@ def _active_mediated_replication_disabled_controller(
     )
 
 
+def _online_mediated_anti_unification_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_online_mediated_anti_unification=False
+        ),
+    )
+
+
 @dataclass(frozen=True)
 class _ExecutableAction:
     name: str
@@ -237,6 +248,7 @@ def run_unified_cognition_ab_benchmark(
     enable_entity_anchored_interventions: bool = True,
     enable_active_entity_causal_binding: bool = True,
     enable_mediated_entity_effect_induction: bool = True,
+    enable_online_mediated_anti_unification: bool = True,
     enable_active_mediated_replication: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
@@ -301,6 +313,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _mediated_entity_effect_induction_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_online_mediated_anti_unification
+    ):
+        effective_controller_factory = (
+            _online_mediated_anti_unification_disabled_controller
         )
     elif (
         effective_controller_factory is None
@@ -385,6 +404,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         mediated_entity_effect_induction_enabled=(
             enable_mediated_entity_effect_induction
+        ),
+        online_mediated_anti_unification_enabled=(
+            enable_online_mediated_anti_unification
         ),
         active_mediated_replication_enabled=(
             enable_active_mediated_replication
@@ -877,6 +899,24 @@ def _run_arm(
         "mediated_effect_supported_hyperedges": int(
             mediated_effect_summary.get("supported_hyperedges", 0) or 0
         ),
+        "mediated_abstraction_hypotheses": int(
+            mediated_effect_summary.get(
+                "abstract_hyperedge_hypotheses", 0
+            ) or 0
+        ),
+        "mediated_abstraction_supported_hyperedges": int(
+            mediated_effect_summary.get(
+                "supported_abstract_hyperedges", 0
+            ) or 0
+        ),
+        "mediated_abstraction_control_contexts": int(
+            mediated_effect_summary.get("abstract_control_contexts", 0) or 0
+        ),
+        "mediated_abstraction_regression_contexts": int(
+            mediated_effect_summary.get(
+                "abstract_regression_contexts", 0
+            ) or 0
+        ),
         "mediated_effect_predictions": int(
             mediated_effect_summary.get("predictions", 0) or 0
         ),
@@ -1336,6 +1376,7 @@ def _summarize_benchmark(
     entity_anchored_interventions_enabled: bool,
     active_entity_causal_binding_enabled: bool,
     mediated_entity_effect_induction_enabled: bool,
+    online_mediated_anti_unification_enabled: bool,
     active_mediated_replication_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
@@ -1394,6 +1435,9 @@ def _summarize_benchmark(
             ),
             "mediated_entity_effect_induction_enabled_in_unified": bool(
                 mediated_entity_effect_induction_enabled
+            ),
+            "online_mediated_anti_unification_enabled_in_unified": bool(
+                online_mediated_anti_unification_enabled
             ),
             "active_mediated_replication_enabled_in_unified": bool(
                 active_mediated_replication_enabled
@@ -1789,6 +1833,21 @@ def _aggregate_arm(
         ),
         "mediated_effect_supported_hyperedges": sum(
             int(row["mediated_effect_supported_hyperedges"]) for row in rows
+        ),
+        "mediated_abstraction_hypotheses": sum(
+            int(row["mediated_abstraction_hypotheses"]) for row in rows
+        ),
+        "mediated_abstraction_supported_hyperedges": sum(
+            int(row["mediated_abstraction_supported_hyperedges"])
+            for row in rows
+        ),
+        "mediated_abstraction_control_contexts": sum(
+            int(row["mediated_abstraction_control_contexts"])
+            for row in rows
+        ),
+        "mediated_abstraction_regression_contexts": sum(
+            int(row["mediated_abstraction_regression_contexts"])
+            for row in rows
         ),
         "mediated_effect_predictions": sum(
             int(row["mediated_effect_predictions"]) for row in rows
@@ -2303,6 +2362,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8w cross-branch mediated replication only.",
     )
+    parser.add_argument(
+        "--disable-online-mediated-anti-unification",
+        action="store_true",
+        help="Ablate SAGE.8x online structural carrier abstraction only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -2348,6 +2412,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_mediated_entity_effect_induction=(
             not args.disable_mediated_entity_effect_induction
+        ),
+        enable_online_mediated_anti_unification=(
+            not args.disable_online_mediated_anti_unification
         ),
         enable_active_mediated_replication=(
             not args.disable_active_mediated_replication

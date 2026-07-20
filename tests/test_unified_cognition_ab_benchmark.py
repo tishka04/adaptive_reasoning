@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v14"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v15"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -183,6 +183,10 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "mediated_replication_preparation_actions" in metrics["unified"]
     assert "mediated_replication_confirmations" in metrics["unified"]
     assert "mediated_replication_refutations" in metrics["unified"]
+    assert "mediated_abstraction_hypotheses" in metrics["unified"]
+    assert "mediated_abstraction_supported_hyperedges" in metrics["unified"]
+    assert "mediated_abstraction_control_contexts" in metrics["unified"]
+    assert "mediated_abstraction_regression_contexts" in metrics["unified"]
     assert "terminal_supported_causal_options" in metrics["unified"]
     assert "effect_conditioned_goal_candidates_generated" in metrics["unified"]
     assert "effect_conditioned_subgoals_generated" in metrics["unified"]
@@ -446,3 +450,27 @@ def test_ab_benchmark_exposes_active_mediated_replication_ablation():
     assert metrics["mediated_replication_preparation_actions"] == 0
     assert metrics["mediated_replication_confirmations"] == 0
     assert metrics["mediated_replication_refutations"] == 0
+
+
+def test_ab_benchmark_exposes_online_mediated_anti_unification_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-mediated-abstraction-ablation"],
+        seeds=[37],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_online_mediated_anti_unification=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["mediated_entity_effect_induction_enabled_in_unified"] is True
+    assert (
+        protocol["online_mediated_anti_unification_enabled_in_unified"]
+        is False
+    )
+    assert protocol["active_mediated_replication_enabled_in_unified"] is True
+    metrics = payload["metrics"]["unified"]
+    assert metrics["mediated_abstraction_hypotheses"] == 0
+    assert metrics["mediated_abstraction_supported_hyperedges"] == 0
+    assert metrics["mediated_abstraction_control_contexts"] == 0
+    assert metrics["mediated_abstraction_regression_contexts"] == 0
