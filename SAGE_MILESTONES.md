@@ -4704,3 +4704,116 @@ buts aval non terminaux. Les aretes confirmees doivent alors etre compilees en
 options hierarchiques reutilisables qui liberent du budget pour chercher la
 derniere transformation terminale plutot que rejouer indefiniment la
 preparation.
+
+## SAGE.8p - confirmed causal options and terminal suffix search
+
+Objectif :
+
+- Compiler uniquement les aretes causales confirmees en options hierarchiques.
+- Activer une option seulement apres l'observation effective de l'ouverture de
+  sa cible, sans confondre confirmation mecanique et valeur terminale.
+- Explorer alors les transformations aval avec un budget borne a six actions
+  et trois essais par signature semantique.
+- Preferer les mecanismes promus par l'apprentissage en ligne, la nouveaute des
+  familles d'action et les interventions dont l'utilite observee est positive.
+- Memoriser les effets aval, progres objectifs, completions de cible, risques et
+  sequences terminales sur toute la chaine causale.
+- Attribuer un succes terminal a l'option seulement lorsque l'action terminale
+  participe a son rollout actif ; ignorer les terminaux sans rapport.
+- Exiger deux contextes independants avant de promouvoir une sequence terminale
+  et deux branches contradictoires avant de refuter la valeur terminale d'une
+  option.
+- Traiter les resets et fins de budget comme des censures, pas comme des preuves
+  negatives.
+- Rejouer en priorite un suffixe terminal appris, tout en conservant la preuve
+  terminale du but separee de celle de l'option.
+- Fournir une ablation qui conserve SAGE.8o et desactive seulement les options
+  causales hierarchiques de SAGE.8p.
+
+Ajouts :
+
+- `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v7 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_causal_option.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8p_causal_option_ablation.json`
+- `diagnostics/sage/sage8p_cn04_downstream_search.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v7`
+- `paired_protocol.protocol_gate_passed=true`
+- `paired_protocol.causal_hierarchical_options_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.confirmed_causal_edges=2`
+- `unified.causal_options_compiled=2`
+- `unified.causal_option_opening_events=2`
+- `unified.causal_option_rollouts=2`
+- `unified.causal_option_downstream_actions=12`
+- `unified.causal_option_downstream_effects=8`
+- `unified.causal_option_downstream_progress_events=0`
+- `unified.causal_option_target_completions=0`
+- `unified.causal_option_nonterminal_rollouts=2`
+- `unified.causal_option_unsafe_rollouts=0`
+- `unified.causal_option_terminal_credited_events=0`
+- `unified.terminal_supported_causal_options=0`
+- `unified.terminal_refuted_causal_options=0`
+- `unified.causal_option_censored_openings=0`
+- `unified.objective_distance_reductions=740`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `causal_hierarchical_options_enabled_in_unified=false`
+- `experiment_actions=476`
+- `experiment_cost_rate=0.595`
+- `confirmed_causal_edges=2`
+- `causal_options_compiled=0`
+- `causal_option_downstream_actions=0`
+- `causal_option_downstream_effects=0`
+- `objective_distance_reductions=730`
+- `levels_completed=0`
+
+Audit cible `cn04-65d47d14`, seed 1, 2 resets x 40 :
+
+- une option est compilee puis ouverte a partir de l'arete confirmee
+  `reach(color8) -> appear(same_shape(colors4,8))` ;
+- elle prend le controle de la recherche aval pendant six actions bornees ;
+- quatre de ces actions produisent un effet observable ;
+- les suffixes aval testes couvrent notamment `ACTION4`, `ACTION6::color8` et
+  `ACTION2` plutot que de rejouer seulement la preparation ;
+- aucun progres aval, aucune completion de cible et aucun terminal ne sont
+  observes ;
+- `levels_completed=0`.
+
+Validation :
+
+- `new_sage8p_tests=10 passed`
+- `targeted_cognitive_tests=34 passed`
+- `full_repository_tests=1373 passed`
+- `ruff_and_compileall=passed`
+
+Lecture : le verrou de compilation et d'exploitation des dependances causales
+confirmees est franchi. Une ouverture confirmee devient maintenant un contexte
+d'exploration aval explicite, borne et auditable. Huit actions aval sur douze
+produisent un effet, et les reductions de distance objective passent de 730 a
+740 face a l'ablation. Cette recherche consomme toutefois douze actions
+experimentales supplementaires (`0.595` a `0.61`) et ne produit encore ni
+progres aval mesure, ni preuve terminale, ni niveau gagne. Il ne faut donc pas
+la presenter comme un gain ARC reproductible.
+
+Le prochain verrou est de transformer les effets aval nouvellement observes en
+hypotheses de sous-buts multi-etapes : relier chaque effet a une transformation
+objective mesurable, enchainer les suffixes au-dela d'une seule famille
+d'action et concentrer le budget sur les branches qui reduisent effectivement
+la distance au but. La preuve finale doit rester exclusivement terminale et
+apprise pendant l'examen.

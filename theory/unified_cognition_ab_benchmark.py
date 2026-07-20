@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v6"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v7"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -53,6 +53,7 @@ EXPERIMENT_SOURCES = {
     "terminal_objective_discriminator",
     "terminal_objective_ablation",
     "temporal_subgoal_probe",
+    "causal_option_downstream_probe",
 }
 
 EnvFactory = Callable[[str], Any]
@@ -72,6 +73,17 @@ def _causal_effect_credit_disabled_controller(
     return UnifiedCognitiveController(
         game_id,
         config=UnifiedCognitiveConfig(enable_causal_effect_credit=False),
+    )
+
+
+def _causal_hierarchical_options_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_causal_hierarchical_options=False
+        ),
     )
 
 
@@ -139,6 +151,7 @@ def run_unified_cognition_ab_benchmark(
     controller_factory: ControllerFactory | None = None,
     enable_causal_subgoal_induction: bool = True,
     enable_causal_effect_credit: bool = True,
+    enable_causal_hierarchical_options: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -154,6 +167,13 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = _causal_disabled_controller
     elif effective_controller_factory is None and not enable_causal_effect_credit:
         effective_controller_factory = _causal_effect_credit_disabled_controller
+    elif (
+        effective_controller_factory is None
+        and not enable_causal_hierarchical_options
+    ):
+        effective_controller_factory = (
+            _causal_hierarchical_options_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -210,6 +230,9 @@ def run_unified_cognition_ab_benchmark(
         resets=reset_count,
         causal_subgoal_induction_enabled=enable_causal_subgoal_induction,
         causal_effect_credit_enabled=enable_causal_effect_credit,
+        causal_hierarchical_options_enabled=(
+            enable_causal_hierarchical_options
+        ),
     )
     if not include_traces:
         _omit_step_traces(payload)
@@ -295,6 +318,9 @@ def _run_arm(
     )
     causal_summary = dict(
         controller_summary.get("causal_subgoal_graph", {}) or {}
+    )
+    causal_option_summary = dict(
+        controller_summary.get("causal_hierarchical_options", {}) or {}
     )
     return {
         "arm": arm,
@@ -482,6 +508,45 @@ def _run_arm(
         ),
         "causal_reserved_confirmation_starts": int(
             temporal_summary.get("reserved_confirmation_starts", 0) or 0
+        ),
+        "causal_options_compiled": int(
+            causal_option_summary.get("compiled_total", 0) or 0
+        ),
+        "causal_option_opening_events": int(
+            causal_option_summary.get("opening_events", 0) or 0
+        ),
+        "causal_option_rollouts": int(
+            causal_option_summary.get("rollouts", 0) or 0
+        ),
+        "causal_option_downstream_actions": int(
+            causal_option_summary.get("downstream_actions", 0) or 0
+        ),
+        "causal_option_downstream_effects": int(
+            causal_option_summary.get("downstream_effects", 0) or 0
+        ),
+        "causal_option_downstream_progress_events": int(
+            causal_option_summary.get("downstream_progress_events", 0) or 0
+        ),
+        "causal_option_target_completions": int(
+            causal_option_summary.get("target_completions", 0) or 0
+        ),
+        "causal_option_nonterminal_rollouts": int(
+            causal_option_summary.get("nonterminal_rollouts", 0) or 0
+        ),
+        "causal_option_unsafe_rollouts": int(
+            causal_option_summary.get("unsafe_rollouts", 0) or 0
+        ),
+        "causal_option_terminal_credited_events": int(
+            causal_option_summary.get("credited_terminal_events", 0) or 0
+        ),
+        "terminal_supported_causal_options": int(
+            causal_option_summary.get("terminal_supported_options", 0) or 0
+        ),
+        "terminal_refuted_causal_options": int(
+            causal_option_summary.get("terminal_refuted_options", 0) or 0
+        ),
+        "causal_option_censored_openings": int(
+            causal_option_summary.get("censored_openings", 0) or 0
         ),
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
@@ -674,6 +739,7 @@ def _summarize_benchmark(
     resets: int,
     causal_subgoal_induction_enabled: bool,
     causal_effect_credit_enabled: bool,
+    causal_hierarchical_options_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -710,6 +776,9 @@ def _summarize_benchmark(
             ),
             "causal_effect_credit_enabled_in_unified": bool(
                 causal_effect_credit_enabled
+            ),
+            "causal_hierarchical_options_enabled_in_unified": bool(
+                causal_hierarchical_options_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -939,6 +1008,47 @@ def _aggregate_arm(
             int(row["causal_reserved_confirmation_starts"])
             for row in rows
         ),
+        "causal_options_compiled": sum(
+            int(row["causal_options_compiled"]) for row in rows
+        ),
+        "causal_option_opening_events": sum(
+            int(row["causal_option_opening_events"]) for row in rows
+        ),
+        "causal_option_rollouts": sum(
+            int(row["causal_option_rollouts"]) for row in rows
+        ),
+        "causal_option_downstream_actions": sum(
+            int(row["causal_option_downstream_actions"]) for row in rows
+        ),
+        "causal_option_downstream_effects": sum(
+            int(row["causal_option_downstream_effects"]) for row in rows
+        ),
+        "causal_option_downstream_progress_events": sum(
+            int(row["causal_option_downstream_progress_events"])
+            for row in rows
+        ),
+        "causal_option_target_completions": sum(
+            int(row["causal_option_target_completions"]) for row in rows
+        ),
+        "causal_option_nonterminal_rollouts": sum(
+            int(row["causal_option_nonterminal_rollouts"]) for row in rows
+        ),
+        "causal_option_unsafe_rollouts": sum(
+            int(row["causal_option_unsafe_rollouts"]) for row in rows
+        ),
+        "causal_option_terminal_credited_events": sum(
+            int(row["causal_option_terminal_credited_events"])
+            for row in rows
+        ),
+        "terminal_supported_causal_options": sum(
+            int(row["terminal_supported_causal_options"]) for row in rows
+        ),
+        "terminal_refuted_causal_options": sum(
+            int(row["terminal_refuted_causal_options"]) for row in rows
+        ),
+        "causal_option_censored_openings": sum(
+            int(row["causal_option_censored_openings"]) for row in rows
+        ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows
         ),
@@ -994,6 +1104,15 @@ def _omit_step_traces(payload: Dict[str, Any]) -> None:
         if causal_hypotheses:
             causal["hypothesis_details_omitted"] = True
             causal["hypothesis_detail_count"] = len(causal_hypotheses)
+        causal_options = summary.get("causal_hierarchical_options") or {}
+        option_hypotheses = list(
+            causal_options.pop("hypotheses", []) or []
+        )
+        if option_hypotheses:
+            causal_options["hypothesis_details_omitted"] = True
+            causal_options["hypothesis_detail_count"] = len(
+                option_hypotheses
+            )
 
 
 def _blocked_attempt(reset_index: int, reason: str) -> Dict[str, Any]:
@@ -1096,6 +1215,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8o effect memory and reserved confirmations only.",
     )
+    parser.add_argument(
+        "--disable-causal-hierarchical-options",
+        action="store_true",
+        help="Ablate SAGE.8p downstream causal-option exploitation only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1120,6 +1244,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_causal_effect_credit=(
             not args.disable_causal_effect_credit
+        ),
+        enable_causal_hierarchical_options=(
+            not args.disable_causal_hierarchical_options
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

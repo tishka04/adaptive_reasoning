@@ -55,6 +55,7 @@ from .online_goal_hypothesis import (
     semantic_intervention_signature,
 )
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
+from .online_causal_option import OnlineCausalOptionStore
 from .online_terminal_objective import (
     OnlineTerminalObjectiveStore,
     TerminalObjectiveAssessment,
@@ -100,6 +101,10 @@ class UnifiedCognitiveConfig:
     causal_edge_min_support: int = 2
     causal_effect_credit_window: int = 6
     max_causal_confirmation_starts_per_branch: int = 2
+    max_causal_hierarchical_options: int = 8
+    max_causal_option_downstream_actions: int = 6
+    max_causal_option_trials_per_signature: int = 3
+    causal_option_terminal_credit_window: int = 8
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
@@ -108,6 +113,7 @@ class UnifiedCognitiveConfig:
     enable_temporal_goal_composition: bool = True
     enable_causal_subgoal_induction: bool = True
     enable_causal_effect_credit: bool = True
+    enable_causal_hierarchical_options: bool = True
 
 
 @dataclass(frozen=True)
@@ -144,6 +150,13 @@ class CognitiveDecision:
     causal_intervention_signature: str = ""
     causal_intervention_utility: float | None = None
     causal_confirmation_trial: bool = False
+    causal_option_id: str = ""
+    causal_option_edge_key: str = ""
+    causal_option_terminal_status: str = ""
+    causal_option_phase: str = ""
+    causal_option_intervention_signature: str = ""
+    causal_option_selection_utility: float | None = None
+    causal_option_replaying_terminal_sequence: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -181,6 +194,19 @@ class CognitiveDecision:
             "causal_intervention_signature": self.causal_intervention_signature,
             "causal_intervention_utility": self.causal_intervention_utility,
             "causal_confirmation_trial": self.causal_confirmation_trial,
+            "causal_option_id": self.causal_option_id,
+            "causal_option_edge_key": self.causal_option_edge_key,
+            "causal_option_terminal_status": self.causal_option_terminal_status,
+            "causal_option_phase": self.causal_option_phase,
+            "causal_option_intervention_signature": (
+                self.causal_option_intervention_signature
+            ),
+            "causal_option_selection_utility": (
+                self.causal_option_selection_utility
+            ),
+            "causal_option_replaying_terminal_sequence": (
+                self.causal_option_replaying_terminal_sequence
+            ),
         }
 
 
@@ -274,6 +300,21 @@ class UnifiedCognitiveController:
                 if self.config.enable_causal_effect_credit else 0
             ),
         )
+        self.causal_options = OnlineCausalOptionStore(
+            max_options=self.config.max_causal_hierarchical_options,
+            max_downstream_actions=(
+                self.config.max_causal_option_downstream_actions
+            ),
+            max_trials_per_signature=(
+                self.config.max_causal_option_trials_per_signature
+            ),
+            terminal_credit_window=(
+                self.config.causal_option_terminal_credit_window
+            ),
+            minimum_terminal_support=(
+                self.config.terminal_objective_min_support
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -306,6 +347,7 @@ class UnifiedCognitiveController:
         self._temporal_plan_decisions = 0
         self._temporal_outcomes: List[Dict[str, Any]] = []
         self._causal_subgoal_outcomes: List[Dict[str, Any]] = []
+        self._causal_option_outcomes: List[Dict[str, Any]] = []
 
     @property
     def theory(self):
@@ -363,6 +405,7 @@ class UnifiedCognitiveController:
                 "terminal_objective_discriminator",
                 "terminal_objective_ablation",
                 "temporal_subgoal_probe",
+                "causal_option_downstream_probe",
             }
         )
         aligned_before, aligned_after = _align_grids(grid_before, grid_after)
@@ -430,6 +473,7 @@ class UnifiedCognitiveController:
         self._promote_confirmed_predictions()
         self._observe_pending_terminal_objective(update, pending)
         self._observe_pending_temporal_plan(update, pending)
+        self._observe_pending_causal_option(update, pending)
         self._observe_pending_option(update, pending)
         self.progress.on_action(
             grid_hash=after_hash,
@@ -477,8 +521,14 @@ class UnifiedCognitiveController:
         if not safe_actions:
             safe_actions = list(actions)
         self._generate_goal_hypotheses(observation, safe_actions)
+        if self.config.enable_causal_hierarchical_options:
+            self.causal_options.sync_confirmed_edges(
+                self.causal_subgoals.edges()
+            )
 
         decision = self._select_escape(observation, safe_actions)
+        if decision is None:
+            decision = self._select_causal_option(observation, safe_actions)
         if decision is None:
             decision = self._select_temporal_plan(observation, safe_actions)
         if decision is None:
@@ -512,6 +562,7 @@ class UnifiedCognitiveController:
         self.terminal_objectives.start_branch()
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
+        self.causal_options.start_branch()
         self.progress.start_new_branch(
             current_validated_ops=self.operator_inducer.num_locked(),
             current_validated_rules=self._validated_rule_count(),
@@ -557,6 +608,8 @@ class UnifiedCognitiveController:
             "recent_causal_subgoal_outcomes": (
                 self._causal_subgoal_outcomes[-10:]
             ),
+            "causal_hierarchical_options": self.causal_options.summary(),
+            "recent_causal_option_outcomes": self._causal_option_outcomes[-10:],
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
@@ -643,6 +696,129 @@ class UnifiedCognitiveController:
             )
         self._generated_goal_candidates = len(self.terminal_objectives.objectives())
 
+    def _select_causal_option(
+        self,
+        observation: GameObservation,
+        safe_actions: List[str],
+    ) -> CognitiveDecision | None:
+        """Search a bounded suffix after an actually observed causal opening."""
+        if not self.config.enable_causal_hierarchical_options:
+            return None
+        active_option = self.causal_options.option(
+            self.causal_options.active_option_id
+        )
+        target = (
+            None if active_option is None
+            else self.terminal_objectives.objective(
+                active_option.target_objective_id
+            )
+        )
+        preferred_signatures = self._causal_option_preferences(target)
+        action_utilities = {}
+        for action in safe_actions:
+            stats = self.belief_loop.profiler.get_stats(action)
+            if stats is None:
+                continue
+            action_utilities[action] = (
+                float(stats.change_rate) - 2.0 * float(stats.death_rate)
+            )
+        selection = self.causal_options.select_downstream(
+            observation,
+            safe_actions=safe_actions,
+            click_actions=(
+                self._click_actions(observation)
+                if "ACTION6" in safe_actions else ()
+            ),
+            preferred_intervention_signatures=preferred_signatures,
+            action_utilities=action_utilities,
+        )
+        if selection is None:
+            return None
+        objective = self.terminal_objectives.objective(
+            selection.target_objective_id
+        )
+        assessment = (
+            None
+            if objective is None
+            else self.terminal_objectives.assess_objective(
+                objective,
+                observation,
+            )
+        )
+        action_intervention_id = intervention_id(
+            selection.action_name,
+            selection.action_data,
+        )
+        source = (
+            "causal_option_terminal_replay"
+            if selection.replaying_terminal_sequence
+            else "causal_option_downstream_probe"
+        )
+        return CognitiveDecision(
+            action_name=selection.action_name,
+            action_data=dict(selection.action_data),
+            source=source,
+            reason=(
+                f"{selection.reason}; confirmed edge {selection.edge_key}; "
+                "execute one suffix action then re-observe"
+            ),
+            confidence=(
+                0.9 if selection.replaying_terminal_sequence else 0.5
+            ),
+            objective_id=selection.target_objective_id,
+            objective_status=(
+                "" if assessment is None else assessment.status.value
+            ),
+            objective_distance=(
+                None if assessment is None else assessment.distance
+            ),
+            intervention_id=action_intervention_id,
+            causal_option_id=selection.option_id,
+            causal_option_edge_key=selection.edge_key,
+            causal_option_terminal_status=selection.terminal_status.value,
+            causal_option_phase="downstream_search",
+            causal_option_intervention_signature=(
+                selection.intervention_signature
+            ),
+            causal_option_selection_utility=selection.selection_utility,
+            causal_option_replaying_terminal_sequence=(
+                selection.replaying_terminal_sequence
+            ),
+        )
+
+    def _causal_option_preferences(
+        self,
+        objective: Any,
+    ) -> Tuple[str, ...]:
+        """Reuse directed mechanics without treating them as terminal proof."""
+        if objective is None:
+            return ()
+        result = []
+        for rule_key in sorted(objective.supporting_rule_keys):
+            rule = self.theory.promoted_relational_rule(rule_key)
+            if rule is None:
+                continue
+            if rule.action == "ACTION6":
+                signature = f"ACTION6::color:{int(rule.source_color)}"
+            else:
+                signature = str(rule.action)
+            if signature not in result:
+                result.append(signature)
+        if result:
+            return tuple(result)
+        for action in sorted(objective.supporting_actions):
+            if action == "ACTION6":
+                color = (
+                    objective.target_color
+                    if objective.target_color is not None
+                    else objective.source_color
+                )
+                if color is not None:
+                    result.append(f"ACTION6::color:{int(color)}")
+            elif action not in result:
+                result.append(action)
+        return tuple(result)
+
     def _select_temporal_plan(
         self,
         observation: GameObservation,
@@ -719,13 +895,21 @@ class UnifiedCognitiveController:
                 f"branch:{self.terminal_objectives.branch_index}:"
                 f"state:{observation.grid_hash}"
             )
-            self.causal_subgoals.note_intervention_availability(
+            opened_edge_keys = self.causal_subgoals.note_intervention_availability(
                 selection.objective_id,
                 available=True,
                 observation=observation,
                 store=self.terminal_objectives,
                 context_signature=causal_context,
             )
+            if self.config.enable_causal_hierarchical_options:
+                self.causal_options.sync_confirmed_edges(
+                    self.causal_subgoals.edges()
+                )
+                self.causal_options.note_openings(
+                    opened_edge_keys,
+                    context_signature=causal_context,
+                )
             if selection.causal_edge_key and selection.step_index == 0:
                 self.causal_subgoals.begin_trial(
                     selection.causal_edge_key,
@@ -1658,6 +1842,45 @@ class UnifiedCognitiveController:
             or outcome["expired_nonterminal_completions"]
         ):
             self._temporal_outcomes.append(outcome)
+
+    def _observe_pending_causal_option(
+        self,
+        update: LiveTransitionUpdate,
+        pending: CognitiveDecision | None,
+    ) -> None:
+        if not self.config.enable_causal_hierarchical_options:
+            return
+        context = "" if pending is None else _transition_context_signature(
+            update,
+            pending.action_data,
+        )
+        outcome = self.causal_options.observe_transition(
+            update,
+            store=self.terminal_objectives,
+            option_id="" if pending is None else pending.causal_option_id,
+            causal_edge_key=(
+                "" if pending is None else (
+                    pending.causal_option_edge_key
+                    or pending.causal_subgoal_edge_key
+                )
+            ),
+            intervention_signature=(
+                "" if pending is None else (
+                    pending.causal_option_intervention_signature
+                    or pending.causal_intervention_signature
+                )
+            ),
+            intervention_id=(
+                "" if pending is None else pending.intervention_id
+            ),
+            context_signature=context,
+        )
+        if (
+            outcome["active_option_id"]
+            or outcome["terminal_credited_option"]
+            or outcome["rollout_closed"]
+        ):
+            self._causal_option_outcomes.append(outcome)
 
     def _observe_pending_option(
         self,
