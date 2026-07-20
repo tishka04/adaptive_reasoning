@@ -73,11 +73,12 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v4"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v5"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
     assert protocol["evaluation_outcomes_used_for_training_or_tuning"] is False
+    assert protocol["causal_subgoal_induction_enabled_in_unified"] is True
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -106,4 +107,33 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "temporal_step_completions" in metrics["unified"]
     assert "temporal_plan_abandonments" in metrics["unified"]
     assert "terminal_supported_temporal_plans" in metrics["unified"]
+    assert "causal_dependency_plans" in metrics["unified"]
+    assert "causal_dependency_plan_actions" in metrics["unified"]
+    assert "causal_edges_generated" in metrics["unified"]
+    assert "causal_blocked_target_events" in metrics["unified"]
+    assert "causal_edge_trials" in metrics["unified"]
+    assert "causal_edge_support_events" in metrics["unified"]
+    assert "causal_edge_contradictions" in metrics["unified"]
+    assert "confirmed_causal_edges" in metrics["unified"]
+    assert "refuted_causal_edges" in metrics["unified"]
     assert "failure_causes" in payload
+
+
+def test_ab_benchmark_exposes_a_reproducible_causal_subgoal_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-causal-ablation"],
+        seeds=[3],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_causal_subgoal_induction=False,
+    )
+
+    assert (
+        payload["paired_protocol"][
+            "causal_subgoal_induction_enabled_in_unified"
+        ]
+        is False
+    )
+    assert payload["metrics"]["unified"]["causal_edges_generated"] == 0
+    assert payload["metrics"]["unified"]["causal_dependency_plans"] == 0

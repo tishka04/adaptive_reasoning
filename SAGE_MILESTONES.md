@@ -4469,3 +4469,117 @@ depuis les transitions quelles transformations rendent une intervention future
 possible, construire ce graphe de dependances au-dela du seul cas de couleur
 manquante, puis arbitrer les chaines par probabilite de progres observee et cout
 avant de les deployer sur de nouveaux episodes held-out.
+
+## SAGE.8n - online causal subgoal induction and utility arbitration
+
+Objectif :
+
+- Detecter les objectifs temporairement bloques lorsqu'aucune intervention sure
+  ne peut reduire leur deficit dans l'etat courant.
+- Proposer en ligne un petit nombre de preconditions candidates a partir des
+  objectifs mesurables qui partagent une structure, avec une sonde generique
+  bornee quand aucun recouvrement n'est disponible.
+- Apprendre une arete `source -> cible` seulement si une reduction reelle de la
+  source rend ensuite la cible testable, mesurable ou moins distante.
+- Refuser explicitement comme preuve causale un changement de la cible sans
+  reduction concomitante de la source.
+- Exiger deux contextes independants avant de confirmer une arete mecanique et
+  deux echecs independants avant de la refuter.
+- Garder le statut causal mecanique strictement separe du support terminal du
+  but et du plan.
+- Transferer les preconditions entre dispositions spatiales equivalentes avec
+  une signature d'etat invariante aux positions exactes.
+- Compiler les aretes pertinentes en plans temporels `precondition -> cible`,
+  toujours executes une action puis une observation a la fois.
+- Arbitrer tous les plans avec une utilite apprise combinant probabilite de
+  progres, probabilite de franchissement, cout observe, abandons et risque.
+- Exposer arete causale, probabilite, cout et utilite dans chaque decision.
+- Fournir une ablation reproductible qui desactive seulement SAGE.8n.
+
+Ajouts :
+
+- `theory/online_causal_subgoal_graph.py`
+- extension de `theory/online_temporal_goal_composition.py`
+- integration dans `theory/unified_cognitive_controller.py`
+- metriques et ablation v5 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_causal_subgoal_graph.py`
+- mise a jour de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8n_cn04_utility_audit.json`
+- `diagnostics/sage/sage8n_cn04_causal_ablation.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `paired_protocol.protocol_gate_passed=true`
+- `paired_protocol.causal_subgoal_induction_enabled_in_unified=true`
+- `legacy_only.actions_executed=768`
+- `unified.actions_executed=800`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=474`
+- `unified.experiment_cost_rate=0.5925`
+- `unified.generated_goal_hypotheses=76`
+- `unified.causal_edges_generated=88`
+- `unified.causal_blocked_target_events=26`
+- `unified.causal_edge_trials=44`
+- `unified.causal_edge_actions=78`
+- `unified.causal_edge_source_progress_events=4`
+- `unified.causal_edge_support_events=2`
+- `unified.causal_availability_successes=2`
+- `unified.causal_cochange_supports=0`
+- `unified.causal_edge_plan_failures=28`
+- `unified.confirmed_causal_edges=0`
+- `unified.refuted_causal_edges=0`
+- `unified.causal_dependency_plans=62`
+- `unified.causal_dependency_plan_starts=68`
+- `unified.causal_dependency_plan_actions=78`
+- `unified.causal_dependency_progress_events=4`
+- `unified.causal_dependency_step_completions=2`
+- `unified.temporal_plans_generated=170`
+- `unified.temporal_plan_actions=190`
+- `unified.temporal_progress_events=30`
+- `unified.temporal_step_completions=14`
+- `unified.temporal_plan_stalls=160`
+- `unified.temporal_plan_abandonments=118`
+- `unified.temporal_local_completions=2`
+- `unified.temporal_nonterminal_completions=2`
+- `unified.objective_distance_reductions=740`
+- `unified.objective_nonterminal_completions=83`
+- `unified.refuted_objectives=11`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+- `new_sage8n_tests=10 passed`
+- `targeted_cognitive_tests=40 passed`
+- `full_repository_tests=1356 passed`
+- `ruff_and_compileall=passed`
+
+Audit cible `cn04-65d47d14`, seed 1, memes 2 resets x 40 :
+
+- SAGE.8n active : `levels_completed=0`, `causal_edge_actions=15`,
+  `causal_availability_successes=1`, `causal_edge_support_events=1`,
+  `experiment_cost_rate=0.675`.
+- Ablation SAGE.8n : `levels_completed=0`, `causal_edge_actions=0`,
+  `experiment_cost_rate=0.7625`.
+- L'induction causale remplace une partie de l'exploration generique par des
+  essais structures et reduit ici le cout experimental, sans franchir le niveau.
+
+Lecture : SAGE.8n apprend et execute bien des preconditions causales en ligne,
+mais ne produit pas encore de gain ARC final. Une version intermediaire a utilite
+causale figee et optimiste avait atteint un niveau sur `cn04`; le resultat
+disparait des que l'utilite est correctement remise a jour avec les couts,
+abandons et risques observes. Cette sensibilite ne constitue donc pas un gain
+reproductible et n'est pas retenue. La version finale conserve le classement
+dynamique : elle observe deux recuperations de disponibilite, mais aucune arete
+n'obtient les deux contextes independants requis pour etre confirmee et aucun
+objectif ni plan n'est `terminal_supported`.
+
+Le prochain verrou est de rendre la preparation causale assez productive pour
+etre consolidee : seulement 4 progres de source sur 78 actions causales, avec
+28 echecs de plan. Il faut mieux representer les effets qui ouvrent reellement
+une intervention, attribuer le credit sur plusieurs etapes et resets, puis
+obtenir des confirmations independantes transferables sans relacher la preuve
+terminale. C'est seulement ensuite que ces dependances pourront devenir des
+options hierarchiques capables de gagner davantage de niveaux.

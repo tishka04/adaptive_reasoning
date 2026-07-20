@@ -53,6 +53,7 @@ from .online_goal_hypothesis import (
     ObjectiveDiscriminatingExperimentDesigner,
     intervention_id,
 )
+from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_terminal_objective import (
     OnlineTerminalObjectiveStore,
     TerminalObjectiveAssessment,
@@ -93,12 +94,16 @@ class UnifiedCognitiveConfig:
     max_temporal_starts_per_plan: int = 2
     max_temporal_actions_per_plan: int = 8
     max_temporal_stalls_per_step: int = 2
+    max_causal_subgoal_edges: int = 24
+    max_causal_edges_per_blocked_target: int = 3
+    causal_edge_min_support: int = 2
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
     enable_promoted_options: bool = True
     enable_active_goal_hypotheses: bool = True
     enable_temporal_goal_composition: bool = True
+    enable_causal_subgoal_induction: bool = True
 
 
 @dataclass(frozen=True)
@@ -128,6 +133,10 @@ class CognitiveDecision:
     temporal_step_index: int | None = None
     temporal_step_count: int = 0
     temporal_step_target_distance: float | None = None
+    causal_subgoal_edge_key: str = ""
+    temporal_expected_progress_probability: float | None = None
+    temporal_expected_cost: float | None = None
+    temporal_selection_utility: float | None = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -156,6 +165,12 @@ class CognitiveDecision:
             "temporal_step_target_distance": (
                 self.temporal_step_target_distance
             ),
+            "causal_subgoal_edge_key": self.causal_subgoal_edge_key,
+            "temporal_expected_progress_probability": (
+                self.temporal_expected_progress_probability
+            ),
+            "temporal_expected_cost": self.temporal_expected_cost,
+            "temporal_selection_utility": self.temporal_selection_utility,
         }
 
 
@@ -221,6 +236,13 @@ class UnifiedCognitiveController:
                 self.config.max_terminal_objective_ablations_per_objective
             ),
         )
+        self.causal_subgoals = OnlineCausalSubgoalGraph(
+            max_edges=self.config.max_causal_subgoal_edges,
+            max_edges_per_blocked_target=(
+                self.config.max_causal_edges_per_blocked_target
+            ),
+            minimum_independent_support=self.config.causal_edge_min_support,
+        )
         self.temporal_goals = OnlineTemporalGoalComposer(
             max_plans=self.config.max_temporal_plans,
             max_plan_starts_total=(
@@ -267,6 +289,7 @@ class UnifiedCognitiveController:
         self._objective_ablation_decisions = 0
         self._temporal_plan_decisions = 0
         self._temporal_outcomes: List[Dict[str, Any]] = []
+        self._causal_subgoal_outcomes: List[Dict[str, Any]] = []
 
     @property
     def theory(self):
@@ -472,6 +495,7 @@ class UnifiedCognitiveController:
         self._pending_decision = None
         self.terminal_objectives.start_branch()
         self.temporal_goals.start_branch()
+        self.causal_subgoals.start_branch()
         self.progress.start_new_branch(
             current_validated_ops=self.operator_inducer.num_locked(),
             current_validated_rules=self._validated_rule_count(),
@@ -513,6 +537,10 @@ class UnifiedCognitiveController:
             "temporal_goal_composition": self.temporal_goals.summary(),
             "temporal_plan_decisions": self._temporal_plan_decisions,
             "recent_temporal_outcomes": self._temporal_outcomes[-10:],
+            "causal_subgoal_graph": self.causal_subgoals.summary(),
+            "recent_causal_subgoal_outcomes": (
+                self._causal_subgoal_outcomes[-10:]
+            ),
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
@@ -610,7 +638,18 @@ class UnifiedCognitiveController:
             or not self.config.enable_temporal_goal_composition
         ):
             return None
-        self.temporal_goals.compose(observation, self.terminal_objectives)
+        causal_edges = (
+            self.causal_subgoals.candidate_edges(
+                observation,
+                self.terminal_objectives,
+            )
+            if self.config.enable_causal_subgoal_induction else ()
+        )
+        self.temporal_goals.compose(
+            observation,
+            self.terminal_objectives,
+            causal_edges=causal_edges,
+        )
         selection = self.temporal_goals.select_step(
             observation,
             self.terminal_objectives,
@@ -631,10 +670,44 @@ class UnifiedCognitiveController:
             require_selectable=False,
         )
         if choice is None:
+            if self.config.enable_causal_subgoal_induction:
+                self.causal_subgoals.note_intervention_availability(
+                    selection.objective_id,
+                    available=False,
+                    observation=observation,
+                    store=self.terminal_objectives,
+                    context_signature=(
+                        f"branch:{self.terminal_objectives.branch_index}:"
+                        f"blocked:{observation.grid_hash}"
+                    ),
+                )
+                self.causal_subgoals.note_blocked(
+                    selection.objective_id,
+                    observation,
+                    self.terminal_objectives,
+                )
             self.temporal_goals.reject_active_step(
                 "no_safe_intervention_for_enabled_guard"
             )
             return None
+
+        if self.config.enable_causal_subgoal_induction:
+            causal_context = (
+                f"branch:{self.terminal_objectives.branch_index}:"
+                f"state:{observation.grid_hash}"
+            )
+            self.causal_subgoals.note_intervention_availability(
+                selection.objective_id,
+                available=True,
+                observation=observation,
+                store=self.terminal_objectives,
+                context_signature=causal_context,
+            )
+            if selection.causal_edge_key and selection.step_index == 0:
+                self.causal_subgoals.begin_trial(
+                    selection.causal_edge_key,
+                    context_signature=causal_context,
+                )
 
         mechanic_hypotheses: Tuple[str, ...] = ()
         if choice.action_name == "ACTION6":
@@ -703,6 +776,12 @@ class UnifiedCognitiveController:
             temporal_step_index=selection.step_index,
             temporal_step_count=selection.step_count,
             temporal_step_target_distance=selection.target_distance,
+            causal_subgoal_edge_key=selection.causal_edge_key,
+            temporal_expected_progress_probability=(
+                selection.expected_progress_probability
+            ),
+            temporal_expected_cost=selection.expected_cost,
+            temporal_selection_utility=selection.selection_utility,
         )
 
     def _select_objective_experiment(
@@ -1224,6 +1303,11 @@ class UnifiedCognitiveController:
             return decision
         if decision.temporal_plan_id:
             self.temporal_goals.reject_active_step("safety_veto")
+        if decision.causal_subgoal_edge_key:
+            self.causal_subgoals.cancel_trial(
+                decision.causal_subgoal_edge_key,
+                count_failure=True,
+            )
         return CognitiveDecision(
             action_name=alternative,
             action_data=self._default_action_data(alternative, observation),
@@ -1502,6 +1586,28 @@ class UnifiedCognitiveController:
             intervention_id="" if pending is None else pending.intervention_id,
             context_signature=context,
         )
+        causal_outcome = self.causal_subgoals.observe_transition(
+            update,
+            store=self.terminal_objectives,
+            source_objective_id=(
+                "" if pending is None else pending.objective_id
+            ),
+            edge_key=(
+                "" if pending is None else pending.causal_subgoal_edge_key
+            ),
+            source_step_completed=bool(
+                pending is not None
+                and pending.temporal_step_index == 0
+                and outcome["step_completed"]
+            ),
+            plan_abandoned=bool(outcome["plan_abandoned"]),
+            context_signature=context,
+        )
+        if (
+            causal_outcome["edge_key"]
+            or causal_outcome["cochange_supported_edges"]
+        ):
+            self._causal_subgoal_outcomes.append(causal_outcome)
         if (
             outcome["plan_id"]
             or outcome["terminal_success"]

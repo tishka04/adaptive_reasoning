@@ -31,7 +31,10 @@ from theory.non_ar25_active_micro_run import (
 )
 from theory.real_env_option_adapter import snapshot_frame
 
-from .unified_cognitive_controller import UnifiedCognitiveController
+from .unified_cognitive_controller import (
+    UnifiedCognitiveConfig,
+    UnifiedCognitiveController,
+)
 
 
 DEFAULT_OUTPUT_PATH = (
@@ -40,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v4"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v5"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -53,6 +56,14 @@ EXPERIMENT_SOURCES = {
 }
 
 EnvFactory = Callable[[str], Any]
+ControllerFactory = Callable[[str], UnifiedCognitiveController]
+
+
+def _causal_disabled_controller(game_id: str) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(enable_causal_subgoal_induction=False),
+    )
 
 
 @dataclass(frozen=True)
@@ -116,6 +127,8 @@ def run_unified_cognition_ab_benchmark(
     resets: int = 1,
     environments_dir: str | Path | None = None,
     env_factory: EnvFactory | None = None,
+    controller_factory: ControllerFactory | None = None,
+    enable_causal_subgoal_induction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -125,6 +138,10 @@ def run_unified_cognition_ab_benchmark(
     budget = max(0, int(action_budget_per_reset))
     reset_count = max(1, int(resets))
     env_dir = Path(environments_dir) if environments_dir is not None else _env_dir()
+
+    effective_controller_factory = controller_factory
+    if effective_controller_factory is None and not enable_causal_subgoal_induction:
+        effective_controller_factory = _causal_disabled_controller
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -137,6 +154,7 @@ def run_unified_cognition_ab_benchmark(
                 resets=reset_count,
                 env_dir=env_dir,
                 env_factory=env_factory,
+                controller_factory=effective_controller_factory,
             )
             unified = _run_arm(
                 arm="unified",
@@ -146,6 +164,7 @@ def run_unified_cognition_ab_benchmark(
                 resets=reset_count,
                 env_dir=env_dir,
                 env_factory=env_factory,
+                controller_factory=effective_controller_factory,
             )
             reset_match = (
                 legacy["reset_visual_digests"]
@@ -177,6 +196,7 @@ def run_unified_cognition_ab_benchmark(
         seeds=normalized_seeds,
         action_budget_per_reset=budget,
         resets=reset_count,
+        causal_subgoal_induction_enabled=enable_causal_subgoal_induction,
     )
     if not include_traces:
         _omit_step_traces(payload)
@@ -206,9 +226,14 @@ def _run_arm(
     resets: int,
     env_dir: Path,
     env_factory: EnvFactory | None,
+    controller_factory: ControllerFactory | None,
 ) -> Dict[str, Any]:
     controller = (
-        UnifiedCognitiveController(game_id)
+        (
+            controller_factory(game_id)
+            if controller_factory is not None
+            else UnifiedCognitiveController(game_id)
+        )
         if arm == "unified"
         else None
     )
@@ -254,6 +279,9 @@ def _run_arm(
     )
     temporal_summary = dict(
         controller_summary.get("temporal_goal_composition", {}) or {}
+    )
+    causal_summary = dict(
+        controller_summary.get("causal_subgoal_graph", {}) or {}
     )
     return {
         "arm": arm,
@@ -364,6 +392,59 @@ def _run_arm(
         ),
         "refuted_temporal_plans": int(
             temporal_summary.get("refuted_plans", 0) or 0
+        ),
+        "causal_dependency_plans": int(
+            temporal_summary.get("causal_dependency_plans", 0) or 0
+        ),
+        "causal_dependency_plan_starts": int(
+            temporal_summary.get("causal_dependency_plan_starts", 0) or 0
+        ),
+        "causal_dependency_plan_actions": int(
+            temporal_summary.get("causal_dependency_plan_actions", 0) or 0
+        ),
+        "causal_dependency_progress_events": int(
+            temporal_summary.get("causal_dependency_progress_events", 0) or 0
+        ),
+        "causal_dependency_step_completions": int(
+            temporal_summary.get("causal_dependency_step_completions", 0) or 0
+        ),
+        "causal_edges_generated": int(
+            causal_summary.get("edges_generated_total", 0) or 0
+        ),
+        "causal_blocked_target_events": int(
+            causal_summary.get("blocked_target_events", 0) or 0
+        ),
+        "causal_edge_trials": int(causal_summary.get("trials", 0) or 0),
+        "causal_edge_actions": int(causal_summary.get("actions", 0) or 0),
+        "causal_edge_source_progress_events": int(
+            causal_summary.get("source_progress_events", 0) or 0
+        ),
+        "causal_edge_support_events": int(
+            causal_summary.get("support_events", 0) or 0
+        ),
+        "causal_edge_contradictions": int(
+            causal_summary.get("contradictions", 0) or 0
+        ),
+        "causal_availability_successes": int(
+            causal_summary.get("availability_successes", 0) or 0
+        ),
+        "causal_availability_failures": int(
+            causal_summary.get("availability_failures", 0) or 0
+        ),
+        "causal_cochange_supports": int(
+            causal_summary.get("cochange_supports", 0) or 0
+        ),
+        "confirmed_causal_edges": int(
+            causal_summary.get("confirmed_edges", 0) or 0
+        ),
+        "refuted_causal_edges": int(
+            causal_summary.get("refuted_edges", 0) or 0
+        ),
+        "causal_edge_plan_failures": int(
+            causal_summary.get("plan_failures", 0) or 0
+        ),
+        "causal_edge_unsafe_failures": int(
+            causal_summary.get("unsafe_failures", 0) or 0
         ),
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
@@ -554,6 +635,7 @@ def _summarize_benchmark(
     seeds: Sequence[int],
     action_budget_per_reset: int,
     resets: int,
+    causal_subgoal_induction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -585,6 +667,9 @@ def _summarize_benchmark(
             "shared_legacy_proposal_policy": True,
             "online_learning_within_arm_only": True,
             "evaluation_outcomes_used_for_training_or_tuning": False,
+            "causal_subgoal_induction_enabled_in_unified": bool(
+                causal_subgoal_induction_enabled
+            ),
             "protocol_gate_passed": protocol_gate,
         },
         "baseline_definition": (
@@ -730,6 +815,63 @@ def _aggregate_arm(
         "refuted_temporal_plans": sum(
             int(row["refuted_temporal_plans"]) for row in rows
         ),
+        "causal_dependency_plans": sum(
+            int(row["causal_dependency_plans"]) for row in rows
+        ),
+        "causal_dependency_plan_starts": sum(
+            int(row["causal_dependency_plan_starts"]) for row in rows
+        ),
+        "causal_dependency_plan_actions": sum(
+            int(row["causal_dependency_plan_actions"]) for row in rows
+        ),
+        "causal_dependency_progress_events": sum(
+            int(row["causal_dependency_progress_events"]) for row in rows
+        ),
+        "causal_dependency_step_completions": sum(
+            int(row["causal_dependency_step_completions"]) for row in rows
+        ),
+        "causal_edges_generated": sum(
+            int(row["causal_edges_generated"]) for row in rows
+        ),
+        "causal_blocked_target_events": sum(
+            int(row["causal_blocked_target_events"]) for row in rows
+        ),
+        "causal_edge_trials": sum(
+            int(row["causal_edge_trials"]) for row in rows
+        ),
+        "causal_edge_actions": sum(
+            int(row["causal_edge_actions"]) for row in rows
+        ),
+        "causal_edge_source_progress_events": sum(
+            int(row["causal_edge_source_progress_events"]) for row in rows
+        ),
+        "causal_edge_support_events": sum(
+            int(row["causal_edge_support_events"]) for row in rows
+        ),
+        "causal_edge_contradictions": sum(
+            int(row["causal_edge_contradictions"]) for row in rows
+        ),
+        "causal_availability_successes": sum(
+            int(row["causal_availability_successes"]) for row in rows
+        ),
+        "causal_availability_failures": sum(
+            int(row["causal_availability_failures"]) for row in rows
+        ),
+        "causal_cochange_supports": sum(
+            int(row["causal_cochange_supports"]) for row in rows
+        ),
+        "confirmed_causal_edges": sum(
+            int(row["confirmed_causal_edges"]) for row in rows
+        ),
+        "refuted_causal_edges": sum(
+            int(row["refuted_causal_edges"]) for row in rows
+        ),
+        "causal_edge_plan_failures": sum(
+            int(row["causal_edge_plan_failures"]) for row in rows
+        ),
+        "causal_edge_unsafe_failures": sum(
+            int(row["causal_edge_unsafe_failures"]) for row in rows
+        ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows
         ),
@@ -780,6 +922,11 @@ def _omit_step_traces(payload: Dict[str, Any]) -> None:
         if temporal_hypotheses:
             temporal["hypothesis_details_omitted"] = True
             temporal["hypothesis_detail_count"] = len(temporal_hypotheses)
+        causal = summary.get("causal_subgoal_graph") or {}
+        causal_hypotheses = list(causal.pop("hypotheses", []) or [])
+        if causal_hypotheses:
+            causal["hypothesis_details_omitted"] = True
+            causal["hypothesis_detail_count"] = len(causal_hypotheses)
 
 
 def _blocked_attempt(reset_index: int, reason: str) -> Dict[str, Any]:
@@ -872,6 +1019,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--environments-dir", default=None)
     parser.add_argument("--out", default=str(DEFAULT_OUTPUT_PATH))
     parser.add_argument("--include-traces", action="store_true")
+    parser.add_argument(
+        "--disable-causal-subgoals",
+        action="store_true",
+        help="Run an auditable unified-controller ablation without SAGE.8n.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -891,6 +1043,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         environments_dir=args.environments_dir,
         write_path=args.out,
         include_traces=args.include_traces,
+        enable_causal_subgoal_induction=(
+            not args.disable_causal_subgoals
+        ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))
     return 0 if payload["paired_protocol"]["protocol_gate_passed"] else 1

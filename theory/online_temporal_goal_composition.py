@@ -15,6 +15,7 @@ from typing import Any, Dict, List, Sequence, Tuple
 
 from v3.schemas import GameObservation
 
+from .online_causal_subgoal_graph import CausalSubgoalEdge
 from .online_terminal_objective import (
     OnlineTerminalObjectiveStore,
     TerminalObjectiveHypothesis,
@@ -87,6 +88,8 @@ class TemporalGoalPlan:
     steps: Tuple[TemporalSubgoalStep, ...]
     generation_reason: str
     prior_priority: float = 0.0
+    causal_edge_key: str = ""
+    causal_edge_utility: float = 0.0
     minimum_independent_terminal_contexts: int = 2
     starts: int = 0
     actions: int = 0
@@ -121,6 +124,37 @@ class TemporalGoalPlan:
             return TemporalPlanStatus.REFUTED
         return TemporalPlanStatus.CANDIDATE
 
+    @property
+    def expected_progress_probability(self) -> float:
+        return (self.progress_events + 1.0) / (self.actions + 2.0)
+
+    @property
+    def expected_completion_probability(self) -> float:
+        return (self.step_completions + 1.0) / (self.actions + 2.0)
+
+    @property
+    def expected_cost(self) -> float:
+        if self.starts <= 0:
+            return 1.0
+        return max(1.0, float(self.actions) / float(self.starts))
+
+    @property
+    def risk_rate(self) -> float:
+        return float(self.unsafe_failures) / max(1.0, float(self.actions))
+
+    @property
+    def selection_utility(self) -> float:
+        abandonment_rate = float(self.abandonments) / max(1.0, float(self.starts))
+        return (
+            float(self.prior_priority)
+            + float(self.causal_edge_utility)
+            + 2.0 * self.expected_progress_probability
+            + self.expected_completion_probability
+            - 0.15 * self.expected_cost
+            - 2.0 * self.risk_rate
+            - 0.5 * abandonment_rate
+        )
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "plan_id": self.plan_id,
@@ -128,7 +162,18 @@ class TemporalGoalPlan:
             "steps": [step.to_dict() for step in self.steps],
             "generation_reason": self.generation_reason,
             "prior_priority": round(float(self.prior_priority), 4),
+            "causal_edge_key": self.causal_edge_key,
+            "causal_edge_utility": round(float(self.causal_edge_utility), 4),
             "status": self.status.value,
+            "expected_progress_probability": round(
+                self.expected_progress_probability, 4
+            ),
+            "expected_completion_probability": round(
+                self.expected_completion_probability, 4
+            ),
+            "expected_cost": round(self.expected_cost, 4),
+            "risk_rate": round(self.risk_rate, 4),
+            "selection_utility": round(self.selection_utility, 4),
             "starts": self.starts,
             "actions": self.actions,
             "progress_events": self.progress_events,
@@ -168,6 +213,10 @@ class TemporalStepSelection:
     objective_id: str
     target_distance: float
     current_distance: float
+    causal_edge_key: str
+    expected_progress_probability: float
+    expected_cost: float
+    selection_utility: float
     reason: str
 
 
@@ -228,6 +277,7 @@ class OnlineTemporalGoalComposer:
         self,
         observation: GameObservation,
         store: OnlineTerminalObjectiveStore,
+        causal_edges: Sequence[CausalSubgoalEdge] = (),
     ) -> List[TemporalGoalPlan]:
         """Build thresholds and learned-objective dependencies from live state."""
         candidates: List[TemporalGoalPlan] = []
@@ -308,6 +358,35 @@ class OnlineTemporalGoalComposer:
                     dependency=dependency,
                 ))
 
+        for edge in causal_edges:
+            source = store.objective(edge.source_objective_id)
+            target = store.objective(edge.target_objective_id)
+            if source is None or target is None:
+                continue
+            source_distance = source.distance(observation)
+            if source_distance is None or source_distance <= 0.0:
+                continue
+            source_threshold = max(0.0, float(source_distance) - 1.0)
+            candidates.append(self._candidate_plan(
+                target=target,
+                steps=(
+                    TemporalSubgoalStep(
+                        source.objective_id,
+                        source_threshold,
+                        role="learned_causal_precondition",
+                    ),
+                    TemporalSubgoalStep(
+                        target.objective_id,
+                        0.0,
+                        role="causally_enabled_objective",
+                    ),
+                ),
+                reason="online_learned_causal_subgoal_dependency",
+                dependency=source,
+                causal_edge_key=edge.edge_key,
+                priority_bonus=edge.utility,
+            ))
+
         ranked = sorted(
             candidates,
             key=lambda item: (
@@ -360,7 +439,7 @@ class OnlineTemporalGoalComposer:
             }.get(plan.status, 0.0)
             candidates.append(((
                 status_bonus,
-                plan.prior_priority,
+                plan.selection_utility,
                 -plan.starts,
                 -len(plan.steps),
             ), plan))
@@ -420,6 +499,7 @@ class OnlineTemporalGoalComposer:
             "step_completed": False,
             "plan_completed": False,
             "plan_abandoned": False,
+            "abandonment_reason": "",
             "terminal_success": terminal_success,
             "terminal_credited_plans": [],
             "terminal_ambiguous_plans": [],
@@ -475,6 +555,7 @@ class OnlineTemporalGoalComposer:
                     )
                 self._abandon_active("game_over")
                 outcome["plan_abandoned"] = True
+                outcome["abandonment_reason"] = "game_over"
             elif (
                 before_distance is not None
                 and after_distance is not None
@@ -502,9 +583,11 @@ class OnlineTemporalGoalComposer:
             elif active.actions >= self.max_actions_per_plan:
                 self._abandon_active("action_budget")
                 outcome["plan_abandoned"] = True
+                outcome["abandonment_reason"] = "action_budget"
             elif active.stalls_on_step >= self.max_stalls_per_step:
                 self._abandon_active("state_condition_stalled")
                 outcome["plan_abandoned"] = True
+                outcome["abandonment_reason"] = "state_condition_stalled"
 
         if terminal_success:
             # A terminal transition before the final guard is a causal bypass,
@@ -516,6 +599,9 @@ class OnlineTemporalGoalComposer:
                     active_plan.terminal_contradictions += 1
                 self._abandon_active("terminal_before_sequence_completion")
                 outcome["plan_abandoned"] = True
+                outcome["abandonment_reason"] = (
+                    "terminal_before_sequence_completion"
+                )
             credited, ambiguous = self._resolve_terminal_event()
             outcome["terminal_credited_plans"] = credited
             outcome["terminal_ambiguous_plans"] = ambiguous
@@ -565,6 +651,21 @@ class OnlineTemporalGoalComposer:
             "refuted_plans": sum(
                 plan.status == TemporalPlanStatus.REFUTED for plan in plans
             ),
+            "causal_dependency_plans": sum(
+                bool(plan.causal_edge_key) for plan in plans
+            ),
+            "causal_dependency_plan_starts": sum(
+                plan.starts for plan in plans if plan.causal_edge_key
+            ),
+            "causal_dependency_plan_actions": sum(
+                plan.actions for plan in plans if plan.causal_edge_key
+            ),
+            "causal_dependency_progress_events": sum(
+                plan.progress_events for plan in plans if plan.causal_edge_key
+            ),
+            "causal_dependency_step_completions": sum(
+                plan.step_completions for plan in plans if plan.causal_edge_key
+            ),
             "recent_completions_awaiting_terminal_credit": len(
                 self._recent_completions
             ),
@@ -578,6 +679,8 @@ class OnlineTemporalGoalComposer:
         steps: Sequence[TemporalSubgoalStep],
         reason: str,
         dependency: TerminalObjectiveHypothesis | None = None,
+        causal_edge_key: str = "",
+        priority_bonus: float = 0.0,
     ) -> TemporalGoalPlan:
         signature = "__then__".join(
             f"{step.objective_id}@{step.target_distance:g}" for step in steps
@@ -591,6 +694,8 @@ class OnlineTemporalGoalComposer:
             steps=tuple(steps),
             generation_reason=reason,
             prior_priority=priority,
+            causal_edge_key=str(causal_edge_key),
+            causal_edge_utility=float(priority_bonus),
             minimum_independent_terminal_contexts=self.minimum_terminal_support,
         )
 
@@ -600,6 +705,9 @@ class OnlineTemporalGoalComposer:
             existing.prior_priority = max(
                 existing.prior_priority, candidate.prior_priority
             )
+            if candidate.causal_edge_key:
+                existing.causal_edge_key = candidate.causal_edge_key
+                existing.causal_edge_utility = candidate.causal_edge_utility
             return
         if len(self._plans) >= self.max_plans:
             evictable = [
@@ -646,6 +754,12 @@ class OnlineTemporalGoalComposer:
                     objective_id=step.objective_id,
                     target_distance=step.target_distance,
                     current_distance=float(distance),
+                    causal_edge_key=plan.causal_edge_key,
+                    expected_progress_probability=(
+                        plan.expected_progress_probability
+                    ),
+                    expected_cost=plan.expected_cost,
+                    selection_utility=plan.selection_utility,
                     reason=(
                         f"{plan.generation_reason}; guard {step.guard}: "
                         f"distance {distance:g} > {step.target_distance:g}"
