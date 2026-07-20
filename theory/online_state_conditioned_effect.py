@@ -17,11 +17,16 @@ import numpy as np
 
 from v3.schemas import GameObservation
 
+from .online_semantic_intervention import (
+    is_entity_anchored_signature,
+    semantic_transfer_signature,
+)
 from .online_terminal_objective import TerminalObjectiveHypothesis
 
 
 class DirectionalEffectStatus(str, Enum):
     UNKNOWN = "unknown"
+    NEEDS_ENTITY_CONTRAST = "needs_entity_contrast"
     NEEDS_MODE_CONTRAST = "needs_mode_contrast"
     PROGRESSIVE = "progressive"
     BRIDGE = "bridge"
@@ -38,6 +43,7 @@ class StateConditionedActionEvidence:
     objective_id: str
     mode_signature: str
     action_signature: str
+    action_transfer_signature: str
     attempts: int = 0
     progress_events: int = 0
     regression_events: int = 0
@@ -83,6 +89,7 @@ class StateConditionedActionEvidence:
             "objective_id": self.objective_id,
             "mode_signature": self.mode_signature,
             "action_signature": self.action_signature,
+            "action_transfer_signature": self.action_transfer_signature,
             "status": self.status.value,
             "attempts": self.attempts,
             "progress_events": self.progress_events,
@@ -115,14 +122,18 @@ class DirectionalActionPrediction:
     exact_mode_evidence: bool
     reversible_across_modes: bool
     reason: str
+    action_transfer_signature: str = ""
+    structural_transfer_evidence: bool = False
+    entity_alias_conflict: bool = False
     bridge_target_mode_signature: str = ""
     bridge_followup_action_signature: str = ""
 
     @property
     def selection_rank(self) -> int:
         return {
-            DirectionalEffectStatus.PROGRESSIVE: 5,
-            DirectionalEffectStatus.BRIDGE: 4,
+            DirectionalEffectStatus.PROGRESSIVE: 6,
+            DirectionalEffectStatus.BRIDGE: 5,
+            DirectionalEffectStatus.NEEDS_ENTITY_CONTRAST: 4,
             DirectionalEffectStatus.NEEDS_MODE_CONTRAST: 3,
             DirectionalEffectStatus.UNKNOWN: 2,
             DirectionalEffectStatus.UNSTABLE: 1,
@@ -149,10 +160,15 @@ class OnlineStateConditionedEffectModel:
         self._exact_predictions = 0
         self._contrast_predictions = 0
         self._bridge_predictions = 0
+        self._structural_transfer_predictions = 0
+        self._entity_contrast_predictions = 0
         self._progressive_selections = 0
         self._bridge_selections = 0
+        self._structural_transfer_selections = 0
+        self._entity_contrast_selections = 0
         self._contrast_selections = 0
         self._blocked_regressive_actions = 0
+        self._blocked_structural_regressions = 0
 
     def observe(
         self,
@@ -162,6 +178,7 @@ class OnlineStateConditionedEffectModel:
         observation_before: GameObservation,
         observation_after: GameObservation,
         action_signature: str,
+        action_transfer_signature: str = "",
         effect_signature: str,
         branch_index: int,
         context_signature: str,
@@ -181,6 +198,10 @@ class OnlineStateConditionedEffectModel:
             }
         mode = latent_mode_signature(observation_before, objective)
         next_mode = latent_mode_signature(observation_after, objective)
+        transfer_signature = (
+            str(action_transfer_signature)
+            or semantic_transfer_signature(str(action_signature))
+        )
         key = (
             str(option_id),
             objective.objective_id,
@@ -194,6 +215,7 @@ class OnlineStateConditionedEffectModel:
                 objective_id=objective.objective_id,
                 mode_signature=mode,
                 action_signature=str(action_signature),
+                action_transfer_signature=transfer_signature,
             )
             self._evidence[key] = evidence
         evidence.attempts += 1
@@ -227,6 +249,7 @@ class OnlineStateConditionedEffectModel:
             "observed": True,
             "mode_signature": mode,
             "next_mode_signature": next_mode,
+            "action_transfer_signature": transfer_signature,
             "status": evidence.status.value,
             "gain": gain,
             "reversible_across_modes": self.is_reversible(
@@ -243,10 +266,15 @@ class OnlineStateConditionedEffectModel:
         objective: TerminalObjectiveHypothesis,
         observation: GameObservation,
         action_signature: str,
+        action_transfer_signature: str = "",
         record_prediction: bool = True,
         enable_bridge_composition: bool = True,
     ) -> DirectionalActionPrediction:
         mode = latent_mode_signature(observation, objective)
+        transfer_signature = (
+            str(action_transfer_signature)
+            or semantic_transfer_signature(str(action_signature))
+        )
         exact = self._evidence.get((
             str(option_id),
             objective.objective_id,
@@ -257,12 +285,22 @@ class OnlineStateConditionedEffectModel:
             option_id=str(option_id),
             objective_id=objective.objective_id,
             action_signature=str(action_signature),
+            action_transfer_signature=transfer_signature,
         )
         directional_related = [
             item
             for item in related
             if item.progress_events > 0 or item.regression_events > 0
         ]
+        same_mode_related = [item for item in related if item.mode_signature == mode]
+        same_mode_directional = [
+            item
+            for item in same_mode_related
+            if item.progress_events > 0 or item.regression_events > 0
+        ]
+        entity_alias_conflict = self._has_entity_alias_conflict(
+            same_mode_related
+        )
         reversible = self._is_reversible_evidence(related)
         if record_prediction:
             self._predictions += 1
@@ -311,6 +349,8 @@ class OnlineStateConditionedEffectModel:
                         "observed transition reaches a latent mode with a "
                         "progressive follow-up action"
                     ),
+                    action_transfer_signature=transfer_signature,
+                    entity_alias_conflict=entity_alias_conflict,
                     bridge_target_mode_signature=bridge[2],
                     bridge_followup_action_signature=bridge[3],
                 )
@@ -330,10 +370,10 @@ class OnlineStateConditionedEffectModel:
                 exact_mode_evidence=True,
                 reversible_across_modes=reversible,
                 reason=(
-                    "exact latent mode previously reduced the objective"
+                    "exact entity and latent mode previously reduced the objective"
                     if status == DirectionalEffectStatus.PROGRESSIVE
                     else (
-                        "exact latent mode previously increased the objective"
+                        "exact entity and latent mode previously increased the objective"
                         if status == DirectionalEffectStatus.REGRESSIVE
                         else (
                             "one cross-mode contrast stalled in this latent mode"
@@ -342,6 +382,55 @@ class OnlineStateConditionedEffectModel:
                         )
                     )
                 ),
+                action_transfer_signature=transfer_signature,
+                entity_alias_conflict=entity_alias_conflict,
+            )
+        if same_mode_directional:
+            progressive = any(item.progress_events > 0 for item in same_mode_directional)
+            regressive = any(item.regression_events > 0 for item in same_mode_directional)
+            expected_gain = sum(
+                item.expected_gain for item in same_mode_directional
+            ) / len(same_mode_directional)
+            confidence = sum(
+                item.confidence for item in same_mode_directional
+            ) / len(same_mode_directional)
+            if progressive and regressive:
+                status = DirectionalEffectStatus.NEEDS_ENTITY_CONTRAST
+                reason = (
+                    "equivalent structural entities have opposing effects in "
+                    "this latent mode; test this concrete instance once"
+                )
+                if record_prediction:
+                    self._entity_contrast_predictions += 1
+            elif progressive:
+                status = DirectionalEffectStatus.PROGRESSIVE
+                reason = (
+                    "a structurally equivalent entity reduced the objective in "
+                    "this latent mode"
+                )
+            else:
+                status = DirectionalEffectStatus.REGRESSIVE
+                reason = (
+                    "structurally equivalent entities increased the objective "
+                    "in this latent mode"
+                )
+            if record_prediction:
+                self._structural_transfer_predictions += 1
+            return DirectionalActionPrediction(
+                option_id=str(option_id),
+                objective_id=objective.objective_id,
+                mode_signature=mode,
+                action_signature=str(action_signature),
+                status=status,
+                expected_gain=expected_gain,
+                confidence=confidence,
+                compatible=status != DirectionalEffectStatus.REGRESSIVE,
+                exact_mode_evidence=True,
+                reversible_across_modes=reversible,
+                reason=reason,
+                action_transfer_signature=transfer_signature,
+                structural_transfer_evidence=True,
+                entity_alias_conflict=bool(progressive and regressive),
             )
         if directional_related:
             if record_prediction:
@@ -361,8 +450,16 @@ class OnlineStateConditionedEffectModel:
                 exact_mode_evidence=False,
                 reversible_across_modes=reversible,
                 reason=(
-                    "same action has directional evidence in another latent mode; "
-                    "test this mode once"
+                    "same structural intervention has directional evidence in "
+                    "another latent mode; test this mode once"
+                ),
+                action_transfer_signature=transfer_signature,
+                structural_transfer_evidence=bool(
+                    transfer_signature != str(action_signature)
+                    or any(
+                        item.action_signature != str(action_signature)
+                        for item in directional_related
+                    )
                 ),
             )
         return DirectionalActionPrediction(
@@ -377,19 +474,26 @@ class OnlineStateConditionedEffectModel:
             exact_mode_evidence=False,
             reversible_across_modes=False,
             reason="no directional evidence for this action and latent mode",
+            action_transfer_signature=transfer_signature,
         )
 
     def note_selection(self, prediction: DirectionalActionPrediction) -> None:
+        if prediction.structural_transfer_evidence:
+            self._structural_transfer_selections += 1
         if prediction.status == DirectionalEffectStatus.PROGRESSIVE:
             self._progressive_selections += 1
         elif prediction.status == DirectionalEffectStatus.BRIDGE:
             self._bridge_selections += 1
+        elif prediction.status == DirectionalEffectStatus.NEEDS_ENTITY_CONTRAST:
+            self._entity_contrast_selections += 1
         elif prediction.status == DirectionalEffectStatus.NEEDS_MODE_CONTRAST:
             self._contrast_selections += 1
 
     def note_blocked(self, prediction: DirectionalActionPrediction) -> None:
         if prediction.status == DirectionalEffectStatus.REGRESSIVE:
             self._blocked_regressive_actions += 1
+            if prediction.structural_transfer_evidence:
+                self._blocked_structural_regressions += 1
 
     def is_reversible(
         self,
@@ -418,6 +522,14 @@ class OnlineStateConditionedEffectModel:
             (item.option_id, item.objective_id, item.action_signature)
             for item in evidence
         }
+        transfer_action_keys = {
+            (
+                item.option_id,
+                item.objective_id,
+                item.action_transfer_signature,
+            )
+            for item in evidence
+        }
         statuses = {
             status.value: sum(item.status == status for item in evidence)
             for status in DirectionalEffectStatus
@@ -433,6 +545,22 @@ class OnlineStateConditionedEffectModel:
             "latent_modes": len({item.mode_signature for item in evidence}),
             "mode_action_models": len(evidence),
             "action_objective_models": len(action_keys),
+            "entity_anchored_action_models": sum(
+                is_entity_anchored_signature(item.action_signature)
+                for item in evidence
+            ),
+            "structural_transfer_classes": len({
+                (
+                    item.option_id,
+                    item.objective_id,
+                    item.action_transfer_signature,
+                )
+                for item in evidence
+                if item.action_transfer_signature != item.action_signature
+            }),
+            "entity_alias_conflicts": self._entity_alias_conflict_count(
+                evidence
+            ),
             "statuses": statuses,
             "reversible_action_objectives": sum(
                 self.is_reversible(
@@ -440,16 +568,27 @@ class OnlineStateConditionedEffectModel:
                     objective_id=objective_id,
                     action_signature=action_signature,
                 )
-                for option_id, objective_id, action_signature in action_keys
+                for option_id, objective_id, action_signature in transfer_action_keys
             ),
             "predictions": self._predictions,
             "exact_mode_predictions": self._exact_predictions,
             "mode_contrast_predictions": self._contrast_predictions,
             "bridge_predictions": self._bridge_predictions,
+            "structural_transfer_predictions": (
+                self._structural_transfer_predictions
+            ),
+            "entity_contrast_predictions": self._entity_contrast_predictions,
             "progressive_selections": self._progressive_selections,
             "bridge_selections": self._bridge_selections,
+            "structural_transfer_selections": (
+                self._structural_transfer_selections
+            ),
+            "entity_contrast_selections": self._entity_contrast_selections,
             "mode_contrast_selections": self._contrast_selections,
             "blocked_regressive_actions": self._blocked_regressive_actions,
+            "blocked_structural_regressions": (
+                self._blocked_structural_regressions
+            ),
             "hypotheses": [item.to_dict() for item in evidence],
         }
 
@@ -459,13 +598,49 @@ class OnlineStateConditionedEffectModel:
         option_id: str,
         objective_id: str,
         action_signature: str,
+        action_transfer_signature: str = "",
     ) -> list[StateConditionedActionEvidence]:
+        transfer_signature = (
+            str(action_transfer_signature)
+            or semantic_transfer_signature(str(action_signature))
+        )
         return [
             item for item in self._evidence.values()
             if item.option_id == str(option_id)
             and item.objective_id == str(objective_id)
-            and item.action_signature == str(action_signature)
+            and item.action_transfer_signature == transfer_signature
         ]
+
+    @staticmethod
+    def _has_entity_alias_conflict(
+        evidence: Sequence[StateConditionedActionEvidence],
+    ) -> bool:
+        progressive = {
+            item.action_signature for item in evidence if item.progress_events > 0
+        }
+        regressive = {
+            item.action_signature for item in evidence if item.regression_events > 0
+        }
+        return bool(progressive and regressive and progressive != regressive)
+
+    @classmethod
+    def _entity_alias_conflict_count(
+        cls,
+        evidence: Sequence[StateConditionedActionEvidence],
+    ) -> int:
+        groups: Dict[
+            Tuple[str, str, str, str],
+            list[StateConditionedActionEvidence],
+        ] = {}
+        for item in evidence:
+            key = (
+                item.option_id,
+                item.objective_id,
+                item.mode_signature,
+                item.action_transfer_signature,
+            )
+            groups.setdefault(key, []).append(item)
+        return sum(cls._has_entity_alias_conflict(group) for group in groups.values())
 
     def _bridge_estimate(
         self,
@@ -509,7 +684,11 @@ class OnlineStateConditionedEffectModel:
         regressive_modes = {
             item.mode_signature for item in evidence if item.regression_events > 0
         }
-        return bool(progressive_modes and regressive_modes)
+        return any(
+            progressive_mode != regressive_mode
+            for progressive_mode in progressive_modes
+            for regressive_mode in regressive_modes
+        )
 
 
 def latent_mode_signature(

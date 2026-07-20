@@ -61,8 +61,12 @@ deliberate experiments, learns 28 state-conditioned action models, and obtains
 is ablated. SAGE.8s can persist after such progress and compose an observed
 mode bridge with its progressive follow-up, but no profitable bridge is
 available in the current five-game run; its held-out metrics therefore remain
-identical to SAGE.8r. It still finds no level or win gain in either arm; this is
-recorded as a negative terminal result, not relabelled as ARC progress.
+identical to SAGE.8r. SAGE.8t replaces color-only click aliases with concrete
+entity/role slots plus position-invariant transfer classes: the same run learns
+34 concrete identities, 28 structural classes, and makes 2 structurally
+transferred selections without changing the 782 objective reductions. It still
+finds no level or win gain in either arm; this is recorded as a negative
+terminal result, not relabelled as ARC progress.
 
 ## Sampler Roadmap
 

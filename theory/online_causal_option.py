@@ -20,12 +20,15 @@ from .online_causal_subgoal_graph import (
     CausalSubgoalEdgeStatus,
     transition_effect_signature,
 )
-from .online_goal_hypothesis import semantic_intervention_signature
 from .online_effect_conditioned_subgoal import (
     EffectConditionedSubgoalSelection,
     OnlineEffectConditionedSubgoalStore,
 )
 from .online_persistent_pursuit import OnlinePersistentPursuitPolicy
+from .online_semantic_intervention import (
+    SemanticInterventionAnchor,
+    semantic_intervention_anchor,
+)
 from .online_state_conditioned_effect import DirectionalActionPrediction
 from .online_terminal_objective import OnlineTerminalObjectiveStore
 
@@ -232,8 +235,13 @@ class CausalOptionSelection:
     action_name: str
     action_data: Dict[str, Any]
     intervention_signature: str
+    intervention_transfer_signature: str
     selection_utility: float
     replaying_terminal_sequence: bool
+    intervention_entity_signature: str = ""
+    intervention_structural_role_signature: str = ""
+    intervention_instance_signature: str = ""
+    entity_anchored_intervention: bool = False
     downstream_subgoal_id: str = ""
     downstream_objective_id: str = ""
     downstream_subgoal_status: str = ""
@@ -246,6 +254,8 @@ class CausalOptionSelection:
     directionally_compatible: bool = True
     reversible_action: bool = False
     directional_mode_contrast: bool = False
+    directional_structural_transfer: bool = False
+    directional_entity_alias_conflict: bool = False
     directional_bridge_target_mode_signature: str = ""
     directional_bridge_followup_action_signature: str = ""
     persistent_pursuit: bool = False
@@ -273,6 +283,7 @@ class OnlineCausalOptionStore:
         max_actions_per_effect_conditioned_subgoal: int = 2,
         enable_state_conditioned_directional_control: bool = True,
         enable_persistent_directional_pursuit: bool = True,
+        enable_entity_anchored_interventions: bool = True,
         persistent_actions_per_progress: int = 2,
         max_persistent_actions_per_subgoal: int = 6,
         persistent_rollout_actions_per_progress: int = 2,
@@ -287,6 +298,9 @@ class OnlineCausalOptionStore:
         self.minimum_terminal_support = max(1, int(minimum_terminal_support))
         self.enable_effect_conditioned_subgoals = bool(
             enable_effect_conditioned_subgoals
+        )
+        self.enable_entity_anchored_interventions = bool(
+            enable_entity_anchored_interventions
         )
         self.base_downstream_actions = min(
             self.max_downstream_actions,
@@ -334,6 +348,9 @@ class OnlineCausalOptionStore:
         self._censored_openings = 0
         self._dynamic_budget_extensions = 0
         self._budget_pruned_rollouts = 0
+        self._anchored_candidate_signatures: set[str] = set()
+        self._anchored_transfer_signatures: set[str] = set()
+        self._anchored_selections = 0
 
     @property
     def active_option_id(self) -> str:
@@ -444,16 +461,14 @@ class OnlineCausalOptionStore:
             safe_actions or observation.available_actions,
             click_actions,
         )
-        action_signatures = tuple(
-            signature
+        anchors = [
+            self.intervention_anchor(action_name, action_data, observation)
             for action_name, action_data in concrete_actions
-            for signature in (
-                semantic_intervention_signature(
-                    action_name,
-                    action_data,
-                    observation,
-                ),
-            )
+        ]
+        action_signatures = tuple(
+            anchor.concrete_signature
+            for anchor in anchors
+            for signature in (anchor.concrete_signature,)
             if active.signature_attempts.get(signature, 0)
             < self.max_trials_per_signature
         )
@@ -648,11 +663,12 @@ class OnlineCausalOptionStore:
             > self.max_actions_per_effect_conditioned_subgoal
         )
         for action_name, action_data in candidates:
-            signature = semantic_intervention_signature(
+            anchor = self.intervention_anchor(
                 action_name,
                 action_data,
                 observation,
             )
+            signature = anchor.concrete_signature
             branch_attempts = active.signature_attempts.get(signature, 0)
             if branch_attempts >= self.max_trials_per_signature:
                 continue
@@ -660,7 +676,11 @@ class OnlineCausalOptionStore:
             total_attempts = 0 if evidence is None else evidence.attempts
             productivity = 0.0 if evidence is None else evidence.productivity
             preparation_penalty = int(
-                signature in option.productive_preparation_signatures
+                bool({
+                    signature,
+                    anchor.transfer_signature,
+                    anchor.legacy_signature,
+                } & option.productive_preparation_signatures)
             )
             replay_match = int(bool(replay_signature) and signature == replay_signature)
             progress_replay_match = int(
@@ -673,7 +693,12 @@ class OnlineCausalOptionStore:
                 and (
                     directional_prediction is None
                     or directional_prediction.status.value
-                    not in {"progressive", "bridge", "needs_mode_contrast"}
+                    not in {
+                        "progressive",
+                        "bridge",
+                        "needs_entity_contrast",
+                        "needs_mode_contrast",
+                    }
                 )
                 and not replay_match
                 and not progress_replay_match
@@ -704,7 +729,11 @@ class OnlineCausalOptionStore:
                 and action_name == directed_name
                 and dict(action_data) == directed_data
             )
-            exact_preference = int(signature in preferred)
+            exact_preference = int(bool({
+                signature,
+                anchor.transfer_signature,
+                anchor.legacy_signature,
+            } & preferred))
             subgoal_action_utility = (
                 0.0
                 if downstream_subgoal is None
@@ -733,12 +762,13 @@ class OnlineCausalOptionStore:
                     productivity,
                     -preparation_penalty,
                     -branch_attempts,
-                    signature,
+                    anchor.legacy_signature,
                 ),
                 action_name,
                 action_data,
                 signature,
                 directional_prediction,
+                anchor,
             ))
         if not ranked:
             self._close_active(censored=False)
@@ -749,6 +779,7 @@ class OnlineCausalOptionStore:
             action_data,
             signature,
             directional_prediction,
+            anchor,
         ) = max(ranked, key=lambda item: item[0])
         terminal_replay_selected = bool(
             replay_signature and signature == replay_signature
@@ -758,6 +789,8 @@ class OnlineCausalOptionStore:
             and signature == progress_replay_signature
         )
         self._selection_count += 1
+        if anchor.anchored:
+            self._anchored_selections += 1
         if directional_prediction is not None:
             self.downstream_subgoals.note_directional_selection(
                 directional_prediction
@@ -781,8 +814,15 @@ class OnlineCausalOptionStore:
             action_name=action_name,
             action_data=dict(action_data),
             intervention_signature=signature,
+            intervention_transfer_signature=anchor.transfer_signature,
             selection_utility=option.utility,
             replaying_terminal_sequence=terminal_replay_selected,
+            intervention_entity_signature=anchor.entity_signature,
+            intervention_structural_role_signature=(
+                anchor.structural_role_signature
+            ),
+            intervention_instance_signature=anchor.instance_signature,
+            entity_anchored_intervention=anchor.anchored,
             downstream_subgoal_id=(
                 "" if downstream_subgoal is None else downstream_subgoal.subgoal_id
             ),
@@ -835,6 +875,16 @@ class OnlineCausalOptionStore:
                 and directional_prediction.status.value
                 == "needs_mode_contrast"
             ),
+            directional_structural_transfer=(
+                False
+                if directional_prediction is None
+                else directional_prediction.structural_transfer_evidence
+            ),
+            directional_entity_alias_conflict=(
+                False
+                if directional_prediction is None
+                else directional_prediction.entity_alias_conflict
+            ),
             directional_bridge_target_mode_signature=(
                 ""
                 if directional_prediction is None
@@ -877,7 +927,11 @@ class OnlineCausalOptionStore:
         if downstream_subgoal is None:
             return {}
         signatures = [
-            semantic_intervention_signature(action_name, action_data, observation)
+            self.intervention_anchor(
+                action_name,
+                action_data,
+                observation,
+            ).concrete_signature
             for action_name, action_data in _concrete_actions(
                 safe_actions,
                 click_actions,
@@ -967,11 +1021,11 @@ class OnlineCausalOptionStore:
         if participates:
             signature = str(intervention_signature)
             if not signature:
-                signature = semantic_intervention_signature(
+                signature = self.intervention_anchor(
                     update.action,
                     _action_data(update),
                     update.record.obs_before,
-                )
+                ).concrete_signature
             effect_signature = transition_effect_signature(update)
             active.action_signatures.append(signature)
             active.effect_signatures.append(effect_signature)
@@ -1276,6 +1330,16 @@ class OnlineCausalOptionStore:
             "censored_openings": self._censored_openings,
             "dynamic_budget_extensions": self._dynamic_budget_extensions,
             "budget_pruned_rollouts": self._budget_pruned_rollouts,
+            "entity_anchored_interventions_enabled": (
+                self.enable_entity_anchored_interventions
+            ),
+            "entity_anchored_candidate_signatures": len(
+                self._anchored_candidate_signatures
+            ),
+            "entity_anchored_transfer_signatures": len(
+                self._anchored_transfer_signatures
+            ),
+            "entity_anchored_selections": self._anchored_selections,
             "effect_conditioned_subgoals_enabled": (
                 self.enable_effect_conditioned_subgoals
             ),
@@ -1287,6 +1351,23 @@ class OnlineCausalOptionStore:
             ),
             "hypotheses": [option.to_dict() for option in options],
         }
+
+    def intervention_anchor(
+        self,
+        action_name: str,
+        action_data: Mapping[str, Any],
+        observation: GameObservation,
+    ) -> SemanticInterventionAnchor:
+        anchor = semantic_intervention_anchor(
+            action_name,
+            action_data,
+            observation,
+            enabled=self.enable_entity_anchored_interventions,
+        )
+        if anchor.anchored:
+            self._anchored_candidate_signatures.add(anchor.concrete_signature)
+            self._anchored_transfer_signatures.add(anchor.transfer_signature)
+        return anchor
 
     def _close_active(self, *, censored: bool) -> None:
         active = self._active
@@ -1421,7 +1502,12 @@ class OnlineCausalOptionStore:
         return any(
             prediction.compatible
             and prediction.status.value
-            in {"progressive", "bridge", "needs_mode_contrast"}
+            in {
+                "progressive",
+                "bridge",
+                "needs_entity_contrast",
+                "needs_mode_contrast",
+            }
             for prediction in predictions.values()
         )
 

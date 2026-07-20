@@ -5204,3 +5204,167 @@ les effets peuvent etre opposes. SAGE doit apprendre des liaisons
 equivalentes sans confondre les instances, puis fournir ces actions ancrees au
 planificateur de ponts. C'est cette precision qui manque actuellement pour
 produire des continuations rentables sur les niveaux held-out.
+
+## SAGE.8t - entity-anchored semantic interventions
+
+Objectif :
+
+- Remplacer, dans le suffixe causal, l'identite trop large
+  `ACTION6::color:N` par une intervention concrete liee a une entite et a son
+  role structurel courant.
+- Conserver separement une classe de transfert sans coordonnee absolue afin de
+  reutiliser une preuve entre positions structurellement equivalentes.
+- Distinguer les instances equivalentes par un slot concret pour que la limite
+  d'essais, le credit directionnel et les contradictions ne soient plus
+  partages aveuglement entre tous les objets d'une meme couleur.
+- Combiner cette identite avec le mode latent de SAGE.8r : la cle effective
+  devient `action x entite x role structurel x mode`.
+- Detecter explicitement les effets opposes de deux instances d'une meme classe
+  et demander un contraste d'entite au lieu de transferer arbitrairement la
+  premiere preuve.
+- Preserver la politique de SAGE.8s tant qu'aucune preuve structurelle ne la
+  departage : la signature historique reste le dernier tie-break commun.
+- Ne jamais convertir une reduction locale, un transfert ou un contraste
+  d'entite en preuve terminale ; seuls level-up et WIN observes en ligne
+  conservent cette fonction.
+
+Representation :
+
+- `concrete_signature` encode l'action, la couleur, la forme normalisee, une
+  classe d'aire, le role structurel et un slot d'instance.
+- `transfer_signature` retire uniquement le slot d'instance ; elle ne contient
+  aucune coordonnee absolue.
+- Le role structurel encode le contact avec le bord, la relation au joueur, la
+  multiplicite de l'entite et ses degres locaux d'adjacence et d'alignement.
+- Deux translations absolues d'une meme configuration produisent la meme
+  classe de transfert.
+- Deux instances equivalentes dans la meme configuration partagent cette
+  classe mais conservent des signatures concretes distinctes.
+- Une action non cliquable ou un clic non rattachable a un objet conserve sa
+  signature historique, sans fabriquer d'ancrage.
+
+Apprentissage et controle :
+
+- La preuve exacte d'une instance dans un mode reste prioritaire.
+- En l'absence de preuve exacte, une preuve coherente de la meme classe
+  structurelle et du meme mode peut etre transferee.
+- Si une instance progresse et une autre regresse dans le meme mode, une
+  nouvelle instance recoit `needs_entity_contrast`, jamais `progressive`.
+- Une contradiction entre instances dans un meme mode n'est plus comptee comme
+  reversibilite modale.
+- Les interventions des plans temporels qui participent a une option causale
+  sont re-ancrees avant credit ; cela evite de perdre les preuves acquises avant
+  l'ouverture explicite du suffixe.
+- Les limites d'essais du rollout sont appliquees a la signature concrete, pas
+  a toute la couleur.
+- Chaque decision audite la classe de transfert, l'entite, le role, le slot,
+  l'usage d'un transfert structurel et un conflit d'alias eventuel.
+
+Ajouts :
+
+- `theory/online_semantic_intervention.py`
+- extension de `theory/online_state_conditioned_effect.py`
+- extension de `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v11 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_semantic_intervention.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8t_entity_anchor_ablation.json`
+- `diagnostics/sage/sage8t_cn04_entity_anchors.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v11`
+- `paired_protocol.protocol_gate_passed=true`
+- `entity_anchored_interventions_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.entity_anchored_candidate_signatures=34`
+- `unified.entity_anchored_transfer_signatures=28`
+- `unified.entity_anchored_selections=4`
+- `unified.directional_entity_anchored_action_models=16`
+- `unified.directional_structural_transfer_classes=8`
+- `unified.directional_structural_transfer_predictions=6`
+- `unified.directional_structural_transfer_selections=2`
+- `unified.directional_entity_alias_conflicts=0`
+- `unified.directional_entity_contrast_selections=0`
+- `unified.causal_option_downstream_actions=12`
+- `unified.causal_option_downstream_effects=8`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `entity_anchored_interventions_enabled_in_unified=false`
+- toutes les metriques d'ancrage, de transfert structurel et de contraste
+  d'entite valent zero ;
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.causal_option_downstream_actions=12`
+- `unified.causal_option_downstream_effects=8`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `levels_completed=0`
+- `wins=0`
+
+Audit cible `cn04-65d47d14`, seed 0, 2 resets x 40 :
+
+- 12 signatures concretes et 9 classes structurelles sont inventoriees ;
+- 8 modeles directionnels sont ancres dans une entite et 4 classes sont
+  disponibles pour le transfert ;
+- 3 predictions et 1 selection utilisent effectivement une preuve
+  structurellement transferee ;
+- le clic de poursuite `exhaust(color0)` est maintenant audite avec sa forme,
+  son role et son slot au lieu du seul alias `ACTION6::color:8` ;
+- le run conserve exactement 61 experiences, 48 reductions objectives, 1
+  progres de poursuite et 1 sous-but soutenu comme SAGE.8s ;
+- `levels_completed=0` et `wins=0`.
+
+Validation synthetique en ligne :
+
+- deux objets de meme couleur mais de roles differents ne partagent plus leur
+  classe de transfert ;
+- une translation absolue conserve les signatures structurelles ;
+- deux instances equivalentes ont des slots distincts et une classe commune ;
+- un progres coherent est transfere a une instance equivalente non testee ;
+- des effets opposes produisent `needs_entity_contrast` tandis que les deux
+  preuves exactes restent respectivement progressive et regressive ;
+- la limite d'essais d'une instance ne censure plus l'autre ;
+- l'ablation restaure exactement l'identite couleur de SAGE.8s.
+
+Validation :
+
+- `new_sage8t_tests=8 passed`
+- `targeted_cognitive_tests=64 passed`
+- `full_repository_tests=1403 passed`
+- `scoped_ruff_and_compileall=passed`
+
+Lecture : le verrou de representation semantique est franchi sans regression
+held-out. Le controleur sait maintenant quel objet concret a recu une action,
+quelle classe structurelle peut porter la preuve ailleurs et quand des
+instances equivalentes se contredisent. Les deux selections transferees du run
+principal montrent que cette representation est utilisee, mais l'absence de
+conflit observe et de continuation persistante signifie qu'elle n'a pas encore
+produit de nouvelle competence terminale. Le resultat reste donc neutre sur
+ARC : ni niveau ni WIN supplementaire.
+
+Le prochain verrou est l'acquisition active de liaisons causales entre entites.
+Les roles de SAGE.8t sont encore des descriptions passives et les slots peuvent
+changer quand des objets apparaissent, disparaissent ou se deplacent. SAGE doit
+maintenir une correspondance `entite avant -> entite apres`, generer des
+contrastes controles entre arguments structurels dans le meme mode, puis
+apprendre quelle entite porte l'effet recherche. Cette liaison active doit
+alimenter directement les ponts persistants sans utiliser le resultat terminal
+pour choisir retrospectivement le bon objet.

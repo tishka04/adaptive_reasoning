@@ -128,6 +128,7 @@ class UnifiedCognitiveConfig:
     enable_effect_conditioned_downstream_subgoals: bool = True
     enable_state_conditioned_directional_control: bool = True
     enable_persistent_directional_pursuit: bool = True
+    enable_entity_anchored_interventions: bool = True
 
 
 @dataclass(frozen=True)
@@ -169,6 +170,11 @@ class CognitiveDecision:
     causal_option_terminal_status: str = ""
     causal_option_phase: str = ""
     causal_option_intervention_signature: str = ""
+    causal_option_intervention_transfer_signature: str = ""
+    causal_option_intervention_entity_signature: str = ""
+    causal_option_intervention_structural_role_signature: str = ""
+    causal_option_intervention_instance_signature: str = ""
+    causal_option_entity_anchored_intervention: bool = False
     causal_option_selection_utility: float | None = None
     causal_option_replaying_terminal_sequence: bool = False
     causal_option_downstream_subgoal_id: str = ""
@@ -183,6 +189,8 @@ class CognitiveDecision:
     causal_option_directionally_compatible: bool = True
     causal_option_reversible_action: bool = False
     causal_option_directional_mode_contrast: bool = False
+    causal_option_directional_structural_transfer: bool = False
+    causal_option_directional_entity_alias_conflict: bool = False
     causal_option_directional_bridge_target_mode_signature: str = ""
     causal_option_directional_bridge_followup_action_signature: str = ""
     causal_option_persistent_pursuit: bool = False
@@ -232,6 +240,21 @@ class CognitiveDecision:
             "causal_option_intervention_signature": (
                 self.causal_option_intervention_signature
             ),
+            "causal_option_intervention_transfer_signature": (
+                self.causal_option_intervention_transfer_signature
+            ),
+            "causal_option_intervention_entity_signature": (
+                self.causal_option_intervention_entity_signature
+            ),
+            "causal_option_intervention_structural_role_signature": (
+                self.causal_option_intervention_structural_role_signature
+            ),
+            "causal_option_intervention_instance_signature": (
+                self.causal_option_intervention_instance_signature
+            ),
+            "causal_option_entity_anchored_intervention": (
+                self.causal_option_entity_anchored_intervention
+            ),
             "causal_option_selection_utility": (
                 self.causal_option_selection_utility
             ),
@@ -273,6 +296,12 @@ class CognitiveDecision:
             ),
             "causal_option_directional_mode_contrast": (
                 self.causal_option_directional_mode_contrast
+            ),
+            "causal_option_directional_structural_transfer": (
+                self.causal_option_directional_structural_transfer
+            ),
+            "causal_option_directional_entity_alias_conflict": (
+                self.causal_option_directional_entity_alias_conflict
             ),
             "causal_option_directional_bridge_target_mode_signature": (
                 self.causal_option_directional_bridge_target_mode_signature
@@ -419,6 +448,9 @@ class UnifiedCognitiveController:
             ),
             enable_persistent_directional_pursuit=(
                 self.config.enable_persistent_directional_pursuit
+            ),
+            enable_entity_anchored_interventions=(
+                self.config.enable_entity_anchored_interventions
             ),
             persistent_actions_per_progress=(
                 self.config.persistent_actions_per_progress
@@ -1031,6 +1063,21 @@ class UnifiedCognitiveController:
             causal_option_intervention_signature=(
                 selection.intervention_signature
             ),
+            causal_option_intervention_transfer_signature=(
+                selection.intervention_transfer_signature
+            ),
+            causal_option_intervention_entity_signature=(
+                selection.intervention_entity_signature
+            ),
+            causal_option_intervention_structural_role_signature=(
+                selection.intervention_structural_role_signature
+            ),
+            causal_option_intervention_instance_signature=(
+                selection.intervention_instance_signature
+            ),
+            causal_option_entity_anchored_intervention=(
+                selection.entity_anchored_intervention
+            ),
             causal_option_selection_utility=selection.selection_utility,
             causal_option_replaying_terminal_sequence=(
                 selection.replaying_terminal_sequence
@@ -1070,6 +1117,12 @@ class UnifiedCognitiveController:
             causal_option_reversible_action=selection.reversible_action,
             causal_option_directional_mode_contrast=(
                 selection.directional_mode_contrast
+            ),
+            causal_option_directional_structural_transfer=(
+                selection.directional_structural_transfer
+            ),
+            causal_option_directional_entity_alias_conflict=(
+                selection.directional_entity_alias_conflict
             ),
             causal_option_directional_bridge_target_mode_signature=(
                 selection.directional_bridge_target_mode_signature
@@ -2156,6 +2209,20 @@ class UnifiedCognitiveController:
             update,
             pending.action_data,
         )
+        option_intervention_signature = ""
+        if pending is not None and (
+            pending.causal_option_id
+            or pending.causal_option_edge_key
+            or pending.causal_subgoal_edge_key
+        ):
+            option_intervention_signature = (
+                pending.causal_option_intervention_signature
+                or self.causal_options.intervention_anchor(
+                    pending.action_name,
+                    pending.action_data,
+                    update.record.obs_before,
+                ).concrete_signature
+            )
         outcome = self.causal_options.observe_transition(
             update,
             store=self.terminal_objectives,
@@ -2166,12 +2233,7 @@ class UnifiedCognitiveController:
                     or pending.causal_subgoal_edge_key
                 )
             ),
-            intervention_signature=(
-                "" if pending is None else (
-                    pending.causal_option_intervention_signature
-                    or pending.causal_intervention_signature
-                )
-            ),
+            intervention_signature=option_intervention_signature,
             intervention_id=(
                 "" if pending is None else pending.intervention_id
             ),

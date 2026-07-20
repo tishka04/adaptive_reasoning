@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v10"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v11"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -121,6 +121,17 @@ def _persistent_directional_pursuit_disabled_controller(
     )
 
 
+def _entity_anchored_interventions_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_entity_anchored_interventions=False
+        ),
+    )
+
+
 @dataclass(frozen=True)
 class _ExecutableAction:
     name: str
@@ -189,6 +200,7 @@ def run_unified_cognition_ab_benchmark(
     enable_effect_conditioned_downstream_subgoals: bool = True,
     enable_state_conditioned_directional_control: bool = True,
     enable_persistent_directional_pursuit: bool = True,
+    enable_entity_anchored_interventions: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -231,6 +243,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _persistent_directional_pursuit_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_entity_anchored_interventions
+    ):
+        effective_controller_factory = (
+            _entity_anchored_interventions_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -299,6 +318,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         persistent_directional_pursuit_enabled=(
             enable_persistent_directional_pursuit
+        ),
+        entity_anchored_interventions_enabled=(
+            enable_entity_anchored_interventions
         ),
     )
     if not include_traces:
@@ -630,6 +652,23 @@ def _run_arm(
         "causal_option_censored_openings": int(
             causal_option_summary.get("censored_openings", 0) or 0
         ),
+        "entity_anchored_candidate_signatures": int(
+            causal_option_summary.get(
+                "entity_anchored_candidate_signatures",
+                0,
+            )
+            or 0
+        ),
+        "entity_anchored_transfer_signatures": int(
+            causal_option_summary.get(
+                "entity_anchored_transfer_signatures",
+                0,
+            )
+            or 0
+        ),
+        "entity_anchored_selections": int(
+            causal_option_summary.get("entity_anchored_selections", 0) or 0
+        ),
         "effect_conditioned_goal_candidates_generated": int(
             controller_summary.get(
                 "effect_conditioned_goal_candidates_generated",
@@ -711,6 +750,15 @@ def _run_arm(
         "directional_mode_action_models": int(
             directional_summary.get("mode_action_models", 0) or 0
         ),
+        "directional_entity_anchored_action_models": int(
+            directional_summary.get("entity_anchored_action_models", 0) or 0
+        ),
+        "directional_structural_transfer_classes": int(
+            directional_summary.get("structural_transfer_classes", 0) or 0
+        ),
+        "directional_entity_alias_conflicts": int(
+            directional_summary.get("entity_alias_conflicts", 0) or 0
+        ),
         "directional_reversible_action_objectives": int(
             directional_summary.get("reversible_action_objectives", 0) or 0
         ),
@@ -726,17 +774,32 @@ def _run_arm(
         "directional_bridge_predictions": int(
             directional_summary.get("bridge_predictions", 0) or 0
         ),
+        "directional_structural_transfer_predictions": int(
+            directional_summary.get("structural_transfer_predictions", 0) or 0
+        ),
+        "directional_entity_contrast_predictions": int(
+            directional_summary.get("entity_contrast_predictions", 0) or 0
+        ),
         "directional_progressive_selections": int(
             directional_summary.get("progressive_selections", 0) or 0
         ),
         "directional_bridge_selections": int(
             directional_summary.get("bridge_selections", 0) or 0
         ),
+        "directional_structural_transfer_selections": int(
+            directional_summary.get("structural_transfer_selections", 0) or 0
+        ),
+        "directional_entity_contrast_selections": int(
+            directional_summary.get("entity_contrast_selections", 0) or 0
+        ),
         "directional_mode_contrast_selections": int(
             directional_summary.get("mode_contrast_selections", 0) or 0
         ),
         "directional_blocked_regressive_actions": int(
             directional_summary.get("blocked_regressive_actions", 0) or 0
+        ),
+        "directional_blocked_structural_regressions": int(
+            directional_summary.get("blocked_structural_regressions", 0) or 0
         ),
         "persistent_pursuit_commitment_selections": int(
             persistent_summary.get("commitment_selections", 0) or 0
@@ -752,6 +815,9 @@ def _run_arm(
         ),
         "persistent_pursuit_bridge_actions": int(
             persistent_summary.get("bridge_actions", 0) or 0
+        ),
+        "persistent_pursuit_entity_contrast_actions": int(
+            persistent_summary.get("entity_contrast_actions", 0) or 0
         ),
         "persistent_pursuit_mode_contrast_actions": int(
             persistent_summary.get("mode_contrast_actions", 0) or 0
@@ -978,6 +1044,7 @@ def _summarize_benchmark(
     effect_conditioned_downstream_subgoals_enabled: bool,
     state_conditioned_directional_control_enabled: bool,
     persistent_directional_pursuit_enabled: bool,
+    entity_anchored_interventions_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1026,6 +1093,9 @@ def _summarize_benchmark(
             ),
             "persistent_directional_pursuit_enabled_in_unified": bool(
                 persistent_directional_pursuit_enabled
+            ),
+            "entity_anchored_interventions_enabled_in_unified": bool(
+                entity_anchored_interventions_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1296,6 +1366,15 @@ def _aggregate_arm(
         "causal_option_censored_openings": sum(
             int(row["causal_option_censored_openings"]) for row in rows
         ),
+        "entity_anchored_candidate_signatures": sum(
+            int(row["entity_anchored_candidate_signatures"]) for row in rows
+        ),
+        "entity_anchored_transfer_signatures": sum(
+            int(row["entity_anchored_transfer_signatures"]) for row in rows
+        ),
+        "entity_anchored_selections": sum(
+            int(row["entity_anchored_selections"]) for row in rows
+        ),
         "effect_conditioned_goal_candidates_generated": sum(
             int(row["effect_conditioned_goal_candidates_generated"])
             for row in rows
@@ -1376,6 +1455,17 @@ def _aggregate_arm(
         "directional_mode_action_models": sum(
             int(row["directional_mode_action_models"]) for row in rows
         ),
+        "directional_entity_anchored_action_models": sum(
+            int(row["directional_entity_anchored_action_models"])
+            for row in rows
+        ),
+        "directional_structural_transfer_classes": sum(
+            int(row["directional_structural_transfer_classes"])
+            for row in rows
+        ),
+        "directional_entity_alias_conflicts": sum(
+            int(row["directional_entity_alias_conflicts"]) for row in rows
+        ),
         "directional_reversible_action_objectives": sum(
             int(row["directional_reversible_action_objectives"])
             for row in rows
@@ -1392,17 +1482,37 @@ def _aggregate_arm(
         "directional_bridge_predictions": sum(
             int(row["directional_bridge_predictions"]) for row in rows
         ),
+        "directional_structural_transfer_predictions": sum(
+            int(row["directional_structural_transfer_predictions"])
+            for row in rows
+        ),
+        "directional_entity_contrast_predictions": sum(
+            int(row["directional_entity_contrast_predictions"])
+            for row in rows
+        ),
         "directional_progressive_selections": sum(
             int(row["directional_progressive_selections"]) for row in rows
         ),
         "directional_bridge_selections": sum(
             int(row["directional_bridge_selections"]) for row in rows
         ),
+        "directional_structural_transfer_selections": sum(
+            int(row["directional_structural_transfer_selections"])
+            for row in rows
+        ),
+        "directional_entity_contrast_selections": sum(
+            int(row["directional_entity_contrast_selections"])
+            for row in rows
+        ),
         "directional_mode_contrast_selections": sum(
             int(row["directional_mode_contrast_selections"]) for row in rows
         ),
         "directional_blocked_regressive_actions": sum(
             int(row["directional_blocked_regressive_actions"]) for row in rows
+        ),
+        "directional_blocked_structural_regressions": sum(
+            int(row["directional_blocked_structural_regressions"])
+            for row in rows
         ),
         "persistent_pursuit_commitment_selections": sum(
             int(row["persistent_pursuit_commitment_selections"])
@@ -1422,6 +1532,10 @@ def _aggregate_arm(
         ),
         "persistent_pursuit_bridge_actions": sum(
             int(row["persistent_pursuit_bridge_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_entity_contrast_actions": sum(
+            int(row["persistent_pursuit_entity_contrast_actions"])
             for row in rows
         ),
         "persistent_pursuit_mode_contrast_actions": sum(
@@ -1675,6 +1789,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8s progress-gated persistent pursuit only.",
     )
+    parser.add_argument(
+        "--disable-entity-anchored-interventions",
+        action="store_true",
+        help="Ablate SAGE.8t entity/structural-role action identities only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1711,6 +1830,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_persistent_directional_pursuit=(
             not args.disable_persistent_directional_pursuit
+        ),
+        enable_entity_anchored_interventions=(
+            not args.disable_entity_anchored_interventions
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

@@ -52,6 +52,7 @@ class OnlinePersistentPursuitPolicy:
         self._continuation_actions = 0
         self._directional_policy_actions = 0
         self._bridge_actions = 0
+        self._entity_contrast_actions = 0
         self._mode_contrast_actions = 0
         self._continuation_progress_events = 0
         self._repeated_progress_events = 0
@@ -138,6 +139,8 @@ class OnlinePersistentPursuitPolicy:
             self._directional_policy_actions += 1
             if status == "bridge":
                 self._bridge_actions += 1
+        elif status == "needs_entity_contrast":
+            self._entity_contrast_actions += 1
         elif status == "needs_mode_contrast":
             self._mode_contrast_actions += 1
         length = self._continuation_lengths.get(str(subgoal_id), 0) + 1
@@ -190,6 +193,7 @@ class OnlinePersistentPursuitPolicy:
             "continuation_actions": self._continuation_actions,
             "directional_policy_actions": self._directional_policy_actions,
             "bridge_actions": self._bridge_actions,
+            "entity_contrast_actions": self._entity_contrast_actions,
             "mode_contrast_actions": self._mode_contrast_actions,
             "continuation_progress_events": (
                 self._continuation_progress_events

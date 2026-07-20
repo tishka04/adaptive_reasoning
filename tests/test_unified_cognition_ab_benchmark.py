@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v10"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v11"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -97,6 +97,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         protocol["persistent_directional_pursuit_enabled_in_unified"]
         is True
     )
+    assert protocol["entity_anchored_interventions_enabled_in_unified"] is True
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -145,6 +146,9 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "causal_option_rollouts" in metrics["unified"]
     assert "causal_option_downstream_actions" in metrics["unified"]
     assert "causal_option_terminal_credited_events" in metrics["unified"]
+    assert "entity_anchored_candidate_signatures" in metrics["unified"]
+    assert "entity_anchored_transfer_signatures" in metrics["unified"]
+    assert "entity_anchored_selections" in metrics["unified"]
     assert "terminal_supported_causal_options" in metrics["unified"]
     assert "effect_conditioned_goal_candidates_generated" in metrics["unified"]
     assert "effect_conditioned_subgoals_generated" in metrics["unified"]
@@ -160,11 +164,16 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "directional_mode_contrast_selections" in metrics["unified"]
     assert "directional_bridge_predictions" in metrics["unified"]
     assert "directional_bridge_selections" in metrics["unified"]
+    assert "directional_entity_anchored_action_models" in metrics["unified"]
+    assert "directional_structural_transfer_predictions" in metrics["unified"]
+    assert "directional_entity_alias_conflicts" in metrics["unified"]
+    assert "directional_entity_contrast_selections" in metrics["unified"]
     assert "directional_blocked_regressive_actions" in metrics["unified"]
     assert "persistent_pursuit_commitment_selections" in metrics["unified"]
     assert "persistent_pursuit_continuation_actions" in metrics["unified"]
     assert "persistent_pursuit_progress_events" in metrics["unified"]
     assert "persistent_pursuit_bridge_actions" in metrics["unified"]
+    assert "persistent_pursuit_entity_contrast_actions" in metrics["unified"]
     assert "persistent_pursuit_rollout_budget_extensions" in metrics["unified"]
     assert "persistent_pursuit_longest_continuation" in metrics["unified"]
     assert "causal_option_dynamic_budget_extensions" in metrics["unified"]
@@ -306,3 +315,22 @@ def test_ab_benchmark_exposes_persistent_pursuit_ablation():
     assert metrics["persistent_pursuit_commitment_selections"] == 0
     assert metrics["persistent_pursuit_continuation_actions"] == 0
     assert metrics["persistent_pursuit_progress_events"] == 0
+
+
+def test_ab_benchmark_exposes_entity_anchor_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-entity-anchor-ablation"],
+        seeds=[19],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_entity_anchored_interventions=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["persistent_directional_pursuit_enabled_in_unified"] is True
+    assert protocol["entity_anchored_interventions_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["entity_anchored_candidate_signatures"] == 0
+    assert metrics["entity_anchored_transfer_signatures"] == 0
+    assert metrics["entity_anchored_selections"] == 0
