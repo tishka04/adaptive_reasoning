@@ -272,6 +272,119 @@ def test_known_neutral_transition_can_bridge_to_a_progressive_mode():
     assert model.summary()["bridge_predictions"] == 1
 
 
+def test_observed_regression_can_restore_an_exact_requested_mode():
+    store = _store()
+    objective = _objective(store)
+    model = OnlineStateConditionedEffectModel()
+    target = _observation(_grid(2))
+    current = _observation(_grid(1))
+    model.observe(
+        option_id="option",
+        objective=objective,
+        observation_before=current,
+        observation_after=target,
+        action_signature="ACTION2",
+        effect_signature="3:+1",
+        branch_index=0,
+        context_signature="observed-restoration",
+        source="pursuit",
+    )
+
+    predictions = model.restoration_predictions(
+        option_id="option",
+        objective=objective,
+        observation=current,
+        target_mode_signature=latent_mode_signature(target, objective),
+        action_signatures=["ACTION1", "ACTION2"],
+    )
+
+    prediction = predictions["ACTION2"]
+    assert prediction.compatible is True
+    assert prediction.path_action_signatures == ("ACTION2",)
+    assert prediction.expected_next_mode_signature == latent_mode_signature(
+        target,
+        objective,
+    )
+    assert prediction.selection_rank == 40
+
+
+def test_restoration_composes_two_observed_mode_transitions():
+    store = _store()
+    objective = _objective(store)
+    model = OnlineStateConditionedEffectModel()
+    current = _observation(_grid(1, marker=8))
+    middle = _observation(_grid(1, marker=9))
+    target = _observation(_grid(2, marker=9))
+    model.observe(
+        option_id="option",
+        objective=objective,
+        observation_before=current,
+        observation_after=middle,
+        action_signature="ACTION1",
+        effect_signature="8:-1,9:+1",
+        branch_index=0,
+        context_signature="restore-step-1",
+        source="pursuit",
+    )
+    model.observe(
+        option_id="option",
+        objective=objective,
+        observation_before=middle,
+        observation_after=target,
+        action_signature="ACTION2",
+        effect_signature="3:+1",
+        branch_index=0,
+        context_signature="restore-step-2",
+        source="pursuit",
+    )
+
+    prediction = model.restoration_predictions(
+        option_id="option",
+        objective=objective,
+        observation=current,
+        target_mode_signature=latent_mode_signature(target, objective),
+        action_signatures=["ACTION1", "ACTION2"],
+    )["ACTION1"]
+
+    assert prediction.path_action_signatures == ("ACTION1", "ACTION2")
+    assert prediction.path_length == 2
+    assert prediction.path_mode_signatures[-1] == latent_mode_signature(
+        target,
+        objective,
+    )
+
+
+def test_nondeterministic_mode_transition_is_not_a_restoration_recipe():
+    store = _store()
+    objective = _objective(store)
+    model = OnlineStateConditionedEffectModel()
+    current = _observation(_grid(1, marker=8))
+    target = _observation(_grid(2, marker=9))
+    alternative = _observation(_grid(3, marker=7))
+    for index, after in enumerate((target, alternative)):
+        model.observe(
+            option_id="option",
+            objective=objective,
+            observation_before=current,
+            observation_after=after,
+            action_signature="ACTION2",
+            effect_signature=f"outcome-{index}",
+            branch_index=index,
+            context_signature=f"ambiguous-{index}",
+            source="pursuit",
+        )
+
+    predictions = model.restoration_predictions(
+        option_id="option",
+        objective=objective,
+        observation=current,
+        target_mode_signature=latent_mode_signature(target, objective),
+        action_signatures=["ACTION2"],
+    )
+
+    assert predictions == {}
+
+
 def test_causal_suffix_prefers_mode_contrast_then_blocks_known_regression():
     store = _store()
     memory = OnlineEffectConditionedSubgoalStore()

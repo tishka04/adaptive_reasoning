@@ -133,6 +133,7 @@ class UnifiedCognitiveConfig:
     enable_mediated_entity_effect_induction: bool = True
     enable_online_mediated_anti_unification: bool = True
     enable_active_mediated_discrimination: bool = True
+    enable_active_mode_restoration: bool = True
     enable_active_mediated_replication: bool = True
 
 
@@ -226,6 +227,11 @@ class CognitiveDecision:
     causal_option_mediated_discrimination_contrast_value: str = ""
     causal_option_mediated_single_feature_contrast: bool = False
     causal_option_mediated_discrimination_same_latent_mode: bool = False
+    causal_option_mediated_restoration_request_id: str = ""
+    causal_option_mediated_restoration_target_mode_signature: str = ""
+    causal_option_mediated_restoration_expected_next_mode_signature: str = ""
+    causal_option_mediated_restoration_path_length: int = 0
+    causal_option_mediated_restoration_confidence: float | None = None
     causal_option_mediated_replication_request_id: str = ""
     causal_option_mediated_cross_branch_replication: bool = False
     causal_option_mediated_exact_semantic_replication: bool = False
@@ -420,6 +426,22 @@ class CognitiveDecision:
             "causal_option_mediated_discrimination_same_latent_mode": (
                 self.causal_option_mediated_discrimination_same_latent_mode
             ),
+            "causal_option_mediated_restoration_request_id": (
+                self.causal_option_mediated_restoration_request_id
+            ),
+            "causal_option_mediated_restoration_target_mode_signature": (
+                self.causal_option_mediated_restoration_target_mode_signature
+            ),
+            "causal_option_mediated_restoration_expected_next_mode_signature": (
+                self
+                .causal_option_mediated_restoration_expected_next_mode_signature
+            ),
+            "causal_option_mediated_restoration_path_length": (
+                self.causal_option_mediated_restoration_path_length
+            ),
+            "causal_option_mediated_restoration_confidence": (
+                self.causal_option_mediated_restoration_confidence
+            ),
             "causal_option_mediated_replication_request_id": (
                 self.causal_option_mediated_replication_request_id
             ),
@@ -575,6 +597,9 @@ class UnifiedCognitiveController:
             enable_active_mediated_discrimination=(
                 self.config.enable_active_mediated_discrimination
             ),
+            enable_active_mode_restoration=(
+                self.config.enable_active_mode_restoration
+            ),
             enable_active_mediated_replication=(
                 self.config.enable_active_mediated_replication
             ),
@@ -691,6 +716,7 @@ class UnifiedCognitiveController:
                 "causal_option_downstream_probe",
                 "causal_option_effect_subgoal_probe",
                 "causal_option_mediated_discrimination",
+                "causal_option_mode_restoration",
                 "causal_option_mediated_replication",
             }
         )
@@ -1131,6 +1157,14 @@ class UnifiedCognitiveController:
                 click_actions=click_actions,
             )
         )
+        mediated_restoration_predictions = (
+            self.causal_options.mediated_restoration_action_predictions(
+                observation,
+                store=self.terminal_objectives,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
+            )
+        )
         mediated_replication_predictions = (
             self.causal_options.mediated_replication_action_predictions(
                 observation,
@@ -1157,6 +1191,9 @@ class UnifiedCognitiveController:
             mediated_discrimination_predictions=(
                 mediated_discrimination_predictions
             ),
+            mediated_restoration_predictions=(
+                mediated_restoration_predictions
+            ),
             mediated_replication_predictions=(
                 mediated_replication_predictions
             ),
@@ -1180,18 +1217,22 @@ class UnifiedCognitiveController:
             selection.action_data,
         )
         source = (
-            "causal_option_mediated_discrimination"
-            if selection.mediated_discrimination_request_id
+            "causal_option_mode_restoration"
+            if selection.mediated_restoration_request_id
             else (
-                "causal_option_mediated_replication"
-                if selection.mediated_replication_request_id
+                "causal_option_mediated_discrimination"
+                if selection.mediated_discrimination_request_id
                 else (
-                    "causal_option_terminal_replay"
-                    if selection.replaying_terminal_sequence
+                    "causal_option_mediated_replication"
+                    if selection.mediated_replication_request_id
                     else (
-                        "causal_option_effect_subgoal_probe"
-                        if selection.downstream_subgoal_id
-                        else "causal_option_downstream_probe"
+                        "causal_option_terminal_replay"
+                        if selection.replaying_terminal_sequence
+                        else (
+                            "causal_option_effect_subgoal_probe"
+                            if selection.downstream_subgoal_id
+                            else "causal_option_downstream_probe"
+                        )
                     )
                 )
             )
@@ -1385,6 +1426,22 @@ class UnifiedCognitiveController:
             ),
             causal_option_mediated_discrimination_same_latent_mode=(
                 selection.mediated_discrimination_same_latent_mode
+            ),
+            causal_option_mediated_restoration_request_id=(
+                selection.mediated_restoration_request_id
+            ),
+            causal_option_mediated_restoration_target_mode_signature=(
+                selection.mediated_restoration_target_mode_signature
+            ),
+            causal_option_mediated_restoration_expected_next_mode_signature=(
+                selection
+                .mediated_restoration_expected_next_mode_signature
+            ),
+            causal_option_mediated_restoration_path_length=(
+                selection.mediated_restoration_path_length
+            ),
+            causal_option_mediated_restoration_confidence=(
+                selection.mediated_restoration_confidence
             ),
             causal_option_mediated_replication_request_id=(
                 selection.mediated_replication_request_id
@@ -2523,6 +2580,7 @@ class UnifiedCognitiveController:
             downstream_subgoal_id=(
                 ""
                 if pending is None
+                or pending.causal_option_mediated_restoration_request_id
                 else pending.causal_option_downstream_subgoal_id
             ),
             replaying_progress_sequence=(
@@ -2541,6 +2599,14 @@ class UnifiedCognitiveController:
                 else (
                     pending
                     .causal_option_mediated_discrimination_request_id
+                )
+            ),
+            mediated_restoration_request_id=(
+                ""
+                if pending is None
+                else (
+                    pending
+                    .causal_option_mediated_restoration_request_id
                 )
             ),
             mediated_replication_request_id=(

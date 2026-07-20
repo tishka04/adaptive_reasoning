@@ -11,7 +11,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Dict, Sequence, Tuple
+from typing import Any, Dict, Mapping, Sequence, Tuple
 
 import numpy as np
 
@@ -140,6 +140,34 @@ class DirectionalActionPrediction:
             DirectionalEffectStatus.NEUTRAL: 0,
             DirectionalEffectStatus.REGRESSIVE: -1,
         }[self.status]
+
+
+@dataclass(frozen=True)
+class LatentModeRestorationPrediction:
+    """Observed action path from the current mode to a requested mode."""
+
+    option_id: str
+    objective_id: str
+    current_mode_signature: str
+    target_mode_signature: str
+    action_signature: str
+    action_transfer_signature: str
+    expected_next_mode_signature: str
+    path_action_signatures: Tuple[str, ...]
+    path_mode_signatures: Tuple[str, ...]
+    confidence: float
+    compatible: bool
+    reason: str
+
+    @property
+    def path_length(self) -> int:
+        return len(self.path_action_signatures)
+
+    @property
+    def selection_rank(self) -> int:
+        if not self.compatible:
+            return -1
+        return 40 - max(0, self.path_length - 1)
 
 
 class OnlineStateConditionedEffectModel:
@@ -495,6 +523,83 @@ class OnlineStateConditionedEffectModel:
             if prediction.structural_transfer_evidence:
                 self._blocked_structural_regressions += 1
 
+    def restoration_predictions(
+        self,
+        *,
+        option_id: str,
+        objective: TerminalObjectiveHypothesis,
+        observation: GameObservation,
+        target_mode_signature: str,
+        action_signatures: Sequence[str],
+        max_path_length: int = 3,
+    ) -> Dict[str, LatentModeRestorationPrediction]:
+        """Find bounded, fully observed paths back to an exact latent mode.
+
+        Only deterministic transitions already observed for this option and
+        objective are admitted.  The first concrete action must be available
+        in the current scene; later steps are revalidated after every action.
+        """
+        current_mode = latent_mode_signature(observation, objective)
+        target_mode = str(target_mode_signature)
+        if not target_mode or current_mode == target_mode:
+            return {}
+        path_limit = max(1, int(max_path_length))
+        available = set(dict.fromkeys(str(item) for item in action_signatures))
+        edges = self._deterministic_mode_edges(
+            option_id=str(option_id),
+            objective_id=objective.objective_id,
+        )
+        predictions: Dict[str, LatentModeRestorationPrediction] = {}
+        for evidence, next_mode in edges.get(current_mode, ()):
+            if evidence.action_signature not in available:
+                continue
+            suffix = self._shortest_mode_path(
+                edges,
+                start_mode=next_mode,
+                target_mode=target_mode,
+                max_steps=path_limit - 1,
+            )
+            if suffix is None:
+                continue
+            suffix_actions, suffix_modes, suffix_confidences = suffix
+            actions = (evidence.action_signature, *suffix_actions)
+            modes = (current_mode, next_mode, *suffix_modes)
+            confidences = (
+                evidence.attempts / (evidence.attempts + 1.0),
+                *suffix_confidences,
+            )
+            prediction = LatentModeRestorationPrediction(
+                option_id=str(option_id),
+                objective_id=objective.objective_id,
+                current_mode_signature=current_mode,
+                target_mode_signature=target_mode,
+                action_signature=evidence.action_signature,
+                action_transfer_signature=(
+                    evidence.action_transfer_signature
+                ),
+                expected_next_mode_signature=next_mode,
+                path_action_signatures=tuple(actions),
+                path_mode_signatures=tuple(modes),
+                confidence=min(confidences),
+                compatible=True,
+                reason=(
+                    "observed deterministic action path restores the exact "
+                    "latent mode required by the active causal contrast"
+                ),
+            )
+            previous = predictions.get(evidence.action_signature)
+            if previous is None or (
+                prediction.path_length,
+                -prediction.confidence,
+                prediction.path_action_signatures,
+            ) < (
+                previous.path_length,
+                -previous.confidence,
+                previous.path_action_signatures,
+            ):
+                predictions[evidence.action_signature] = prediction
+        return predictions
+
     def is_reversible(
         self,
         *,
@@ -673,6 +778,89 @@ class OnlineStateConditionedEffectModel:
                     followup.action_signature,
                 ))
         return max(candidates, default=None)
+
+    def _deterministic_mode_edges(
+        self,
+        *,
+        option_id: str,
+        objective_id: str,
+    ) -> Dict[
+        str,
+        list[Tuple[StateConditionedActionEvidence, str]],
+    ]:
+        result: Dict[
+            str,
+            list[Tuple[StateConditionedActionEvidence, str]],
+        ] = {}
+        for evidence in self._evidence.values():
+            if evidence.option_id != str(option_id):
+                continue
+            if evidence.objective_id != str(objective_id):
+                continue
+            if evidence.unsafe_failures or evidence.attempts <= 0:
+                continue
+            if len(evidence.next_mode_signatures) != 1:
+                continue
+            next_mode = next(iter(evidence.next_mode_signatures))
+            result.setdefault(evidence.mode_signature, []).append((
+                evidence,
+                next_mode,
+            ))
+        for transitions in result.values():
+            transitions.sort(key=lambda item: (
+                -item[0].attempts,
+                item[0].action_signature,
+                item[1],
+            ))
+        return result
+
+    @staticmethod
+    def _shortest_mode_path(
+        edges: Mapping[
+            str,
+            Sequence[Tuple[StateConditionedActionEvidence, str]],
+        ],
+        *,
+        start_mode: str,
+        target_mode: str,
+        max_steps: int,
+    ) -> tuple[Tuple[str, ...], Tuple[str, ...], Tuple[float, ...]] | None:
+        if start_mode == target_mode:
+            return (), (), ()
+        if max_steps <= 0:
+            return None
+        queue: list[
+            tuple[str, Tuple[str, ...], Tuple[str, ...], Tuple[float, ...]]
+        ] = [(start_mode, (), (), ())]
+        visited = {start_mode: 0}
+        while queue:
+            mode, actions, modes, confidences = queue.pop(0)
+            if len(actions) >= max_steps:
+                continue
+            for evidence, next_mode in edges.get(mode, ()):
+                next_actions = (*actions, evidence.action_signature)
+                next_modes = (*modes, next_mode)
+                next_confidences = (
+                    *confidences,
+                    evidence.attempts / (evidence.attempts + 1.0),
+                )
+                if next_mode == target_mode:
+                    return (
+                        tuple(next_actions),
+                        tuple(next_modes),
+                        tuple(next_confidences),
+                    )
+                depth = len(next_actions)
+                if visited.get(next_mode, depth + 1) <= depth:
+                    continue
+                visited[next_mode] = depth
+                queue.append((
+                    next_mode,
+                    tuple(next_actions),
+                    tuple(next_modes),
+                    tuple(next_confidences),
+                ))
+        return None
 
     @staticmethod
     def _is_reversible_evidence(

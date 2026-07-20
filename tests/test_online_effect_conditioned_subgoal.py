@@ -166,6 +166,47 @@ def test_effect_link_is_selected_while_objective_is_incomplete():
     ) is None
 
 
+def test_reserved_local_measurement_survives_terminal_goal_refutation():
+    store = _objective_store()
+    memory = OnlineEffectConditionedSubgoalStore()
+    before = _grid(threes=2)
+    after = _grid(threes=1, marker=9)
+    effect = "changed:some|colors:3:-1,8:-1,9:+1"
+    link = memory.link_effect(
+        option_id="option",
+        effect_signature=effect,
+        observation_before=_observation(before),
+        observation_after=_observation(after),
+        store=store,
+        branch_index=0,
+        context_signature="effect-0",
+        action_signature="ACTION2",
+    )
+    subgoal_id = link["generated_subgoal_ids"][0]
+    objective = store.objective("terminal::exhaust::color3")
+    assert objective is not None
+    objective.terminal_contradictions = 2
+
+    unreserved = memory.select(
+        option_id="option",
+        observed_effect_signatures=[effect],
+        observation=_observation(after),
+        store=store,
+    )
+    reserved = memory.select(
+        option_id="option",
+        observed_effect_signatures=[],
+        observation=_observation(after),
+        store=store,
+        preferred_subgoal_id=subgoal_id,
+        reserve_preferred_context=True,
+    )
+
+    assert unreserved is None
+    assert reserved is not None
+    assert reserved.subgoal_id == subgoal_id
+
+
 def test_multi_step_pursuit_records_and_replays_complete_progress_sequence():
     store = _objective_store()
     memory = OnlineEffectConditionedSubgoalStore()

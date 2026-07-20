@@ -14,6 +14,9 @@ from theory.online_mediated_entity_effect import (
     prospective_mediator_signature,
 )
 from theory.online_semantic_intervention import semantic_intervention_anchor
+from theory.online_state_conditioned_effect import (
+    LatentModeRestorationPrediction,
+)
 
 
 def _observation():
@@ -307,3 +310,48 @@ def test_discrimination_ablation_creates_no_request_or_prediction():
     assert request_id == ""
     assert memory.requests() == []
     assert memory.summary()["requests_created"] == 0
+
+
+def test_observed_restoration_step_reaches_the_requested_mode_online():
+    memory = OnlineMediatedDiscriminationStore()
+    request_id, _features_map = _request(memory)
+    _activate(memory)
+    prediction = LatentModeRestorationPrediction(
+        option_id="option",
+        objective_id="objective",
+        current_mode_signature="mode:other",
+        target_mode_signature="mode:one",
+        action_signature="ACTION2",
+        action_transfer_signature="ACTION2",
+        expected_next_mode_signature="mode:one",
+        path_action_signatures=("ACTION2",),
+        path_mode_signatures=("mode:other", "mode:one"),
+        confidence=0.5,
+        compatible=True,
+        reason="observed path",
+    )
+
+    selected_request_id = memory.note_restoration_selection(prediction)
+    outcome = memory.observe_restoration(
+        selected_request_id,
+        before_mode="mode:other",
+        after_mode="mode:one",
+    )
+
+    assert selected_request_id == request_id
+    assert outcome["step_confirmed"] is True
+    assert outcome["target_reached"] is True
+    assert memory.summary()["restoration_selections"] == 1
+    assert memory.summary()["restoration_targets_reached"] == 1
+    assert memory.active_request is not None
+
+
+def test_mode_restoration_has_an_independent_ablation():
+    memory = OnlineMediatedDiscriminationStore(
+        enable_mode_restoration=False,
+    )
+    _request(memory)
+    _activate(memory)
+
+    assert memory.restoration_request("option") is None
+    assert memory.summary()["mode_restoration_enabled"] is False

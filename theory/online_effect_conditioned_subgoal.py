@@ -362,6 +362,7 @@ class OnlineEffectConditionedSubgoalStore:
         excluded_subgoal_ids: Sequence[str] = (),
         excluded_objective_ids: Sequence[str] = (),
         preferred_subgoal_id: str = "",
+        reserve_preferred_context: bool = False,
     ) -> EffectConditionedSubgoalSelection | None:
         """Choose the best still-measurable subgoal exposed by seen effects."""
         effects = {str(signature) for signature in observed_effect_signatures}
@@ -377,12 +378,21 @@ class OnlineEffectConditionedSubgoalStore:
                 continue
             if subgoal.option_id != str(option_id):
                 continue
-            if subgoal.trigger_effect_signature not in effects:
+            preferred = bool(
+                subgoal.subgoal_id == str(preferred_subgoal_id)
+            )
+            if (
+                subgoal.trigger_effect_signature not in effects
+                and not (preferred and reserve_preferred_context)
+            ):
                 continue
             if subgoal.status == EffectConditionedSubgoalStatus.REFUTED:
                 continue
             objective = store.objective(subgoal.objective_id)
-            if objective is None or objective.status == TerminalObjectiveStatus.REFUTED:
+            if objective is None or (
+                objective.status == TerminalObjectiveStatus.REFUTED
+                and not (preferred and reserve_preferred_context)
+            ):
                 continue
             distance = objective.distance(observation)
             if distance is None or distance <= 0.0:
@@ -390,7 +400,7 @@ class OnlineEffectConditionedSubgoalStore:
             assessment = store.assess_objective(objective, observation)
             ranked.append((
                 (
-                    int(subgoal.subgoal_id == str(preferred_subgoal_id)),
+                    int(preferred),
                     int(
                         subgoal.status
                         == EffectConditionedSubgoalStatus.PROGRESS_SUPPORTED

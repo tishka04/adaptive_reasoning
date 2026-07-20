@@ -23,6 +23,7 @@ from .online_mediated_abstraction import (
 )
 from .online_mediated_entity_effect import prospective_mediator_signature
 from .online_semantic_intervention import SemanticInterventionAnchor
+from .online_state_conditioned_effect import LatentModeRestorationPrediction
 
 
 DISCRIMINATION_FEATURE_ORDER = (
@@ -79,6 +80,16 @@ class MediatedDiscriminationRequest:
     observed_candidate_signatures: Tuple[str, ...] = ()
     objective_gain: float = 0.0
     preparation_branches: set[int] = field(default_factory=set)
+    restoration_attempts: int = 0
+    restoration_actions: Tuple[str, ...] = ()
+    restoration_path_modes: Tuple[str, ...] = ()
+    restoration_source_mode: str = ""
+    restoration_expected_next_mode: str = ""
+    restoration_observed_next_mode: str = ""
+    restoration_target_reached: bool = False
+    restoration_attempts_by_branch: Dict[int, int] = field(
+        default_factory=dict
+    )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -111,6 +122,23 @@ class MediatedDiscriminationRequest:
             ),
             "objective_gain": round(float(self.objective_gain), 4),
             "preparation_branches": sorted(self.preparation_branches),
+            "restoration_attempts": self.restoration_attempts,
+            "restoration_actions": list(self.restoration_actions),
+            "restoration_path_modes": list(self.restoration_path_modes),
+            "restoration_source_mode": self.restoration_source_mode,
+            "restoration_expected_next_mode": (
+                self.restoration_expected_next_mode
+            ),
+            "restoration_observed_next_mode": (
+                self.restoration_observed_next_mode
+            ),
+            "restoration_target_reached": self.restoration_target_reached,
+            "restoration_attempts_by_branch": {
+                str(branch): attempts
+                for branch, attempts in sorted(
+                    self.restoration_attempts_by_branch.items()
+                )
+            },
         }
 
 
@@ -149,12 +177,21 @@ class OnlineMediatedDiscriminationStore:
         self,
         *,
         enabled: bool = True,
+        enable_mode_restoration: bool = True,
         max_attempts_per_request: int = 2,
         max_requests: int = 32,
+        max_restoration_actions_per_branch: int = 3,
     ) -> None:
         self.enabled = bool(enabled)
+        self.enable_mode_restoration = bool(
+            enabled and enable_mode_restoration
+        )
         self.max_attempts_per_request = max(1, int(max_attempts_per_request))
         self.max_requests = max(1, int(max_requests))
+        self.max_restoration_actions_per_branch = max(
+            1,
+            int(max_restoration_actions_per_branch),
+        )
         self._requests: Dict[str, MediatedDiscriminationRequest] = {}
         self._active_request_id = ""
         self._branch_index = 0
@@ -174,6 +211,14 @@ class OnlineMediatedDiscriminationStore:
         self._feature_eliminations = 0
         self._inconclusive_attempts = 0
         self._expirations = 0
+        self._restoration_predictions = 0
+        self._restoration_selections = 0
+        self._restoration_steps_confirmed = 0
+        self._restoration_targets_reached = 0
+        self._restoration_failures = 0
+        self._restoration_unavailable_contexts: set[
+            Tuple[str, int, str]
+        ] = set()
 
     @property
     def active_request(self) -> MediatedDiscriminationRequest | None:
@@ -312,6 +357,104 @@ class OnlineMediatedDiscriminationStore:
                 self._preparation_actions += 1
                 return
 
+    def restoration_request(
+        self,
+        option_id: str,
+    ) -> MediatedDiscriminationRequest | None:
+        active = self.active_request
+        if (
+            not self.enable_mode_restoration
+            or active is None
+            or active.status != MediatedDiscriminationStatus.ACTIVE
+            or active.option_id != str(option_id)
+            or active.restoration_attempts_by_branch.get(
+                active.active_branch,
+                0,
+            ) >= self.max_restoration_actions_per_branch
+        ):
+            return None
+        return active
+
+    def note_restoration_predictions(self, count: int) -> None:
+        if self.enable_mode_restoration:
+            self._restoration_predictions += max(0, int(count))
+
+    def note_restoration_unavailable(self, current_mode: str) -> None:
+        active = self.active_request
+        if not self.enable_mode_restoration or active is None:
+            return
+        self._restoration_unavailable_contexts.add((
+            active.request_id,
+            active.active_branch,
+            str(current_mode),
+        ))
+
+    def note_restoration_selection(
+        self,
+        prediction: LatentModeRestorationPrediction,
+    ) -> str:
+        active = self.restoration_request(prediction.option_id)
+        if active is None or not prediction.compatible:
+            return ""
+        active.restoration_attempts += 1
+        active.restoration_attempts_by_branch[active.active_branch] = (
+            active.restoration_attempts_by_branch.get(active.active_branch, 0)
+            + 1
+        )
+        active.restoration_actions = prediction.path_action_signatures
+        active.restoration_path_modes = prediction.path_mode_signatures
+        active.restoration_source_mode = prediction.current_mode_signature
+        active.restoration_expected_next_mode = (
+            prediction.expected_next_mode_signature
+        )
+        active.restoration_observed_next_mode = ""
+        active.restoration_target_reached = False
+        self._restoration_selections += 1
+        return active.request_id
+
+    def observe_restoration(
+        self,
+        request_id: str,
+        *,
+        before_mode: str,
+        after_mode: str,
+    ) -> Dict[str, Any]:
+        request = self._requests.get(str(request_id))
+        if (
+            not self.enable_mode_restoration
+            or request is None
+            or not request.restoration_expected_next_mode
+        ):
+            return {
+                "observed": False,
+                "step_confirmed": False,
+                "target_reached": False,
+            }
+        request.restoration_observed_next_mode = str(after_mode)
+        step_confirmed = bool(
+            str(before_mode) == request.restoration_source_mode
+            and str(after_mode) == request.restoration_expected_next_mode
+        )
+        target_reached = bool(
+            step_confirmed and str(after_mode) == request.mode_signature
+        )
+        if step_confirmed:
+            self._restoration_steps_confirmed += 1
+        else:
+            self._restoration_failures += 1
+        if target_reached:
+            request.restoration_target_reached = True
+            self._restoration_targets_reached += 1
+        request.restoration_expected_next_mode = ""
+        return {
+            "observed": True,
+            "step_confirmed": step_confirmed,
+            "target_reached": target_reached,
+            "before_mode": str(before_mode),
+            "after_mode": str(after_mode),
+            "target_mode": request.mode_signature,
+        }
+
     def predict(
         self,
         *,
@@ -422,6 +565,17 @@ class OnlineMediatedDiscriminationStore:
             "feature_eliminations": self._feature_eliminations,
             "inconclusive_attempts": self._inconclusive_attempts,
             "expirations": self._expirations,
+            "mode_restoration_enabled": self.enable_mode_restoration,
+            "restoration_predictions": self._restoration_predictions,
+            "restoration_selections": self._restoration_selections,
+            "restoration_steps_confirmed": (
+                self._restoration_steps_confirmed
+            ),
+            "restoration_targets_reached": self._restoration_targets_reached,
+            "restoration_failures": self._restoration_failures,
+            "restoration_unavailable_contexts": len(
+                self._restoration_unavailable_contexts
+            ),
             "active_request_id": self._active_request_id,
             "hypotheses": [item.to_dict() for item in requests],
         }

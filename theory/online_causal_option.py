@@ -49,6 +49,7 @@ from .online_semantic_intervention import (
 )
 from .online_state_conditioned_effect import (
     DirectionalActionPrediction,
+    LatentModeRestorationPrediction,
     latent_mode_signature,
 )
 from .online_terminal_objective import OnlineTerminalObjectiveStore
@@ -305,6 +306,11 @@ class CausalOptionSelection:
     mediated_discrimination_contrast_value: str = ""
     mediated_single_feature_contrast: bool = False
     mediated_discrimination_same_latent_mode: bool = False
+    mediated_restoration_request_id: str = ""
+    mediated_restoration_target_mode_signature: str = ""
+    mediated_restoration_expected_next_mode_signature: str = ""
+    mediated_restoration_path_length: int = 0
+    mediated_restoration_confidence: float | None = None
     mediated_replication_request_id: str = ""
     mediated_cross_branch_replication: bool = False
     mediated_exact_semantic_replication: bool = False
@@ -335,6 +341,7 @@ class OnlineCausalOptionStore:
         enable_mediated_entity_effect_induction: bool = True,
         enable_online_mediated_anti_unification: bool = True,
         enable_active_mediated_discrimination: bool = True,
+        enable_active_mode_restoration: bool = True,
         enable_active_mediated_replication: bool = True,
         max_mediated_replication_attempts: int = 2,
         persistent_actions_per_progress: int = 2,
@@ -375,6 +382,7 @@ class OnlineCausalOptionStore:
                 and enable_online_mediated_anti_unification
                 and enable_active_mediated_discrimination
             ),
+            enable_mode_restoration=enable_active_mode_restoration,
             max_attempts_per_request=max_mediated_replication_attempts,
         )
         self.base_downstream_actions = min(
@@ -585,6 +593,16 @@ class OnlineCausalOptionStore:
             else ""
             )
         )
+        mode_restoration_reservation = bool(
+            discrimination_subgoal_id
+            and self.mediated_discriminations.enable_mode_restoration
+        )
+        reserved_subgoal = self.downstream_subgoals.subgoal(
+            preferred_subgoal_id if mode_restoration_reservation else ""
+        )
+        reserved_objective_id = (
+            "" if reserved_subgoal is None else reserved_subgoal.objective_id
+        )
         selection = self.downstream_subgoals.select(
             option_id=active.option_id,
             observed_effect_signatures=active.effect_signatures,
@@ -593,6 +611,8 @@ class OnlineCausalOptionStore:
             excluded_subgoal_ids=[
                 subgoal_id
                 for subgoal_id, attempts in active.downstream_subgoal_attempts.items()
+                if not mode_restoration_reservation
+                or subgoal_id != preferred_subgoal_id
                 if attempts >= self._pursuit_action_limit(
                     subgoal_id,
                     allow_persistent=self._persistent_subgoal_actionable(
@@ -606,6 +626,8 @@ class OnlineCausalOptionStore:
             excluded_objective_ids=[
                 objective_id
                 for objective_id, attempts in active.downstream_objective_attempts.items()
+                if not mode_restoration_reservation
+                or objective_id != reserved_objective_id
                 if attempts >= self._objective_action_limit(
                     option_id=active.option_id,
                     objective_id=objective_id,
@@ -616,6 +638,7 @@ class OnlineCausalOptionStore:
                 )
             ],
             preferred_subgoal_id=preferred_subgoal_id,
+            reserve_preferred_context=mode_restoration_reservation,
         )
         if selection is not None:
             subgoal = self.downstream_subgoals.subgoal(selection.subgoal_id)
@@ -687,6 +710,10 @@ class OnlineCausalOptionStore:
             str,
             MediatedDiscriminationPrediction,
         ] | None = None,
+        mediated_restoration_predictions: Mapping[
+            str,
+            LatentModeRestorationPrediction,
+        ] | None = None,
         mediated_replication_predictions: Mapping[
             str,
             MediatedReplicationPrediction,
@@ -753,6 +780,9 @@ class OnlineCausalOptionStore:
         discrimination_predictions = dict(
             mediated_discrimination_predictions or {}
         )
+        restoration_predictions = dict(
+            mediated_restoration_predictions or {}
+        )
         replication_predictions = dict(mediated_replication_predictions or {})
         selected_subgoal = (
             None
@@ -813,7 +843,12 @@ class OnlineCausalOptionStore:
             discrimination_prediction = discrimination_predictions.get(
                 signature
             )
+            restoration_prediction = restoration_predictions.get(signature)
             replication_prediction = replication_predictions.get(signature)
+            restoration_actionable = bool(
+                restoration_prediction is not None
+                and restoration_prediction.compatible
+            )
             discrimination_actionable = bool(
                 discrimination_prediction is not None
                 and discrimination_prediction.compatible
@@ -845,6 +880,7 @@ class OnlineCausalOptionStore:
                 and not binding_prediction.compatible
                 and not mediated_actionable
                 and not discrimination_actionable
+                and not restoration_actionable
                 and not replication_actionable
                 and not replay_match
                 and not progress_replay_match
@@ -857,6 +893,7 @@ class OnlineCausalOptionStore:
                 and not mediated_prediction.compatible
                 and not replication_actionable
                 and not discrimination_actionable
+                and not restoration_actionable
                 and not replay_match
                 and not progress_replay_match
             ):
@@ -880,6 +917,7 @@ class OnlineCausalOptionStore:
                     and not binding_actionable
                     and not mediated_actionable
                     and not discrimination_actionable
+                    and not restoration_actionable
                     and not replication_actionable
                 )
                 and not replay_match
@@ -891,6 +929,7 @@ class OnlineCausalOptionStore:
                 and not directional_prediction.compatible
                 and not replication_actionable
                 and not discrimination_actionable
+                and not restoration_actionable
                 and not replay_match
                 and not progress_replay_match
             ):
@@ -938,6 +977,11 @@ class OnlineCausalOptionStore:
                 if discrimination_prediction is None
                 else discrimination_prediction.selection_rank
             )
+            restoration_rank = (
+                -1
+                if restoration_prediction is None
+                else restoration_prediction.selection_rank
+            )
             directed_action_match = int(
                 bool(directed_name)
                 and action_name == directed_name
@@ -961,6 +1005,7 @@ class OnlineCausalOptionStore:
             )
             ranked.append((
                 (
+                    restoration_rank,
                     discrimination_rank,
                     replication_rank,
                     replay_match,
@@ -991,6 +1036,7 @@ class OnlineCausalOptionStore:
                 binding_prediction,
                 mediated_prediction,
                 discrimination_prediction,
+                restoration_prediction,
                 replication_prediction,
                 anchor,
             ))
@@ -1006,6 +1052,7 @@ class OnlineCausalOptionStore:
             binding_prediction,
             mediated_prediction,
             discrimination_prediction,
+            restoration_prediction,
             replication_prediction,
             anchor,
         ) = max(ranked, key=lambda item: item[0])
@@ -1033,6 +1080,16 @@ class OnlineCausalOptionStore:
         ):
             self.mediated_discriminations.note_selection(
                 discrimination_prediction
+            )
+        restoration_request_id = ""
+        if (
+            restoration_prediction is not None
+            and restoration_prediction.compatible
+        ):
+            restoration_request_id = (
+                self.mediated_discriminations.note_restoration_selection(
+                    restoration_prediction
+                )
             )
         if (
             replication_prediction is not None
@@ -1248,6 +1305,23 @@ class OnlineCausalOptionStore:
                 else discrimination_prediction.same_latent_mode
                 and discrimination_prediction.compatible
             ),
+            mediated_restoration_request_id=restoration_request_id,
+            mediated_restoration_target_mode_signature=(
+                "" if restoration_prediction is None
+                else restoration_prediction.target_mode_signature
+            ),
+            mediated_restoration_expected_next_mode_signature=(
+                "" if restoration_prediction is None
+                else restoration_prediction.expected_next_mode_signature
+            ),
+            mediated_restoration_path_length=(
+                0 if restoration_prediction is None
+                else restoration_prediction.path_length
+            ),
+            mediated_restoration_confidence=(
+                None if restoration_prediction is None
+                else restoration_prediction.confidence
+            ),
             mediated_replication_request_id=(
                 "" if replication_prediction is None
                 else replication_prediction.request_id
@@ -1261,23 +1335,28 @@ class OnlineCausalOptionStore:
                 and replication_prediction.exact_semantic_replication
             ),
             reason=(
-                "run one-feature mediated-abstraction discrimination"
-                if discrimination_prediction is not None
-                and discrimination_prediction.compatible
+                "restore exact latent mode for active causal discrimination"
+                if restoration_prediction is not None
+                and restoration_prediction.compatible
                 else (
-                    "run reserved cross-branch mediated-effect replication"
-                    if replication_prediction is not None
-                    and replication_prediction.compatible
+                    "run one-feature mediated-abstraction discrimination"
+                    if discrimination_prediction is not None
+                    and discrimination_prediction.compatible
                     else (
-                        "replay terminally supported causal-option suffix"
-                        if terminal_replay_selected
+                        "run reserved cross-branch mediated-effect replication"
+                        if replication_prediction is not None
+                        and replication_prediction.compatible
                         else (
-                            "continue progress-supported directional pursuit"
-                            if persistent_pursuit
+                            "replay terminally supported causal-option suffix"
+                            if terminal_replay_selected
                             else (
-                                "pursue effect-conditioned measurable downstream subgoal"
-                                if downstream_subgoal is not None
-                                else "bounded downstream search after confirmed causal opening"
+                                "continue progress-supported directional pursuit"
+                                if persistent_pursuit
+                                else (
+                                    "pursue effect-conditioned measurable downstream subgoal"
+                                    if downstream_subgoal is not None
+                                    else "bounded downstream search after confirmed causal opening"
+                                )
                             )
                         )
                     )
@@ -1479,6 +1558,62 @@ class OnlineCausalOptionStore:
                 result[anchor.concrete_signature] = prediction
         return result
 
+    def mediated_restoration_action_predictions(
+        self,
+        observation: GameObservation,
+        *,
+        store: OnlineTerminalObjectiveStore,
+        safe_actions: Sequence[str],
+        click_actions: Sequence[Any] = (),
+        record_predictions: bool = True,
+    ) -> Dict[str, LatentModeRestorationPrediction]:
+        """Compose observed mode transitions before an active contrast."""
+        active = self._active
+        option = None if active is None else self.option(active.option_id)
+        if active is None or option is None:
+            return {}
+        request = self.mediated_discriminations.restoration_request(
+            option.option_id
+        )
+        if request is None:
+            return {}
+        objective = store.objective(request.objective_id)
+        if objective is None:
+            return {}
+        current_mode = latent_mode_signature(observation, objective)
+        if current_mode == request.mode_signature:
+            return {}
+        signatures = [
+            self.intervention_anchor(
+                action_name,
+                action_data,
+                observation,
+            ).concrete_signature
+            for action_name, action_data in _concrete_actions(
+                safe_actions,
+                click_actions,
+            )
+        ]
+        predictions = (
+            self.downstream_subgoals.directional_model
+            .restoration_predictions(
+                option_id=option.option_id,
+                objective=objective,
+                observation=observation,
+                target_mode_signature=request.mode_signature,
+                action_signatures=signatures,
+            )
+        )
+        if record_predictions:
+            self.mediated_discriminations.note_restoration_predictions(
+                len(predictions)
+            )
+            if not predictions:
+                self.mediated_discriminations.note_restoration_unavailable(
+                    current_mode
+                )
+        return predictions
+
     def mediated_replication_action_predictions(
         self,
         observation: GameObservation,
@@ -1525,6 +1660,7 @@ class OnlineCausalOptionStore:
         replaying_progress_sequence: bool = False,
         persistent_pursuit: bool = False,
         mediated_discrimination_request_id: str = "",
+        mediated_restoration_request_id: str = "",
         mediated_replication_request_id: str = "",
     ) -> Dict[str, Any]:
         """Revise one active option from real effects and terminal outcomes."""
@@ -1575,6 +1711,13 @@ class OnlineCausalOptionStore:
             "mediated_discrimination_contrast_value": "",
             "mediated_single_feature_contrast": False,
             "mediated_discrimination_same_latent_mode": False,
+            "mediated_restoration_request_id": str(
+                mediated_restoration_request_id
+            ),
+            "mediated_restoration_step_confirmed": False,
+            "mediated_restoration_target_reached": False,
+            "mediated_restoration_before_mode": "",
+            "mediated_restoration_after_mode": "",
             "mediated_replication_request_id": str(
                 mediated_replication_request_id
             ),
@@ -1694,6 +1837,46 @@ class OnlineCausalOptionStore:
                     context_signature=effect_context,
                     unsafe=bool(update.record.diff.game_over),
                 )
+            restoration_outcome: Dict[str, Any] = {"observed": False}
+            if mediated_restoration_request_id:
+                restoration_request = next((
+                    item
+                    for item in self.mediated_discriminations.requests()
+                    if item.request_id
+                    == str(mediated_restoration_request_id)
+                ), None)
+                restoration_objective = (
+                    None
+                    if restoration_request is None
+                    else store.objective(restoration_request.objective_id)
+                )
+                if restoration_objective is not None:
+                    self.downstream_subgoals.directional_model.observe(
+                        option_id=option.option_id,
+                        objective=restoration_objective,
+                        observation_before=update.record.obs_before,
+                        observation_after=update.record.obs_after,
+                        action_signature=signature,
+                        action_transfer_signature=anchor.transfer_signature,
+                        effect_signature=effect_signature,
+                        branch_index=active.branch_index,
+                        context_signature=effect_context,
+                        source="pursuit",
+                        unsafe=bool(update.record.diff.game_over),
+                    )
+                    restoration_outcome = (
+                        self.mediated_discriminations.observe_restoration(
+                            str(mediated_restoration_request_id),
+                            before_mode=latent_mode_signature(
+                                update.record.obs_before,
+                                restoration_objective,
+                            ),
+                            after_mode=latent_mode_signature(
+                                update.record.obs_after,
+                                restoration_objective,
+                            ),
+                        )
+                    )
             mediated_outcome: Dict[str, Any] = {"observed": False}
             if binding_objective is not None:
                 mediated_outcome = self.mediated_entity_effects.observe(
@@ -1971,6 +2154,18 @@ class OnlineCausalOptionStore:
                         "features",
                         {},
                     )
+                ),
+                "mediated_restoration_step_confirmed": bool(
+                    restoration_outcome.get("step_confirmed", False)
+                ),
+                "mediated_restoration_target_reached": bool(
+                    restoration_outcome.get("target_reached", False)
+                ),
+                "mediated_restoration_before_mode": str(
+                    restoration_outcome.get("before_mode", "")
+                ),
+                "mediated_restoration_after_mode": str(
+                    restoration_outcome.get("after_mode", "")
                 ),
                 "persistent_pursuit": bool(persistent_pursuit),
                 "persistent_continuation_progress": bool(

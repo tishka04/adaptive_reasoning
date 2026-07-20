@@ -6052,3 +6052,140 @@ option ne suffit pas : le planificateur doit restaurer le meme mode latent
 porteur. Il faut donc apprendre en ligne des actions de restauration d'etat,
 les composer avant l'intervention discriminante et verifier que les autres
 variables causales sont demeurees invariantes.
+
+## SAGE.8z - learned latent-mode restoration before causal contrast
+
+Objectif :
+
+- Ne plus attendre passivement qu'une reouverture retrouve le mode latent de
+  l'hyperarete abstraite.
+- Apprendre uniquement depuis les transitions executees quelles actions font
+  passer d'un mode latent a un autre, puis composer un chemin borne vers le
+  mode exact exige par la requete SAGE.8y.
+- Revalider le mode apres chaque action et ne lancer le contraste a une
+  propriete qu'apres restauration effectivement observee.
+- Conserver une mesure locale utile meme si son interpretation comme but
+  terminal a ete refutee ; cette reservation ne repromeut jamais le but comme
+  terminal.
+- Preserver exactement SAGE.8y derriere une ablation isolee.
+
+Representation et controle :
+
+- Chaque preuve directionnelle conserve deja le mode avant, la classe
+  semantique de l'action et les modes apres observes. SAGE.8z transforme ces
+  preuves en graphe de transitions deterministes propre a l'option et a la
+  mesure objective courantes.
+- Une arete est admissible seulement si elle a ete observee, n'a produit aucun
+  echec dangereux et conduit toujours au meme mode. Une transition ambigue ou
+  non deterministe est rejetee.
+- Une recherche en largeur borne les recettes a trois actions. La premiere
+  action concrete doit exister dans la scene actuelle ; chaque etape suivante
+  est recalculee apres observation, sans simulation de l'environnement.
+- Une action localement regressive peut etre selectionnee lorsqu'elle est une
+  etape observee vers le contexte experimental demande. Elle domine alors les
+  politiques directionnelles ordinaires, mais seulement pour la requete
+  active et avec trois actions de restauration maximum par branche.
+- Le sous-but de mesure SAGE.8y est reserve pendant la restauration, meme si sa
+  conjecture terminale a ete refutee. Cette exception est active seulement
+  avec SAGE.8z et disparait dans l'ablation.
+- Le controleur expose une source distincte
+  `causal_option_mode_restoration`, le mode cible, le prochain mode attendu,
+  la longueur du chemin et sa confiance. La transition reelle confirme ou
+  invalide ensuite chaque etape.
+- Le benchmark A/B v17 mesure actions, predictions, selections, etapes
+  confirmees, modes cibles atteints, echecs et contextes sans recette.
+
+Ajouts :
+
+- composition de restauration dans
+  `theory/online_state_conditioned_effect.py`
+- reservation de mesure locale dans
+  `theory/online_effect_conditioned_subgoal.py`
+- etat, budgets et resolution de restauration dans
+  `theory/online_mediated_discrimination.py`
+- integration dans `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema, metriques, CLI et ablation v17 dans
+  `theory/unified_cognition_ab_benchmark.py`
+- extensions de `tests/test_online_state_conditioned_effect.py`,
+  `tests/test_online_effect_conditioned_subgoal.py`,
+  `tests/test_online_mediated_discrimination.py` et
+  `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/sage8z_cn04_mode_restoration.json`
+- `diagnostics/sage/sage8z_mode_restoration_ablation.json`
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`
+
+Audit actif cible `cn04-65d47d14`, seed 0, 5 resets x 40 :
+
+- la requete exige le mode `exhaust`, distance 2, mais les deux nouvelles
+  ouvertures commencent en distance 1 ;
+- SAGE retrouve dans sa memoire un chemin observe compose de `ACTION2`, puis
+  de l'intervention semantique `ACTION6` sur l'instance structurelle deja
+  reliee au passage distance 1 vers distance 2 ;
+- `mediated_restoration_predictions=5` ;
+- `mediated_restoration_selections=4` et
+  `mediated_restoration_actions=4` ;
+- les 4 etapes produisent exactement le mode attendu, sans echec, et le mode
+  cible est atteint dans 2 branches independantes ;
+- apres restauration, 2 predictions de contraste sont produites et 1 action
+  est selectionnee ;
+- cette action varie seulement `proximity` et son absence de progres en
+  controle apparie enregistre cette propriete comme requise dans le modele
+  courant ;
+- une deuxieme requete est creee pour poursuivre la lattice ;
+- le bras actif execute 200 actions, 86 experiences et 180 reductions
+  objectives, avec `controller_errors=0`, `levels_completed=0` et `wins=0`.
+
+Ablation cible, memes jeu, seed, resets et budgets :
+
+- `active_mode_restoration_enabled_in_unified=false` ;
+- toutes les metriques `mediated_restoration_*` valent zero ;
+- le comportement SAGE.8y est reproduit : 87 experiences, 164 reductions,
+  aucune prediction ni selection discriminante ;
+- SAGE.8z apporte donc 16 reductions objectives supplementaires avec une
+  experience de moins sur ce run, mais aucun gain terminal.
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v17` ;
+- `paired_protocol.protocol_gate_passed=true` ;
+- `active_mode_restoration_enabled_in_unified=true` ;
+- `unified.controller_errors=0` ;
+- `unified.actions_executed=800` ;
+- `unified.experiment_actions=488` ;
+- `unified.objective_distance_reductions=782` ;
+- aucune requete SAGE.8y n'est formee dans ces 2 resets : toutes les metriques
+  de restauration valent zero et la trajectoire reste identique a SAGE.8y ;
+- `legacy_only.levels_completed=0`, `unified.levels_completed=0`,
+  `legacy_only.wins=0` et `unified.wins=0`.
+
+Validation synthetique en ligne :
+
+- une action regressive observee peut restaurer directement le mode cible ;
+- deux transitions observees sont composees en une recette de longueur 2 ;
+- une transition menant a plusieurs modes est refusee ;
+- chaque etape confirmee et chaque mode cible atteint sont audites ;
+- la restauration dispose d'une ablation independante ;
+- un sous-but progressif reserve reste mesurable apres refutation de sa valeur
+  terminale, sans modifier ce statut terminal ;
+- l'ablation reproduit les compteurs et la trajectoire SAGE.8y.
+
+Validation :
+
+- `targeted_cognitive_tests=57 passed` ;
+- `full_repository_tests=1454 passed` (1447 groupes ensemble et les 7 tests du
+  fichier historique a namespace collisionne executes isolement) ;
+- `scoped_ruff_and_compileall=passed`.
+
+Lecture : le verrou de reconstruction volontaire du contexte est franchi sur
+le cas actif. Pour la premiere fois dans cette chaine, la nouvelle capacite
+convertit aussi son cout en amelioration A/B locale et declenche l'experience
+causale qu'elle devait rendre possible. Aucun niveau ARC-AGI-3 supplementaire
+n'est toutefois gagne.
+
+Le prochain verrou est l'exploitation terminale de la lattice revisee. Apres
+avoir appris qu'une propriete du porteur est requise, SAGE doit compiler les
+contraintes encore soutenues avec la recette de restauration et l'intervention
+productive en une politique persistante, l'executer jusqu'a une transition de
+niveau et ne lui attribuer une valeur terminale qu'apres ce resultat reel.
