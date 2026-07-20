@@ -266,6 +266,7 @@ class OnlineTemporalGoalComposer:
         self._plan_starts_total = 0
         self._confirmation_starts_total = 0
         self._confirmation_starts_this_branch = 0
+        self._mediated_replication_starts_total = 0
         self._plans_generated_total = 0
         self._step_decisions = 0
         self._terminal_events = 0
@@ -417,6 +418,8 @@ class OnlineTemporalGoalComposer:
         self,
         observation: GameObservation,
         store: OnlineTerminalObjectiveStore,
+        *,
+        preferred_causal_edge_key: str = "",
     ) -> TemporalStepSelection | None:
         """Return one enabled subgoal; callers still select only one action."""
         if self._active is not None:
@@ -432,7 +435,14 @@ class OnlineTemporalGoalComposer:
         for plan in self.plans():
             if plan.status == TemporalPlanStatus.REFUTED:
                 continue
-            if plan.starts >= self.max_starts_per_plan:
+            mediated_replication = bool(
+                str(preferred_causal_edge_key)
+                and plan.causal_edge_key == str(preferred_causal_edge_key)
+            )
+            if (
+                plan.starts >= self.max_starts_per_plan
+                and not mediated_replication
+            ):
                 continue
             reserved_confirmation = bool(
                 not normal_budget_available
@@ -440,7 +450,11 @@ class OnlineTemporalGoalComposer:
                 and self._confirmation_starts_this_branch
                 < self.max_confirmation_starts_per_branch
             )
-            if not normal_budget_available and not reserved_confirmation:
+            if (
+                not normal_budget_available
+                and not reserved_confirmation
+                and not mediated_replication
+            ):
                 continue
             if not plan.steps:
                 continue
@@ -460,6 +474,7 @@ class OnlineTemporalGoalComposer:
                 TemporalPlanStatus.CANDIDATE: 1.0,
             }.get(plan.status, 0.0)
             candidates.append(((
+                int(mediated_replication),
                 status_bonus,
                 plan.selection_utility,
                 -plan.starts,
@@ -474,6 +489,11 @@ class OnlineTemporalGoalComposer:
         )
         plan.starts += 1
         self._plan_starts_total += 1
+        if (
+            str(preferred_causal_edge_key)
+            and plan.causal_edge_key == str(preferred_causal_edge_key)
+        ):
+            self._mediated_replication_starts_total += 1
         if not normal_budget_available and plan.causal_confirmation_priority:
             self._confirmation_starts_total += 1
             self._confirmation_starts_this_branch += 1
@@ -656,6 +676,9 @@ class OnlineTemporalGoalComposer:
             "active_plan_id": self.active_plan_id,
             "plan_starts": self._plan_starts_total,
             "reserved_confirmation_starts": self._confirmation_starts_total,
+            "mediated_replication_preparation_starts": (
+                self._mediated_replication_starts_total
+            ),
             "step_decisions": self._step_decisions,
             "actions": sum(plan.actions for plan in plans),
             "progress_events": sum(plan.progress_events for plan in plans),

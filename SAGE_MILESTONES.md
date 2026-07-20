@@ -5662,3 +5662,149 @@ La prochaine etape doit reserver et ordonnancer une replication
 contre-factuelle inter-branche du meme mecanisme, reouvrir le contexte causal,
 varier un seul argument relationnel, puis confirmer ou refuter le mediateur
 avant toute exploitation terminale.
+
+## SAGE.8w - active cross-branch mediated replication
+
+Objectif :
+
+- Transformer chaque `needs_mediator_contrast` productif en requete
+  experimentale persistante plutot qu'en simple bonus local de selection.
+- Interdire la repetition dans la branche source et attendre une branche
+  independante.
+- Si l'ouverture ne reapparait pas spontanement, reserver un nouveau demarrage
+  du plan causal de preparation correspondant, meme lorsque son budget normal
+  de demarrages est epuise.
+- Activer la requete uniquement apres une ouverture reellement observee de la
+  meme option.
+- Rejouer exactement la meme classe semantique d'intervention, tout en laissant
+  varier le contexte relationnel et les entites indirectement affectees.
+- Donner priorite a cette replication sur les predictions directionnelles ou
+  liaisons de cible contradictoires : celles-ci ne doivent pas bloquer
+  l'experience qui est precisement destinee a les departager.
+- Confirmer, refuter ou replanifier exclusivement depuis le gain objectif local
+  et les correspondances de scene du nouveau contexte. Aucun etat terminal
+  n'entre dans la resolution.
+- Borner les repetitions non concluantes et exposer une ablation isolee.
+
+Representation et controle :
+
+- Une requete memorise option, arete causale, objectif, sous-but, mode latent,
+  classe de transfert de l'action, branche et contexte source, ainsi que
+  l'ensemble initial de porteurs candidats.
+- `pending` reserve une preparation sur une branche ulterieure ; `active`
+  signifie que l'option vient d'etre rouverte ; `confirmed`, `refuted` et
+  `expired` ferment la requete.
+- Le planificateur temporel accepte une arete causale preferee pour SAGE.8w.
+  Cette reservation peut depasser le budget normal du plan, mais reste soumise
+  aux gardes mesurables de chaque etape et a une seule action primitive suivie
+  d'une reobservation.
+- La selection du suffixe impose la meme signature de transfert semantique,
+  sans coordonnee absolue ni identite d'instance.
+- La decision et la transition auditent l'identifiant de requete, la branche,
+  la replication exacte, les preparations, activations, selections et
+  resolutions.
+
+Ajouts :
+
+- `theory/online_mediated_replication.py`
+- extension de `theory/online_causal_option.py`
+- reservation de preparation dans `theory/online_temporal_goal_composition.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v14 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_mediated_replication.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8w_cn04_active_replication.json`
+- `diagnostics/sage/sage8w_active_replication_ablation.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v14`
+- `paired_protocol.protocol_gate_passed=true`
+- `active_mediated_replication_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.objective_distance_reductions=782`
+- `unified.mediated_replication_requests_created=2`
+- `unified.mediated_replication_pending_requests=2`
+- `unified.mediated_replication_preparation_starts=0`
+- `unified.mediated_replication_cross_branch_activations=0`
+- `unified.mediated_replication_selections=0`
+- `unified.mediated_replication_confirmations=0`
+- `unified.mediated_replication_refutations=0`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Le protocole historique a deux resets produit les candidats a la fin de la
+derniere branche ; il prouve donc la creation et la persistance des requetes,
+mais ne contient pas de branche ulterieure pour les executer. Les 800 actions,
+488 experiences, 782 reductions locales et issues terminales restent
+strictement identiques a SAGE.8v.
+
+Audit actif cible `cn04-65d47d14`, seed 0, 4 resets x 40 :
+
+- 1 requete est creee en branche 2 pour la transformation d'une structure
+  color0 apres une intervention sur la structure color8 ;
+- en branche 3, SAGE.8w reserve 1 nouveau demarrage du plan causal et execute
+  3 actions de preparation ;
+- la meme option est effectivement rouverte dans ce contexte independant ;
+- 4 predictions de replication exacte sont produites et 1 action reservee est
+  selectionnee ;
+- le second progres transforme trois porteurs possibles : une cellule color0,
+  une structure color12 et une structure color4 ;
+- aucun de ces trois porteurs ne partage la signature complete du candidat
+  color0 initial ; la requete est donc `refuted` et non promue ;
+- `mediated_replication_confirmations=0` ;
+- `objective_distance_reductions=136`, contre 135 dans l'ablation ;
+- `levels_completed=0` et `wins=0` dans les deux bras.
+
+Ablation cible, memes jeu, seed, resets et budgets :
+
+- `active_mediated_replication_enabled_in_unified=false` ;
+- toutes les metriques `mediated_replication_*` valent zero ;
+- le modele SAGE.8v reste actif, mais son candidat unique n'entraine ni
+  preparation, ni reouverture, ni seconde intervention ;
+- le run execute 160 actions, 68 experiences et 135 reductions objectives,
+  sans niveau ni WIN.
+
+Validation synthetique en ligne :
+
+- une ambiguite productive cree une seule requete persistante ;
+- la branche source est explicitement bloquee ;
+- une branche ulterieure reserve la preparation et active la requete seulement
+  apres une vraie reouverture ;
+- seule la meme classe semantique d'intervention est compatible ;
+- une deuxieme observation peut confirmer sans label terminal ;
+- un ensemble incompatible refute la requete ;
+- des repetitions toujours ambigues expirent apres un budget borne ;
+- la replication reservee domine les autres rangs du suffixe ;
+- l'ablation ne conserve aucune requete, preparation ou resolution.
+
+Validation :
+
+- `new_sage8w_tests=8 passed`
+- `targeted_cognitive_tests=50 passed`
+- `full_repository_tests=1430 passed` (1423 groupes ensemble et les 7 tests
+  du fichier historique a namespace collisionne executes isolement)
+- `scoped_ruff_and_compileall=passed`
+
+Lecture : le verrou d'acquisition active est franchi. SAGE ne se contente plus
+de savoir qu'une hyperarete manque de preuve : il recree le contexte causal,
+reexecute l'intervention et tranche en ligne. Sur `cn04`, cette etape evite une
+fausse promotion et apporte une preuve negative nouvelle, mais aucun niveau
+ARC-AGI-3 supplementaire.
+
+Le prochain verrou est l'anti-unification structurelle en ligne des porteurs.
+La refutation SAGE.8w montre que la signature SAGE.8v est trop specifique : le
+premier et le second contexte contiennent tous deux un porteur color0
+transforme, mais sa forme, son role et sa relation concrete changent. La
+prochaine etape doit construire apres chaque transition une petite lattice
+d'abstractions des hyperaretes, conserver le niveau le plus precis compatible
+avec les contextes progressifs, l'opposer aux controles sans progres, puis
+selectionner de nouvelles interventions qui discriminent ces abstractions sans
+jamais figer la representation avant l'examen.

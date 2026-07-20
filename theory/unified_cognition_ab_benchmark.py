@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v13"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v14"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -55,6 +55,7 @@ EXPERIMENT_SOURCES = {
     "temporal_subgoal_probe",
     "causal_option_downstream_probe",
     "causal_option_effect_subgoal_probe",
+    "causal_option_mediated_replication",
 }
 
 EnvFactory = Callable[[str], Any]
@@ -154,6 +155,17 @@ def _mediated_entity_effect_induction_disabled_controller(
     )
 
 
+def _active_mediated_replication_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_active_mediated_replication=False
+        ),
+    )
+
+
 @dataclass(frozen=True)
 class _ExecutableAction:
     name: str
@@ -225,6 +237,7 @@ def run_unified_cognition_ab_benchmark(
     enable_entity_anchored_interventions: bool = True,
     enable_active_entity_causal_binding: bool = True,
     enable_mediated_entity_effect_induction: bool = True,
+    enable_active_mediated_replication: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -288,6 +301,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _mediated_entity_effect_induction_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_active_mediated_replication
+    ):
+        effective_controller_factory = (
+            _active_mediated_replication_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -365,6 +385,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         mediated_entity_effect_induction_enabled=(
             enable_mediated_entity_effect_induction
+        ),
+        active_mediated_replication_enabled=(
+            enable_active_mediated_replication
         ),
     )
     if not include_traces:
@@ -479,6 +502,12 @@ def _run_arm(
     mediated_effect_summary = dict(
         causal_option_summary.get(
             "mediated_entity_effect_induction",
+            {},
+        ) or {}
+    )
+    mediated_replication_summary = dict(
+        causal_option_summary.get(
+            "active_mediated_replication",
             {},
         ) or {}
     )
@@ -875,6 +904,45 @@ def _run_arm(
                 0,
             ) or 0
         ),
+        "mediated_replication_requests_created": int(
+            mediated_replication_summary.get("requests_created", 0) or 0
+        ),
+        "mediated_replication_pending_requests": int(
+            mediated_replication_summary.get("pending_requests", 0) or 0
+        ),
+        "mediated_replication_cross_branch_activations": int(
+            mediated_replication_summary.get(
+                "cross_branch_activations", 0
+            ) or 0
+        ),
+        "mediated_replication_same_branch_blocks": int(
+            mediated_replication_summary.get("same_branch_blocks", 0) or 0
+        ),
+        "mediated_replication_exact_predictions": int(
+            mediated_replication_summary.get(
+                "exact_replication_predictions", 0
+            ) or 0
+        ),
+        "mediated_replication_selections": int(
+            mediated_replication_summary.get("selections", 0) or 0
+        ),
+        "mediated_replication_preparation_actions": int(
+            mediated_replication_summary.get("preparation_actions", 0) or 0
+        ),
+        "mediated_replication_preparation_starts": int(
+            temporal_summary.get(
+                "mediated_replication_preparation_starts", 0
+            ) or 0
+        ),
+        "mediated_replication_confirmations": int(
+            mediated_replication_summary.get("confirmations", 0) or 0
+        ),
+        "mediated_replication_refutations": int(
+            mediated_replication_summary.get("refutations", 0) or 0
+        ),
+        "mediated_replication_expirations": int(
+            mediated_replication_summary.get("expirations", 0) or 0
+        ),
         "effect_conditioned_goal_candidates_generated": int(
             controller_summary.get(
                 "effect_conditioned_goal_candidates_generated",
@@ -1268,6 +1336,7 @@ def _summarize_benchmark(
     entity_anchored_interventions_enabled: bool,
     active_entity_causal_binding_enabled: bool,
     mediated_entity_effect_induction_enabled: bool,
+    active_mediated_replication_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1325,6 +1394,9 @@ def _summarize_benchmark(
             ),
             "mediated_entity_effect_induction_enabled_in_unified": bool(
                 mediated_entity_effect_induction_enabled
+            ),
+            "active_mediated_replication_enabled_in_unified": bool(
+                active_mediated_replication_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1739,6 +1811,50 @@ def _aggregate_arm(
         ),
         "mediated_effect_blocked_contradicted_actions": sum(
             int(row["mediated_effect_blocked_contradicted_actions"])
+            for row in rows
+        ),
+        "mediated_replication_requests_created": sum(
+            int(row["mediated_replication_requests_created"])
+            for row in rows
+        ),
+        "mediated_replication_pending_requests": sum(
+            int(row["mediated_replication_pending_requests"])
+            for row in rows
+        ),
+        "mediated_replication_cross_branch_activations": sum(
+            int(row["mediated_replication_cross_branch_activations"])
+            for row in rows
+        ),
+        "mediated_replication_same_branch_blocks": sum(
+            int(row["mediated_replication_same_branch_blocks"])
+            for row in rows
+        ),
+        "mediated_replication_exact_predictions": sum(
+            int(row["mediated_replication_exact_predictions"])
+            for row in rows
+        ),
+        "mediated_replication_selections": sum(
+            int(row["mediated_replication_selections"])
+            for row in rows
+        ),
+        "mediated_replication_preparation_actions": sum(
+            int(row["mediated_replication_preparation_actions"])
+            for row in rows
+        ),
+        "mediated_replication_preparation_starts": sum(
+            int(row["mediated_replication_preparation_starts"])
+            for row in rows
+        ),
+        "mediated_replication_confirmations": sum(
+            int(row["mediated_replication_confirmations"])
+            for row in rows
+        ),
+        "mediated_replication_refutations": sum(
+            int(row["mediated_replication_refutations"])
+            for row in rows
+        ),
+        "mediated_replication_expirations": sum(
+            int(row["mediated_replication_expirations"])
             for row in rows
         ),
         "effect_conditioned_goal_candidates_generated": sum(
@@ -2182,6 +2298,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8v indirect affected-entity induction only.",
     )
+    parser.add_argument(
+        "--disable-active-mediated-replication",
+        action="store_true",
+        help="Ablate SAGE.8w cross-branch mediated replication only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -2227,6 +2348,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_mediated_entity_effect_induction=(
             not args.disable_mediated_entity_effect_induction
+        ),
+        enable_active_mediated_replication=(
+            not args.disable_active_mediated_replication
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

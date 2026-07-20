@@ -131,6 +131,7 @@ class UnifiedCognitiveConfig:
     enable_entity_anchored_interventions: bool = True
     enable_active_entity_causal_binding: bool = True
     enable_mediated_entity_effect_induction: bool = True
+    enable_active_mediated_replication: bool = True
 
 
 @dataclass(frozen=True)
@@ -212,6 +213,9 @@ class CognitiveDecision:
     causal_option_mediated_effect_controlled_contrast: bool = False
     causal_option_supported_mediator_signature: str = ""
     causal_option_candidate_mediator_signatures: Tuple[str, ...] = ()
+    causal_option_mediated_replication_request_id: str = ""
+    causal_option_mediated_cross_branch_replication: bool = False
+    causal_option_mediated_exact_semantic_replication: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -376,6 +380,15 @@ class CognitiveDecision:
             "causal_option_candidate_mediator_signatures": list(
                 self.causal_option_candidate_mediator_signatures
             ),
+            "causal_option_mediated_replication_request_id": (
+                self.causal_option_mediated_replication_request_id
+            ),
+            "causal_option_mediated_cross_branch_replication": (
+                self.causal_option_mediated_cross_branch_replication
+            ),
+            "causal_option_mediated_exact_semantic_replication": (
+                self.causal_option_mediated_exact_semantic_replication
+            ),
         }
 
 
@@ -516,6 +529,9 @@ class UnifiedCognitiveController:
             enable_mediated_entity_effect_induction=(
                 self.config.enable_mediated_entity_effect_induction
             ),
+            enable_active_mediated_replication=(
+                self.config.enable_active_mediated_replication
+            ),
             persistent_actions_per_progress=(
                 self.config.persistent_actions_per_progress
             ),
@@ -628,6 +644,7 @@ class UnifiedCognitiveController:
                 "temporal_subgoal_probe",
                 "causal_option_downstream_probe",
                 "causal_option_effect_subgoal_probe",
+                "causal_option_mediated_replication",
             }
         )
         aligned_before, aligned_after = _align_grids(grid_before, grid_after)
@@ -1058,6 +1075,13 @@ class UnifiedCognitiveController:
                 click_actions=click_actions,
             )
         )
+        mediated_replication_predictions = (
+            self.causal_options.mediated_replication_action_predictions(
+                observation,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
+            )
+        )
         selection = self.causal_options.select_downstream(
             observation,
             safe_actions=safe_actions,
@@ -1074,6 +1098,9 @@ class UnifiedCognitiveController:
             directional_predictions=directional_predictions,
             entity_binding_predictions=entity_binding_predictions,
             mediated_effect_predictions=mediated_effect_predictions,
+            mediated_replication_predictions=(
+                mediated_replication_predictions
+            ),
         )
         if selection is None:
             return None
@@ -1094,12 +1121,16 @@ class UnifiedCognitiveController:
             selection.action_data,
         )
         source = (
-            "causal_option_terminal_replay"
-            if selection.replaying_terminal_sequence
+            "causal_option_mediated_replication"
+            if selection.mediated_replication_request_id
             else (
-                "causal_option_effect_subgoal_probe"
-                if selection.downstream_subgoal_id
-                else "causal_option_downstream_probe"
+                "causal_option_terminal_replay"
+                if selection.replaying_terminal_sequence
+                else (
+                    "causal_option_effect_subgoal_probe"
+                    if selection.downstream_subgoal_id
+                    else "causal_option_downstream_probe"
+                )
             )
         )
         directed_action_selected = bool(
@@ -1265,6 +1296,15 @@ class UnifiedCognitiveController:
             causal_option_candidate_mediator_signatures=(
                 selection.candidate_mediator_signatures
             ),
+            causal_option_mediated_replication_request_id=(
+                selection.mediated_replication_request_id
+            ),
+            causal_option_mediated_cross_branch_replication=(
+                selection.mediated_cross_branch_replication
+            ),
+            causal_option_mediated_exact_semantic_replication=(
+                selection.mediated_exact_semantic_replication
+            ),
         )
 
     def _causal_option_preferences(
@@ -1323,12 +1363,24 @@ class UnifiedCognitiveController:
             self.terminal_objectives,
             causal_edges=causal_edges,
         )
+        preferred_replication_edge = (
+            self.causal_options.mediated_replications
+            .preferred_preparation_edge_key()
+        )
         selection = self.temporal_goals.select_step(
             observation,
             self.terminal_objectives,
+            preferred_causal_edge_key=preferred_replication_edge,
         )
         if selection is None:
             return None
+        if (
+            preferred_replication_edge
+            and selection.causal_edge_key == preferred_replication_edge
+        ):
+            self.causal_options.mediated_replications.note_preparation_action(
+                selection.causal_edge_key
+            )
         causal_intervention_utilities = (
             self.causal_subgoals.intervention_utilities(
                 selection.causal_edge_key
@@ -2378,6 +2430,11 @@ class UnifiedCognitiveController:
                 False
                 if pending is None
                 else pending.causal_option_persistent_pursuit
+            ),
+            mediated_replication_request_id=(
+                ""
+                if pending is None
+                else pending.causal_option_mediated_replication_request_id
             ),
         )
         if (

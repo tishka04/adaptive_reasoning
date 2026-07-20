@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v13"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v14"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -176,6 +176,13 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         "mediated_effect_controlled_contrast_selections"
         in metrics["unified"]
     )
+    assert "mediated_replication_requests_created" in metrics["unified"]
+    assert "mediated_replication_cross_branch_activations" in metrics["unified"]
+    assert "mediated_replication_selections" in metrics["unified"]
+    assert "mediated_replication_preparation_starts" in metrics["unified"]
+    assert "mediated_replication_preparation_actions" in metrics["unified"]
+    assert "mediated_replication_confirmations" in metrics["unified"]
+    assert "mediated_replication_refutations" in metrics["unified"]
     assert "terminal_supported_causal_options" in metrics["unified"]
     assert "effect_conditioned_goal_candidates_generated" in metrics["unified"]
     assert "effect_conditioned_subgoals_generated" in metrics["unified"]
@@ -416,3 +423,26 @@ def test_ab_benchmark_exposes_mediated_entity_effect_ablation():
     assert metrics["mediated_effect_supported_hyperedges"] == 0
     assert metrics["mediated_effect_direct_target_progress_events"] == 0
     assert metrics["mediated_effect_controlled_contrast_selections"] == 0
+
+
+def test_ab_benchmark_exposes_active_mediated_replication_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-mediated-replication-ablation"],
+        seeds=[31],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_active_mediated_replication=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["mediated_entity_effect_induction_enabled_in_unified"] is True
+    assert protocol["active_mediated_replication_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["mediated_replication_requests_created"] == 0
+    assert metrics["mediated_replication_cross_branch_activations"] == 0
+    assert metrics["mediated_replication_selections"] == 0
+    assert metrics["mediated_replication_preparation_starts"] == 0
+    assert metrics["mediated_replication_preparation_actions"] == 0
+    assert metrics["mediated_replication_confirmations"] == 0
+    assert metrics["mediated_replication_refutations"] == 0
