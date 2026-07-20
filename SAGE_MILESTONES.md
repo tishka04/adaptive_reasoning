@@ -4950,3 +4950,123 @@ composer seulement les transitions dont la direction est compatible. Cette
 representation d'etat latent et de reversibilite doit permettre d'obtenir les
 premiers progres de poursuite, sans promouvoir de but avant une preuve
 terminale en ligne.
+
+## SAGE.8r - state-conditioned directional effect control
+
+Objectif :
+
+- Construire en ligne une signature de mode latent conditionnee par l'objectif,
+  mais invariante a la position absolue des objets.
+- Apprendre le signe de la variation objective pour chaque combinaison
+  `option x objectif x mode x action semantique` exclusivement depuis les
+  transitions observees pendant l'examen.
+- Distinguer les effets progressifs, regressifs, neutres, instables et encore
+  inconnus sans transformer cette evidence mecanique en preuve terminale.
+- Detecter qu'une meme action peut etre reversible : progressive dans un mode
+  et regressive dans un autre.
+- Donner une priorite bornee a un contraste lorsqu'une action connue est
+  rencontree dans un nouveau mode, puis fermer ce contraste apres un seul essai
+  sans progres.
+- Reutiliser en priorite une action progressive dans un mode recurrent et
+  exclure une action deja regressive ou neutre dans ce mode, sauf si une
+  sequence terminale ou de progres deja soutenue impose son replay.
+- Crediter separement les observations du declencheur et celles de la poursuite
+  afin de ne pas compter deux fois la meme transition.
+- Exposer le mode, le statut directionnel, le gain attendu, la confiance et la
+  reversibilite dans chaque decision auditable du controleur unifie.
+- Fournir une ablation qui conserve SAGE.8q et desactive seulement le controle
+  directionnel conditionne par l'etat.
+
+Ajouts :
+
+- `theory/online_state_conditioned_effect.py`
+- extension de `theory/online_effect_conditioned_subgoal.py`
+- extension de `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v9 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_state_conditioned_effect.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8r_directional_control_ablation.json`
+- `diagnostics/sage/sage8r_cn04_directional_control.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v9`
+- `paired_protocol.protocol_gate_passed=true`
+- `state_conditioned_directional_control_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.directional_effect_observations=36`
+- `unified.directional_progress_events=10`
+- `unified.directional_regression_events=10`
+- `unified.directional_stall_events=16`
+- `unified.directional_latent_modes=16`
+- `unified.directional_mode_action_models=28`
+- `unified.directional_reversible_action_objectives=6`
+- `unified.directional_predictions=66`
+- `unified.directional_mode_contrast_selections=2`
+- `unified.directional_progressive_selections=2`
+- `unified.effect_conditioned_subgoal_progress_events=12`
+- `unified.effect_conditioned_trigger_progress_events=10`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `state_conditioned_directional_control_enabled_in_unified=false`
+- toutes les metriques directionnelles valent zero ;
+- `experiment_actions=486`
+- `experiment_cost_rate=0.6075`
+- `effect_conditioned_subgoal_progress_events=4`
+- `effect_conditioned_trigger_progress_events=4`
+- `effect_conditioned_pursuit_progress_events=0`
+- `progress_supported_effect_conditioned_subgoals=0`
+- `objective_distance_reductions=732`
+- `levels_completed=0`
+- `wins=0`
+
+Audit cible `cn04-65d47d14`, seed 0, 2 resets x 40 :
+
+- 18 observations directionnelles couvrent 8 modes latents et 14 modeles
+  `mode x action` ;
+- 3 couples `action x objectif` sont detectes comme reversibles ;
+- un contraste de nouveau mode est selectionne, puis une action progressive
+  est reutilisee dans le mode recurrent ;
+- 5 actions de poursuite produisent le premier progres aval mesure de cette
+  chaine ;
+- un sous-but devient `progress_supported` ;
+- les reductions objectives atteignent 48 ;
+- aucun niveau ni WIN n'est observe.
+
+Validation :
+
+- `new_sage8r_tests=5 passed`
+- `targeted_cognitive_tests=34 passed`
+- `full_repository_tests=1388 passed`
+- `scoped_ruff_and_compileall=passed`
+
+Lecture : le verrou du controle directionnel local est franchi. Contrairement
+a SAGE.8q, le run principal contient maintenant deux reductions obtenues apres
+la selection explicite d'un sous-but, et deux sous-buts sont soutenus par cette
+evidence de poursuite. L'ablation ramene exactement ces deux metriques a zero et
+retire 50 reductions objectives. Ce gain coute deux actions experimentales
+supplementaires sur 800 (`0.6075` a `0.61`). Aucun niveau n'est encore gagne :
+ce resultat ne constitue donc pas un progres ARC terminal reproductible.
+
+Le prochain verrou est la composition persistante des transitions
+directionnelles. SAGE doit compiler les modes recurrents et leurs actions
+progressives en une politique de suffixe multi-etapes, maintenir le meme but au
+dela d'une reduction locale, et allouer davantage de budget aux sequences dont
+le progres se repete. La promotion du but doit rester reservee a un level-up ou
+WIN observe en ligne ; les reductions intermediaires servent uniquement a
+chercher cette preuve terminale.

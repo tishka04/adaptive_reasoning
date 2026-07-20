@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v8"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v9"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -84,6 +84,12 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert (
         protocol[
             "effect_conditioned_downstream_subgoals_enabled_in_unified"
+        ]
+        is True
+    )
+    assert (
+        protocol[
+            "state_conditioned_directional_control_enabled_in_unified"
         ]
         is True
     )
@@ -144,6 +150,11 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "effect_conditioned_subgoal_progress_events" in metrics["unified"]
     assert "effect_conditioned_trigger_progress_events" in metrics["unified"]
     assert "effect_conditioned_pursuit_progress_events" in metrics["unified"]
+    assert "directional_effect_observations" in metrics["unified"]
+    assert "directional_pursuit_observations" in metrics["unified"]
+    assert "directional_reversible_action_objectives" in metrics["unified"]
+    assert "directional_mode_contrast_selections" in metrics["unified"]
+    assert "directional_blocked_regressive_actions" in metrics["unified"]
     assert "causal_option_dynamic_budget_extensions" in metrics["unified"]
     assert "causal_option_budget_pruned_rollouts" in metrics["unified"]
     assert "failure_causes" in payload
@@ -228,3 +239,31 @@ def test_ab_benchmark_exposes_effect_conditioned_subgoal_ablation():
     assert metrics["effect_conditioned_goal_candidates_generated"] == 0
     assert metrics["effect_conditioned_subgoals_generated"] == 0
     assert metrics["effect_conditioned_subgoal_guided_actions"] == 0
+
+
+def test_ab_benchmark_exposes_directional_control_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-directional-control-ablation"],
+        seeds=[13],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_state_conditioned_directional_control=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol[
+            "effect_conditioned_downstream_subgoals_enabled_in_unified"
+        ]
+        is True
+    )
+    assert (
+        protocol[
+            "state_conditioned_directional_control_enabled_in_unified"
+        ]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["directional_effect_observations"] == 0
+    assert metrics["directional_predictions"] == 0

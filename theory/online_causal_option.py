@@ -25,6 +25,7 @@ from .online_effect_conditioned_subgoal import (
     EffectConditionedSubgoalSelection,
     OnlineEffectConditionedSubgoalStore,
 )
+from .online_state_conditioned_effect import DirectionalActionPrediction
 from .online_terminal_objective import OnlineTerminalObjectiveStore
 
 
@@ -236,6 +237,13 @@ class CausalOptionSelection:
     downstream_subgoal_status: str = ""
     downstream_trigger_effect_signature: str = ""
     replaying_progress_sequence: bool = False
+    latent_mode_signature: str = ""
+    directional_effect_status: str = ""
+    directional_expected_gain: float | None = None
+    directional_confidence: float | None = None
+    directionally_compatible: bool = True
+    reversible_action: bool = False
+    directional_mode_contrast: bool = False
     reason: str = ""
 
 
@@ -256,6 +264,7 @@ class OnlineCausalOptionStore:
         base_downstream_actions: int = 4,
         progress_extension_actions: int = 2,
         max_actions_per_effect_conditioned_subgoal: int = 2,
+        enable_state_conditioned_directional_control: bool = True,
     ) -> None:
         self.max_options = max(1, int(max_options))
         self.max_downstream_actions = max(1, int(max_downstream_actions))
@@ -280,6 +289,9 @@ class OnlineCausalOptionStore:
         self.downstream_subgoals = OnlineEffectConditionedSubgoalStore(
             max_subgoals=max_effect_conditioned_subgoals,
             max_subgoals_per_effect=max_subgoals_per_effect,
+            enable_state_conditioned_directional_control=(
+                enable_state_conditioned_directional_control
+            ),
         )
         self._options: Dict[str, HierarchicalCausalOption] = {}
         self._active: ActiveCausalOptionRollout | None = None
@@ -423,6 +435,10 @@ class OnlineCausalOptionStore:
         downstream_subgoal: EffectConditionedSubgoalSelection | None = None,
         preferred_action_name: str = "",
         preferred_action_data: Mapping[str, Any] | None = None,
+        directional_predictions: Mapping[
+            str,
+            DirectionalActionPrediction,
+        ] | None = None,
     ) -> CausalOptionSelection | None:
         """Select one bounded suffix action in the actually opened state."""
         active = self._active
@@ -479,6 +495,7 @@ class OnlineCausalOptionStore:
                 )
         directed_name = str(preferred_action_name).upper()
         directed_data = dict(preferred_action_data or {})
+        predictions = dict(directional_predictions or {})
         for action_name, action_data in candidates:
             signature = semantic_intervention_signature(
                 action_name,
@@ -498,6 +515,27 @@ class OnlineCausalOptionStore:
             progress_replay_match = int(
                 bool(progress_replay_signature)
                 and signature == progress_replay_signature
+            )
+            directional_prediction = predictions.get(signature)
+            if (
+                directional_prediction is not None
+                and not directional_prediction.compatible
+                and not replay_match
+                and not progress_replay_match
+            ):
+                self.downstream_subgoals.note_directional_blocked(
+                    directional_prediction
+                )
+                continue
+            directional_rank = (
+                2
+                if directional_prediction is None
+                else directional_prediction.selection_rank
+            )
+            directional_gain = (
+                0.0
+                if directional_prediction is None
+                else directional_prediction.expected_gain
             )
             directed_action_match = int(
                 bool(directed_name)
@@ -520,6 +558,8 @@ class OnlineCausalOptionStore:
                 (
                     replay_match,
                     progress_replay_match,
+                    directional_rank,
+                    directional_gain,
                     directed_action_match,
                     exact_preference,
                     int(evidence is not None and evidence.terminal_successes > 0),
@@ -536,11 +576,18 @@ class OnlineCausalOptionStore:
                 action_name,
                 action_data,
                 signature,
+                directional_prediction,
             ))
         if not ranked:
             self._close_active(censored=False)
             return None
-        _, action_name, action_data, signature = max(ranked, key=lambda item: item[0])
+        (
+            _,
+            action_name,
+            action_data,
+            signature,
+            directional_prediction,
+        ) = max(ranked, key=lambda item: item[0])
         terminal_replay_selected = bool(
             replay_signature and signature == replay_signature
         )
@@ -549,6 +596,10 @@ class OnlineCausalOptionStore:
             and signature == progress_replay_signature
         )
         self._selection_count += 1
+        if directional_prediction is not None:
+            self.downstream_subgoals.note_directional_selection(
+                directional_prediction
+            )
         return CausalOptionSelection(
             option_id=option.option_id,
             edge_key=option.edge_key,
@@ -574,6 +625,43 @@ class OnlineCausalOptionStore:
                 else downstream_subgoal.trigger_effect_signature
             ),
             replaying_progress_sequence=progress_replay_selected,
+            latent_mode_signature=(
+                ""
+                if directional_prediction is None
+                else directional_prediction.mode_signature
+            ),
+            directional_effect_status=(
+                ""
+                if directional_prediction is None
+                else directional_prediction.status.value
+            ),
+            directional_expected_gain=(
+                None
+                if directional_prediction is None
+                else directional_prediction.expected_gain
+            ),
+            directional_confidence=(
+                None
+                if directional_prediction is None
+                else directional_prediction.confidence
+            ),
+            directionally_compatible=(
+                True
+                if directional_prediction is None
+                else directional_prediction.compatible
+            ),
+            reversible_action=(
+                False
+                if directional_prediction is None
+                else directional_prediction.reversible_across_modes
+            ),
+            directional_mode_contrast=(
+                False
+                if directional_prediction is None
+                else not directional_prediction.exact_mode_evidence
+                and directional_prediction.status.value
+                == "needs_mode_contrast"
+            ),
             reason=(
                 "replay terminally supported causal-option suffix"
                 if terminal_replay_selected
@@ -583,6 +671,32 @@ class OnlineCausalOptionStore:
                     else "bounded downstream search after confirmed causal opening"
                 )
             ),
+        )
+
+    def directional_action_predictions(
+        self,
+        observation: GameObservation,
+        *,
+        store: OnlineTerminalObjectiveStore,
+        downstream_subgoal: EffectConditionedSubgoalSelection | None,
+        safe_actions: Sequence[str],
+        click_actions: Sequence[Any] = (),
+    ) -> Dict[str, DirectionalActionPrediction]:
+        """Score all concrete suffix actions against the active subgoal mode."""
+        if downstream_subgoal is None:
+            return {}
+        signatures = [
+            semantic_intervention_signature(action_name, action_data, observation)
+            for action_name, action_data in _concrete_actions(
+                safe_actions,
+                click_actions,
+            )
+        ]
+        return self.downstream_subgoals.directional_predictions(
+            subgoal_id=downstream_subgoal.subgoal_id,
+            observation=observation,
+            store=store,
+            action_signatures=signatures,
         )
 
     def observe_transition(
@@ -620,6 +734,10 @@ class OnlineCausalOptionStore:
             "downstream_subgoal_progress": False,
             "downstream_subgoal_completed": False,
             "downstream_subgoal_distance_reduction": 0.0,
+            "directional_mode_signature": "",
+            "directional_effect_status": "",
+            "directional_gain": 0.0,
+            "directional_reversible_across_modes": False,
             "rollout_action_budget": 0,
             "terminal_success": terminal_success,
             "terminal_credited_option": "",
@@ -699,6 +817,11 @@ class OnlineCausalOptionStore:
                 str(context_signature) or f"transition:{self._transition_index}",
                 f"suffix-step:{len(active.action_signatures)}",
             ))
+            pursued_subgoal = (
+                self.downstream_subgoals.subgoal(str(downstream_subgoal_id))
+                if downstream_subgoal_id
+                else None
+            )
             if self.enable_effect_conditioned_subgoals:
                 link_outcome = self.downstream_subgoals.link_effect(
                     option_id=option.option_id,
@@ -710,6 +833,10 @@ class OnlineCausalOptionStore:
                     context_signature=effect_context,
                     action_signature=signature,
                     preferred_objective_id=option.target_objective_id,
+                    pursued_objective_id=(
+                        "" if pursued_subgoal is None
+                        else pursued_subgoal.objective_id
+                    ),
                 )
             pursuit_outcome = {
                 "progress": False,
@@ -736,6 +863,7 @@ class OnlineCausalOptionStore:
                         context_signature=effect_context,
                         action_signature=signature,
                         sequence=pursuit_sequence,
+                        effect_signature=effect_signature,
                         unsafe=bool(update.record.diff.game_over),
                         replayed=bool(replaying_progress_sequence),
                     )
@@ -748,9 +876,6 @@ class OnlineCausalOptionStore:
                         0,
                     )
                     + 1
-                )
-                pursued_subgoal = self.downstream_subgoals.subgoal(
-                    str(downstream_subgoal_id)
                 )
                 if pursued_subgoal is not None:
                     objective_id = pursued_subgoal.objective_id
@@ -800,6 +925,23 @@ class OnlineCausalOptionStore:
                 ),
                 "downstream_subgoal_distance_reduction": float(
                     pursuit_outcome["distance_reduction"]
+                ),
+                "directional_mode_signature": pursuit_outcome.get(
+                    "directional_mode_signature",
+                    "",
+                ),
+                "directional_effect_status": pursuit_outcome.get(
+                    "directional_effect_status",
+                    "",
+                ),
+                "directional_gain": float(
+                    pursuit_outcome.get("directional_gain", 0.0)
+                ),
+                "directional_reversible_across_modes": bool(
+                    pursuit_outcome.get(
+                        "directional_reversible_across_modes",
+                        False,
+                    )
                 ),
                 "rollout_action_budget": self._current_action_budget(active),
             })

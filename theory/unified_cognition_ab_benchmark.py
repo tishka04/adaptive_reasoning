@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v8"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v9"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -95,6 +95,17 @@ def _effect_conditioned_downstream_subgoals_disabled_controller(
         game_id,
         config=UnifiedCognitiveConfig(
             enable_effect_conditioned_downstream_subgoals=False
+        ),
+    )
+
+
+def _state_conditioned_directional_control_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_state_conditioned_directional_control=False
         ),
     )
 
@@ -165,6 +176,7 @@ def run_unified_cognition_ab_benchmark(
     enable_causal_effect_credit: bool = True,
     enable_causal_hierarchical_options: bool = True,
     enable_effect_conditioned_downstream_subgoals: bool = True,
+    enable_state_conditioned_directional_control: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -193,6 +205,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _effect_conditioned_downstream_subgoals_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_state_conditioned_directional_control
+    ):
+        effective_controller_factory = (
+            _state_conditioned_directional_control_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -255,6 +274,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         effect_conditioned_downstream_subgoals_enabled=(
             enable_effect_conditioned_downstream_subgoals
+        ),
+        state_conditioned_directional_control_enabled=(
+            enable_state_conditioned_directional_control
         ),
     )
     if not include_traces:
@@ -347,6 +369,12 @@ def _run_arm(
     )
     effect_subgoal_summary = dict(
         causal_option_summary.get("effect_conditioned_subgoals", {}) or {}
+    )
+    directional_summary = dict(
+        effect_subgoal_summary.get(
+            "state_conditioned_directional_model",
+            {},
+        ) or {}
     )
     return {
         "arm": arm,
@@ -631,6 +659,51 @@ def _run_arm(
         "censored_effect_conditioned_subgoal_pursuits": int(
             effect_subgoal_summary.get("censored_pursuits", 0) or 0
         ),
+        "directional_effect_observations": int(
+            directional_summary.get("observations", 0) or 0
+        ),
+        "directional_trigger_observations": int(
+            directional_summary.get("trigger_observations", 0) or 0
+        ),
+        "directional_pursuit_observations": int(
+            directional_summary.get("pursuit_observations", 0) or 0
+        ),
+        "directional_progress_events": int(
+            directional_summary.get("progress_events", 0) or 0
+        ),
+        "directional_regression_events": int(
+            directional_summary.get("regression_events", 0) or 0
+        ),
+        "directional_stall_events": int(
+            directional_summary.get("stall_events", 0) or 0
+        ),
+        "directional_latent_modes": int(
+            directional_summary.get("latent_modes", 0) or 0
+        ),
+        "directional_mode_action_models": int(
+            directional_summary.get("mode_action_models", 0) or 0
+        ),
+        "directional_reversible_action_objectives": int(
+            directional_summary.get("reversible_action_objectives", 0) or 0
+        ),
+        "directional_predictions": int(
+            directional_summary.get("predictions", 0) or 0
+        ),
+        "directional_exact_mode_predictions": int(
+            directional_summary.get("exact_mode_predictions", 0) or 0
+        ),
+        "directional_mode_contrast_predictions": int(
+            directional_summary.get("mode_contrast_predictions", 0) or 0
+        ),
+        "directional_progressive_selections": int(
+            directional_summary.get("progressive_selections", 0) or 0
+        ),
+        "directional_mode_contrast_selections": int(
+            directional_summary.get("mode_contrast_selections", 0) or 0
+        ),
+        "directional_blocked_regressive_actions": int(
+            directional_summary.get("blocked_regressive_actions", 0) or 0
+        ),
         "causal_option_dynamic_budget_extensions": int(
             causal_option_summary.get("dynamic_budget_extensions", 0) or 0
         ),
@@ -830,6 +903,7 @@ def _summarize_benchmark(
     causal_effect_credit_enabled: bool,
     causal_hierarchical_options_enabled: bool,
     effect_conditioned_downstream_subgoals_enabled: bool,
+    state_conditioned_directional_control_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -872,6 +946,9 @@ def _summarize_benchmark(
             ),
             "effect_conditioned_downstream_subgoals_enabled_in_unified": bool(
                 effect_conditioned_downstream_subgoals_enabled
+            ),
+            "state_conditioned_directional_control_enabled_in_unified": bool(
+                state_conditioned_directional_control_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1198,6 +1275,52 @@ def _aggregate_arm(
             int(row["censored_effect_conditioned_subgoal_pursuits"])
             for row in rows
         ),
+        "directional_effect_observations": sum(
+            int(row["directional_effect_observations"]) for row in rows
+        ),
+        "directional_trigger_observations": sum(
+            int(row["directional_trigger_observations"]) for row in rows
+        ),
+        "directional_pursuit_observations": sum(
+            int(row["directional_pursuit_observations"]) for row in rows
+        ),
+        "directional_progress_events": sum(
+            int(row["directional_progress_events"]) for row in rows
+        ),
+        "directional_regression_events": sum(
+            int(row["directional_regression_events"]) for row in rows
+        ),
+        "directional_stall_events": sum(
+            int(row["directional_stall_events"]) for row in rows
+        ),
+        "directional_latent_modes": sum(
+            int(row["directional_latent_modes"]) for row in rows
+        ),
+        "directional_mode_action_models": sum(
+            int(row["directional_mode_action_models"]) for row in rows
+        ),
+        "directional_reversible_action_objectives": sum(
+            int(row["directional_reversible_action_objectives"])
+            for row in rows
+        ),
+        "directional_predictions": sum(
+            int(row["directional_predictions"]) for row in rows
+        ),
+        "directional_exact_mode_predictions": sum(
+            int(row["directional_exact_mode_predictions"]) for row in rows
+        ),
+        "directional_mode_contrast_predictions": sum(
+            int(row["directional_mode_contrast_predictions"]) for row in rows
+        ),
+        "directional_progressive_selections": sum(
+            int(row["directional_progressive_selections"]) for row in rows
+        ),
+        "directional_mode_contrast_selections": sum(
+            int(row["directional_mode_contrast_selections"]) for row in rows
+        ),
+        "directional_blocked_regressive_actions": sum(
+            int(row["directional_blocked_regressive_actions"]) for row in rows
+        ),
         "causal_option_dynamic_budget_extensions": sum(
             int(row["causal_option_dynamic_budget_extensions"])
             for row in rows
@@ -1280,6 +1403,17 @@ def _omit_step_traces(payload: Dict[str, Any]) -> None:
             effect_subgoals["hypothesis_details_omitted"] = True
             effect_subgoals["hypothesis_detail_count"] = len(
                 effect_hypotheses
+            )
+        directional = (
+            effect_subgoals.get("state_conditioned_directional_model") or {}
+        )
+        directional_hypotheses = list(
+            directional.pop("hypotheses", []) or []
+        )
+        if directional_hypotheses:
+            directional["hypothesis_details_omitted"] = True
+            directional["hypothesis_detail_count"] = len(
+                directional_hypotheses
             )
 
 
@@ -1393,6 +1527,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8q effect-to-subgoal learning and adaptive budget only.",
     )
+    parser.add_argument(
+        "--disable-state-conditioned-directional-control",
+        action="store_true",
+        help="Ablate SAGE.8r latent-mode directional action control only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1423,6 +1562,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_effect_conditioned_downstream_subgoals=(
             not args.disable_effect_conditioned_downstream_subgoals
+        ),
+        enable_state_conditioned_directional_control=(
+            not args.disable_state_conditioned_directional_control
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

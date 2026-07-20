@@ -55,9 +55,11 @@ python -m theory.unified_cognition_ab_benchmark --seeds 0,1 --budget 40 --resets
 
 It creates fresh environments for both arms and checks identical reset frames,
 games, seeds, reset counts, and budgets. The current five-game public-unseen
-run records 20 reset attempts per arm, 800 unified actions, 286 deliberate
-experiments, and 34 promoted-option actions. It found no level or win gain in
-either arm; this is recorded as a negative result, not relabelled as progress.
+run records 20 reset attempts per arm and 800 unified actions. SAGE.8r uses 488
+deliberate experiments, learns 28 state-conditioned action models, and obtains
+2 downstream pursuit-progress events, versus 0 when that directional control
+is ablated. It still finds no level or win gain in either arm; this is recorded
+as a negative terminal result, not relabelled as ARC progress.
 
 ## Sampler Roadmap
 

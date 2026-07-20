@@ -18,6 +18,10 @@ from .online_terminal_objective import (
     OnlineTerminalObjectiveStore,
     TerminalObjectiveStatus,
 )
+from .online_state_conditioned_effect import (
+    DirectionalActionPrediction,
+    OnlineStateConditionedEffectModel,
+)
 
 
 class EffectConditionedSubgoalStatus(str, Enum):
@@ -197,9 +201,14 @@ class OnlineEffectConditionedSubgoalStore:
         *,
         max_subgoals: int = 24,
         max_subgoals_per_effect: int = 4,
+        enable_state_conditioned_directional_control: bool = True,
     ) -> None:
         self.max_subgoals = max(1, int(max_subgoals))
         self.max_subgoals_per_effect = max(1, int(max_subgoals_per_effect))
+        self.enable_state_conditioned_directional_control = bool(
+            enable_state_conditioned_directional_control
+        )
+        self.directional_model = OnlineStateConditionedEffectModel()
         self._subgoals: Dict[str, EffectConditionedDownstreamSubgoal] = {}
         self._generated_total = 0
         self._selection_count = 0
@@ -235,6 +244,7 @@ class OnlineEffectConditionedSubgoalStore:
         context_signature: str,
         action_signature: str,
         preferred_objective_id: str = "",
+        pursued_objective_id: str = "",
     ) -> Dict[str, Any]:
         """Generate bounded links from a real effect to measurable objectives."""
         effect = str(effect_signature)
@@ -302,6 +312,22 @@ class OnlineEffectConditionedSubgoalStore:
             if is_new_link:
                 self._effect_links += 1
             generated.append(subgoal.subgoal_id)
+            if (
+                self.enable_state_conditioned_directional_control
+                and action_signature
+                and objective.objective_id != str(pursued_objective_id)
+            ):
+                self.directional_model.observe(
+                    option_id=str(option_id),
+                    objective=objective,
+                    observation_before=observation_before,
+                    observation_after=observation_after,
+                    action_signature=str(action_signature),
+                    effect_signature=effect,
+                    branch_index=branch_index,
+                    context_signature=context,
+                    source="trigger",
+                )
             if reduction <= 0.0:
                 continue
             completed = bool(
@@ -404,6 +430,45 @@ class OnlineEffectConditionedSubgoalStore:
         evidence = subgoal.action_evidence.get(str(signature))
         return 0.0 if evidence is None else float(evidence.utility)
 
+    def directional_predictions(
+        self,
+        *,
+        subgoal_id: str,
+        observation: GameObservation,
+        store: OnlineTerminalObjectiveStore,
+        action_signatures: Sequence[str],
+    ) -> Dict[str, DirectionalActionPrediction]:
+        """Predict signed objective effects for concrete actions in this mode."""
+        if not self.enable_state_conditioned_directional_control:
+            return {}
+        subgoal = self.subgoal(subgoal_id)
+        objective = None if subgoal is None else store.objective(
+            subgoal.objective_id
+        )
+        if subgoal is None or objective is None:
+            return {}
+        return {
+            str(signature): self.directional_model.predict(
+                option_id=subgoal.option_id,
+                objective=objective,
+                observation=observation,
+                action_signature=str(signature),
+            )
+            for signature in dict.fromkeys(str(item) for item in action_signatures)
+        }
+
+    def note_directional_selection(
+        self,
+        prediction: DirectionalActionPrediction,
+    ) -> None:
+        self.directional_model.note_selection(prediction)
+
+    def note_directional_blocked(
+        self,
+        prediction: DirectionalActionPrediction,
+    ) -> None:
+        self.directional_model.note_blocked(prediction)
+
     def observe_pursuit_with_store(
         self,
         *,
@@ -415,6 +480,7 @@ class OnlineEffectConditionedSubgoalStore:
         context_signature: str,
         action_signature: str,
         sequence: Sequence[str],
+        effect_signature: str = "",
         unsafe: bool = False,
         replayed: bool = False,
     ) -> Dict[str, Any]:
@@ -437,7 +503,7 @@ class OnlineEffectConditionedSubgoalStore:
             DownstreamSubgoalActionEvidence(signature=str(action_signature)),
         )
         evidence.attempts += 1
-        return self._observe_pursuit_with_distances(
+        outcome = self._observe_pursuit_with_distances(
             subgoal=subgoal,
             evidence=evidence,
             distance_before=objective.distance(observation_before),
@@ -448,6 +514,28 @@ class OnlineEffectConditionedSubgoalStore:
             sequence=sequence,
             unsafe=unsafe,
         )
+        if self.enable_state_conditioned_directional_control:
+            directional = self.directional_model.observe(
+                option_id=subgoal.option_id,
+                objective=objective,
+                observation_before=observation_before,
+                observation_after=observation_after,
+                action_signature=str(action_signature),
+                effect_signature=str(effect_signature),
+                branch_index=branch_index,
+                context_signature=context_signature,
+                source="pursuit",
+                unsafe=unsafe,
+            )
+            outcome.update({
+                "directional_mode_signature": directional["mode_signature"],
+                "directional_effect_status": directional["status"],
+                "directional_gain": directional["gain"],
+                "directional_reversible_across_modes": directional[
+                    "reversible_across_modes"
+                ],
+            })
+        return outcome
 
     def close_pursuit(
         self,
@@ -493,6 +581,12 @@ class OnlineEffectConditionedSubgoalStore:
             "replayed_actions": self._replayed_actions,
             "failed_pursuits": self._failed_pursuits,
             "censored_pursuits": self._censored_pursuits,
+            "state_conditioned_directional_control_enabled": (
+                self.enable_state_conditioned_directional_control
+            ),
+            "state_conditioned_directional_model": (
+                self.directional_model.summary()
+            ),
             "hypotheses": [subgoal.to_dict() for subgoal in subgoals],
         }
 

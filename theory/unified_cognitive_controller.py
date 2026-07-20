@@ -120,6 +120,7 @@ class UnifiedCognitiveConfig:
     enable_causal_effect_credit: bool = True
     enable_causal_hierarchical_options: bool = True
     enable_effect_conditioned_downstream_subgoals: bool = True
+    enable_state_conditioned_directional_control: bool = True
 
 
 @dataclass(frozen=True)
@@ -168,6 +169,13 @@ class CognitiveDecision:
     causal_option_trigger_effect_signature: str = ""
     causal_option_downstream_subgoal_utility: float | None = None
     causal_option_replaying_progress_sequence: bool = False
+    causal_option_latent_mode_signature: str = ""
+    causal_option_directional_effect_status: str = ""
+    causal_option_directional_expected_gain: float | None = None
+    causal_option_directional_confidence: float | None = None
+    causal_option_directionally_compatible: bool = True
+    causal_option_reversible_action: bool = False
+    causal_option_directional_mode_contrast: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -232,6 +240,27 @@ class CognitiveDecision:
             ),
             "causal_option_replaying_progress_sequence": (
                 self.causal_option_replaying_progress_sequence
+            ),
+            "causal_option_latent_mode_signature": (
+                self.causal_option_latent_mode_signature
+            ),
+            "causal_option_directional_effect_status": (
+                self.causal_option_directional_effect_status
+            ),
+            "causal_option_directional_expected_gain": (
+                self.causal_option_directional_expected_gain
+            ),
+            "causal_option_directional_confidence": (
+                self.causal_option_directional_confidence
+            ),
+            "causal_option_directionally_compatible": (
+                self.causal_option_directionally_compatible
+            ),
+            "causal_option_reversible_action": (
+                self.causal_option_reversible_action
+            ),
+            "causal_option_directional_mode_contrast": (
+                self.causal_option_directional_mode_contrast
             ),
         }
 
@@ -357,6 +386,9 @@ class UnifiedCognitiveController:
             ),
             max_actions_per_effect_conditioned_subgoal=(
                 self.config.max_actions_per_effect_conditioned_subgoal
+            ),
+            enable_state_conditioned_directional_control=(
+                self.config.enable_state_conditioned_directional_control
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
@@ -853,6 +885,15 @@ class UnifiedCognitiveController:
             action_utilities[action] = (
                 float(stats.change_rate) - 2.0 * float(stats.death_rate)
             )
+        directional_predictions = (
+            self.causal_options.directional_action_predictions(
+                observation,
+                store=self.terminal_objectives,
+                downstream_subgoal=downstream_subgoal,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
+            )
+        )
         selection = self.causal_options.select_downstream(
             observation,
             safe_actions=safe_actions,
@@ -866,6 +907,7 @@ class UnifiedCognitiveController:
             preferred_action_data=(
                 None if directed_choice is None else directed_choice.action_data
             ),
+            directional_predictions=directional_predictions,
         )
         if selection is None:
             return None
@@ -959,6 +1001,25 @@ class UnifiedCognitiveController:
             ),
             causal_option_replaying_progress_sequence=(
                 selection.replaying_progress_sequence
+            ),
+            causal_option_latent_mode_signature=(
+                selection.latent_mode_signature
+            ),
+            causal_option_directional_effect_status=(
+                selection.directional_effect_status
+            ),
+            causal_option_directional_expected_gain=(
+                selection.directional_expected_gain
+            ),
+            causal_option_directional_confidence=(
+                selection.directional_confidence
+            ),
+            causal_option_directionally_compatible=(
+                selection.directionally_compatible
+            ),
+            causal_option_reversible_action=selection.reversible_action,
+            causal_option_directional_mode_contrast=(
+                selection.directional_mode_contrast
             ),
         )
 
