@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v12"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v13"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -143,6 +143,17 @@ def _active_entity_causal_binding_disabled_controller(
     )
 
 
+def _mediated_entity_effect_induction_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_mediated_entity_effect_induction=False
+        ),
+    )
+
+
 @dataclass(frozen=True)
 class _ExecutableAction:
     name: str
@@ -213,6 +224,7 @@ def run_unified_cognition_ab_benchmark(
     enable_persistent_directional_pursuit: bool = True,
     enable_entity_anchored_interventions: bool = True,
     enable_active_entity_causal_binding: bool = True,
+    enable_mediated_entity_effect_induction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -269,6 +281,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _active_entity_causal_binding_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_mediated_entity_effect_induction
+    ):
+        effective_controller_factory = (
+            _mediated_entity_effect_induction_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -343,6 +362,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         active_entity_causal_binding_enabled=(
             enable_active_entity_causal_binding
+        ),
+        mediated_entity_effect_induction_enabled=(
+            enable_mediated_entity_effect_induction
         ),
     )
     if not include_traces:
@@ -451,6 +473,12 @@ def _run_arm(
     entity_binding_summary = dict(
         causal_option_summary.get(
             "active_entity_causal_binding",
+            {},
+        ) or {}
+    )
+    mediated_effect_summary = dict(
+        causal_option_summary.get(
+            "mediated_entity_effect_induction",
             {},
         ) or {}
     )
@@ -760,6 +788,93 @@ def _run_arm(
         "entity_binding_blocked_misbound_actions": int(
             entity_binding_summary.get("blocked_misbound_actions", 0) or 0
         ),
+        "mediated_effect_observations": int(
+            mediated_effect_summary.get("observations", 0) or 0
+        ),
+        "mediated_effect_scene_correspondences": int(
+            mediated_effect_summary.get("scene_correspondences", 0) or 0
+        ),
+        "mediated_effect_changed_entities": int(
+            mediated_effect_summary.get("changed_entities", 0) or 0
+        ),
+        "mediated_effect_moved_entities": int(
+            mediated_effect_summary.get("moved_entities", 0) or 0
+        ),
+        "mediated_effect_transformed_entities": int(
+            mediated_effect_summary.get("transformed_entities", 0) or 0
+        ),
+        "mediated_effect_removed_entities": int(
+            mediated_effect_summary.get("removed_entities", 0) or 0
+        ),
+        "mediated_effect_appeared_entities": int(
+            mediated_effect_summary.get("appeared_entities", 0) or 0
+        ),
+        "mediated_effect_ambiguous_entities": int(
+            mediated_effect_summary.get("ambiguous_entities", 0) or 0
+        ),
+        "mediated_effect_tracks_created": int(
+            mediated_effect_summary.get("tracks_created", 0) or 0
+        ),
+        "mediated_effect_tracks_reused": int(
+            mediated_effect_summary.get("tracks_reused", 0) or 0
+        ),
+        "mediated_effect_progress_with_indirect_candidates": int(
+            mediated_effect_summary.get(
+                "progress_with_indirect_candidates",
+                0,
+            ) or 0
+        ),
+        "mediated_effect_ambiguous_progress_candidate_sets": int(
+            mediated_effect_summary.get(
+                "ambiguous_progress_candidate_sets",
+                0,
+            ) or 0
+        ),
+        "mediated_effect_no_candidate_progress_events": int(
+            mediated_effect_summary.get(
+                "no_candidate_progress_events",
+                0,
+            ) or 0
+        ),
+        "mediated_effect_direct_target_progress_events": int(
+            mediated_effect_summary.get(
+                "direct_target_progress_events",
+                0,
+            ) or 0
+        ),
+        "mediated_effect_models": int(
+            mediated_effect_summary.get("mediated_effect_models", 0) or 0
+        ),
+        "mediated_effect_supported_hyperedges": int(
+            mediated_effect_summary.get("supported_hyperedges", 0) or 0
+        ),
+        "mediated_effect_predictions": int(
+            mediated_effect_summary.get("predictions", 0) or 0
+        ),
+        "mediated_effect_supported_predictions": int(
+            mediated_effect_summary.get("supported_predictions", 0) or 0
+        ),
+        "mediated_effect_controlled_contrast_predictions": int(
+            mediated_effect_summary.get(
+                "controlled_contrast_predictions",
+                0,
+            ) or 0
+        ),
+        "mediated_effect_supported_selections": int(
+            mediated_effect_summary.get("supported_selections", 0) or 0
+        ),
+        "mediated_effect_controlled_contrast_selections": int(
+            mediated_effect_summary.get(
+                "controlled_contrast_selections",
+                0,
+            ) or 0
+        ),
+        "mediated_effect_blocked_contradicted_actions": int(
+            mediated_effect_summary.get(
+                "blocked_contradicted_actions",
+                0,
+            ) or 0
+        ),
         "effect_conditioned_goal_candidates_generated": int(
             controller_summary.get(
                 "effect_conditioned_goal_candidates_generated",
@@ -913,6 +1028,15 @@ def _run_arm(
         "persistent_pursuit_entity_binding_contrast_actions": int(
             persistent_summary.get(
                 "entity_binding_contrast_actions",
+                0,
+            ) or 0
+        ),
+        "persistent_pursuit_mediated_effect_policy_actions": int(
+            persistent_summary.get("mediated_effect_policy_actions", 0) or 0
+        ),
+        "persistent_pursuit_mediated_effect_contrast_actions": int(
+            persistent_summary.get(
+                "mediated_effect_contrast_actions",
                 0,
             ) or 0
         ),
@@ -1143,6 +1267,7 @@ def _summarize_benchmark(
     persistent_directional_pursuit_enabled: bool,
     entity_anchored_interventions_enabled: bool,
     active_entity_causal_binding_enabled: bool,
+    mediated_entity_effect_induction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1197,6 +1322,9 @@ def _summarize_benchmark(
             ),
             "active_entity_causal_binding_enabled_in_unified": bool(
                 active_entity_causal_binding_enabled
+            ),
+            "mediated_entity_effect_induction_enabled_in_unified": bool(
+                mediated_entity_effect_induction_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1537,6 +1665,82 @@ def _aggregate_arm(
             int(row["entity_binding_blocked_misbound_actions"])
             for row in rows
         ),
+        "mediated_effect_observations": sum(
+            int(row["mediated_effect_observations"]) for row in rows
+        ),
+        "mediated_effect_scene_correspondences": sum(
+            int(row["mediated_effect_scene_correspondences"])
+            for row in rows
+        ),
+        "mediated_effect_changed_entities": sum(
+            int(row["mediated_effect_changed_entities"]) for row in rows
+        ),
+        "mediated_effect_moved_entities": sum(
+            int(row["mediated_effect_moved_entities"]) for row in rows
+        ),
+        "mediated_effect_transformed_entities": sum(
+            int(row["mediated_effect_transformed_entities"]) for row in rows
+        ),
+        "mediated_effect_removed_entities": sum(
+            int(row["mediated_effect_removed_entities"]) for row in rows
+        ),
+        "mediated_effect_appeared_entities": sum(
+            int(row["mediated_effect_appeared_entities"]) for row in rows
+        ),
+        "mediated_effect_ambiguous_entities": sum(
+            int(row["mediated_effect_ambiguous_entities"]) for row in rows
+        ),
+        "mediated_effect_tracks_created": sum(
+            int(row["mediated_effect_tracks_created"]) for row in rows
+        ),
+        "mediated_effect_tracks_reused": sum(
+            int(row["mediated_effect_tracks_reused"]) for row in rows
+        ),
+        "mediated_effect_progress_with_indirect_candidates": sum(
+            int(row["mediated_effect_progress_with_indirect_candidates"])
+            for row in rows
+        ),
+        "mediated_effect_ambiguous_progress_candidate_sets": sum(
+            int(row["mediated_effect_ambiguous_progress_candidate_sets"])
+            for row in rows
+        ),
+        "mediated_effect_no_candidate_progress_events": sum(
+            int(row["mediated_effect_no_candidate_progress_events"])
+            for row in rows
+        ),
+        "mediated_effect_direct_target_progress_events": sum(
+            int(row["mediated_effect_direct_target_progress_events"])
+            for row in rows
+        ),
+        "mediated_effect_models": sum(
+            int(row["mediated_effect_models"]) for row in rows
+        ),
+        "mediated_effect_supported_hyperedges": sum(
+            int(row["mediated_effect_supported_hyperedges"]) for row in rows
+        ),
+        "mediated_effect_predictions": sum(
+            int(row["mediated_effect_predictions"]) for row in rows
+        ),
+        "mediated_effect_supported_predictions": sum(
+            int(row["mediated_effect_supported_predictions"])
+            for row in rows
+        ),
+        "mediated_effect_controlled_contrast_predictions": sum(
+            int(row["mediated_effect_controlled_contrast_predictions"])
+            for row in rows
+        ),
+        "mediated_effect_supported_selections": sum(
+            int(row["mediated_effect_supported_selections"])
+            for row in rows
+        ),
+        "mediated_effect_controlled_contrast_selections": sum(
+            int(row["mediated_effect_controlled_contrast_selections"])
+            for row in rows
+        ),
+        "mediated_effect_blocked_contradicted_actions": sum(
+            int(row["mediated_effect_blocked_contradicted_actions"])
+            for row in rows
+        ),
         "effect_conditioned_goal_candidates_generated": sum(
             int(row["effect_conditioned_goal_candidates_generated"])
             for row in rows
@@ -1702,6 +1906,14 @@ def _aggregate_arm(
         ),
         "persistent_pursuit_entity_binding_contrast_actions": sum(
             int(row["persistent_pursuit_entity_binding_contrast_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_mediated_effect_policy_actions": sum(
+            int(row["persistent_pursuit_mediated_effect_policy_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_mediated_effect_contrast_actions": sum(
+            int(row["persistent_pursuit_mediated_effect_contrast_actions"])
             for row in rows
         ),
         "persistent_pursuit_mode_contrast_actions": sum(
@@ -1965,6 +2177,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8u online target/effect causal bindings only.",
     )
+    parser.add_argument(
+        "--disable-mediated-entity-effect-induction",
+        action="store_true",
+        help="Ablate SAGE.8v indirect affected-entity induction only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -2007,6 +2224,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_active_entity_causal_binding=(
             not args.disable_active_entity_causal_binding
+        ),
+        enable_mediated_entity_effect_induction=(
+            not args.disable_mediated_entity_effect_induction
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

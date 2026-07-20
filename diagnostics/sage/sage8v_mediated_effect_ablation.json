@@ -324,24 +324,24 @@
       "mediated_effect_ambiguous_progress_candidate_sets": 0,
       "mediated_effect_appeared_entities": 0,
       "mediated_effect_blocked_contradicted_actions": 0,
-      "mediated_effect_changed_entities": 6,
+      "mediated_effect_changed_entities": 0,
       "mediated_effect_controlled_contrast_predictions": 0,
       "mediated_effect_controlled_contrast_selections": 0,
       "mediated_effect_direct_target_progress_events": 0,
-      "mediated_effect_models": 6,
+      "mediated_effect_models": 0,
       "mediated_effect_moved_entities": 0,
       "mediated_effect_no_candidate_progress_events": 0,
-      "mediated_effect_observations": 6,
-      "mediated_effect_predictions": 32,
-      "mediated_effect_progress_with_indirect_candidates": 2,
+      "mediated_effect_observations": 0,
+      "mediated_effect_predictions": 0,
+      "mediated_effect_progress_with_indirect_candidates": 0,
       "mediated_effect_removed_entities": 0,
-      "mediated_effect_scene_correspondences": 48,
+      "mediated_effect_scene_correspondences": 0,
       "mediated_effect_supported_hyperedges": 0,
       "mediated_effect_supported_predictions": 0,
       "mediated_effect_supported_selections": 0,
-      "mediated_effect_tracks_created": 32,
-      "mediated_effect_tracks_reused": 16,
-      "mediated_effect_transformed_entities": 6,
+      "mediated_effect_tracks_created": 0,
+      "mediated_effect_tracks_reused": 0,
+      "mediated_effect_transformed_entities": 0,
       "objective_ambiguous_terminal_events": 0,
       "objective_distance_reductions": 782,
       "objective_nonterminal_completions": 93,
@@ -405,7 +405,7 @@
     "entity_anchored_interventions_enabled_in_unified": true,
     "evaluation_outcomes_used_for_training_or_tuning": false,
     "fresh_environment_per_reset": true,
-    "mediated_entity_effect_induction_enabled_in_unified": true,
+    "mediated_entity_effect_induction_enabled_in_unified": false,
     "online_learning_within_arm_only": true,
     "persistent_directional_pursuit_enabled_in_unified": true,
     "protocol_gate_passed": true,
@@ -838,7 +838,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -1988,7 +1988,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -3138,7 +3138,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -4411,7 +4411,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -5684,7 +5684,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -6698,7 +6698,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -7629,7 +7629,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                    "branch:2:state:5604587689724228634|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -7662,7 +7662,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
+                    "branch:2:state:5604587689724228634|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -7695,7 +7695,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:5604587689724228634|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -7814,172 +7814,26 @@
               "ambiguous_progress_candidate_sets": 0,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
-              "changed_entities": 3,
+              "changed_entities": 0,
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
-              "hypotheses": [
-                {
-                  "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
-                  "ambiguous_progress_events": 0,
-                  "attempts": 1,
-                  "branches": [
-                    2
-                  ],
-                  "candidate_hyperedges": [
-                    {
-                      "controls": 1,
-                      "example": {
-                        "relation_signature": "adjacent:above:right:offset:different-color",
-                        "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                        "source_object_id": 2,
-                        "target_object_id": 2,
-                        "track_id": "scene-track:8",
-                        "transition_status": "transformed"
-                      },
-                      "regressions": 0,
-                      "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                      "supports": 0
-                    }
-                  ],
-                  "candidate_intersection": [],
-                  "confidence": 0.0,
-                  "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
-                  ],
-                  "direct_target_progress_events": 0,
-                  "expected_gain": 0.0,
-                  "mode_signature": "latent-mode:appear|shape:64x64|distance:1|source:4:17-64:1|target:8:17-64:4|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
-                  "no_candidate_progress_events": 0,
-                  "objective_id": "terminal::appear::same_shape::colors4_8",
-                  "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-                  "progress_branches": [],
-                  "progress_candidate_sets": [],
-                  "progress_contexts": [],
-                  "progress_events": 0,
-                  "regression_events": 0,
-                  "stall_events": 1,
-                  "status": "unknown",
-                  "supported_mediator_signature": "",
-                  "total_gain": 0.0,
-                  "total_regression": 0.0
-                },
-                {
-                  "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
-                  "ambiguous_progress_events": 0,
-                  "attempts": 1,
-                  "branches": [
-                    2
-                  ],
-                  "candidate_hyperedges": [
-                    {
-                      "controls": 0,
-                      "example": {
-                        "relation_signature": "adjacent:above:right:offset:different-color",
-                        "signature": "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                        "source_object_id": 2,
-                        "target_object_id": 2,
-                        "track_id": "scene-track:8",
-                        "transition_status": "transformed"
-                      },
-                      "regressions": 1,
-                      "signature": "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                      "supports": 0
-                    }
-                  ],
-                  "candidate_intersection": [],
-                  "confidence": 0.5,
-                  "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
-                  ],
-                  "direct_target_progress_events": 0,
-                  "expected_gain": -0.5,
-                  "mode_signature": "latent-mode:exhaust|shape:64x64|distance:1|source:0:1:1|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,12:65+,8:17-64,4:17-64",
-                  "no_candidate_progress_events": 0,
-                  "objective_id": "terminal::exhaust::color0",
-                  "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-                  "progress_branches": [],
-                  "progress_candidate_sets": [],
-                  "progress_contexts": [],
-                  "progress_events": 0,
-                  "regression_events": 1,
-                  "stall_events": 0,
-                  "status": "contradicted",
-                  "supported_mediator_signature": "",
-                  "total_gain": 0.0,
-                  "total_regression": 1.0
-                },
-                {
-                  "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
-                  "ambiguous_progress_events": 0,
-                  "attempts": 1,
-                  "branches": [
-                    2
-                  ],
-                  "candidate_hyperedges": [
-                    {
-                      "controls": 0,
-                      "example": {
-                        "relation_signature": "adjacent:above:right:offset:different-color",
-                        "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                        "source_object_id": 2,
-                        "target_object_id": 2,
-                        "track_id": "scene-track:16",
-                        "transition_status": "transformed"
-                      },
-                      "regressions": 0,
-                      "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                      "supports": 1
-                    }
-                  ],
-                  "candidate_intersection": [
-                    "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-                  ],
-                  "confidence": 0.5,
-                  "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
-                  ],
-                  "direct_target_progress_events": 0,
-                  "expected_gain": 0.5,
-                  "mode_signature": "latent-mode:exhaust|shape:64x64|distance:2|source:0:65+:2|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
-                  "no_candidate_progress_events": 0,
-                  "objective_id": "terminal::exhaust::color0",
-                  "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-                  "progress_branches": [
-                    2
-                  ],
-                  "progress_candidate_sets": [
-                    [
-                      "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-                    ]
-                  ],
-                  "progress_contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
-                  ],
-                  "progress_events": 1,
-                  "regression_events": 0,
-                  "stall_events": 0,
-                  "status": "needs_mediator_contrast",
-                  "supported_mediator_signature": "",
-                  "total_gain": 1.0,
-                  "total_regression": 0.0
-                }
-              ],
-              "mediated_effect_models": 3,
+              "enabled": false,
+              "hypotheses": [],
+              "mediated_effect_models": 0,
               "moved_entities": 0,
               "no_candidate_progress_events": 0,
-              "observations": 3,
-              "predictions": 16,
-              "progress_with_indirect_candidates": 1,
+              "observations": 0,
+              "predictions": 0,
+              "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
-              "scene_correspondences": 24,
+              "scene_correspondences": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
-              "tracks_created": 16,
-              "tracks_reused": 8,
-              "transformed_entities": 3
+              "tracks_created": 0,
+              "tracks_reused": 0,
+              "transformed_entities": 0
             },
             "nonterminal_rollouts": 1,
             "opening_events": 1,
@@ -8124,9 +7978,7 @@
           "recent_causal_option_outcomes": [
             {
               "active_option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-              "candidate_mediator_signatures": [
-                "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-              ],
+              "candidate_mediator_signatures": [],
               "directional_effect_status": "",
               "directional_gain": 0.0,
               "directional_mode_signature": "",
@@ -8152,8 +8004,8 @@
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:-135,12:+135|move:none|shape:same|game_over:0|level_complete:0=>terminal::break::adjacent_to::colors8_12"
               ],
               "mediated_effect_gain": 0.0,
-              "mediated_effect_status": "unknown",
-              "mediated_scene_changes": 1,
+              "mediated_effect_status": "",
+              "mediated_scene_changes": 0,
               "option_id": "",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8202,9 +8054,7 @@
             },
             {
               "active_option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-              "candidate_mediator_signatures": [
-                "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-              ],
+              "candidate_mediator_signatures": [],
               "directional_effect_status": "regressive",
               "directional_gain": -1.0,
               "directional_mode_signature": "latent-mode:exhaust|shape:64x64|distance:1|source:0:1:1|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,12:65+,8:17-64,4:17-64",
@@ -8228,9 +8078,9 @@
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:+135,12:-135|move:none|shape:same|game_over:0|level_complete:0=>terminal::convert::0_to_12",
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:+135,12:-135|move:none|shape:same|game_over:0|level_complete:0=>terminal::exhaust::color0"
               ],
-              "mediated_effect_gain": -1.0,
-              "mediated_effect_status": "contradicted",
-              "mediated_scene_changes": 1,
+              "mediated_effect_gain": 0.0,
+              "mediated_effect_status": "",
+              "mediated_scene_changes": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8284,9 +8134,7 @@
             },
             {
               "active_option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-              "candidate_mediator_signatures": [
-                "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-              ],
+              "candidate_mediator_signatures": [],
               "directional_effect_status": "progressive",
               "directional_gain": 1.0,
               "directional_mode_signature": "latent-mode:exhaust|shape:64x64|distance:2|source:0:65+:2|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
@@ -8311,9 +8159,9 @@
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:-135,12:+135|move:none|shape:same|game_over:0|level_complete:0=>terminal::appear::same_shape::colors4_8",
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:-135,12:+135|move:none|shape:same|game_over:0|level_complete:0=>terminal::break::adjacent_to::colors8_12"
               ],
-              "mediated_effect_gain": 1.0,
-              "mediated_effect_status": "needs_mediator_contrast",
-              "mediated_scene_changes": 1,
+              "mediated_effect_gain": 0.0,
+              "mediated_effect_status": "",
+              "mediated_scene_changes": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -8977,24 +8825,24 @@
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
         "mediated_effect_blocked_contradicted_actions": 0,
-        "mediated_effect_changed_entities": 3,
+        "mediated_effect_changed_entities": 0,
         "mediated_effect_controlled_contrast_predictions": 0,
         "mediated_effect_controlled_contrast_selections": 0,
         "mediated_effect_direct_target_progress_events": 0,
-        "mediated_effect_models": 3,
+        "mediated_effect_models": 0,
         "mediated_effect_moved_entities": 0,
         "mediated_effect_no_candidate_progress_events": 0,
-        "mediated_effect_observations": 3,
-        "mediated_effect_predictions": 16,
-        "mediated_effect_progress_with_indirect_candidates": 1,
+        "mediated_effect_observations": 0,
+        "mediated_effect_predictions": 0,
+        "mediated_effect_progress_with_indirect_candidates": 0,
         "mediated_effect_removed_entities": 0,
-        "mediated_effect_scene_correspondences": 24,
+        "mediated_effect_scene_correspondences": 0,
         "mediated_effect_supported_hyperedges": 0,
         "mediated_effect_supported_predictions": 0,
         "mediated_effect_supported_selections": 0,
-        "mediated_effect_tracks_created": 16,
-        "mediated_effect_tracks_reused": 8,
-        "mediated_effect_transformed_entities": 3,
+        "mediated_effect_tracks_created": 0,
+        "mediated_effect_tracks_reused": 0,
+        "mediated_effect_transformed_entities": 0,
         "objective_ambiguous_terminal_events": 0,
         "objective_distance_reductions": 48,
         "objective_nonterminal_completions": 16,
@@ -9392,7 +9240,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
+                    "branch:2:state:5604587689724228634|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -9425,7 +9273,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
+                    "branch:2:state:5604587689724228634|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -9458,7 +9306,7 @@
                   "carrier_regression_events": 0,
                   "confidence": 0.0,
                   "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
+                    "branch:2:state:5604587689724228634|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
                   ],
                   "expected_gain": 0.0,
                   "legacy_signature": "ACTION6::color:8",
@@ -9577,172 +9425,26 @@
               "ambiguous_progress_candidate_sets": 0,
               "appeared_entities": 0,
               "blocked_contradicted_actions": 0,
-              "changed_entities": 3,
+              "changed_entities": 0,
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
-              "hypotheses": [
-                {
-                  "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
-                  "ambiguous_progress_events": 0,
-                  "attempts": 1,
-                  "branches": [
-                    2
-                  ],
-                  "candidate_hyperedges": [
-                    {
-                      "controls": 1,
-                      "example": {
-                        "relation_signature": "adjacent:above:right:offset:different-color",
-                        "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                        "source_object_id": 2,
-                        "target_object_id": 2,
-                        "track_id": "scene-track:8",
-                        "transition_status": "transformed"
-                      },
-                      "regressions": 0,
-                      "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                      "supports": 0
-                    }
-                  ],
-                  "candidate_intersection": [],
-                  "confidence": 0.0,
-                  "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|3659b699fc3b980b|0|(('x', '21'), ('y', '30'))|suffix-step:1"
-                  ],
-                  "direct_target_progress_events": 0,
-                  "expected_gain": 0.0,
-                  "mode_signature": "latent-mode:appear|shape:64x64|distance:1|source:4:17-64:1|target:8:17-64:4|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
-                  "no_candidate_progress_events": 0,
-                  "objective_id": "terminal::appear::same_shape::colors4_8",
-                  "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-                  "progress_branches": [],
-                  "progress_candidate_sets": [],
-                  "progress_contexts": [],
-                  "progress_events": 0,
-                  "regression_events": 0,
-                  "stall_events": 1,
-                  "status": "unknown",
-                  "supported_mediator_signature": "",
-                  "total_gain": 0.0,
-                  "total_regression": 0.0
-                },
-                {
-                  "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
-                  "ambiguous_progress_events": 0,
-                  "attempts": 1,
-                  "branches": [
-                    2
-                  ],
-                  "candidate_hyperedges": [
-                    {
-                      "controls": 0,
-                      "example": {
-                        "relation_signature": "adjacent:above:right:offset:different-color",
-                        "signature": "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                        "source_object_id": 2,
-                        "target_object_id": 2,
-                        "track_id": "scene-track:8",
-                        "transition_status": "transformed"
-                      },
-                      "regressions": 1,
-                      "signature": "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                      "supports": 0
-                    }
-                  ],
-                  "candidate_intersection": [],
-                  "confidence": 0.5,
-                  "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|f52d4a79959bdf12|0|(('x', '21'), ('y', '30'))|suffix-step:3"
-                  ],
-                  "direct_target_progress_events": 0,
-                  "expected_gain": -0.5,
-                  "mode_signature": "latent-mode:exhaust|shape:64x64|distance:1|source:0:1:1|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,12:65+,8:17-64,4:17-64",
-                  "no_candidate_progress_events": 0,
-                  "objective_id": "terminal::exhaust::color0",
-                  "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-                  "progress_branches": [],
-                  "progress_candidate_sets": [],
-                  "progress_contexts": [],
-                  "progress_events": 0,
-                  "regression_events": 1,
-                  "stall_events": 0,
-                  "status": "contradicted",
-                  "supported_mediator_signature": "",
-                  "total_gain": 0.0,
-                  "total_regression": 1.0
-                },
-                {
-                  "action_transfer_signature": "ACTION6::entity:color8:shape3x3-d520777cdc:area9+::role:interior:player-far-offset:replicated:adj1:align1",
-                  "ambiguous_progress_events": 0,
-                  "attempts": 1,
-                  "branches": [
-                    2
-                  ],
-                  "candidate_hyperedges": [
-                    {
-                      "controls": 0,
-                      "example": {
-                        "relation_signature": "adjacent:above:right:offset:different-color",
-                        "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                        "source_object_id": 2,
-                        "target_object_id": 2,
-                        "track_id": "scene-track:16",
-                        "transition_status": "transformed"
-                      },
-                      "regressions": 0,
-                      "signature": "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color",
-                      "supports": 1
-                    }
-                  ],
-                  "candidate_intersection": [
-                    "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-                  ],
-                  "confidence": 0.5,
-                  "contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
-                  ],
-                  "direct_target_progress_events": 0,
-                  "expected_gain": 0.5,
-                  "mode_signature": "latent-mode:exhaust|shape:64x64|distance:2|source:0:65+:2|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
-                  "no_candidate_progress_events": 0,
-                  "objective_id": "terminal::exhaust::color0",
-                  "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-                  "progress_branches": [
-                    2
-                  ],
-                  "progress_candidate_sets": [
-                    [
-                      "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-                    ]
-                  ],
-                  "progress_contexts": [
-                    "branch:2:state:-6031500876486195519|branch:2|(64, 64)|4c6a64e65ee7fc45|0|(('x', '21'), ('y', '33'))|suffix-step:5"
-                  ],
-                  "progress_events": 1,
-                  "regression_events": 0,
-                  "stall_events": 0,
-                  "status": "needs_mediator_contrast",
-                  "supported_mediator_signature": "",
-                  "total_gain": 1.0,
-                  "total_regression": 0.0
-                }
-              ],
-              "mediated_effect_models": 3,
+              "enabled": false,
+              "hypotheses": [],
+              "mediated_effect_models": 0,
               "moved_entities": 0,
               "no_candidate_progress_events": 0,
-              "observations": 3,
-              "predictions": 16,
-              "progress_with_indirect_candidates": 1,
+              "observations": 0,
+              "predictions": 0,
+              "progress_with_indirect_candidates": 0,
               "removed_entities": 0,
-              "scene_correspondences": 24,
+              "scene_correspondences": 0,
               "supported_hyperedges": 0,
               "supported_predictions": 0,
               "supported_selections": 0,
-              "tracks_created": 16,
-              "tracks_reused": 8,
-              "transformed_entities": 3
+              "tracks_created": 0,
+              "tracks_reused": 0,
+              "transformed_entities": 0
             },
             "nonterminal_rollouts": 1,
             "opening_events": 1,
@@ -9888,9 +9590,7 @@
           "recent_causal_option_outcomes": [
             {
               "active_option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-              "candidate_mediator_signatures": [
-                "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-              ],
+              "candidate_mediator_signatures": [],
               "directional_effect_status": "",
               "directional_gain": 0.0,
               "directional_mode_signature": "",
@@ -9916,8 +9616,8 @@
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:-135,12:+135|move:none|shape:same|game_over:0|level_complete:0=>terminal::break::adjacent_to::colors8_12"
               ],
               "mediated_effect_gain": 0.0,
-              "mediated_effect_status": "unknown",
-              "mediated_scene_changes": 1,
+              "mediated_effect_status": "",
+              "mediated_scene_changes": 0,
               "option_id": "",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -9966,9 +9666,7 @@
             },
             {
               "active_option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-              "candidate_mediator_signatures": [
-                "mediated:transformed::entity:color12:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-              ],
+              "candidate_mediator_signatures": [],
               "directional_effect_status": "regressive",
               "directional_gain": -1.0,
               "directional_mode_signature": "latent-mode:exhaust|shape:64x64|distance:1|source:0:1:1|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,12:65+,8:17-64,4:17-64",
@@ -9992,9 +9690,9 @@
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:+135,12:-135|move:none|shape:same|game_over:0|level_complete:0=>terminal::convert::0_to_12",
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:+135,12:-135|move:none|shape:same|game_over:0|level_complete:0=>terminal::exhaust::color0"
               ],
-              "mediated_effect_gain": -1.0,
-              "mediated_effect_status": "contradicted",
-              "mediated_scene_changes": 1,
+              "mediated_effect_gain": 0.0,
+              "mediated_effect_status": "",
+              "mediated_scene_changes": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10048,9 +9746,7 @@
             },
             {
               "active_option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
-              "candidate_mediator_signatures": [
-                "mediated:transformed::entity:color0:shape15x15-4838c65ea2:area9+::role:interior:player-far-offset:unique:adj2:align0::relation:adjacent:above:right:offset:different-color"
-              ],
+              "candidate_mediator_signatures": [],
               "directional_effect_status": "progressive",
               "directional_gain": 1.0,
               "directional_mode_signature": "latent-mode:exhaust|shape:64x64|distance:2|source:0:65+:2|target:None:0:0|dominant:10:dominant|colors:10:65+,14:65+,0:65+,8:17-64,4:17-64",
@@ -10075,9 +9771,9 @@
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:-135,12:+135|move:none|shape:same|game_over:0|level_complete:0=>terminal::appear::same_shape::colors4_8",
                 "effect-subgoal::causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8::changed:many|colors:0:-135,12:+135|move:none|shape:same|game_over:0|level_complete:0=>terminal::break::adjacent_to::colors8_12"
               ],
-              "mediated_effect_gain": 1.0,
-              "mediated_effect_status": "needs_mediator_contrast",
-              "mediated_scene_changes": 1,
+              "mediated_effect_gain": 0.0,
+              "mediated_effect_status": "",
+              "mediated_scene_changes": 0,
               "option_id": "causal-option::causal::terminal::reach::color8=>terminal::appear::same_shape::colors4_8",
               "participating_action": true,
               "persistent_continuation_progress": false,
@@ -10742,24 +10438,24 @@
         "mediated_effect_ambiguous_progress_candidate_sets": 0,
         "mediated_effect_appeared_entities": 0,
         "mediated_effect_blocked_contradicted_actions": 0,
-        "mediated_effect_changed_entities": 3,
+        "mediated_effect_changed_entities": 0,
         "mediated_effect_controlled_contrast_predictions": 0,
         "mediated_effect_controlled_contrast_selections": 0,
         "mediated_effect_direct_target_progress_events": 0,
-        "mediated_effect_models": 3,
+        "mediated_effect_models": 0,
         "mediated_effect_moved_entities": 0,
         "mediated_effect_no_candidate_progress_events": 0,
-        "mediated_effect_observations": 3,
-        "mediated_effect_predictions": 16,
-        "mediated_effect_progress_with_indirect_candidates": 1,
+        "mediated_effect_observations": 0,
+        "mediated_effect_predictions": 0,
+        "mediated_effect_progress_with_indirect_candidates": 0,
         "mediated_effect_removed_entities": 0,
-        "mediated_effect_scene_correspondences": 24,
+        "mediated_effect_scene_correspondences": 0,
         "mediated_effect_supported_hyperedges": 0,
         "mediated_effect_supported_predictions": 0,
         "mediated_effect_supported_selections": 0,
-        "mediated_effect_tracks_created": 16,
-        "mediated_effect_tracks_reused": 8,
-        "mediated_effect_transformed_entities": 3,
+        "mediated_effect_tracks_created": 0,
+        "mediated_effect_tracks_reused": 0,
+        "mediated_effect_transformed_entities": 0,
         "objective_ambiguous_terminal_events": 0,
         "objective_distance_reductions": 48,
         "objective_nonterminal_completions": 16,
@@ -11240,7 +10936,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,
@@ -12476,7 +12172,7 @@
               "controlled_contrast_predictions": 0,
               "controlled_contrast_selections": 0,
               "direct_target_progress_events": 0,
-              "enabled": true,
+              "enabled": false,
               "hypotheses": [],
               "mediated_effect_models": 0,
               "moved_entities": 0,

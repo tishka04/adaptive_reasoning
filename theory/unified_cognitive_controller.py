@@ -130,6 +130,7 @@ class UnifiedCognitiveConfig:
     enable_persistent_directional_pursuit: bool = True
     enable_entity_anchored_interventions: bool = True
     enable_active_entity_causal_binding: bool = True
+    enable_mediated_entity_effect_induction: bool = True
 
 
 @dataclass(frozen=True)
@@ -204,6 +205,13 @@ class CognitiveDecision:
     causal_option_entity_binding_controlled_contrast: bool = False
     causal_option_entity_binding_conflict_observed: bool = False
     causal_option_entity_binding_track_id: str = ""
+    causal_option_mediated_effect_status: str = ""
+    causal_option_mediated_effect_expected_gain: float | None = None
+    causal_option_mediated_effect_confidence: float | None = None
+    causal_option_mediated_effect_compatible: bool = True
+    causal_option_mediated_effect_controlled_contrast: bool = False
+    causal_option_supported_mediator_signature: str = ""
+    causal_option_candidate_mediator_signatures: Tuple[str, ...] = ()
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -347,6 +355,27 @@ class CognitiveDecision:
             "causal_option_entity_binding_track_id": (
                 self.causal_option_entity_binding_track_id
             ),
+            "causal_option_mediated_effect_status": (
+                self.causal_option_mediated_effect_status
+            ),
+            "causal_option_mediated_effect_expected_gain": (
+                self.causal_option_mediated_effect_expected_gain
+            ),
+            "causal_option_mediated_effect_confidence": (
+                self.causal_option_mediated_effect_confidence
+            ),
+            "causal_option_mediated_effect_compatible": (
+                self.causal_option_mediated_effect_compatible
+            ),
+            "causal_option_mediated_effect_controlled_contrast": (
+                self.causal_option_mediated_effect_controlled_contrast
+            ),
+            "causal_option_supported_mediator_signature": (
+                self.causal_option_supported_mediator_signature
+            ),
+            "causal_option_candidate_mediator_signatures": list(
+                self.causal_option_candidate_mediator_signatures
+            ),
         }
 
 
@@ -483,6 +512,9 @@ class UnifiedCognitiveController:
             ),
             enable_active_entity_causal_binding=(
                 self.config.enable_active_entity_causal_binding
+            ),
+            enable_mediated_entity_effect_induction=(
+                self.config.enable_mediated_entity_effect_induction
             ),
             persistent_actions_per_progress=(
                 self.config.persistent_actions_per_progress
@@ -1017,6 +1049,15 @@ class UnifiedCognitiveController:
                 click_actions=click_actions,
             )
         )
+        mediated_effect_predictions = (
+            self.causal_options.mediated_effect_action_predictions(
+                observation,
+                store=self.terminal_objectives,
+                downstream_subgoal=downstream_subgoal,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
+            )
+        )
         selection = self.causal_options.select_downstream(
             observation,
             safe_actions=safe_actions,
@@ -1032,6 +1073,7 @@ class UnifiedCognitiveController:
             ),
             directional_predictions=directional_predictions,
             entity_binding_predictions=entity_binding_predictions,
+            mediated_effect_predictions=mediated_effect_predictions,
         )
         if selection is None:
             return None
@@ -1201,6 +1243,27 @@ class UnifiedCognitiveController:
             ),
             causal_option_entity_binding_track_id=(
                 selection.entity_binding_track_id
+            ),
+            causal_option_mediated_effect_status=(
+                selection.mediated_effect_status
+            ),
+            causal_option_mediated_effect_expected_gain=(
+                selection.mediated_effect_expected_gain
+            ),
+            causal_option_mediated_effect_confidence=(
+                selection.mediated_effect_confidence
+            ),
+            causal_option_mediated_effect_compatible=(
+                selection.mediated_effect_compatible
+            ),
+            causal_option_mediated_effect_controlled_contrast=(
+                selection.mediated_effect_controlled_contrast
+            ),
+            causal_option_supported_mediator_signature=(
+                selection.supported_mediator_signature
+            ),
+            causal_option_candidate_mediator_signatures=(
+                selection.candidate_mediator_signatures
             ),
         )
 

@@ -5514,3 +5514,151 @@ porte le changement. La prochaine etape doit construire en ligne des hyperaretes
 `entite actionnee -> relation -> entite affectee`, departager les porteurs
 indirects par interventions controlees, puis fournir ces effets mediatises au
 planificateur persistant sans aucun label terminal retrospectif.
+
+## SAGE.8v - mediated entity-effect induction
+
+Objectif :
+
+- Etendre la correspondance SAGE.8u de l'objet clique a toutes les entites de
+  la scene avant et apres chaque intervention ancree.
+- Distinguer pour chaque piste stabilite, mouvement, transformation,
+  suppression, apparition et ambiguite dans un matching bijectif.
+- Decrire chaque entite indirectement affectee par une hyperarete sans
+  coordonnee absolue : `entite actionnee -> relation -> entite affectee`.
+- Former un ensemble de porteurs candidats lorsqu'un objectif progresse alors
+  que la cible cliquee reste stable.
+- Departager les changements concomitants par intersection de repetitions
+  controlees : un candidat qui n'est pas commun aux contextes progressifs ou
+  qui apparait autant dans les controles sans progres est elimine.
+- Exiger deux contextes progressifs concordants avant le statut `supported`.
+  Une observation unique ne produit que `needs_mediator_contrast`.
+- Autoriser une preuve mediatisee a expliquer une cible SAGE.8u `misbound`,
+  sans recrediter cette cible et uniquement dans une poursuite deja soutenue
+  par un progres en ligne.
+- Conserver la preuve terminale strictement separee : aucune correspondance,
+  hyperarete ou reduction locale ne remplace un level-up ou WIN observe.
+
+Representation et controle :
+
+- Le matching de scene combine recouvrement, forme normalisee, aire, couleur
+  et distance, puis impose une affectation un-a-un.
+- Les pistes sont propagees aux entites retrouvees et reutilisees entre frames.
+  Une apparition recoit une nouvelle piste.
+- Une ambiguite sur une source ou une cible liee n'est jamais reinterpretee
+  comme suppression plus apparition et ne recoit aucun credit de porteur.
+- La signature du porteur encode son changement, son entite, son role
+  structurel et sa relation a l'entite actionnee : proximite, direction,
+  alignement et relation de couleur.
+- Les modeles sont separes par option, objectif, mode latent et classe de
+  transfert de l'action cible.
+- `needs_mediator_contrast` peut demander une repetition bornee ; `supported`
+  peut guider une continuation ; `contradicted` bloque l'action en poursuite
+  persistante. Avant la persistance, tous ces rangs restent neutres.
+- Chaque decision et transition audite le statut mediatise, le gain, les
+  candidats, le porteur soutenu et le nombre de changements de scene.
+
+Ajouts :
+
+- `theory/online_mediated_entity_effect.py`
+- extension de `theory/online_causal_option.py`
+- extension de `theory/online_persistent_pursuit.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v13 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_mediated_entity_effect.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8v_mediated_effect_ablation.json`
+- `diagnostics/sage/sage8v_cn04_mediated_effects.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v13`
+- `paired_protocol.protocol_gate_passed=true`
+- `mediated_entity_effect_induction_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.mediated_effect_observations=6`
+- `unified.mediated_effect_scene_correspondences=48`
+- `unified.mediated_effect_changed_entities=6`
+- `unified.mediated_effect_transformed_entities=6`
+- `unified.mediated_effect_tracks_created=32`
+- `unified.mediated_effect_tracks_reused=16`
+- `unified.mediated_effect_progress_with_indirect_candidates=2`
+- `unified.mediated_effect_direct_target_progress_events=0`
+- `unified.mediated_effect_models=6`
+- `unified.mediated_effect_supported_hyperedges=0`
+- `unified.mediated_effect_controlled_contrast_predictions=0`
+- `unified.mediated_effect_controlled_contrast_selections=0`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `mediated_entity_effect_induction_enabled_in_unified=false`
+- toutes les metriques `mediated_effect_*` valent zero ;
+- les metriques de politique mediatisee persistante valent zero ;
+- toutes les autres metriques agregees sont strictement identiques au run
+  principal : aucune action, experience, reduction, progression locale ou
+  issue terminale ne diverge.
+
+Audit cible `cn04-65d47d14`, seed 0, 2 resets x 40 :
+
+- 3 interventions produisent 24 correspondances de scene ;
+- 16 pistes sont creees et 8 sont reutilisees ;
+- 3 entites indirectes sont transformees tandis que les cibles cliquees
+  restent stables ;
+- le progres `exhaust(color0)` est relie a une transformation d'une structure
+  color0 adjacente, au-dessus et a droite de l'entite actionnee ;
+- cette hyperarete reste `needs_mediator_contrast` car elle n'a qu'un contexte
+  progressif ;
+- aucun porteur n'est donc promu ni selectionne ;
+- le run conserve exactement 61 experiences, 48 reductions objectives, 1
+  progres de poursuite et 1 sous-but soutenu ;
+- `levels_completed=0` et `wins=0`.
+
+Validation synthetique en ligne :
+
+- une entite indirecte deplacee conserve sa piste sur plusieurs frames ;
+- transformations, suppressions et apparitions sont distinguees ;
+- un premier progres demande un contraste de mediateur ;
+- deux repetitions traduites mais structurellement equivalentes soutiennent
+  la meme hyperarete ;
+- l'intersection de deux ensembles elimine un changement concomitant ;
+- une correspondance ambigue ne cree aucun porteur candidat ;
+- un contraste mediatise peut poursuivre une action dont la cible est
+  correctement classee `misbound` ;
+- l'ablation ne conserve ni observation, ni prediction, ni hyperarete.
+
+Validation :
+
+- `new_sage8v_tests=10 passed`
+- `targeted_cognitive_tests=54 passed`
+- `full_repository_tests=1422 passed` (1415 groupes ensemble et les 7 tests
+  du fichier historique a namespace collisionne executes isolement)
+- `scoped_ruff_and_compileall=passed`
+
+Lecture : le verrou de localisation du porteur indirect est franchi sans
+regression held-out. SAGE transforme maintenant les deux `noncarrier_progress`
+de SAGE.8u en deux ensembles de candidats explicites et position-invariants.
+Sur `cn04`, le candidat est une structure color0 transformee, et non l'objet
+color8 clique. La garde de confirmation empeche toutefois de promouvoir cette
+correlation unique : aucune competence terminale supplementaire n'est encore
+revendiquee.
+
+Le prochain verrou est l'acquisition active d'un second contexte pour ces
+hyperaretes. Le controleur sait demander `needs_mediator_contrast` dans un
+suffixe persistant, mais le candidat apparait au dernier segment du rollout et
+n'est pas automatiquement repropose apres une nouvelle ouverture ou branche.
+La prochaine etape doit reserver et ordonnancer une replication
+contre-factuelle inter-branche du meme mecanisme, reouvrir le contexte causal,
+varier un seul argument relationnel, puis confirmer ou refuter le mediateur
+avant toute exploitation terminale.

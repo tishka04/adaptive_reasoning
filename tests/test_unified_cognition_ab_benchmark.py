@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v12"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v13"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -99,6 +99,10 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
     assert protocol["entity_anchored_interventions_enabled_in_unified"] is True
     assert protocol["active_entity_causal_binding_enabled_in_unified"] is True
+    assert (
+        protocol["mediated_entity_effect_induction_enabled_in_unified"]
+        is True
+    )
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -157,6 +161,21 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "entity_binding_noncarrier_progress_events" in metrics["unified"]
     assert "entity_binding_conflicts" in metrics["unified"]
     assert "entity_binding_controlled_contrast_selections" in metrics["unified"]
+    assert "mediated_effect_observations" in metrics["unified"]
+    assert "mediated_effect_scene_correspondences" in metrics["unified"]
+    assert "mediated_effect_changed_entities" in metrics["unified"]
+    assert "mediated_effect_tracks_created" in metrics["unified"]
+    assert "mediated_effect_models" in metrics["unified"]
+    assert "mediated_effect_supported_hyperedges" in metrics["unified"]
+    assert "mediated_effect_direct_target_progress_events" in metrics["unified"]
+    assert (
+        "mediated_effect_progress_with_indirect_candidates"
+        in metrics["unified"]
+    )
+    assert (
+        "mediated_effect_controlled_contrast_selections"
+        in metrics["unified"]
+    )
     assert "terminal_supported_causal_options" in metrics["unified"]
     assert "effect_conditioned_goal_candidates_generated" in metrics["unified"]
     assert "effect_conditioned_subgoals_generated" in metrics["unified"]
@@ -184,6 +203,14 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "persistent_pursuit_entity_contrast_actions" in metrics["unified"]
     assert (
         "persistent_pursuit_entity_binding_contrast_actions"
+        in metrics["unified"]
+    )
+    assert (
+        "persistent_pursuit_mediated_effect_policy_actions"
+        in metrics["unified"]
+    )
+    assert (
+        "persistent_pursuit_mediated_effect_contrast_actions"
         in metrics["unified"]
     )
     assert "persistent_pursuit_rollout_budget_extensions" in metrics["unified"]
@@ -365,3 +392,27 @@ def test_ab_benchmark_exposes_active_entity_binding_ablation():
     assert metrics["entity_binding_observations"] == 0
     assert metrics["entity_binding_predictions"] == 0
     assert metrics["entity_binding_controlled_contrast_selections"] == 0
+
+
+def test_ab_benchmark_exposes_mediated_entity_effect_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-mediated-effect-ablation"],
+        seeds=[29],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_mediated_entity_effect_induction=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["active_entity_causal_binding_enabled_in_unified"] is True
+    assert (
+        protocol["mediated_entity_effect_induction_enabled_in_unified"]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["mediated_effect_observations"] == 0
+    assert metrics["mediated_effect_predictions"] == 0
+    assert metrics["mediated_effect_supported_hyperedges"] == 0
+    assert metrics["mediated_effect_direct_target_progress_events"] == 0
+    assert metrics["mediated_effect_controlled_contrast_selections"] == 0

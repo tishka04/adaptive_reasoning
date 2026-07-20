@@ -29,6 +29,11 @@ from .online_entity_causal_binding import (
     EntityBindingStatus,
     OnlineEntityCausalBindingStore,
 )
+from .online_mediated_entity_effect import (
+    MediatedEffectPrediction,
+    MediatedEffectStatus,
+    OnlineMediatedEntityEffectStore,
+)
 from .online_persistent_pursuit import OnlinePersistentPursuitPolicy
 from .online_semantic_intervention import (
     SemanticInterventionAnchor,
@@ -273,6 +278,13 @@ class CausalOptionSelection:
     entity_binding_controlled_contrast: bool = False
     entity_binding_conflict_observed: bool = False
     entity_binding_track_id: str = ""
+    mediated_effect_status: str = ""
+    mediated_effect_expected_gain: float | None = None
+    mediated_effect_confidence: float | None = None
+    mediated_effect_compatible: bool = True
+    mediated_effect_controlled_contrast: bool = False
+    supported_mediator_signature: str = ""
+    candidate_mediator_signatures: Tuple[str, ...] = ()
     reason: str = ""
 
 
@@ -297,6 +309,7 @@ class OnlineCausalOptionStore:
         enable_persistent_directional_pursuit: bool = True,
         enable_entity_anchored_interventions: bool = True,
         enable_active_entity_causal_binding: bool = True,
+        enable_mediated_entity_effect_induction: bool = True,
         persistent_actions_per_progress: int = 2,
         max_persistent_actions_per_subgoal: int = 6,
         persistent_rollout_actions_per_progress: int = 2,
@@ -317,6 +330,9 @@ class OnlineCausalOptionStore:
         )
         self.entity_causal_bindings = OnlineEntityCausalBindingStore(
             enabled=enable_active_entity_causal_binding,
+        )
+        self.mediated_entity_effects = OnlineMediatedEntityEffectStore(
+            enabled=enable_mediated_entity_effect_induction,
         )
         self.base_downstream_actions = min(
             self.max_downstream_actions,
@@ -597,6 +613,10 @@ class OnlineCausalOptionStore:
             str,
             EntityBindingPrediction,
         ] | None = None,
+        mediated_effect_predictions: Mapping[
+            str,
+            MediatedEffectPrediction,
+        ] | None = None,
     ) -> CausalOptionSelection | None:
         """Select one bounded suffix action in the actually opened state."""
         active = self._active
@@ -655,6 +675,7 @@ class OnlineCausalOptionStore:
         directed_data = dict(preferred_action_data or {})
         predictions = dict(directional_predictions or {})
         binding_predictions = dict(entity_binding_predictions or {})
+        mediated_predictions = dict(mediated_effect_predictions or {})
         selected_subgoal = (
             None
             if downstream_subgoal is None
@@ -710,6 +731,7 @@ class OnlineCausalOptionStore:
             )
             directional_prediction = predictions.get(signature)
             binding_prediction = binding_predictions.get(signature)
+            mediated_prediction = mediated_predictions.get(signature)
             binding_actionable = bool(
                 binding_prediction is not None
                 and binding_prediction.status in {
@@ -717,14 +739,33 @@ class OnlineCausalOptionStore:
                     EntityBindingStatus.NEEDS_CONTROLLED_CONTRAST,
                 }
             )
+            mediated_actionable = bool(
+                mediated_prediction is not None
+                and mediated_prediction.status in {
+                    MediatedEffectStatus.SUPPORTED,
+                    MediatedEffectStatus.NEEDS_MEDIATOR_CONTRAST,
+                }
+            )
             if (
                 persistent_pursuit
                 and binding_prediction is not None
                 and not binding_prediction.compatible
+                and not mediated_actionable
                 and not replay_match
                 and not progress_replay_match
             ):
                 self.entity_causal_bindings.note_blocked(binding_prediction)
+                continue
+            if (
+                persistent_pursuit
+                and mediated_prediction is not None
+                and not mediated_prediction.compatible
+                and not replay_match
+                and not progress_replay_match
+            ):
+                self.mediated_entity_effects.note_blocked(
+                    mediated_prediction
+                )
                 continue
             if (
                 persistent_pursuit
@@ -740,6 +781,7 @@ class OnlineCausalOptionStore:
                         }
                     )
                     and not binding_actionable
+                    and not mediated_actionable
                 )
                 and not replay_match
                 and not progress_replay_match
@@ -775,6 +817,16 @@ class OnlineCausalOptionStore:
                 if not persistent_pursuit or binding_prediction is None
                 else binding_prediction.expected_gain
             )
+            mediated_rank = (
+                2
+                if not persistent_pursuit or mediated_prediction is None
+                else mediated_prediction.selection_rank
+            )
+            mediated_gain = (
+                0.0
+                if not persistent_pursuit or mediated_prediction is None
+                else mediated_prediction.expected_gain
+            )
             directed_action_match = int(
                 bool(directed_name)
                 and action_name == directed_name
@@ -802,6 +854,8 @@ class OnlineCausalOptionStore:
                     progress_replay_match,
                     directional_rank,
                     directional_gain,
+                    mediated_rank,
+                    mediated_gain,
                     binding_rank,
                     binding_gain,
                     directed_action_match,
@@ -822,6 +876,7 @@ class OnlineCausalOptionStore:
                 signature,
                 directional_prediction,
                 binding_prediction,
+                mediated_prediction,
                 anchor,
             ))
         if not ranked:
@@ -834,6 +889,7 @@ class OnlineCausalOptionStore:
             signature,
             directional_prediction,
             binding_prediction,
+            mediated_prediction,
             anchor,
         ) = max(ranked, key=lambda item: item[0])
         terminal_replay_selected = bool(
@@ -852,6 +908,8 @@ class OnlineCausalOptionStore:
             )
         if persistent_pursuit and binding_prediction is not None:
             self.entity_causal_bindings.note_selection(binding_prediction)
+        if persistent_pursuit and mediated_prediction is not None:
+            self.mediated_entity_effects.note_selection(mediated_prediction)
         self.persistent_pursuit.note_action_selection(
             subgoal_id=(
                 "" if downstream_subgoal is None
@@ -865,6 +923,10 @@ class OnlineCausalOptionStore:
             entity_binding_status=(
                 "" if binding_prediction is None
                 else binding_prediction.status.value
+            ),
+            mediated_effect_status=(
+                "" if mediated_prediction is None
+                else mediated_prediction.status.value
             ),
         )
         return CausalOptionSelection(
@@ -987,6 +1049,34 @@ class OnlineCausalOptionStore:
                 "" if binding_prediction is None
                 else binding_prediction.track_id
             ),
+            mediated_effect_status=(
+                "" if mediated_prediction is None
+                else mediated_prediction.status.value
+            ),
+            mediated_effect_expected_gain=(
+                None if mediated_prediction is None
+                else mediated_prediction.expected_gain
+            ),
+            mediated_effect_confidence=(
+                None if mediated_prediction is None
+                else mediated_prediction.confidence
+            ),
+            mediated_effect_compatible=(
+                True if mediated_prediction is None
+                else mediated_prediction.compatible
+            ),
+            mediated_effect_controlled_contrast=(
+                False if mediated_prediction is None
+                else mediated_prediction.controlled_contrast
+            ),
+            supported_mediator_signature=(
+                "" if mediated_prediction is None
+                else mediated_prediction.supported_mediator_signature
+            ),
+            candidate_mediator_signatures=(
+                () if mediated_prediction is None
+                else mediated_prediction.candidate_mediator_signatures
+            ),
             reason=(
                 "replay terminally supported causal-option suffix"
                 if terminal_replay_selected
@@ -1103,6 +1193,54 @@ class OnlineCausalOptionStore:
             )
         return result
 
+    def mediated_effect_action_predictions(
+        self,
+        observation: GameObservation,
+        *,
+        store: OnlineTerminalObjectiveStore,
+        downstream_subgoal: EffectConditionedSubgoalSelection | None,
+        safe_actions: Sequence[str],
+        click_actions: Sequence[Any] = (),
+        record_predictions: bool = True,
+    ) -> Dict[str, MediatedEffectPrediction]:
+        """Score actions from online action-target -> affected-entity edges."""
+        if not self.mediated_entity_effects.enabled:
+            return {}
+        active = self._active
+        option = None if active is None else self.option(active.option_id)
+        if active is None or option is None:
+            return {}
+        objective_id = (
+            downstream_subgoal.objective_id
+            if downstream_subgoal is not None
+            else option.target_objective_id
+        )
+        objective = store.objective(objective_id)
+        if objective is None:
+            return {}
+        result: Dict[str, MediatedEffectPrediction] = {}
+        for action_name, action_data in _concrete_actions(
+            safe_actions,
+            click_actions,
+        ):
+            anchor = self.intervention_anchor(
+                action_name,
+                action_data,
+                observation,
+            )
+            if not anchor.anchored:
+                continue
+            result[anchor.concrete_signature] = (
+                self.mediated_entity_effects.predict(
+                    option_id=option.option_id,
+                    objective=objective,
+                    observation=observation,
+                    action_signature=anchor.concrete_signature,
+                    record_prediction=record_predictions,
+                )
+            )
+        return result
+
     def observe_transition(
         self,
         update: Any,
@@ -1148,6 +1286,11 @@ class OnlineCausalOptionStore:
             "entity_binding_carrier": False,
             "entity_correspondence_status": "",
             "entity_binding_conflict_observed": False,
+            "mediated_effect_status": "",
+            "mediated_effect_gain": 0.0,
+            "supported_mediator_signature": "",
+            "candidate_mediator_signatures": [],
+            "mediated_scene_changes": 0,
             "persistent_pursuit": bool(persistent_pursuit),
             "persistent_continuation_progress": False,
             "rollout_action_budget": 0,
@@ -1262,6 +1405,19 @@ class OnlineCausalOptionStore:
                     branch_index=active.branch_index,
                     context_signature=effect_context,
                     unsafe=bool(update.record.diff.game_over),
+                )
+            mediated_outcome: Dict[str, Any] = {"observed": False}
+            if binding_objective is not None:
+                mediated_outcome = self.mediated_entity_effects.observe(
+                    option_id=option.option_id,
+                    objective=binding_objective,
+                    observation_before=update.record.obs_before,
+                    observation_after=update.record.obs_after,
+                    action_data=_action_data(update),
+                    action_signature=signature,
+                    anchor=anchor,
+                    branch_index=active.branch_index,
+                    context_signature=effect_context,
                 )
             if self.enable_effect_conditioned_subgoals:
                 link_outcome = self.downstream_subgoals.link_effect(
@@ -1413,6 +1569,31 @@ class OnlineCausalOptionStore:
                 "entity_binding_conflict_observed": bool(
                     binding_outcome.get("conflict_observed", False)
                 ),
+                "mediated_effect_status": str(
+                    mediated_outcome.get("status", "")
+                ),
+                "mediated_effect_gain": float(
+                    mediated_outcome.get("gain", 0.0)
+                ),
+                "supported_mediator_signature": str(
+                    mediated_outcome.get(
+                        "supported_mediator_signature",
+                        "",
+                    )
+                ),
+                "candidate_mediator_signatures": list(
+                    mediated_outcome.get(
+                        "candidate_mediator_signatures",
+                        [],
+                    )
+                ),
+                "mediated_scene_changes": sum(
+                    int(bool(item.get("changed", False)))
+                    for item in mediated_outcome.get(
+                        "scene_correspondences",
+                        [],
+                    )
+                ),
                 "persistent_pursuit": bool(persistent_pursuit),
                 "persistent_continuation_progress": bool(
                     persistent_pursuit and pursuit_outcome["progress"]
@@ -1532,6 +1713,9 @@ class OnlineCausalOptionStore:
             "entity_anchored_selections": self._anchored_selections,
             "active_entity_causal_binding": (
                 self.entity_causal_bindings.summary()
+            ),
+            "mediated_entity_effect_induction": (
+                self.mediated_entity_effects.summary()
             ),
             "effect_conditioned_subgoals_enabled": (
                 self.enable_effect_conditioned_subgoals
@@ -1724,7 +1908,31 @@ class OnlineCausalOptionStore:
                 )
             )
         )
-        return directional_actionable or binding_actionable
+        mediated_actionable = bool(
+            objective is not None
+            and any(
+                prediction.compatible
+                and prediction.status in {
+                    MediatedEffectStatus.SUPPORTED,
+                    MediatedEffectStatus.NEEDS_MEDIATOR_CONTRAST,
+                }
+                for prediction in (
+                    self.mediated_entity_effects.predict(
+                        option_id=subgoal.option_id,
+                        objective=objective,
+                        observation=observation,
+                        action_signature=signature,
+                        record_prediction=False,
+                    )
+                    for signature in action_signatures
+                )
+            )
+        )
+        return (
+            directional_actionable
+            or binding_actionable
+            or mediated_actionable
+        )
 
     def _objective_action_limit(
         self,
