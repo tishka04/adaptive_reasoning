@@ -25,6 +25,7 @@ from .online_effect_conditioned_subgoal import (
     EffectConditionedSubgoalSelection,
     OnlineEffectConditionedSubgoalStore,
 )
+from .online_persistent_pursuit import OnlinePersistentPursuitPolicy
 from .online_state_conditioned_effect import DirectionalActionPrediction
 from .online_terminal_objective import OnlineTerminalObjectiveStore
 
@@ -219,6 +220,7 @@ class ActiveCausalOptionRollout:
     downstream_subgoal_progress_at_start: int = 0
     downstream_subgoal_attempts: Dict[str, int] = field(default_factory=dict)
     downstream_objective_attempts: Dict[str, int] = field(default_factory=dict)
+    persistent_pursuit_subgoal_id: str = ""
 
 
 @dataclass(frozen=True)
@@ -244,6 +246,11 @@ class CausalOptionSelection:
     directionally_compatible: bool = True
     reversible_action: bool = False
     directional_mode_contrast: bool = False
+    directional_bridge_target_mode_signature: str = ""
+    directional_bridge_followup_action_signature: str = ""
+    persistent_pursuit: bool = False
+    persistent_attempt_index: int = 0
+    persistent_action_limit: int = 0
     reason: str = ""
 
 
@@ -265,6 +272,13 @@ class OnlineCausalOptionStore:
         progress_extension_actions: int = 2,
         max_actions_per_effect_conditioned_subgoal: int = 2,
         enable_state_conditioned_directional_control: bool = True,
+        enable_persistent_directional_pursuit: bool = True,
+        persistent_actions_per_progress: int = 2,
+        max_persistent_actions_per_subgoal: int = 6,
+        persistent_rollout_actions_per_progress: int = 2,
+        max_persistent_downstream_actions: int = 10,
+        persistent_credit_steps_per_progress: int = 4,
+        max_persistent_credit_window: int = 16,
     ) -> None:
         self.max_options = max(1, int(max_options))
         self.max_downstream_actions = max(1, int(max_downstream_actions))
@@ -292,6 +306,22 @@ class OnlineCausalOptionStore:
             enable_state_conditioned_directional_control=(
                 enable_state_conditioned_directional_control
             ),
+        )
+        self.persistent_pursuit = OnlinePersistentPursuitPolicy(
+            enabled=enable_persistent_directional_pursuit,
+            base_actions_per_subgoal=(
+                self.max_actions_per_effect_conditioned_subgoal
+            ),
+            actions_per_progress=persistent_actions_per_progress,
+            max_actions_per_subgoal=max_persistent_actions_per_subgoal,
+            rollout_actions_per_progress=(
+                persistent_rollout_actions_per_progress
+            ),
+            max_rollout_actions=max_persistent_downstream_actions,
+            credit_steps_per_progress=(
+                persistent_credit_steps_per_progress
+            ),
+            max_credit_window=max_persistent_credit_window,
         )
         self._options: Dict[str, HierarchicalCausalOption] = {}
         self._active: ActiveCausalOptionRollout | None = None
@@ -400,6 +430,8 @@ class OnlineCausalOptionStore:
         observation: GameObservation,
         *,
         store: OnlineTerminalObjectiveStore,
+        safe_actions: Sequence[str] = (),
+        click_actions: Sequence[Any] = (),
     ) -> EffectConditionedSubgoalSelection | None:
         """Choose a measurable downstream goal exposed by an observed effect."""
         if not self.enable_effect_conditioned_subgoals:
@@ -407,7 +439,40 @@ class OnlineCausalOptionStore:
         active = self._active
         if active is None or active.branch_index != self._branch_index:
             return None
-        return self.downstream_subgoals.select(
+        effects = {str(item) for item in active.effect_signatures}
+        concrete_actions = _concrete_actions(
+            safe_actions or observation.available_actions,
+            click_actions,
+        )
+        action_signatures = tuple(
+            signature
+            for action_name, action_data in concrete_actions
+            for signature in (
+                semantic_intervention_signature(
+                    action_name,
+                    action_data,
+                    observation,
+                ),
+            )
+            if active.signature_attempts.get(signature, 0)
+            < self.max_trials_per_signature
+        )
+        previous_subgoal_id = active.downstream_subgoal_id
+        previous = self.downstream_subgoals.subgoal(previous_subgoal_id)
+        previous_actionable = self._persistent_subgoal_actionable(
+            subgoal_id=previous_subgoal_id,
+            observation=observation,
+            store=store,
+            action_signatures=action_signatures,
+        )
+        preferred_subgoal_id = (
+            previous_subgoal_id
+            if previous is not None
+            and previous.progress_events > 0
+            and previous_actionable
+            else ""
+        )
+        selection = self.downstream_subgoals.select(
             option_id=active.option_id,
             observed_effect_signatures=active.effect_signatures,
             observation=observation,
@@ -415,14 +480,72 @@ class OnlineCausalOptionStore:
             excluded_subgoal_ids=[
                 subgoal_id
                 for subgoal_id, attempts in active.downstream_subgoal_attempts.items()
-                if attempts >= self.max_actions_per_effect_conditioned_subgoal
+                if attempts >= self._pursuit_action_limit(
+                    subgoal_id,
+                    allow_persistent=self._persistent_subgoal_actionable(
+                        subgoal_id=subgoal_id,
+                        observation=observation,
+                        store=store,
+                        action_signatures=action_signatures,
+                    ),
+                )
             ],
             excluded_objective_ids=[
                 objective_id
                 for objective_id, attempts in active.downstream_objective_attempts.items()
-                if attempts >= self.max_actions_per_effect_conditioned_subgoal
+                if attempts >= self._objective_action_limit(
+                    option_id=active.option_id,
+                    objective_id=objective_id,
+                    observed_effect_signatures=effects,
+                    observation=observation,
+                    store=store,
+                    action_signatures=action_signatures,
+                )
             ],
+            preferred_subgoal_id=preferred_subgoal_id,
         )
+        if selection is not None:
+            subgoal = self.downstream_subgoals.subgoal(selection.subgoal_id)
+            attempts = active.downstream_subgoal_attempts.get(
+                selection.subgoal_id,
+                0,
+            )
+            persistent_actionable = self._persistent_subgoal_actionable(
+                subgoal_id=selection.subgoal_id,
+                observation=observation,
+                store=store,
+                action_signatures=action_signatures,
+            )
+            previous_persistent_subgoal_id = (
+                active.persistent_pursuit_subgoal_id
+            )
+            active.persistent_pursuit_subgoal_id = (
+                selection.subgoal_id
+                if subgoal is not None
+                and subgoal.progress_events > 0
+                and attempts
+                >= self.max_actions_per_effect_conditioned_subgoal
+                and persistent_actionable
+                else ""
+            )
+            if (
+                active.persistent_pursuit_subgoal_id
+                and active.persistent_pursuit_subgoal_id
+                != previous_persistent_subgoal_id
+            ):
+                self.persistent_pursuit.note_rollout_budget_extension()
+                self.persistent_pursuit.note_credit_window_extension()
+            self.persistent_pursuit.note_commitment_selection(
+                subgoal_id=selection.subgoal_id,
+                previous_subgoal_id=previous_subgoal_id,
+                pursuit_progress_events=(
+                    0 if subgoal is None else subgoal.progress_events
+                ),
+                attempts=attempts,
+            )
+        else:
+            active.persistent_pursuit_subgoal_id = ""
+        return selection
 
     def select_downstream(
         self,
@@ -453,7 +576,7 @@ class OnlineCausalOptionStore:
             return None
         action_budget = self._current_action_budget(active)
         if len(active.action_signatures) >= action_budget:
-            if action_budget < self.max_downstream_actions:
+            if action_budget < self._maximum_action_budget():
                 self._budget_pruned_rollouts += 1
             self._close_active(censored=False)
             return None
@@ -496,6 +619,34 @@ class OnlineCausalOptionStore:
         directed_name = str(preferred_action_name).upper()
         directed_data = dict(preferred_action_data or {})
         predictions = dict(directional_predictions or {})
+        selected_subgoal = (
+            None
+            if downstream_subgoal is None
+            else self.downstream_subgoals.subgoal(
+                downstream_subgoal.subgoal_id
+            )
+        )
+        persistent_attempt_index = (
+            0
+            if downstream_subgoal is None
+            else active.downstream_subgoal_attempts.get(
+                downstream_subgoal.subgoal_id,
+                0,
+            )
+            + 1
+        )
+        persistent_action_limit = (
+            0
+            if downstream_subgoal is None
+            else self._pursuit_action_limit(downstream_subgoal.subgoal_id)
+        )
+        persistent_pursuit = bool(
+            self.persistent_pursuit.enabled
+            and selected_subgoal is not None
+            and selected_subgoal.progress_events > 0
+            and persistent_attempt_index
+            > self.max_actions_per_effect_conditioned_subgoal
+        )
         for action_name, action_data in candidates:
             signature = semantic_intervention_signature(
                 action_name,
@@ -517,6 +668,17 @@ class OnlineCausalOptionStore:
                 and signature == progress_replay_signature
             )
             directional_prediction = predictions.get(signature)
+            if (
+                persistent_pursuit
+                and (
+                    directional_prediction is None
+                    or directional_prediction.status.value
+                    not in {"progressive", "bridge", "needs_mode_contrast"}
+                )
+                and not replay_match
+                and not progress_replay_match
+            ):
+                continue
             if (
                 directional_prediction is not None
                 and not directional_prediction.compatible
@@ -600,6 +762,17 @@ class OnlineCausalOptionStore:
             self.downstream_subgoals.note_directional_selection(
                 directional_prediction
             )
+        self.persistent_pursuit.note_action_selection(
+            subgoal_id=(
+                "" if downstream_subgoal is None
+                else downstream_subgoal.subgoal_id
+            ),
+            persistent=persistent_pursuit,
+            directional_status=(
+                "" if directional_prediction is None
+                else directional_prediction.status.value
+            ),
+        )
         return CausalOptionSelection(
             option_id=option.option_id,
             edge_key=option.edge_key,
@@ -662,13 +835,30 @@ class OnlineCausalOptionStore:
                 and directional_prediction.status.value
                 == "needs_mode_contrast"
             ),
+            directional_bridge_target_mode_signature=(
+                ""
+                if directional_prediction is None
+                else directional_prediction.bridge_target_mode_signature
+            ),
+            directional_bridge_followup_action_signature=(
+                ""
+                if directional_prediction is None
+                else directional_prediction.bridge_followup_action_signature
+            ),
+            persistent_pursuit=persistent_pursuit,
+            persistent_attempt_index=persistent_attempt_index,
+            persistent_action_limit=persistent_action_limit,
             reason=(
                 "replay terminally supported causal-option suffix"
                 if terminal_replay_selected
                 else (
+                    "continue progress-supported directional pursuit"
+                    if persistent_pursuit
+                    else (
                     "pursue effect-conditioned measurable downstream subgoal"
                     if downstream_subgoal is not None
                     else "bounded downstream search after confirmed causal opening"
+                    )
                 )
             ),
         )
@@ -681,6 +871,7 @@ class OnlineCausalOptionStore:
         downstream_subgoal: EffectConditionedSubgoalSelection | None,
         safe_actions: Sequence[str],
         click_actions: Sequence[Any] = (),
+        record_predictions: bool = True,
     ) -> Dict[str, DirectionalActionPrediction]:
         """Score all concrete suffix actions against the active subgoal mode."""
         if downstream_subgoal is None:
@@ -692,11 +883,28 @@ class OnlineCausalOptionStore:
                 click_actions,
             )
         ]
+        active = self._active
+        subgoal = self.downstream_subgoals.subgoal(
+            downstream_subgoal.subgoal_id
+        )
+        persistent_bridge_composition = bool(
+            self.persistent_pursuit.enabled
+            and active is not None
+            and subgoal is not None
+            and subgoal.progress_events > 0
+            and active.downstream_subgoal_attempts.get(
+                downstream_subgoal.subgoal_id,
+                0,
+            )
+            >= self.max_actions_per_effect_conditioned_subgoal
+        )
         return self.downstream_subgoals.directional_predictions(
             subgoal_id=downstream_subgoal.subgoal_id,
             observation=observation,
             store=store,
             action_signatures=signatures,
+            record_predictions=record_predictions,
+            enable_bridge_composition=persistent_bridge_composition,
         )
 
     def observe_transition(
@@ -711,6 +919,7 @@ class OnlineCausalOptionStore:
         context_signature: str = "",
         downstream_subgoal_id: str = "",
         replaying_progress_sequence: bool = False,
+        persistent_pursuit: bool = False,
     ) -> Dict[str, Any]:
         """Revise one active option from real effects and terminal outcomes."""
         self._transition_index += 1
@@ -738,6 +947,8 @@ class OnlineCausalOptionStore:
             "directional_effect_status": "",
             "directional_gain": 0.0,
             "directional_reversible_across_modes": False,
+            "persistent_pursuit": bool(persistent_pursuit),
+            "persistent_continuation_progress": False,
             "rollout_action_budget": 0,
             "terminal_success": terminal_success,
             "terminal_credited_option": "",
@@ -822,6 +1033,10 @@ class OnlineCausalOptionStore:
                 if downstream_subgoal_id
                 else None
             )
+            previous_pursuit_progress_events = (
+                0 if pursued_subgoal is None
+                else pursued_subgoal.progress_events
+            )
             if self.enable_effect_conditioned_subgoals:
                 link_outcome = self.downstream_subgoals.link_effect(
                     option_id=option.option_id,
@@ -890,15 +1105,26 @@ class OnlineCausalOptionStore:
                 int(link_outcome["progress_events"]) > 0
                 or pursuit_outcome["progress"]
             )
+            budget_before = self._current_action_budget(active)
+            credit_window_before = self._current_credit_window(active)
+            if pursuit_outcome["progress"]:
+                active.downstream_subgoal_progress_events += 1
             if effect_conditioned_progress:
-                budget_before = self._current_action_budget(active)
                 active.effect_conditioned_progress_events += 1
                 option.effect_conditioned_progress_events += 1
                 budget_after = self._current_action_budget(active)
                 if budget_after > budget_before:
                     self._dynamic_budget_extensions += 1
-            if pursuit_outcome["progress"]:
-                active.downstream_subgoal_progress_events += 1
+                    if budget_after > self.max_downstream_actions:
+                        self.persistent_pursuit.note_rollout_budget_extension()
+                if self._current_credit_window(active) > credit_window_before:
+                    self.persistent_pursuit.note_credit_window_extension()
+            self.persistent_pursuit.note_transition(
+                persistent=bool(persistent_pursuit),
+                progress=bool(pursuit_outcome["progress"]),
+                previous_progress_events=previous_pursuit_progress_events,
+                completed=bool(pursuit_outcome["completed"]),
+            )
             effect_conditioned_completions = (
                 int(link_outcome["completion_events"])
                 + int(bool(pursuit_outcome["completed"]))
@@ -943,6 +1169,10 @@ class OnlineCausalOptionStore:
                         False,
                     )
                 ),
+                "persistent_pursuit": bool(persistent_pursuit),
+                "persistent_continuation_progress": bool(
+                    persistent_pursuit and pursuit_outcome["progress"]
+                ),
                 "rollout_action_budget": self._current_action_budget(active),
             })
 
@@ -985,7 +1215,7 @@ class OnlineCausalOptionStore:
             if (
                 len(active.action_signatures) >= self._current_action_budget(active)
                 and self._current_action_budget(active)
-                < self.max_downstream_actions
+                < self._maximum_action_budget()
             ):
                 self._budget_pruned_rollouts += 1
             self._close_active(censored=False)
@@ -1052,6 +1282,9 @@ class OnlineCausalOptionStore:
             "effect_conditioned_subgoals": (
                 self.downstream_subgoals.summary()
             ),
+            "persistent_directional_pursuit": (
+                self.persistent_pursuit.summary()
+            ),
             "hypotheses": [option.to_dict() for option in options],
         }
 
@@ -1104,6 +1337,9 @@ class OnlineCausalOptionStore:
             progressed=progressed,
             censored=censored,
         )
+        self.persistent_pursuit.close_commitment(subgoal_id)
+        if active.persistent_pursuit_subgoal_id == subgoal_id:
+            active.persistent_pursuit_subgoal_id = ""
         active.downstream_subgoal_id = ""
         active.downstream_subgoal_start_index = len(active.action_signatures)
         active.downstream_subgoal_progress_at_start = (
@@ -1116,17 +1352,113 @@ class OnlineCausalOptionStore:
     ) -> int:
         if not self.enable_effect_conditioned_subgoals:
             return self.max_downstream_actions
-        return min(
+        base_budget = min(
             self.max_downstream_actions,
             self.base_downstream_actions
             + self.progress_extension_actions
             * active.effect_conditioned_progress_events,
         )
+        return self.persistent_pursuit.rollout_budget(
+            base_budget,
+            active.downstream_subgoal_progress_events
+            if active.persistent_pursuit_subgoal_id
+            else 0,
+        )
+
+    def _maximum_action_budget(self) -> int:
+        if not self.persistent_pursuit.enabled:
+            return self.max_downstream_actions
+        return max(
+            self.max_downstream_actions,
+            self.persistent_pursuit.max_rollout_actions,
+        )
+
+    def _current_credit_window(
+        self,
+        active: ActiveCausalOptionRollout,
+    ) -> int:
+        return self.persistent_pursuit.credit_window(
+            self.terminal_credit_window,
+            active.downstream_subgoal_progress_events
+            if active.persistent_pursuit_subgoal_id
+            else 0,
+        )
+
+    def _pursuit_action_limit(
+        self,
+        subgoal_id: str,
+        *,
+        allow_persistent: bool = True,
+    ) -> int:
+        subgoal = self.downstream_subgoals.subgoal(str(subgoal_id))
+        return self.persistent_pursuit.action_limit(
+            0
+            if subgoal is None or not allow_persistent
+            else subgoal.progress_events
+        )
+
+    def _persistent_subgoal_actionable(
+        self,
+        *,
+        subgoal_id: str,
+        observation: GameObservation,
+        store: OnlineTerminalObjectiveStore,
+        action_signatures: Sequence[str],
+    ) -> bool:
+        if not self.persistent_pursuit.enabled or not action_signatures:
+            return False
+        subgoal = self.downstream_subgoals.subgoal(str(subgoal_id))
+        if subgoal is None or subgoal.progress_events <= 0:
+            return False
+        predictions = self.downstream_subgoals.directional_predictions(
+            subgoal_id=subgoal.subgoal_id,
+            observation=observation,
+            store=store,
+            action_signatures=action_signatures,
+            record_predictions=False,
+            enable_bridge_composition=self.persistent_pursuit.enabled,
+        )
+        return any(
+            prediction.compatible
+            and prediction.status.value
+            in {"progressive", "bridge", "needs_mode_contrast"}
+            for prediction in predictions.values()
+        )
+
+    def _objective_action_limit(
+        self,
+        *,
+        option_id: str,
+        objective_id: str,
+        observed_effect_signatures: set[str],
+        observation: GameObservation,
+        store: OnlineTerminalObjectiveStore,
+        action_signatures: Sequence[str],
+    ) -> int:
+        limits = [
+            self._pursuit_action_limit(
+                subgoal.subgoal_id,
+                allow_persistent=self._persistent_subgoal_actionable(
+                    subgoal_id=subgoal.subgoal_id,
+                    observation=observation,
+                    store=store,
+                    action_signatures=action_signatures,
+                ),
+            )
+            for subgoal in self.downstream_subgoals.subgoals()
+            if subgoal.option_id == str(option_id)
+            and subgoal.objective_id == str(objective_id)
+            and subgoal.trigger_effect_signature in observed_effect_signatures
+        ]
+        return max(
+            limits,
+            default=self.max_actions_per_effect_conditioned_subgoal,
+        )
 
     def _rollout_expired(self, active: ActiveCausalOptionRollout) -> bool:
         return (
             self._transition_index - active.opening_transition_index
-            > self.terminal_credit_window
+            > self._current_credit_window(active)
         )
 
 

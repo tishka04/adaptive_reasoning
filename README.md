@@ -58,8 +58,11 @@ games, seeds, reset counts, and budgets. The current five-game public-unseen
 run records 20 reset attempts per arm and 800 unified actions. SAGE.8r uses 488
 deliberate experiments, learns 28 state-conditioned action models, and obtains
 2 downstream pursuit-progress events, versus 0 when that directional control
-is ablated. It still finds no level or win gain in either arm; this is recorded
-as a negative terminal result, not relabelled as ARC progress.
+is ablated. SAGE.8s can persist after such progress and compose an observed
+mode bridge with its progressive follow-up, but no profitable bridge is
+available in the current five-game run; its held-out metrics therefore remain
+identical to SAGE.8r. It still finds no level or win gain in either arm; this is
+recorded as a negative terminal result, not relabelled as ARC progress.
 
 ## Sampler Roadmap
 

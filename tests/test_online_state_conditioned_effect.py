@@ -22,13 +22,18 @@ from theory.online_state_conditioned_effect import (
 from theory.online_terminal_objective import OnlineTerminalObjectiveStore
 
 
-def _grid(threes: int, *, offset: int = 0) -> np.ndarray:
+def _grid(
+    threes: int,
+    *,
+    offset: int = 0,
+    marker: int = 8,
+) -> np.ndarray:
     grid = np.zeros((7, 7), dtype=np.int32)
     for index in range(threes):
         row = 1 + ((index + offset) % 3) * 2
         column = 1 + ((index * 2 + offset) % 3) * 2
         grid[row, column] = 3
-    grid[6, 6] = 8
+    grid[6, 6] = marker
     return grid
 
 
@@ -218,6 +223,53 @@ def test_repeated_neutral_action_is_blocked_in_the_exact_mode():
 
     assert prediction.status == DirectionalEffectStatus.NEUTRAL
     assert prediction.compatible is False
+
+
+def test_known_neutral_transition_can_bridge_to_a_progressive_mode():
+    store = _store()
+    objective = _objective(store)
+    model = OnlineStateConditionedEffectModel()
+    before_bridge = _observation(_grid(2, marker=8))
+    after_bridge = _observation(_grid(2, marker=9))
+    after_progress = _observation(_grid(1, marker=9))
+    model.observe(
+        option_id="option",
+        objective=objective,
+        observation_before=before_bridge,
+        observation_after=after_bridge,
+        action_signature="ACTION1",
+        effect_signature="8:-1,9:+1",
+        branch_index=0,
+        context_signature="bridge",
+        source="pursuit",
+    )
+    model.observe(
+        option_id="option",
+        objective=objective,
+        observation_before=after_bridge,
+        observation_after=after_progress,
+        action_signature="ACTION2",
+        effect_signature="3:-1",
+        branch_index=0,
+        context_signature="followup",
+        source="pursuit",
+    )
+
+    prediction = model.predict(
+        option_id="option",
+        objective=objective,
+        observation=before_bridge,
+        action_signature="ACTION1",
+    )
+
+    assert prediction.status == DirectionalEffectStatus.BRIDGE
+    assert prediction.compatible is True
+    assert prediction.bridge_target_mode_signature == latent_mode_signature(
+        after_bridge,
+        objective,
+    )
+    assert prediction.bridge_followup_action_signature == "ACTION2"
+    assert model.summary()["bridge_predictions"] == 1
 
 
 def test_causal_suffix_prefers_mode_contrast_then_blocks_known_regression():

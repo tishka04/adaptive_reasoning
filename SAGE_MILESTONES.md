@@ -5070,3 +5070,137 @@ dela d'une reduction locale, et allouer davantage de budget aux sequences dont
 le progres se repete. La promotion du but doit rester reservee a un level-up ou
 WIN observe en ligne ; les reductions intermediaires servent uniquement a
 chercher cette preuve terminale.
+
+## SAGE.8s - progress-gated persistent pursuit and mode bridges
+
+Objectif :
+
+- Maintenir un sous-but apres sa premiere reduction objective au lieu de
+  l'abandonner automatiquement a la limite fixe de deux actions de SAGE.8q.
+- N'accorder cette persistance qu'apres un progres de poursuite reel ; les
+  progres du declencheur, les priorites et les hypotheses seules ne debloquent
+  aucun budget.
+- Etendre progressivement la limite par sous-but de 2 a 4 puis 6 actions, le
+  rollout de 6 a 8 puis 10 actions et la fenetre de credit de 8 a 12 puis 16
+  transitions.
+- Conditionner toute action supplementaire a une preuve directionnelle : action
+  progressive, contraste de mode non epuise ou pont observe vers un mode ou une
+  autre action est progressive.
+- Compiler un pont uniquement depuis deux transitions deja observees :
+  `mode courant --action--> mode cible --action progressive--> reduction`.
+- Autoriser un pont temporairement regressif seulement si le gain compose
+  observe est strictement positif ; rejeter les cycles de gain net nul.
+- Reprendre un sous-but soutenu apres une courte diversification si une action
+  directionnelle compatible redevient disponible.
+- Filtrer les candidats sans preuve avant de depenser la rallonge, afin de ne
+  pas transformer la persistance en exploration aveugle.
+- Auditer dans chaque decision le statut `bridge`, le mode cible, l'action de
+  suivi, l'index de tentative et la limite de poursuite.
+- Conserver la preuve terminale exclusivement liee aux level-up et WIN observes
+  en ligne.
+- Fournir une ablation qui conserve tout SAGE.8r et desactive uniquement la
+  persistance et la composition de ponts de SAGE.8s.
+
+Ajouts :
+
+- `theory/online_persistent_pursuit.py`
+- extension de `theory/online_state_conditioned_effect.py`
+- extension de `theory/online_effect_conditioned_subgoal.py`
+- extension de `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v10 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_persistent_pursuit.py`
+- extension de `tests/test_online_state_conditioned_effect.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8s_persistent_pursuit_ablation.json`
+- `diagnostics/sage/sage8s_cn04_persistent_pursuit.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v10`
+- `paired_protocol.protocol_gate_passed=true`
+- `persistent_directional_pursuit_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.directional_bridge_predictions=0`
+- `unified.directional_bridge_selections=0`
+- `unified.persistent_pursuit_commitment_selections=0`
+- `unified.persistent_pursuit_resumed_commitments=0`
+- `unified.persistent_pursuit_attempt_budget_extensions=0`
+- `unified.persistent_pursuit_rollout_budget_extensions=0`
+- `unified.persistent_pursuit_credit_window_extensions=0`
+- `unified.persistent_pursuit_continuation_actions=0`
+- `unified.persistent_pursuit_bridge_actions=0`
+- `unified.persistent_pursuit_progress_events=0`
+- `unified.persistent_pursuit_repeated_progress_events=0`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `persistent_directional_pursuit_enabled_in_unified=false`
+- toutes les metriques de poursuite persistante et de pont valent zero ;
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `levels_completed=0`
+- `wins=0`
+
+Audit cible `cn04-65d47d14`, seed 0, 2 resets x 40 :
+
+- le sous-but `exhaust(color0)` obtient son premier progres de poursuite ;
+- aucune action progressive, contraste de mode inepuise ou pont compose
+  strictement rentable n'est ensuite disponible ;
+- la garde refuse donc la reprise avant d'etendre la limite, le budget du
+  rollout ou la fenetre de credit ;
+- aucune action supplementaire inconnue n'est executee ;
+- le run conserve exactement les 48 reductions objectives et le progres de
+  poursuite de SAGE.8r ;
+- `levels_completed=0` et `wins=0`.
+
+Validation synthetique en ligne :
+
+- une transition neutre connue vers un second mode est compilee comme pont ;
+- l'action de pont est selectionnee au-dela de la limite initiale ;
+- l'action progressive apprise dans le mode cible est ensuite selectionnee ;
+- la chaine obtient un second progres sur le meme objectif ;
+- le pont et le suivi sont tous deux audites comme actions de la politique
+  directionnelle persistante.
+
+Validation :
+
+- `new_sage8s_tests=7 passed`
+- `targeted_cognitive_tests=41 passed`
+- `full_repository_tests=1395 passed`
+- `scoped_ruff_and_compileall=passed`
+
+Lecture : le verrou algorithmique de persistance multi-etapes est franchi. Le
+controleur peut maintenant prolonger un sous-but soutenu, planifier un pont de
+mode appris et obtenir un nouveau progres sans supervision terminale. Le test
+synthetique demontre toute la chaine. Sur les cinq jeux held-out, les deux
+sous-buts soutenus par un progres ne disposent toutefois d'aucune continuation
+directionnelle rentable qui passe les gardes : aucun engagement persistant
+n'est ouvert, aucune rallonge n'est accordee et le resultat est identique a
+SAGE.8r. Il ne faut donc presenter cette etape ni comme un gain d'efficacite ni
+comme un progres ARC terminal.
+
+Le prochain verrou est l'aliasing des interventions semantiques. Une signature
+comme `ACTION6::color8` fusionne encore plusieurs objets et roles spatiaux dont
+les effets peuvent etre opposes. SAGE doit apprendre des liaisons
+`action x entite x role structurel x mode`, generaliser entre positions
+equivalentes sans confondre les instances, puis fournir ces actions ancrees au
+planificateur de ponts. C'est cette precision qui manque actuellement pour
+produire des continuations rentables sur les niveaux held-out.

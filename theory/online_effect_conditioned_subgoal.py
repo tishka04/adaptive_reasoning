@@ -361,6 +361,7 @@ class OnlineEffectConditionedSubgoalStore:
         store: OnlineTerminalObjectiveStore,
         excluded_subgoal_ids: Sequence[str] = (),
         excluded_objective_ids: Sequence[str] = (),
+        preferred_subgoal_id: str = "",
     ) -> EffectConditionedSubgoalSelection | None:
         """Choose the best still-measurable subgoal exposed by seen effects."""
         effects = {str(signature) for signature in observed_effect_signatures}
@@ -389,6 +390,7 @@ class OnlineEffectConditionedSubgoalStore:
             assessment = store.assess_objective(objective, observation)
             ranked.append((
                 (
+                    int(subgoal.subgoal_id == str(preferred_subgoal_id)),
                     int(
                         subgoal.status
                         == EffectConditionedSubgoalStatus.PROGRESS_SUPPORTED
@@ -437,6 +439,8 @@ class OnlineEffectConditionedSubgoalStore:
         observation: GameObservation,
         store: OnlineTerminalObjectiveStore,
         action_signatures: Sequence[str],
+        record_predictions: bool = True,
+        enable_bridge_composition: bool = True,
     ) -> Dict[str, DirectionalActionPrediction]:
         """Predict signed objective effects for concrete actions in this mode."""
         if not self.enable_state_conditioned_directional_control:
@@ -453,6 +457,8 @@ class OnlineEffectConditionedSubgoalStore:
                 objective=objective,
                 observation=observation,
                 action_signature=str(signature),
+                record_prediction=record_predictions,
+                enable_bridge_composition=enable_bridge_composition,
             )
             for signature in dict.fromkeys(str(item) for item in action_signatures)
         }

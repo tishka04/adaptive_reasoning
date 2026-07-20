@@ -24,6 +24,7 @@ class DirectionalEffectStatus(str, Enum):
     UNKNOWN = "unknown"
     NEEDS_MODE_CONTRAST = "needs_mode_contrast"
     PROGRESSIVE = "progressive"
+    BRIDGE = "bridge"
     REGRESSIVE = "regressive"
     NEUTRAL = "neutral"
     UNSTABLE = "unstable"
@@ -114,11 +115,14 @@ class DirectionalActionPrediction:
     exact_mode_evidence: bool
     reversible_across_modes: bool
     reason: str
+    bridge_target_mode_signature: str = ""
+    bridge_followup_action_signature: str = ""
 
     @property
     def selection_rank(self) -> int:
         return {
-            DirectionalEffectStatus.PROGRESSIVE: 4,
+            DirectionalEffectStatus.PROGRESSIVE: 5,
+            DirectionalEffectStatus.BRIDGE: 4,
             DirectionalEffectStatus.NEEDS_MODE_CONTRAST: 3,
             DirectionalEffectStatus.UNKNOWN: 2,
             DirectionalEffectStatus.UNSTABLE: 1,
@@ -144,7 +148,9 @@ class OnlineStateConditionedEffectModel:
         self._predictions = 0
         self._exact_predictions = 0
         self._contrast_predictions = 0
+        self._bridge_predictions = 0
         self._progressive_selections = 0
+        self._bridge_selections = 0
         self._contrast_selections = 0
         self._blocked_regressive_actions = 0
 
@@ -237,6 +243,8 @@ class OnlineStateConditionedEffectModel:
         objective: TerminalObjectiveHypothesis,
         observation: GameObservation,
         action_signature: str,
+        record_prediction: bool = True,
+        enable_bridge_composition: bool = True,
     ) -> DirectionalActionPrediction:
         mode = latent_mode_signature(observation, objective)
         exact = self._evidence.get((
@@ -256,9 +264,11 @@ class OnlineStateConditionedEffectModel:
             if item.progress_events > 0 or item.regression_events > 0
         ]
         reversible = self._is_reversible_evidence(related)
-        self._predictions += 1
+        if record_prediction:
+            self._predictions += 1
         if exact is not None:
-            self._exact_predictions += 1
+            if record_prediction:
+                self._exact_predictions += 1
             status = exact.status
             other_directional_modes = [
                 item
@@ -272,6 +282,38 @@ class OnlineStateConditionedEffectModel:
             )
             if contrast_stalled:
                 status = DirectionalEffectStatus.NEUTRAL
+            bridge = self._bridge_estimate(
+                option_id=str(option_id),
+                objective_id=objective.objective_id,
+                evidence=exact,
+            )
+            if (
+                enable_bridge_composition
+                and status != DirectionalEffectStatus.PROGRESSIVE
+                and bridge is not None
+                and bridge[0] > 0.0
+                and exact.unsafe_failures == 0
+            ):
+                if record_prediction:
+                    self._bridge_predictions += 1
+                return DirectionalActionPrediction(
+                    option_id=str(option_id),
+                    objective_id=objective.objective_id,
+                    mode_signature=mode,
+                    action_signature=str(action_signature),
+                    status=DirectionalEffectStatus.BRIDGE,
+                    expected_gain=bridge[0],
+                    confidence=bridge[1],
+                    compatible=True,
+                    exact_mode_evidence=True,
+                    reversible_across_modes=reversible,
+                    reason=(
+                        "observed transition reaches a latent mode with a "
+                        "progressive follow-up action"
+                    ),
+                    bridge_target_mode_signature=bridge[2],
+                    bridge_followup_action_signature=bridge[3],
+                )
             compatible = status not in {
                 DirectionalEffectStatus.REGRESSIVE,
                 DirectionalEffectStatus.NEUTRAL,
@@ -302,7 +344,8 @@ class OnlineStateConditionedEffectModel:
                 ),
             )
         if directional_related:
-            self._contrast_predictions += 1
+            if record_prediction:
+                self._contrast_predictions += 1
             directional_gain = sum(
                 item.expected_gain for item in directional_related
             ) / len(directional_related)
@@ -339,6 +382,8 @@ class OnlineStateConditionedEffectModel:
     def note_selection(self, prediction: DirectionalActionPrediction) -> None:
         if prediction.status == DirectionalEffectStatus.PROGRESSIVE:
             self._progressive_selections += 1
+        elif prediction.status == DirectionalEffectStatus.BRIDGE:
+            self._bridge_selections += 1
         elif prediction.status == DirectionalEffectStatus.NEEDS_MODE_CONTRAST:
             self._contrast_selections += 1
 
@@ -400,7 +445,9 @@ class OnlineStateConditionedEffectModel:
             "predictions": self._predictions,
             "exact_mode_predictions": self._exact_predictions,
             "mode_contrast_predictions": self._contrast_predictions,
+            "bridge_predictions": self._bridge_predictions,
             "progressive_selections": self._progressive_selections,
+            "bridge_selections": self._bridge_selections,
             "mode_contrast_selections": self._contrast_selections,
             "blocked_regressive_actions": self._blocked_regressive_actions,
             "hypotheses": [item.to_dict() for item in evidence],
@@ -419,6 +466,38 @@ class OnlineStateConditionedEffectModel:
             and item.objective_id == str(objective_id)
             and item.action_signature == str(action_signature)
         ]
+
+    def _bridge_estimate(
+        self,
+        *,
+        option_id: str,
+        objective_id: str,
+        evidence: StateConditionedActionEvidence,
+    ) -> tuple[float, float, str, str] | None:
+        candidates = []
+        for next_mode in evidence.next_mode_signatures:
+            for followup in self._evidence.values():
+                if followup.option_id != str(option_id):
+                    continue
+                if followup.objective_id != str(objective_id):
+                    continue
+                if followup.mode_signature != next_mode:
+                    continue
+                if followup.status != DirectionalEffectStatus.PROGRESSIVE:
+                    continue
+                if (
+                    next_mode == evidence.mode_signature
+                    and followup.action_signature == evidence.action_signature
+                ):
+                    continue
+                combined_gain = evidence.expected_gain + followup.expected_gain
+                candidates.append((
+                    combined_gain,
+                    min(evidence.confidence, followup.confidence),
+                    next_mode,
+                    followup.action_signature,
+                ))
+        return max(candidates, default=None)
 
     @staticmethod
     def _is_reversible_evidence(

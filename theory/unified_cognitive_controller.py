@@ -110,6 +110,12 @@ class UnifiedCognitiveConfig:
     causal_option_base_downstream_actions: int = 4
     causal_option_progress_extension_actions: int = 2
     max_actions_per_effect_conditioned_subgoal: int = 2
+    persistent_actions_per_progress: int = 2
+    max_persistent_actions_per_subgoal: int = 6
+    persistent_rollout_actions_per_progress: int = 2
+    max_persistent_downstream_actions: int = 10
+    persistent_credit_steps_per_progress: int = 4
+    max_persistent_credit_window: int = 16
     enable_relational_experiments: bool = True
     enable_operator_planning: bool = True
     enable_theory_planning: bool = True
@@ -121,6 +127,7 @@ class UnifiedCognitiveConfig:
     enable_causal_hierarchical_options: bool = True
     enable_effect_conditioned_downstream_subgoals: bool = True
     enable_state_conditioned_directional_control: bool = True
+    enable_persistent_directional_pursuit: bool = True
 
 
 @dataclass(frozen=True)
@@ -176,6 +183,11 @@ class CognitiveDecision:
     causal_option_directionally_compatible: bool = True
     causal_option_reversible_action: bool = False
     causal_option_directional_mode_contrast: bool = False
+    causal_option_directional_bridge_target_mode_signature: str = ""
+    causal_option_directional_bridge_followup_action_signature: str = ""
+    causal_option_persistent_pursuit: bool = False
+    causal_option_persistent_attempt_index: int = 0
+    causal_option_persistent_action_limit: int = 0
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -261,6 +273,21 @@ class CognitiveDecision:
             ),
             "causal_option_directional_mode_contrast": (
                 self.causal_option_directional_mode_contrast
+            ),
+            "causal_option_directional_bridge_target_mode_signature": (
+                self.causal_option_directional_bridge_target_mode_signature
+            ),
+            "causal_option_directional_bridge_followup_action_signature": (
+                self.causal_option_directional_bridge_followup_action_signature
+            ),
+            "causal_option_persistent_pursuit": (
+                self.causal_option_persistent_pursuit
+            ),
+            "causal_option_persistent_attempt_index": (
+                self.causal_option_persistent_attempt_index
+            ),
+            "causal_option_persistent_action_limit": (
+                self.causal_option_persistent_action_limit
             ),
         }
 
@@ -389,6 +416,27 @@ class UnifiedCognitiveController:
             ),
             enable_state_conditioned_directional_control=(
                 self.config.enable_state_conditioned_directional_control
+            ),
+            enable_persistent_directional_pursuit=(
+                self.config.enable_persistent_directional_pursuit
+            ),
+            persistent_actions_per_progress=(
+                self.config.persistent_actions_per_progress
+            ),
+            max_persistent_actions_per_subgoal=(
+                self.config.max_persistent_actions_per_subgoal
+            ),
+            persistent_rollout_actions_per_progress=(
+                self.config.persistent_rollout_actions_per_progress
+            ),
+            max_persistent_downstream_actions=(
+                self.config.max_persistent_downstream_actions
+            ),
+            persistent_credit_steps_per_progress=(
+                self.config.persistent_credit_steps_per_progress
+            ),
+            max_persistent_credit_window=(
+                self.config.max_persistent_credit_window
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
@@ -837,10 +885,16 @@ class UnifiedCognitiveController:
                 active_option.target_objective_id
             )
         )
+        click_actions = (
+            self._click_actions(observation)
+            if "ACTION6" in safe_actions else ()
+        )
         downstream_subgoal = (
             self.causal_options.select_effect_conditioned_subgoal(
                 observation,
                 store=self.terminal_objectives,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
             )
         )
         selected_objective = (
@@ -849,10 +903,6 @@ class UnifiedCognitiveController:
             )
             if downstream_subgoal is not None
             else target_objective
-        )
-        click_actions = (
-            self._click_actions(observation)
-            if "ACTION6" in safe_actions else ()
         )
         directed_choice = None
         if downstream_subgoal is not None:
@@ -1020,6 +1070,21 @@ class UnifiedCognitiveController:
             causal_option_reversible_action=selection.reversible_action,
             causal_option_directional_mode_contrast=(
                 selection.directional_mode_contrast
+            ),
+            causal_option_directional_bridge_target_mode_signature=(
+                selection.directional_bridge_target_mode_signature
+            ),
+            causal_option_directional_bridge_followup_action_signature=(
+                selection.directional_bridge_followup_action_signature
+            ),
+            causal_option_persistent_pursuit=(
+                selection.persistent_pursuit
+            ),
+            causal_option_persistent_attempt_index=(
+                selection.persistent_attempt_index
+            ),
+            causal_option_persistent_action_limit=(
+                selection.persistent_action_limit
             ),
         )
 
@@ -2120,6 +2185,11 @@ class UnifiedCognitiveController:
                 False
                 if pending is None
                 else pending.causal_option_replaying_progress_sequence
+            ),
+            persistent_pursuit=(
+                False
+                if pending is None
+                else pending.causal_option_persistent_pursuit
             ),
         )
         if (

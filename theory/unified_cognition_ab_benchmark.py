@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v9"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v10"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -106,6 +106,17 @@ def _state_conditioned_directional_control_disabled_controller(
         game_id,
         config=UnifiedCognitiveConfig(
             enable_state_conditioned_directional_control=False
+        ),
+    )
+
+
+def _persistent_directional_pursuit_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_persistent_directional_pursuit=False
         ),
     )
 
@@ -177,6 +188,7 @@ def run_unified_cognition_ab_benchmark(
     enable_causal_hierarchical_options: bool = True,
     enable_effect_conditioned_downstream_subgoals: bool = True,
     enable_state_conditioned_directional_control: bool = True,
+    enable_persistent_directional_pursuit: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -212,6 +224,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _state_conditioned_directional_control_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_persistent_directional_pursuit
+    ):
+        effective_controller_factory = (
+            _persistent_directional_pursuit_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -277,6 +296,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         state_conditioned_directional_control_enabled=(
             enable_state_conditioned_directional_control
+        ),
+        persistent_directional_pursuit_enabled=(
+            enable_persistent_directional_pursuit
         ),
     )
     if not include_traces:
@@ -373,6 +395,12 @@ def _run_arm(
     directional_summary = dict(
         effect_subgoal_summary.get(
             "state_conditioned_directional_model",
+            {},
+        ) or {}
+    )
+    persistent_summary = dict(
+        causal_option_summary.get(
+            "persistent_directional_pursuit",
             {},
         ) or {}
     )
@@ -695,14 +723,59 @@ def _run_arm(
         "directional_mode_contrast_predictions": int(
             directional_summary.get("mode_contrast_predictions", 0) or 0
         ),
+        "directional_bridge_predictions": int(
+            directional_summary.get("bridge_predictions", 0) or 0
+        ),
         "directional_progressive_selections": int(
             directional_summary.get("progressive_selections", 0) or 0
+        ),
+        "directional_bridge_selections": int(
+            directional_summary.get("bridge_selections", 0) or 0
         ),
         "directional_mode_contrast_selections": int(
             directional_summary.get("mode_contrast_selections", 0) or 0
         ),
         "directional_blocked_regressive_actions": int(
             directional_summary.get("blocked_regressive_actions", 0) or 0
+        ),
+        "persistent_pursuit_commitment_selections": int(
+            persistent_summary.get("commitment_selections", 0) or 0
+        ),
+        "persistent_pursuit_resumed_commitments": int(
+            persistent_summary.get("resumed_commitments", 0) or 0
+        ),
+        "persistent_pursuit_continuation_actions": int(
+            persistent_summary.get("continuation_actions", 0) or 0
+        ),
+        "persistent_pursuit_directional_policy_actions": int(
+            persistent_summary.get("directional_policy_actions", 0) or 0
+        ),
+        "persistent_pursuit_bridge_actions": int(
+            persistent_summary.get("bridge_actions", 0) or 0
+        ),
+        "persistent_pursuit_mode_contrast_actions": int(
+            persistent_summary.get("mode_contrast_actions", 0) or 0
+        ),
+        "persistent_pursuit_progress_events": int(
+            persistent_summary.get("continuation_progress_events", 0) or 0
+        ),
+        "persistent_pursuit_repeated_progress_events": int(
+            persistent_summary.get("repeated_progress_events", 0) or 0
+        ),
+        "persistent_pursuit_completed_objectives": int(
+            persistent_summary.get("completed_objectives", 0) or 0
+        ),
+        "persistent_pursuit_attempt_budget_extensions": int(
+            persistent_summary.get("attempt_budget_extensions", 0) or 0
+        ),
+        "persistent_pursuit_rollout_budget_extensions": int(
+            persistent_summary.get("rollout_budget_extensions", 0) or 0
+        ),
+        "persistent_pursuit_credit_window_extensions": int(
+            persistent_summary.get("credit_window_extensions", 0) or 0
+        ),
+        "persistent_pursuit_longest_continuation": int(
+            persistent_summary.get("longest_continuation", 0) or 0
         ),
         "causal_option_dynamic_budget_extensions": int(
             causal_option_summary.get("dynamic_budget_extensions", 0) or 0
@@ -904,6 +977,7 @@ def _summarize_benchmark(
     causal_hierarchical_options_enabled: bool,
     effect_conditioned_downstream_subgoals_enabled: bool,
     state_conditioned_directional_control_enabled: bool,
+    persistent_directional_pursuit_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -949,6 +1023,9 @@ def _summarize_benchmark(
             ),
             "state_conditioned_directional_control_enabled_in_unified": bool(
                 state_conditioned_directional_control_enabled
+            ),
+            "persistent_directional_pursuit_enabled_in_unified": bool(
+                persistent_directional_pursuit_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1312,14 +1389,75 @@ def _aggregate_arm(
         "directional_mode_contrast_predictions": sum(
             int(row["directional_mode_contrast_predictions"]) for row in rows
         ),
+        "directional_bridge_predictions": sum(
+            int(row["directional_bridge_predictions"]) for row in rows
+        ),
         "directional_progressive_selections": sum(
             int(row["directional_progressive_selections"]) for row in rows
+        ),
+        "directional_bridge_selections": sum(
+            int(row["directional_bridge_selections"]) for row in rows
         ),
         "directional_mode_contrast_selections": sum(
             int(row["directional_mode_contrast_selections"]) for row in rows
         ),
         "directional_blocked_regressive_actions": sum(
             int(row["directional_blocked_regressive_actions"]) for row in rows
+        ),
+        "persistent_pursuit_commitment_selections": sum(
+            int(row["persistent_pursuit_commitment_selections"])
+            for row in rows
+        ),
+        "persistent_pursuit_resumed_commitments": sum(
+            int(row["persistent_pursuit_resumed_commitments"])
+            for row in rows
+        ),
+        "persistent_pursuit_continuation_actions": sum(
+            int(row["persistent_pursuit_continuation_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_directional_policy_actions": sum(
+            int(row["persistent_pursuit_directional_policy_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_bridge_actions": sum(
+            int(row["persistent_pursuit_bridge_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_mode_contrast_actions": sum(
+            int(row["persistent_pursuit_mode_contrast_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_progress_events": sum(
+            int(row["persistent_pursuit_progress_events"])
+            for row in rows
+        ),
+        "persistent_pursuit_repeated_progress_events": sum(
+            int(row["persistent_pursuit_repeated_progress_events"])
+            for row in rows
+        ),
+        "persistent_pursuit_completed_objectives": sum(
+            int(row["persistent_pursuit_completed_objectives"])
+            for row in rows
+        ),
+        "persistent_pursuit_attempt_budget_extensions": sum(
+            int(row["persistent_pursuit_attempt_budget_extensions"])
+            for row in rows
+        ),
+        "persistent_pursuit_rollout_budget_extensions": sum(
+            int(row["persistent_pursuit_rollout_budget_extensions"])
+            for row in rows
+        ),
+        "persistent_pursuit_credit_window_extensions": sum(
+            int(row["persistent_pursuit_credit_window_extensions"])
+            for row in rows
+        ),
+        "persistent_pursuit_longest_continuation": max(
+            (
+                int(row["persistent_pursuit_longest_continuation"])
+                for row in rows
+            ),
+            default=0,
         ),
         "causal_option_dynamic_budget_extensions": sum(
             int(row["causal_option_dynamic_budget_extensions"])
@@ -1532,6 +1670,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8r latent-mode directional action control only.",
     )
+    parser.add_argument(
+        "--disable-persistent-directional-pursuit",
+        action="store_true",
+        help="Ablate SAGE.8s progress-gated persistent pursuit only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1565,6 +1708,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_state_conditioned_directional_control=(
             not args.disable_state_conditioned_directional_control
+        ),
+        enable_persistent_directional_pursuit=(
+            not args.disable_persistent_directional_pursuit
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))
