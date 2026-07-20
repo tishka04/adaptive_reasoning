@@ -31,6 +31,7 @@ class SemanticInterventionAnchor:
     entity_signature: str = ""
     structural_role_signature: str = ""
     instance_signature: str = ""
+    source_object_id: int = -1
     anchored: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
@@ -42,6 +43,7 @@ class SemanticInterventionAnchor:
             "entity_signature": self.entity_signature,
             "structural_role_signature": self.structural_role_signature,
             "instance_signature": self.instance_signature,
+            "source_object_id": self.source_object_id,
             "anchored": self.anchored,
         }
 
@@ -105,6 +107,7 @@ def semantic_intervention_anchor(
         entity_signature=entity,
         structural_role_signature=role,
         instance_signature=instance,
+        source_object_id=int(target.object_id),
         anchored=True,
     )
 
@@ -117,6 +120,34 @@ def semantic_transfer_signature(signature: str) -> str:
 def is_entity_anchored_signature(signature: str) -> bool:
     value = str(signature)
     return value.startswith("ACTION6::entity:") and INSTANCE_SEPARATOR in value
+
+
+def semantic_legacy_signature(signature: str) -> str:
+    """Recover the broad exploration identity from an anchored signature."""
+    value = str(signature)
+    prefix = "ACTION6::entity:color"
+    if not value.startswith(prefix):
+        return value
+    color = value[len(prefix):].split(":", 1)[0]
+    return f"ACTION6::color:{color}" if color else value
+
+
+def target_object_for_intervention(
+    observation: GameObservation,
+    action_data: Mapping[str, Any],
+) -> ObjectInfo | None:
+    return _clicked_object(observation, action_data)
+
+
+def entity_signature(obj: ObjectInfo) -> str:
+    return _entity_signature(obj)
+
+
+def structural_role_signature(
+    obj: ObjectInfo,
+    observation: GameObservation,
+) -> str:
+    return _structural_role_signature(obj, observation)
 
 
 def _clicked_object(
@@ -240,6 +271,10 @@ def _count_bucket(count: int) -> str:
 __all__ = [
     "SemanticInterventionAnchor",
     "is_entity_anchored_signature",
+    "entity_signature",
     "semantic_intervention_anchor",
+    "semantic_legacy_signature",
     "semantic_transfer_signature",
+    "structural_role_signature",
+    "target_object_for_intervention",
 ]

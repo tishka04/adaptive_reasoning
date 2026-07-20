@@ -5368,3 +5368,149 @@ contrastes controles entre arguments structurels dans le meme mode, puis
 apprendre quelle entite porte l'effet recherche. Cette liaison active doit
 alimenter directement les ponts persistants sans utiliser le resultat terminal
 pour choisir retrospectivement le bon objet.
+
+## SAGE.8u - active online entity causal bindings
+
+Objectif :
+
+- Suivre l'entite concretement visee entre l'observation avant et apres une
+  intervention, y compris lorsqu'elle change de couleur, de forme ou de
+  position, et distinguer explicitement stabilite, mouvement, transformation,
+  suppression et correspondance ambigue.
+- Attribuer une reduction d'objectif a l'argument clique seulement si cette
+  entite a elle-meme change ; un progres concomitant avec une cible stable est
+  memorise comme `noncarrier_progress`, jamais comme preuve causale positive.
+- Conserver un identifiant de piste en ligne entre frames et branches, sans
+  utiliser de label terminal ni de representation figee avant l'examen.
+- Apprendre des liaisons `option x objectif x mode x argument structurel` et
+  distinguer `progressive_carrier`, `regressive_carrier`, `misbound` et
+  `needs_controlled_contrast`.
+- Generer un contraste entre arguments de meme alias large uniquement apres
+  avoir observe, dans le meme mode, un porteur progressif et un autre argument
+  regressif ou non porteur.
+- Injecter ces contrastes exclusivement dans une poursuite persistante deja
+  debloquee par un progres en ligne. Avant ce seuil, SAGE.8u est neutre dans le
+  classement des actions et preserve exactement la politique SAGE.8t.
+- Ne jamais transformer une liaison locale, une piste d'entite ou un contraste
+  controle en preuve terminale : seuls level-up et WIN observes restent des
+  preuves terminales.
+
+Representation et apprentissage :
+
+- Le matching combine recouvrement de cellules, forme normalisee, aire,
+  couleur et distance. Une transformation de couleur au meme emplacement est
+  donc suivie au lieu d'etre decomposee artificiellement en disparition plus
+  apparition.
+- Une correspondance ambigue n'obtient aucun credit positif ou negatif.
+- Une suppression credible compte comme changement de la cible ; une cible
+  stable pendant un progres signale que l'effet est porte ailleurs.
+- Les preuves restent separees par mode latent et classe structurelle. Le
+  conflit requis pour un contraste est constate en ligne entre deux classes,
+  pas infere d'un prior ni selectionne retrospectivement avec le resultat du
+  niveau.
+- Le controle persistant bloque les arguments appris comme regressifs ou mal
+  lies, favorise les porteurs progressifs et peut tester un argument
+  `needs_controlled_contrast`. Les replays deja soutenus gardent priorite.
+- Chaque decision et transition audite le statut de liaison, le gain, la
+  confiance, la compatibilite, le conflit, le contraste et l'identifiant de
+  piste.
+
+Ajouts :
+
+- `theory/online_entity_causal_binding.py`
+- extension de `theory/online_semantic_intervention.py`
+- extension de `theory/online_causal_option.py`
+- extension de `theory/online_persistent_pursuit.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v12 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_entity_causal_binding.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8u_entity_binding_ablation.json`
+- `diagnostics/sage/sage8u_cn04_entity_bindings.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v12`
+- `paired_protocol.protocol_gate_passed=true`
+- `active_entity_causal_binding_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.actions_executed=800`
+- `unified.experiment_actions=488`
+- `unified.experiment_cost_rate=0.61`
+- `unified.entity_binding_observations=6`
+- `unified.entity_binding_models=6`
+- `unified.entity_binding_matched_entities=6`
+- `unified.entity_binding_tracks_created=4`
+- `unified.entity_binding_tracks_reused=2`
+- `unified.entity_binding_noncarrier_progress_events=2`
+- `unified.entity_binding_carrier_progress_events=0`
+- `unified.entity_binding_conflicts=0`
+- `unified.entity_binding_controlled_contrast_selections=0`
+- `unified.causal_option_downstream_actions=12`
+- `unified.causal_option_downstream_effects=8`
+- `unified.effect_conditioned_pursuit_progress_events=2`
+- `unified.progress_supported_effect_conditioned_subgoals=2`
+- `unified.objective_distance_reductions=782`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `active_entity_causal_binding_enabled_in_unified=false`
+- toutes les metriques `entity_binding_*` valent zero ;
+- les autres metriques agregees sont strictement identiques au run principal,
+  notamment 800 actions, 488 experiences, 782 reductions objectives, 2 progres
+  de poursuite, 0 niveau et 0 WIN.
+
+Audit cible `cn04-65d47d14`, seed 0, 2 resets x 40 :
+
+- 3 transitions ciblees sont liees a 3 modeles causaux ;
+- 2 pistes sont creees et 1 est reutilisee ;
+- les 3 cibles sont retrouvees stables ;
+- 1 progres objectif est correctement classe `noncarrier_progress` au lieu
+  d'etre credite a l'objet clique ;
+- aucun conflit de porteur n'est encore observe, donc aucun contraste n'est
+  genere ;
+- le run conserve exactement 61 experiences, 48 reductions objectives, 1
+  progres de poursuite et 1 sous-but soutenu ;
+- `levels_completed=0` et `wins=0`.
+
+Validation synthetique en ligne :
+
+- une transformation de couleur et un mouvement reutilisent la meme piste ;
+- une suppression est reconnue comme changement de la cible ;
+- une correspondance ambigue ne recoit aucun credit causal ;
+- un progres avec cible stable produit `misbound` ;
+- un porteur progressif oppose a un argument non porteur declenche un contraste
+  controle dans le meme mode ;
+- ce contraste guide le suffixe uniquement pendant une poursuite persistante ;
+- l'ablation ne conserve aucune observation, prediction ou selection SAGE.8u.
+
+Validation :
+
+- `new_sage8u_tests=9 passed`
+- `targeted_cognitive_tests=44 passed`
+- `full_repository_tests=1412 passed` (1405 groupes ensemble et les 7 tests
+  d'un fichier historique a namespace collisionne executes isolement)
+- `scoped_ruff_and_compileall=passed`
+
+Lecture : le verrou de liaison active entre intervention et entite visee est
+franchi sans regression held-out. Le resultat apporte surtout une information
+negative utile : sur les six transitions ciblees, aucun progres n'est porte par
+l'objet clique et deux progres se produisent pendant que cette cible reste
+stable. SAGE evite donc maintenant un faux credit que SAGE.8t ne pouvait pas
+detecter. En l'absence d'un porteur positif oppose, la garde en ligne interdit
+correctement de fabriquer un contraste, et le resultat ARC reste neutre.
+
+Le prochain verrou est la localisation du porteur indirect de l'effet. SAGE.8u
+sait que l'objet clique n'a pas porte certains progres, mais ne suit pas encore
+toutes les autres entites et relations modifiees pour identifier laquelle a
+porte le changement. La prochaine etape doit construire en ligne des hyperaretes
+`entite actionnee -> relation -> entite affectee`, departager les porteurs
+indirects par interventions controlees, puis fournir ces effets mediatises au
+planificateur persistant sans aucun label terminal retrospectif.

@@ -53,6 +53,7 @@ class OnlinePersistentPursuitPolicy:
         self._directional_policy_actions = 0
         self._bridge_actions = 0
         self._entity_contrast_actions = 0
+        self._entity_binding_contrast_actions = 0
         self._mode_contrast_actions = 0
         self._continuation_progress_events = 0
         self._repeated_progress_events = 0
@@ -130,6 +131,7 @@ class OnlinePersistentPursuitPolicy:
         subgoal_id: str,
         persistent: bool,
         directional_status: str,
+        entity_binding_status: str = "",
     ) -> None:
         if not self.enabled or not persistent or not str(subgoal_id):
             return
@@ -143,6 +145,8 @@ class OnlinePersistentPursuitPolicy:
             self._entity_contrast_actions += 1
         elif status == "needs_mode_contrast":
             self._mode_contrast_actions += 1
+        if str(entity_binding_status) == "needs_controlled_contrast":
+            self._entity_binding_contrast_actions += 1
         length = self._continuation_lengths.get(str(subgoal_id), 0) + 1
         self._continuation_lengths[str(subgoal_id)] = length
         self._longest_continuation = max(self._longest_continuation, length)
@@ -194,6 +198,9 @@ class OnlinePersistentPursuitPolicy:
             "directional_policy_actions": self._directional_policy_actions,
             "bridge_actions": self._bridge_actions,
             "entity_contrast_actions": self._entity_contrast_actions,
+            "entity_binding_contrast_actions": (
+                self._entity_binding_contrast_actions
+            ),
             "mode_contrast_actions": self._mode_contrast_actions,
             "continuation_progress_events": (
                 self._continuation_progress_events

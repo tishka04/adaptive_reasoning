@@ -129,6 +129,7 @@ class UnifiedCognitiveConfig:
     enable_state_conditioned_directional_control: bool = True
     enable_persistent_directional_pursuit: bool = True
     enable_entity_anchored_interventions: bool = True
+    enable_active_entity_causal_binding: bool = True
 
 
 @dataclass(frozen=True)
@@ -196,6 +197,13 @@ class CognitiveDecision:
     causal_option_persistent_pursuit: bool = False
     causal_option_persistent_attempt_index: int = 0
     causal_option_persistent_action_limit: int = 0
+    causal_option_entity_binding_status: str = ""
+    causal_option_entity_binding_expected_gain: float | None = None
+    causal_option_entity_binding_confidence: float | None = None
+    causal_option_entity_binding_compatible: bool = True
+    causal_option_entity_binding_controlled_contrast: bool = False
+    causal_option_entity_binding_conflict_observed: bool = False
+    causal_option_entity_binding_track_id: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -317,6 +325,27 @@ class CognitiveDecision:
             ),
             "causal_option_persistent_action_limit": (
                 self.causal_option_persistent_action_limit
+            ),
+            "causal_option_entity_binding_status": (
+                self.causal_option_entity_binding_status
+            ),
+            "causal_option_entity_binding_expected_gain": (
+                self.causal_option_entity_binding_expected_gain
+            ),
+            "causal_option_entity_binding_confidence": (
+                self.causal_option_entity_binding_confidence
+            ),
+            "causal_option_entity_binding_compatible": (
+                self.causal_option_entity_binding_compatible
+            ),
+            "causal_option_entity_binding_controlled_contrast": (
+                self.causal_option_entity_binding_controlled_contrast
+            ),
+            "causal_option_entity_binding_conflict_observed": (
+                self.causal_option_entity_binding_conflict_observed
+            ),
+            "causal_option_entity_binding_track_id": (
+                self.causal_option_entity_binding_track_id
             ),
         }
 
@@ -451,6 +480,9 @@ class UnifiedCognitiveController:
             ),
             enable_entity_anchored_interventions=(
                 self.config.enable_entity_anchored_interventions
+            ),
+            enable_active_entity_causal_binding=(
+                self.config.enable_active_entity_causal_binding
             ),
             persistent_actions_per_progress=(
                 self.config.persistent_actions_per_progress
@@ -976,6 +1008,15 @@ class UnifiedCognitiveController:
                 click_actions=click_actions,
             )
         )
+        entity_binding_predictions = (
+            self.causal_options.entity_binding_action_predictions(
+                observation,
+                store=self.terminal_objectives,
+                downstream_subgoal=downstream_subgoal,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
+            )
+        )
         selection = self.causal_options.select_downstream(
             observation,
             safe_actions=safe_actions,
@@ -990,6 +1031,7 @@ class UnifiedCognitiveController:
                 None if directed_choice is None else directed_choice.action_data
             ),
             directional_predictions=directional_predictions,
+            entity_binding_predictions=entity_binding_predictions,
         )
         if selection is None:
             return None
@@ -1138,6 +1180,27 @@ class UnifiedCognitiveController:
             ),
             causal_option_persistent_action_limit=(
                 selection.persistent_action_limit
+            ),
+            causal_option_entity_binding_status=(
+                selection.entity_binding_status
+            ),
+            causal_option_entity_binding_expected_gain=(
+                selection.entity_binding_expected_gain
+            ),
+            causal_option_entity_binding_confidence=(
+                selection.entity_binding_confidence
+            ),
+            causal_option_entity_binding_compatible=(
+                selection.entity_binding_compatible
+            ),
+            causal_option_entity_binding_controlled_contrast=(
+                selection.entity_binding_controlled_contrast
+            ),
+            causal_option_entity_binding_conflict_observed=(
+                selection.entity_binding_conflict_observed
+            ),
+            causal_option_entity_binding_track_id=(
+                selection.entity_binding_track_id
             ),
         )
 

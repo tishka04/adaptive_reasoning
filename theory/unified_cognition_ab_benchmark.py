@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v11"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v12"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -132,6 +132,17 @@ def _entity_anchored_interventions_disabled_controller(
     )
 
 
+def _active_entity_causal_binding_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_active_entity_causal_binding=False
+        ),
+    )
+
+
 @dataclass(frozen=True)
 class _ExecutableAction:
     name: str
@@ -201,6 +212,7 @@ def run_unified_cognition_ab_benchmark(
     enable_state_conditioned_directional_control: bool = True,
     enable_persistent_directional_pursuit: bool = True,
     enable_entity_anchored_interventions: bool = True,
+    enable_active_entity_causal_binding: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -250,6 +262,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _entity_anchored_interventions_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_active_entity_causal_binding
+    ):
+        effective_controller_factory = (
+            _active_entity_causal_binding_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -321,6 +340,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         entity_anchored_interventions_enabled=(
             enable_entity_anchored_interventions
+        ),
+        active_entity_causal_binding_enabled=(
+            enable_active_entity_causal_binding
         ),
     )
     if not include_traces:
@@ -423,6 +445,12 @@ def _run_arm(
     persistent_summary = dict(
         causal_option_summary.get(
             "persistent_directional_pursuit",
+            {},
+        ) or {}
+    )
+    entity_binding_summary = dict(
+        causal_option_summary.get(
+            "active_entity_causal_binding",
             {},
         ) or {}
     )
@@ -669,6 +697,69 @@ def _run_arm(
         "entity_anchored_selections": int(
             causal_option_summary.get("entity_anchored_selections", 0) or 0
         ),
+        "entity_binding_observations": int(
+            entity_binding_summary.get("observations", 0) or 0
+        ),
+        "entity_binding_matched_entities": int(
+            entity_binding_summary.get("matched_entities", 0) or 0
+        ),
+        "entity_binding_transformed_entities": int(
+            entity_binding_summary.get("transformed_entities", 0) or 0
+        ),
+        "entity_binding_moved_entities": int(
+            entity_binding_summary.get("moved_entities", 0) or 0
+        ),
+        "entity_binding_removed_entities": int(
+            entity_binding_summary.get("removed_entities", 0) or 0
+        ),
+        "entity_binding_ambiguous_entities": int(
+            entity_binding_summary.get("ambiguous_entities", 0) or 0
+        ),
+        "entity_binding_tracks_created": int(
+            entity_binding_summary.get("tracks_created", 0) or 0
+        ),
+        "entity_binding_tracks_reused": int(
+            entity_binding_summary.get("tracks_reused", 0) or 0
+        ),
+        "entity_binding_models": int(
+            entity_binding_summary.get("binding_models", 0) or 0
+        ),
+        "entity_binding_carrier_progress_events": int(
+            entity_binding_summary.get("carrier_progress_events", 0) or 0
+        ),
+        "entity_binding_carrier_regression_events": int(
+            entity_binding_summary.get("carrier_regression_events", 0) or 0
+        ),
+        "entity_binding_noncarrier_progress_events": int(
+            entity_binding_summary.get("noncarrier_progress_events", 0) or 0
+        ),
+        "entity_binding_conflicts": int(
+            entity_binding_summary.get("binding_conflicts", 0) or 0
+        ),
+        "entity_binding_predictions": int(
+            entity_binding_summary.get("predictions", 0) or 0
+        ),
+        "entity_binding_controlled_contrast_predictions": int(
+            entity_binding_summary.get(
+                "controlled_contrast_predictions",
+                0,
+            ) or 0
+        ),
+        "entity_binding_controlled_contrast_selections": int(
+            entity_binding_summary.get(
+                "controlled_contrast_selections",
+                0,
+            ) or 0
+        ),
+        "entity_binding_progressive_carrier_selections": int(
+            entity_binding_summary.get(
+                "progressive_carrier_selections",
+                0,
+            ) or 0
+        ),
+        "entity_binding_blocked_misbound_actions": int(
+            entity_binding_summary.get("blocked_misbound_actions", 0) or 0
+        ),
         "effect_conditioned_goal_candidates_generated": int(
             controller_summary.get(
                 "effect_conditioned_goal_candidates_generated",
@@ -818,6 +909,12 @@ def _run_arm(
         ),
         "persistent_pursuit_entity_contrast_actions": int(
             persistent_summary.get("entity_contrast_actions", 0) or 0
+        ),
+        "persistent_pursuit_entity_binding_contrast_actions": int(
+            persistent_summary.get(
+                "entity_binding_contrast_actions",
+                0,
+            ) or 0
         ),
         "persistent_pursuit_mode_contrast_actions": int(
             persistent_summary.get("mode_contrast_actions", 0) or 0
@@ -1045,6 +1142,7 @@ def _summarize_benchmark(
     state_conditioned_directional_control_enabled: bool,
     persistent_directional_pursuit_enabled: bool,
     entity_anchored_interventions_enabled: bool,
+    active_entity_causal_binding_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1096,6 +1194,9 @@ def _summarize_benchmark(
             ),
             "entity_anchored_interventions_enabled_in_unified": bool(
                 entity_anchored_interventions_enabled
+            ),
+            "active_entity_causal_binding_enabled_in_unified": bool(
+                active_entity_causal_binding_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1375,6 +1476,67 @@ def _aggregate_arm(
         "entity_anchored_selections": sum(
             int(row["entity_anchored_selections"]) for row in rows
         ),
+        "entity_binding_observations": sum(
+            int(row["entity_binding_observations"]) for row in rows
+        ),
+        "entity_binding_matched_entities": sum(
+            int(row["entity_binding_matched_entities"]) for row in rows
+        ),
+        "entity_binding_transformed_entities": sum(
+            int(row["entity_binding_transformed_entities"]) for row in rows
+        ),
+        "entity_binding_moved_entities": sum(
+            int(row["entity_binding_moved_entities"]) for row in rows
+        ),
+        "entity_binding_removed_entities": sum(
+            int(row["entity_binding_removed_entities"]) for row in rows
+        ),
+        "entity_binding_ambiguous_entities": sum(
+            int(row["entity_binding_ambiguous_entities"]) for row in rows
+        ),
+        "entity_binding_tracks_created": sum(
+            int(row["entity_binding_tracks_created"]) for row in rows
+        ),
+        "entity_binding_tracks_reused": sum(
+            int(row["entity_binding_tracks_reused"]) for row in rows
+        ),
+        "entity_binding_models": sum(
+            int(row["entity_binding_models"]) for row in rows
+        ),
+        "entity_binding_carrier_progress_events": sum(
+            int(row["entity_binding_carrier_progress_events"])
+            for row in rows
+        ),
+        "entity_binding_carrier_regression_events": sum(
+            int(row["entity_binding_carrier_regression_events"])
+            for row in rows
+        ),
+        "entity_binding_noncarrier_progress_events": sum(
+            int(row["entity_binding_noncarrier_progress_events"])
+            for row in rows
+        ),
+        "entity_binding_conflicts": sum(
+            int(row["entity_binding_conflicts"]) for row in rows
+        ),
+        "entity_binding_predictions": sum(
+            int(row["entity_binding_predictions"]) for row in rows
+        ),
+        "entity_binding_controlled_contrast_predictions": sum(
+            int(row["entity_binding_controlled_contrast_predictions"])
+            for row in rows
+        ),
+        "entity_binding_controlled_contrast_selections": sum(
+            int(row["entity_binding_controlled_contrast_selections"])
+            for row in rows
+        ),
+        "entity_binding_progressive_carrier_selections": sum(
+            int(row["entity_binding_progressive_carrier_selections"])
+            for row in rows
+        ),
+        "entity_binding_blocked_misbound_actions": sum(
+            int(row["entity_binding_blocked_misbound_actions"])
+            for row in rows
+        ),
         "effect_conditioned_goal_candidates_generated": sum(
             int(row["effect_conditioned_goal_candidates_generated"])
             for row in rows
@@ -1536,6 +1698,10 @@ def _aggregate_arm(
         ),
         "persistent_pursuit_entity_contrast_actions": sum(
             int(row["persistent_pursuit_entity_contrast_actions"])
+            for row in rows
+        ),
+        "persistent_pursuit_entity_binding_contrast_actions": sum(
+            int(row["persistent_pursuit_entity_binding_contrast_actions"])
             for row in rows
         ),
         "persistent_pursuit_mode_contrast_actions": sum(
@@ -1794,6 +1960,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8t entity/structural-role action identities only.",
     )
+    parser.add_argument(
+        "--disable-active-entity-causal-binding",
+        action="store_true",
+        help="Ablate SAGE.8u online target/effect causal bindings only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1833,6 +2004,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_entity_anchored_interventions=(
             not args.disable_entity_anchored_interventions
+        ),
+        enable_active_entity_causal_binding=(
+            not args.disable_active_entity_causal_binding
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

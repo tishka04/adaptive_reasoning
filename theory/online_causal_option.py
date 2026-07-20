@@ -24,6 +24,11 @@ from .online_effect_conditioned_subgoal import (
     EffectConditionedSubgoalSelection,
     OnlineEffectConditionedSubgoalStore,
 )
+from .online_entity_causal_binding import (
+    EntityBindingPrediction,
+    EntityBindingStatus,
+    OnlineEntityCausalBindingStore,
+)
 from .online_persistent_pursuit import OnlinePersistentPursuitPolicy
 from .online_semantic_intervention import (
     SemanticInterventionAnchor,
@@ -261,6 +266,13 @@ class CausalOptionSelection:
     persistent_pursuit: bool = False
     persistent_attempt_index: int = 0
     persistent_action_limit: int = 0
+    entity_binding_status: str = ""
+    entity_binding_expected_gain: float | None = None
+    entity_binding_confidence: float | None = None
+    entity_binding_compatible: bool = True
+    entity_binding_controlled_contrast: bool = False
+    entity_binding_conflict_observed: bool = False
+    entity_binding_track_id: str = ""
     reason: str = ""
 
 
@@ -284,6 +296,7 @@ class OnlineCausalOptionStore:
         enable_state_conditioned_directional_control: bool = True,
         enable_persistent_directional_pursuit: bool = True,
         enable_entity_anchored_interventions: bool = True,
+        enable_active_entity_causal_binding: bool = True,
         persistent_actions_per_progress: int = 2,
         max_persistent_actions_per_subgoal: int = 6,
         persistent_rollout_actions_per_progress: int = 2,
@@ -301,6 +314,9 @@ class OnlineCausalOptionStore:
         )
         self.enable_entity_anchored_interventions = bool(
             enable_entity_anchored_interventions
+        )
+        self.entity_causal_bindings = OnlineEntityCausalBindingStore(
+            enabled=enable_active_entity_causal_binding,
         )
         self.base_downstream_actions = min(
             self.max_downstream_actions,
@@ -577,6 +593,10 @@ class OnlineCausalOptionStore:
             str,
             DirectionalActionPrediction,
         ] | None = None,
+        entity_binding_predictions: Mapping[
+            str,
+            EntityBindingPrediction,
+        ] | None = None,
     ) -> CausalOptionSelection | None:
         """Select one bounded suffix action in the actually opened state."""
         active = self._active
@@ -634,6 +654,7 @@ class OnlineCausalOptionStore:
         directed_name = str(preferred_action_name).upper()
         directed_data = dict(preferred_action_data or {})
         predictions = dict(directional_predictions or {})
+        binding_predictions = dict(entity_binding_predictions or {})
         selected_subgoal = (
             None
             if downstream_subgoal is None
@@ -688,17 +709,37 @@ class OnlineCausalOptionStore:
                 and signature == progress_replay_signature
             )
             directional_prediction = predictions.get(signature)
+            binding_prediction = binding_predictions.get(signature)
+            binding_actionable = bool(
+                binding_prediction is not None
+                and binding_prediction.status in {
+                    EntityBindingStatus.PROGRESSIVE_CARRIER,
+                    EntityBindingStatus.NEEDS_CONTROLLED_CONTRAST,
+                }
+            )
+            if (
+                persistent_pursuit
+                and binding_prediction is not None
+                and not binding_prediction.compatible
+                and not replay_match
+                and not progress_replay_match
+            ):
+                self.entity_causal_bindings.note_blocked(binding_prediction)
+                continue
             if (
                 persistent_pursuit
                 and (
-                    directional_prediction is None
-                    or directional_prediction.status.value
-                    not in {
-                        "progressive",
-                        "bridge",
-                        "needs_entity_contrast",
-                        "needs_mode_contrast",
-                    }
+                    (
+                        directional_prediction is None
+                        or directional_prediction.status.value
+                        not in {
+                            "progressive",
+                            "bridge",
+                            "needs_entity_contrast",
+                            "needs_mode_contrast",
+                        }
+                    )
+                    and not binding_actionable
                 )
                 and not replay_match
                 and not progress_replay_match
@@ -723,6 +764,16 @@ class OnlineCausalOptionStore:
                 0.0
                 if directional_prediction is None
                 else directional_prediction.expected_gain
+            )
+            binding_rank = (
+                2
+                if not persistent_pursuit or binding_prediction is None
+                else binding_prediction.selection_rank
+            )
+            binding_gain = (
+                0.0
+                if not persistent_pursuit or binding_prediction is None
+                else binding_prediction.expected_gain
             )
             directed_action_match = int(
                 bool(directed_name)
@@ -751,6 +802,8 @@ class OnlineCausalOptionStore:
                     progress_replay_match,
                     directional_rank,
                     directional_gain,
+                    binding_rank,
+                    binding_gain,
                     directed_action_match,
                     exact_preference,
                     int(evidence is not None and evidence.terminal_successes > 0),
@@ -768,6 +821,7 @@ class OnlineCausalOptionStore:
                 action_data,
                 signature,
                 directional_prediction,
+                binding_prediction,
                 anchor,
             ))
         if not ranked:
@@ -779,6 +833,7 @@ class OnlineCausalOptionStore:
             action_data,
             signature,
             directional_prediction,
+            binding_prediction,
             anchor,
         ) = max(ranked, key=lambda item: item[0])
         terminal_replay_selected = bool(
@@ -795,6 +850,8 @@ class OnlineCausalOptionStore:
             self.downstream_subgoals.note_directional_selection(
                 directional_prediction
             )
+        if persistent_pursuit and binding_prediction is not None:
+            self.entity_causal_bindings.note_selection(binding_prediction)
         self.persistent_pursuit.note_action_selection(
             subgoal_id=(
                 "" if downstream_subgoal is None
@@ -804,6 +861,10 @@ class OnlineCausalOptionStore:
             directional_status=(
                 "" if directional_prediction is None
                 else directional_prediction.status.value
+            ),
+            entity_binding_status=(
+                "" if binding_prediction is None
+                else binding_prediction.status.value
             ),
         )
         return CausalOptionSelection(
@@ -898,6 +959,34 @@ class OnlineCausalOptionStore:
             persistent_pursuit=persistent_pursuit,
             persistent_attempt_index=persistent_attempt_index,
             persistent_action_limit=persistent_action_limit,
+            entity_binding_status=(
+                "" if binding_prediction is None
+                else binding_prediction.status.value
+            ),
+            entity_binding_expected_gain=(
+                None if binding_prediction is None
+                else binding_prediction.expected_gain
+            ),
+            entity_binding_confidence=(
+                None if binding_prediction is None
+                else binding_prediction.confidence
+            ),
+            entity_binding_compatible=(
+                True if binding_prediction is None
+                else binding_prediction.compatible
+            ),
+            entity_binding_controlled_contrast=(
+                False if binding_prediction is None
+                else binding_prediction.controlled_contrast
+            ),
+            entity_binding_conflict_observed=(
+                False if binding_prediction is None
+                else binding_prediction.conflict_observed
+            ),
+            entity_binding_track_id=(
+                "" if binding_prediction is None
+                else binding_prediction.track_id
+            ),
             reason=(
                 "replay terminally supported causal-option suffix"
                 if terminal_replay_selected
@@ -961,6 +1050,59 @@ class OnlineCausalOptionStore:
             enable_bridge_composition=persistent_bridge_composition,
         )
 
+    def entity_binding_action_predictions(
+        self,
+        observation: GameObservation,
+        *,
+        store: OnlineTerminalObjectiveStore,
+        downstream_subgoal: EffectConditionedSubgoalSelection | None,
+        safe_actions: Sequence[str],
+        click_actions: Sequence[Any] = (),
+        record_predictions: bool = True,
+    ) -> Dict[str, EntityBindingPrediction]:
+        """Score concrete targets using only observed entity/effect bindings."""
+        if not self.entity_causal_bindings.enabled:
+            return {}
+        active = self._active
+        option = None if active is None else self.option(active.option_id)
+        if active is None or option is None:
+            return {}
+        objective_id = (
+            downstream_subgoal.objective_id
+            if downstream_subgoal is not None
+            else option.target_objective_id
+        )
+        objective = store.objective(objective_id)
+        if objective is None:
+            return {}
+        result: Dict[str, EntityBindingPrediction] = {}
+        for action_name, action_data in _concrete_actions(
+            safe_actions,
+            click_actions,
+        ):
+            anchor = self.intervention_anchor(
+                action_name,
+                action_data,
+                observation,
+            )
+            if not anchor.anchored:
+                continue
+            result[anchor.concrete_signature] = (
+                self.entity_causal_bindings.predict(
+                    option_id=option.option_id,
+                    objective=objective,
+                    observation=observation,
+                    action_signature=anchor.concrete_signature,
+                    track_id=self.entity_causal_bindings.track_id_for(
+                        observation,
+                        anchor,
+                        active.branch_index,
+                    ),
+                    record_prediction=record_predictions,
+                )
+            )
+        return result
+
     def observe_transition(
         self,
         update: Any,
@@ -1001,6 +1143,11 @@ class OnlineCausalOptionStore:
             "directional_effect_status": "",
             "directional_gain": 0.0,
             "directional_reversible_across_modes": False,
+            "entity_binding_status": "",
+            "entity_binding_gain": 0.0,
+            "entity_binding_carrier": False,
+            "entity_correspondence_status": "",
+            "entity_binding_conflict_observed": False,
             "persistent_pursuit": bool(persistent_pursuit),
             "persistent_continuation_progress": False,
             "rollout_action_budget": 0,
@@ -1091,6 +1238,31 @@ class OnlineCausalOptionStore:
                 0 if pursued_subgoal is None
                 else pursued_subgoal.progress_events
             )
+            anchor = self.intervention_anchor(
+                update.action,
+                _action_data(update),
+                update.record.obs_before,
+            )
+            binding_objective = (
+                store.objective(pursued_subgoal.objective_id)
+                if pursued_subgoal is not None
+                else target
+            )
+            binding_outcome: Dict[str, Any] = {"observed": False}
+            if binding_objective is not None:
+                binding_outcome = self.entity_causal_bindings.observe(
+                    option_id=option.option_id,
+                    objective=binding_objective,
+                    observation_before=update.record.obs_before,
+                    observation_after=update.record.obs_after,
+                    action_name=update.action,
+                    action_data=_action_data(update),
+                    action_signature=signature,
+                    anchor=anchor,
+                    branch_index=active.branch_index,
+                    context_signature=effect_context,
+                    unsafe=bool(update.record.diff.game_over),
+                )
             if self.enable_effect_conditioned_subgoals:
                 link_outcome = self.downstream_subgoals.link_effect(
                     option_id=option.option_id,
@@ -1223,6 +1395,24 @@ class OnlineCausalOptionStore:
                         False,
                     )
                 ),
+                "entity_binding_status": str(
+                    binding_outcome.get("binding_status", "")
+                ),
+                "entity_binding_gain": float(
+                    binding_outcome.get("gain", 0.0)
+                ),
+                "entity_binding_carrier": bool(
+                    binding_outcome.get("carrier", False)
+                ),
+                "entity_correspondence_status": str(
+                    binding_outcome.get("correspondence", {}).get(
+                        "status",
+                        "",
+                    )
+                ),
+                "entity_binding_conflict_observed": bool(
+                    binding_outcome.get("conflict_observed", False)
+                ),
                 "persistent_pursuit": bool(persistent_pursuit),
                 "persistent_continuation_progress": bool(
                     persistent_pursuit and pursuit_outcome["progress"]
@@ -1340,6 +1530,9 @@ class OnlineCausalOptionStore:
                 self._anchored_transfer_signatures
             ),
             "entity_anchored_selections": self._anchored_selections,
+            "active_entity_causal_binding": (
+                self.entity_causal_bindings.summary()
+            ),
             "effect_conditioned_subgoals_enabled": (
                 self.enable_effect_conditioned_subgoals
             ),
@@ -1499,7 +1692,7 @@ class OnlineCausalOptionStore:
             record_predictions=False,
             enable_bridge_composition=self.persistent_pursuit.enabled,
         )
-        return any(
+        directional_actionable = any(
             prediction.compatible
             and prediction.status.value
             in {
@@ -1510,6 +1703,28 @@ class OnlineCausalOptionStore:
             }
             for prediction in predictions.values()
         )
+        objective = store.objective(subgoal.objective_id)
+        binding_actionable = bool(
+            objective is not None
+            and any(
+                prediction.compatible
+                and prediction.status in {
+                    EntityBindingStatus.PROGRESSIVE_CARRIER,
+                    EntityBindingStatus.NEEDS_CONTROLLED_CONTRAST,
+                }
+                for prediction in (
+                    self.entity_causal_bindings.predict(
+                        option_id=subgoal.option_id,
+                        objective=objective,
+                        observation=observation,
+                        action_signature=signature,
+                        record_prediction=False,
+                    )
+                    for signature in action_signatures
+                )
+            )
+        )
+        return directional_actionable or binding_actionable
 
     def _objective_action_limit(
         self,
