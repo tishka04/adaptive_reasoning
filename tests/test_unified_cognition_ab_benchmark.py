@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v7"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v8"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -81,6 +81,12 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert protocol["causal_subgoal_induction_enabled_in_unified"] is True
     assert protocol["causal_effect_credit_enabled_in_unified"] is True
     assert protocol["causal_hierarchical_options_enabled_in_unified"] is True
+    assert (
+        protocol[
+            "effect_conditioned_downstream_subgoals_enabled_in_unified"
+        ]
+        is True
+    )
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -130,6 +136,16 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "causal_option_downstream_actions" in metrics["unified"]
     assert "causal_option_terminal_credited_events" in metrics["unified"]
     assert "terminal_supported_causal_options" in metrics["unified"]
+    assert "effect_conditioned_goal_candidates_generated" in metrics["unified"]
+    assert "effect_conditioned_subgoals_generated" in metrics["unified"]
+    assert "effect_conditioned_subgoal_links" in metrics["unified"]
+    assert "productive_effect_subgoal_links" in metrics["unified"]
+    assert "effect_conditioned_subgoal_guided_actions" in metrics["unified"]
+    assert "effect_conditioned_subgoal_progress_events" in metrics["unified"]
+    assert "effect_conditioned_trigger_progress_events" in metrics["unified"]
+    assert "effect_conditioned_pursuit_progress_events" in metrics["unified"]
+    assert "causal_option_dynamic_budget_extensions" in metrics["unified"]
+    assert "causal_option_budget_pruned_rollouts" in metrics["unified"]
     assert "failure_causes" in payload
 
 
@@ -188,3 +204,27 @@ def test_ab_benchmark_exposes_a_reproducible_causal_option_ablation():
     assert protocol["causal_hierarchical_options_enabled_in_unified"] is False
     assert payload["metrics"]["unified"]["causal_options_compiled"] == 0
     assert payload["metrics"]["unified"]["causal_option_downstream_actions"] == 0
+
+
+def test_ab_benchmark_exposes_effect_conditioned_subgoal_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-effect-subgoal-ablation"],
+        seeds=[9],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_effect_conditioned_downstream_subgoals=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["causal_hierarchical_options_enabled_in_unified"] is True
+    assert (
+        protocol[
+            "effect_conditioned_downstream_subgoals_enabled_in_unified"
+        ]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["effect_conditioned_goal_candidates_generated"] == 0
+    assert metrics["effect_conditioned_subgoals_generated"] == 0
+    assert metrics["effect_conditioned_subgoal_guided_actions"] == 0

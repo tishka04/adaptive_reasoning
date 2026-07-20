@@ -21,6 +21,10 @@ from .online_causal_subgoal_graph import (
     transition_effect_signature,
 )
 from .online_goal_hypothesis import semantic_intervention_signature
+from .online_effect_conditioned_subgoal import (
+    EffectConditionedSubgoalSelection,
+    OnlineEffectConditionedSubgoalStore,
+)
 from .online_terminal_objective import OnlineTerminalObjectiveStore
 
 
@@ -89,6 +93,8 @@ class HierarchicalCausalOption:
     downstream_actions: int = 0
     downstream_effects: int = 0
     downstream_progress_events: int = 0
+    effect_conditioned_progress_events: int = 0
+    effect_conditioned_completions: int = 0
     target_completions: int = 0
     nonterminal_rollouts: int = 0
     unsafe_rollouts: int = 0
@@ -165,6 +171,12 @@ class HierarchicalCausalOption:
             "downstream_actions": self.downstream_actions,
             "downstream_effects": self.downstream_effects,
             "downstream_progress_events": self.downstream_progress_events,
+            "effect_conditioned_progress_events": (
+                self.effect_conditioned_progress_events
+            ),
+            "effect_conditioned_completions": (
+                self.effect_conditioned_completions
+            ),
             "target_completions": self.target_completions,
             "nonterminal_rollouts": self.nonterminal_rollouts,
             "unsafe_rollouts": self.unsafe_rollouts,
@@ -197,8 +209,15 @@ class ActiveCausalOptionRollout:
     signature_attempts: Dict[str, int] = field(default_factory=dict)
     action_family_attempts: Dict[str, int] = field(default_factory=dict)
     downstream_progress_events: int = 0
+    effect_conditioned_progress_events: int = 0
+    downstream_subgoal_progress_events: int = 0
     target_completed: bool = False
     replay_sequence: Tuple[str, ...] = ()
+    downstream_subgoal_id: str = ""
+    downstream_subgoal_start_index: int = 0
+    downstream_subgoal_progress_at_start: int = 0
+    downstream_subgoal_attempts: Dict[str, int] = field(default_factory=dict)
+    downstream_objective_attempts: Dict[str, int] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -212,7 +231,12 @@ class CausalOptionSelection:
     intervention_signature: str
     selection_utility: float
     replaying_terminal_sequence: bool
-    reason: str
+    downstream_subgoal_id: str = ""
+    downstream_objective_id: str = ""
+    downstream_subgoal_status: str = ""
+    downstream_trigger_effect_signature: str = ""
+    replaying_progress_sequence: bool = False
+    reason: str = ""
 
 
 class OnlineCausalOptionStore:
@@ -226,12 +250,37 @@ class OnlineCausalOptionStore:
         max_trials_per_signature: int = 3,
         terminal_credit_window: int = 8,
         minimum_terminal_support: int = 2,
+        enable_effect_conditioned_subgoals: bool = True,
+        max_effect_conditioned_subgoals: int = 24,
+        max_subgoals_per_effect: int = 4,
+        base_downstream_actions: int = 4,
+        progress_extension_actions: int = 2,
+        max_actions_per_effect_conditioned_subgoal: int = 2,
     ) -> None:
         self.max_options = max(1, int(max_options))
         self.max_downstream_actions = max(1, int(max_downstream_actions))
         self.max_trials_per_signature = max(1, int(max_trials_per_signature))
         self.terminal_credit_window = max(1, int(terminal_credit_window))
         self.minimum_terminal_support = max(1, int(minimum_terminal_support))
+        self.enable_effect_conditioned_subgoals = bool(
+            enable_effect_conditioned_subgoals
+        )
+        self.base_downstream_actions = min(
+            self.max_downstream_actions,
+            max(1, int(base_downstream_actions)),
+        )
+        self.progress_extension_actions = max(
+            0,
+            int(progress_extension_actions),
+        )
+        self.max_actions_per_effect_conditioned_subgoal = max(
+            1,
+            int(max_actions_per_effect_conditioned_subgoal),
+        )
+        self.downstream_subgoals = OnlineEffectConditionedSubgoalStore(
+            max_subgoals=max_effect_conditioned_subgoals,
+            max_subgoals_per_effect=max_subgoals_per_effect,
+        )
         self._options: Dict[str, HierarchicalCausalOption] = {}
         self._active: ActiveCausalOptionRollout | None = None
         self._branch_index = 0
@@ -241,6 +290,8 @@ class OnlineCausalOptionStore:
         self._terminal_events = 0
         self._credited_terminal_events = 0
         self._censored_openings = 0
+        self._dynamic_budget_extensions = 0
+        self._budget_pruned_rollouts = 0
 
     @property
     def active_option_id(self) -> str:
@@ -332,6 +383,35 @@ class OnlineCausalOptionStore:
             )
         return opened
 
+    def select_effect_conditioned_subgoal(
+        self,
+        observation: GameObservation,
+        *,
+        store: OnlineTerminalObjectiveStore,
+    ) -> EffectConditionedSubgoalSelection | None:
+        """Choose a measurable downstream goal exposed by an observed effect."""
+        if not self.enable_effect_conditioned_subgoals:
+            return None
+        active = self._active
+        if active is None or active.branch_index != self._branch_index:
+            return None
+        return self.downstream_subgoals.select(
+            option_id=active.option_id,
+            observed_effect_signatures=active.effect_signatures,
+            observation=observation,
+            store=store,
+            excluded_subgoal_ids=[
+                subgoal_id
+                for subgoal_id, attempts in active.downstream_subgoal_attempts.items()
+                if attempts >= self.max_actions_per_effect_conditioned_subgoal
+            ],
+            excluded_objective_ids=[
+                objective_id
+                for objective_id, attempts in active.downstream_objective_attempts.items()
+                if attempts >= self.max_actions_per_effect_conditioned_subgoal
+            ],
+        )
+
     def select_downstream(
         self,
         observation: GameObservation,
@@ -340,6 +420,9 @@ class OnlineCausalOptionStore:
         click_actions: Sequence[Any] = (),
         preferred_intervention_signatures: Sequence[str] = (),
         action_utilities: Mapping[str, float] | None = None,
+        downstream_subgoal: EffectConditionedSubgoalSelection | None = None,
+        preferred_action_name: str = "",
+        preferred_action_data: Mapping[str, Any] | None = None,
     ) -> CausalOptionSelection | None:
         """Select one bounded suffix action in the actually opened state."""
         active = self._active
@@ -352,9 +435,25 @@ class OnlineCausalOptionStore:
         if self._rollout_expired(active):
             self._close_active(censored=True)
             return None
-        if len(active.action_signatures) >= self.max_downstream_actions:
+        action_budget = self._current_action_budget(active)
+        if len(active.action_signatures) >= action_budget:
+            if action_budget < self.max_downstream_actions:
+                self._budget_pruned_rollouts += 1
             self._close_active(censored=False)
             return None
+
+        if downstream_subgoal is not None:
+            if active.downstream_subgoal_id != downstream_subgoal.subgoal_id:
+                self._close_downstream_pursuit(active, censored=True)
+                active.downstream_subgoal_id = downstream_subgoal.subgoal_id
+                active.downstream_subgoal_start_index = len(
+                    active.action_signatures
+                )
+                active.downstream_subgoal_progress_at_start = (
+                    active.downstream_subgoal_progress_events
+                )
+        elif active.downstream_subgoal_id:
+            self._close_downstream_pursuit(active, censored=True)
 
         candidates = _concrete_actions(safe_actions, click_actions)
         ranked = []
@@ -368,6 +467,18 @@ class OnlineCausalOptionStore:
             if len(active.action_signatures) < len(active.replay_sequence)
             else ""
         )
+        progress_replay_signature = ""
+        if downstream_subgoal is not None:
+            progress_offset = (
+                len(active.action_signatures)
+                - active.downstream_subgoal_start_index
+            )
+            if progress_offset < len(downstream_subgoal.best_progress_sequence):
+                progress_replay_signature = (
+                    downstream_subgoal.best_progress_sequence[progress_offset]
+                )
+        directed_name = str(preferred_action_name).upper()
+        directed_data = dict(preferred_action_data or {})
         for action_name, action_data in candidates:
             signature = semantic_intervention_signature(
                 action_name,
@@ -384,18 +495,38 @@ class OnlineCausalOptionStore:
                 signature in option.productive_preparation_signatures
             )
             replay_match = int(bool(replay_signature) and signature == replay_signature)
+            progress_replay_match = int(
+                bool(progress_replay_signature)
+                and signature == progress_replay_signature
+            )
+            directed_action_match = int(
+                bool(directed_name)
+                and action_name == directed_name
+                and dict(action_data) == directed_data
+            )
             exact_preference = int(signature in preferred)
+            subgoal_action_utility = (
+                0.0
+                if downstream_subgoal is None
+                else self.downstream_subgoals.action_utility(
+                    downstream_subgoal.subgoal_id,
+                    signature,
+                )
+            )
             family_novelty = int(
                 active.action_family_attempts.get(action_name, 0) == 0
             )
             ranked.append((
                 (
                     replay_match,
+                    progress_replay_match,
+                    directed_action_match,
                     exact_preference,
                     int(evidence is not None and evidence.terminal_successes > 0),
                     int(evidence is not None and evidence.nonnoop_effects > 0),
                     family_novelty,
                     float(learned_action_utilities.get(action_name, 0.0)),
+                    subgoal_action_utility,
                     int(total_attempts == 0),
                     productivity,
                     -preparation_penalty,
@@ -410,6 +541,13 @@ class OnlineCausalOptionStore:
             self._close_active(censored=False)
             return None
         _, action_name, action_data, signature = max(ranked, key=lambda item: item[0])
+        terminal_replay_selected = bool(
+            replay_signature and signature == replay_signature
+        )
+        progress_replay_selected = bool(
+            progress_replay_signature
+            and signature == progress_replay_signature
+        )
         self._selection_count += 1
         return CausalOptionSelection(
             option_id=option.option_id,
@@ -420,11 +558,30 @@ class OnlineCausalOptionStore:
             action_data=dict(action_data),
             intervention_signature=signature,
             selection_utility=option.utility,
-            replaying_terminal_sequence=bool(replay_signature),
+            replaying_terminal_sequence=terminal_replay_selected,
+            downstream_subgoal_id=(
+                "" if downstream_subgoal is None else downstream_subgoal.subgoal_id
+            ),
+            downstream_objective_id=(
+                "" if downstream_subgoal is None else downstream_subgoal.objective_id
+            ),
+            downstream_subgoal_status=(
+                "" if downstream_subgoal is None else downstream_subgoal.status.value
+            ),
+            downstream_trigger_effect_signature=(
+                ""
+                if downstream_subgoal is None
+                else downstream_subgoal.trigger_effect_signature
+            ),
+            replaying_progress_sequence=progress_replay_selected,
             reason=(
                 "replay terminally supported causal-option suffix"
-                if replay_signature
-                else "bounded downstream search after confirmed causal opening"
+                if terminal_replay_selected
+                else (
+                    "pursue effect-conditioned measurable downstream subgoal"
+                    if downstream_subgoal is not None
+                    else "bounded downstream search after confirmed causal opening"
+                )
             ),
         )
 
@@ -438,6 +595,8 @@ class OnlineCausalOptionStore:
         intervention_signature: str = "",
         intervention_id: str = "",
         context_signature: str = "",
+        downstream_subgoal_id: str = "",
+        replaying_progress_sequence: bool = False,
     ) -> Dict[str, Any]:
         """Revise one active option from real effects and terminal outcomes."""
         self._transition_index += 1
@@ -455,6 +614,13 @@ class OnlineCausalOptionStore:
             "effect_signature": "",
             "target_progress": False,
             "target_completed": False,
+            "generated_downstream_subgoals": [],
+            "effect_conditioned_reduced_objectives": [],
+            "downstream_subgoal_id": str(downstream_subgoal_id),
+            "downstream_subgoal_progress": False,
+            "downstream_subgoal_completed": False,
+            "downstream_subgoal_distance_reduction": 0.0,
+            "rollout_action_budget": 0,
             "terminal_success": terminal_success,
             "terminal_credited_option": "",
             "rollout_closed": False,
@@ -521,11 +687,121 @@ class OnlineCausalOptionStore:
                 active.target_completed = True
                 option.target_completions += 1
                 evidence.target_completions += 1
+            link_outcome = {
+                "generated_subgoal_ids": [],
+                "reduced_objective_ids": [],
+                "progress_events": 0,
+                "completion_events": 0,
+            }
+            effect_context = "|".join((
+                active.opening_context,
+                f"branch:{active.branch_index}",
+                str(context_signature) or f"transition:{self._transition_index}",
+                f"suffix-step:{len(active.action_signatures)}",
+            ))
+            if self.enable_effect_conditioned_subgoals:
+                link_outcome = self.downstream_subgoals.link_effect(
+                    option_id=option.option_id,
+                    effect_signature=effect_signature,
+                    observation_before=update.record.obs_before,
+                    observation_after=update.record.obs_after,
+                    store=store,
+                    branch_index=active.branch_index,
+                    context_signature=effect_context,
+                    action_signature=signature,
+                    preferred_objective_id=option.target_objective_id,
+                )
+            pursuit_outcome = {
+                "progress": False,
+                "completed": False,
+                "distance_reduction": 0.0,
+            }
+            if (
+                self.enable_effect_conditioned_subgoals
+                and str(downstream_subgoal_id)
+                and str(downstream_subgoal_id) == active.downstream_subgoal_id
+            ):
+                pursuit_sequence = tuple(
+                    active.action_signatures[
+                        active.downstream_subgoal_start_index:
+                    ]
+                )
+                pursuit_outcome = (
+                    self.downstream_subgoals.observe_pursuit_with_store(
+                        subgoal_id=str(downstream_subgoal_id),
+                        observation_before=update.record.obs_before,
+                        observation_after=update.record.obs_after,
+                        store=store,
+                        branch_index=active.branch_index,
+                        context_signature=effect_context,
+                        action_signature=signature,
+                        sequence=pursuit_sequence,
+                        unsafe=bool(update.record.diff.game_over),
+                        replayed=bool(replaying_progress_sequence),
+                    )
+                )
+                active.downstream_subgoal_attempts[
+                    str(downstream_subgoal_id)
+                ] = (
+                    active.downstream_subgoal_attempts.get(
+                        str(downstream_subgoal_id),
+                        0,
+                    )
+                    + 1
+                )
+                pursued_subgoal = self.downstream_subgoals.subgoal(
+                    str(downstream_subgoal_id)
+                )
+                if pursued_subgoal is not None:
+                    objective_id = pursued_subgoal.objective_id
+                    active.downstream_objective_attempts[objective_id] = (
+                        active.downstream_objective_attempts.get(
+                            objective_id,
+                            0,
+                        )
+                        + 1
+                    )
+            effect_conditioned_progress = bool(
+                int(link_outcome["progress_events"]) > 0
+                or pursuit_outcome["progress"]
+            )
+            if effect_conditioned_progress:
+                budget_before = self._current_action_budget(active)
+                active.effect_conditioned_progress_events += 1
+                option.effect_conditioned_progress_events += 1
+                budget_after = self._current_action_budget(active)
+                if budget_after > budget_before:
+                    self._dynamic_budget_extensions += 1
+            if pursuit_outcome["progress"]:
+                active.downstream_subgoal_progress_events += 1
+            effect_conditioned_completions = (
+                int(link_outcome["completion_events"])
+                + int(bool(pursuit_outcome["completed"]))
+            )
+            option.effect_conditioned_completions += (
+                effect_conditioned_completions
+            )
             outcome.update({
                 "participating_action": True,
                 "effect_signature": effect_signature,
                 "target_progress": target_progress,
                 "target_completed": target_completed,
+                "generated_downstream_subgoals": list(
+                    link_outcome["generated_subgoal_ids"]
+                ),
+                "effect_conditioned_reduced_objectives": list(
+                    link_outcome["reduced_objective_ids"]
+                ),
+                "downstream_subgoal_progress": bool(
+                    pursuit_outcome["progress"]
+                ),
+                "downstream_subgoal_completed": bool(
+                    pursuit_outcome["completed"]
+                ),
+                "downstream_subgoal_distance_reduction": float(
+                    pursuit_outcome["distance_reduction"]
+                ),
+                "rollout_action_budget": self._current_action_budget(active),
             })
 
         if terminal_success:
@@ -546,6 +822,7 @@ class OnlineCausalOptionStore:
                     evidence.terminal_successes += 1
                 self._credited_terminal_events += 1
                 outcome["terminal_credited_option"] = option.option_id
+            self._close_downstream_pursuit(active, censored=True)
             self._active = None
             outcome["rollout_closed"] = True
             return outcome
@@ -555,13 +832,20 @@ class OnlineCausalOptionStore:
                 option.intervention_evidence[
                     active.action_signatures[-1]
                 ].unsafe_failures += 1
+            self._close_downstream_pursuit(active, censored=True)
             self._active = None
             outcome["rollout_closed"] = True
             return outcome
         if (
-            len(active.action_signatures) >= self.max_downstream_actions
+            len(active.action_signatures) >= self._current_action_budget(active)
             or self._rollout_expired(active)
         ):
+            if (
+                len(active.action_signatures) >= self._current_action_budget(active)
+                and self._current_action_budget(active)
+                < self.max_downstream_actions
+            ):
+                self._budget_pruned_rollouts += 1
             self._close_active(censored=False)
             outcome["rollout_closed"] = True
         return outcome
@@ -594,6 +878,12 @@ class OnlineCausalOptionStore:
             "downstream_progress_events": sum(
                 option.downstream_progress_events for option in options
             ),
+            "effect_conditioned_progress_events": sum(
+                option.effect_conditioned_progress_events for option in options
+            ),
+            "effect_conditioned_completions": sum(
+                option.effect_conditioned_completions for option in options
+            ),
             "target_completions": sum(
                 option.target_completions for option in options
             ),
@@ -612,6 +902,14 @@ class OnlineCausalOptionStore:
                 for option in options
             ),
             "censored_openings": self._censored_openings,
+            "dynamic_budget_extensions": self._dynamic_budget_extensions,
+            "budget_pruned_rollouts": self._budget_pruned_rollouts,
+            "effect_conditioned_subgoals_enabled": (
+                self.enable_effect_conditioned_subgoals
+            ),
+            "effect_conditioned_subgoals": (
+                self.downstream_subgoals.summary()
+            ),
             "hypotheses": [option.to_dict() for option in options],
         }
 
@@ -621,6 +919,7 @@ class OnlineCausalOptionStore:
             return
         option = self.option(active.option_id)
         if option is not None:
+            self._close_downstream_pursuit(active, censored=censored)
             if censored:
                 self._censored_openings += 1
             else:
@@ -639,6 +938,48 @@ class OnlineCausalOptionStore:
                         )
                         option.terminal_contradictions += 1
         self._active = None
+
+    def _close_downstream_pursuit(
+        self,
+        active: ActiveCausalOptionRollout,
+        *,
+        censored: bool,
+    ) -> None:
+        subgoal_id = active.downstream_subgoal_id
+        if not subgoal_id:
+            return
+        sequence = tuple(
+            active.action_signatures[active.downstream_subgoal_start_index:]
+        )
+        progressed = bool(
+            active.downstream_subgoal_progress_events
+            > active.downstream_subgoal_progress_at_start
+        )
+        self.downstream_subgoals.close_pursuit(
+            subgoal_id,
+            branch_index=active.branch_index,
+            sequence=sequence,
+            progressed=progressed,
+            censored=censored,
+        )
+        active.downstream_subgoal_id = ""
+        active.downstream_subgoal_start_index = len(active.action_signatures)
+        active.downstream_subgoal_progress_at_start = (
+            active.downstream_subgoal_progress_events
+        )
+
+    def _current_action_budget(
+        self,
+        active: ActiveCausalOptionRollout,
+    ) -> int:
+        if not self.enable_effect_conditioned_subgoals:
+            return self.max_downstream_actions
+        return min(
+            self.max_downstream_actions,
+            self.base_downstream_actions
+            + self.progress_extension_actions
+            * active.effect_conditioned_progress_events,
+        )
 
     def _rollout_expired(self, active: ActiveCausalOptionRollout) -> bool:
         return (

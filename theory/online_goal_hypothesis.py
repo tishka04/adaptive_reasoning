@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from itertools import combinations, permutations
 from typing import Any, Dict, Iterable, List, Mapping, Sequence, Tuple
 
+import numpy as np
+
 from v3.schemas import GameObservation, Operator
 
 from .online_relational_option import relation_holds
@@ -123,6 +125,179 @@ class GoalHypothesisGenerator:
             reverse=True,
         )
         return selected[: self.max_candidates_total]
+
+    def generate_from_transition(
+        self,
+        *,
+        observation_before: GameObservation,
+        observation_after: GameObservation,
+        action_name: str,
+        rules: Sequence[PromotedRelationalRule] = (),
+        max_candidates: int = 6,
+    ) -> List[GeneratedGoalHypothesis]:
+        """Turn a real non-noop effect into new measurable goal candidates.
+
+        These candidates describe transformations suggested by the observed
+        color flow, relation toggle, or approach.  They remain hypotheses: only
+        later online distance reductions and terminal outcomes can support them.
+        """
+        before_grid = np.asarray(observation_before.raw_grid, dtype=np.int32)
+        after_grid = np.asarray(observation_after.raw_grid, dtype=np.int32)
+        if before_grid.shape != after_grid.shape or np.array_equal(
+            before_grid,
+            after_grid,
+        ):
+            return []
+        action = _normalize_action(action_name)
+        before_counts = _color_counts(before_grid)
+        after_counts = _color_counts(after_grid)
+        background_colors = {
+            color
+            for color, count in (*before_counts.items(), *after_counts.items())
+            if count >= 0.5 * before_grid.size
+        }
+        colors = sorted(set(before_counts) | set(after_counts))
+        decreased = sorted(
+            (
+                (color, before_counts[color] - after_counts.get(color, 0))
+                for color in colors
+                if color not in background_colors
+                if before_counts.get(color, 0) > after_counts.get(color, 0)
+            ),
+            key=lambda item: (item[1], item[0]),
+            reverse=True,
+        )
+        increased = sorted(
+            (
+                (color, after_counts[color] - before_counts.get(color, 0))
+                for color in colors
+                if color not in background_colors
+                if after_counts.get(color, 0) > before_counts.get(color, 0)
+            ),
+            key=lambda item: (item[1], item[0]),
+            reverse=True,
+        )
+        candidates: List[GeneratedGoalHypothesis] = []
+        for source, _ in decreased[:3]:
+            matching = [
+                rule for rule in rules
+                if rule.source_color == int(source) and rule.action == action
+            ]
+            candidates.append(GeneratedGoalHypothesis(
+                objective_id=f"terminal::exhaust::color{int(source)}",
+                family="exhaust",
+                source_color=int(source),
+                target_color=None,
+                predicate="object_count_equals_zero",
+                supporting_rule_keys=tuple(sorted(rule.key for rule in matching)),
+                supporting_actions=(action,),
+                generation_reason="observed_effect_color_depletion",
+                prior_priority=0.9,
+            ))
+        for (source, _), (target, _) in (
+            (left, right)
+            for left in decreased[:3]
+            for right in increased[:3]
+            if left[0] != right[0]
+        ):
+            matching = [
+                rule for rule in rules
+                if rule.family == "color_transform"
+                and rule.source_color == int(source)
+                and rule.target_color == int(target)
+                and rule.action == action
+            ]
+            candidates.append(GeneratedGoalHypothesis(
+                objective_id=(
+                    f"terminal::convert::{int(source)}_to_{int(target)}"
+                ),
+                family="convert",
+                source_color=int(source),
+                target_color=int(target),
+                predicate="source_target_color_transform",
+                supporting_rule_keys=tuple(sorted(rule.key for rule in matching)),
+                supporting_actions=(action,),
+                generation_reason="observed_effect_color_flow",
+                prior_priority=1.1 if matching else 1.0,
+            ))
+
+        changed_colors = {
+            int(color) for color, _ in (*decreased[:3], *increased[:3])
+        }
+        structural_colors = list(dict.fromkeys((
+            *changed_colors,
+            *(
+                color
+                for color in _rank_object_colors(observation_after)
+                if color not in background_colors
+            ),
+        )))
+        for first, second in combinations(structural_colors[:5], 2):
+            if not ({int(first), int(second)} & changed_colors):
+                continue
+            pair = tuple(sorted((int(first), int(second))))
+            for predicate in RELATION_PREDICATES:
+                held_before = relation_holds(
+                    observation_before,
+                    predicate,
+                    pair[0],
+                    pair[1],
+                )
+                holds_after = relation_holds(
+                    observation_after,
+                    predicate,
+                    pair[0],
+                    pair[1],
+                )
+                if held_before == holds_after:
+                    continue
+                family = "break" if holds_after else "appear"
+                candidates.append(GeneratedGoalHypothesis(
+                    objective_id=(
+                        f"terminal::{family}::{predicate}::"
+                        f"colors{pair[0]}_{pair[1]}"
+                    ),
+                    family=family,
+                    source_color=pair[0],
+                    target_color=pair[1],
+                    predicate=predicate,
+                    supporting_rule_keys=(),
+                    supporting_actions=(action,),
+                    generation_reason="observed_effect_relation_toggle",
+                    prior_priority=0.85,
+                ))
+
+        if (
+            observation_before.best_player is not None
+            and observation_after.best_player is not None
+        ):
+            for color in _rank_object_colors(observation_after)[: self.max_colors]:
+                before_distance = _reach_distance(observation_before, int(color))
+                after_distance = _reach_distance(observation_after, int(color))
+                if (
+                    before_distance is None
+                    or after_distance is None
+                    or after_distance >= before_distance
+                ):
+                    continue
+                candidates.append(GeneratedGoalHypothesis(
+                    objective_id=f"terminal::reach::color{int(color)}",
+                    family="reach",
+                    source_color=int(observation_after.best_player.value),
+                    target_color=int(color),
+                    predicate="player_adjacent_to_target",
+                    supporting_rule_keys=(),
+                    supporting_actions=(action,),
+                    generation_reason="observed_effect_approach",
+                    prior_priority=0.95,
+                ))
+
+        ranked = sorted(
+            _dedupe_candidates(candidates),
+            key=lambda item: (item.prior_priority, item.objective_id),
+            reverse=True,
+        )
+        return ranked[: max(1, int(max_candidates))]
 
     def _relation_candidates(
         self,
@@ -659,6 +834,34 @@ def _rank_object_colors(observation: GameObservation) -> List[int]:
             reverse=True,
         )
     ]
+
+
+def _color_counts(grid: np.ndarray) -> Dict[int, int]:
+    values, counts = np.unique(np.asarray(grid, dtype=np.int32), return_counts=True)
+    return {
+        int(value): int(count)
+        for value, count in zip(values.tolist(), counts.tolist())
+    }
+
+
+def _reach_distance(
+    observation: GameObservation,
+    target_color: int,
+) -> float | None:
+    if observation.best_player is None:
+        return None
+    targets = [
+        obj for obj in observation.objects if obj.value == int(target_color)
+    ]
+    if not targets:
+        return None
+    player_row, player_col = observation.best_player.position
+    distance = min(
+        abs(int(row) - int(player_row)) + abs(int(col) - int(player_col))
+        for obj in targets
+        for row, col in obj.cells
+    )
+    return float(max(0, distance - 1))
 
 
 def _supporting_actions(

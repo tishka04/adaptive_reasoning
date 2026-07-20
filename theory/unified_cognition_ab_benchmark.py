@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v7"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v8"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -54,6 +54,7 @@ EXPERIMENT_SOURCES = {
     "terminal_objective_ablation",
     "temporal_subgoal_probe",
     "causal_option_downstream_probe",
+    "causal_option_effect_subgoal_probe",
 }
 
 EnvFactory = Callable[[str], Any]
@@ -83,6 +84,17 @@ def _causal_hierarchical_options_disabled_controller(
         game_id,
         config=UnifiedCognitiveConfig(
             enable_causal_hierarchical_options=False
+        ),
+    )
+
+
+def _effect_conditioned_downstream_subgoals_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_effect_conditioned_downstream_subgoals=False
         ),
     )
 
@@ -152,6 +164,7 @@ def run_unified_cognition_ab_benchmark(
     enable_causal_subgoal_induction: bool = True,
     enable_causal_effect_credit: bool = True,
     enable_causal_hierarchical_options: bool = True,
+    enable_effect_conditioned_downstream_subgoals: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -173,6 +186,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _causal_hierarchical_options_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_effect_conditioned_downstream_subgoals
+    ):
+        effective_controller_factory = (
+            _effect_conditioned_downstream_subgoals_disabled_controller
         )
 
     pairs: List[Dict[str, Any]] = []
@@ -232,6 +252,9 @@ def run_unified_cognition_ab_benchmark(
         causal_effect_credit_enabled=enable_causal_effect_credit,
         causal_hierarchical_options_enabled=(
             enable_causal_hierarchical_options
+        ),
+        effect_conditioned_downstream_subgoals_enabled=(
+            enable_effect_conditioned_downstream_subgoals
         ),
     )
     if not include_traces:
@@ -321,6 +344,9 @@ def _run_arm(
     )
     causal_option_summary = dict(
         controller_summary.get("causal_hierarchical_options", {}) or {}
+    )
+    effect_subgoal_summary = dict(
+        causal_option_summary.get("effect_conditioned_subgoals", {}) or {}
     )
     return {
         "arm": arm,
@@ -548,6 +574,69 @@ def _run_arm(
         "causal_option_censored_openings": int(
             causal_option_summary.get("censored_openings", 0) or 0
         ),
+        "effect_conditioned_goal_candidates_generated": int(
+            controller_summary.get(
+                "effect_conditioned_goal_candidates_generated",
+                0,
+            )
+            or 0
+        ),
+        "effect_conditioned_subgoals_generated": int(
+            effect_subgoal_summary.get("generated_total", 0) or 0
+        ),
+        "effect_conditioned_subgoal_links": int(
+            effect_subgoal_summary.get("effect_links", 0) or 0
+        ),
+        "productive_effect_subgoal_links": int(
+            effect_subgoal_summary.get("productive_effect_links", 0) or 0
+        ),
+        "effect_conditioned_subgoal_selections": int(
+            effect_subgoal_summary.get("selections", 0) or 0
+        ),
+        "effect_conditioned_subgoal_guided_actions": int(
+            effect_subgoal_summary.get("guided_actions", 0) or 0
+        ),
+        "effect_conditioned_subgoal_progress_events": int(
+            effect_subgoal_summary.get("progress_events", 0) or 0
+        ),
+        "effect_conditioned_trigger_progress_events": int(
+            effect_subgoal_summary.get("trigger_progress_events", 0) or 0
+        ),
+        "effect_conditioned_pursuit_progress_events": int(
+            effect_subgoal_summary.get("pursuit_progress_events", 0) or 0
+        ),
+        "effect_conditioned_subgoal_completions": int(
+            effect_subgoal_summary.get("completion_events", 0) or 0
+        ),
+        "effect_conditioned_subgoal_replayed_actions": int(
+            effect_subgoal_summary.get("replayed_actions", 0) or 0
+        ),
+        "progress_supported_effect_conditioned_subgoals": int(
+            dict(effect_subgoal_summary.get("statuses", {}) or {}).get(
+                "progress_supported",
+                0,
+            )
+            or 0
+        ),
+        "refuted_effect_conditioned_subgoals": int(
+            dict(effect_subgoal_summary.get("statuses", {}) or {}).get(
+                "refuted",
+                0,
+            )
+            or 0
+        ),
+        "failed_effect_conditioned_subgoal_pursuits": int(
+            effect_subgoal_summary.get("failed_pursuits", 0) or 0
+        ),
+        "censored_effect_conditioned_subgoal_pursuits": int(
+            effect_subgoal_summary.get("censored_pursuits", 0) or 0
+        ),
+        "causal_option_dynamic_budget_extensions": int(
+            causal_option_summary.get("dynamic_budget_extensions", 0) or 0
+        ),
+        "causal_option_budget_pruned_rollouts": int(
+            causal_option_summary.get("budget_pruned_rollouts", 0) or 0
+        ),
         "decision_sources": dict(decision_sources),
         "failure_causes": dict(failure_causes),
         "controller_errors": controller_errors,
@@ -740,6 +829,7 @@ def _summarize_benchmark(
     causal_subgoal_induction_enabled: bool,
     causal_effect_credit_enabled: bool,
     causal_hierarchical_options_enabled: bool,
+    effect_conditioned_downstream_subgoals_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -779,6 +869,9 @@ def _summarize_benchmark(
             ),
             "causal_hierarchical_options_enabled_in_unified": bool(
                 causal_hierarchical_options_enabled
+            ),
+            "effect_conditioned_downstream_subgoals_enabled_in_unified": bool(
+                effect_conditioned_downstream_subgoals_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -1049,6 +1142,70 @@ def _aggregate_arm(
         "causal_option_censored_openings": sum(
             int(row["causal_option_censored_openings"]) for row in rows
         ),
+        "effect_conditioned_goal_candidates_generated": sum(
+            int(row["effect_conditioned_goal_candidates_generated"])
+            for row in rows
+        ),
+        "effect_conditioned_subgoals_generated": sum(
+            int(row["effect_conditioned_subgoals_generated"]) for row in rows
+        ),
+        "effect_conditioned_subgoal_links": sum(
+            int(row["effect_conditioned_subgoal_links"]) for row in rows
+        ),
+        "productive_effect_subgoal_links": sum(
+            int(row["productive_effect_subgoal_links"]) for row in rows
+        ),
+        "effect_conditioned_subgoal_selections": sum(
+            int(row["effect_conditioned_subgoal_selections"]) for row in rows
+        ),
+        "effect_conditioned_subgoal_guided_actions": sum(
+            int(row["effect_conditioned_subgoal_guided_actions"])
+            for row in rows
+        ),
+        "effect_conditioned_subgoal_progress_events": sum(
+            int(row["effect_conditioned_subgoal_progress_events"])
+            for row in rows
+        ),
+        "effect_conditioned_trigger_progress_events": sum(
+            int(row["effect_conditioned_trigger_progress_events"])
+            for row in rows
+        ),
+        "effect_conditioned_pursuit_progress_events": sum(
+            int(row["effect_conditioned_pursuit_progress_events"])
+            for row in rows
+        ),
+        "effect_conditioned_subgoal_completions": sum(
+            int(row["effect_conditioned_subgoal_completions"])
+            for row in rows
+        ),
+        "effect_conditioned_subgoal_replayed_actions": sum(
+            int(row["effect_conditioned_subgoal_replayed_actions"])
+            for row in rows
+        ),
+        "progress_supported_effect_conditioned_subgoals": sum(
+            int(row["progress_supported_effect_conditioned_subgoals"])
+            for row in rows
+        ),
+        "refuted_effect_conditioned_subgoals": sum(
+            int(row["refuted_effect_conditioned_subgoals"])
+            for row in rows
+        ),
+        "failed_effect_conditioned_subgoal_pursuits": sum(
+            int(row["failed_effect_conditioned_subgoal_pursuits"])
+            for row in rows
+        ),
+        "censored_effect_conditioned_subgoal_pursuits": sum(
+            int(row["censored_effect_conditioned_subgoal_pursuits"])
+            for row in rows
+        ),
+        "causal_option_dynamic_budget_extensions": sum(
+            int(row["causal_option_dynamic_budget_extensions"])
+            for row in rows
+        ),
+        "causal_option_budget_pruned_rollouts": sum(
+            int(row["causal_option_budget_pruned_rollouts"])
+            for row in rows
+        ),
         "controller_errors": sum(
             len(row.get("controller_errors", []) or []) for row in rows
         ),
@@ -1112,6 +1269,17 @@ def _omit_step_traces(payload: Dict[str, Any]) -> None:
             causal_options["hypothesis_details_omitted"] = True
             causal_options["hypothesis_detail_count"] = len(
                 option_hypotheses
+            )
+        effect_subgoals = (
+            causal_options.get("effect_conditioned_subgoals") or {}
+        )
+        effect_hypotheses = list(
+            effect_subgoals.pop("hypotheses", []) or []
+        )
+        if effect_hypotheses:
+            effect_subgoals["hypothesis_details_omitted"] = True
+            effect_subgoals["hypothesis_detail_count"] = len(
+                effect_hypotheses
             )
 
 
@@ -1220,6 +1388,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8p downstream causal-option exploitation only.",
     )
+    parser.add_argument(
+        "--disable-effect-conditioned-downstream-subgoals",
+        action="store_true",
+        help="Ablate SAGE.8q effect-to-subgoal learning and adaptive budget only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -1247,6 +1420,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_causal_hierarchical_options=(
             not args.disable_causal_hierarchical_options
+        ),
+        enable_effect_conditioned_downstream_subgoals=(
+            not args.disable_effect_conditioned_downstream_subgoals
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

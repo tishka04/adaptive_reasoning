@@ -4817,3 +4817,136 @@ objective mesurable, enchainer les suffixes au-dela d'une seule famille
 d'action et concentrer le budget sur les branches qui reduisent effectivement
 la distance au but. La preuve finale doit rester exclusivement terminale et
 apprise pendant l'examen.
+
+## SAGE.8q - effect-conditioned downstream subgoals
+
+Objectif :
+
+- Generer de nouveaux buts mesurables a partir des transitions aval reellement
+  observees : depletion ou flux de couleurs, bascule de relation et approche
+  d'une structure.
+- Filtrer les couleurs de fond dominantes afin de ne pas transformer un simple
+  changement d'affichage global en pseudo-objet sans controle.
+- Relier chaque effet abstrait, dans le contexte d'une option confirmee, aux
+  objectifs qu'il rend mesurables ou dont il reduit la distance.
+- Garder ces liens strictement mecaniques : une reduction de distance du
+  declencheur ne donne aucune preuve terminale et ne prouve pas encore qu'un
+  suffixe aval sait poursuivre le but.
+- Distinguer le progres du declencheur du progres d'une poursuite aval ; seule
+  une reduction obtenue apres la selection du sous-but rend celui-ci
+  `progress_supported`.
+- Ne jamais rejouer comme suffixe l'action qui a seulement revele le contexte ;
+  memoriser et rejouer uniquement une sequence aval ayant produit un progres
+  ulterieur reel.
+- Selectionner les interventions par objectif avec le concepteur d'experiences
+  existant, puis re-observer apres chaque primitive.
+- Limiter une branche a deux actions par sous-but et par objectif afin de
+  diversifier les transformations testees au lieu de repeter une piste sterile.
+- Utiliser un budget aval adaptatif : quatre actions de base, puis deux actions
+  supplementaires par transition productive, dans la limite SAGE.8p de six.
+- Refuter une poursuite seulement apres deux branches independantes sans
+  progres ; traiter les changements de piste, resets, terminaux et risques
+  comme des censures.
+- Conserver l'attribution terminale de l'option et des buts exclusivement liee
+  aux level-up et WIN observes pendant l'examen.
+- Fournir une ablation qui conserve SAGE.8p et desactive seulement la generation
+  de buts par effet, leur poursuite et le budget adaptatif de SAGE.8q.
+
+Ajouts :
+
+- `theory/online_effect_conditioned_subgoal.py`
+- extension de `theory/online_goal_hypothesis.py`
+- extension de `theory/online_causal_option.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema et ablation v8 dans `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_effect_conditioned_subgoal.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/unified_cognition_ab_held_out.json`
+- `diagnostics/sage/sage8q_effect_subgoal_ablation.json`
+- `diagnostics/sage/sage8q_cn04_effect_subgoal_search.json`
+- `diagnostics/sage/sage8q_cn04_effect_subgoal_ablation.json`
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v8`
+- `paired_protocol.protocol_gate_passed=true`
+- `effect_conditioned_downstream_subgoals_enabled_in_unified=true`
+- `unified.controller_errors=0`
+- `unified.experiment_actions=486`
+- `unified.experiment_cost_rate=0.6075`
+- `unified.confirmed_causal_edges=2`
+- `unified.causal_options_compiled=2`
+- `unified.causal_option_downstream_actions=12`
+- `unified.causal_option_downstream_effects=4`
+- `unified.effect_conditioned_goal_candidates_generated=6`
+- `unified.effect_conditioned_subgoals_generated=16`
+- `unified.effect_conditioned_subgoal_links=16`
+- `unified.productive_effect_subgoal_links=4`
+- `unified.effect_conditioned_subgoal_selections=10`
+- `unified.effect_conditioned_subgoal_guided_actions=10`
+- `unified.effect_conditioned_subgoal_progress_events=4`
+- `unified.effect_conditioned_trigger_progress_events=4`
+- `unified.effect_conditioned_pursuit_progress_events=0`
+- `unified.progress_supported_effect_conditioned_subgoals=0`
+- `unified.failed_effect_conditioned_subgoal_pursuits=2`
+- `unified.censored_effect_conditioned_subgoal_pursuits=8`
+- `unified.causal_option_dynamic_budget_extensions=2`
+- `unified.objective_distance_reductions=732`
+- `legacy_only.levels_completed=0`
+- `unified.levels_completed=0`
+- `legacy_only.wins=0`
+- `unified.wins=0`
+- `arc_progress_observed=false`
+
+Ablation complete, memes jeux, seeds, resets et budgets :
+
+- `effect_conditioned_downstream_subgoals_enabled_in_unified=false`
+- `experiment_actions=488`
+- `experiment_cost_rate=0.61`
+- `confirmed_causal_edges=2`
+- `causal_options_compiled=2`
+- `causal_option_downstream_actions=12`
+- `causal_option_downstream_effects=8`
+- toutes les metriques de sous-buts conditionnes par effet valent zero ;
+- `objective_distance_reductions=740`
+- `levels_completed=0`
+
+Audit cible `cn04-65d47d14`, seed 1, 2 resets x 40 :
+
+- 3 candidats de but sont generes depuis les effets observes ;
+- 8 liens `effet -> sous-but` sont crees, dont 2 reduisent immediatement une
+  distance objective ;
+- 5 actions aval sont guidees et reparties entre conversion, epuisement et
+  relation, avec au plus deux actions par objectif ;
+- une reduction du declencheur etend le budget de quatre a six actions ;
+- aucune des cinq actions de poursuite ne reduit ensuite son sous-but, donc
+  aucun lien n'est `progress_supported` et aucune sequence n'est rejouee ;
+- le cout experimental passe de `0.7625` a `0.75`, tandis que les reductions
+  objectives passent de 27 a 23 ;
+- `levels_completed=0`.
+
+Validation :
+
+- `new_sage8q_tests=9 passed`
+- `targeted_cognitive_tests=28 passed`
+- `full_repository_tests=1382 passed`
+- `ruff_and_compileall=passed`
+
+Lecture : SAGE.8q franchit le verrou representationnel. Un effet aval n'est plus
+seulement une signature de changement : il peut engendrer un but mesurable,
+ouvrir une poursuite multi-etapes, etre compare a d'autres buts et recevoir un
+budget proportionnel a son progres observe. L'ablation confirme que ces liens,
+selections et extensions proviennent uniquement de SAGE.8q. Le faible gain de
+cout experimental (`0.61` a `0.6075`) ne compense toutefois pas la baisse des
+reductions objectives (740 a 732), et aucun niveau n'est gagne. Les quatre
+progres mesures sont ceux des effets declencheurs ; aucun suffixe aval ne sait
+encore les prolonger.
+
+Le prochain verrou est donc le controle directionnel dans l'etat produit par
+l'effet. SAGE doit apprendre qu'une meme primitive peut inverser son effet selon
+le mode courant, predire le signe de la variation objective avant l'action et
+composer seulement les transitions dont la direction est compatible. Cette
+representation d'etat latent et de reversibilite doit permettre d'obtenir les
+premiers progres de poursuite, sans promouvoir de but avant une preuve
+terminale en ligne.
