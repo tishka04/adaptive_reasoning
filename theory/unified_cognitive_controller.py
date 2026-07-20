@@ -132,6 +132,7 @@ class UnifiedCognitiveConfig:
     enable_active_entity_causal_binding: bool = True
     enable_mediated_entity_effect_induction: bool = True
     enable_online_mediated_anti_unification: bool = True
+    enable_active_mediated_discrimination: bool = True
     enable_active_mediated_replication: bool = True
 
 
@@ -219,6 +220,12 @@ class CognitiveDecision:
     causal_option_mediator_abstraction_features: Tuple[
         Tuple[str, str], ...
     ] = ()
+    causal_option_mediated_discrimination_request_id: str = ""
+    causal_option_mediated_discrimination_feature: str = ""
+    causal_option_mediated_discrimination_expected_value: str = ""
+    causal_option_mediated_discrimination_contrast_value: str = ""
+    causal_option_mediated_single_feature_contrast: bool = False
+    causal_option_mediated_discrimination_same_latent_mode: bool = False
     causal_option_mediated_replication_request_id: str = ""
     causal_option_mediated_cross_branch_replication: bool = False
     causal_option_mediated_exact_semantic_replication: bool = False
@@ -395,6 +402,24 @@ class CognitiveDecision:
             "causal_option_mediator_abstraction_features": dict(
                 self.causal_option_mediator_abstraction_features
             ),
+            "causal_option_mediated_discrimination_request_id": (
+                self.causal_option_mediated_discrimination_request_id
+            ),
+            "causal_option_mediated_discrimination_feature": (
+                self.causal_option_mediated_discrimination_feature
+            ),
+            "causal_option_mediated_discrimination_expected_value": (
+                self.causal_option_mediated_discrimination_expected_value
+            ),
+            "causal_option_mediated_discrimination_contrast_value": (
+                self.causal_option_mediated_discrimination_contrast_value
+            ),
+            "causal_option_mediated_single_feature_contrast": (
+                self.causal_option_mediated_single_feature_contrast
+            ),
+            "causal_option_mediated_discrimination_same_latent_mode": (
+                self.causal_option_mediated_discrimination_same_latent_mode
+            ),
             "causal_option_mediated_replication_request_id": (
                 self.causal_option_mediated_replication_request_id
             ),
@@ -547,6 +572,9 @@ class UnifiedCognitiveController:
             enable_online_mediated_anti_unification=(
                 self.config.enable_online_mediated_anti_unification
             ),
+            enable_active_mediated_discrimination=(
+                self.config.enable_active_mediated_discrimination
+            ),
             enable_active_mediated_replication=(
                 self.config.enable_active_mediated_replication
             ),
@@ -662,6 +690,7 @@ class UnifiedCognitiveController:
                 "temporal_subgoal_probe",
                 "causal_option_downstream_probe",
                 "causal_option_effect_subgoal_probe",
+                "causal_option_mediated_discrimination",
                 "causal_option_mediated_replication",
             }
         )
@@ -1093,6 +1122,15 @@ class UnifiedCognitiveController:
                 click_actions=click_actions,
             )
         )
+        mediated_discrimination_predictions = (
+            self.causal_options.mediated_discrimination_action_predictions(
+                observation,
+                store=self.terminal_objectives,
+                downstream_subgoal=downstream_subgoal,
+                safe_actions=safe_actions,
+                click_actions=click_actions,
+            )
+        )
         mediated_replication_predictions = (
             self.causal_options.mediated_replication_action_predictions(
                 observation,
@@ -1116,6 +1154,9 @@ class UnifiedCognitiveController:
             directional_predictions=directional_predictions,
             entity_binding_predictions=entity_binding_predictions,
             mediated_effect_predictions=mediated_effect_predictions,
+            mediated_discrimination_predictions=(
+                mediated_discrimination_predictions
+            ),
             mediated_replication_predictions=(
                 mediated_replication_predictions
             ),
@@ -1139,15 +1180,19 @@ class UnifiedCognitiveController:
             selection.action_data,
         )
         source = (
-            "causal_option_mediated_replication"
-            if selection.mediated_replication_request_id
+            "causal_option_mediated_discrimination"
+            if selection.mediated_discrimination_request_id
             else (
-                "causal_option_terminal_replay"
-                if selection.replaying_terminal_sequence
+                "causal_option_mediated_replication"
+                if selection.mediated_replication_request_id
                 else (
-                    "causal_option_effect_subgoal_probe"
-                    if selection.downstream_subgoal_id
-                    else "causal_option_downstream_probe"
+                    "causal_option_terminal_replay"
+                    if selection.replaying_terminal_sequence
+                    else (
+                        "causal_option_effect_subgoal_probe"
+                        if selection.downstream_subgoal_id
+                        else "causal_option_downstream_probe"
+                    )
                 )
             )
         )
@@ -1323,6 +1368,24 @@ class UnifiedCognitiveController:
             causal_option_mediator_abstraction_features=(
                 selection.mediator_abstraction_features
             ),
+            causal_option_mediated_discrimination_request_id=(
+                selection.mediated_discrimination_request_id
+            ),
+            causal_option_mediated_discrimination_feature=(
+                selection.mediated_discrimination_feature
+            ),
+            causal_option_mediated_discrimination_expected_value=(
+                selection.mediated_discrimination_expected_value
+            ),
+            causal_option_mediated_discrimination_contrast_value=(
+                selection.mediated_discrimination_contrast_value
+            ),
+            causal_option_mediated_single_feature_contrast=(
+                selection.mediated_single_feature_contrast
+            ),
+            causal_option_mediated_discrimination_same_latent_mode=(
+                selection.mediated_discrimination_same_latent_mode
+            ),
             causal_option_mediated_replication_request_id=(
                 selection.mediated_replication_request_id
             ),
@@ -1390,6 +1453,10 @@ class UnifiedCognitiveController:
             self.terminal_objectives,
             causal_edges=causal_edges,
         )
+        preferred_discrimination_edge = (
+            self.causal_options.mediated_discriminations
+            .preferred_preparation_edge_key()
+        )
         preferred_replication_edge = (
             self.causal_options.mediated_replications
             .preferred_preparation_edge_key()
@@ -1398,10 +1465,20 @@ class UnifiedCognitiveController:
             observation,
             self.terminal_objectives,
             preferred_causal_edge_key=preferred_replication_edge,
+            preferred_discrimination_edge_key=(
+                preferred_discrimination_edge
+            ),
         )
         if selection is None:
             return None
         if (
+            preferred_discrimination_edge
+            and selection.causal_edge_key == preferred_discrimination_edge
+        ):
+            self.causal_options.mediated_discriminations.note_preparation_action(
+                selection.causal_edge_key
+            )
+        elif (
             preferred_replication_edge
             and selection.causal_edge_key == preferred_replication_edge
         ):
@@ -2457,6 +2534,14 @@ class UnifiedCognitiveController:
                 False
                 if pending is None
                 else pending.causal_option_persistent_pursuit
+            ),
+            mediated_discrimination_request_id=(
+                ""
+                if pending is None
+                else (
+                    pending
+                    .causal_option_mediated_discrimination_request_id
+                )
             ),
             mediated_replication_request_id=(
                 ""

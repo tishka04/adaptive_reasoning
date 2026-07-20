@@ -34,6 +34,10 @@ from .online_mediated_entity_effect import (
     MediatedEffectStatus,
     OnlineMediatedEntityEffectStore,
 )
+from .online_mediated_discrimination import (
+    MediatedDiscriminationPrediction,
+    OnlineMediatedDiscriminationStore,
+)
 from .online_mediated_replication import (
     MediatedReplicationPrediction,
     OnlineMediatedReplicationStore,
@@ -43,7 +47,10 @@ from .online_semantic_intervention import (
     SemanticInterventionAnchor,
     semantic_intervention_anchor,
 )
-from .online_state_conditioned_effect import DirectionalActionPrediction
+from .online_state_conditioned_effect import (
+    DirectionalActionPrediction,
+    latent_mode_signature,
+)
 from .online_terminal_objective import OnlineTerminalObjectiveStore
 
 
@@ -292,6 +299,12 @@ class CausalOptionSelection:
     mediator_abstraction: bool = False
     mediator_abstraction_specificity: int = 0
     mediator_abstraction_features: Tuple[Tuple[str, str], ...] = ()
+    mediated_discrimination_request_id: str = ""
+    mediated_discrimination_feature: str = ""
+    mediated_discrimination_expected_value: str = ""
+    mediated_discrimination_contrast_value: str = ""
+    mediated_single_feature_contrast: bool = False
+    mediated_discrimination_same_latent_mode: bool = False
     mediated_replication_request_id: str = ""
     mediated_cross_branch_replication: bool = False
     mediated_exact_semantic_replication: bool = False
@@ -321,6 +334,7 @@ class OnlineCausalOptionStore:
         enable_active_entity_causal_binding: bool = True,
         enable_mediated_entity_effect_induction: bool = True,
         enable_online_mediated_anti_unification: bool = True,
+        enable_active_mediated_discrimination: bool = True,
         enable_active_mediated_replication: bool = True,
         max_mediated_replication_attempts: int = 2,
         persistent_actions_per_progress: int = 2,
@@ -352,6 +366,14 @@ class OnlineCausalOptionStore:
             enabled=(
                 enable_mediated_entity_effect_induction
                 and enable_active_mediated_replication
+            ),
+            max_attempts_per_request=max_mediated_replication_attempts,
+        )
+        self.mediated_discriminations = OnlineMediatedDiscriminationStore(
+            enabled=(
+                enable_mediated_entity_effect_induction
+                and enable_online_mediated_anti_unification
+                and enable_active_mediated_discrimination
             ),
             max_attempts_per_request=max_mediated_replication_attempts,
         )
@@ -500,6 +522,12 @@ class OnlineCausalOptionStore:
                 branch_index=self._branch_index,
                 opening_context=opening_context,
             )
+            self.mediated_discriminations.note_opening(
+                option_id=selected.option_id,
+                edge_key=selected.edge_key,
+                branch_index=self._branch_index,
+                opening_context=opening_context,
+            )
         return opened
 
     def select_effect_conditioned_subgoal(
@@ -543,12 +571,19 @@ class OnlineCausalOptionStore:
         replication_subgoal_id = self.mediated_replications.preferred_subgoal_id(
             active.option_id
         )
-        preferred_subgoal_id = replication_subgoal_id or (
+        discrimination_subgoal_id = (
+            self.mediated_discriminations.preferred_subgoal_id(
+                active.option_id
+            )
+        )
+        preferred_subgoal_id = (
+            discrimination_subgoal_id or replication_subgoal_id or (
             previous_subgoal_id
             if previous is not None
             and previous.progress_events > 0
             and previous_actionable
             else ""
+            )
         )
         selection = self.downstream_subgoals.select(
             option_id=active.option_id,
@@ -648,6 +683,10 @@ class OnlineCausalOptionStore:
             str,
             MediatedEffectPrediction,
         ] | None = None,
+        mediated_discrimination_predictions: Mapping[
+            str,
+            MediatedDiscriminationPrediction,
+        ] | None = None,
         mediated_replication_predictions: Mapping[
             str,
             MediatedReplicationPrediction,
@@ -711,6 +750,9 @@ class OnlineCausalOptionStore:
         predictions = dict(directional_predictions or {})
         binding_predictions = dict(entity_binding_predictions or {})
         mediated_predictions = dict(mediated_effect_predictions or {})
+        discrimination_predictions = dict(
+            mediated_discrimination_predictions or {}
+        )
         replication_predictions = dict(mediated_replication_predictions or {})
         selected_subgoal = (
             None
@@ -768,7 +810,16 @@ class OnlineCausalOptionStore:
             directional_prediction = predictions.get(signature)
             binding_prediction = binding_predictions.get(signature)
             mediated_prediction = mediated_predictions.get(signature)
+            discrimination_prediction = discrimination_predictions.get(
+                signature
+            )
             replication_prediction = replication_predictions.get(signature)
+            discrimination_actionable = bool(
+                discrimination_prediction is not None
+                and discrimination_prediction.compatible
+                and discrimination_prediction.cross_branch
+                and discrimination_prediction.single_feature_contrast
+            )
             replication_actionable = bool(
                 replication_prediction is not None
                 and replication_prediction.compatible
@@ -793,6 +844,7 @@ class OnlineCausalOptionStore:
                 and binding_prediction is not None
                 and not binding_prediction.compatible
                 and not mediated_actionable
+                and not discrimination_actionable
                 and not replication_actionable
                 and not replay_match
                 and not progress_replay_match
@@ -804,6 +856,7 @@ class OnlineCausalOptionStore:
                 and mediated_prediction is not None
                 and not mediated_prediction.compatible
                 and not replication_actionable
+                and not discrimination_actionable
                 and not replay_match
                 and not progress_replay_match
             ):
@@ -826,6 +879,7 @@ class OnlineCausalOptionStore:
                     )
                     and not binding_actionable
                     and not mediated_actionable
+                    and not discrimination_actionable
                     and not replication_actionable
                 )
                 and not replay_match
@@ -836,6 +890,7 @@ class OnlineCausalOptionStore:
                 directional_prediction is not None
                 and not directional_prediction.compatible
                 and not replication_actionable
+                and not discrimination_actionable
                 and not replay_match
                 and not progress_replay_match
             ):
@@ -878,6 +933,11 @@ class OnlineCausalOptionStore:
                 if replication_prediction is None
                 else replication_prediction.selection_rank
             )
+            discrimination_rank = (
+                -1
+                if discrimination_prediction is None
+                else discrimination_prediction.selection_rank
+            )
             directed_action_match = int(
                 bool(directed_name)
                 and action_name == directed_name
@@ -901,6 +961,7 @@ class OnlineCausalOptionStore:
             )
             ranked.append((
                 (
+                    discrimination_rank,
                     replication_rank,
                     replay_match,
                     progress_replay_match,
@@ -929,6 +990,7 @@ class OnlineCausalOptionStore:
                 directional_prediction,
                 binding_prediction,
                 mediated_prediction,
+                discrimination_prediction,
                 replication_prediction,
                 anchor,
             ))
@@ -943,6 +1005,7 @@ class OnlineCausalOptionStore:
             directional_prediction,
             binding_prediction,
             mediated_prediction,
+            discrimination_prediction,
             replication_prediction,
             anchor,
         ) = max(ranked, key=lambda item: item[0])
@@ -964,6 +1027,13 @@ class OnlineCausalOptionStore:
             self.entity_causal_bindings.note_selection(binding_prediction)
         if persistent_pursuit and mediated_prediction is not None:
             self.mediated_entity_effects.note_selection(mediated_prediction)
+        if (
+            discrimination_prediction is not None
+            and discrimination_prediction.compatible
+        ):
+            self.mediated_discriminations.note_selection(
+                discrimination_prediction
+            )
         if (
             replication_prediction is not None
             and replication_prediction.compatible
@@ -1148,6 +1218,36 @@ class OnlineCausalOptionStore:
                 () if mediated_prediction is None
                 else mediated_prediction.mediator_abstraction_features
             ),
+            mediated_discrimination_request_id=(
+                "" if discrimination_prediction is None
+                or not discrimination_prediction.compatible
+                else discrimination_prediction.request_id
+            ),
+            mediated_discrimination_feature=(
+                "" if discrimination_prediction is None
+                or not discrimination_prediction.compatible
+                else discrimination_prediction.tested_feature
+            ),
+            mediated_discrimination_expected_value=(
+                "" if discrimination_prediction is None
+                or not discrimination_prediction.compatible
+                else discrimination_prediction.expected_value
+            ),
+            mediated_discrimination_contrast_value=(
+                "" if discrimination_prediction is None
+                or not discrimination_prediction.compatible
+                else discrimination_prediction.contrast_value
+            ),
+            mediated_single_feature_contrast=(
+                False if discrimination_prediction is None
+                else discrimination_prediction.single_feature_contrast
+                and discrimination_prediction.compatible
+            ),
+            mediated_discrimination_same_latent_mode=(
+                False if discrimination_prediction is None
+                else discrimination_prediction.same_latent_mode
+                and discrimination_prediction.compatible
+            ),
             mediated_replication_request_id=(
                 "" if replication_prediction is None
                 else replication_prediction.request_id
@@ -1161,19 +1261,24 @@ class OnlineCausalOptionStore:
                 and replication_prediction.exact_semantic_replication
             ),
             reason=(
-                "run reserved cross-branch mediated-effect replication"
-                if replication_prediction is not None
-                and replication_prediction.compatible
+                "run one-feature mediated-abstraction discrimination"
+                if discrimination_prediction is not None
+                and discrimination_prediction.compatible
                 else (
-                    "replay terminally supported causal-option suffix"
-                    if terminal_replay_selected
+                    "run reserved cross-branch mediated-effect replication"
+                    if replication_prediction is not None
+                    and replication_prediction.compatible
                     else (
-                        "continue progress-supported directional pursuit"
-                        if persistent_pursuit
+                        "replay terminally supported causal-option suffix"
+                        if terminal_replay_selected
                         else (
-                            "pursue effect-conditioned measurable downstream subgoal"
-                            if downstream_subgoal is not None
-                            else "bounded downstream search after confirmed causal opening"
+                            "continue progress-supported directional pursuit"
+                            if persistent_pursuit
+                            else (
+                                "pursue effect-conditioned measurable downstream subgoal"
+                                if downstream_subgoal is not None
+                                else "bounded downstream search after confirmed causal opening"
+                            )
                         )
                     )
                 )
@@ -1329,6 +1434,51 @@ class OnlineCausalOptionStore:
             )
         return result
 
+    def mediated_discrimination_action_predictions(
+        self,
+        observation: GameObservation,
+        *,
+        store: OnlineTerminalObjectiveStore,
+        downstream_subgoal: EffectConditionedSubgoalSelection | None,
+        safe_actions: Sequence[str],
+        click_actions: Sequence[Any] = (),
+        record_predictions: bool = True,
+    ) -> Dict[str, MediatedDiscriminationPrediction]:
+        """Find matched contexts varying one learned carrier feature."""
+        active = self._active
+        option = None if active is None else self.option(active.option_id)
+        if active is None or option is None:
+            return {}
+        objective_id = (
+            downstream_subgoal.objective_id
+            if downstream_subgoal is not None
+            else option.target_objective_id
+        )
+        objective = store.objective(objective_id)
+        if objective is None:
+            return {}
+        mode = latent_mode_signature(observation, objective)
+        result: Dict[str, MediatedDiscriminationPrediction] = {}
+        for action_name, action_data in _concrete_actions(
+            safe_actions,
+            click_actions,
+        ):
+            anchor = self.intervention_anchor(
+                action_name,
+                action_data,
+                observation,
+            )
+            prediction = self.mediated_discriminations.predict(
+                option_id=option.option_id,
+                anchor=anchor,
+                observation=observation,
+                mode_signature=mode,
+                record_prediction=record_predictions,
+            )
+            if prediction is not None:
+                result[anchor.concrete_signature] = prediction
+        return result
+
     def mediated_replication_action_predictions(
         self,
         observation: GameObservation,
@@ -1374,6 +1524,7 @@ class OnlineCausalOptionStore:
         downstream_subgoal_id: str = "",
         replaying_progress_sequence: bool = False,
         persistent_pursuit: bool = False,
+        mediated_discrimination_request_id: str = "",
         mediated_replication_request_id: str = "",
     ) -> Dict[str, Any]:
         """Revise one active option from real effects and terminal outcomes."""
@@ -1415,6 +1566,15 @@ class OnlineCausalOptionStore:
             "mediator_abstraction": False,
             "mediator_abstraction_specificity": 0,
             "mediator_abstraction_features": {},
+            "mediated_discrimination_request_id": str(
+                mediated_discrimination_request_id
+            ),
+            "mediated_discrimination_resolution": "",
+            "mediated_discrimination_feature": "",
+            "mediated_discrimination_expected_value": "",
+            "mediated_discrimination_contrast_value": "",
+            "mediated_single_feature_contrast": False,
+            "mediated_discrimination_same_latent_mode": False,
             "mediated_replication_request_id": str(
                 mediated_replication_request_id
             ),
@@ -1547,6 +1707,49 @@ class OnlineCausalOptionStore:
                     branch_index=active.branch_index,
                     context_signature=effect_context,
                 )
+                discrimination_request_id = (
+                    self.mediated_discriminations.observe_hypothesis(
+                        option_id=option.option_id,
+                        edge_key=option.edge_key,
+                        objective_id=binding_objective.objective_id,
+                        downstream_subgoal_id=str(downstream_subgoal_id),
+                        anchor=anchor,
+                        branch_index=active.branch_index,
+                        context_signature=effect_context,
+                        mediated_outcome=mediated_outcome,
+                        selected_request_id=str(
+                            mediated_discrimination_request_id
+                        ),
+                    )
+                )
+                if discrimination_request_id:
+                    outcome["mediated_discrimination_request_id"] = (
+                        discrimination_request_id
+                    )
+                if mediated_discrimination_request_id:
+                    resolved_discrimination = next((
+                        item
+                        for item in self.mediated_discriminations.requests()
+                        if item.request_id
+                        == str(mediated_discrimination_request_id)
+                    ), None)
+                    if resolved_discrimination is not None:
+                        outcome["mediated_discrimination_resolution"] = (
+                            resolved_discrimination.status.value
+                        )
+                        outcome["mediated_discrimination_feature"] = (
+                            resolved_discrimination.tested_feature
+                        )
+                        outcome[
+                            "mediated_discrimination_expected_value"
+                        ] = resolved_discrimination.expected_value
+                        outcome[
+                            "mediated_discrimination_contrast_value"
+                        ] = resolved_discrimination.contrast_value
+                        outcome["mediated_single_feature_contrast"] = True
+                        outcome[
+                            "mediated_discrimination_same_latent_mode"
+                        ] = True
                 replication_request_id = (
                     self.mediated_replications.observe_hypothesis(
                         option_id=option.option_id,
@@ -1827,6 +2030,7 @@ class OnlineCausalOptionStore:
             self._close_active(censored=True)
         self._branch_index += 1
         self.mediated_replications.start_branch(self._branch_index)
+        self.mediated_discriminations.start_branch(self._branch_index)
 
     def summary(self) -> Dict[str, Any]:
         options = self.options()
@@ -1895,6 +2099,9 @@ class OnlineCausalOptionStore:
             ),
             "active_mediated_replication": (
                 self.mediated_replications.summary()
+            ),
+            "active_mediated_discrimination": (
+                self.mediated_discriminations.summary()
             ),
             "effect_conditioned_subgoals_enabled": (
                 self.enable_effect_conditioned_subgoals

@@ -827,7 +827,7 @@ class OnlineMediatedEntityEffectStore:
             )
             if affected is None:
                 continue
-            relation = _relation_signature(acted, affected)
+            relation = mediated_relation_signature(acted, affected)
             entity = (
                 item.source_entity_signature
                 or item.target_entity_signature
@@ -935,7 +935,11 @@ def _normalized_cells(obj: ObjectInfo) -> tuple[tuple[int, int], ...]:
     ))
 
 
-def _relation_signature(acted: ObjectInfo, affected: ObjectInfo) -> str:
+def mediated_relation_signature(
+    acted: ObjectInfo,
+    affected: ObjectInfo,
+) -> str:
+    """Describe a possible acted-entity -> carrier relation pre-transition."""
     acted_cells = set(acted.cells)
     affected_cells = set(affected.cells)
     if acted_cells & affected_cells:
@@ -965,6 +969,22 @@ def _relation_signature(acted: ObjectInfo, affected: ObjectInfo) -> str:
     ))
 
 
+def prospective_mediator_signature(
+    acted: ObjectInfo,
+    candidate: ObjectInfo,
+    observation: GameObservation,
+    *,
+    expected_change: str,
+) -> str:
+    """Build a counterfactual carrier descriptor from the current scene only."""
+    return "::".join((
+        f"mediated:{str(expected_change)}",
+        f"entity:{entity_signature(candidate)}",
+        f"role:{structural_role_signature(candidate, observation)}",
+        f"relation:{mediated_relation_signature(acted, candidate)}",
+    ))
+
+
 def _bbox_gap(first: ObjectInfo, second: ObjectInfo) -> int:
     first_row0, first_col0, first_row1, first_col1 = first.bbox
     second_row0, second_col0, second_row1, second_col1 = second.bbox
@@ -981,4 +1001,6 @@ __all__ = [
     "OnlineMediatedEntityEffectStore",
     "SceneCorrespondenceStatus",
     "SceneEntityCorrespondence",
+    "mediated_relation_signature",
+    "prospective_mediator_signature",
 ]

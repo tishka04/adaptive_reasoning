@@ -5929,3 +5929,126 @@ nouvelle ouverture inter-branche meme lorsqu'un motif est deja soutenu, puis
 confirmer sa necessite ou l'eliminer exclusivement depuis le progres terminal
 en ligne. Ce n'est qu'apres ces controles actifs que l'hyperarete abstraite
 doit devenir une politique composee vers le but terminal.
+
+## SAGE.8y - active one-feature discrimination of mediated abstractions
+
+Objectif :
+
+- Transformer chaque hyperarete abstraite soutenue en une experience causale
+  persistante plutot qu'en une conclusion definitive.
+- Rechercher en ligne un porteur qui differe du motif appris par exactement un
+  attribut, reouvrir la meme option dans une branche ulterieure et rejouer la
+  meme classe semantique d'intervention.
+- Eliminer l'attribut si le contraste conserve le progres, ou le declarer
+  necessaire si le progres disparait, exclusivement depuis la variation de
+  distance a l'objectif observee apres l'action.
+- Refuser toute conclusion lorsque le mode latent, l'intervention, plusieurs
+  attributs ou la correspondance du porteur varient simultanement.
+
+Representation et controle :
+
+- `OnlineMediatedDiscriminationStore` conserve une requete par hyperarete,
+  l'attribut teste, la valeur de controle attendue, la branche source, la
+  branche active, le mode latent et un budget d'essais borne.
+- Les attributs de la lattice sont proposes dans un ordre structurel fixe ; ce
+  n'est pas une reponse de niveau mais l'ordre generique des variables a
+  falsifier.
+- Une prediction n'est admissible que pour la meme classe de transfert
+  d'action, une branche posterieure, exactement le meme mode latent et une
+  signature prospective qui differe par une seule propriete.
+- Un progres avec contraste observe elimine la propriete. Une absence de
+  progres sur objectif stable et correspondance non ambigue la rend
+  necessaire. Tous les autres resultats restent inconclusifs.
+- La requete reserve la preparation et la reouverture de l'option meme lorsque
+  l'hyperarete SAGE.8x est deja soutenue, puis domine les autres choix du
+  suffixe lorsqu'un contraste valide existe.
+- Le chemin complet propage la requete, la preparation, la prediction, la
+  selection et la resolution a travers l'option causale, le plan temporel, le
+  controleur unifie et le benchmark A/B v16.
+
+Ajouts :
+
+- `theory/online_mediated_discrimination.py`
+- signatures prospectives publiques dans
+  `theory/online_mediated_entity_effect.py`
+- integration dans `theory/online_causal_option.py`
+- reservation dans `theory/online_temporal_goal_composition.py`
+- integration et audit dans `theory/unified_cognitive_controller.py`
+- schema, metriques et ablation v16 dans
+  `theory/unified_cognition_ab_benchmark.py`
+- `tests/test_online_mediated_discrimination.py`
+- extension de `tests/test_unified_cognition_ab_benchmark.py`
+- `diagnostics/sage/sage8y_cn04_lattice_discrimination.json`
+- `diagnostics/sage/sage8y_lattice_discrimination_ablation.json`
+- mise a jour de `diagnostics/sage/unified_cognition_ab_held_out.json`
+
+Audit actif cible `cn04-65d47d14`, seed 0, 5 resets x 40 :
+
+- SAGE.8x produit 1 hypothese abstraite et 1 hyperarete soutenue ;
+- SAGE.8y cree 1 requete, la reactive dans 2 branches ulterieures et reserve 2
+  preparations, soit 6 actions de preparation ;
+- 12 candidats sont detectes apres reouverture, mais leur mode latent differe
+  du mode source (`exhaust`, distance 2) ;
+- ces 12 contrastes confondus sont correctement bloques : aucune prediction,
+  selection, exigence ou elimination d'attribut n'est enregistree ;
+- `controller_errors=0`, `levels_completed=0` et `wins=0` ;
+- le bras actif execute 200 actions, 87 experiences et 164 reductions
+  objectives, contre 200 actions, 76 experiences et 180 reductions avec
+  l'ablation ; l'acquisition active coute donc 11 experiences et 16 reductions
+  locales sur ce run sans gain terminal.
+
+Ablation cible, memes jeu, seed, resets et budgets :
+
+- `active_mediated_discrimination_enabled_in_unified=false` ;
+- toutes les metriques `mediated_discrimination_*` valent zero ;
+- SAGE.8x apprend toujours la meme hyperarete, ce qui isole la nouvelle
+  politique d'experimentation de la representation precedente.
+
+Run principal du 2026-07-20, memes 5 jeux public-unseen, seeds 0/1,
+2 resets, 40 actions par reset :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v16` ;
+- `paired_protocol.protocol_gate_passed=true` ;
+- `active_mediated_discrimination_enabled_in_unified=true` ;
+- `unified.controller_errors=0` ;
+- `unified.actions_executed=800` ;
+- `unified.experiment_actions=488` ;
+- `unified.objective_distance_reductions=782` ;
+- aucune paire n'atteint les deux supports necessaires a SAGE.8x ; toutes les
+  metriques SAGE.8y restent donc a zero et la trajectoire demeure identique a
+  SAGE.8x ;
+- `legacy_only.levels_completed=0`, `unified.levels_completed=0`,
+  `legacy_only.wins=0` et `unified.wins=0`.
+
+Validation synthetique en ligne :
+
+- la branche source, une autre intervention et un autre mode latent sont
+  bloques ;
+- une variation d'un seul attribut produit une prediction ;
+- deux variations simultanees sont refusees ;
+- le progres elimine l'attribut teste ;
+- l'absence de progres sur correspondance stable le rend necessaire ;
+- une correspondance ambigue ne peut produire aucune fausse necessite ;
+- apres resolution, le prochain attribut de la lattice est propose ;
+- l'ablation ne conserve aucune requete ni prediction.
+
+Validation :
+
+- `new_sage8y_tests=8 passed` ;
+- `targeted_cognitive_tests=67 passed` ;
+- `full_repository_tests=1447 passed` (1440 groupes ensemble et les 7 tests du
+  fichier historique a namespace collisionne executes isolement) ;
+- `scoped_ruff_and_compileall=passed`.
+
+Lecture : le verrou de formulation et de controle des contrastes actifs est
+franchi. SAGE sait convertir une abstraction apprise pendant l'examen en une
+question causale falsifiable et refuse une conclusion quand l'experience ne
+fait pas varier une seule variable. Aucun niveau ARC-AGI-3 supplementaire
+n'est encore gagne.
+
+Le prochain verrou est la synthese de contexte contre-factuel. Reouvrir la meme
+option ne suffit pas : le planificateur doit restaurer le meme mode latent
+(`exhaust`, distance 2 sur `cn04`) tout en faisant varier un seul attribut du
+porteur. Il faut donc apprendre en ligne des actions de restauration d'etat,
+les composer avant l'intervention discriminante et verifier que les autres
+variables causales sont demeurees invariantes.

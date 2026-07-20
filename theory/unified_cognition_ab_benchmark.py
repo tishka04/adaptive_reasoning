@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v15"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v16"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -55,6 +55,7 @@ EXPERIMENT_SOURCES = {
     "temporal_subgoal_probe",
     "causal_option_downstream_probe",
     "causal_option_effect_subgoal_probe",
+    "causal_option_mediated_discrimination",
     "causal_option_mediated_replication",
 }
 
@@ -166,6 +167,17 @@ def _active_mediated_replication_disabled_controller(
     )
 
 
+def _active_mediated_discrimination_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_active_mediated_discrimination=False
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -249,6 +261,7 @@ def run_unified_cognition_ab_benchmark(
     enable_active_entity_causal_binding: bool = True,
     enable_mediated_entity_effect_induction: bool = True,
     enable_online_mediated_anti_unification: bool = True,
+    enable_active_mediated_discrimination: bool = True,
     enable_active_mediated_replication: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
@@ -320,6 +333,13 @@ def run_unified_cognition_ab_benchmark(
     ):
         effective_controller_factory = (
             _online_mediated_anti_unification_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_active_mediated_discrimination
+    ):
+        effective_controller_factory = (
+            _active_mediated_discrimination_disabled_controller
         )
     elif (
         effective_controller_factory is None
@@ -407,6 +427,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         online_mediated_anti_unification_enabled=(
             enable_online_mediated_anti_unification
+        ),
+        active_mediated_discrimination_enabled=(
+            enable_active_mediated_discrimination
         ),
         active_mediated_replication_enabled=(
             enable_active_mediated_replication
@@ -530,6 +553,12 @@ def _run_arm(
     mediated_replication_summary = dict(
         causal_option_summary.get(
             "active_mediated_replication",
+            {},
+        ) or {}
+    )
+    mediated_discrimination_summary = dict(
+        causal_option_summary.get(
+            "active_mediated_discrimination",
             {},
         ) or {}
     )
@@ -943,6 +972,64 @@ def _run_arm(
                 "blocked_contradicted_actions",
                 0,
             ) or 0
+        ),
+        "mediated_discrimination_requests_created": int(
+            mediated_discrimination_summary.get("requests_created", 0) or 0
+        ),
+        "mediated_discrimination_pending_requests": int(
+            mediated_discrimination_summary.get("pending_requests", 0) or 0
+        ),
+        "mediated_discrimination_active_requests": int(
+            mediated_discrimination_summary.get("active_requests", 0) or 0
+        ),
+        "mediated_discrimination_cross_branch_activations": int(
+            mediated_discrimination_summary.get(
+                "cross_branch_activations", 0
+            ) or 0
+        ),
+        "mediated_discrimination_predictions": int(
+            mediated_discrimination_summary.get("predictions", 0) or 0
+        ),
+        "mediated_discrimination_mode_mismatch_blocks": int(
+            mediated_discrimination_summary.get(
+                "mode_mismatch_blocks", 0
+            ) or 0
+        ),
+        "mediated_discrimination_no_single_feature_blocks": int(
+            mediated_discrimination_summary.get(
+                "no_single_feature_blocks", 0
+            ) or 0
+        ),
+        "mediated_discrimination_selections": int(
+            mediated_discrimination_summary.get("selections", 0) or 0
+        ),
+        "mediated_discrimination_preparation_actions": int(
+            mediated_discrimination_summary.get(
+                "preparation_actions", 0
+            ) or 0
+        ),
+        "mediated_discrimination_preparation_starts": int(
+            temporal_summary.get(
+                "mediated_discrimination_preparation_starts", 0
+            ) or 0
+        ),
+        "mediated_discrimination_feature_requirements": int(
+            mediated_discrimination_summary.get(
+                "feature_requirements", 0
+            ) or 0
+        ),
+        "mediated_discrimination_feature_eliminations": int(
+            mediated_discrimination_summary.get(
+                "feature_eliminations", 0
+            ) or 0
+        ),
+        "mediated_discrimination_inconclusive_attempts": int(
+            mediated_discrimination_summary.get(
+                "inconclusive_attempts", 0
+            ) or 0
+        ),
+        "mediated_discrimination_expirations": int(
+            mediated_discrimination_summary.get("expirations", 0) or 0
         ),
         "mediated_replication_requests_created": int(
             mediated_replication_summary.get("requests_created", 0) or 0
@@ -1377,6 +1464,7 @@ def _summarize_benchmark(
     active_entity_causal_binding_enabled: bool,
     mediated_entity_effect_induction_enabled: bool,
     online_mediated_anti_unification_enabled: bool,
+    active_mediated_discrimination_enabled: bool,
     active_mediated_replication_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
@@ -1438,6 +1526,9 @@ def _summarize_benchmark(
             ),
             "online_mediated_anti_unification_enabled_in_unified": bool(
                 online_mediated_anti_unification_enabled
+            ),
+            "active_mediated_discrimination_enabled_in_unified": bool(
+                active_mediated_discrimination_enabled
             ),
             "active_mediated_replication_enabled_in_unified": bool(
                 active_mediated_replication_enabled
@@ -1870,6 +1961,62 @@ def _aggregate_arm(
         ),
         "mediated_effect_blocked_contradicted_actions": sum(
             int(row["mediated_effect_blocked_contradicted_actions"])
+            for row in rows
+        ),
+        "mediated_discrimination_requests_created": sum(
+            int(row["mediated_discrimination_requests_created"])
+            for row in rows
+        ),
+        "mediated_discrimination_pending_requests": sum(
+            int(row["mediated_discrimination_pending_requests"])
+            for row in rows
+        ),
+        "mediated_discrimination_active_requests": sum(
+            int(row["mediated_discrimination_active_requests"])
+            for row in rows
+        ),
+        "mediated_discrimination_cross_branch_activations": sum(
+            int(row["mediated_discrimination_cross_branch_activations"])
+            for row in rows
+        ),
+        "mediated_discrimination_predictions": sum(
+            int(row["mediated_discrimination_predictions"])
+            for row in rows
+        ),
+        "mediated_discrimination_mode_mismatch_blocks": sum(
+            int(row["mediated_discrimination_mode_mismatch_blocks"])
+            for row in rows
+        ),
+        "mediated_discrimination_no_single_feature_blocks": sum(
+            int(row["mediated_discrimination_no_single_feature_blocks"])
+            for row in rows
+        ),
+        "mediated_discrimination_selections": sum(
+            int(row["mediated_discrimination_selections"])
+            for row in rows
+        ),
+        "mediated_discrimination_preparation_actions": sum(
+            int(row["mediated_discrimination_preparation_actions"])
+            for row in rows
+        ),
+        "mediated_discrimination_preparation_starts": sum(
+            int(row["mediated_discrimination_preparation_starts"])
+            for row in rows
+        ),
+        "mediated_discrimination_feature_requirements": sum(
+            int(row["mediated_discrimination_feature_requirements"])
+            for row in rows
+        ),
+        "mediated_discrimination_feature_eliminations": sum(
+            int(row["mediated_discrimination_feature_eliminations"])
+            for row in rows
+        ),
+        "mediated_discrimination_inconclusive_attempts": sum(
+            int(row["mediated_discrimination_inconclusive_attempts"])
+            for row in rows
+        ),
+        "mediated_discrimination_expirations": sum(
+            int(row["mediated_discrimination_expirations"])
             for row in rows
         ),
         "mediated_replication_requests_created": sum(
@@ -2367,6 +2514,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.8x online structural carrier abstraction only.",
     )
+    parser.add_argument(
+        "--disable-active-mediated-discrimination",
+        action="store_true",
+        help="Ablate SAGE.8y one-feature abstraction controls only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -2415,6 +2567,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_online_mediated_anti_unification=(
             not args.disable_online_mediated_anti_unification
+        ),
+        enable_active_mediated_discrimination=(
+            not args.disable_active_mediated_discrimination
         ),
         enable_active_mediated_replication=(
             not args.disable_active_mediated_replication
