@@ -87,6 +87,7 @@ def test_horizon_stable_epoch_yields_after_unproductive_operator_budget():
             max_bootstrap_experiments=6,
             horizon_learning_warmup_actions_per_branch=0,
             max_operator_plan_actions_without_objective_progress=1,
+            enable_online_horizon_learning_arbiter=False,
         ),
     )
 
@@ -168,6 +169,54 @@ def test_horizon_stable_epoch_yields_after_unproductive_operator_budget():
     summary = controller.summary()
     assert summary["operator_plan_progress_resets"] == 1
     assert summary["operator_plan_actions_since_objective_progress"] == 0
+
+
+def test_online_horizon_arbiter_releases_irrelevant_operator_budget():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=6,
+            horizon_learning_warmup_actions_per_branch=0,
+            max_operator_plan_actions_without_objective_progress=1,
+        ),
+    )
+
+    for index in range(6):
+        before = _player_grid(index + 1)
+        after = _player_grid(index + 2)
+        decision = controller.select_action(
+            current_grid=before,
+            available_actions=["ACTION1"],
+            legacy_action="ACTION1",
+        )
+        controller.observe_transition(
+            action=decision.action_name,
+            action_data=decision.action_data,
+            grid_before=before,
+            grid_after=after,
+            available_actions=["ACTION1"],
+        )
+
+    first = controller.select_action(
+        current_grid=_player_grid(7),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+    second = controller.select_action(
+        current_grid=_player_grid(7),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+
+    assert first.source == "operator_plan"
+    assert second.source == "operator_plan"
+    summary = controller.summary()
+    assert summary["operator_plan_budget_blocks"] == 0
+    arbiter = summary["online_horizon_learning_arbiter"]
+    assert arbiter["evaluations"] == 2
+    assert arbiter["reservations"] == 0
+    assert arbiter["releases"] == 2
 
 
 def test_click_experiment_uses_objects_and_revises_relational_predictions():

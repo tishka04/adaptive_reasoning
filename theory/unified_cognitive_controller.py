@@ -54,6 +54,10 @@ from .online_goal_hypothesis import (
     intervention_id,
     semantic_intervention_signature,
 )
+from .online_horizon_learning_arbiter import (
+    HorizonLearningSignals,
+    OnlineHorizonLearningArbiter,
+)
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_causal_option import OnlineCausalOptionStore
 from .online_terminal_objective import (
@@ -142,6 +146,9 @@ class UnifiedCognitiveConfig:
     enable_horizon_stable_learning_epochs: bool = True
     horizon_learning_warmup_actions_per_branch: int = 40
     max_operator_plan_actions_without_objective_progress: int = 12
+    enable_online_horizon_learning_arbiter: bool = True
+    horizon_learning_minimum_priority: int = 2
+    horizon_terminal_test_max_distance: float = 2.0
 
 
 @dataclass(frozen=True)
@@ -664,6 +671,16 @@ class UnifiedCognitiveController:
                 self.config.max_persistent_credit_window
             ),
         )
+        self.horizon_learning_arbiter = OnlineHorizonLearningArbiter(
+            enabled=self.config.enable_online_horizon_learning_arbiter,
+            minimum_priority=self.config.horizon_learning_minimum_priority,
+            maximum_terminal_test_distance=(
+                self.config.horizon_terminal_test_max_distance
+            ),
+            base_operator_action_budget=(
+                self.config.max_operator_plan_actions_without_objective_progress
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -998,6 +1015,9 @@ class UnifiedCognitiveController:
             "operator_plan_streak_peak": self._operator_plan_streak_peak,
             "operator_plan_budget_blocks": self._operator_plan_budget_blocks,
             "operator_plan_progress_resets": self._operator_plan_progress_resets,
+            "online_horizon_learning_arbiter": (
+                self.horizon_learning_arbiter.summary()
+            ),
             "rules": len(self.belief_loop.rule_engine.rules),
             "high_confidence_rules": len(
                 self.belief_loop.rule_engine.high_confidence_rules()
@@ -2284,23 +2304,6 @@ class UnifiedCognitiveController:
     ) -> CognitiveDecision | None:
         if not self.config.enable_operator_planning:
             return None
-        if (
-            self.config.enable_horizon_stable_learning_epochs
-            and self._branch_step
-            > max(
-                0,
-                int(self.config.horizon_learning_warmup_actions_per_branch),
-            )
-            and self._operator_plan_actions_since_objective_progress
-            >= max(
-                1,
-                int(
-                    self.config.max_operator_plan_actions_without_objective_progress
-                ),
-            )
-        ):
-            self._operator_plan_budget_blocks += 1
-            return None
         if not self.operator_inducer.operators:
             return None
         target = _nearest_non_player_target(observation)
@@ -2319,6 +2322,41 @@ class UnifiedCognitiveController:
         action = _normalize_action(operator.primitive_action)
         if action not in safe_actions:
             return None
+        extended_horizon = bool(
+            self.config.enable_horizon_stable_learning_epochs
+            and self._branch_step
+            > max(
+                0,
+                int(self.config.horizon_learning_warmup_actions_per_branch),
+            )
+        )
+        reserve_learning = extended_horizon
+        operator_budget = max(
+            1,
+            int(
+                self.config.max_operator_plan_actions_without_objective_progress
+            ),
+        )
+        if (
+            extended_horizon
+            and self.config.enable_online_horizon_learning_arbiter
+        ):
+            allocation = self.horizon_learning_arbiter.allocate(
+                self._horizon_learning_signals(observation)
+            )
+            reserve_learning = allocation.reserve_learning
+            if allocation.operator_action_budget is not None:
+                operator_budget = max(
+                    1,
+                    int(allocation.operator_action_budget),
+                )
+        if (
+            reserve_learning
+            and self._operator_plan_actions_since_objective_progress
+            >= operator_budget
+        ):
+            self._operator_plan_budget_blocks += 1
+            return None
         self._operator_plans += 1
         self._operator_plan_actions_since_objective_progress += 1
         self._operator_plan_streak_peak = max(
@@ -2335,6 +2373,102 @@ class UnifiedCognitiveController:
             ),
             confidence=float(operator.confidence),
             operator_id=operator.operator_id,
+        )
+
+    def _horizon_learning_signals(
+        self,
+        observation: GameObservation,
+    ) -> HorizonLearningSignals:
+        options = [
+            option
+            for option in self.causal_options.options()
+            if option.mechanic_confirmed
+            and option.opening_events > 0
+            and option.status.value
+            not in {"terminal_supported", "terminal_refuted"}
+        ]
+        productive_edges = [
+            edge
+            for edge in self.causal_subgoals.edges()
+            if edge.status.value != "refuted"
+            and (
+                edge.source_progress_events > 0
+                or edge.support_events > 0
+                or edge.needs_independent_confirmation
+            )
+        ]
+        policies = [
+            policy
+            for policy in self.causal_options.mediated_exploitation.policies()
+            if policy.status.value not in {"refuted", "expired"}
+        ]
+        successor_states = [
+            state
+            for state in self.causal_options.mediated_exploitation.states()
+            if state.status.value
+            in {"open", "action_compiled", "progress_supported"}
+        ]
+        mediated_summary = (
+            self.causal_options.mediated_entity_effects.summary()
+        )
+        active_requests = sum((
+            self.causal_options.mediated_replications.active_request
+            is not None,
+            self.causal_options.mediated_discriminations.active_request
+            is not None,
+        ))
+
+        terminal_status = ""
+        terminal_distance: float | None = None
+        for objective in self.terminal_objectives.objectives():
+            if objective.status not in {
+                TerminalObjectiveStatus.NEEDS_CONTRAST,
+                TerminalObjectiveStatus.TERMINAL_SUPPORTED,
+            }:
+                continue
+            distance = objective.distance(observation)
+            if distance is None or float(distance) <= 0.0:
+                continue
+            if (
+                terminal_distance is None
+                or float(distance) < terminal_distance
+                or (
+                    float(distance) == terminal_distance
+                    and objective.status
+                    == TerminalObjectiveStatus.TERMINAL_SUPPORTED
+                )
+            ):
+                terminal_distance = float(distance)
+                terminal_status = objective.status.value
+
+        causal_distances = []
+        for option in options:
+            objective = self.terminal_objectives.objective(
+                option.target_objective_id
+            )
+            distance = (
+                None if objective is None else objective.distance(observation)
+            )
+            if distance is not None and float(distance) > 0.0:
+                causal_distances.append(float(distance))
+
+        return HorizonLearningSignals(
+            active_causal_option=bool(self.causal_options.active_option_id),
+            productive_causal_edges=len(productive_edges),
+            unresolved_opened_options=len(options),
+            active_mediated_requests=int(active_requests),
+            compiled_policies=len(policies),
+            open_successor_states=len(successor_states),
+            supported_mediated_hyperedges=int(
+                mediated_summary.get("supported_hyperedges", 0) or 0
+            ) + int(
+                mediated_summary.get("supported_abstract_hyperedges", 0) or 0
+            ),
+            terminal_test_status=terminal_status,
+            terminal_test_distance=terminal_distance,
+            causal_target_distance=(
+                min(causal_distances) if causal_distances else None
+            ),
         )
 
     def _objective_distance_reduced(

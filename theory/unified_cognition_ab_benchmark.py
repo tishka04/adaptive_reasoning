@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v21"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v22"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -237,6 +237,17 @@ def _horizon_stable_learning_epochs_disabled_controller(
     )
 
 
+def _online_horizon_learning_arbiter_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_online_horizon_learning_arbiter=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -327,6 +338,7 @@ def run_unified_cognition_ab_benchmark(
     enable_successor_structural_transfer: bool = True,
     enable_active_mediated_replication: bool = True,
     enable_horizon_stable_learning_epochs: bool = True,
+    enable_online_horizon_learning_arbiter: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -447,6 +459,13 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _horizon_stable_learning_epochs_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_online_horizon_learning_arbiter
+    ):
+        effective_controller_factory = (
+            _online_horizon_learning_arbiter_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -545,6 +564,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         horizon_stable_learning_epochs_enabled=(
             enable_horizon_stable_learning_epochs
+        ),
+        online_horizon_learning_arbiter_enabled=(
+            enable_online_horizon_learning_arbiter
         ),
     )
     if not include_traces:
@@ -680,6 +702,12 @@ def _run_arm(
             {},
         ) or {}
     )
+    horizon_arbiter_summary = dict(
+        controller_summary.get(
+            "online_horizon_learning_arbiter",
+            {},
+        ) or {}
+    )
     return {
         "arm": arm,
         "game_id": game_id,
@@ -709,6 +737,32 @@ def _run_arm(
         ),
         "operator_plan_progress_resets": int(
             controller_summary.get("operator_plan_progress_resets", 0) or 0
+        ),
+        "horizon_arbiter_evaluations": int(
+            horizon_arbiter_summary.get("evaluations", 0) or 0
+        ),
+        "horizon_arbiter_reservations": int(
+            horizon_arbiter_summary.get("reservations", 0) or 0
+        ),
+        "horizon_arbiter_releases": int(
+            horizon_arbiter_summary.get("releases", 0) or 0
+        ),
+        "horizon_arbiter_causal_uncertainty_reservations": int(
+            horizon_arbiter_summary.get(
+                "causal_uncertainty_reservations",
+                0,
+            )
+            or 0
+        ),
+        "horizon_arbiter_terminal_test_reservations": int(
+            horizon_arbiter_summary.get(
+                "terminal_test_reservations",
+                0,
+            )
+            or 0
+        ),
+        "horizon_arbiter_priority_peak": int(
+            horizon_arbiter_summary.get("priority_peak", 0) or 0
         ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
@@ -1809,6 +1863,7 @@ def _summarize_benchmark(
     successor_structural_transfer_enabled: bool,
     active_mediated_replication_enabled: bool,
     horizon_stable_learning_epochs_enabled: bool,
+    online_horizon_learning_arbiter_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1891,6 +1946,9 @@ def _summarize_benchmark(
             "horizon_stable_learning_epochs_enabled_in_unified": bool(
                 horizon_stable_learning_epochs_enabled
             ),
+            "online_horizon_learning_arbiter_enabled_in_unified": bool(
+                online_horizon_learning_arbiter_enabled
+            ),
             "protocol_gate_passed": protocol_gate,
         },
         "baseline_definition": (
@@ -1960,6 +2018,27 @@ def _aggregate_arm(
         ),
         "operator_plan_progress_resets": sum(
             int(row["operator_plan_progress_resets"]) for row in rows
+        ),
+        "horizon_arbiter_evaluations": sum(
+            int(row["horizon_arbiter_evaluations"]) for row in rows
+        ),
+        "horizon_arbiter_reservations": sum(
+            int(row["horizon_arbiter_reservations"]) for row in rows
+        ),
+        "horizon_arbiter_releases": sum(
+            int(row["horizon_arbiter_releases"]) for row in rows
+        ),
+        "horizon_arbiter_causal_uncertainty_reservations": sum(
+            int(row["horizon_arbiter_causal_uncertainty_reservations"])
+            for row in rows
+        ),
+        "horizon_arbiter_terminal_test_reservations": sum(
+            int(row["horizon_arbiter_terminal_test_reservations"])
+            for row in rows
+        ),
+        "horizon_arbiter_priority_peak": max(
+            (int(row["horizon_arbiter_priority_peak"]) for row in rows),
+            default=0,
         ),
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
@@ -3117,6 +3196,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9d horizon-stable learning epochs only.",
     )
+    parser.add_argument(
+        "--disable-online-horizon-learning-arbiter",
+        action="store_true",
+        help="Ablate SAGE.9e online epistemic action allocation only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -3186,6 +3270,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_horizon_stable_learning_epochs=(
             not args.disable_horizon_stable_learning_epochs
+        ),
+        enable_online_horizon_learning_arbiter=(
+            not args.disable_online_horizon_learning_arbiter
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

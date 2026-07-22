@@ -6553,3 +6553,83 @@ Le prochain verrou est SAGE.9e : remplacer l'allocation fixe de la seconde
 epoque par une allocation en ligne fondee sur l'incertitude causale et la
 proximite d'un test terminal, afin de convertir ces chaines en changement de
 niveau plutot qu'en davantage de progres locaux.
+
+## SAGE.9e - online epistemic horizon arbitration
+
+Objectif :
+
+- Remplacer la reservation uniforme de SAGE.9d par une decision en ligne prise
+  seulement lorsqu'un plan operateur applicable pourrait consommer l'action.
+- Rendre le budget aux plans operateurs lorsqu'aucune occasion d'apprentissage
+  causal ou terminal n'est observable.
+- Conserver la reservation des qu'une arête causale a produit un progres ou un
+  support, avant meme que l'option correspondante soit compilee.
+- Renforcer la reservation en presence d'une option ouverte non resolue, d'une
+  requete de replication/discrimination active, d'une abstraction mediee
+  soutenue, d'une politique compilee ou d'un etat successeur encore ouvert.
+- Donner la priorite maximale a un objectif proche deja `needs_contrast` ou
+  `terminal_supported`. Un objectif candidat et un progres local ne suffisent
+  toujours pas a declencher cette priorite terminale.
+
+Representation et controle :
+
+- `HorizonLearningSignals` est un paquet sans identite de jeu ni template de
+  niveau : option active, arêtes productives, options ouvertes non resolues,
+  requetes actives, politiques et etats successeurs, hyperarêtes soutenues,
+  statut et distance du test terminal le plus proche.
+- `OnlineHorizonLearningArbiter` calcule une priorite auditable et renvoie soit
+  une liberation, soit un budget operateur de 12 actions ; ce budget passe a 8
+  pour une demande active et a 6 pres d'un test terminal recevable.
+- L'arbitre ne choisit aucune action, ne revise aucun but et n'accorde aucun
+  credit. Il laisse le chemin cognitif existant utiliser les actions reservees.
+- Le benchmark v22 expose l'ablation isolee
+  `--disable-online-horizon-learning-arbiter`, les evaluations, reservations,
+  liberations, motifs causaux/terminaux et le pic de priorite.
+
+Audits cibles, seed 0, 10 resets x 80 :
+
+- `tn36` ne produit aucun progres causal, option, modele medie, politique ou
+  etat successeur. SAGE.9e libere donc 210 decisions : 588 plans operateurs et
+  zero blocage, contre 378 plans et 210 blocages dans l'ablation SAGE.9e.
+  Reductions objectives (1230), experiences (22), niveaux et WIN restent
+  identiques : le budget inutile est retire sans modifier le resultat.
+- `cn04` possede une arête productive des la premiere epoque. L'arbitre produit
+  356 reservations causales et zero liberation, avec 201 allocations a 12 et
+  155 a 8. Activation et ablation conservent exactement 264 reductions, 196
+  experiences, 10 ouvertures, 2 politiques, 2 progres successeurs, profondeur
+  5, zero cycle et zero restauration obsolete.
+
+Held-out long final, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v22`, protocole apparie
+  valide et `controller_errors=0`.
+- 1147 allocations sont reellement evaluables : 727 reservations toutes
+  justifiees par incertitude causale et 420 liberations toutes localisees sur
+  `tn36`. Aucune allocation n'est fabriquee sur les jeux sans plan applicable.
+- Les plans operateurs passent de 1174 a 1594 et les blocages de 1123 a 703.
+- Toutes les metriques cognitives de resultat restent egales a l'ablation :
+  6530 reductions, 997 experiences, 19 ouvertures, 79 observations mediees,
+  3 politiques, 43 actions successeurs, 7 progres successeurs, profondeur 6,
+  zero cycle et zero restauration obsolete.
+- Le controleur conserve 2 niveaux contre 1 pour le legacy seul, mais obtient
+  les memes 2 niveaux dans l'ablation SAGE.9e ; aucun WIN et aucun gain terminal
+  n'est attribuable a cette iteration.
+- `terminal_test_reservations=0` : aucun objectif n'atteint encore le statut
+  terminal requis pour activer cette voie. Le resultat revendique une meilleure
+  allocation sans regression, pas une amelioration ARC terminale.
+
+Validation :
+
+- 4 tests propres a l'arbitre et au routage dans le controleur ;
+- tests cibles arbitre, controleur et benchmark : 30 passes ;
+- suite complete Python 3.12 : 1482 tests passes en 159.59 s ;
+- Ruff et compilation cibles : passes ;
+- diagnostics : `sage9e_tn36_online_arbiter*.json`,
+  `sage9e_cn04_online_arbiter*.json` et
+  `sage9e_held_out_long_online_arbiter*.json`.
+
+Lecture : le verrou d'allocation selective est franchi. Le prochain verrou est
+SAGE.9f : lorsqu'une hypothese atteint sa postcondition sans terminer le niveau,
+capturer cet etat comme frontiere terminale negative et explorer un suffixe
+borne qui distingue les continuations menant a un vrai changement de niveau.
+Seul le changement de niveau ou WIN devra crediter cette nouvelle continuation.
