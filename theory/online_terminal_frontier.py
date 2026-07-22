@@ -7,7 +7,9 @@ module keeps those states as negative terminal frontiers and runs a bounded
 continuation from them.  Repeated frontiers whose current bound is exhausted
 receive a larger continuation horizon, without using intermediate progress as
 evidence.  A continuation is credited only when the environment reports a
-level change or a win.
+level change or a win.  When the bounded horizon expires, a dormant lineage
+can keep observing the unchanged live policy.  A later terminal event only
+nominates that lineage; exact terminal replay is required before credit.
 
 The explorer is deliberately agnostic to game identity and objective family.
 It receives stable state signatures, objective identifiers, and concrete legal
@@ -66,6 +68,7 @@ class TerminalFrontierSelection:
     step_index: int
     action_limit: int
     replaying_successful_continuation: bool
+    replaying_dormant_terminal_candidate: bool
     reason: str
 
 
@@ -90,6 +93,49 @@ class SuccessfulContinuation:
 
 
 @dataclass
+class DormantTerminalContinuation:
+    """A delayed-terminal lineage awaiting exact online replay."""
+
+    actions: Tuple[TerminalFrontierAction, ...]
+    state_signatures: Tuple[str, ...]
+    level_progressed: bool
+    won: bool
+    terminal_observations: int = 1
+    replay_attempts: int = 0
+    confirmations: int = 0
+    refutations: int = 0
+    divergences: int = 0
+
+    @property
+    def signature(self) -> Tuple[str, ...]:
+        return tuple(action.signature for action in self.actions)
+
+    @property
+    def status(self) -> str:
+        if self.confirmations:
+            return "terminal_confirmed"
+        if self.refutations:
+            return "refuted"
+        if self.divergences:
+            return "inconclusive_divergence"
+        return "awaiting_replay"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "actions": [action.to_dict() for action in self.actions],
+            "state_signatures": list(self.state_signatures),
+            "level_progressed": self.level_progressed,
+            "won": self.won,
+            "terminal_observations": self.terminal_observations,
+            "replay_attempts": self.replay_attempts,
+            "confirmations": self.confirmations,
+            "refutations": self.refutations,
+            "divergences": self.divergences,
+            "status": self.status,
+        }
+
+
+@dataclass
 class TerminalNegativeFrontier:
     """A postcondition state observed without terminal success."""
 
@@ -109,6 +155,9 @@ class TerminalNegativeFrontier:
     longest_suffix_actions: int = 0
     successful_continuations: Dict[
         Tuple[str, ...], SuccessfulContinuation
+    ] = field(default_factory=dict)
+    dormant_terminal_candidates: Dict[
+        Tuple[str, ...], DormantTerminalContinuation
     ] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -133,6 +182,12 @@ class TerminalNegativeFrontier:
                     self.successful_continuations.items()
                 )
             ],
+            "dormant_terminal_candidates": [
+                continuation.to_dict()
+                for _, continuation in sorted(
+                    self.dormant_terminal_candidates.items()
+                )
+            ],
         }
 
 
@@ -143,7 +198,15 @@ class _ActiveSuffix:
     state_signatures: list[str]
     action_limit: int
     replay: SuccessfulContinuation | None = None
+    dormant_candidate_replay: DormantTerminalContinuation | None = None
     pending: TerminalFrontierSelection | None = None
+
+
+@dataclass
+class _DormantLineage:
+    frontier_id: str
+    actions: list[TerminalFrontierAction]
+    state_signatures: list[str]
 
 
 class OnlineTerminalFrontierExplorer:
@@ -160,6 +223,10 @@ class OnlineTerminalFrontierExplorer:
         enable_adaptive_horizon: bool = True,
         max_adaptive_suffix_actions: int = 24,
         adaptive_horizon_increment: int = 6,
+        enable_dormant_terminal_lineage: bool = True,
+        max_dormant_lineage_actions: int = 80,
+        max_dormant_candidates_per_frontier: int = 4,
+        max_dormant_candidate_replays: int = 1,
     ) -> None:
         self.enabled = bool(enabled)
         self.max_frontiers = max(1, int(max_frontiers))
@@ -181,6 +248,21 @@ class OnlineTerminalFrontierExplorer:
             1,
             int(adaptive_horizon_increment),
         )
+        self.enable_dormant_terminal_lineage = bool(
+            enable_dormant_terminal_lineage
+        )
+        self.max_dormant_lineage_actions = max(
+            self.max_adaptive_suffix_actions,
+            int(max_dormant_lineage_actions),
+        )
+        self.max_dormant_candidates_per_frontier = max(
+            1,
+            int(max_dormant_candidates_per_frontier),
+        )
+        self.max_dormant_candidate_replays = max(
+            1,
+            int(max_dormant_candidate_replays),
+        )
         self._frontiers: Dict[str, TerminalNegativeFrontier] = {}
         self._actions_by_state: Dict[
             str,
@@ -190,6 +272,7 @@ class OnlineTerminalFrontierExplorer:
             Counter()
         )
         self._active: _ActiveSuffix | None = None
+        self._dormant: _DormantLineage | None = None
         self._frontiers_captured = 0
         self._duplicate_captures = 0
         self._trials_started = 0
@@ -204,6 +287,20 @@ class OnlineTerminalFrontierExplorer:
         self._adaptive_horizon_extensions = 0
         self._adaptive_horizon_actions_granted = 0
         self._extended_suffix_actions = 0
+        self._dormant_lineages_started = 0
+        self._dormant_lineage_actions = 0
+        self._dormant_lineage_terminal_candidates = 0
+        self._dormant_lineage_level_candidates = 0
+        self._dormant_lineage_win_candidates = 0
+        self._dormant_lineage_censored = 0
+        self._dormant_lineage_expired = 0
+        self._dormant_lineage_unsafe = 0
+        self._dormant_candidate_capacity_blocks = 0
+        self._dormant_candidate_replay_attempts = 0
+        self._dormant_candidate_replay_actions = 0
+        self._dormant_candidate_confirmations = 0
+        self._dormant_candidate_refutations = 0
+        self._dormant_candidate_divergences = 0
         self._trial_started_this_branch = False
 
     @property
@@ -220,10 +317,13 @@ class OnlineTerminalFrontierExplorer:
 
     @property
     def active_replay_available(self) -> bool:
-        """Whether the active trial can replay a terminal-credited suffix."""
+        """Whether the active trial has a confirmed or candidate replay."""
         return bool(
             self._active is not None
-            and self._active.replay is not None
+            and (
+                self._active.replay is not None
+                or self._active.dormant_candidate_replay is not None
+            )
         )
 
     def remember_action(
@@ -288,12 +388,24 @@ class OnlineTerminalFrontierExplorer:
         if context_signature:
             frontier.context_signatures.add(str(context_signature))
         replay = self._best_successful_continuation(frontier)
-        if replay is None and frontier.trials >= self.max_trials_per_frontier:
+        dormant_candidate = (
+            None
+            if replay is not None
+            else self._best_dormant_terminal_candidate(frontier)
+        )
+        if (
+            replay is None
+            and dormant_candidate is None
+            and frontier.trials >= self.max_trials_per_frontier
+        ):
             return frontier_id
         if replay is not None and replay.confirmations >= 2:
             return frontier_id
-        if replay is None:
+        if replay is None and dormant_candidate is None:
             self._extend_exhausted_frontier_horizon(frontier)
+        if dormant_candidate is not None:
+            dormant_candidate.replay_attempts += 1
+            self._dormant_candidate_replay_attempts += 1
         frontier.trials += 1
         self._trials_started += 1
         self._trial_started_this_branch = True
@@ -301,11 +413,17 @@ class OnlineTerminalFrontierExplorer:
             frontier_id=frontier_id,
             actions=[],
             state_signatures=[state],
-            action_limit=max(
-                frontier.allocated_action_limit,
-                0 if replay is None else len(replay.actions),
+            action_limit=(
+                len(dormant_candidate.actions)
+                if dormant_candidate is not None
+                else (
+                    len(replay.actions)
+                    if replay is not None
+                    else frontier.allocated_action_limit
+                )
             ),
             replay=replay,
+            dormant_candidate_replay=dormant_candidate,
         )
         return frontier_id
 
@@ -325,23 +443,39 @@ class OnlineTerminalFrontierExplorer:
         allowed = {str(action).upper() for action in available_actions}
         state = str(state_signature)
 
-        if active.replay is not None:
+        replay_sequence = (
+            active.replay
+            if active.replay is not None
+            else active.dormant_candidate_replay
+        )
+        if replay_sequence is not None:
             step = len(active.actions)
-            expected_states = active.replay.state_signatures
+            expected_states = replay_sequence.state_signatures
             if step < len(expected_states) and state != expected_states[step]:
                 self._replay_divergences += 1
-                active.replay = None
-            elif step < len(active.replay.actions):
-                action = active.replay.actions[step]
+                if active.dormant_candidate_replay is not None:
+                    active.dormant_candidate_replay.divergences += 1
+                    self._dormant_candidate_divergences += 1
+                self._active = None
+                return None
+            elif step < len(replay_sequence.actions):
+                action = replay_sequence.actions[step]
                 if action.action_name in allowed:
                     return self._record_selection(
                         active,
                         frontier,
                         action,
-                        replaying=True,
+                        replaying=active.replay is not None,
+                        replaying_dormant_candidate=(
+                            active.dormant_candidate_replay is not None
+                        ),
                     )
                 self._replay_divergences += 1
-                active.replay = None
+                if active.dormant_candidate_replay is not None:
+                    active.dormant_candidate_replay.divergences += 1
+                    self._dormant_candidate_divergences += 1
+                self._active = None
+                return None
 
         candidates: Dict[str, TerminalFrontierAction] = {}
         for action in proposed_actions:
@@ -373,6 +507,7 @@ class OnlineTerminalFrontierExplorer:
             frontier,
             action,
             replaying=False,
+            replaying_dormant_candidate=False,
         )
 
     def observe_transition(
@@ -392,23 +527,49 @@ class OnlineTerminalFrontierExplorer:
             action_name,
             action_data,
         )
+        observed = TerminalFrontierAction.from_parts(action_name, action_data)
         active = self._active
         if active is None or active.pending is None:
-            return _empty_outcome()
+            return self._observe_dormant_lineage(
+                state_signature_after=str(state_signature_after),
+                observed=observed,
+                level_progressed=bool(level_progressed),
+                won=bool(won),
+                game_over=bool(game_over),
+            )
         selection = active.pending
-        observed = TerminalFrontierAction.from_parts(action_name, action_data)
+        dormant_candidate = active.dormant_candidate_replay
         replaying = bool(
             selection.replaying_successful_continuation
+            and observed.signature == selection.action.signature
+        )
+        replaying_dormant_candidate = bool(
+            selection.replaying_dormant_terminal_candidate
             and observed.signature == selection.action.signature
         )
         if selection.replaying_successful_continuation and not replaying:
             self._replay_divergences += 1
             active.replay = None
+        if (
+            selection.replaying_dormant_terminal_candidate
+            and not replaying_dormant_candidate
+        ):
+            self._replay_divergences += 1
+            self._dormant_candidate_divergences += 1
+            if dormant_candidate is not None:
+                dormant_candidate.divergences += 1
+            active.dormant_candidate_replay = None
         active.pending = None
         active.actions.append(observed)
         active.state_signatures.append(str(state_signature_after))
         self._suffix_actions += 1
-        if len(active.actions) > self.max_suffix_actions:
+        if selection.replaying_dormant_terminal_candidate:
+            self._dormant_candidate_replay_actions += 1
+        if (
+            len(active.actions) > self.max_suffix_actions
+            and active.replay is None
+            and dormant_candidate is None
+        ):
             self._extended_suffix_actions += 1
         terminal_success = bool(level_progressed or won)
         frontier = self._frontiers[active.frontier_id]
@@ -423,6 +584,8 @@ class OnlineTerminalFrontierExplorer:
             "action_limit": active.action_limit,
             "adaptive_horizon": bool(
                 active.action_limit > self.max_suffix_actions
+                and not selection.replaying_successful_continuation
+                and not selection.replaying_dormant_terminal_candidate
             ),
             "terminal_success": terminal_success,
             "level_progressed": bool(level_progressed),
@@ -430,30 +593,74 @@ class OnlineTerminalFrontierExplorer:
             "game_over": bool(game_over),
             "credited": False,
             "replaying_successful_continuation": replaying,
+            "replaying_dormant_terminal_candidate": (
+                replaying_dormant_candidate
+            ),
+            "dormant_terminal_candidate_nominated": False,
+            "dormant_terminal_candidate_confirmed": False,
         }
         if terminal_success:
             actions = tuple(active.actions)
             states = tuple(active.state_signatures)
-            signature = tuple(action.signature for action in actions)
-            continuation = frontier.successful_continuations.get(signature)
-            if continuation is None:
-                continuation = SuccessfulContinuation(actions, states)
-                frontier.successful_continuations[signature] = continuation
+            if selection.replaying_dormant_terminal_candidate:
+                if replaying_dormant_candidate:
+                    if dormant_candidate is not None:
+                        dormant_candidate.confirmations += 1
+                    self._dormant_candidate_confirmations += 1
+                    self._credit_continuation(
+                        frontier,
+                        actions,
+                        states,
+                        level_progressed=bool(level_progressed),
+                        won=bool(won),
+                        replaying=True,
+                    )
+                    outcome["credited"] = True
+                    outcome["dormant_terminal_candidate_confirmed"] = True
+                else:
+                    candidate = self._record_dormant_terminal_candidate(
+                        frontier,
+                        actions,
+                        states,
+                        level_progressed=bool(level_progressed),
+                        won=bool(won),
+                    )
+                    outcome["dormant_terminal_candidate_nominated"] = bool(
+                        candidate is not None
+                    )
             else:
-                continuation.confirmations += 1
-            frontier.terminal_credits += 1
-            self._terminal_credits += 1
-            self._level_change_credits += int(bool(level_progressed))
-            self._win_credits += int(bool(won))
-            if replaying:
-                self._successful_replays += 1
-            outcome["credited"] = True
+                self._credit_continuation(
+                    frontier,
+                    actions,
+                    states,
+                    level_progressed=bool(level_progressed),
+                    won=bool(won),
+                    replaying=replaying,
+                )
+                outcome["credited"] = True
             self._active = None
+        elif selection.replaying_dormant_terminal_candidate:
+            if replaying_dormant_candidate and (
+                game_over or len(active.actions) >= active.action_limit
+            ):
+                if dormant_candidate is not None:
+                    dormant_candidate.refutations += 1
+                self._dormant_candidate_refutations += 1
+            if game_over:
+                frontier.unsafe_suffixes += 1
+            if (
+                not replaying_dormant_candidate
+                or game_over
+                or len(active.actions) >= active.action_limit
+            ):
+                self._active = None
         elif game_over:
             frontier.unsafe_suffixes += 1
             self._active = None
         elif len(active.actions) >= active.action_limit:
             frontier.nonterminal_suffixes += 1
+            if active.replay is None:
+                self._start_dormant_lineage(active)
             self._active = None
         return outcome
 
@@ -461,7 +668,10 @@ class OnlineTerminalFrontierExplorer:
         """Censor an unfinished suffix without inventing negative credit."""
         if self._active is not None:
             self._frontiers[self._active.frontier_id].censored_suffixes += 1
+        if self._dormant is not None:
+            self._dormant_lineage_censored += 1
         self._active = None
+        self._dormant = None
         self._trial_started_this_branch = False
 
     def frontiers(self) -> Tuple[TerminalNegativeFrontier, ...]:
@@ -471,11 +681,16 @@ class OnlineTerminalFrontierExplorer:
         )
 
     def summary(self) -> Dict[str, Any]:
-        """Return auditable attribution counters for SAGE.9f/SAGE.9g."""
+        """Return auditable attribution counters for SAGE.9f-SAGE.9h."""
         successful = sum(
             len(frontier.successful_continuations)
             for frontier in self._frontiers.values()
         )
+        dormant_candidates = [
+            candidate
+            for frontier in self._frontiers.values()
+            for candidate in frontier.dormant_terminal_candidates.values()
+        ]
         return {
             "enabled": self.enabled,
             "max_frontiers": self.max_frontiers,
@@ -484,6 +699,16 @@ class OnlineTerminalFrontierExplorer:
             "adaptive_horizon_enabled": self.enable_adaptive_horizon,
             "max_adaptive_suffix_actions": self.max_adaptive_suffix_actions,
             "adaptive_horizon_increment": self.adaptive_horizon_increment,
+            "dormant_terminal_lineage_enabled": (
+                self.enable_dormant_terminal_lineage
+            ),
+            "max_dormant_lineage_actions": self.max_dormant_lineage_actions,
+            "max_dormant_candidates_per_frontier": (
+                self.max_dormant_candidates_per_frontier
+            ),
+            "max_dormant_candidate_replays": (
+                self.max_dormant_candidate_replays
+            ),
             "frontiers": len(self._frontiers),
             "frontiers_captured": self._frontiers_captured,
             "duplicate_captures": self._duplicate_captures,
@@ -504,6 +729,43 @@ class OnlineTerminalFrontierExplorer:
                     for frontier in self._frontiers.values()
                 ),
                 default=self.max_suffix_actions,
+            ),
+            "dormant_lineages_started": self._dormant_lineages_started,
+            "dormant_lineage_actions": self._dormant_lineage_actions,
+            "dormant_lineage_terminal_candidates": (
+                self._dormant_lineage_terminal_candidates
+            ),
+            "dormant_lineage_level_candidates": (
+                self._dormant_lineage_level_candidates
+            ),
+            "dormant_lineage_win_candidates": (
+                self._dormant_lineage_win_candidates
+            ),
+            "dormant_lineage_censored": self._dormant_lineage_censored,
+            "dormant_lineage_expired": self._dormant_lineage_expired,
+            "dormant_lineage_unsafe": self._dormant_lineage_unsafe,
+            "dormant_terminal_candidates": len(dormant_candidates),
+            "dormant_candidate_capacity_blocks": (
+                self._dormant_candidate_capacity_blocks
+            ),
+            "dormant_candidate_replay_attempts": (
+                self._dormant_candidate_replay_attempts
+            ),
+            "dormant_candidate_replay_actions": (
+                self._dormant_candidate_replay_actions
+            ),
+            "dormant_candidate_confirmations": (
+                self._dormant_candidate_confirmations
+            ),
+            "dormant_candidate_refutations": (
+                self._dormant_candidate_refutations
+            ),
+            "dormant_candidate_divergences": (
+                self._dormant_candidate_divergences
+            ),
+            "maximum_dormant_candidate_length": max(
+                (len(candidate.actions) for candidate in dormant_candidates),
+                default=0,
             ),
             "trials_started": self._trials_started,
             "suffix_actions": self._suffix_actions,
@@ -526,6 +788,9 @@ class OnlineTerminalFrontierExplorer:
                 for frontier in self._frontiers.values()
             ),
             "active_frontier_id": self.active_frontier_id,
+            "active_dormant_frontier_id": (
+                "" if self._dormant is None else self._dormant.frontier_id
+            ),
             "records": [frontier.to_dict() for frontier in self.frontiers()],
         }
 
@@ -536,6 +801,7 @@ class OnlineTerminalFrontierExplorer:
         action: TerminalFrontierAction,
         *,
         replaying: bool,
+        replaying_dormant_candidate: bool,
     ) -> TerminalFrontierSelection:
         prefix = tuple(item.signature for item in active.actions)
         self._choice_counts[(frontier.frontier_id, prefix, action.signature)] += 1
@@ -546,9 +812,14 @@ class OnlineTerminalFrontierExplorer:
             step_index=len(active.actions),
             action_limit=active.action_limit,
             replaying_successful_continuation=replaying,
+            replaying_dormant_terminal_candidate=(
+                replaying_dormant_candidate
+            ),
             reason=(
                 "replay terminal-credited continuation from identical frontier"
                 if replaying
+                else "replay delayed-terminal candidate from identical frontier"
+                if replaying_dormant_candidate
                 else (
                     "adaptive terminal-only continuation after exhausted "
                     "negative frontier"
@@ -562,6 +833,133 @@ class OnlineTerminalFrontierExplorer:
         )
         active.pending = selection
         return selection
+
+    def _start_dormant_lineage(self, active: _ActiveSuffix) -> None:
+        """Keep observing the live policy after its bounded suffix expires."""
+        if (
+            not self.enable_dormant_terminal_lineage
+            or len(active.actions) >= self.max_dormant_lineage_actions
+        ):
+            return
+        self._dormant = _DormantLineage(
+            frontier_id=active.frontier_id,
+            actions=list(active.actions),
+            state_signatures=list(active.state_signatures),
+        )
+        self._dormant_lineages_started += 1
+
+    def _observe_dormant_lineage(
+        self,
+        *,
+        state_signature_after: str,
+        observed: TerminalFrontierAction,
+        level_progressed: bool,
+        won: bool,
+        game_over: bool,
+    ) -> Dict[str, Any]:
+        lineage = self._dormant
+        if not self.enable_dormant_terminal_lineage or lineage is None:
+            return _empty_outcome()
+        lineage.actions.append(observed)
+        lineage.state_signatures.append(str(state_signature_after))
+        self._dormant_lineage_actions += 1
+        frontier = self._frontiers[lineage.frontier_id]
+        terminal_success = bool(level_progressed or won)
+        outcome = _empty_outcome()
+        outcome.update(
+            {
+                "frontier_id": frontier.frontier_id,
+                "objective_ids": list(frontier.objective_ids),
+                "suffix_step": len(lineage.actions) - 1,
+                "action_limit": self.max_dormant_lineage_actions,
+                "terminal_success": terminal_success,
+                "level_progressed": bool(level_progressed),
+                "won": bool(won),
+                "game_over": bool(game_over),
+                "dormant_lineage_observation": True,
+            }
+        )
+        if terminal_success:
+            candidate = self._record_dormant_terminal_candidate(
+                frontier,
+                tuple(lineage.actions),
+                tuple(lineage.state_signatures),
+                level_progressed=bool(level_progressed),
+                won=bool(won),
+            )
+            outcome["dormant_terminal_candidate_nominated"] = bool(
+                candidate is not None
+            )
+            self._dormant = None
+        elif game_over:
+            self._dormant_lineage_unsafe += 1
+            self._dormant = None
+        elif len(lineage.actions) >= self.max_dormant_lineage_actions:
+            self._dormant_lineage_expired += 1
+            self._dormant = None
+        return outcome
+
+    def _record_dormant_terminal_candidate(
+        self,
+        frontier: TerminalNegativeFrontier,
+        actions: Tuple[TerminalFrontierAction, ...],
+        state_signatures: Tuple[str, ...],
+        *,
+        level_progressed: bool,
+        won: bool,
+    ) -> DormantTerminalContinuation | None:
+        """Nominate delayed terminal evidence without granting credit."""
+        signature = tuple(action.signature for action in actions)
+        candidate = frontier.dormant_terminal_candidates.get(signature)
+        if candidate is not None:
+            candidate.terminal_observations += 1
+            candidate.level_progressed = bool(
+                candidate.level_progressed or level_progressed
+            )
+            candidate.won = bool(candidate.won or won)
+            return candidate
+        if (
+            len(frontier.dormant_terminal_candidates)
+            >= self.max_dormant_candidates_per_frontier
+        ):
+            self._dormant_candidate_capacity_blocks += 1
+            return None
+        candidate = DormantTerminalContinuation(
+            actions=actions,
+            state_signatures=state_signatures,
+            level_progressed=bool(level_progressed),
+            won=bool(won),
+        )
+        frontier.dormant_terminal_candidates[signature] = candidate
+        self._dormant_lineage_terminal_candidates += 1
+        self._dormant_lineage_level_candidates += int(bool(level_progressed))
+        self._dormant_lineage_win_candidates += int(bool(won))
+        return candidate
+
+    def _credit_continuation(
+        self,
+        frontier: TerminalNegativeFrontier,
+        actions: Tuple[TerminalFrontierAction, ...],
+        state_signatures: Tuple[str, ...],
+        *,
+        level_progressed: bool,
+        won: bool,
+        replaying: bool,
+    ) -> None:
+        """Credit only an actually observed terminal continuation."""
+        signature = tuple(action.signature for action in actions)
+        continuation = frontier.successful_continuations.get(signature)
+        if continuation is None:
+            continuation = SuccessfulContinuation(actions, state_signatures)
+            frontier.successful_continuations[signature] = continuation
+        else:
+            continuation.confirmations += 1
+        frontier.terminal_credits += 1
+        self._terminal_credits += 1
+        self._level_change_credits += int(bool(level_progressed))
+        self._win_credits += int(bool(won))
+        if replaying:
+            self._successful_replays += 1
 
     def _extend_exhausted_frontier_horizon(
         self,
@@ -586,6 +984,28 @@ class OnlineTerminalFrontierExplorer:
         frontier.horizon_history.append(allocated)
         self._adaptive_horizon_extensions += 1
         self._adaptive_horizon_actions_granted += allocated - previous
+
+    def _best_dormant_terminal_candidate(
+        self,
+        frontier: TerminalNegativeFrontier,
+    ) -> DormantTerminalContinuation | None:
+        candidates = [
+            candidate
+            for candidate in frontier.dormant_terminal_candidates.values()
+            if candidate.confirmations == 0
+            and candidate.refutations == 0
+            and candidate.replay_attempts < self.max_dormant_candidate_replays
+        ]
+        if not candidates:
+            return None
+        return max(
+            candidates,
+            key=lambda item: (
+                item.terminal_observations,
+                -len(item.actions),
+                item.signature,
+            ),
+        )
 
     @staticmethod
     def _best_successful_continuation(
@@ -621,10 +1041,15 @@ def _empty_outcome() -> Dict[str, Any]:
         "game_over": False,
         "credited": False,
         "replaying_successful_continuation": False,
+        "replaying_dormant_terminal_candidate": False,
+        "dormant_lineage_observation": False,
+        "dormant_terminal_candidate_nominated": False,
+        "dormant_terminal_candidate_confirmed": False,
     }
 
 
 __all__ = [
+    "DormantTerminalContinuation",
     "OnlineTerminalFrontierExplorer",
     "SuccessfulContinuation",
     "TerminalFrontierAction",

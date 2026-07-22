@@ -6779,3 +6779,75 @@ borne. SAGE.9h devra conserver une lignee dormante entre les frontieres et un
 signal terminal plus tardif, puis departager en ligne les points de branchement
 causalement necessaires par replay terminal, sans retro-crediter le progres
 local.
+
+## SAGE.9h - dormant terminal lineage and exact replay
+
+Objectif :
+
+- Ne plus perdre une frontiere lorsque son horizon SAGE.9g expire avant la fin
+  de la branche.
+- Conserver passivement la continuation de la politique normale jusqu'a un
+  changement de niveau, `WIN`, `GAME_OVER`, reset ou limite de 80 actions.
+- Traiter un terminal tardif comme candidature seulement, puis exiger un replay
+  exact depuis la meme frontiere avant tout credit positif.
+
+Representation et protocole de credit :
+
+- Apres epuisement d'un suffixe non terminal, `_DormantLineage` conserve les
+  actions concretes et les signatures exactes des etats sans modifier les
+  decisions du controleur.
+- Un changement de niveau ou `WIN` enregistre un
+  `DormantTerminalContinuation`. Cette observation vaut zero credit terminal,
+  meme si toute la trajectoire a ete mesuree.
+- Chaque frontiere garde au plus 4 candidats et chaque candidat obtient au plus
+  un replay. Le replay devient prioritaire seulement depuis la meme signature
+  de frontiere et doit reproduire chaque etat/action intermediaire.
+- Un terminal exact confirme et promeut la continuation. Une fin non terminale
+  ou dangereuse la refute ; une divergence d'etat, d'action ou de garde la
+  classe inconclusive. Aucun de ces echecs n'est transforme en progres.
+- Le benchmark v25 expose l'ablation isolee
+  `--disable-dormant-terminal-lineage`, les actions dormantes, candidatures,
+  longueurs, replays, confirmations, refutations et divergences.
+
+Audit cible `cn04`, seed 0, 10 resets x 80 :
+
+- 10 lignees dormantes suivent 643 actions apres les suffixes SAGE.9g ; 9 sont
+  censurees par un reset et la derniere reste ouverte a l'epuisement du budget.
+- Aucun changement de niveau ni WIN n'apparait : zero candidat, zero replay et
+  zero credit.
+- L'observation reste strictement non perturbatrice face a l'ablation : 196
+  experiences, 11 supports causaux, 1 option compilee, 13 actions successeurs,
+  2 progres successeurs, zero niveau et zero WIN.
+
+Held-out long final, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- Protocole apparie v25 valide, `controller_errors=0` et aucune erreur de
+  demarrage d'environnement.
+- 48 lignees suivent 2708 actions : 10 sur `wa30`, 20 sur `cn04` et 18 sur
+  `sb26`. Quarante-quatre sont censurees et quatre restent ouvertes a la fin
+  du dernier budget ; aucune n'expire a 80 ni ne rencontre `GAME_OVER`.
+- Zero lignee est creee sur `tn36` et, surtout, zero sur `ft09`. Les 2 niveaux
+  `ft09` surviennent donc hors de toute frontiere SAGE.9f/9g/9h : zero candidat
+  terminal, zero replay, zero confirmation et zero credit.
+- Activation et ablation restent identiques : 997 experiences, 21 supports
+  causaux, 2 options compilees, 43 actions successeurs, 7 progres successeurs,
+  2 niveaux contre 1 pour le legacy seul et zero WIN.
+- SAGE.9h valide la persistance et la discipline de replay, mais ne revendique
+  aucun nouveau niveau ARC ni attribution des deux niveaux existants.
+
+Validation :
+
+- tests de candidature sans credit, confirmation terminale exacte, refutation
+  non terminale, divergence et ablation de la lignee ;
+- tests cibles frontiere, controleur et benchmark : 43 passes ;
+- suite complete dans l'environnement ARC : 1498 tests passes en 161.83 s ;
+- compilation ciblee : passee ;
+- diagnostics : `sage9h_cn04_dormant_terminal_lineage*.json` et
+  `sage9h_held_out_long_dormant_terminal_lineage*.json`.
+
+Lecture : le verrou n'est plus temporel. Les trajectoires terminales positives
+de `ft09` ne contiennent aucune frontiere issue d'une postcondition d'objectif.
+SAGE.9i devra donc proposer en ligne des frontieres structurelles generiques aux
+changements de mode, d'entite ou de relation, puis laisser le terminal tardif
+et le replay SAGE.9h departager ces points de branchement, sans leur donner de
+credit local par construction.

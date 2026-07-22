@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v24"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v25"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -271,6 +271,17 @@ def _adaptive_terminal_frontier_horizon_disabled_controller(
     )
 
 
+def _dormant_terminal_lineage_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_dormant_terminal_lineage=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -364,6 +375,7 @@ def run_unified_cognition_ab_benchmark(
     enable_online_horizon_learning_arbiter: bool = True,
     enable_terminal_negative_frontier_exploration: bool = True,
     enable_adaptive_terminal_frontier_horizon: bool = True,
+    enable_dormant_terminal_lineage: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -505,6 +517,13 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _adaptive_terminal_frontier_horizon_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_dormant_terminal_lineage
+    ):
+        effective_controller_factory = (
+            _dormant_terminal_lineage_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -613,6 +632,7 @@ def run_unified_cognition_ab_benchmark(
         adaptive_terminal_frontier_horizon_enabled=(
             enable_adaptive_terminal_frontier_horizon
         ),
+        dormant_terminal_lineage_enabled=enable_dormant_terminal_lineage,
     )
     if not include_traces:
         _omit_step_traces(payload)
@@ -881,6 +901,90 @@ def _run_arm(
         "terminal_frontier_maximum_allocated_horizon": int(
             terminal_frontier_summary.get(
                 "maximum_allocated_horizon",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_lineages_started": int(
+            terminal_frontier_summary.get(
+                "dormant_lineages_started",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_lineage_actions": int(
+            terminal_frontier_summary.get(
+                "dormant_lineage_actions",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_terminal_candidates": int(
+            terminal_frontier_summary.get(
+                "dormant_terminal_candidates",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_level_candidates": int(
+            terminal_frontier_summary.get(
+                "dormant_lineage_level_candidates",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_win_candidates": int(
+            terminal_frontier_summary.get(
+                "dormant_lineage_win_candidates",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_lineage_censored": int(
+            terminal_frontier_summary.get(
+                "dormant_lineage_censored",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_lineage_expired": int(
+            terminal_frontier_summary.get(
+                "dormant_lineage_expired",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_lineage_unsafe": int(
+            terminal_frontier_summary.get(
+                "dormant_lineage_unsafe",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_candidate_replay_attempts": int(
+            terminal_frontier_summary.get(
+                "dormant_candidate_replay_attempts",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_candidate_replay_actions": int(
+            terminal_frontier_summary.get(
+                "dormant_candidate_replay_actions",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_candidate_confirmations": int(
+            terminal_frontier_summary.get(
+                "dormant_candidate_confirmations",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_candidate_refutations": int(
+            terminal_frontier_summary.get(
+                "dormant_candidate_refutations",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_dormant_candidate_divergences": int(
+            terminal_frontier_summary.get(
+                "dormant_candidate_divergences",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_maximum_dormant_candidate_length": int(
+            terminal_frontier_summary.get(
+                "maximum_dormant_candidate_length",
                 0,
             ) or 0
         ),
@@ -1986,6 +2090,7 @@ def _summarize_benchmark(
     online_horizon_learning_arbiter_enabled: bool,
     terminal_negative_frontier_exploration_enabled: bool,
     adaptive_terminal_frontier_horizon_enabled: bool,
+    dormant_terminal_lineage_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2076,6 +2181,9 @@ def _summarize_benchmark(
             ),
             "adaptive_terminal_frontier_horizon_enabled_in_unified": bool(
                 adaptive_terminal_frontier_horizon_enabled
+            ),
+            "dormant_terminal_lineage_enabled_in_unified": bool(
+                dormant_terminal_lineage_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -2234,6 +2342,65 @@ def _aggregate_arm(
         "terminal_frontier_maximum_allocated_horizon": max(
             (
                 int(row["terminal_frontier_maximum_allocated_horizon"])
+                for row in rows
+            ),
+            default=0,
+        ),
+        "terminal_frontier_dormant_lineages_started": sum(
+            int(row["terminal_frontier_dormant_lineages_started"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_lineage_actions": sum(
+            int(row["terminal_frontier_dormant_lineage_actions"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_terminal_candidates": sum(
+            int(row["terminal_frontier_dormant_terminal_candidates"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_level_candidates": sum(
+            int(row["terminal_frontier_dormant_level_candidates"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_win_candidates": sum(
+            int(row["terminal_frontier_dormant_win_candidates"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_lineage_censored": sum(
+            int(row["terminal_frontier_dormant_lineage_censored"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_lineage_expired": sum(
+            int(row["terminal_frontier_dormant_lineage_expired"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_lineage_unsafe": sum(
+            int(row["terminal_frontier_dormant_lineage_unsafe"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_candidate_replay_attempts": sum(
+            int(row["terminal_frontier_dormant_candidate_replay_attempts"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_candidate_replay_actions": sum(
+            int(row["terminal_frontier_dormant_candidate_replay_actions"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_candidate_confirmations": sum(
+            int(row["terminal_frontier_dormant_candidate_confirmations"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_candidate_refutations": sum(
+            int(row["terminal_frontier_dormant_candidate_refutations"])
+            for row in rows
+        ),
+        "terminal_frontier_dormant_candidate_divergences": sum(
+            int(row["terminal_frontier_dormant_candidate_divergences"])
+            for row in rows
+        ),
+        "terminal_frontier_maximum_dormant_candidate_length": max(
+            (
+                int(row["terminal_frontier_maximum_dormant_candidate_length"])
                 for row in rows
             ),
             default=0,
@@ -3409,6 +3576,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9g adaptive frontier horizon allocation only.",
     )
+    parser.add_argument(
+        "--disable-dormant-terminal-lineage",
+        action="store_true",
+        help="Ablate SAGE.9h delayed-terminal lineage and replay only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -3487,6 +3659,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_adaptive_terminal_frontier_horizon=(
             not args.disable_adaptive_terminal_frontier_horizon
+        ),
+        enable_dormant_terminal_lineage=(
+            not args.disable_dormant_terminal_lineage
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

@@ -161,6 +161,10 @@ class UnifiedCognitiveConfig:
     enable_adaptive_terminal_frontier_horizon: bool = True
     max_adaptive_terminal_frontier_suffix_actions: int = 24
     terminal_frontier_horizon_increment: int = 6
+    enable_dormant_terminal_lineage: bool = True
+    max_dormant_terminal_lineage_actions: int = 80
+    max_dormant_terminal_candidates_per_frontier: int = 4
+    max_dormant_terminal_candidate_replays: int = 1
 
 
 @dataclass(frozen=True)
@@ -189,6 +193,7 @@ class CognitiveDecision:
     terminal_frontier_suffix_step: int | None = None
     terminal_frontier_suffix_action_limit: int = 0
     terminal_frontier_replaying_successful_continuation: bool = False
+    terminal_frontier_replaying_dormant_candidate: bool = False
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -306,6 +311,9 @@ class CognitiveDecision:
             "terminal_frontier_replaying_successful_continuation": (
                 self
                 .terminal_frontier_replaying_successful_continuation
+            ),
+            "terminal_frontier_replaying_dormant_candidate": (
+                self.terminal_frontier_replaying_dormant_candidate
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -734,6 +742,18 @@ class UnifiedCognitiveController:
             ),
             adaptive_horizon_increment=(
                 self.config.terminal_frontier_horizon_increment
+            ),
+            enable_dormant_terminal_lineage=(
+                self.config.enable_dormant_terminal_lineage
+            ),
+            max_dormant_lineage_actions=(
+                self.config.max_dormant_terminal_lineage_actions
+            ),
+            max_dormant_candidates_per_frontier=(
+                self.config.max_dormant_terminal_candidates_per_frontier
+            ),
+            max_dormant_candidate_replays=(
+                self.config.max_dormant_terminal_candidate_replays
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
@@ -1227,7 +1247,11 @@ class UnifiedCognitiveController:
             confidence=(
                 1.0
                 if selection.replaying_successful_continuation
-                else 0.5
+                else (
+                    0.75
+                    if selection.replaying_dormant_terminal_candidate
+                    else 0.5
+                )
             ),
             objective_id=(
                 selection.objective_ids[0]
@@ -1241,6 +1265,9 @@ class UnifiedCognitiveController:
             terminal_frontier_suffix_action_limit=selection.action_limit,
             terminal_frontier_replaying_successful_continuation=(
                 selection.replaying_successful_continuation
+            ),
+            terminal_frontier_replaying_dormant_candidate=(
+                selection.replaying_dormant_terminal_candidate
             ),
         )
 
@@ -1277,6 +1304,7 @@ class UnifiedCognitiveController:
             terminal_frontier_suffix_step=selection.step_index,
             terminal_frontier_suffix_action_limit=selection.action_limit,
             terminal_frontier_replaying_successful_continuation=False,
+            terminal_frontier_replaying_dormant_candidate=False,
             reason=(
                 f"{decision.reason}; monitored by {selection.reason}"
             ),
