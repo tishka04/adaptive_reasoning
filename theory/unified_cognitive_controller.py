@@ -139,6 +139,9 @@ class UnifiedCognitiveConfig:
     enable_active_successor_exploration: bool = True
     enable_successor_structural_transfer: bool = True
     enable_active_mediated_replication: bool = True
+    enable_horizon_stable_learning_epochs: bool = True
+    horizon_learning_warmup_actions_per_branch: int = 40
+    max_operator_plan_actions_without_objective_progress: int = 12
 
 
 @dataclass(frozen=True)
@@ -677,7 +680,12 @@ class UnifiedCognitiveController:
         self._option_context_attempts: Counter[Tuple[str, int]] = Counter()
         self._decision_sources: Counter[str] = Counter()
         self._observed_transitions = 0
+        self._branch_step = 0
         self._operator_plans = 0
+        self._operator_plan_actions_since_objective_progress = 0
+        self._operator_plan_streak_peak = 0
+        self._operator_plan_budget_blocks = 0
+        self._operator_plan_progress_resets = 0
         self._theory_plans = 0
         self._safety_vetoes = 0
         self._generic_revisions = 0
@@ -829,6 +837,10 @@ class UnifiedCognitiveController:
         self._observe_pending_temporal_plan(update, pending)
         self._observe_pending_causal_option(update, pending)
         self._observe_pending_option(update, pending)
+        if self._objective_distance_reduced(update):
+            if self._operator_plan_actions_since_objective_progress > 0:
+                self._operator_plan_progress_resets += 1
+            self._operator_plan_actions_since_objective_progress = 0
         self.progress.on_action(
             grid_hash=after_hash,
             diff_signature=_diff_signature(update),
@@ -859,6 +871,7 @@ class UnifiedCognitiveController:
     ) -> CognitiveDecision:
         """Choose the next action through the consolidated decision path."""
         self._step += 1
+        self._branch_step += 1
         actions = _normalize_actions(available_actions)
         legacy_name = _normalize_action(legacy_action)
         if legacy_name not in actions and actions:
@@ -917,6 +930,8 @@ class UnifiedCognitiveController:
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
         self.causal_options.start_branch()
+        self._branch_step = 0
+        self._operator_plan_actions_since_objective_progress = 0
         self.progress.start_new_branch(
             current_validated_ops=self.operator_inducer.num_locked(),
             current_validated_rules=self._validated_rule_count(),
@@ -970,6 +985,19 @@ class UnifiedCognitiveController:
             "operators_induced": len(self.operator_inducer.operators),
             "operators_locked": self.operator_inducer.num_locked(),
             "operator_plans": self._operator_plans,
+            "horizon_stable_learning_epochs_enabled": (
+                self.config.enable_horizon_stable_learning_epochs
+            ),
+            "horizon_learning_warmup_actions_per_branch": int(
+                self.config.horizon_learning_warmup_actions_per_branch
+            ),
+            "horizon_learning_branch_step": self._branch_step,
+            "operator_plan_actions_since_objective_progress": (
+                self._operator_plan_actions_since_objective_progress
+            ),
+            "operator_plan_streak_peak": self._operator_plan_streak_peak,
+            "operator_plan_budget_blocks": self._operator_plan_budget_blocks,
+            "operator_plan_progress_resets": self._operator_plan_progress_resets,
             "rules": len(self.belief_loop.rule_engine.rules),
             "high_confidence_rules": len(
                 self.belief_loop.rule_engine.high_confidence_rules()
@@ -2256,6 +2284,23 @@ class UnifiedCognitiveController:
     ) -> CognitiveDecision | None:
         if not self.config.enable_operator_planning:
             return None
+        if (
+            self.config.enable_horizon_stable_learning_epochs
+            and self._branch_step
+            > max(
+                0,
+                int(self.config.horizon_learning_warmup_actions_per_branch),
+            )
+            and self._operator_plan_actions_since_objective_progress
+            >= max(
+                1,
+                int(
+                    self.config.max_operator_plan_actions_without_objective_progress
+                ),
+            )
+        ):
+            self._operator_plan_budget_blocks += 1
+            return None
         if not self.operator_inducer.operators:
             return None
         target = _nearest_non_player_target(observation)
@@ -2275,6 +2320,11 @@ class UnifiedCognitiveController:
         if action not in safe_actions:
             return None
         self._operator_plans += 1
+        self._operator_plan_actions_since_objective_progress += 1
+        self._operator_plan_streak_peak = max(
+            self._operator_plan_streak_peak,
+            self._operator_plan_actions_since_objective_progress,
+        )
         return CognitiveDecision(
             action_name=action,
             action_data=_operator_action_data(operator, call.args, observation),
@@ -2286,6 +2336,22 @@ class UnifiedCognitiveController:
             confidence=float(operator.confidence),
             operator_id=operator.operator_id,
         )
+
+    def _objective_distance_reduced(
+        self,
+        update: LiveTransitionUpdate,
+    ) -> bool:
+        """Detect progress only for objectives already supported by terminal evidence."""
+        for objective in self.terminal_objectives.objectives():
+            if objective.status != TerminalObjectiveStatus.TERMINAL_SUPPORTED:
+                continue
+            before = objective.distance(update.record.obs_before)
+            after = objective.distance(update.record.obs_after)
+            if before is None or after is None:
+                continue
+            if float(after) < float(before):
+                return True
+        return False
 
     def _guard_decision(
         self,

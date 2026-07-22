@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v20"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v21"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -226,6 +226,17 @@ def _successor_structural_transfer_disabled_controller(
     )
 
 
+def _horizon_stable_learning_epochs_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_horizon_stable_learning_epochs=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -315,6 +326,7 @@ def run_unified_cognition_ab_benchmark(
     enable_successor_policy_chaining: bool = True,
     enable_successor_structural_transfer: bool = True,
     enable_active_mediated_replication: bool = True,
+    enable_horizon_stable_learning_epochs: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -428,6 +440,13 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _active_mediated_replication_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_horizon_stable_learning_epochs
+    ):
+        effective_controller_factory = (
+            _horizon_stable_learning_epochs_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -523,6 +542,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         active_mediated_replication_enabled=(
             enable_active_mediated_replication
+        ),
+        horizon_stable_learning_epochs_enabled=(
+            enable_horizon_stable_learning_epochs
         ),
     )
     if not include_traces:
@@ -671,6 +693,23 @@ def _run_arm(
             str(attempt.get("reset_visual_digest", "")) for attempt in attempts
         ],
         "actions_executed": total_actions,
+        "operator_plan_actions": decision_sources["operator_plan"],
+        "operator_plan_actions_since_objective_progress": int(
+            controller_summary.get(
+                "operator_plan_actions_since_objective_progress",
+                0,
+            )
+            or 0
+        ),
+        "operator_plan_streak_peak": int(
+            controller_summary.get("operator_plan_streak_peak", 0) or 0
+        ),
+        "operator_plan_budget_blocks": int(
+            controller_summary.get("operator_plan_budget_blocks", 0) or 0
+        ),
+        "operator_plan_progress_resets": int(
+            controller_summary.get("operator_plan_progress_resets", 0) or 0
+        ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
         ),
@@ -1769,6 +1808,7 @@ def _summarize_benchmark(
     successor_policy_chaining_enabled: bool,
     successor_structural_transfer_enabled: bool,
     active_mediated_replication_enabled: bool,
+    horizon_stable_learning_epochs_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1848,6 +1888,9 @@ def _summarize_benchmark(
             "active_mediated_replication_enabled_in_unified": bool(
                 active_mediated_replication_enabled
             ),
+            "horizon_stable_learning_epochs_enabled_in_unified": bool(
+                horizon_stable_learning_epochs_enabled
+            ),
             "protocol_gate_passed": protocol_gate,
         },
         "baseline_definition": (
@@ -1901,6 +1944,23 @@ def _aggregate_arm(
         "episodes": reset_attempts,
         "reset_attempts": reset_attempts,
         "actions_executed": actions,
+        "operator_plan_actions": sum(
+            int(row["operator_plan_actions"]) for row in rows
+        ),
+        "operator_plan_actions_since_objective_progress": sum(
+            int(row["operator_plan_actions_since_objective_progress"])
+            for row in rows
+        ),
+        "operator_plan_streak_peak": max(
+            (int(row["operator_plan_streak_peak"]) for row in rows),
+            default=0,
+        ),
+        "operator_plan_budget_blocks": sum(
+            int(row["operator_plan_budget_blocks"]) for row in rows
+        ),
+        "operator_plan_progress_resets": sum(
+            int(row["operator_plan_progress_resets"]) for row in rows
+        ),
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
         ),
@@ -3052,6 +3112,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9c online successor analogy transfer only.",
     )
+    parser.add_argument(
+        "--disable-horizon-stable-learning-epochs",
+        action="store_true",
+        help="Ablate SAGE.9d horizon-stable learning epochs only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -3118,6 +3183,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_active_mediated_replication=(
             not args.disable_active_mediated_replication
+        ),
+        enable_horizon_stable_learning_epochs=(
+            not args.disable_horizon_stable_learning_epochs
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

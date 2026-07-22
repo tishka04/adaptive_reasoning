@@ -7,6 +7,7 @@ from pathlib import Path
 import numpy as np
 
 from theory.epistemic_metrics import HypothesisStatus
+from theory.online_goal_hypothesis import GeneratedGoalHypothesis
 from theory.unified_cognitive_controller import (
     UnifiedCognitiveConfig,
     UnifiedCognitiveController,
@@ -76,6 +77,97 @@ def test_observed_transitions_update_theory_profiler_and_operator_library():
     )
     assert planned.source == "operator_plan"
     assert planned.operator_id == "move_right_ACTION1"
+
+
+def test_horizon_stable_epoch_yields_after_unproductive_operator_budget():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=6,
+            horizon_learning_warmup_actions_per_branch=0,
+            max_operator_plan_actions_without_objective_progress=1,
+        ),
+    )
+
+    for index in range(6):
+        before = _player_grid(index + 1)
+        after = _player_grid(index + 2)
+        decision = controller.select_action(
+            current_grid=before,
+            available_actions=["ACTION1"],
+            legacy_action="ACTION1",
+        )
+        controller.observe_transition(
+            action=decision.action_name,
+            action_data=decision.action_data,
+            grid_before=before,
+            grid_after=after,
+            available_actions=["ACTION1"],
+        )
+
+    planned = controller.select_action(
+        current_grid=_player_grid(7),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+    yielded = controller.select_action(
+        current_grid=_player_grid(7),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+
+    assert planned.source == "operator_plan"
+    assert yielded.source != "operator_plan"
+    summary = controller.summary()
+    assert summary["operator_plan_streak_peak"] == 1
+    assert summary["operator_plan_budget_blocks"] == 1
+    assert summary["operator_plan_actions_since_objective_progress"] == 1
+
+    controller.on_reset()
+
+    assert (
+        controller.summary()[
+            "operator_plan_actions_since_objective_progress"
+        ]
+        == 0
+    )
+
+    replanned = controller.select_action(
+        current_grid=_player_grid(7),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+    assert replanned.source == "operator_plan"
+    supported = controller.terminal_objectives.register_generated(
+        GeneratedGoalHypothesis(
+            objective_id="reach::3",
+            family="reach",
+            source_color=None,
+            target_color=3,
+            predicate="player_adjacent_to_target",
+            supporting_rule_keys=(),
+            supporting_actions=("ACTION1",),
+            generation_reason="synthetic_terminal_supported_progress",
+        )
+    )
+    supported.terminal_contexts.update({"terminal-a", "terminal-b"})
+    before = _player_grid(7)
+    before[3, 10] = 3
+    after = _player_grid(8)
+    after[3, 10] = 3
+
+    controller.observe_transition(
+        action=replanned.action_name,
+        action_data=replanned.action_data,
+        grid_before=before,
+        grid_after=after,
+        available_actions=["ACTION1"],
+    )
+
+    summary = controller.summary()
+    assert summary["operator_plan_progress_resets"] == 1
+    assert summary["operator_plan_actions_since_objective_progress"] == 0
 
 
 def test_click_experiment_uses_objects_and_revises_relational_predictions():

@@ -6477,3 +6477,79 @@ transfert structurel, pas encore celui de son utilite comportementale. Le
 prochain verrou est SAGE.9d : rendre l'activation et la compilation des chaines
 stables lorsque l'horizon change, puis mesurer un transfert selectionne et
 progressif sur des etats analogues held-out avant de chercher un nouveau niveau.
+
+## SAGE.9d - horizon-stable online learning epochs
+
+Objectif :
+
+- Empecher un plan operateur valide mais epistemiquement sature de monopoliser
+  les actions supplementaires d'un horizon long.
+- Preserver exactement la trajectoire d'apprentissage initiale : les 40
+  premieres actions de chaque branche forment une epoque chaude sans nouveau
+  blocage.
+- Dans l'epoque longue, limiter a 12 les actions de plan operateur tant qu'aucun
+  objectif deja soutenu par un resultat terminal ne progresse.
+- Rearmer uniquement sur une nouvelle branche reelle ou sur le progres d'un
+  objectif `terminal_supported`. Un progres d'objectif candidat ne produit ni
+  valeur terminale ni budget supplementaire.
+- Laisser les priorites causales, temporelles, successeures et les contrastes
+  existants utiliser l'horizon libere sans creer de pseudo-branche.
+
+Representation et audit :
+
+- Le controleur suit le pas courant de la branche, les actions operateurs
+  depuis le dernier progres terminal soutenu, le pic, les blocages et les
+  rearmements.
+- Le benchmark v21 expose ces metriques et l'ablation isolee
+  `--disable-horizon-stable-learning-epochs`.
+- Les tests verifient le blocage borne, le reset de branche et le rearmement par
+  un objectif possedant deux contextes terminaux independants.
+- Le seuil 12 a ete compare a 16 et 24 sur le diagnostic de developpement : les
+  deux seuils plus hauts retombent a 3 ouvertures causales et ne compilent plus
+  de politique a horizon 80.
+
+Audit `cn04-65d47d14`, seed 0, 10 resets :
+
+- A horizon 40, activation et ablation sont strictement identiques : 400
+  actions, 391 reductions objectives, 155 experiences, 127 plans operateurs,
+  11 progres successeurs, profondeur 6 et aucun blocage SAGE.9d.
+- A horizon 80, l'activation produit 10 ouvertures causales contre 3, 10 modeles
+  d'effet contre 4, 4 demandes de discrimination contre 0, 2 politiques
+  compilees contre 0 et 2 progres successeurs contre 0.
+- Le pic operateur passe de 67 a 25 et 360 decisions operateurs saturees sont
+  bloquees ; profondeur 5, zero cycle et zero restauration obsolete.
+- Aucun niveau ni WIN n'est obtenu dans ce diagnostic.
+
+Held-out long final, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v21`, protocole apparie
+  valide et `controller_errors=0`.
+- 19 ouvertures causales contre 6 dans l'ablation, 79 observations d'effet
+  medie contre 18 et 2 abstractions soutenues contre 0.
+- 6 demandes de discrimination et 4 selections contre 0 ; 3 politiques sont
+  compilees contre 0.
+- 43 actions successeurs produisent 7 progres attribuables contre 0, avec une
+  profondeur maximale 6, zero cycle et zero restauration obsolete.
+- Le controleur unifie obtient 2 niveaux contre 1 pour le legacy seul. Les 2
+  niveaux sont egalement presents dans l'ablation SAGE.9d : ils valident le
+  controleur global, mais ne sont pas attribuables a cette iteration.
+- L'activation depense 997 actions d'experience contre 859 et produit 6530
+  reductions objectives contre 6973. Le gain epistemique est donc reel et
+  causalement attribuable, mais pas encore converti en amelioration terminale
+  nette ; aucun WIN.
+
+Validation :
+
+- diagnostics : `sage9d_cn04_h40*.json`, `sage9d_cn04_h80*.json` et
+  `sage9d_held_out_long*.json` ;
+- tests cibles controleur et benchmark : 25 passes ;
+- suite complete Python 3.12 : 1477 tests passes en 193.45 s ;
+- Ruff cible : passe.
+
+Lecture : le verrou de disparition des chaines lorsque l'horizon augmente est
+franchi. SAGE conserve son comportement court puis utilise l'horizon additionnel
+pour rouvrir l'apprentissage causal et produire plusieurs progres successeurs.
+Le prochain verrou est SAGE.9e : remplacer l'allocation fixe de la seconde
+epoque par une allocation en ligne fondee sur l'incertitude causale et la
+proximite d'un test terminal, afin de convertir ces chaines en changement de
+niveau plutot qu'en davantage de progres locaux.
