@@ -137,6 +137,7 @@ class UnifiedCognitiveConfig:
     enable_terminal_mediated_exploitation: bool = True
     enable_successor_policy_chaining: bool = True
     enable_active_successor_exploration: bool = True
+    enable_successor_structural_transfer: bool = True
     enable_active_mediated_replication: bool = True
 
 
@@ -634,6 +635,9 @@ class UnifiedCognitiveController:
             ),
             enable_active_successor_exploration=(
                 self.config.enable_active_successor_exploration
+            ),
+            enable_successor_structural_transfer=(
+                self.config.enable_successor_structural_transfer
             ),
             enable_active_mediated_replication=(
                 self.config.enable_active_mediated_replication

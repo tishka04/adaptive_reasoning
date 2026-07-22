@@ -6402,3 +6402,78 @@ appris et recompiles dans leurs etats successeurs, avec un gain A/B positif et
 des garde-fous effectifs. Le prochain verrou est SAGE.9c : generaliser ces
 transitions entre etats structurellement analogues afin d'obtenir plus tot les
 chaines utiles et de convertir ce progres local en niveaux gagnables.
+
+## SAGE.9c - online structural successor transfer
+
+Objectif :
+
+- Generaliser une intervention productive vers un autre etat successeur sans
+  conserver de couleur, identifiant d'objet, hash de forme ou reponse de niveau.
+- Construire la generalisation exclusivement depuis un progres observe pendant
+  le meme examen et ne jamais lui attribuer de valeur terminale locale.
+- Conserver les contraintes qui rendent l'analogie falsifiable : famille et
+  relation d'objectif, famille de mode, forme de grille, classe de distance,
+  topologie multiensemble de la scene et role semantique de l'action.
+- Donner priorite a une preuve exacte (`rank=58`), puis au transfert structurel
+  (`rank=57`), puis au contraste actif (`rank=55/53`).
+- Revoquer une classe a support unique des sa premiere contradiction et
+  conserver les budgets d'essais, la detection de cycle et les restaurations
+  sur l'etat successeur actif.
+
+Representation et controle :
+
+- `StructuralSuccessorPolicy` accumule supports, gains, branches, contextes,
+  etats sources, contradictions et echecs dangereux d'un couple
+  `(analogie, schema objectif, role action)` appris en ligne.
+- Les signatures d'analogie retirent les couleurs et hashes mais gardent les
+  classes de surface, formes topologiques, multiplicites et presence des roles
+  source/cible. Elles ne contiennent ni jeu, ni niveau, ni trace de solution.
+- Le compilateur peut examiner un candidat analogique meme lorsqu'une autre
+  action possede deja une preuve exacte ; le classement final maintient la
+  priorite de la preuve exacte.
+- Le budget historique par signature de branche ne bloque plus une action
+  admise dans un nouvel etat. Le budget propre a l'etat successeur et son chemin
+  anti-cycle deviennent autoritaires apres un changement structurel.
+- Le benchmark v20 expose l'ablation isolee
+  `--disable-successor-structural-transfer` et les metriques de classes,
+  predictions, selections, progres, contradictions et blocages.
+
+Audit `cn04-65d47d14`, seed 0, 10 resets x 40 :
+
+- 4 classes structurelles progressives sont apprises et 43 predictions de
+  transfert sont admissibles ; une preuve exacte de rang superieur gagne dans
+  chaque decision, donc `structural_transfer_selections=0` dans ce protocole ;
+- le correctif de budget par etat porte les progres successeurs de 3 a 11,
+  avec profondeur 6, zero cycle et zero restauration obsolete ; ce gain est
+  present aussi dans l'ablation SAGE.9c et n'est donc pas attribue au transfert ;
+- les deux bras courants sont identiques : 400 actions, 391 reductions,
+  155 experiences, 0 niveau et 0 WIN ;
+- aucun support terminal n'est deduit des 11 progres locaux.
+
+Held-out long, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- 6837 actions reelles, 2 niveaux, 6973 reductions et 859 experiences dans
+  chacun des deux bras ; aucun WIN ;
+- les deux niveaux `ft09` sont donc un resultat du controleur global et non de
+  SAGE.9c ;
+- aucune chaine successeur n'est compilee avec ce budget de 80, alors que
+  `cn04` en compile a budget 40. L'ablation est strictement neutre et aucun
+  cycle n'apparait.
+
+Validation :
+
+- tests unitaires SAGE.9c : abstraction sans couleur/hash, transfert en ligne,
+  ablation, revocation sur contradiction et budget par etat successeur ;
+- `targeted_sage9c_tests=44 passed`, Ruff cible passe et
+  `full_repository_tests=1475 passed` en 163.04 s sous Python 3.12 ;
+- diagnostics : `sage9c_cn04_structural_transfer*.json` et
+  `sage9c_held_out_long_structural_transfer*.json` ;
+- le resultat ne revendique ni niveau gagne par SAGE.9c ni amelioration A/B
+  nette : l'infrastructure est active et falsifiable, mais redondante avec les
+  preuves exactes sur les trajectoires observees.
+
+Lecture : SAGE.9c franchit le verrou de representation et de routage du
+transfert structurel, pas encore celui de son utilite comportementale. Le
+prochain verrou est SAGE.9d : rendre l'activation et la compilation des chaines
+stables lorsque l'horizon change, puis mesurer un transfert selectionne et
+progressif sur des etats analogues held-out avant de chercher un nouveau niveau.

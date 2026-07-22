@@ -356,6 +356,7 @@ class OnlineCausalOptionStore:
         enable_terminal_mediated_exploitation: bool = True,
         enable_successor_policy_chaining: bool = True,
         enable_active_successor_exploration: bool = True,
+        enable_successor_structural_transfer: bool = True,
         enable_active_mediated_replication: bool = True,
         max_mediated_replication_attempts: int = 2,
         persistent_actions_per_progress: int = 2,
@@ -411,6 +412,9 @@ class OnlineCausalOptionStore:
             ),
             enable_active_successor_exploration=(
                 enable_active_successor_exploration
+            ),
+            enable_successor_structural_transfer=(
+                enable_successor_structural_transfer
             ),
         )
         self.base_downstream_actions = min(
@@ -879,8 +883,9 @@ class OnlineCausalOptionStore:
             )
             signature = anchor.concrete_signature
             branch_attempts = active.signature_attempts.get(signature, 0)
-            if branch_attempts >= self.max_trials_per_signature:
-                continue
+            branch_limit_reached = bool(
+                branch_attempts >= self.max_trials_per_signature
+            )
             evidence = option.intervention_evidence.get(signature)
             total_attempts = 0 if evidence is None else evidence.attempts
             productivity = 0.0 if evidence is None else evidence.productivity
@@ -932,6 +937,12 @@ class OnlineCausalOptionStore:
                 and replication_prediction.compatible
                 and replication_prediction.cross_branch
             )
+            if (
+                branch_limit_reached
+                and not exploitation_actionable
+                and not exploitation_restoration_actionable
+            ):
+                continue
             binding_actionable = bool(
                 binding_prediction is not None
                 and binding_prediction.status in {
@@ -1869,7 +1880,7 @@ class OnlineCausalOptionStore:
             for anchor in anchors:
                 candidates = directional.get(anchor.concrete_signature, [])
                 if known_productive:
-                    candidates = [
+                    exact_candidates = [
                         item
                         for item in candidates
                         if item[1].compatible
@@ -1877,6 +1888,46 @@ class OnlineCausalOptionStore:
                         and item[1].status.value == "progressive"
                         and item[1].expected_gain > 0.0
                     ]
+                    analogy_candidates = [
+                        item
+                        for item in candidates
+                        if item[1].compatible
+                        and item[1].status.value in {
+                            "unknown",
+                            "needs_mode_contrast",
+                            "needs_entity_contrast",
+                        }
+                    ]
+                    successor_candidates = []
+                    for _, directional_prediction in (
+                        exact_candidates + analogy_candidates
+                    ):
+                        prediction = (
+                            self.mediated_exploitation.predict_successor(
+                                option_id=option.option_id,
+                                anchor=anchor,
+                                observation=observation,
+                                mode_signature=mode,
+                                directional_prediction=(
+                                    directional_prediction
+                                ),
+                                allow_exploration=False,
+                                record_prediction=record_predictions,
+                            )
+                        )
+                        if prediction is not None and prediction.compatible:
+                            successor_candidates.append(prediction)
+                    if successor_candidates:
+                        result[anchor.concrete_signature] = max(
+                            successor_candidates,
+                            key=lambda item: (
+                                item.selection_rank,
+                                item.expected_gain,
+                                item.confidence,
+                                item.objective_id,
+                            ),
+                        )
+                    continue
                 else:
                     candidates = [
                         item
@@ -1902,13 +1953,13 @@ class OnlineCausalOptionStore:
                     ),
                 )
                 prediction = self.mediated_exploitation.predict_successor(
-                        option_id=option.option_id,
-                        anchor=anchor,
-                        observation=observation,
-                        mode_signature=mode,
-                        directional_prediction=directional_prediction,
-                        allow_exploration=not known_productive,
-                        record_prediction=record_predictions,
+                    option_id=option.option_id,
+                    anchor=anchor,
+                    observation=observation,
+                    mode_signature=mode,
+                    directional_prediction=directional_prediction,
+                    allow_exploration=True,
+                    record_prediction=record_predictions,
                 )
                 if prediction is not None:
                     result[anchor.concrete_signature] = prediction

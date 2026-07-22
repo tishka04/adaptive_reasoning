@@ -17,6 +17,7 @@ from theory.online_causal_subgoal_graph import (
     CausalSubgoalEdgeStatus,
 )
 from theory.online_goal_hypothesis import GeneratedGoalHypothesis
+from theory.online_mediated_exploitation import MediatedExploitationPrediction
 from theory.online_terminal_objective import OnlineTerminalObjectiveStore
 from theory.unified_cognitive_controller import UnifiedCognitiveController
 
@@ -136,6 +137,40 @@ def test_opened_option_prefers_an_untried_nonpreparation_suffix_action():
     assert selection.action_name == "ACTION2"
     assert selection.intervention_signature == "ACTION2"
     assert selection.replaying_terminal_sequence is False
+
+
+def test_successor_policy_owns_its_attempt_budget_after_state_change():
+    edge, options, option = _compiled_store()
+    options.note_openings([edge.edge_key], context_signature="opened")
+    assert options._active is not None
+    options._active.signature_attempts["ACTION2"] = (
+        options.max_trials_per_signature
+    )
+    transferred = MediatedExploitationPrediction(
+        policy_id="online-successor-policy",
+        option_id=option.option_id,
+        objective_id="target",
+        action_signature="ACTION2",
+        action_transfer_signature="ACTION2",
+        compatible=True,
+        same_latent_mode=True,
+        state_id="successor-state",
+        chain_depth=2,
+        known_productive=True,
+        structurally_transferred=True,
+        structural_policy_id="successor-structural-policy:1",
+        expected_gain=1.0,
+        confidence=0.5,
+    )
+
+    selection = options.select_downstream(
+        _observation(_grid()),
+        safe_actions=["ACTION1", "ACTION2"],
+        mediated_exploitation_predictions={"ACTION2": transferred},
+    )
+
+    assert selection is not None
+    assert selection.action_name == "ACTION2"
 
 
 def test_terminal_transition_credits_complete_option_not_target_goal_truth():
