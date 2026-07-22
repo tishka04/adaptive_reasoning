@@ -135,6 +135,8 @@ class UnifiedCognitiveConfig:
     enable_active_mediated_discrimination: bool = True
     enable_active_mode_restoration: bool = True
     enable_terminal_mediated_exploitation: bool = True
+    enable_successor_policy_chaining: bool = True
+    enable_active_successor_exploration: bool = True
     enable_active_mediated_replication: bool = True
 
 
@@ -626,6 +628,12 @@ class UnifiedCognitiveController:
             ),
             enable_terminal_mediated_exploitation=(
                 self.config.enable_terminal_mediated_exploitation
+            ),
+            enable_successor_policy_chaining=(
+                self.config.enable_successor_policy_chaining
+            ),
+            enable_active_successor_exploration=(
+                self.config.enable_active_successor_exploration
             ),
             enable_active_mediated_replication=(
                 self.config.enable_active_mediated_replication

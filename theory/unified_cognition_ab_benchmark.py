@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v18"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v19"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -203,6 +203,18 @@ def _terminal_mediated_exploitation_disabled_controller(
     )
 
 
+def _successor_policy_chaining_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_successor_policy_chaining=False,
+            enable_active_successor_exploration=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -289,6 +301,7 @@ def run_unified_cognition_ab_benchmark(
     enable_active_mediated_discrimination: bool = True,
     enable_active_mode_restoration: bool = True,
     enable_terminal_mediated_exploitation: bool = True,
+    enable_successor_policy_chaining: bool = True,
     enable_active_mediated_replication: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
@@ -384,6 +397,13 @@ def run_unified_cognition_ab_benchmark(
         )
     elif (
         effective_controller_factory is None
+        and not enable_successor_policy_chaining
+    ):
+        effective_controller_factory = (
+            _successor_policy_chaining_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
         and not enable_active_mediated_replication
     ):
         effective_controller_factory = (
@@ -475,6 +495,9 @@ def run_unified_cognition_ab_benchmark(
         active_mode_restoration_enabled=enable_active_mode_restoration,
         terminal_mediated_exploitation_enabled=(
             enable_terminal_mediated_exploitation
+        ),
+        successor_policy_chaining_enabled=(
+            enable_successor_policy_chaining
         ),
         active_mediated_replication_enabled=(
             enable_active_mediated_replication
@@ -1201,6 +1224,60 @@ def _run_arm(
                 "restoration_failures", 0
             ) or 0
         ),
+        "mediated_successor_states_captured": int(
+            mediated_exploitation_summary.get(
+                "successor_states_captured", 0
+            ) or 0
+        ),
+        "mediated_successor_nonprogress_states_captured": int(
+            mediated_exploitation_summary.get(
+                "nonprogress_states_captured", 0
+            ) or 0
+        ),
+        "mediated_successor_known_actions_compiled": int(
+            mediated_exploitation_summary.get(
+                "successor_known_actions_compiled", 0
+            ) or 0
+        ),
+        "mediated_successor_exploration_actions": int(
+            mediated_exploitation_summary.get(
+                "successor_exploration_actions", 0
+            ) or 0
+        ),
+        "mediated_successor_action_selections": int(
+            mediated_exploitation_summary.get(
+                "successor_action_selections", 0
+            ) or 0
+        ),
+        "mediated_successor_progress_events": int(
+            mediated_exploitation_summary.get(
+                "successor_progress_events", 0
+            ) or 0
+        ),
+        "mediated_successor_nonprogress_events": int(
+            mediated_exploitation_summary.get(
+                "successor_nonprogress_events", 0
+            ) or 0
+        ),
+        "mediated_successor_terminal_events": int(
+            mediated_exploitation_summary.get(
+                "successor_terminal_events", 0
+            ) or 0
+        ),
+        "mediated_successor_dead_ends": int(
+            mediated_exploitation_summary.get("successor_dead_ends", 0) or 0
+        ),
+        "mediated_successor_cycle_blocks": int(
+            mediated_exploitation_summary.get("cycle_blocks", 0) or 0
+        ),
+        "mediated_successor_obsolete_restoration_blocks": int(
+            mediated_exploitation_summary.get(
+                "obsolete_restoration_blocks", 0
+            ) or 0
+        ),
+        "mediated_successor_maximum_chain_depth": int(
+            mediated_exploitation_summary.get("maximum_chain_depth", 0) or 0
+        ),
         "mediated_replication_requests_created": int(
             mediated_replication_summary.get("requests_created", 0) or 0
         ),
@@ -1637,6 +1714,7 @@ def _summarize_benchmark(
     active_mediated_discrimination_enabled: bool,
     active_mode_restoration_enabled: bool,
     terminal_mediated_exploitation_enabled: bool,
+    successor_policy_chaining_enabled: bool,
     active_mediated_replication_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
@@ -1707,6 +1785,9 @@ def _summarize_benchmark(
             ),
             "terminal_mediated_exploitation_enabled_in_unified": bool(
                 terminal_mediated_exploitation_enabled
+            ),
+            "successor_policy_chaining_enabled_in_unified": bool(
+                successor_policy_chaining_enabled
             ),
             "active_mediated_replication_enabled_in_unified": bool(
                 active_mediated_replication_enabled
@@ -2312,6 +2393,57 @@ def _aggregate_arm(
             int(row["mediated_exploitation_restoration_failures"])
             for row in rows
         ),
+        "mediated_successor_states_captured": sum(
+            int(row["mediated_successor_states_captured"])
+            for row in rows
+        ),
+        "mediated_successor_nonprogress_states_captured": sum(
+            int(row["mediated_successor_nonprogress_states_captured"])
+            for row in rows
+        ),
+        "mediated_successor_known_actions_compiled": sum(
+            int(row["mediated_successor_known_actions_compiled"])
+            for row in rows
+        ),
+        "mediated_successor_exploration_actions": sum(
+            int(row["mediated_successor_exploration_actions"])
+            for row in rows
+        ),
+        "mediated_successor_action_selections": sum(
+            int(row["mediated_successor_action_selections"])
+            for row in rows
+        ),
+        "mediated_successor_progress_events": sum(
+            int(row["mediated_successor_progress_events"])
+            for row in rows
+        ),
+        "mediated_successor_nonprogress_events": sum(
+            int(row["mediated_successor_nonprogress_events"])
+            for row in rows
+        ),
+        "mediated_successor_terminal_events": sum(
+            int(row["mediated_successor_terminal_events"])
+            for row in rows
+        ),
+        "mediated_successor_dead_ends": sum(
+            int(row["mediated_successor_dead_ends"])
+            for row in rows
+        ),
+        "mediated_successor_cycle_blocks": sum(
+            int(row["mediated_successor_cycle_blocks"])
+            for row in rows
+        ),
+        "mediated_successor_obsolete_restoration_blocks": sum(
+            int(row["mediated_successor_obsolete_restoration_blocks"])
+            for row in rows
+        ),
+        "mediated_successor_maximum_chain_depth": max(
+            (
+                int(row["mediated_successor_maximum_chain_depth"])
+                for row in rows
+            ),
+            default=0,
+        ),
         "mediated_replication_requests_created": sum(
             int(row["mediated_replication_requests_created"])
             for row in rows
@@ -2822,6 +2954,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9 revised-lattice terminal exploitation only.",
     )
+    parser.add_argument(
+        "--disable-successor-policy-chaining",
+        action="store_true",
+        help="Ablate SAGE.9a/9b successor chaining and active exploration.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -2879,6 +3016,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_terminal_mediated_exploitation=(
             not args.disable_terminal_mediated_exploitation
+        ),
+        enable_successor_policy_chaining=(
+            not args.disable_successor_policy_chaining
         ),
         enable_active_mediated_replication=(
             not args.disable_active_mediated_replication

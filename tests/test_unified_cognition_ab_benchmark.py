@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v18"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v19"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -116,6 +116,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         protocol["terminal_mediated_exploitation_enabled_in_unified"]
         is True
     )
+    assert protocol["successor_policy_chaining_enabled_in_unified"] is True
     assert protocol["active_mediated_replication_enabled_in_unified"] is True
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
@@ -582,3 +583,25 @@ def test_ab_benchmark_exposes_terminal_mediated_exploitation_ablation():
     assert metrics["mediated_exploitation_predictions"] == 0
     assert metrics["mediated_exploitation_selections"] == 0
     assert metrics["mediated_exploitation_terminal_events"] == 0
+
+
+def test_ab_benchmark_exposes_successor_policy_chaining_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-successor-chain-ablation"],
+        seeds=[53],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_successor_policy_chaining=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["terminal_mediated_exploitation_enabled_in_unified"]
+        is True
+    )
+    assert protocol["successor_policy_chaining_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["mediated_successor_states_captured"] == 0
+    assert metrics["mediated_successor_action_selections"] == 0
+    assert metrics["mediated_successor_progress_events"] == 0

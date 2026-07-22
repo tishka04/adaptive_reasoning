@@ -6325,3 +6325,80 @@ politique actuelle decrit seulement son etat d'entree. Il faut apprendre en
 ligne une chaine de politiques sur les etats successeurs, reevaluer les
 contraintes du porteur apres chaque progres et poursuivre jusqu'a un evenement
 terminal, toujours sans transformer le progres local en preuve de but.
+
+## SAGE.9a - online successor-policy chaining
+
+Objectif :
+
+- Capturer apres chaque action de politique le mode latent courant, toutes les
+  distances terminales mesurables et un inventaire structurel sans identite
+  d'objet ni template de niveau.
+- Apres un progres, creer un etat successeur persistant et y reevaluer toutes
+  les interventions avec les modeles directionnels appris pendant l'episode.
+- Compiler une action seulement si une preuve progressive existe dans le mode
+  exact. Si aucune action productive n'est connue, autoriser le noyau SAGE.9b :
+  un contraste actif borne, puis apprendre son effet reel.
+- Autoriser un changement d'objectif terminal dans un successeur uniquement a
+  partir des hypotheses et effets deja appris en ligne.
+- Reevaluer apres chaque action, limiter profondeur et essais, bloquer tout
+  retour a une signature deja presente dans le chemin et restaurer seulement
+  le dernier etat actif, jamais une racine depassee.
+- Continuer a reserver le support terminal a un changement de niveau ou WIN
+  observe.
+
+Representation et controle :
+
+- `SuccessorPolicyState` stocke objectif actif, mode, structures restantes,
+  distances objectives, transition d'entree, action compilee ou exploratoire,
+  essais par branche, enfants et statut epistemique.
+- La signature d'etat combine objectif, mode, distances et structures. Les
+  chemins par branche rendent la detection de cycle explicite.
+- Une action progressive exacte domine un contraste actif. Un contraste avec
+  gain transfere positif domine une action totalement inconnue.
+- Une transition non progressive qui change la scene devient elle aussi un
+  nouvel etat reevalue ; un no-op consomme le budget du meme etat.
+- Le benchmark v19 expose l'ablation isolee
+  `--disable-successor-policy-chaining` et toutes les metriques de capture,
+  compilation, exploration, progres, profondeur, cycle et restauration
+  obsolete.
+
+Audit actif `cn04-65d47d14`, seed 0, 10 resets x 40 :
+
+- 1 politique racine est compilee et produit 8 progres au total ;
+- 4 etats issus d'un progres sont captures ;
+- 3 actions successeurs sont compilees depuis une preuve exacte en ligne ;
+- 3 progres supplementaires sont attribues aux etats successeurs ;
+- profondeur maximale 6, `cycle_blocks=0` et
+  `obsolete_restoration_blocks=0` ;
+- `objective_distance_reductions=396`, contre 393 dans l'ablation SAGE.9 ;
+- `experiment_actions=157`, contre 143 dans l'ablation : le gain objectif est
+  obtenu au prix explicite de 14 contrastes supplementaires ;
+- aucun niveau ni WIN n'est obtenu et aucun support terminal n'est invente.
+
+Held-out long, 5 jeux public-unseen, seeds 0/1, 10 resets x 40 :
+
+- `schema_version=sage.unified_cognition_ab_held_out.v19` et protocole valide ;
+- 3929 actions reelles executees dans chaque bras ;
+- 4584 reductions objectives avec la chaine, contre 4581 sans la chaine ;
+- 3 progres successeurs, 3 actions compilees, profondeur 6, zero cycle ;
+- 2 changements de niveau sur `ft09` dans les deux bras, donc ils constituent
+  un progres ARC reel du controleur global mais ne sont pas attribuables a
+  SAGE.9a ; aucun WIN.
+
+Runtime et validation :
+
+- la validation globale utilise desormais le runtime Python 3.12 fonctionnel
+  de `ARC-AGI-3-Agents/.venv`, avec `arc_agi` et `arcengine` coherents ;
+- `tests/__init__.py` empeche un paquet tiers homonyme de masquer les helpers
+  locaux tout en preservant les imports historiques ;
+- `new_sage9a_tests=14 passed` ;
+- `benchmark_and_sage9a_tests=30 passed` ;
+- `full_repository_tests=1470 passed` en 156.43 s sur l'etat final ;
+- Ruff cible : passe.
+
+Lecture : le verrou de continuation est franchi sur l'horizon long. SAGE sait
+maintenant transformer un premier progres en plusieurs progres consecutifs
+appris et recompiles dans leurs etats successeurs, avec un gain A/B positif et
+des garde-fous effectifs. Le prochain verrou est SAGE.9c : generaliser ces
+transitions entre etats structurellement analogues afin d'obtenir plus tot les
+chaines utiles et de convertir ce progres local en niveaux gagnables.

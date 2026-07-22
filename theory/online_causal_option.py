@@ -354,6 +354,8 @@ class OnlineCausalOptionStore:
         enable_active_mediated_discrimination: bool = True,
         enable_active_mode_restoration: bool = True,
         enable_terminal_mediated_exploitation: bool = True,
+        enable_successor_policy_chaining: bool = True,
+        enable_active_successor_exploration: bool = True,
         enable_active_mediated_replication: bool = True,
         max_mediated_replication_attempts: int = 2,
         persistent_actions_per_progress: int = 2,
@@ -403,6 +405,12 @@ class OnlineCausalOptionStore:
                 and enable_online_mediated_anti_unification
                 and enable_active_mediated_discrimination
                 and enable_terminal_mediated_exploitation
+            ),
+            enable_successor_policy_chaining=(
+                enable_successor_policy_chaining
+            ),
+            enable_active_successor_exploration=(
+                enable_active_successor_exploration
             ),
         )
         self.base_downstream_actions = min(
@@ -1269,7 +1277,13 @@ class OnlineCausalOptionStore:
                 "" if downstream_subgoal is None else downstream_subgoal.subgoal_id
             ),
             downstream_objective_id=(
-                "" if downstream_subgoal is None else downstream_subgoal.objective_id
+                exploitation_prediction.objective_id
+                if selected_exploitation
+                else (
+                    ""
+                    if downstream_subgoal is None
+                    else downstream_subgoal.objective_id
+                )
             ),
             downstream_subgoal_status=(
                 "" if downstream_subgoal is None else downstream_subgoal.status.value
@@ -1798,20 +1812,109 @@ class OnlineCausalOptionStore:
         policy = self.mediated_exploitation.active_policy
         if active is None or option is None or policy is None:
             return {}
-        objective = store.objective(policy.objective_id)
+        active_objective_id = self.mediated_exploitation.active_objective_id(
+            policy
+        )
+        objective = store.objective(active_objective_id)
         if objective is None:
             return {}
         mode = latent_mode_signature(observation, objective)
-        result: Dict[str, MediatedExploitationPrediction] = {}
-        for action_name, action_data in _concrete_actions(
-            safe_actions,
-            click_actions,
-        ):
-            anchor = self.intervention_anchor(
-                action_name,
-                action_data,
-                observation,
+        objective_distances = _measurable_objective_distances(
+            store,
+            observation,
+        )
+        state = self.mediated_exploitation.synchronize_active_state(
+            mode_signature=mode,
+            observation=observation,
+            objective_distances=objective_distances,
+        )
+        concrete = _concrete_actions(safe_actions, click_actions)
+        anchors = [
+            self.intervention_anchor(action_name, action_data, observation)
+            for action_name, action_data in concrete
+        ]
+        if state is not None and state.depth > 0:
+            objectives = [
+                candidate
+                for candidate in store.objectives()
+                if candidate.status.value != "refuted"
+                and objective_distances.get(candidate.objective_id, 0.0) > 0.0
+            ]
+            directional = {
+                anchor.concrete_signature: [
+                    (
+                        candidate,
+                        self.downstream_subgoals.directional_model.predict(
+                        option_id=option.option_id,
+                        objective=candidate,
+                        observation=observation,
+                        action_signature=anchor.concrete_signature,
+                        action_transfer_signature=anchor.transfer_signature,
+                        record_prediction=record_predictions,
+                        ),
+                    )
+                    for candidate in objectives
+                ]
+                for anchor in anchors
+            }
+            known_productive = any(
+                prediction.compatible
+                and prediction.exact_mode_evidence
+                and prediction.status.value == "progressive"
+                and prediction.expected_gain > 0.0
+                for candidates in directional.values()
+                for _, prediction in candidates
             )
+            result: Dict[str, MediatedExploitationPrediction] = {}
+            for anchor in anchors:
+                candidates = directional.get(anchor.concrete_signature, [])
+                if known_productive:
+                    candidates = [
+                        item
+                        for item in candidates
+                        if item[1].compatible
+                        and item[1].exact_mode_evidence
+                        and item[1].status.value == "progressive"
+                        and item[1].expected_gain > 0.0
+                    ]
+                else:
+                    candidates = [
+                        item
+                        for item in candidates
+                        if item[1].compatible
+                        and item[1].status.value in {
+                            "unknown",
+                            "needs_mode_contrast",
+                            "needs_entity_contrast",
+                        }
+                    ]
+                if not candidates:
+                    continue
+                _, directional_prediction = max(
+                    candidates,
+                    key=lambda item: (
+                        item[1].selection_rank,
+                        item[1].expected_gain,
+                        item[1].confidence,
+                        item[0].terminal_support,
+                        item[0].prior_priority,
+                        item[0].objective_id,
+                    ),
+                )
+                prediction = self.mediated_exploitation.predict_successor(
+                        option_id=option.option_id,
+                        anchor=anchor,
+                        observation=observation,
+                        mode_signature=mode,
+                        directional_prediction=directional_prediction,
+                        allow_exploration=not known_productive,
+                        record_prediction=record_predictions,
+                )
+                if prediction is not None:
+                    result[anchor.concrete_signature] = prediction
+            return result
+        result: Dict[str, MediatedExploitationPrediction] = {}
+        for anchor in anchors:
             prediction = self.mediated_exploitation.predict(
                 option_id=option.option_id,
                 anchor=anchor,
@@ -1842,11 +1945,16 @@ class OnlineCausalOptionStore:
         )
         if policy is None:
             return {}
-        objective = store.objective(policy.objective_id)
+        objective = store.objective(
+            self.mediated_exploitation.active_objective_id(policy)
+        )
         if objective is None:
             return {}
         current_mode = latent_mode_signature(observation, objective)
-        if current_mode == policy.mode_signature:
+        target_mode = self.mediated_exploitation.restoration_target_mode(
+            policy
+        )
+        if current_mode == target_mode:
             return {}
         signatures = [
             self.intervention_anchor(
@@ -1865,7 +1973,7 @@ class OnlineCausalOptionStore:
                 option_id=option.option_id,
                 objective=objective,
                 observation=observation,
-                target_mode_signature=policy.mode_signature,
+                target_mode_signature=target_mode,
                 action_signatures=signatures,
             )
         )
@@ -2171,7 +2279,11 @@ class OnlineCausalOptionStore:
                 exploitation_objective = (
                     None
                     if exploitation_policy is None
-                    else store.objective(exploitation_policy.objective_id)
+                    else store.objective(
+                        self.mediated_exploitation.active_objective_id(
+                            exploitation_policy
+                        )
+                    )
                 )
                 if exploitation_objective is not None:
                     self.downstream_subgoals.directional_model.observe(
@@ -2272,6 +2384,53 @@ class OnlineCausalOptionStore:
                             ] = compiled_policy_id
                 exploitation_outcome: Dict[str, Any] = {"observed": False}
                 if mediated_exploitation_policy_id:
+                    exploitation_policy = next((
+                        item
+                        for item in self.mediated_exploitation.policies()
+                        if item.policy_id
+                        == str(mediated_exploitation_policy_id)
+                    ), None)
+                    exploitation_objective = (
+                        None
+                        if exploitation_policy is None
+                        else store.objective(
+                            exploitation_policy.last_objective_id
+                            or self.mediated_exploitation.active_objective_id(
+                                exploitation_policy
+                            )
+                        )
+                    )
+                    before_distances = _measurable_objective_distances(
+                        store,
+                        update.record.obs_before,
+                    )
+                    after_distances = _measurable_objective_distances(
+                        store,
+                        update.record.obs_after,
+                    )
+                    if (
+                        exploitation_objective is not None
+                        and (
+                            binding_objective is None
+                            or binding_objective.objective_id
+                            != exploitation_objective.objective_id
+                        )
+                    ):
+                        self.downstream_subgoals.directional_model.observe(
+                            option_id=option.option_id,
+                            objective=exploitation_objective,
+                            observation_before=update.record.obs_before,
+                            observation_after=update.record.obs_after,
+                            action_signature=signature,
+                            action_transfer_signature=(
+                                anchor.transfer_signature
+                            ),
+                            effect_signature=effect_signature,
+                            branch_index=active.branch_index,
+                            context_signature=effect_context,
+                            source="mediated_successor_policy",
+                            unsafe=bool(update.record.diff.game_over),
+                        )
                     exploitation_outcome = (
                         self.mediated_exploitation.observe_policy_action(
                             str(mediated_exploitation_policy_id),
@@ -2279,6 +2438,29 @@ class OnlineCausalOptionStore:
                             terminal_success=terminal_success,
                             unsafe=bool(update.record.diff.game_over),
                             context_signature=effect_context,
+                            observation_before=update.record.obs_before,
+                            observation_after=update.record.obs_after,
+                            before_mode=(
+                                ""
+                                if exploitation_objective is None
+                                else latent_mode_signature(
+                                    update.record.obs_before,
+                                    exploitation_objective,
+                                )
+                            ),
+                            after_mode=(
+                                ""
+                                if exploitation_objective is None
+                                else latent_mode_signature(
+                                    update.record.obs_after,
+                                    exploitation_objective,
+                                )
+                            ),
+                            objective_distances_before=before_distances,
+                            objective_distances_after=after_distances,
+                            action_transfer_signature=(
+                                anchor.transfer_signature
+                            ),
                         )
                     )
                     outcome["mediated_exploitation_status"] = str(
@@ -2979,6 +3161,21 @@ def _concrete_actions(
             seen.add(identity)
             result.append((name, action_data))
     return result
+
+
+def _measurable_objective_distances(
+    store: OnlineTerminalObjectiveStore,
+    observation: GameObservation,
+) -> Dict[str, float]:
+    """Snapshot every live measurable candidate without terminal templates."""
+    distances: Dict[str, float] = {}
+    for objective in store.objectives():
+        if objective.status.value == "refuted":
+            continue
+        assessment = store.assess_objective(objective, observation)
+        if assessment.distance is not None:
+            distances[objective.objective_id] = float(assessment.distance)
+    return distances
 
 
 def _action_data(update: Any) -> Mapping[str, Any]:
