@@ -6633,3 +6633,76 @@ SAGE.9f : lorsqu'une hypothese atteint sa postcondition sans terminer le niveau,
 capturer cet etat comme frontiere terminale negative et explorer un suffixe
 borne qui distingue les continuations menant a un vrai changement de niveau.
 Seul le changement de niveau ou WIN devra crediter cette nouvelle continuation.
+
+## SAGE.9f - terminal-negative frontier continuation
+
+Objectif :
+
+- Transformer une postcondition locale observee sans changement de niveau en
+  frontiere terminale negative, jamais en preuve positive du but.
+- Evaluer depuis cette frontiere un suffixe court et borne, puis separer les
+  continuations par leur resultat terminal reel.
+- Ne memoriser comme reussie et ne rejouer qu'une continuation ayant produit
+  `level_complete`, une hausse de `levels_completed` ou `WIN`.
+
+Representation et controle :
+
+- `OnlineTerminalFrontierExplorer` indexe une frontiere par la signature SHA-1
+  exacte de l'etat, le niveau courant et les identifiants des hypotheses dont
+  la postcondition vient d'etre observee.
+- Une completion explicitement predite ou selectionnee est admissible. A
+  defaut, une seule hypothese completee soutenue par l'action reellement
+  executee est retenue ; les autres candidats mesurables ne declenchent pas
+  d'exploration speculative.
+- Un seul essai peut etre ouvert par branche, avec au plus 4 essais par
+  frontiere et 6 actions par suffixe. Un reset censure l'essai sans lui donner
+  de credit ; `GAME_OVER` le classe dangereux ; l'expiration non terminale le
+  classe negatif.
+- Tant qu'aucun suffixe n'a de preuve terminale, SAGE.9f observe les decisions
+  normales du controleur sans les remplacer. Les options causales, plans
+  temporels, experiences, operateurs et replis restent donc inchanges. Seul un
+  suffixe deja credite peut devenir prioritaire pour un replay exact, limite a
+  une confirmation supplementaire.
+- Le benchmark v23 expose l'ablation isolee
+  `--disable-terminal-negative-frontier-exploration`, les captures, essais,
+  actions observees, echecs non terminaux, dangers, credits de niveau/WIN,
+  continuations reussies et replays.
+
+Audit cible `cn04`, seed 0, 10 resets x 80 :
+
+- SAGE.9f capture 7 frontieres, ouvre 10 essais et evalue 60 actions de suffixe.
+  Aucun suffixe ne change de niveau dans sa fenetre : zero credit terminal,
+  zero continuation promue et zero replay.
+- L'observation est non perturbatrice : activation et ablation conservent 196
+  experiences, 11 supports causaux, 1 option compilee, 13 actions successeurs,
+  2 progres successeurs, zero niveau et zero WIN.
+
+Held-out long final, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- Protocole apparie v23 valide et `controller_errors=0`.
+- 36 frontieres, 48 essais et 288 actions de suffixe sont evalues ; aucun
+  changement de niveau ni WIN n'arrive dans une fenetre active, donc zero
+  credit, zero promotion et zero replay.
+- Activation et ablation restent identiques sur les resultats existants : 997
+  experiences, 21 supports causaux, 43 actions successeurs, 7 progres
+  successeurs, 2 niveaux contre 1 pour le legacy seul, et zero WIN.
+- Les deux niveaux restent ceux deja observes sur `ft09` et ne sont pas
+  attribues a SAGE.9f. Cette iteration revendique la frontiere negative, la
+  mesure de suffixe et la discipline de credit, pas un nouveau gain ARC.
+
+Validation :
+
+- tests unitaires du store, du credit terminal, du danger et du replay ;
+- integration controleur et ablation benchmark : 33 tests cibles passes ;
+- suite complete dans l'environnement ARC : 1488 tests passes en 162.36 s ;
+- compilation ciblee : passee ;
+- diagnostics : `sage9f_cn04_terminal_frontier*.json` et
+  `sage9f_held_out_long_terminal_frontier*.json`.
+
+Lecture : le controleur sait maintenant conserver un echec local comme point
+de depart d'une recherche terminale sans confondre progression et victoire, et
+il peut convertir un futur succes borne en replay. Le prochain verrou est que
+les frontieres actuelles restent a plus de six actions d'un signal terminal.
+SAGE.9g devra allouer adaptativement un horizon de continuation aux frontieres
+repetees, sans perturber les chaines causales et sans utiliser de progres local
+comme credit positif.

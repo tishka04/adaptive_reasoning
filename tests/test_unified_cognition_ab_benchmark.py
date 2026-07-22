@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v22"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v23"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -693,3 +693,27 @@ def test_ab_benchmark_exposes_online_horizon_learning_arbiter_ablation():
     assert metrics["horizon_arbiter_evaluations"] == 0
     assert metrics["horizon_arbiter_reservations"] == 0
     assert metrics["horizon_arbiter_releases"] == 0
+
+
+def test_ab_benchmark_exposes_terminal_negative_frontier_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-terminal-frontier-ablation"],
+        seeds=[71],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_terminal_negative_frontier_exploration=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["online_horizon_learning_arbiter_enabled_in_unified"] is True
+    assert (
+        protocol[
+            "terminal_negative_frontier_exploration_enabled_in_unified"
+        ]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["terminal_frontier_suffix_actions"] == 0
+    assert metrics["terminal_frontiers_captured"] == 0
+    assert metrics["terminal_frontier_terminal_credits"] == 0

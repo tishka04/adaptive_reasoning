@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v22"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v23"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -52,6 +52,7 @@ EXPERIMENT_SOURCES = {
     "terminal_objective_probe",
     "terminal_objective_discriminator",
     "terminal_objective_ablation",
+    "terminal_frontier_suffix",
     "temporal_subgoal_probe",
     "causal_option_downstream_probe",
     "causal_option_effect_subgoal_probe",
@@ -248,6 +249,17 @@ def _online_horizon_learning_arbiter_disabled_controller(
     )
 
 
+def _terminal_negative_frontier_exploration_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_terminal_negative_frontier_exploration=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -339,6 +351,7 @@ def run_unified_cognition_ab_benchmark(
     enable_active_mediated_replication: bool = True,
     enable_horizon_stable_learning_epochs: bool = True,
     enable_online_horizon_learning_arbiter: bool = True,
+    enable_terminal_negative_frontier_exploration: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -466,6 +479,13 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _online_horizon_learning_arbiter_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_terminal_negative_frontier_exploration
+    ):
+        effective_controller_factory = (
+            _terminal_negative_frontier_exploration_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -567,6 +587,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         online_horizon_learning_arbiter_enabled=(
             enable_online_horizon_learning_arbiter
+        ),
+        terminal_negative_frontier_exploration_enabled=(
+            enable_terminal_negative_frontier_exploration
         ),
     )
     if not include_traces:
@@ -708,6 +731,9 @@ def _run_arm(
             {},
         ) or {}
     )
+    terminal_frontier_summary = dict(
+        controller_summary.get("terminal_negative_frontiers", {}) or {}
+    )
     return {
         "arm": arm,
         "game_id": game_id,
@@ -763,6 +789,48 @@ def _run_arm(
         ),
         "horizon_arbiter_priority_peak": int(
             horizon_arbiter_summary.get("priority_peak", 0) or 0
+        ),
+        "terminal_frontier_suffix_actions": int(
+            terminal_frontier_summary.get("suffix_actions", 0) or 0
+        ),
+        "terminal_frontier_replay_actions": decision_sources[
+            "terminal_frontier_suffix"
+        ],
+        "terminal_frontiers_captured": int(
+            terminal_frontier_summary.get("frontiers_captured", 0) or 0
+        ),
+        "terminal_frontier_duplicate_captures": int(
+            terminal_frontier_summary.get("duplicate_captures", 0) or 0
+        ),
+        "terminal_frontier_trials": int(
+            terminal_frontier_summary.get("trials_started", 0) or 0
+        ),
+        "terminal_frontier_terminal_credits": int(
+            terminal_frontier_summary.get("terminal_credits", 0) or 0
+        ),
+        "terminal_frontier_level_change_credits": int(
+            terminal_frontier_summary.get("level_change_credits", 0) or 0
+        ),
+        "terminal_frontier_win_credits": int(
+            terminal_frontier_summary.get("win_credits", 0) or 0
+        ),
+        "terminal_frontier_successful_continuations": int(
+            terminal_frontier_summary.get(
+                "successful_continuations",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_successful_replays": int(
+            terminal_frontier_summary.get("successful_replays", 0) or 0
+        ),
+        "terminal_frontier_nonterminal_suffixes": int(
+            terminal_frontier_summary.get("nonterminal_suffixes", 0) or 0
+        ),
+        "terminal_frontier_unsafe_suffixes": int(
+            terminal_frontier_summary.get("unsafe_suffixes", 0) or 0
+        ),
+        "terminal_frontier_censored_suffixes": int(
+            terminal_frontier_summary.get("censored_suffixes", 0) or 0
         ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
@@ -1864,6 +1932,7 @@ def _summarize_benchmark(
     active_mediated_replication_enabled: bool,
     horizon_stable_learning_epochs_enabled: bool,
     online_horizon_learning_arbiter_enabled: bool,
+    terminal_negative_frontier_exploration_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -1948,6 +2017,9 @@ def _summarize_benchmark(
             ),
             "online_horizon_learning_arbiter_enabled_in_unified": bool(
                 online_horizon_learning_arbiter_enabled
+            ),
+            "terminal_negative_frontier_exploration_enabled_in_unified": bool(
+                terminal_negative_frontier_exploration_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -2039,6 +2111,53 @@ def _aggregate_arm(
         "horizon_arbiter_priority_peak": max(
             (int(row["horizon_arbiter_priority_peak"]) for row in rows),
             default=0,
+        ),
+        "terminal_frontier_suffix_actions": sum(
+            int(row["terminal_frontier_suffix_actions"]) for row in rows
+        ),
+        "terminal_frontier_replay_actions": sum(
+            int(row["terminal_frontier_replay_actions"]) for row in rows
+        ),
+        "terminal_frontiers_captured": sum(
+            int(row["terminal_frontiers_captured"]) for row in rows
+        ),
+        "terminal_frontier_duplicate_captures": sum(
+            int(row["terminal_frontier_duplicate_captures"])
+            for row in rows
+        ),
+        "terminal_frontier_trials": sum(
+            int(row["terminal_frontier_trials"]) for row in rows
+        ),
+        "terminal_frontier_terminal_credits": sum(
+            int(row["terminal_frontier_terminal_credits"])
+            for row in rows
+        ),
+        "terminal_frontier_level_change_credits": sum(
+            int(row["terminal_frontier_level_change_credits"])
+            for row in rows
+        ),
+        "terminal_frontier_win_credits": sum(
+            int(row["terminal_frontier_win_credits"]) for row in rows
+        ),
+        "terminal_frontier_successful_continuations": sum(
+            int(row["terminal_frontier_successful_continuations"])
+            for row in rows
+        ),
+        "terminal_frontier_successful_replays": sum(
+            int(row["terminal_frontier_successful_replays"])
+            for row in rows
+        ),
+        "terminal_frontier_nonterminal_suffixes": sum(
+            int(row["terminal_frontier_nonterminal_suffixes"])
+            for row in rows
+        ),
+        "terminal_frontier_unsafe_suffixes": sum(
+            int(row["terminal_frontier_unsafe_suffixes"])
+            for row in rows
+        ),
+        "terminal_frontier_censored_suffixes": sum(
+            int(row["terminal_frontier_censored_suffixes"])
+            for row in rows
         ),
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
@@ -3201,6 +3320,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9e online epistemic action allocation only.",
     )
+    parser.add_argument(
+        "--disable-terminal-negative-frontier-exploration",
+        action="store_true",
+        help="Ablate SAGE.9f terminal-negative bounded suffixes only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -3273,6 +3397,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_online_horizon_learning_arbiter=(
             not args.disable_online_horizon_learning_arbiter
+        ),
+        enable_terminal_negative_frontier_exploration=(
+            not args.disable_terminal_negative_frontier_exploration
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

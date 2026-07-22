@@ -58,6 +58,10 @@ from .online_horizon_learning_arbiter import (
     HorizonLearningSignals,
     OnlineHorizonLearningArbiter,
 )
+from .online_terminal_frontier import (
+    OnlineTerminalFrontierExplorer,
+    TerminalFrontierAction,
+)
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_causal_option import OnlineCausalOptionStore
 from .online_terminal_objective import (
@@ -149,6 +153,11 @@ class UnifiedCognitiveConfig:
     enable_online_horizon_learning_arbiter: bool = True
     horizon_learning_minimum_priority: int = 2
     horizon_terminal_test_max_distance: float = 2.0
+    enable_terminal_negative_frontier_exploration: bool = True
+    max_terminal_negative_frontiers: int = 24
+    max_terminal_frontier_suffix_actions: int = 6
+    max_terminal_frontier_trials: int = 4
+    max_terminal_frontier_candidates_per_state: int = 12
 
 
 @dataclass(frozen=True)
@@ -172,6 +181,11 @@ class CognitiveDecision:
     intervention_id: str = ""
     ablation_of_objective_id: str = ""
     predicted_goal_reductions: Tuple[str, ...] = ()
+    terminal_frontier_id: str = ""
+    terminal_frontier_objective_ids: Tuple[str, ...] = ()
+    terminal_frontier_suffix_step: int | None = None
+    terminal_frontier_suffix_action_limit: int = 0
+    terminal_frontier_replaying_successful_continuation: bool = False
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -276,6 +290,20 @@ class CognitiveDecision:
             "intervention_id": self.intervention_id,
             "ablation_of_objective_id": self.ablation_of_objective_id,
             "predicted_goal_reductions": list(self.predicted_goal_reductions),
+            "terminal_frontier_id": self.terminal_frontier_id,
+            "terminal_frontier_objective_ids": list(
+                self.terminal_frontier_objective_ids
+            ),
+            "terminal_frontier_suffix_step": (
+                self.terminal_frontier_suffix_step
+            ),
+            "terminal_frontier_suffix_action_limit": (
+                self.terminal_frontier_suffix_action_limit
+            ),
+            "terminal_frontier_replaying_successful_continuation": (
+                self
+                .terminal_frontier_replaying_successful_continuation
+            ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
             "temporal_plan_status": self.temporal_plan_status,
@@ -681,6 +709,21 @@ class UnifiedCognitiveController:
                 self.config.max_operator_plan_actions_without_objective_progress
             ),
         )
+        self.terminal_frontiers = OnlineTerminalFrontierExplorer(
+            enabled=(
+                self.config.enable_terminal_negative_frontier_exploration
+            ),
+            max_frontiers=self.config.max_terminal_negative_frontiers,
+            max_suffix_actions=(
+                self.config.max_terminal_frontier_suffix_actions
+            ),
+            max_trials_per_frontier=(
+                self.config.max_terminal_frontier_trials
+            ),
+            max_candidates_per_state=(
+                self.config.max_terminal_frontier_candidates_per_state
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -720,6 +763,7 @@ class UnifiedCognitiveController:
         self._temporal_outcomes: List[Dict[str, Any]] = []
         self._causal_subgoal_outcomes: List[Dict[str, Any]] = []
         self._causal_option_outcomes: List[Dict[str, Any]] = []
+        self._terminal_frontier_outcomes: List[Dict[str, Any]] = []
 
     @property
     def theory(self):
@@ -776,6 +820,7 @@ class UnifiedCognitiveController:
                 "terminal_objective_probe",
                 "terminal_objective_discriminator",
                 "terminal_objective_ablation",
+                "terminal_frontier_suffix",
                 "temporal_subgoal_probe",
                 "causal_option_downstream_probe",
                 "causal_option_effect_subgoal_probe",
@@ -850,7 +895,84 @@ class UnifiedCognitiveController:
         self._revise_pending_predictions(update, pending)
         self._promote_confirmed_predictions()
         self._generate_effect_conditioned_goal_hypotheses(update, pending)
-        self._observe_pending_terminal_objective(update, pending)
+        objective_outcome = self._observe_pending_terminal_objective(
+            update,
+            pending,
+        )
+        frontier_outcome = self.terminal_frontiers.observe_transition(
+            state_signature_before=_terminal_frontier_state_signature(
+                update.record.obs_before.raw_grid,
+                update.record.obs_before.levels_completed,
+            ),
+            state_signature_after=_terminal_frontier_state_signature(
+                update.record.obs_after.raw_grid,
+                update.record.obs_after.levels_completed,
+            ),
+            action_name=action_name,
+            action_data=action_data,
+            level_progressed=bool(
+                update.record.diff.level_complete
+                or update.record.obs_after.levels_completed
+                > update.record.obs_before.levels_completed
+            ),
+            won=str(update.record.obs_after.game_state).upper()
+            in {"WIN", "WON", "VICTORY"},
+            game_over=bool(update.record.diff.game_over),
+        )
+        if frontier_outcome["frontier_id"]:
+            self._terminal_frontier_outcomes.append(frontier_outcome)
+        eligible_frontier_objectives = {
+            str(item)
+            for item in (
+                () if pending is None else pending.predicted_goal_reductions
+            )
+            if item
+        }
+        if pending is not None and pending.objective_id:
+            eligible_frontier_objectives.add(str(pending.objective_id))
+        observed_completions = {
+            str(item)
+            for item in objective_outcome.get("completed_objectives", ())
+            if item
+        }
+        completed_objectives = tuple(sorted(
+            eligible_frontier_objectives.intersection(observed_completions)
+        ))
+        if not completed_objectives and observed_completions:
+            action_supported = [
+                objective
+                for objective in self.terminal_objectives.objectives()
+                if objective.objective_id in observed_completions
+                and action_name in objective.supporting_actions
+            ]
+            if action_supported:
+                selected_frontier_objective = max(
+                    action_supported,
+                    key=lambda objective: (
+                        objective.prior_priority,
+                        -objective.terminal_contradictions,
+                        objective.objective_id,
+                    ),
+                )
+                completed_objectives = (
+                    selected_frontier_objective.objective_id,
+                )
+        if (
+            completed_objectives
+            and not objective_outcome["terminal_success"]
+            and not update.record.diff.game_over
+        ):
+            self.terminal_frontiers.capture(
+                state_signature=_terminal_frontier_state_signature(
+                    update.record.obs_after.raw_grid,
+                    update.record.obs_after.levels_completed,
+                ),
+                objective_ids=completed_objectives,
+                context_signature=_transition_context_signature(
+                    update,
+                    None if pending is None else pending.action_data,
+                ),
+            )
         self._observe_pending_temporal_plan(update, pending)
         self._observe_pending_causal_option(update, pending)
         self._observe_pending_option(update, pending)
@@ -911,6 +1033,16 @@ class UnifiedCognitiveController:
             )
 
         decision = self._select_escape(observation, safe_actions)
+        if (
+            decision is None
+            and self.terminal_frontiers.active_replay_available
+        ):
+            decision = self._select_terminal_frontier_suffix(
+                observation,
+                safe_actions,
+                legacy_name,
+                legacy_action_data,
+            )
         if decision is None:
             decision = self._select_causal_option(observation, safe_actions)
         if decision is None:
@@ -936,6 +1068,11 @@ class UnifiedCognitiveController:
             )
 
         decision = self._guard_decision(decision, observation, safe_actions)
+        decision = self._annotate_terminal_frontier_suffix(
+            decision,
+            observation,
+            safe_actions,
+        )
         self._pending_decision = decision
         self._decision_sources[decision.source] += 1
         return decision
@@ -943,6 +1080,7 @@ class UnifiedCognitiveController:
     def on_reset(self) -> None:
         """Start a fresh behavioral branch while retaining learned theory."""
         self._pending_decision = None
+        self.terminal_frontiers.start_branch()
         self.terminal_objectives.start_branch()
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
@@ -1018,6 +1156,10 @@ class UnifiedCognitiveController:
             "online_horizon_learning_arbiter": (
                 self.horizon_learning_arbiter.summary()
             ),
+            "terminal_negative_frontiers": self.terminal_frontiers.summary(),
+            "recent_terminal_frontier_outcomes": (
+                self._terminal_frontier_outcomes[-10:]
+            ),
             "rules": len(self.belief_loop.rule_engine.rules),
             "high_confidence_rules": len(
                 self.belief_loop.rule_engine.high_confidence_rules()
@@ -1038,6 +1180,95 @@ class UnifiedCognitiveController:
     def _should_reprobe(self) -> bool:
         interval = max(1, int(self.config.reprobe_interval))
         return self._step % interval == 0
+
+    def _select_terminal_frontier_suffix(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+        legacy_action: str,
+        legacy_action_data: Mapping[str, Any] | None,
+    ) -> CognitiveDecision | None:
+        """Run a bounded contrast beyond a nonterminal postcondition."""
+        if not self.config.enable_terminal_negative_frontier_exploration:
+            return None
+        proposed = []
+        if legacy_action in safe_actions:
+            proposed.append(TerminalFrontierAction.from_parts(
+                legacy_action,
+                legacy_action_data,
+            ))
+        selection = self.terminal_frontiers.select(
+            state_signature=_terminal_frontier_state_signature(
+                observation.raw_grid,
+                observation.levels_completed,
+            ),
+            available_actions=safe_actions,
+            proposed_actions=proposed,
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action.action_name,
+            action_data=selection.action.data,
+            source="terminal_frontier_suffix",
+            reason=selection.reason,
+            confidence=(
+                1.0
+                if selection.replaying_successful_continuation
+                else 0.5
+            ),
+            objective_id=(
+                selection.objective_ids[0]
+                if len(selection.objective_ids) == 1
+                else ""
+            ),
+            predicted_goal_reductions=selection.objective_ids,
+            terminal_frontier_id=selection.frontier_id,
+            terminal_frontier_objective_ids=selection.objective_ids,
+            terminal_frontier_suffix_step=selection.step_index,
+            terminal_frontier_suffix_action_limit=selection.action_limit,
+            terminal_frontier_replaying_successful_continuation=(
+                selection.replaying_successful_continuation
+            ),
+        )
+
+    def _annotate_terminal_frontier_suffix(
+        self,
+        decision: CognitiveDecision,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+    ) -> CognitiveDecision:
+        """Evaluate the normal live decision as a bounded suffix action."""
+        if (
+            not self.config.enable_terminal_negative_frontier_exploration
+            or self.terminal_frontiers.active_replay_available
+        ):
+            return decision
+        selection = self.terminal_frontiers.select(
+            state_signature=_terminal_frontier_state_signature(
+                observation.raw_grid,
+                observation.levels_completed,
+            ),
+            available_actions=safe_actions,
+            proposed_actions=(TerminalFrontierAction.from_parts(
+                decision.action_name,
+                decision.action_data,
+            ),),
+            restrict_to_proposed=True,
+        )
+        if selection is None:
+            return decision
+        return replace(
+            decision,
+            terminal_frontier_id=selection.frontier_id,
+            terminal_frontier_objective_ids=selection.objective_ids,
+            terminal_frontier_suffix_step=selection.step_index,
+            terminal_frontier_suffix_action_limit=selection.action_limit,
+            terminal_frontier_replaying_successful_continuation=False,
+            reason=(
+                f"{decision.reason}; monitored by {selection.reason}"
+            ),
+        )
 
     def _safe_actions(self, grid_hash: int, actions: Sequence[str]) -> List[str]:
         result = []
@@ -2753,7 +2984,7 @@ class UnifiedCognitiveController:
         self,
         update: LiveTransitionUpdate,
         pending: CognitiveDecision | None,
-    ) -> None:
+    ) -> Dict[str, Any]:
         """Keep mechanic effects separate from observed terminal credit."""
         context = "" if pending is None else _transition_context_signature(
             update,
@@ -2778,6 +3009,7 @@ class UnifiedCognitiveController:
             or outcome["expired_nonterminal_completions"]
         ):
             self._objective_outcomes.append(outcome)
+        return outcome
 
     def _observe_pending_temporal_plan(
         self,
@@ -3012,6 +3244,16 @@ def _normalize_actions(actions: Iterable[Any]) -> List[str]:
 
 def _grid_hash(grid: Any) -> int:
     return hash(np.asarray(grid, dtype=np.int32).tobytes())
+
+
+def _terminal_frontier_state_signature(
+    grid: Any,
+    levels_completed: int,
+) -> str:
+    """Stable exact state identity for online same-game suffix replay."""
+    array = np.asarray(grid, dtype=np.int32)
+    digest = hashlib.sha1(array.tobytes()).hexdigest()[:16]
+    return f"{array.shape}|{digest}|level:{int(levels_completed)}"
 
 
 def _align_grids(grid_before: Any, grid_after: Any) -> Tuple[np.ndarray, np.ndarray]:

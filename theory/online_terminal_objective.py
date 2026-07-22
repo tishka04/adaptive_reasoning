@@ -603,6 +603,11 @@ class OnlineTerminalObjectiveStore:
             "distance_after": None if selected is None else selected.distance_after,
             "distance_reduction": 0.0 if selected is None else selected.reduction,
             "objective_completed": bool(selected is not None and selected.completed),
+            "completed_objectives": sorted(
+                evidence.objective_id
+                for evidence in current_evidence
+                if evidence.completed
+            ),
             "all_reduced_objectives": sorted(
                 evidence.objective_id for evidence in current_evidence
             ),

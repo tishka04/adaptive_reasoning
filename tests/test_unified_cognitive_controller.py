@@ -9,6 +9,7 @@ import numpy as np
 from theory.epistemic_metrics import HypothesisStatus
 from theory.online_goal_hypothesis import GeneratedGoalHypothesis
 from theory.unified_cognitive_controller import (
+    CognitiveDecision,
     UnifiedCognitiveConfig,
     UnifiedCognitiveController,
 )
@@ -217,6 +218,83 @@ def test_online_horizon_arbiter_releases_irrelevant_operator_budget():
     assert arbiter["evaluations"] == 2
     assert arbiter["reservations"] == 0
     assert arbiter["releases"] == 2
+
+
+def test_nonterminal_objective_completion_opens_terminal_frontier_suffix():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1", "ACTION2"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            enable_operator_planning=False,
+            enable_theory_planning=False,
+            enable_promoted_options=False,
+            enable_temporal_goal_composition=False,
+            enable_causal_hierarchical_options=False,
+            max_terminal_frontier_suffix_actions=2,
+        ),
+    )
+    controller.terminal_objectives.register_generated(
+        GeneratedGoalHypothesis(
+            objective_id="reach::3",
+            family="reach",
+            source_color=None,
+            target_color=3,
+            predicate="player_adjacent_to_target",
+            supporting_rule_keys=(),
+            supporting_actions=("ACTION1",),
+            generation_reason="synthetic_nonterminal_frontier",
+        )
+    )
+    before = _player_grid(2)
+    before[3, 4] = 3
+    postcondition = _player_grid(3)
+    postcondition[3, 4] = 3
+    initial = CognitiveDecision(
+        action_name="ACTION1",
+        source="terminal_objective_probe",
+        objective_id="reach::3",
+    )
+    controller._pending_decision = initial  # noqa: SLF001 - integration setup
+    controller.observe_transition(
+        action=initial.action_name,
+        action_data=initial.action_data,
+        grid_before=before,
+        grid_after=postcondition,
+        available_actions=["ACTION1", "ACTION2"],
+        levels_completed_before=0,
+        levels_completed_after=0,
+    )
+
+    suffix = controller.select_action(
+        current_grid=postcondition,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION2",
+    )
+
+    assert suffix.source == "legacy_fallback"
+    assert suffix.terminal_frontier_id
+    assert suffix.terminal_frontier_objective_ids == ("reach::3",)
+    assert suffix.terminal_frontier_suffix_step == 0
+    next_level = postcondition.copy()
+    next_level[0, 0] = 7
+    controller.observe_transition(
+        action=suffix.action_name,
+        action_data=suffix.action_data,
+        grid_before=postcondition,
+        grid_after=next_level,
+        available_actions=["ACTION1", "ACTION2"],
+        levels_completed_before=0,
+        levels_completed_after=1,
+    )
+
+    frontier = controller.summary()["terminal_negative_frontiers"]
+    assert frontier["frontiers_captured"] == 1
+    assert frontier["suffix_actions"] == 1
+    assert frontier["terminal_credits"] == 1
+    assert frontier["level_change_credits"] == 1
+    assert frontier["successful_continuations"] == 1
 
 
 def test_click_experiment_uses_objects_and_revises_relational_predictions():
