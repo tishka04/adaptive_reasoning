@@ -158,6 +158,9 @@ class UnifiedCognitiveConfig:
     max_terminal_frontier_suffix_actions: int = 6
     max_terminal_frontier_trials: int = 4
     max_terminal_frontier_candidates_per_state: int = 12
+    enable_adaptive_terminal_frontier_horizon: bool = True
+    max_adaptive_terminal_frontier_suffix_actions: int = 24
+    terminal_frontier_horizon_increment: int = 6
 
 
 @dataclass(frozen=True)
@@ -722,6 +725,15 @@ class UnifiedCognitiveController:
             ),
             max_candidates_per_state=(
                 self.config.max_terminal_frontier_candidates_per_state
+            ),
+            enable_adaptive_horizon=(
+                self.config.enable_adaptive_terminal_frontier_horizon
+            ),
+            max_adaptive_suffix_actions=(
+                self.config.max_adaptive_terminal_frontier_suffix_actions
+            ),
+            adaptive_horizon_increment=(
+                self.config.terminal_frontier_horizon_increment
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)

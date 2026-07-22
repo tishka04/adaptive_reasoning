@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v23"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v24"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -260,6 +260,17 @@ def _terminal_negative_frontier_exploration_disabled_controller(
     )
 
 
+def _adaptive_terminal_frontier_horizon_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_adaptive_terminal_frontier_horizon=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -352,6 +363,7 @@ def run_unified_cognition_ab_benchmark(
     enable_horizon_stable_learning_epochs: bool = True,
     enable_online_horizon_learning_arbiter: bool = True,
     enable_terminal_negative_frontier_exploration: bool = True,
+    enable_adaptive_terminal_frontier_horizon: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -486,6 +498,13 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _terminal_negative_frontier_exploration_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_adaptive_terminal_frontier_horizon
+    ):
+        effective_controller_factory = (
+            _adaptive_terminal_frontier_horizon_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -590,6 +609,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         terminal_negative_frontier_exploration_enabled=(
             enable_terminal_negative_frontier_exploration
+        ),
+        adaptive_terminal_frontier_horizon_enabled=(
+            enable_adaptive_terminal_frontier_horizon
         ),
     )
     if not include_traces:
@@ -831,6 +853,36 @@ def _run_arm(
         ),
         "terminal_frontier_censored_suffixes": int(
             terminal_frontier_summary.get("censored_suffixes", 0) or 0
+        ),
+        "terminal_frontier_adaptive_horizon_extensions": int(
+            terminal_frontier_summary.get(
+                "adaptive_horizon_extensions",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_adaptive_horizon_actions_granted": int(
+            terminal_frontier_summary.get(
+                "adaptive_horizon_actions_granted",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_extended_suffix_actions": int(
+            terminal_frontier_summary.get(
+                "extended_suffix_actions",
+                0,
+            ) or 0
+        ),
+        "terminal_frontiers_with_extended_horizon": int(
+            terminal_frontier_summary.get(
+                "frontiers_with_extended_horizon",
+                0,
+            ) or 0
+        ),
+        "terminal_frontier_maximum_allocated_horizon": int(
+            terminal_frontier_summary.get(
+                "maximum_allocated_horizon",
+                0,
+            ) or 0
         ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
@@ -1933,6 +1985,7 @@ def _summarize_benchmark(
     horizon_stable_learning_epochs_enabled: bool,
     online_horizon_learning_arbiter_enabled: bool,
     terminal_negative_frontier_exploration_enabled: bool,
+    adaptive_terminal_frontier_horizon_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2020,6 +2073,9 @@ def _summarize_benchmark(
             ),
             "terminal_negative_frontier_exploration_enabled_in_unified": bool(
                 terminal_negative_frontier_exploration_enabled
+            ),
+            "adaptive_terminal_frontier_horizon_enabled_in_unified": bool(
+                adaptive_terminal_frontier_horizon_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -2158,6 +2214,29 @@ def _aggregate_arm(
         "terminal_frontier_censored_suffixes": sum(
             int(row["terminal_frontier_censored_suffixes"])
             for row in rows
+        ),
+        "terminal_frontier_adaptive_horizon_extensions": sum(
+            int(row["terminal_frontier_adaptive_horizon_extensions"])
+            for row in rows
+        ),
+        "terminal_frontier_adaptive_horizon_actions_granted": sum(
+            int(row["terminal_frontier_adaptive_horizon_actions_granted"])
+            for row in rows
+        ),
+        "terminal_frontier_extended_suffix_actions": sum(
+            int(row["terminal_frontier_extended_suffix_actions"])
+            for row in rows
+        ),
+        "terminal_frontiers_with_extended_horizon": sum(
+            int(row["terminal_frontiers_with_extended_horizon"])
+            for row in rows
+        ),
+        "terminal_frontier_maximum_allocated_horizon": max(
+            (
+                int(row["terminal_frontier_maximum_allocated_horizon"])
+                for row in rows
+            ),
+            default=0,
         ),
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
@@ -3325,6 +3404,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9f terminal-negative bounded suffixes only.",
     )
+    parser.add_argument(
+        "--disable-adaptive-terminal-frontier-horizon",
+        action="store_true",
+        help="Ablate SAGE.9g adaptive frontier horizon allocation only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -3400,6 +3484,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_terminal_negative_frontier_exploration=(
             not args.disable_terminal_negative_frontier_exploration
+        ),
+        enable_adaptive_terminal_frontier_horizon=(
+            not args.disable_adaptive_terminal_frontier_horizon
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

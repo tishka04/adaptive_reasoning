@@ -1,6 +1,6 @@
 # SAGE milestones - closed-loop integration
 
-Derniere mise a jour : 2026-07-19
+Derniere mise a jour : 2026-07-22
 
 SAGE orchestre les briques M1/M2/M3/P1 dans une boucle agentique. SAGE ne
 confirme pas une mecanique, ne refute rien, et ne transforme jamais un resultat
@@ -6706,3 +6706,76 @@ les frontieres actuelles restent a plus de six actions d'un signal terminal.
 SAGE.9g devra allouer adaptativement un horizon de continuation aux frontieres
 repetees, sans perturber les chaines causales et sans utiliser de progres local
 comme credit positif.
+
+## SAGE.9g - adaptive terminal-frontier horizon
+
+Objectif :
+
+- Distinguer une frontiere simplement trop courte d'une hypothese de but
+  reellement insuffisante, sans prolonger uniformement toutes les trajectoires.
+- Accorder davantage d'horizon uniquement aux frontieres exactes qui reviennent
+  apres avoir epuise leur borne precedente.
+- Conserver la discipline SAGE.9f : seul un changement de niveau ou `WIN`
+  credite une continuation ; aucun progres local ne vaut preuve terminale.
+
+Allocation et controle :
+
+- La premiere visite garde la borne SAGE.9f de 6 actions. Une nouvelle branche
+  qui retrouve la meme signature exacte apres epuisement recoit successivement
+  12, 18 puis 24 actions, dans la limite existante de 4 essais par frontiere.
+- Chaque extension exige un suffixe non terminal arrive exactement a sa borne.
+  Un reset qui censure un suffixe, `GAME_OVER`, une capture dupliquee dans la
+  meme branche ou une reduction de distance locale n'accordent aucun horizon.
+- Jusqu'a une preuve terminale, l'horizon etendu observe toujours les decisions
+  normales du controleur. Il ne remplace ni option causale, ni plan temporel,
+  ni experience, ni operateur, et n'ajoute donc aucun cout comportemental.
+- `OnlineTerminalFrontierExplorer` conserve pour chaque frontiere la borne
+  allouee, l'historique des paliers, le nombre d'extensions et le plus long
+  suffixe effectivement observe. Le benchmark v24 expose l'ablation isolee
+  `--disable-adaptive-terminal-frontier-horizon`.
+
+Audit cible `cn04`, seed 0, 10 resets x 80 :
+
+- Une frontiere recurrente suit l'historique 6 -> 12 -> 18 -> 24 : 3
+  extensions, 18 positions de profondeur debloquees et 36 actions reellement
+  observees au-dela de 6. Le total passe de 60 actions dans l'ablation a 96.
+- Aucun signal terminal n'apparait, donc zero credit, zero continuation promue
+  et zero replay.
+- Activation et ablation restent identiques : 196 experiences, 11 supports
+  causaux, 1 option compilee, 13 actions successeurs, 2 progres successeurs,
+  zero niveau et zero WIN.
+
+Held-out long final, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- Protocole apparie v24 valide, `controller_errors=0` et aucune erreur de
+  demarrage d'environnement.
+- 36 frontieres et 48 essais sont conserves. Six frontieres sont etendues :
+  trois atteignent 12 actions et trois atteignent 24 actions, pour 12
+  extensions, 72 positions de profondeur debloquees et 126 actions observees
+  au-dela de la borne initiale. Le total passe de 288 a 414 actions suivies.
+- Aucun changement de niveau ni WIN ne survient dans ces fenetres etendues :
+  zero credit terminal, zero continuation promue et zero replay.
+- L'activation reste strictement non perturbatrice face a l'ablation : 997
+  experiences, 21 supports causaux, 2 options compilees, 43 actions
+  successeurs, 7 progres successeurs, 2 niveaux contre 1 pour le legacy seul,
+  et zero WIN dans les deux variantes.
+- Les deux niveaux `ft09` restent anterieurs et ne sont pas attribues a
+  SAGE.9g. Cette iteration valide l'allocation adaptative, mais n'ajoute pas de
+  niveau ARC.
+
+Validation :
+
+- tests de croissance 6/12/18/24, credit terminal au-dela de la borne de base,
+  censure sans extension et ablation dediee ;
+- tests cibles frontiere, controleur et benchmark : 37 passes ;
+- suite complete dans l'environnement ARC : 1492 tests passes en 170.33 s ;
+- compilation ciblee : passee ;
+- diagnostics : `sage9g_cn04_adaptive_terminal_frontier*.json` et
+  `sage9g_held_out_long_adaptive_terminal_frontier*.json`.
+
+Lecture : le verrou n'est pas une simple insuffisance de profondeur entre 6 et
+24 actions. Le prochain travail ne doit donc pas augmenter aveuglement la
+borne. SAGE.9h devra conserver une lignee dormante entre les frontieres et un
+signal terminal plus tardif, puis departager en ligne les points de branchement
+causalement necessaires par replay terminal, sans retro-crediter le progres
+local.

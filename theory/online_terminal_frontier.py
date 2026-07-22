@@ -4,8 +4,10 @@ SAGE can often drive a measurable hypothesis to its postcondition without
 finishing the level.  Such a state is useful evidence about *where the current
 goal stops being sufficient*, but it is not positive terminal evidence.  This
 module keeps those states as negative terminal frontiers and runs a bounded
-continuation from them.  A continuation is credited only when the environment
-reports a level change or a win.
+continuation from them.  Repeated frontiers whose current bound is exhausted
+receive a larger continuation horizon, without using intermediate progress as
+evidence.  A continuation is credited only when the environment reports a
+level change or a win.
 
 The explorer is deliberately agnostic to game identity and objective family.
 It receives stable state signatures, objective identifiers, and concrete legal
@@ -101,6 +103,10 @@ class TerminalNegativeFrontier:
     nonterminal_suffixes: int = 0
     unsafe_suffixes: int = 0
     censored_suffixes: int = 0
+    allocated_action_limit: int = 0
+    horizon_extensions: int = 0
+    horizon_history: list[int] = field(default_factory=list)
+    longest_suffix_actions: int = 0
     successful_continuations: Dict[
         Tuple[str, ...], SuccessfulContinuation
     ] = field(default_factory=dict)
@@ -117,6 +123,10 @@ class TerminalNegativeFrontier:
             "nonterminal_suffixes": self.nonterminal_suffixes,
             "unsafe_suffixes": self.unsafe_suffixes,
             "censored_suffixes": self.censored_suffixes,
+            "allocated_action_limit": self.allocated_action_limit,
+            "horizon_extensions": self.horizon_extensions,
+            "horizon_history": list(self.horizon_history),
+            "longest_suffix_actions": self.longest_suffix_actions,
             "successful_continuations": [
                 continuation.to_dict()
                 for _, continuation in sorted(
@@ -131,6 +141,7 @@ class _ActiveSuffix:
     frontier_id: str
     actions: list[TerminalFrontierAction]
     state_signatures: list[str]
+    action_limit: int
     replay: SuccessfulContinuation | None = None
     pending: TerminalFrontierSelection | None = None
 
@@ -146,6 +157,9 @@ class OnlineTerminalFrontierExplorer:
         max_suffix_actions: int = 6,
         max_trials_per_frontier: int = 4,
         max_candidates_per_state: int = 12,
+        enable_adaptive_horizon: bool = True,
+        max_adaptive_suffix_actions: int = 24,
+        adaptive_horizon_increment: int = 6,
     ) -> None:
         self.enabled = bool(enabled)
         self.max_frontiers = max(1, int(max_frontiers))
@@ -157,6 +171,15 @@ class OnlineTerminalFrontierExplorer:
         self.max_candidates_per_state = max(
             1,
             int(max_candidates_per_state),
+        )
+        self.enable_adaptive_horizon = bool(enable_adaptive_horizon)
+        self.max_adaptive_suffix_actions = max(
+            self.max_suffix_actions,
+            int(max_adaptive_suffix_actions),
+        )
+        self.adaptive_horizon_increment = max(
+            1,
+            int(adaptive_horizon_increment),
         )
         self._frontiers: Dict[str, TerminalNegativeFrontier] = {}
         self._actions_by_state: Dict[
@@ -178,6 +201,9 @@ class OnlineTerminalFrontierExplorer:
         self._replay_divergences = 0
         self._capacity_blocks = 0
         self._branch_trial_blocks = 0
+        self._adaptive_horizon_extensions = 0
+        self._adaptive_horizon_actions_granted = 0
+        self._extended_suffix_actions = 0
         self._trial_started_this_branch = False
 
     @property
@@ -251,6 +277,8 @@ class OnlineTerminalFrontierExplorer:
                 frontier_id=frontier_id,
                 state_signature=state,
                 objective_ids=objectives,
+                allocated_action_limit=self.max_suffix_actions,
+                horizon_history=[self.max_suffix_actions],
             )
             self._frontiers[frontier_id] = frontier
             self._frontiers_captured += 1
@@ -264,6 +292,8 @@ class OnlineTerminalFrontierExplorer:
             return frontier_id
         if replay is not None and replay.confirmations >= 2:
             return frontier_id
+        if replay is None:
+            self._extend_exhausted_frontier_horizon(frontier)
         frontier.trials += 1
         self._trials_started += 1
         self._trial_started_this_branch = True
@@ -271,6 +301,10 @@ class OnlineTerminalFrontierExplorer:
             frontier_id=frontier_id,
             actions=[],
             state_signatures=[state],
+            action_limit=max(
+                frontier.allocated_action_limit,
+                0 if replay is None else len(replay.actions),
+            ),
             replay=replay,
         )
         return frontier_id
@@ -374,12 +408,22 @@ class OnlineTerminalFrontierExplorer:
         active.actions.append(observed)
         active.state_signatures.append(str(state_signature_after))
         self._suffix_actions += 1
+        if len(active.actions) > self.max_suffix_actions:
+            self._extended_suffix_actions += 1
         terminal_success = bool(level_progressed or won)
         frontier = self._frontiers[active.frontier_id]
+        frontier.longest_suffix_actions = max(
+            frontier.longest_suffix_actions,
+            len(active.actions),
+        )
         outcome = {
             "frontier_id": frontier.frontier_id,
             "objective_ids": list(frontier.objective_ids),
             "suffix_step": len(active.actions) - 1,
+            "action_limit": active.action_limit,
+            "adaptive_horizon": bool(
+                active.action_limit > self.max_suffix_actions
+            ),
             "terminal_success": terminal_success,
             "level_progressed": bool(level_progressed),
             "won": bool(won),
@@ -408,7 +452,7 @@ class OnlineTerminalFrontierExplorer:
         elif game_over:
             frontier.unsafe_suffixes += 1
             self._active = None
-        elif len(active.actions) >= self.max_suffix_actions:
+        elif len(active.actions) >= active.action_limit:
             frontier.nonterminal_suffixes += 1
             self._active = None
         return outcome
@@ -427,7 +471,7 @@ class OnlineTerminalFrontierExplorer:
         )
 
     def summary(self) -> Dict[str, Any]:
-        """Return auditable attribution counters for SAGE.9f."""
+        """Return auditable attribution counters for SAGE.9f/SAGE.9g."""
         successful = sum(
             len(frontier.successful_continuations)
             for frontier in self._frontiers.values()
@@ -437,11 +481,30 @@ class OnlineTerminalFrontierExplorer:
             "max_frontiers": self.max_frontiers,
             "max_suffix_actions": self.max_suffix_actions,
             "max_trials_per_frontier": self.max_trials_per_frontier,
+            "adaptive_horizon_enabled": self.enable_adaptive_horizon,
+            "max_adaptive_suffix_actions": self.max_adaptive_suffix_actions,
+            "adaptive_horizon_increment": self.adaptive_horizon_increment,
             "frontiers": len(self._frontiers),
             "frontiers_captured": self._frontiers_captured,
             "duplicate_captures": self._duplicate_captures,
             "capacity_blocks": self._capacity_blocks,
             "branch_trial_blocks": self._branch_trial_blocks,
+            "adaptive_horizon_extensions": self._adaptive_horizon_extensions,
+            "adaptive_horizon_actions_granted": (
+                self._adaptive_horizon_actions_granted
+            ),
+            "extended_suffix_actions": self._extended_suffix_actions,
+            "frontiers_with_extended_horizon": sum(
+                int(frontier.horizon_extensions > 0)
+                for frontier in self._frontiers.values()
+            ),
+            "maximum_allocated_horizon": max(
+                (
+                    frontier.allocated_action_limit
+                    for frontier in self._frontiers.values()
+                ),
+                default=self.max_suffix_actions,
+            ),
             "trials_started": self._trials_started,
             "suffix_actions": self._suffix_actions,
             "terminal_credits": self._terminal_credits,
@@ -481,16 +544,48 @@ class OnlineTerminalFrontierExplorer:
             objective_ids=frontier.objective_ids,
             action=action,
             step_index=len(active.actions),
-            action_limit=self.max_suffix_actions,
+            action_limit=active.action_limit,
             replaying_successful_continuation=replaying,
             reason=(
                 "replay terminal-credited continuation from identical frontier"
                 if replaying
-                else "bounded contrast after nonterminal objective postcondition"
+                else (
+                    "adaptive terminal-only continuation after exhausted "
+                    "negative frontier"
+                    if active.action_limit > self.max_suffix_actions
+                    else (
+                        "bounded contrast after nonterminal objective "
+                        "postcondition"
+                    )
+                )
             ),
         )
         active.pending = selection
         return selection
+
+    def _extend_exhausted_frontier_horizon(
+        self,
+        frontier: TerminalNegativeFrontier,
+    ) -> None:
+        """Grant one larger bound only after the previous bound was exhausted."""
+        if (
+            not self.enable_adaptive_horizon
+            or frontier.allocated_action_limit >= self.max_adaptive_suffix_actions
+            or frontier.nonterminal_suffixes <= frontier.horizon_extensions
+        ):
+            return
+        previous = frontier.allocated_action_limit
+        allocated = min(
+            self.max_adaptive_suffix_actions,
+            previous + self.adaptive_horizon_increment,
+        )
+        if allocated <= previous:
+            return
+        frontier.allocated_action_limit = allocated
+        frontier.horizon_extensions += 1
+        frontier.horizon_history.append(allocated)
+        self._adaptive_horizon_extensions += 1
+        self._adaptive_horizon_actions_granted += allocated - previous
 
     @staticmethod
     def _best_successful_continuation(
@@ -518,6 +613,8 @@ def _empty_outcome() -> Dict[str, Any]:
         "frontier_id": "",
         "objective_ids": [],
         "suffix_step": None,
+        "action_limit": 0,
+        "adaptive_horizon": False,
         "terminal_success": False,
         "level_progressed": False,
         "won": False,
