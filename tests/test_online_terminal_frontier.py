@@ -1036,3 +1036,105 @@ def test_nonterminal_structural_transfer_is_refuted_without_credit():
     summary = explorer.summary()
     assert summary["structural_transfer_refutations"] == 1
     assert summary["structural_transfer_terminal_credits"] == 0
+
+
+def _confirm_composed_progressive_route(
+    explorer: OnlineTerminalFrontierExplorer,
+) -> None:
+    for _ in range(2):
+        explorer.observe_transition(
+            state_signature_before="reset-state",
+            state_signature_after="frontier-state",
+            action_name="ACTION1",
+            action_data={},
+            level_progressed=False,
+            won=False,
+            game_over=False,
+        )
+        explorer.capture_structural(
+            state_signature="frontier-state",
+            trigger_signature="trigger-a",
+            trigger_families=("entity_motion",),
+        )
+        selected = explorer.select(
+            state_signature="frontier-state",
+            available_actions=["ACTION2"],
+            proposed_actions=[_action("ACTION2")],
+        )
+        assert selected is not None
+        explorer.observe_transition(
+            state_signature_before="frontier-state",
+            state_signature_after="next-level",
+            action_name="ACTION2",
+            action_data={},
+            level_progressed=True,
+            won=False,
+            game_over=False,
+        )
+        explorer.start_branch()
+
+
+def test_confirmed_prefix_and_suffix_compose_exact_progressive_route():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=1,
+        enable_terminal_causal_reduction=False,
+    )
+    _confirm_composed_progressive_route(explorer)
+
+    assert explorer.active_progressive_route_available is True
+    first = explorer.select_progressive_route(
+        state_signature="reset-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert first is not None
+    assert first.action.action_name == "ACTION1"
+    first_outcome = explorer.observe_transition(
+        state_signature_before="reset-state",
+        state_signature_after="frontier-state",
+        action_name="ACTION1",
+        action_data={},
+        level_progressed=False,
+        won=False,
+        game_over=False,
+    )
+    assert first_outcome["progressive_route_observation"] is True
+    second = explorer.select_progressive_route(
+        state_signature="frontier-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert second is not None
+    assert second.action.action_name == "ACTION2"
+    terminal = explorer.observe_transition(
+        state_signature_before="frontier-state",
+        state_signature_after="next-level",
+        action_name="ACTION2",
+        action_data={},
+        level_progressed=True,
+        won=False,
+        game_over=False,
+    )
+
+    assert terminal["progressive_route_confirmed"] is True
+    summary = explorer.summary()
+    assert summary["progressive_routes_compiled"] == 1
+    assert summary["progressive_route_attempts"] == 1
+    assert summary["progressive_route_actions"] == 2
+    assert summary["progressive_route_confirmations"] == 1
+
+
+def test_progressive_route_ablation_never_compiles_or_replays_route():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=1,
+        enable_terminal_causal_reduction=False,
+        enable_progressive_terminal_routes=False,
+    )
+    _confirm_composed_progressive_route(explorer)
+
+    summary = explorer.summary()
+    assert summary["progressive_terminal_routes_enabled"] is False
+    assert summary["progressive_routes_compiled"] == 0
+    assert explorer.active_progressive_route_available is False
+    assert explorer.select_progressive_route(
+        state_signature="reset-state",
+        available_actions=["ACTION1", "ACTION2"],
+    ) is None

@@ -62,6 +62,9 @@ from .online_terminal_frontier import (
     OnlineTerminalFrontierExplorer,
     TerminalFrontierAction,
 )
+from .online_terminal_relational_stencil import (
+    OnlineTerminalRelationalStencilLearner,
+)
 from .online_structural_frontier import OnlineStructuralFrontierDetector
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_causal_option import OnlineCausalOptionStore
@@ -181,6 +184,11 @@ class UnifiedCognitiveConfig:
     enable_structural_frontier_transfer: bool = True
     max_structural_transfer_probes_per_frontier: int = 2
     max_structural_transfer_attempts: int = 1
+    enable_progressive_terminal_routes: bool = True
+    max_progressive_terminal_routes_per_frontier: int = 4
+    max_progressive_terminal_route_attempts: int = 8
+    enable_terminal_relational_stencil_induction: bool = True
+    terminal_relational_stencil_min_support: int = 2
 
 
 @dataclass(frozen=True)
@@ -213,6 +221,14 @@ class CognitiveDecision:
     terminal_frontier_testing_causal_reduction: bool = False
     terminal_frontier_reacquisition: bool = False
     terminal_frontier_testing_structural_transfer: bool = False
+    terminal_progressive_route: bool = False
+    terminal_progressive_route_id: str = ""
+    terminal_progressive_route_confirmed: bool = False
+    terminal_relational_stencil: bool = False
+    terminal_relational_stencil_violations_before: int = 0
+    terminal_relational_stencil_expected_violations_after: int = 0
+    terminal_relational_stencil_support: int = 0
+    terminal_relational_stencil_count: int = 0
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -342,6 +358,29 @@ class CognitiveDecision:
             ),
             "terminal_frontier_testing_structural_transfer": (
                 self.terminal_frontier_testing_structural_transfer
+            ),
+            "terminal_progressive_route": self.terminal_progressive_route,
+            "terminal_progressive_route_id": (
+                self.terminal_progressive_route_id
+            ),
+            "terminal_progressive_route_confirmed": (
+                self.terminal_progressive_route_confirmed
+            ),
+            "terminal_relational_stencil": (
+                self.terminal_relational_stencil
+            ),
+            "terminal_relational_stencil_violations_before": (
+                self.terminal_relational_stencil_violations_before
+            ),
+            "terminal_relational_stencil_expected_violations_after": (
+                self
+                .terminal_relational_stencil_expected_violations_after
+            ),
+            "terminal_relational_stencil_support": (
+                self.terminal_relational_stencil_support
+            ),
+            "terminal_relational_stencil_count": (
+                self.terminal_relational_stencil_count
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -827,9 +866,29 @@ class UnifiedCognitiveController:
             max_structural_transfer_attempts=(
                 self.config.max_structural_transfer_attempts
             ),
+            enable_progressive_terminal_routes=(
+                self.config.enable_progressive_terminal_routes
+            ),
+            max_progressive_routes_per_frontier=(
+                self.config.max_progressive_terminal_routes_per_frontier
+            ),
+            max_progressive_route_attempts=(
+                self.config.max_progressive_terminal_route_attempts
+            ),
         )
         self.structural_frontiers = OnlineStructuralFrontierDetector(
             enabled=self.config.enable_structural_terminal_frontiers,
+        )
+        self.terminal_relational_stencils = (
+            OnlineTerminalRelationalStencilLearner(
+                enabled=(
+                    self.config
+                    .enable_terminal_relational_stencil_induction
+                ),
+                minimum_terminal_support=(
+                    self.config.terminal_relational_stencil_min_support
+                ),
+            )
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
@@ -841,6 +900,7 @@ class UnifiedCognitiveController:
         self._generic_experiment_decisions = 0
         self._click_cursor = 0
         self._pending_decision: CognitiveDecision | None = None
+        self._pending_action_candidates: Tuple[Any, ...] = ()
         self._predictions: Dict[str, DiscriminatingPrediction] = {}
         self._prediction_evidence: Dict[str, Dict[str, Any]] = {}
         self._promoted_prediction_keys: set[str] = set()
@@ -918,6 +978,7 @@ class UnifiedCognitiveController:
         actions = _normalize_actions(available_actions or self.theory.actions())
         self.theory.seed_actions(actions)
         pending = self._pending_decision
+        pending_action_candidates = self._pending_action_candidates
         was_experiment = bool(
             pending is not None
             and pending.action_name == action_name
@@ -1030,10 +1091,33 @@ class UnifiedCognitiveController:
             won=terminal_win,
             game_over=bool(update.record.diff.game_over),
         )
+        self.terminal_relational_stencils.observe_transition(
+            grid_before=update.record.obs_before.raw_grid,
+            grid_after=update.record.obs_after.raw_grid,
+            action_name=action_name,
+            action_data=action_data,
+            available_action_candidates=pending_action_candidates,
+            terminal_success_confirmed=bool(
+                (terminal_level_progress or terminal_win)
+                and (
+                    frontier_outcome.get("credited")
+                    or frontier_outcome.get(
+                        "progressive_route_confirmed"
+                    )
+                )
+            ),
+        )
         if frontier_outcome["frontier_id"]:
             self._terminal_frontier_outcomes.append(frontier_outcome)
         frontier_reacquisition_observation = bool(
             frontier_outcome.get("frontier_reacquisition_observation")
+        )
+        progressive_route_observation = bool(
+            frontier_outcome.get("progressive_route_observation")
+        )
+        controlled_frontier_replay_observation = bool(
+            frontier_reacquisition_observation
+            or progressive_route_observation
         )
         if (
             frontier_outcome.get("frontier_reacquisition_confirmed")
@@ -1094,7 +1178,7 @@ class UnifiedCognitiveController:
         )
         if (
             completed_objectives
-            and not frontier_reacquisition_observation
+            and not controlled_frontier_replay_observation
             and not objective_outcome["terminal_success"]
             and not update.record.diff.game_over
         ):
@@ -1111,7 +1195,7 @@ class UnifiedCognitiveController:
             )
         elif (
             structural_signal is not None
-            and not frontier_reacquisition_observation
+            and not controlled_frontier_replay_observation
         ):
             structural_frontier_id = (
                 self.terminal_frontiers.capture_structural(
@@ -1158,6 +1242,7 @@ class UnifiedCognitiveController:
             is_transform=int(update.record.diff.num_changed) >= 5,
         )
         self._pending_decision = None
+        self._pending_action_candidates = ()
         return update
 
     def select_action(
@@ -1167,6 +1252,7 @@ class UnifiedCognitiveController:
         available_actions: Sequence[Any],
         legacy_action: Any,
         legacy_action_data: Mapping[str, Any] | None = None,
+        available_action_candidates: Sequence[Any] | None = None,
         game_state: str = "NOT_FINISHED",
         levels_completed: int = 0,
     ) -> CognitiveDecision:
@@ -1197,11 +1283,24 @@ class UnifiedCognitiveController:
         decision = self._select_escape(observation, safe_actions)
         if (
             decision is None
+            and self.terminal_frontiers.active_progressive_route_available
+        ):
+            decision = self._select_progressive_terminal_route(
+                observation,
+                safe_actions,
+            )
+        if (
+            decision is None
             and self.terminal_frontiers.active_reacquisition_available
         ):
             decision = self._select_terminal_frontier_reacquisition(
                 observation,
                 safe_actions,
+            )
+        if decision is None:
+            decision = self._select_terminal_relational_stencil(
+                observation,
+                available_action_candidates,
             )
         if (
             decision is None
@@ -1244,12 +1343,16 @@ class UnifiedCognitiveController:
             safe_actions,
         )
         self._pending_decision = decision
+        self._pending_action_candidates = tuple(
+            available_action_candidates or ()
+        )
         self._decision_sources[decision.source] += 1
         return decision
 
     def on_reset(self) -> None:
         """Start a fresh behavioral branch while retaining learned theory."""
         self._pending_decision = None
+        self._pending_action_candidates = ()
         self.terminal_frontiers.start_branch()
         self.terminal_objectives.start_branch()
         self.temporal_goals.start_branch()
@@ -1329,6 +1432,9 @@ class UnifiedCognitiveController:
             "terminal_negative_frontiers": self.terminal_frontiers.summary(),
             "structural_terminal_frontiers": (
                 self.structural_frontiers.summary()
+            ),
+            "terminal_relational_stencil_induction": (
+                self.terminal_relational_stencils.summary()
             ),
             "recent_terminal_frontier_outcomes": (
                 self._terminal_frontier_outcomes[-10:]
@@ -1443,6 +1549,68 @@ class UnifiedCognitiveController:
             terminal_frontier_suffix_step=selection.step_index,
             terminal_frontier_suffix_action_limit=selection.action_limit,
             terminal_frontier_reacquisition=True,
+        )
+
+    def _select_progressive_terminal_route(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+    ) -> CognitiveDecision | None:
+        """Return one exact SAGE.9o reset-to-next-level replay action."""
+        selection = self.terminal_frontiers.select_progressive_route(
+            state_signature=_terminal_frontier_state_signature(
+                observation.raw_grid,
+                observation.levels_completed,
+            ),
+            available_actions=safe_actions,
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action.action_name,
+            action_data=selection.action.data,
+            source="terminal_progressive_route",
+            reason=selection.reason,
+            confidence=1.0,
+            terminal_frontier_id=selection.frontier_id,
+            terminal_frontier_suffix_step=selection.step_index,
+            terminal_frontier_suffix_action_limit=selection.action_limit,
+            terminal_progressive_route=True,
+            terminal_progressive_route_id=selection.route_id,
+            terminal_progressive_route_confirmed=(
+                selection.confirmed_route
+            ),
+        )
+
+    def _select_terminal_relational_stencil(
+        self,
+        observation: GameObservation,
+        available_action_candidates: Sequence[Any] | None,
+    ) -> CognitiveDecision | None:
+        """Apply a visual relation learned from confirmed terminal evidence."""
+        selection = self.terminal_relational_stencils.select(
+            current_grid=observation.raw_grid,
+            available_action_candidates=available_action_candidates,
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action_name,
+            action_data=selection.action_data,
+            source="terminal_relational_stencil",
+            reason=selection.reason,
+            confidence=1.0,
+            terminal_relational_stencil=True,
+            terminal_relational_stencil_violations_before=(
+                selection.violations_before
+            ),
+            terminal_relational_stencil_expected_violations_after=(
+                selection.expected_violations_after
+            ),
+            terminal_relational_stencil_support=(
+                selection.supporting_constraints
+            ),
+            terminal_relational_stencil_count=selection.stencil_count,
         )
 
     def _annotate_terminal_frontier_suffix(

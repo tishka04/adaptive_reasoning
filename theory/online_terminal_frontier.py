@@ -18,7 +18,10 @@ a continuation.  SAGE.9i may also supply a generic structural frontier without
 an objective postcondition.  SAGE.9j forces its first terminal to remain
 candidate-only until exact same-frontier replay.  SAGE.9k then pre-registers
 causal block cuts and credits a shorter sequence only when its own live test
-reaches a terminal.
+reaches a terminal.  SAGE.9o composes the learned reset-to-frontier path and
+its confirmed continuation into an exact progressive route.  Replaying that
+route creates repeated online access to the next level without encoding any
+game-specific answer.
 """
 
 from __future__ import annotations
@@ -89,6 +92,8 @@ class SuccessfulContinuation:
     removed_action_indices: Tuple[int, ...] = ()
     structural_transfer: bool = False
     source_frontier_id: str = ""
+    level_progressed: bool = False
+    won: bool = False
 
     @property
     def signature(self) -> Tuple[str, ...]:
@@ -103,6 +108,8 @@ class SuccessfulContinuation:
             "removed_action_indices": list(self.removed_action_indices),
             "structural_transfer": self.structural_transfer,
             "source_frontier_id": self.source_frontier_id,
+            "level_progressed": self.level_progressed,
+            "won": self.won,
         }
 
 
@@ -263,6 +270,56 @@ class StructuralTransferProbe:
 
 
 @dataclass
+class ProgressiveTerminalRoute:
+    """Exact online route from a reset state to one observed level advance."""
+
+    route_id: str
+    frontier_id: str
+    actions: Tuple[TerminalFrontierAction, ...]
+    state_signatures: Tuple[str, ...]
+    source_continuation_signature: Tuple[str, ...]
+    attempts: int = 0
+    confirmations: int = 0
+    divergences: int = 0
+    refutations: int = 0
+    censored: int = 0
+
+    @property
+    def signature(self) -> Tuple[str, ...]:
+        return (
+            tuple(action.signature for action in self.actions)
+            + tuple(f"state::{state}" for state in self.state_signatures)
+        )
+
+    @property
+    def status(self) -> str:
+        if self.confirmations:
+            return "terminal_confirmed"
+        if self.refutations:
+            return "refuted"
+        if self.divergences:
+            return "inconclusive_divergence"
+        return "awaiting_terminal_replay"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "route_id": self.route_id,
+            "frontier_id": self.frontier_id,
+            "actions": [action.to_dict() for action in self.actions],
+            "state_signatures": list(self.state_signatures),
+            "source_continuation_signature": list(
+                self.source_continuation_signature
+            ),
+            "attempts": self.attempts,
+            "confirmations": self.confirmations,
+            "divergences": self.divergences,
+            "refutations": self.refutations,
+            "censored": self.censored,
+            "status": self.status,
+        }
+
+
+@dataclass
 class TerminalNegativeFrontier:
     """A postcondition state observed without terminal success."""
 
@@ -298,6 +355,9 @@ class TerminalNegativeFrontier:
     ] = field(default_factory=dict)
     structural_transfer_probes: Dict[
         str, StructuralTransferProbe
+    ] = field(default_factory=dict)
+    progressive_terminal_routes: Dict[
+        str, ProgressiveTerminalRoute
     ] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -352,6 +412,12 @@ class TerminalNegativeFrontier:
                     self.structural_transfer_probes.items()
                 )
             ],
+            "progressive_terminal_routes": [
+                route.to_dict()
+                for _, route in sorted(
+                    self.progressive_terminal_routes.items()
+                )
+            ],
         }
 
 
@@ -394,6 +460,26 @@ class TerminalFrontierReacquisitionSelection:
     reason: str
 
 
+@dataclass
+class _ActiveProgressiveRoute:
+    route: ProgressiveTerminalRoute
+    actions: list[TerminalFrontierAction]
+    pending: TerminalFrontierAction | None = None
+
+
+@dataclass(frozen=True)
+class ProgressiveTerminalRouteSelection:
+    """One exact action on a learned reset-to-next-level route."""
+
+    route_id: str
+    frontier_id: str
+    action: TerminalFrontierAction
+    step_index: int
+    action_limit: int
+    confirmed_route: bool
+    reason: str
+
+
 class OnlineTerminalFrontierExplorer:
     """Explore and terminally credit bounded suffixes from negative frontiers."""
 
@@ -426,6 +512,9 @@ class OnlineTerminalFrontierExplorer:
         enable_structural_frontier_transfer: bool = True,
         max_structural_transfer_probes_per_frontier: int = 2,
         max_structural_transfer_attempts: int = 1,
+        enable_progressive_terminal_routes: bool = True,
+        max_progressive_routes_per_frontier: int = 4,
+        max_progressive_route_attempts: int = 8,
     ) -> None:
         self.enabled = bool(enabled)
         self.max_frontiers = max(1, int(max_frontiers))
@@ -513,6 +602,17 @@ class OnlineTerminalFrontierExplorer:
             1,
             int(max_structural_transfer_attempts),
         )
+        self.enable_progressive_terminal_routes = bool(
+            enable_progressive_terminal_routes
+        )
+        self.max_progressive_routes_per_frontier = max(
+            1,
+            int(max_progressive_routes_per_frontier),
+        )
+        self.max_progressive_route_attempts = max(
+            1,
+            int(max_progressive_route_attempts),
+        )
         self._frontiers: Dict[str, TerminalNegativeFrontier] = {}
         self._actions_by_state: Dict[
             str,
@@ -524,10 +624,12 @@ class OnlineTerminalFrontierExplorer:
         self._active: _ActiveSuffix | None = None
         self._dormant: _DormantLineage | None = None
         self._active_reacquisition: _ActiveReacquisition | None = None
+        self._active_progressive_route: _ActiveProgressiveRoute | None = None
         self._reacquired_frontier_id = ""
         self._branch_actions: list[TerminalFrontierAction] = []
         self._branch_state_signatures: list[str] = []
         self._reacquisition_start_checked = False
+        self._progressive_route_start_checked = False
         self._frontiers_captured = 0
         self._duplicate_captures = 0
         self._trials_started = 0
@@ -583,6 +685,13 @@ class OnlineTerminalFrontierExplorer:
         self._structural_transfer_refutations = 0
         self._structural_transfer_divergences = 0
         self._structural_transfer_terminal_credits = 0
+        self._progressive_routes_compiled = 0
+        self._progressive_route_attempts = 0
+        self._progressive_route_actions = 0
+        self._progressive_route_confirmations = 0
+        self._progressive_route_divergences = 0
+        self._progressive_route_refutations = 0
+        self._progressive_route_censored = 0
         self._trial_started_this_branch = False
 
     @property
@@ -611,9 +720,34 @@ class OnlineTerminalFrontierExplorer:
         )
 
     @property
+    def active_progressive_route_available(self) -> bool:
+        """Whether a learned reset-to-next-level route can run now."""
+        if not self.enabled or not self.enable_progressive_terminal_routes:
+            return False
+        if self._active_progressive_route is not None:
+            return True
+        if (
+            self._progressive_route_start_checked
+            or self._branch_actions
+            or self._active is not None
+            or self._active_reacquisition is not None
+        ):
+            return False
+        return any(
+            route.attempts < self.max_progressive_route_attempts
+            and route.refutations == 0
+            for frontier in self._frontiers.values()
+            for route in frontier.progressive_terminal_routes.values()
+        )
+
+    @property
     def active_reacquisition_available(self) -> bool:
         """Whether an exact reset-to-frontier path is active or can start."""
-        if not self.enabled or not self.enable_active_frontier_reacquisition:
+        if (
+            not self.enabled
+            or not self.enable_active_frontier_reacquisition
+            or self._active_progressive_route is not None
+        ):
             return False
         if self._active_reacquisition is not None:
             return True
@@ -825,6 +959,90 @@ class OnlineTerminalFrontierExplorer:
             structural_equivalence_signature=equivalence_signature,
         )
 
+    def select_progressive_route(
+        self,
+        *,
+        state_signature: str,
+        available_actions: Sequence[str],
+    ) -> ProgressiveTerminalRouteSelection | None:
+        """Replay one exact action toward a previously observed next level."""
+        if (
+            not self.enabled
+            or not self.enable_progressive_terminal_routes
+            or self._active is not None
+            or self._active_reacquisition is not None
+        ):
+            return None
+        state = str(state_signature)
+        allowed = {str(action).upper() for action in available_actions}
+        active = self._active_progressive_route
+        if active is None:
+            if self._progressive_route_start_checked or self._branch_actions:
+                return None
+            self._progressive_route_start_checked = True
+            candidates = [
+                route
+                for frontier in self._frontiers.values()
+                for route in frontier.progressive_terminal_routes.values()
+                if route.actions
+                and route.state_signatures
+                and route.state_signatures[0] == state
+                and route.refutations == 0
+                and route.attempts < self.max_progressive_route_attempts
+            ]
+            if not candidates:
+                return None
+            route = min(
+                candidates,
+                key=lambda item: (
+                    -item.confirmations,
+                    len(item.actions),
+                    item.attempts,
+                    item.route_id,
+                ),
+            )
+            route.attempts += 1
+            self._progressive_route_attempts += 1
+            active = _ActiveProgressiveRoute(route=route, actions=[])
+            self._active_progressive_route = active
+
+        if active.pending is not None:
+            return None
+        route = active.route
+        step = len(active.actions)
+        if (
+            step >= len(route.actions)
+            or step >= len(route.state_signatures)
+            or state != route.state_signatures[step]
+        ):
+            route.divergences += 1
+            self._progressive_route_divergences += 1
+            self._active_progressive_route = None
+            return None
+        action = route.actions[step]
+        if action.action_name not in allowed:
+            route.divergences += 1
+            self._progressive_route_divergences += 1
+            self._active_progressive_route = None
+            return None
+        active.pending = action
+        return ProgressiveTerminalRouteSelection(
+            route_id=route.route_id,
+            frontier_id=route.frontier_id,
+            action=action,
+            step_index=step,
+            action_limit=len(route.actions),
+            confirmed_route=bool(route.confirmations),
+            reason=(
+                "exact replay of a terminal-confirmed reset-to-next-level route"
+                if route.confirmations
+                else (
+                    "terminal validation of a composed reset-to-frontier "
+                    "and confirmed-continuation route"
+                )
+            ),
+        )
+
     def select_reacquisition(
         self,
         *,
@@ -836,6 +1054,7 @@ class OnlineTerminalFrontierExplorer:
             not self.enabled
             or not self.enable_active_frontier_reacquisition
             or self._active is not None
+            or self._active_progressive_route is not None
         ):
             return None
         state = str(state_signature)
@@ -1091,6 +1310,17 @@ class OnlineTerminalFrontierExplorer:
             state_signature_after=str(state_signature_after),
             observed=observed,
         )
+        progressive_route_outcome = (
+            self._observe_progressive_route_transition(
+                state_signature_after=str(state_signature_after),
+                observed=observed,
+                level_progressed=bool(level_progressed),
+                won=bool(won),
+                game_over=bool(game_over),
+            )
+        )
+        if progressive_route_outcome is not None:
+            return progressive_route_outcome
         reacquisition_outcome = self._observe_reacquisition_transition(
             state_signature_after=str(state_signature_after),
             observed=observed,
@@ -1424,13 +1654,18 @@ class OnlineTerminalFrontierExplorer:
         if self._active_reacquisition is not None:
             self._active_reacquisition.path.censored += 1
             self._frontier_reacquisition_censored += 1
+        if self._active_progressive_route is not None:
+            self._active_progressive_route.route.censored += 1
+            self._progressive_route_censored += 1
         self._active = None
         self._dormant = None
         self._active_reacquisition = None
+        self._active_progressive_route = None
         self._reacquired_frontier_id = ""
         self._branch_actions = []
         self._branch_state_signatures = []
         self._reacquisition_start_checked = False
+        self._progressive_route_start_checked = False
         self._trial_started_this_branch = False
 
     def frontiers(self) -> Tuple[TerminalNegativeFrontier, ...]:
@@ -1464,6 +1699,11 @@ class OnlineTerminalFrontierExplorer:
             probe
             for frontier in self._frontiers.values()
             for probe in frontier.structural_transfer_probes.values()
+        ]
+        progressive_routes = [
+            route
+            for frontier in self._frontiers.values()
+            for route in frontier.progressive_terminal_routes.values()
         ]
         return {
             "enabled": self.enabled,
@@ -1512,6 +1752,12 @@ class OnlineTerminalFrontierExplorer:
             ),
             "structural_frontier_transfer_enabled": (
                 self.enable_structural_frontier_transfer
+            ),
+            "progressive_terminal_routes_enabled": (
+                self.enable_progressive_terminal_routes
+            ),
+            "max_progressive_route_attempts": (
+                self.max_progressive_route_attempts
             ),
             "frontiers": len(self._frontiers),
             "frontiers_captured": self._frontiers_captured,
@@ -1655,6 +1901,24 @@ class OnlineTerminalFrontierExplorer:
             "structural_transfer_terminal_credits": (
                 self._structural_transfer_terminal_credits
             ),
+            "progressive_terminal_routes": len(progressive_routes),
+            "progressive_routes_compiled": self._progressive_routes_compiled,
+            "progressive_route_attempts": self._progressive_route_attempts,
+            "progressive_route_actions": self._progressive_route_actions,
+            "progressive_route_confirmations": (
+                self._progressive_route_confirmations
+            ),
+            "progressive_route_divergences": (
+                self._progressive_route_divergences
+            ),
+            "progressive_route_refutations": (
+                self._progressive_route_refutations
+            ),
+            "progressive_route_censored": self._progressive_route_censored,
+            "maximum_progressive_route_length": max(
+                (len(route.actions) for route in progressive_routes),
+                default=0,
+            ),
             "maximum_dormant_candidate_length": max(
                 (len(candidate.actions) for candidate in dormant_candidates),
                 default=0,
@@ -1688,6 +1952,11 @@ class OnlineTerminalFrontierExplorer:
                 if self._active_reacquisition is None
                 else self._active_reacquisition.frontier_id
             ),
+            "active_progressive_route_id": (
+                ""
+                if self._active_progressive_route is None
+                else self._active_progressive_route.route.route_id
+            ),
             "records": [frontier.to_dict() for frontier in self.frontiers()],
         }
 
@@ -1710,6 +1979,70 @@ class OnlineTerminalFrontierExplorer:
             return
         self._branch_actions.append(observed)
         self._branch_state_signatures.append(after)
+
+    def _observe_progressive_route_transition(
+        self,
+        *,
+        state_signature_after: str,
+        observed: TerminalFrontierAction,
+        level_progressed: bool,
+        won: bool,
+        game_over: bool,
+    ) -> Dict[str, Any] | None:
+        active = self._active_progressive_route
+        if active is None or active.pending is None:
+            return None
+        expected_action = active.pending
+        active.pending = None
+        route = active.route
+        step = len(active.actions)
+        expected_after = (
+            route.state_signatures[step + 1]
+            if step + 1 < len(route.state_signatures)
+            else ""
+        )
+        exact = bool(
+            observed.signature == expected_action.signature
+            and str(state_signature_after) == expected_after
+        )
+        outcome = _empty_outcome()
+        outcome.update(
+            {
+                "frontier_id": route.frontier_id,
+                "terminal_success": bool(level_progressed or won),
+                "level_progressed": bool(level_progressed),
+                "won": bool(won),
+                "game_over": bool(game_over),
+                "progressive_route_observation": True,
+                "progressive_route_id": route.route_id,
+            }
+        )
+        if not exact:
+            route.divergences += 1
+            self._progressive_route_divergences += 1
+            outcome["progressive_route_diverged"] = True
+            self._active_progressive_route = None
+            return outcome
+        active.actions.append(observed)
+        self._progressive_route_actions += 1
+        complete = len(active.actions) >= len(route.actions)
+        if not complete:
+            if level_progressed or won or game_over:
+                route.divergences += 1
+                self._progressive_route_divergences += 1
+                outcome["progressive_route_diverged"] = True
+                self._active_progressive_route = None
+            return outcome
+        if level_progressed or won:
+            route.confirmations += 1
+            self._progressive_route_confirmations += 1
+            outcome["progressive_route_confirmed"] = True
+        else:
+            route.refutations += 1
+            self._progressive_route_refutations += 1
+            outcome["progressive_route_refuted"] = True
+        self._active_progressive_route = None
+        return outcome
 
     def _observe_reacquisition_transition(
         self,
@@ -1803,6 +2136,75 @@ class OnlineTerminalFrontierExplorer:
             state_signatures=states,
         )
         self._acquisition_paths_recorded += 1
+        for continuation in frontier.successful_continuations.values():
+            self._compile_progressive_terminal_routes(
+                frontier,
+                continuation,
+            )
+
+    def _compile_progressive_terminal_routes(
+        self,
+        frontier: TerminalNegativeFrontier,
+        continuation: SuccessfulContinuation,
+    ) -> None:
+        """Compose only online-observed exact prefixes and terminal suffixes."""
+        if (
+            not self.enable_progressive_terminal_routes
+            or not continuation.level_progressed
+            or not continuation.actions
+            or not continuation.state_signatures
+            or len(frontier.progressive_terminal_routes)
+            >= self.max_progressive_routes_per_frontier
+        ):
+            return
+        for path in sorted(
+            frontier.acquisition_paths.values(),
+            key=lambda item: (len(item.actions), item.signature),
+        ):
+            if (
+                not path.actions
+                or not path.state_signatures
+                or path.state_signatures[-1]
+                != continuation.state_signatures[0]
+            ):
+                continue
+            actions = tuple(path.actions) + tuple(continuation.actions)
+            states = (
+                tuple(path.state_signatures)
+                + tuple(continuation.state_signatures[1:])
+            )
+            if len(states) != len(actions) + 1:
+                continue
+            payload = "|".join(
+                (
+                    frontier.frontier_id,
+                    "|".join(action.signature for action in actions),
+                    "|".join(states),
+                )
+            )
+            route_id = (
+                "progressive-route::"
+                f"{hashlib.sha1(payload.encode('utf-8')).hexdigest()[:16]}"
+            )
+            if route_id in frontier.progressive_terminal_routes:
+                continue
+            frontier.progressive_terminal_routes[route_id] = (
+                ProgressiveTerminalRoute(
+                    route_id=route_id,
+                    frontier_id=frontier.frontier_id,
+                    actions=actions,
+                    state_signatures=states,
+                    source_continuation_signature=(
+                        continuation.signature
+                    ),
+                )
+            )
+            self._progressive_routes_compiled += 1
+            if (
+                len(frontier.progressive_terminal_routes)
+                >= self.max_progressive_routes_per_frontier
+            ):
+                return
 
     def _compile_structural_transfer_probes(
         self,
@@ -2102,10 +2504,16 @@ class OnlineTerminalFrontierExplorer:
                 removed_action_indices=tuple(removed_action_indices),
                 structural_transfer=bool(structural_transfer),
                 source_frontier_id=str(source_frontier_id),
+                level_progressed=bool(level_progressed),
+                won=bool(won),
             )
             frontier.successful_continuations[signature] = continuation
         else:
             continuation.confirmations += 1
+            continuation.level_progressed = bool(
+                continuation.level_progressed or level_progressed
+            )
+            continuation.won = bool(continuation.won or won)
         frontier.terminal_credits += 1
         self._terminal_credits += 1
         self._level_change_credits += int(bool(level_progressed))
@@ -2114,6 +2522,10 @@ class OnlineTerminalFrontierExplorer:
             self._successful_replays += 1
         if frontier.frontier_kind == "structural_change":
             self._structural_terminal_credits += 1
+            self._compile_progressive_terminal_routes(
+                frontier,
+                continuation,
+            )
 
     def _compile_causal_reduction_probes(
         self,
@@ -2344,6 +2756,11 @@ def _empty_outcome() -> Dict[str, Any]:
         "frontier_reacquisition_observation": False,
         "frontier_reacquisition_confirmed": False,
         "frontier_reacquisition_diverged": False,
+        "progressive_route_observation": False,
+        "progressive_route_id": "",
+        "progressive_route_confirmed": False,
+        "progressive_route_diverged": False,
+        "progressive_route_refuted": False,
     }
 
 
@@ -2352,6 +2769,8 @@ __all__ = [
     "DormantTerminalContinuation",
     "FrontierAcquisitionPath",
     "OnlineTerminalFrontierExplorer",
+    "ProgressiveTerminalRoute",
+    "ProgressiveTerminalRouteSelection",
     "SuccessfulContinuation",
     "TerminalFrontierAction",
     "TerminalFrontierReacquisitionSelection",

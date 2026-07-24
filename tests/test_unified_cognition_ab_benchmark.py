@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
+import theory.unified_cognition_ab_benchmark as benchmark
 from theory.unified_cognition_ab_benchmark import (
     run_unified_cognition_ab_benchmark,
 )
@@ -57,6 +58,40 @@ class _FakeEnv:
         return _FakeFrame(self.grid.copy(), levels_completed=self.levels)
 
 
+class _OneActionGame:
+    def _get_valid_actions(self):
+        return [_FakeAction(1)]
+
+
+class _FakeTwoLevelEnv:
+    def __init__(self) -> None:
+        self._game = _OneActionGame()
+        self.levels = 0
+        self.grid = np.zeros((7, 7), dtype=np.int32)
+        self.grid[3, 3] = 2
+
+    def step(self, action, data=None):
+        name = str(getattr(action, "name", ""))
+        value = int(getattr(action, "value", action))
+        if name == "RESET" or value == 0:
+            self.levels = 0
+            self.grid.fill(0)
+            self.grid[3, 3] = 2
+            return _FakeFrame(
+                self.grid.copy(),
+                levels_completed=self.levels,
+                available_actions=(1,),
+            )
+        self.levels += 1
+        self.grid[3, 3] = 2 + self.levels
+        return _FakeFrame(
+            self.grid.copy(),
+            state="WIN" if self.levels >= 2 else "NOT_FINISHED",
+            levels_completed=self.levels,
+            available_actions=(1,),
+        )
+
+
 def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     created = []
 
@@ -73,7 +108,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v31"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v33"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -140,6 +175,14 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         is True
     )
     assert protocol["structural_frontier_transfer_enabled_in_unified"] is True
+    assert protocol["progressive_terminal_routes_enabled_in_unified"] is True
+    assert protocol["controller_rebranches_after_level_change"] is True
+    assert (
+        protocol[
+            "terminal_relational_stencil_induction_enabled_in_unified"
+        ]
+        is True
+    )
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -178,6 +221,11 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "terminal_frontier_reacquisition_actions" in metrics["unified"]
     assert "structural_transfer_probes" in metrics["unified"]
     assert "structural_transfer_terminal_credits" in metrics["unified"]
+    assert "max_level_reached" in metrics["unified"]
+    assert "level_rebranches" in metrics["unified"]
+    assert "progressive_terminal_routes" in metrics["unified"]
+    assert "progressive_terminal_route_actions" in metrics["unified"]
+    assert "progressive_terminal_route_confirmations" in metrics["unified"]
     assert "terminal_objective_grounded_actions" in metrics["unified"]
     assert "terminal_objective_discriminator_actions" in metrics["unified"]
     assert "terminal_objective_ablation_actions" in metrics["unified"]
@@ -317,6 +365,24 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "causal_option_dynamic_budget_extensions" in metrics["unified"]
     assert "causal_option_budget_pruned_rollouts" in metrics["unified"]
     assert "failure_causes" in payload
+
+
+def test_ab_benchmark_rebranches_controller_and_gates_consecutive_depth_two(
+    monkeypatch,
+):
+    monkeypatch.setattr(benchmark, "_reset_env", lambda env: env.step(0))
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-two-level-synthetic"],
+        seeds=[3],
+        action_budget_per_reset=4,
+        resets=1,
+        env_factory=lambda _game_id: _FakeTwoLevelEnv(),
+    )
+
+    unified = payload["metrics"]["unified"]
+    assert unified["max_level_reached"] == 2
+    assert unified["level_rebranches"] == 1
+    assert payload["depth_two_gate_passed"] is True
 
 
 def test_ab_benchmark_exposes_a_reproducible_causal_subgoal_ablation():
@@ -912,3 +978,45 @@ def test_ab_benchmark_exposes_structural_frontier_transfer_ablation():
     assert metrics["structural_transfer_probes"] == 0
     assert metrics["structural_transfer_actions"] == 0
     assert metrics["structural_transfer_terminal_credits"] == 0
+
+
+def test_ab_benchmark_exposes_progressive_terminal_route_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-progressive-route-ablation"],
+        seeds=[109],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_progressive_terminal_routes=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["progressive_terminal_routes_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["progressive_terminal_routes"] == 0
+    assert metrics["progressive_terminal_route_attempts"] == 0
+    assert metrics["progressive_terminal_route_actions"] == 0
+    assert payload["depth_two_gate_passed"] is False
+
+
+def test_ab_benchmark_exposes_terminal_relational_stencil_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-terminal-relational-stencil-ablation"],
+        seeds=[113],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_terminal_relational_stencil_induction=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol[
+            "terminal_relational_stencil_induction_enabled_in_unified"
+        ]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["terminal_relational_stencil_examples"] == 0
+    assert metrics["terminal_relational_stencil_decisions"] == 0
+    assert metrics["terminal_relational_stencil_rules"] == 0

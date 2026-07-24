@@ -82,6 +82,28 @@ def _normalize_action_name(a: Any) -> str:
     return name
 
 
+def _parameterized_action_candidates(env: Any) -> List[Dict[str, Any]]:
+    """Expose exact live action arguments without interpreting game logic."""
+    game = getattr(env, "_game", None)
+    getter = getattr(game, "_get_valid_actions", None)
+    if not callable(getter):
+        return []
+    try:
+        raw_actions = tuple(getter() or ())
+    except Exception:
+        return []
+    candidates: List[Dict[str, Any]] = []
+    for raw_action in raw_actions:
+        action_id = getattr(raw_action, "id", raw_action)
+        candidates.append({
+            "name": _normalize_action_name(action_id),
+            "action_args": dict(
+                getattr(raw_action, "data", None) or {}
+            ),
+        })
+    return candidates
+
+
 # ── Agent ───────────────────────────────────────────────────────────
 
 class AdaptiveReasoning(Agent):
@@ -903,6 +925,9 @@ class AdaptiveReasoning(Agent):
                     available_actions=self._available_action_names,
                     legacy_action=legacy_action_name,
                     legacy_action_data=legacy_action_data,
+                    available_action_candidates=(
+                        _parameterized_action_candidates(self.arc_env)
+                    ),
                     game_state=latest_frame.state.name,
                     levels_completed=latest_frame.levels_completed,
                 )
@@ -1197,6 +1222,9 @@ class AdaptiveReasoning(Agent):
                     available_actions=available_names,
                     legacy_action=legacy_name,
                     legacy_action_data=legacy_data or {},
+                    available_action_candidates=(
+                        _parameterized_action_candidates(self.arc_env)
+                    ),
                     game_state=getattr(
                         getattr(frame_data, "state", None),
                         "name",

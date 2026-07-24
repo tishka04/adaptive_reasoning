@@ -359,6 +359,7 @@ def test_controller_reacquires_confirmed_structural_frontier_after_reset():
             enable_promoted_options=False,
             enable_temporal_goal_composition=False,
             enable_causal_hierarchical_options=False,
+            enable_progressive_terminal_routes=False,
         ),
     )
     reset_grid = _player_grid(2)
@@ -571,3 +572,5 @@ def test_registered_arc_agent_enables_the_unified_controller():
     assert "self.cognitive_controller.select_action(" in active_agent
     assert "self.cognitive_controller.observe_transition(" in active_agent
     assert "_unified_fast_choice(" in active_agent
+    assert "_parameterized_action_candidates(" in active_agent
+    assert "available_action_candidates=(" in active_agent

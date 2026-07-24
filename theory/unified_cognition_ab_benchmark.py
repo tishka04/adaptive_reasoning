@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v31"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v33"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -349,6 +349,28 @@ def _structural_frontier_transfer_disabled_controller(
     )
 
 
+def _progressive_terminal_routes_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_progressive_terminal_routes=False,
+        ),
+    )
+
+
+def _terminal_relational_stencil_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_terminal_relational_stencil_induction=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -449,6 +471,8 @@ def run_unified_cognition_ab_benchmark(
     enable_active_frontier_reacquisition: bool = True,
     enable_recursive_terminal_causal_minimization: bool = True,
     enable_structural_frontier_transfer: bool = True,
+    enable_progressive_terminal_routes: bool = True,
+    enable_terminal_relational_stencil_induction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -639,6 +663,20 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _structural_frontier_transfer_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_progressive_terminal_routes
+    ):
+        effective_controller_factory = (
+            _progressive_terminal_routes_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_terminal_relational_stencil_induction
+    ):
+        effective_controller_factory = (
+            _terminal_relational_stencil_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -765,6 +803,12 @@ def run_unified_cognition_ab_benchmark(
         ),
         structural_frontier_transfer_enabled=(
             enable_structural_frontier_transfer
+        ),
+        progressive_terminal_routes_enabled=(
+            enable_progressive_terminal_routes
+        ),
+        terminal_relational_stencil_induction_enabled=(
+            enable_terminal_relational_stencil_induction
         ),
     )
     if not include_traces:
@@ -911,6 +955,13 @@ def _run_arm(
     )
     structural_frontier_summary = dict(
         controller_summary.get("structural_terminal_frontiers", {}) or {}
+    )
+    terminal_relational_stencil_summary = dict(
+        controller_summary.get(
+            "terminal_relational_stencil_induction",
+            {},
+        )
+        or {}
     )
     return {
         "arm": arm,
@@ -1301,12 +1352,95 @@ def _run_arm(
                 0,
             ) or 0
         ),
+        "progressive_terminal_routes": int(
+            terminal_frontier_summary.get(
+                "progressive_routes_compiled",
+                0,
+            ) or 0
+        ),
+        "progressive_terminal_route_attempts": int(
+            terminal_frontier_summary.get(
+                "progressive_route_attempts",
+                0,
+            ) or 0
+        ),
+        "progressive_terminal_route_actions": int(
+            terminal_frontier_summary.get(
+                "progressive_route_actions",
+                0,
+            ) or 0
+        ),
+        "progressive_terminal_route_confirmations": int(
+            terminal_frontier_summary.get(
+                "progressive_route_confirmations",
+                0,
+            ) or 0
+        ),
+        "progressive_terminal_route_divergences": int(
+            terminal_frontier_summary.get(
+                "progressive_route_divergences",
+                0,
+            ) or 0
+        ),
+        "progressive_terminal_route_refutations": int(
+            terminal_frontier_summary.get(
+                "progressive_route_refutations",
+                0,
+            ) or 0
+        ),
+        "progressive_terminal_route_censored": int(
+            terminal_frontier_summary.get(
+                "progressive_route_censored",
+                0,
+            ) or 0
+        ),
+        "maximum_progressive_terminal_route_length": int(
+            terminal_frontier_summary.get(
+                "maximum_progressive_route_length",
+                0,
+            ) or 0
+        ),
+        "terminal_relational_stencil_examples": int(
+            terminal_relational_stencil_summary.get(
+                "terminal_examples",
+                0,
+            )
+            or 0
+        ),
+        "terminal_relational_stencil_constraints": int(
+            terminal_relational_stencil_summary.get(
+                "terminal_constraints",
+                0,
+            )
+            or 0
+        ),
+        "terminal_relational_stencil_effect_observations": int(
+            terminal_relational_stencil_summary.get(
+                "effect_observations",
+                0,
+            )
+            or 0
+        ),
+        "terminal_relational_stencil_decisions": int(
+            terminal_relational_stencil_summary.get("decisions", 0)
+            or 0
+        ),
+        "terminal_relational_stencil_rules": len(
+            terminal_relational_stencil_summary.get(
+                "confirmed_marker_rules",
+                {},
+            )
+            or {}
+        ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
         ),
         "max_level_reached": max(
             (int(attempt["max_level_reached"]) for attempt in attempts),
             default=0,
+        ),
+        "level_rebranches": sum(
+            int(attempt.get("level_rebranches", 0)) for attempt in attempts
         ),
         "wins": sum(int(bool(attempt["win"])) for attempt in attempts),
         "experiment_actions": experiments,
@@ -2229,6 +2363,7 @@ def _run_attempt(
     initial_level = int(initial.levels_completed)
     max_level = initial_level
     positive_level_delta = 0
+    level_rebranches = 0
     trace: List[Dict[str, Any]] = []
     failure = ""
     for step in range(action_budget):
@@ -2252,6 +2387,7 @@ def _run_attempt(
                     legacy_action_data=dict(
                         getattr(proposal, "action_args", {}) or {}
                     ),
+                    available_action_candidates=legal_actions,
                     game_state=before.game_state,
                     levels_completed=before.levels_completed,
                 )
@@ -2278,6 +2414,10 @@ def _run_attempt(
         except Exception as exc:  # pragma: no cover - integration failure path
             failure = f"environment_step_error:{type(exc).__name__}"
             break
+        step_delta = max(
+            0,
+            int(after.levels_completed) - int(before.levels_completed),
+        )
         if controller is not None:
             try:
                 controller.observe_transition(
@@ -2291,9 +2431,11 @@ def _run_attempt(
                     levels_completed_before=before.levels_completed,
                     levels_completed_after=after.levels_completed,
                 )
+                if step_delta > 0 and not _is_terminal(after.game_state):
+                    controller.on_level_change()
+                    level_rebranches += 1
             except Exception as exc:
                 controller_errors.append(f"observe:{game_id}:{reset_index}:{step}:{exc}")
-        step_delta = max(0, int(after.levels_completed) - int(before.levels_completed))
         positive_level_delta += step_delta
         max_level = max(max_level, int(after.levels_completed))
         trace.append({
@@ -2327,6 +2469,7 @@ def _run_attempt(
         "actions_executed": len(trace),
         "levels_completed_delta": positive_level_delta,
         "max_level_reached": max_level,
+        "level_rebranches": level_rebranches,
         "final_game_state": str(final.game_state),
         "win": win,
         "failure_cause": failure,
@@ -2410,6 +2553,8 @@ def _summarize_benchmark(
     active_frontier_reacquisition_enabled: bool,
     recursive_terminal_causal_minimization_enabled: bool,
     structural_frontier_transfer_enabled: bool,
+    progressive_terminal_routes_enabled: bool,
+    terminal_relational_stencil_induction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2522,6 +2667,13 @@ def _summarize_benchmark(
             "structural_frontier_transfer_enabled_in_unified": bool(
                 structural_frontier_transfer_enabled
             ),
+            "progressive_terminal_routes_enabled_in_unified": bool(
+                progressive_terminal_routes_enabled
+            ),
+            "terminal_relational_stencil_induction_enabled_in_unified": bool(
+                terminal_relational_stencil_induction_enabled
+            ),
+            "controller_rebranches_after_level_change": True,
             "protocol_gate_passed": protocol_gate,
         },
         "baseline_definition": (
@@ -2537,6 +2689,10 @@ def _summarize_benchmark(
                     unified["levels_completed"] - legacy["levels_completed"]
                 ),
                 "wins": unified["wins"] - legacy["wins"],
+                "max_level_reached": (
+                    unified["max_level_reached"]
+                    - legacy["max_level_reached"]
+                ),
                 "experiment_actions": (
                     unified["experiment_actions"] - legacy["experiment_actions"]
                 ),
@@ -2554,6 +2710,10 @@ def _summarize_benchmark(
         "arc_progress_observed": bool(
             unified["levels_completed"] > legacy["levels_completed"]
             or unified["wins"] > legacy["wins"]
+            or unified["max_level_reached"] > legacy["max_level_reached"]
+        ),
+        "depth_two_gate_passed": bool(
+            unified["max_level_reached"] >= 2
         ),
         "pairs": list(pairs),
     }
@@ -2575,6 +2735,13 @@ def _aggregate_arm(
         "episodes": reset_attempts,
         "reset_attempts": reset_attempts,
         "actions_executed": actions,
+        "max_level_reached": max(
+            (int(row["max_level_reached"]) for row in rows),
+            default=0,
+        ),
+        "level_rebranches": sum(
+            int(row.get("level_rebranches", 0)) for row in rows
+        ),
         "operator_plan_actions": sum(
             int(row["operator_plan_actions"]) for row in rows
         ),
@@ -2855,6 +3022,57 @@ def _aggregate_arm(
         ),
         "structural_transfer_terminal_credits": sum(
             int(row["structural_transfer_terminal_credits"]) for row in rows
+        ),
+        "progressive_terminal_routes": sum(
+            int(row["progressive_terminal_routes"]) for row in rows
+        ),
+        "progressive_terminal_route_attempts": sum(
+            int(row["progressive_terminal_route_attempts"]) for row in rows
+        ),
+        "progressive_terminal_route_actions": sum(
+            int(row["progressive_terminal_route_actions"]) for row in rows
+        ),
+        "progressive_terminal_route_confirmations": sum(
+            int(row["progressive_terminal_route_confirmations"])
+            for row in rows
+        ),
+        "progressive_terminal_route_divergences": sum(
+            int(row["progressive_terminal_route_divergences"])
+            for row in rows
+        ),
+        "progressive_terminal_route_refutations": sum(
+            int(row["progressive_terminal_route_refutations"])
+            for row in rows
+        ),
+        "progressive_terminal_route_censored": sum(
+            int(row["progressive_terminal_route_censored"]) for row in rows
+        ),
+        "maximum_progressive_terminal_route_length": max(
+            (
+                int(row["maximum_progressive_terminal_route_length"])
+                for row in rows
+            ),
+            default=0,
+        ),
+        "terminal_relational_stencil_examples": sum(
+            int(row["terminal_relational_stencil_examples"])
+            for row in rows
+        ),
+        "terminal_relational_stencil_constraints": sum(
+            int(row["terminal_relational_stencil_constraints"])
+            for row in rows
+        ),
+        "terminal_relational_stencil_effect_observations": sum(
+            int(row["terminal_relational_stencil_effect_observations"])
+            for row in rows
+        ),
+        "terminal_relational_stencil_decisions": sum(
+            int(row["terminal_relational_stencil_decisions"])
+            for row in rows
+        ),
+        "terminal_relational_stencil_rules": sum(
+            int(row["terminal_relational_stencil_rules"])
+            for row in rows
         ),
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
@@ -3845,6 +4063,7 @@ def _blocked_attempt(reset_index: int, reason: str) -> Dict[str, Any]:
         "actions_executed": 0,
         "levels_completed_delta": 0,
         "max_level_reached": 0,
+        "level_rebranches": 0,
         "final_game_state": "",
         "win": False,
         "failure_cause": reason,
@@ -4062,6 +4281,19 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9n terminal-only structural transfer only.",
     )
+    parser.add_argument(
+        "--disable-progressive-terminal-routes",
+        action="store_true",
+        help="Ablate SAGE.9o exact reset-to-next-level route replay only.",
+    )
+    parser.add_argument(
+        "--disable-terminal-relational-stencil-induction",
+        action="store_true",
+        help=(
+            "Ablate SAGE.9p terminally confirmed visual relation "
+            "induction only."
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -4161,6 +4393,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_structural_frontier_transfer=(
             not args.disable_structural_frontier_transfer
+        ),
+        enable_progressive_terminal_routes=(
+            not args.disable_progressive_terminal_routes
+        ),
+        enable_terminal_relational_stencil_induction=(
+            not args.disable_terminal_relational_stencil_induction
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

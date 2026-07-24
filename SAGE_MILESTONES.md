@@ -7187,3 +7187,105 @@ respecte son gate terminal et SAGE.9n a elimine cinq analogies insuffisantes.
 Le gain robuste held-out reste celui deja attribue par SAGE.9j; les nouvelles
 briques apportent surtout une capacite de falsification active, sans
 surrevendication de nouveau niveau confirme.
+
+## SAGE.9o - progressive terminal routes
+
+Objectif :
+
+- Transformer l'acces terminal SAGE.9j et son chemin de reacquisition SAGE.9l
+  en une route complete apprise pendant l'examen, du RESET au niveau suivant.
+- Preserver la meme partie apres un changement de niveau afin que
+  l'apprentissage online puisse continuer au lieu de compter seulement des
+  succes independants de profondeur 1.
+
+Protocole :
+
+- Une route n'est compilee qu'en composant un chemin d'acquisition reellement
+  observe avec une continuation deja confirmee terminalement.
+- Le replay exige les memes signatures d'etat, les memes actions parametrees
+  et une nouvelle issue terminale. Une divergence, une refutation ou une
+  censure est auditee et ne recoit aucun credit.
+- Le benchmark rebranche explicitement le controleur apres un changement de
+  niveau sans recreer l'environnement. Il rapporte desormais
+  `max_level_reached` par tentative et le gate strict
+  `depth_two_gate_passed := max_level_reached >= 2`.
+
+Audit cible `ft09`, seed 0, 20 resets x 80 :
+
+- une route de 13 actions est compilee;
+- 8 replays sont tentes et tous les 8 sont confirmes, soit 104 actions, zero
+  divergence et zero refutation;
+- les acces au niveau 1 passent de 3 a 11, mais
+  `max_level_reached` reste 1.
+- diagnostic : `diagnostics/sage/sage9o_ft09_progressive_routes.json`.
+
+Lecture : SAGE.9o supprime le verrou de l'acces repete et de la continuite
+intra-partie. Il montre aussi que cet acces ne suffit pas : apres le niveau 1,
+le controleur ne sait encore ni induire ni appliquer la relation visuelle qui
+definit le but.
+
+## SAGE.9p - terminally grounded relational stencil induction
+
+Objectif :
+
+- Induire une relation visuelle de but a partir d'un exemple terminal confirme
+  pendant l'examen, puis la reutiliser sur les niveaux suivants de la meme
+  partie.
+- Ne coder ni identifiant de jeu, ni niveau, ni coordonnee, ni sequence de
+  reponse.
+
+Representation et discipline epistemique :
+
+- Les actions `ACTION6` parametrees exposees par l'environnement forment une
+  grille de variables. Un trou entoure de variables est une hypothese de
+  stencil; son echelle, sa position et ses voisins sont decouverts a chaque
+  etat.
+- Les transitions ordinaires apprennent seulement l'effet relationnel d'un
+  clic, par exemple le passage de `egal au centre` a `different du centre`.
+- Les cellules transparentes et remplies du stencil restent deux roles sans
+  semantique de but tant qu'une continuation n'a pas ete confirmee par
+  l'attribution terminale SAGE.9j/9o.
+- Apres confirmation, les votes terminaux apprennent quelle relation chaque
+  role exige. Sur une nouvelle disposition ou une nouvelle palette, le
+  controleur choisit exclusivement un clic legal dont l'effet appris reduit
+  le nombre de violations. Les contraintes partagees entre plusieurs
+  stencils sont departagees ensemble.
+- L'agent ARC enregistre les actions parametrees exactes depuis l'API live et
+  transmet les memes candidates au chemin cognitif unifie.
+
+Audit cible actif `ft09`, seed 0, 20 resets x 80 :
+
+- protocole v33 valide, `controller_errors=0`;
+- 9 exemples terminaux confirmes, 72 contraintes, 1414 observations d'effet
+  et 2 relations de role promues;
+- 602 decisions relationnelles sont executees;
+- les profondeurs par tentative incluent onze tentatives a profondeur 3 et
+  une tentative a profondeur 4;
+- `max_level_reached=4`, 39 changements de niveau cumules et
+  `depth_two_gate_passed=true`, contre `max_level_reached=1` pour le legacy.
+
+Ablation stricte, memes jeu, seed, resets et budget :
+
+- `--disable-terminal-relational-stencil-induction` conserve SAGE.9o mais
+  produit zero exemple, regle ou decision relationnelle;
+- l'unifie retombe a `max_level_reached=1`, 11 changements de niveau cumules
+  et `depth_two_gate_passed=false`.
+
+Implementation et validation :
+
+- nouveau learner generique
+  `theory/online_terminal_relational_stencil.py`;
+- integration et audit complet dans `UnifiedCognitiveController`, le runner
+  apparie v33 et l'agent ARC actif;
+- tests synthetiques de non-promotion avant terminal, transfert a une nouvelle
+  palette et ablation;
+- diagnostics :
+  `diagnostics/sage/sage9p_ft09_terminal_relational_stencil.json` et
+  `diagnostics/sage/sage9p_ft09_terminal_relational_stencil_ablation.json`.
+
+Lecture finale : l'objectif de profondeur est atteint pour la premiere fois
+au sens strict dans une seule partie : SAGE ne se contente plus de gagner
+plusieurs fois le premier niveau, il apprend online une relation terminale et
+l'utilise pour avancer jusqu'au niveau 4. Ce n'est pas encore un `WIN` ni une
+preuve de generalisation inter-jeux; le prochain verrou est la nouvelle
+structure rencontree au-dela de cette famille relationnelle.
