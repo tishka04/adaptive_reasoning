@@ -62,6 +62,7 @@ from .online_terminal_frontier import (
     OnlineTerminalFrontierExplorer,
     TerminalFrontierAction,
 )
+from .online_structural_frontier import OnlineStructuralFrontierDetector
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_causal_option import OnlineCausalOptionStore
 from .online_terminal_objective import (
@@ -165,6 +166,11 @@ class UnifiedCognitiveConfig:
     max_dormant_terminal_lineage_actions: int = 80
     max_dormant_terminal_candidates_per_frontier: int = 4
     max_dormant_terminal_candidate_replays: int = 1
+    enable_structural_terminal_frontiers: bool = True
+    enable_structural_terminal_attribution: bool = True
+    enable_terminal_causal_reduction: bool = True
+    max_terminal_causal_reduction_probes_per_frontier: int = 3
+    max_terminal_causal_reduction_replays: int = 1
 
 
 @dataclass(frozen=True)
@@ -194,6 +200,7 @@ class CognitiveDecision:
     terminal_frontier_suffix_action_limit: int = 0
     terminal_frontier_replaying_successful_continuation: bool = False
     terminal_frontier_replaying_dormant_candidate: bool = False
+    terminal_frontier_testing_causal_reduction: bool = False
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -314,6 +321,9 @@ class CognitiveDecision:
             ),
             "terminal_frontier_replaying_dormant_candidate": (
                 self.terminal_frontier_replaying_dormant_candidate
+            ),
+            "terminal_frontier_testing_causal_reduction": (
+                self.terminal_frontier_testing_causal_reduction
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -755,6 +765,22 @@ class UnifiedCognitiveController:
             max_dormant_candidate_replays=(
                 self.config.max_dormant_terminal_candidate_replays
             ),
+            enable_structural_terminal_attribution=(
+                self.config.enable_structural_terminal_attribution
+            ),
+            enable_terminal_causal_reduction=(
+                self.config.enable_terminal_causal_reduction
+            ),
+            max_causal_reduction_probes_per_frontier=(
+                self.config
+                .max_terminal_causal_reduction_probes_per_frontier
+            ),
+            max_causal_reduction_replays=(
+                self.config.max_terminal_causal_reduction_replays
+            ),
+        )
+        self.structural_frontiers = OnlineStructuralFrontierDetector(
+            enabled=self.config.enable_structural_terminal_frontiers,
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
@@ -931,6 +957,15 @@ class UnifiedCognitiveController:
             update,
             pending,
         )
+        terminal_level_progress = bool(
+            update.record.diff.level_complete
+            or update.record.obs_after.levels_completed
+            > update.record.obs_before.levels_completed
+        )
+        terminal_win = (
+            str(update.record.obs_after.game_state).upper()
+            in {"WIN", "WON", "VICTORY"}
+        )
         frontier_outcome = self.terminal_frontiers.observe_transition(
             state_signature_before=_terminal_frontier_state_signature(
                 update.record.obs_before.raw_grid,
@@ -942,13 +977,8 @@ class UnifiedCognitiveController:
             ),
             action_name=action_name,
             action_data=action_data,
-            level_progressed=bool(
-                update.record.diff.level_complete
-                or update.record.obs_after.levels_completed
-                > update.record.obs_before.levels_completed
-            ),
-            won=str(update.record.obs_after.game_state).upper()
-            in {"WIN", "WON", "VICTORY"},
+            level_progressed=terminal_level_progress,
+            won=terminal_win,
             game_over=bool(update.record.diff.game_over),
         )
         if frontier_outcome["frontier_id"]:
@@ -989,6 +1019,15 @@ class UnifiedCognitiveController:
                 completed_objectives = (
                     selected_frontier_objective.objective_id,
                 )
+        structural_signal = self.structural_frontiers.observe_transition(
+            grid_before=update.record.obs_before.raw_grid,
+            grid_after=update.record.obs_after.raw_grid,
+            objects_before=update.record.obs_before.objects,
+            objects_after=update.record.obs_after.objects,
+            diff=update.record.diff,
+            terminal_success=bool(terminal_level_progress or terminal_win),
+            game_over=bool(update.record.diff.game_over),
+        )
         if (
             completed_objectives
             and not objective_outcome["terminal_success"]
@@ -1004,6 +1043,26 @@ class UnifiedCognitiveController:
                     update,
                     None if pending is None else pending.action_data,
                 ),
+            )
+        elif structural_signal is not None:
+            structural_frontier_id = (
+                self.terminal_frontiers.capture_structural(
+                    state_signature=_terminal_frontier_state_signature(
+                        update.record.obs_after.raw_grid,
+                        update.record.obs_after.levels_completed,
+                    ),
+                    trigger_signature=(
+                        structural_signal.trigger_signature
+                    ),
+                    trigger_families=structural_signal.families,
+                    context_signature=_transition_context_signature(
+                        update,
+                        None if pending is None else pending.action_data,
+                    ),
+                )
+            )
+            self.structural_frontiers.record_capture(
+                structural_frontier_id
             )
         self._observe_pending_temporal_plan(update, pending)
         self._observe_pending_causal_option(update, pending)
@@ -1189,6 +1248,9 @@ class UnifiedCognitiveController:
                 self.horizon_learning_arbiter.summary()
             ),
             "terminal_negative_frontiers": self.terminal_frontiers.summary(),
+            "structural_terminal_frontiers": (
+                self.structural_frontiers.summary()
+            ),
             "recent_terminal_frontier_outcomes": (
                 self._terminal_frontier_outcomes[-10:]
             ),
@@ -1269,6 +1331,9 @@ class UnifiedCognitiveController:
             terminal_frontier_replaying_dormant_candidate=(
                 selection.replaying_dormant_terminal_candidate
             ),
+            terminal_frontier_testing_causal_reduction=(
+                selection.testing_causal_reduction
+            ),
         )
 
     def _annotate_terminal_frontier_suffix(
@@ -1305,6 +1370,7 @@ class UnifiedCognitiveController:
             terminal_frontier_suffix_action_limit=selection.action_limit,
             terminal_frontier_replaying_successful_continuation=False,
             terminal_frontier_replaying_dormant_candidate=False,
+            terminal_frontier_testing_causal_reduction=False,
             reason=(
                 f"{decision.reason}; monitored by {selection.reason}"
             ),

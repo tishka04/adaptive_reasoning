@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v25"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v28"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -127,6 +127,11 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert (
         protocol["online_horizon_learning_arbiter_enabled_in_unified"] is True
     )
+    assert protocol["structural_terminal_frontiers_enabled_in_unified"] is True
+    assert (
+        protocol["structural_terminal_attribution_enabled_in_unified"] is True
+    )
+    assert protocol["terminal_causal_reduction_enabled_in_unified"] is True
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -153,6 +158,12 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "horizon_arbiter_terminal_test_reservations" in metrics["unified"]
     assert "horizon_arbiter_priority_peak" in metrics["unified"]
     assert "terminal_objective_probe_actions" in metrics["unified"]
+    assert "structural_frontier_signals_generated" in metrics["unified"]
+    assert "structural_frontier_captures" in metrics["unified"]
+    assert "structural_terminal_candidates" in metrics["unified"]
+    assert "structural_terminal_credits" in metrics["unified"]
+    assert "terminal_causal_reduction_probes" in metrics["unified"]
+    assert "terminal_causal_reduction_confirmations" in metrics["unified"]
     assert "terminal_objective_grounded_actions" in metrics["unified"]
     assert "terminal_objective_discriminator_actions" in metrics["unified"]
     assert "terminal_objective_ablation_actions" in metrics["unified"]
@@ -770,3 +781,58 @@ def test_ab_benchmark_exposes_dormant_terminal_lineage_ablation():
     assert metrics["terminal_frontier_dormant_lineages_started"] == 0
     assert metrics["terminal_frontier_dormant_terminal_candidates"] == 0
     assert metrics["terminal_frontier_dormant_candidate_replay_actions"] == 0
+
+
+def test_ab_benchmark_exposes_structural_frontier_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-structural-frontier-ablation"],
+        seeds=[83],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_structural_terminal_frontiers=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["structural_terminal_frontiers_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["structural_frontier_signals_generated"] == 0
+    assert metrics["structural_frontier_captures"] == 0
+
+
+def test_ab_benchmark_exposes_structural_attribution_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-structural-attribution-ablation"],
+        seeds=[89],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_structural_terminal_attribution=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["structural_terminal_attribution_enabled_in_unified"]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["structural_terminal_candidates"] == 0
+    assert metrics["structural_terminal_credits"] == 0
+
+
+def test_ab_benchmark_exposes_terminal_causal_reduction_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-terminal-causal-reduction-ablation"],
+        seeds=[97],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_terminal_causal_reduction=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["terminal_causal_reduction_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["terminal_causal_reduction_probes"] == 0
+    assert metrics["terminal_causal_reduction_actions"] == 0
+    assert metrics["terminal_causal_reduction_credits"] == 0

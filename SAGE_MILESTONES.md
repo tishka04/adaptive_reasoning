@@ -1,6 +1,6 @@
 # SAGE milestones - closed-loop integration
 
-Derniere mise a jour : 2026-07-22
+Derniere mise a jour : 2026-07-24
 
 SAGE orchestre les briques M1/M2/M3/P1 dans une boucle agentique. SAGE ne
 confirme pas une mecanique, ne refute rien, et ne transforme jamais un resultat
@@ -6851,3 +6851,191 @@ SAGE.9i devra donc proposer en ligne des frontieres structurelles generiques aux
 changements de mode, d'entite ou de relation, puis laisser le terminal tardif
 et le replay SAGE.9h departager ces points de branchement, sans leur donner de
 credit local par construction.
+
+## SAGE.9i - passive structural terminal frontiers
+
+Objectif :
+
+- Ouvrir des frontieres terminales sur de vrais changements structurels meme
+  lorsqu'aucune hypothese de but n'a encore atteint sa postcondition.
+- Reutiliser exclusivement la perception live existante (`FrameDiff`, objets
+  connectes et grilles avant/apres), sans representation held-out figee ni
+  connaissance du jeu.
+- Ne donner aucun credit, support ou priorite a un changement structurel par
+  lui-meme.
+
+Representation fixee avant audit :
+
+- `OnlineStructuralFrontierDetector` emet un signal passif parmi les familles
+  generiques `mode_change`, `entity_appearance`, `entity_disappearance`,
+  `entity_motion`, `entity_transform` et `relation_change`.
+- Tout effet cellulaire non nul qui n'entre pas dans ces familles conserve le
+  fallback explicite `structural_effect`; les no-op, changements de niveau,
+  `WIN` et `GAME_OVER` ne creent pas une nouvelle frontiere.
+- La recurrence est indexee par la signature exacte de l'etat apres transition
+  et le type `structural_change`. Les familles et la signature du trigger ne
+  servent qu'au diagnostic; elles ne modifient ni l'identite de replay ni le
+  credit.
+- La discipline SAGE.9f reste appliquee : au plus un essai de frontiere par
+  branche et capacite globale bornee. Une frontiere structurelle annote d'abord
+  la politique live normale sans imposer une autre action.
+
+Audit cible `cn04`, seed 0, 10 resets x 80 :
+
+- 568 signaux structurels sont observes et 4 frontieres structurelles sont
+  ouvertes parmi 5 frontieres terminales totales.
+- 10 lignees suivent 673 actions, sans changement de niveau ni `WIN`; zero
+  candidat et zero credit. La nouvelle couverture ne fabrique donc pas de
+  succes en l'absence de terminal.
+
+Held-out long, 5 jeux public-unseen, seeds 0/1, 10 resets x 80 :
+
+- Protocole apparie v28 valide, `controller_errors=0`, 5824 signaux et 44
+  frontieres structurelles sur les dix couples jeu/seed.
+- Tous les jeux ont maintenant des frontieres structurelles. `ft09`, qui en
+  avait zero avec SAGE.9h, en produit 6 au seed 0 et 7 au seed 1.
+- L'ablation `--disable-structural-terminal-frontiers` produit zero signal,
+  zero frontiere structurelle et conserve seulement 2 niveaux unifies contre
+  1 au legacy. La chaine active atteint 3 niveaux; l'attribution de cet ecart
+  exige cependant SAGE.9j.
+
+Implementation et validation :
+
+- nouveau module `theory/online_structural_frontier.py`;
+- integration dans `UnifiedCognitiveController` et resume separe
+  `structural_terminal_frontiers`;
+- schema benchmark v28, metriques de signaux/frontieres et ablation isolee
+  `--disable-structural-terminal-frontiers`;
+- tests de familles structurelles, suppression no-op/terminale, integration
+  controleur et exposition A/B;
+- diagnostic cible :
+  `diagnostics/sage/sage9i9j9k_cn04_structural_terminal_reduction.json`;
+- diagnostics held-out actif et ablation :
+  `sage9i9j9k_held_out_long_structural_terminal_reduction.json` et
+  `sage9i_held_out_long_structural_frontier_ablation.json`.
+
+Lecture : SAGE.9i ferme le trou de couverture mis en evidence par SAGE.9h.
+Une frontiere existe desormais sur les trajectoires terminales de `ft09`, mais
+elle reste une simple hypothese de point de branchement jusqu'au terminal et au
+replay exact.
+
+## SAGE.9j - structural terminal attribution by exact online replay
+
+Objectif :
+
+- Relier une frontiere structurelle a un terminal tardif sans confondre
+  correlation de trajectoire et cause.
+- Exiger une seconde occurrence live de la meme frontiere et la reproduction
+  exacte de la continuation avant tout credit.
+
+Protocole de credit :
+
+- Le premier changement de niveau ou `WIN` observe dans le suffixe actif ou la
+  lignee dormante d'une frontiere structurelle ne vaut jamais du credit. Il
+  nomme seulement un `DormantTerminalContinuation`.
+- Depuis la meme signature exacte de frontiere, un candidat obtient au plus un
+  replay prioritaire. Chaque etat et action intermediaire doit correspondre et
+  le terminal doit survenir exactement a la longueur candidate.
+- Un terminal trop precoce, un etat divergent, une action gardee ou indisponible
+  rend le replay inconclusif; une continuation complete non terminale le
+  refute. Ni refutation ni divergence ne deviennent du progres.
+- Seul le replay terminal exact cree un `SuccessfulContinuation` et un credit
+  terminal. L'ablation
+  `--disable-structural-terminal-attribution` conserve les frontieres SAGE.9i
+  mais interdit candidature, lignee attributive et credit structurel.
+
+Held-out long :
+
+- `ft09` seed 0 produit 2 candidats structurels tardifs.
+- Un candidat est rejoue exactement sur 12 actions depuis la meme frontiere,
+  confirme un terminal et recoit l'unique credit structurel de l'audit.
+- L'arm unifie actif atteint 3 niveaux contre 1 au legacy. Avec l'ablation
+  SAGE.9j, les 5813 signaux et 44 frontieres subsistent mais il reste zero
+  candidat, zero confirmation, zero credit et seulement 2 niveaux.
+- Le niveau supplementaire mesure par rapport a SAGE.9h et aux ablations 9i/9j
+  est donc associe a une continuation apprise pendant l'examen, pas a une
+  reponse held-out preencodee. Aucun `WIN` n'est encore obtenu.
+
+Implementation et validation :
+
+- type de frontiere et compteurs structurels audites dans
+  `theory/online_terminal_frontier.py`;
+- drapeau controleur `enable_structural_terminal_attribution`;
+- metriques v28 de candidats, confirmations et credits structurels;
+- tests du premier terminal sans credit, replay exact, ablation et terminal
+  precoce non confirme;
+- diagnostic d'ablation :
+  `diagnostics/sage/sage9j_held_out_long_structural_attribution_ablation.json`.
+
+Lecture : SAGE.9j fournit la premiere attribution terminale confirmee sur une
+frontiere generique et transforme cette confirmation en un gain de niveau
+mesure. Le resultat reste borne a une continuation confirmee sur `ft09`; il ne
+constitue ni une solution generale ni un WIN ARC-AGI-3.
+
+## SAGE.9k - terminally validated causal continuation reduction
+
+Objectif :
+
+- Reduire une continuation structurelle confirmee pour distinguer les blocs
+  necessaires des actions seulement correlees.
+- Ne jamais promouvoir une continuation raccourcie parce qu'elle ressemble a
+  la trajectoire source ou conserve un progres local.
+
+Protocole de coupure fixe :
+
+- Apres confirmation exacte SAGE.9j d'une continuation d'au moins 4 actions,
+  trois sondes deterministes sont preenregistrees : retrait du premier, du
+  milieu et du dernier quart de la sequence.
+- Chaque sonde ne peut demarrer que depuis la meme frontiere exacte et obtient
+  au plus un essai. La divergence d'etat intermediaire est attendue dans ce
+  contrefactuel; seules la disponibilite des actions, la securite et l'issue
+  terminale departagent la coupure.
+- Un changement de niveau ou `WIN` effectivement reproduit confirme et credite
+  la sequence raccourcie. Une fin de sonde non terminale la refute; une action
+  indisponible la classe inconclusive. Aucun suffixe raccourci n'est exploitable
+  avant confirmation terminale.
+- Une sonde confirmee devient une `SuccessfulContinuation` marquee
+  `causal_reduction` avec les indices retires, afin que le replay futur prefere
+  la politique terminale la plus courte.
+
+Held-out long :
+
+- La confirmation SAGE.9j compile bien 3 sondes de coupure sur `ft09`.
+- Aucune nouvelle recurrence de cette frontiere n'arrive apres compilation :
+  zero essai, zero confirmation, zero refutation et zero credit de reduction.
+- L'ablation `--disable-terminal-causal-reduction` conserve donc exactement les
+  3 niveaux, 2 candidats, 1 confirmation et 1 credit structurel de la chaine
+  active, mais compile zero sonde. SAGE.9k ne revendique aucun gain ARC reel a
+  ce stade.
+
+Implementation et validation :
+
+- `CausalReductionProbe`, selection prioritaire, suivi des actions et issues,
+  compilation des trois coupures et continuations reduites auditees;
+- drapeau controleur et CLI `--disable-terminal-causal-reduction`;
+- metriques v28 de sondes, essais, actions, confirmations, refutations,
+  divergences, credits et longueur minimale confirmee;
+- tests d'une coupure terminale creditee et d'une coupure non terminale refutee
+  sans credit;
+- diagnostic d'ablation :
+  `diagnostics/sage/sage9k_held_out_long_causal_reduction_ablation.json`.
+
+Lecture : le mecanisme de reduction causale est operationnel et garde la
+discipline terminal-only, mais le prochain verrou empirique est la rarete de
+recurrence apres confirmation. Il faudra fournir davantage de branches online
+depuis la meme frontiere, sans reutiliser d'information d'evaluation, pour
+mesurer quelles coupures sont reellement suffisantes.
+
+Validation transversale SAGE.9i-SAGE.9k :
+
+- 54 tests cibles passent pour le detecteur structurel, l'explorateur terminal,
+  le controleur unifie et le benchmark/les trois ablations;
+- compilation des quatre modules modifies : passee;
+- les quatre audits held-out v28 et l'audit `cn04` s'executent dans
+  l'environnement ARC Python 3.13 avec protocole valide et
+  `controller_errors=0`;
+- la suite principale sous le Python de test execute 1308 tests avec succes,
+  puis reste non utilisable comme gate global dans cette session : 48 echecs
+  et 101 erreurs proviennent des anciens tests d'environnement qui chargent la
+  distribution systeme `arc_agi` sans l'API `Arcade`. Le chemin SAGE.9i-9k
+  cible ne presente aucun echec.

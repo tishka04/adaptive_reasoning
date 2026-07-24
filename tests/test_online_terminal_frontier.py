@@ -477,6 +477,35 @@ def test_nonterminal_delayed_candidate_replay_is_refuted_not_credited():
     assert candidate["status"] == "refuted"
 
 
+def test_early_terminal_during_candidate_replay_is_not_exact_confirmation():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=2,
+        enable_adaptive_horizon=False,
+        max_adaptive_suffix_actions=2,
+        max_dormant_lineage_actions=8,
+    )
+    _nominate_delayed_terminal_candidate(explorer)
+    explorer.start_branch()
+    explorer.capture(
+        state_signature="frontier-state",
+        objective_ids=["objective-a"],
+    )
+
+    _, outcomes = _run_suffix(
+        explorer,
+        state="frontier-state",
+        steps=2,
+        terminal_step=2,
+    )
+
+    assert outcomes[-1]["dormant_terminal_candidate_confirmed"] is False
+    assert outcomes[-1]["credited"] is False
+    summary = explorer.summary()
+    assert summary["dormant_candidate_confirmations"] == 0
+    assert summary["dormant_candidate_divergences"] == 1
+    assert summary["terminal_credits"] == 0
+
+
 def test_divergent_delayed_candidate_replay_is_inconclusive():
     explorer = OnlineTerminalFrontierExplorer(
         max_suffix_actions=2,
@@ -535,3 +564,184 @@ def test_dormant_terminal_lineage_ablation_ignores_delayed_terminal():
     assert summary["dormant_lineages_started"] == 0
     assert summary["dormant_terminal_candidates"] == 0
     assert summary["terminal_credits"] == 0
+
+
+def test_structural_terminal_requires_exact_replay_before_credit():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=4,
+        enable_adaptive_horizon=False,
+    )
+    frontier_id = explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_motion",),
+    )
+
+    _, first_outcomes = _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=4,
+        terminal_step=4,
+    )
+
+    assert first_outcomes[-1]["dormant_terminal_candidate_nominated"] is True
+    assert first_outcomes[-1]["credited"] is False
+    first_summary = explorer.summary()
+    assert first_summary["structural_frontiers_captured"] == 1
+    assert first_summary["structural_terminal_candidates"] == 1
+    assert first_summary["terminal_credits"] == 0
+    record = explorer.frontiers()[0]
+    assert record.frontier_id == frontier_id
+    assert record.frontier_kind == "structural_change"
+    assert record.structural_trigger_families == {"entity_motion"}
+
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-b",
+        trigger_families=("relation_change",),
+    )
+    selections, replay_outcomes = _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=4,
+        terminal_step=4,
+    )
+
+    assert all(
+        selection.replaying_dormant_terminal_candidate
+        for selection in selections
+    )
+    assert replay_outcomes[-1]["dormant_terminal_candidate_confirmed"] is True
+    assert replay_outcomes[-1]["credited"] is True
+    summary = explorer.summary()
+    assert summary["structural_candidate_confirmations"] == 1
+    assert summary["structural_terminal_credits"] == 1
+    assert summary["causal_reduction_probes_compiled"] == 3
+
+
+def test_structural_attribution_ablation_never_credits_first_terminal():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=2,
+        enable_structural_terminal_attribution=False,
+    )
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("structural_effect",),
+    )
+
+    _, outcomes = _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=1,
+        terminal_step=1,
+    )
+
+    assert outcomes[-1]["credited"] is False
+    summary = explorer.summary()
+    assert summary["structural_terminal_candidates"] == 0
+    assert summary["structural_terminal_credits"] == 0
+    assert summary["structural_attribution_blocks"] == 1
+
+
+def test_confirmed_structural_continuation_is_reduced_by_terminal_cut():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=4,
+        enable_adaptive_horizon=False,
+    )
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=4,
+        terminal_step=4,
+    )
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=4,
+        terminal_step=4,
+    )
+
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    selections, outcomes = _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=3,
+        terminal_step=3,
+    )
+
+    assert all(selection.testing_causal_reduction for selection in selections)
+    assert outcomes[-1]["causal_reduction_confirmed"] is True
+    assert outcomes[-1]["credited"] is True
+    summary = explorer.summary()
+    assert summary["causal_reduction_attempts"] == 1
+    assert summary["causal_reduction_confirmations"] == 1
+    assert summary["causal_reduction_terminal_credits"] == 1
+    assert summary["minimum_confirmed_reduction_length"] == 3
+    continuations = explorer.frontiers()[0].successful_continuations.values()
+    assert any(item.causal_reduction for item in continuations)
+
+
+def test_nonterminal_causal_cut_is_refuted_without_credit():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=4,
+        enable_adaptive_horizon=False,
+    )
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=4,
+        terminal_step=4,
+    )
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=4,
+        terminal_step=4,
+    )
+    credits_before = explorer.summary()["terminal_credits"]
+
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _, outcomes = _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=3,
+    )
+
+    assert outcomes[-1]["causal_reduction_refuted"] is True
+    summary = explorer.summary()
+    assert summary["causal_reduction_refutations"] == 1
+    assert summary["terminal_credits"] == credits_before

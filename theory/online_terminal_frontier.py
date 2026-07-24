@@ -14,7 +14,11 @@ nominates that lineage; exact terminal replay is required before credit.
 The explorer is deliberately agnostic to game identity and objective family.
 It receives stable state signatures, objective identifiers, and concrete legal
 actions observed by the live controller.  Failed local progress never promotes
-a continuation.
+a continuation.  SAGE.9i may also supply a generic structural frontier without
+an objective postcondition.  SAGE.9j forces its first terminal to remain
+candidate-only until exact same-frontier replay.  SAGE.9k then pre-registers
+causal block cuts and credits a shorter sequence only when its own live test
+reaches a terminal.
 """
 
 from __future__ import annotations
@@ -69,6 +73,7 @@ class TerminalFrontierSelection:
     action_limit: int
     replaying_successful_continuation: bool
     replaying_dormant_terminal_candidate: bool
+    testing_causal_reduction: bool
     reason: str
 
 
@@ -79,6 +84,8 @@ class SuccessfulContinuation:
     actions: Tuple[TerminalFrontierAction, ...]
     state_signatures: Tuple[str, ...]
     confirmations: int = 1
+    causal_reduction: bool = False
+    removed_action_indices: Tuple[int, ...] = ()
 
     @property
     def signature(self) -> Tuple[str, ...]:
@@ -89,6 +96,8 @@ class SuccessfulContinuation:
             "actions": [action.to_dict() for action in self.actions],
             "state_signatures": list(self.state_signatures),
             "confirmations": self.confirmations,
+            "causal_reduction": self.causal_reduction,
+            "removed_action_indices": list(self.removed_action_indices),
         }
 
 
@@ -136,12 +145,54 @@ class DormantTerminalContinuation:
 
 
 @dataclass
+class CausalReductionProbe:
+    """A pre-registered action-block cut tested only by terminal outcome."""
+
+    probe_id: str
+    source_signature: Tuple[str, ...]
+    actions: Tuple[TerminalFrontierAction, ...]
+    removed_action_indices: Tuple[int, ...]
+    strategy: str
+    replay_attempts: int = 0
+    confirmations: int = 0
+    refutations: int = 0
+    divergences: int = 0
+
+    @property
+    def status(self) -> str:
+        if self.confirmations:
+            return "terminal_confirmed"
+        if self.refutations:
+            return "refuted"
+        if self.divergences:
+            return "inconclusive_divergence"
+        return "awaiting_test"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "probe_id": self.probe_id,
+            "source_signature": list(self.source_signature),
+            "actions": [action.to_dict() for action in self.actions],
+            "removed_action_indices": list(self.removed_action_indices),
+            "strategy": self.strategy,
+            "replay_attempts": self.replay_attempts,
+            "confirmations": self.confirmations,
+            "refutations": self.refutations,
+            "divergences": self.divergences,
+            "status": self.status,
+        }
+
+
+@dataclass
 class TerminalNegativeFrontier:
     """A postcondition state observed without terminal success."""
 
     frontier_id: str
     state_signature: str
     objective_ids: Tuple[str, ...]
+    frontier_kind: str = "objective_postcondition"
+    structural_trigger_signatures: set[str] = field(default_factory=set)
+    structural_trigger_families: set[str] = field(default_factory=set)
     context_signatures: set[str] = field(default_factory=set)
     captures: int = 0
     trials: int = 0
@@ -159,12 +210,22 @@ class TerminalNegativeFrontier:
     dormant_terminal_candidates: Dict[
         Tuple[str, ...], DormantTerminalContinuation
     ] = field(default_factory=dict)
+    causal_reduction_probes: Dict[str, CausalReductionProbe] = field(
+        default_factory=dict
+    )
 
     def to_dict(self) -> Dict[str, Any]:
         return {
             "frontier_id": self.frontier_id,
             "state_signature": self.state_signature,
             "objective_ids": list(self.objective_ids),
+            "frontier_kind": self.frontier_kind,
+            "structural_trigger_signatures": sorted(
+                self.structural_trigger_signatures
+            ),
+            "structural_trigger_families": sorted(
+                self.structural_trigger_families
+            ),
             "context_signatures": sorted(self.context_signatures),
             "captures": self.captures,
             "trials": self.trials,
@@ -188,6 +249,10 @@ class TerminalNegativeFrontier:
                     self.dormant_terminal_candidates.items()
                 )
             ],
+            "causal_reduction_probes": [
+                probe.to_dict()
+                for _, probe in sorted(self.causal_reduction_probes.items())
+            ],
         }
 
 
@@ -199,6 +264,7 @@ class _ActiveSuffix:
     action_limit: int
     replay: SuccessfulContinuation | None = None
     dormant_candidate_replay: DormantTerminalContinuation | None = None
+    causal_reduction_probe: CausalReductionProbe | None = None
     pending: TerminalFrontierSelection | None = None
 
 
@@ -227,6 +293,10 @@ class OnlineTerminalFrontierExplorer:
         max_dormant_lineage_actions: int = 80,
         max_dormant_candidates_per_frontier: int = 4,
         max_dormant_candidate_replays: int = 1,
+        enable_structural_terminal_attribution: bool = True,
+        enable_terminal_causal_reduction: bool = True,
+        max_causal_reduction_probes_per_frontier: int = 3,
+        max_causal_reduction_replays: int = 1,
     ) -> None:
         self.enabled = bool(enabled)
         self.max_frontiers = max(1, int(max_frontiers))
@@ -262,6 +332,20 @@ class OnlineTerminalFrontierExplorer:
         self.max_dormant_candidate_replays = max(
             1,
             int(max_dormant_candidate_replays),
+        )
+        self.enable_structural_terminal_attribution = bool(
+            enable_structural_terminal_attribution
+        )
+        self.enable_terminal_causal_reduction = bool(
+            enable_terminal_causal_reduction
+        )
+        self.max_causal_reduction_probes_per_frontier = max(
+            1,
+            int(max_causal_reduction_probes_per_frontier),
+        )
+        self.max_causal_reduction_replays = max(
+            1,
+            int(max_causal_reduction_replays),
         )
         self._frontiers: Dict[str, TerminalNegativeFrontier] = {}
         self._actions_by_state: Dict[
@@ -301,6 +385,18 @@ class OnlineTerminalFrontierExplorer:
         self._dormant_candidate_confirmations = 0
         self._dormant_candidate_refutations = 0
         self._dormant_candidate_divergences = 0
+        self._structural_frontiers_captured = 0
+        self._structural_terminal_candidates = 0
+        self._structural_candidate_confirmations = 0
+        self._structural_terminal_credits = 0
+        self._structural_attribution_blocks = 0
+        self._causal_reduction_probes_compiled = 0
+        self._causal_reduction_attempts = 0
+        self._causal_reduction_actions = 0
+        self._causal_reduction_confirmations = 0
+        self._causal_reduction_refutations = 0
+        self._causal_reduction_divergences = 0
+        self._causal_reduction_terminal_credits = 0
         self._trial_started_this_branch = False
 
     @property
@@ -323,6 +419,7 @@ class OnlineTerminalFrontierExplorer:
             and (
                 self._active.replay is not None
                 or self._active.dormant_candidate_replay is not None
+                or self._active.causal_reduction_probe is not None
             )
         )
 
@@ -350,6 +447,9 @@ class OnlineTerminalFrontierExplorer:
         state_signature: str,
         objective_ids: Iterable[str],
         context_signature: str = "",
+        frontier_kind: str = "objective_postcondition",
+        structural_trigger_signature: str = "",
+        structural_trigger_families: Iterable[str] = (),
     ) -> str:
         """Capture a nonterminal postcondition and start one bounded trial."""
         if not self.enabled:
@@ -358,7 +458,8 @@ class OnlineTerminalFrontierExplorer:
         state = str(state_signature)
         if not state or not objectives:
             return ""
-        frontier_id = _frontier_id(state, objectives)
+        kind = str(frontier_kind or "objective_postcondition")
+        frontier_id = _frontier_id(state, objectives, kind)
         frontier = self._frontiers.get(frontier_id)
         if self._active is not None or self._trial_started_this_branch:
             self._branch_trial_blocks += 1
@@ -368,6 +469,13 @@ class OnlineTerminalFrontierExplorer:
             frontier.captures += 1
             if context_signature:
                 frontier.context_signatures.add(str(context_signature))
+            if structural_trigger_signature:
+                frontier.structural_trigger_signatures.add(
+                    str(structural_trigger_signature)
+                )
+            frontier.structural_trigger_families.update(
+                str(item) for item in structural_trigger_families if item
+            )
             return frontier_id
         if frontier is None:
             if len(self._frontiers) >= self.max_frontiers:
@@ -377,35 +485,59 @@ class OnlineTerminalFrontierExplorer:
                 frontier_id=frontier_id,
                 state_signature=state,
                 objective_ids=objectives,
+                frontier_kind=kind,
                 allocated_action_limit=self.max_suffix_actions,
                 horizon_history=[self.max_suffix_actions],
             )
             self._frontiers[frontier_id] = frontier
             self._frontiers_captured += 1
+            if kind == "structural_change":
+                self._structural_frontiers_captured += 1
         else:
             self._duplicate_captures += 1
         frontier.captures += 1
         if context_signature:
             frontier.context_signatures.add(str(context_signature))
+        if structural_trigger_signature:
+            frontier.structural_trigger_signatures.add(
+                str(structural_trigger_signature)
+            )
+        frontier.structural_trigger_families.update(
+            str(item) for item in structural_trigger_families if item
+        )
         replay = self._best_successful_continuation(frontier)
+        causal_reduction_probe = (
+            self._best_causal_reduction_probe(frontier)
+            if replay is not None
+            and frontier.frontier_kind == "structural_change"
+            and self.enable_terminal_causal_reduction
+            else None
+        )
+        if causal_reduction_probe is not None:
+            replay = None
         dormant_candidate = (
             None
-            if replay is not None
+            if replay is not None or causal_reduction_probe is not None
             else self._best_dormant_terminal_candidate(frontier)
         )
         if (
             replay is None
             and dormant_candidate is None
+            and causal_reduction_probe is None
             and frontier.trials >= self.max_trials_per_frontier
         ):
             return frontier_id
         if replay is not None and replay.confirmations >= 2:
             return frontier_id
         if replay is None and dormant_candidate is None:
-            self._extend_exhausted_frontier_horizon(frontier)
+            if causal_reduction_probe is None:
+                self._extend_exhausted_frontier_horizon(frontier)
         if dormant_candidate is not None:
             dormant_candidate.replay_attempts += 1
             self._dormant_candidate_replay_attempts += 1
+        if causal_reduction_probe is not None:
+            causal_reduction_probe.replay_attempts += 1
+            self._causal_reduction_attempts += 1
         frontier.trials += 1
         self._trials_started += 1
         self._trial_started_this_branch = True
@@ -417,15 +549,38 @@ class OnlineTerminalFrontierExplorer:
                 len(dormant_candidate.actions)
                 if dormant_candidate is not None
                 else (
-                    len(replay.actions)
-                    if replay is not None
-                    else frontier.allocated_action_limit
+                    len(causal_reduction_probe.actions)
+                    if causal_reduction_probe is not None
+                    else (
+                        len(replay.actions)
+                        if replay is not None
+                        else frontier.allocated_action_limit
+                    )
                 )
             ),
             replay=replay,
             dormant_candidate_replay=dormant_candidate,
+            causal_reduction_probe=causal_reduction_probe,
         )
         return frontier_id
+
+    def capture_structural(
+        self,
+        *,
+        state_signature: str,
+        trigger_signature: str,
+        trigger_families: Iterable[str],
+        context_signature: str = "",
+    ) -> str:
+        """Capture a generic structural boundary without objective credit."""
+        return self.capture(
+            state_signature=state_signature,
+            objective_ids=("structural::generic",),
+            context_signature=context_signature,
+            frontier_kind="structural_change",
+            structural_trigger_signature=trigger_signature,
+            structural_trigger_families=trigger_families,
+        )
 
     def select(
         self,
@@ -469,11 +624,30 @@ class OnlineTerminalFrontierExplorer:
                         replaying_dormant_candidate=(
                             active.dormant_candidate_replay is not None
                         ),
+                        testing_causal_reduction=False,
                     )
                 self._replay_divergences += 1
                 if active.dormant_candidate_replay is not None:
                     active.dormant_candidate_replay.divergences += 1
                     self._dormant_candidate_divergences += 1
+                self._active = None
+                return None
+        causal_probe = active.causal_reduction_probe
+        if causal_probe is not None:
+            step = len(active.actions)
+            if step < len(causal_probe.actions):
+                action = causal_probe.actions[step]
+                if action.action_name in allowed:
+                    return self._record_selection(
+                        active,
+                        frontier,
+                        action,
+                        replaying=False,
+                        replaying_dormant_candidate=False,
+                        testing_causal_reduction=True,
+                    )
+                causal_probe.divergences += 1
+                self._causal_reduction_divergences += 1
                 self._active = None
                 return None
 
@@ -508,6 +682,7 @@ class OnlineTerminalFrontierExplorer:
             action,
             replaying=False,
             replaying_dormant_candidate=False,
+            testing_causal_reduction=False,
         )
 
     def observe_transition(
@@ -539,6 +714,7 @@ class OnlineTerminalFrontierExplorer:
             )
         selection = active.pending
         dormant_candidate = active.dormant_candidate_replay
+        causal_probe = active.causal_reduction_probe
         replaying = bool(
             selection.replaying_successful_continuation
             and observed.signature == selection.action.signature
@@ -559,16 +735,29 @@ class OnlineTerminalFrontierExplorer:
             if dormant_candidate is not None:
                 dormant_candidate.divergences += 1
             active.dormant_candidate_replay = None
+        testing_causal_reduction = bool(
+            selection.testing_causal_reduction
+            and causal_probe is not None
+            and observed.signature == selection.action.signature
+        )
+        if selection.testing_causal_reduction and not testing_causal_reduction:
+            if causal_probe is not None:
+                causal_probe.divergences += 1
+            self._causal_reduction_divergences += 1
+            active.causal_reduction_probe = None
         active.pending = None
         active.actions.append(observed)
         active.state_signatures.append(str(state_signature_after))
         self._suffix_actions += 1
         if selection.replaying_dormant_terminal_candidate:
             self._dormant_candidate_replay_actions += 1
+        if selection.testing_causal_reduction:
+            self._causal_reduction_actions += 1
         if (
             len(active.actions) > self.max_suffix_actions
             and active.replay is None
             and dormant_candidate is None
+            and causal_probe is None
         ):
             self._extended_suffix_actions += 1
         terminal_success = bool(level_progressed or won)
@@ -586,6 +775,7 @@ class OnlineTerminalFrontierExplorer:
                 active.action_limit > self.max_suffix_actions
                 and not selection.replaying_successful_continuation
                 and not selection.replaying_dormant_terminal_candidate
+                and not selection.testing_causal_reduction
             ),
             "terminal_success": terminal_success,
             "level_progressed": bool(level_progressed),
@@ -596,14 +786,41 @@ class OnlineTerminalFrontierExplorer:
             "replaying_dormant_terminal_candidate": (
                 replaying_dormant_candidate
             ),
+            "testing_causal_reduction": testing_causal_reduction,
             "dormant_terminal_candidate_nominated": False,
             "dormant_terminal_candidate_confirmed": False,
+            "causal_reduction_confirmed": False,
+            "causal_reduction_refuted": False,
         }
         if terminal_success:
             actions = tuple(active.actions)
             states = tuple(active.state_signatures)
-            if selection.replaying_dormant_terminal_candidate:
-                if replaying_dormant_candidate:
+            if selection.testing_causal_reduction:
+                if testing_causal_reduction and causal_probe is not None:
+                    causal_probe.confirmations += 1
+                    self._causal_reduction_confirmations += 1
+                    self._credit_continuation(
+                        frontier,
+                        actions,
+                        states,
+                        level_progressed=bool(level_progressed),
+                        won=bool(won),
+                        replaying=True,
+                        causal_reduction=True,
+                        removed_action_indices=(
+                            causal_probe.removed_action_indices
+                        ),
+                    )
+                    self._causal_reduction_terminal_credits += 1
+                    outcome["credited"] = True
+                    outcome["causal_reduction_confirmed"] = True
+            elif selection.replaying_dormant_terminal_candidate:
+                exact_terminal_replay = bool(
+                    replaying_dormant_candidate
+                    and dormant_candidate is not None
+                    and len(actions) == len(dormant_candidate.actions)
+                )
+                if exact_terminal_replay:
                     if dormant_candidate is not None:
                         dormant_candidate.confirmations += 1
                     self._dormant_candidate_confirmations += 1
@@ -615,9 +832,19 @@ class OnlineTerminalFrontierExplorer:
                         won=bool(won),
                         replaying=True,
                     )
+                    if frontier.frontier_kind == "structural_change":
+                        self._structural_candidate_confirmations += 1
+                        self._compile_causal_reduction_probes(
+                            frontier,
+                            actions,
+                        )
                     outcome["credited"] = True
                     outcome["dormant_terminal_candidate_confirmed"] = True
                 else:
+                    if replaying_dormant_candidate:
+                        if dormant_candidate is not None:
+                            dormant_candidate.divergences += 1
+                        self._dormant_candidate_divergences += 1
                     candidate = self._record_dormant_terminal_candidate(
                         frontier,
                         actions,
@@ -628,6 +855,20 @@ class OnlineTerminalFrontierExplorer:
                     outcome["dormant_terminal_candidate_nominated"] = bool(
                         candidate is not None
                     )
+            elif frontier.frontier_kind == "structural_change":
+                if self.enable_structural_terminal_attribution:
+                    candidate = self._record_dormant_terminal_candidate(
+                        frontier,
+                        actions,
+                        states,
+                        level_progressed=bool(level_progressed),
+                        won=bool(won),
+                    )
+                    outcome["dormant_terminal_candidate_nominated"] = bool(
+                        candidate is not None
+                    )
+                else:
+                    self._structural_attribution_blocks += 1
             else:
                 self._credit_continuation(
                     frontier,
@@ -639,6 +880,22 @@ class OnlineTerminalFrontierExplorer:
                 )
                 outcome["credited"] = True
             self._active = None
+        elif selection.testing_causal_reduction:
+            if testing_causal_reduction and (
+                game_over or len(active.actions) >= active.action_limit
+            ):
+                if causal_probe is not None:
+                    causal_probe.refutations += 1
+                self._causal_reduction_refutations += 1
+                outcome["causal_reduction_refuted"] = True
+            if game_over:
+                frontier.unsafe_suffixes += 1
+            if (
+                not testing_causal_reduction
+                or game_over
+                or len(active.actions) >= active.action_limit
+            ):
+                self._active = None
         elif selection.replaying_dormant_terminal_candidate:
             if replaying_dormant_candidate and (
                 game_over or len(active.actions) >= active.action_limit
@@ -681,7 +938,7 @@ class OnlineTerminalFrontierExplorer:
         )
 
     def summary(self) -> Dict[str, Any]:
-        """Return auditable attribution counters for SAGE.9f-SAGE.9h."""
+        """Return auditable attribution counters for SAGE.9f-SAGE.9k."""
         successful = sum(
             len(frontier.successful_continuations)
             for frontier in self._frontiers.values()
@@ -690,6 +947,11 @@ class OnlineTerminalFrontierExplorer:
             candidate
             for frontier in self._frontiers.values()
             for candidate in frontier.dormant_terminal_candidates.values()
+        ]
+        reduction_probes = [
+            probe
+            for frontier in self._frontiers.values()
+            for probe in frontier.causal_reduction_probes.values()
         ]
         return {
             "enabled": self.enabled,
@@ -708,6 +970,18 @@ class OnlineTerminalFrontierExplorer:
             ),
             "max_dormant_candidate_replays": (
                 self.max_dormant_candidate_replays
+            ),
+            "structural_terminal_attribution_enabled": (
+                self.enable_structural_terminal_attribution
+            ),
+            "terminal_causal_reduction_enabled": (
+                self.enable_terminal_causal_reduction
+            ),
+            "max_causal_reduction_probes_per_frontier": (
+                self.max_causal_reduction_probes_per_frontier
+            ),
+            "max_causal_reduction_replays": (
+                self.max_causal_reduction_replays
             ),
             "frontiers": len(self._frontiers),
             "frontiers_captured": self._frontiers_captured,
@@ -763,6 +1037,47 @@ class OnlineTerminalFrontierExplorer:
             "dormant_candidate_divergences": (
                 self._dormant_candidate_divergences
             ),
+            "structural_frontiers_captured": (
+                self._structural_frontiers_captured
+            ),
+            "structural_terminal_candidates": (
+                self._structural_terminal_candidates
+            ),
+            "structural_candidate_confirmations": (
+                self._structural_candidate_confirmations
+            ),
+            "structural_terminal_credits": (
+                self._structural_terminal_credits
+            ),
+            "structural_attribution_blocks": (
+                self._structural_attribution_blocks
+            ),
+            "causal_reduction_probes": len(reduction_probes),
+            "causal_reduction_probes_compiled": (
+                self._causal_reduction_probes_compiled
+            ),
+            "causal_reduction_attempts": self._causal_reduction_attempts,
+            "causal_reduction_actions": self._causal_reduction_actions,
+            "causal_reduction_confirmations": (
+                self._causal_reduction_confirmations
+            ),
+            "causal_reduction_refutations": (
+                self._causal_reduction_refutations
+            ),
+            "causal_reduction_divergences": (
+                self._causal_reduction_divergences
+            ),
+            "causal_reduction_terminal_credits": (
+                self._causal_reduction_terminal_credits
+            ),
+            "minimum_confirmed_reduction_length": min(
+                (
+                    len(probe.actions)
+                    for probe in reduction_probes
+                    if probe.confirmations
+                ),
+                default=0,
+            ),
             "maximum_dormant_candidate_length": max(
                 (len(candidate.actions) for candidate in dormant_candidates),
                 default=0,
@@ -802,6 +1117,7 @@ class OnlineTerminalFrontierExplorer:
         *,
         replaying: bool,
         replaying_dormant_candidate: bool,
+        testing_causal_reduction: bool,
     ) -> TerminalFrontierSelection:
         prefix = tuple(item.signature for item in active.actions)
         self._choice_counts[(frontier.frontier_id, prefix, action.signature)] += 1
@@ -815,11 +1131,14 @@ class OnlineTerminalFrontierExplorer:
             replaying_dormant_terminal_candidate=(
                 replaying_dormant_candidate
             ),
+            testing_causal_reduction=testing_causal_reduction,
             reason=(
                 "replay terminal-credited continuation from identical frontier"
                 if replaying
                 else "replay delayed-terminal candidate from identical frontier"
                 if replaying_dormant_candidate
+                else "controlled causal cut of a terminal-confirmed continuation"
+                if testing_causal_reduction
                 else (
                     "adaptive terminal-only continuation after exhausted "
                     "negative frontier"
@@ -840,6 +1159,13 @@ class OnlineTerminalFrontierExplorer:
             not self.enable_dormant_terminal_lineage
             or len(active.actions) >= self.max_dormant_lineage_actions
         ):
+            return
+        frontier = self._frontiers[active.frontier_id]
+        if (
+            frontier.frontier_kind == "structural_change"
+            and not self.enable_structural_terminal_attribution
+        ):
+            self._structural_attribution_blocks += 1
             return
         self._dormant = _DormantLineage(
             frontier_id=active.frontier_id,
@@ -934,6 +1260,8 @@ class OnlineTerminalFrontierExplorer:
         self._dormant_lineage_terminal_candidates += 1
         self._dormant_lineage_level_candidates += int(bool(level_progressed))
         self._dormant_lineage_win_candidates += int(bool(won))
+        if frontier.frontier_kind == "structural_change":
+            self._structural_terminal_candidates += 1
         return candidate
 
     def _credit_continuation(
@@ -945,12 +1273,19 @@ class OnlineTerminalFrontierExplorer:
         level_progressed: bool,
         won: bool,
         replaying: bool,
+        causal_reduction: bool = False,
+        removed_action_indices: Tuple[int, ...] = (),
     ) -> None:
         """Credit only an actually observed terminal continuation."""
         signature = tuple(action.signature for action in actions)
         continuation = frontier.successful_continuations.get(signature)
         if continuation is None:
-            continuation = SuccessfulContinuation(actions, state_signatures)
+            continuation = SuccessfulContinuation(
+                actions,
+                state_signatures,
+                causal_reduction=bool(causal_reduction),
+                removed_action_indices=tuple(removed_action_indices),
+            )
             frontier.successful_continuations[signature] = continuation
         else:
             continuation.confirmations += 1
@@ -960,6 +1295,89 @@ class OnlineTerminalFrontierExplorer:
         self._win_credits += int(bool(won))
         if replaying:
             self._successful_replays += 1
+        if frontier.frontier_kind == "structural_change":
+            self._structural_terminal_credits += 1
+
+    def _compile_causal_reduction_probes(
+        self,
+        frontier: TerminalNegativeFrontier,
+        actions: Tuple[TerminalFrontierAction, ...],
+    ) -> None:
+        """Pre-register three deterministic block cuts after exact replay."""
+        if (
+            not self.enable_terminal_causal_reduction
+            or frontier.frontier_kind != "structural_change"
+            or len(actions) < 4
+            or frontier.causal_reduction_probes
+        ):
+            return
+        length = len(actions)
+        block = max(1, length // 4)
+        cuts = (
+            ("drop_leading_quarter", tuple(range(0, block))),
+            (
+                "drop_middle_quarter",
+                tuple(
+                    range(
+                        max(0, (length - block) // 2),
+                        max(0, (length - block) // 2) + block,
+                    )
+                ),
+            ),
+            (
+                "drop_trailing_quarter",
+                tuple(range(max(0, length - block), length)),
+            ),
+        )
+        source_signature = tuple(action.signature for action in actions)
+        for strategy, removed in cuts[
+            : self.max_causal_reduction_probes_per_frontier
+        ]:
+            removed_set = set(removed)
+            reduced = tuple(
+                action
+                for index, action in enumerate(actions)
+                if index not in removed_set
+            )
+            if not reduced or len(reduced) >= len(actions):
+                continue
+            payload = "|".join(
+                (frontier.frontier_id, strategy, ",".join(map(str, removed)))
+            )
+            probe_id = (
+                "causal-reduction::"
+                f"{hashlib.sha1(payload.encode('utf-8')).hexdigest()[:16]}"
+            )
+            frontier.causal_reduction_probes[probe_id] = CausalReductionProbe(
+                probe_id=probe_id,
+                source_signature=source_signature,
+                actions=reduced,
+                removed_action_indices=removed,
+                strategy=strategy,
+            )
+            self._causal_reduction_probes_compiled += 1
+
+    def _best_causal_reduction_probe(
+        self,
+        frontier: TerminalNegativeFrontier,
+    ) -> CausalReductionProbe | None:
+        probes = [
+            probe
+            for probe in frontier.causal_reduction_probes.values()
+            if probe.confirmations == 0
+            and probe.refutations == 0
+            and probe.replay_attempts < self.max_causal_reduction_replays
+        ]
+        if not probes:
+            return None
+        return min(
+            probes,
+            key=lambda item: (
+                len(item.actions),
+                item.strategy,
+                item.probe_id,
+            ),
+        )
 
     def _extend_exhausted_frontier_horizon(
         self,
@@ -1023,8 +1441,14 @@ class OnlineTerminalFrontierExplorer:
         )
 
 
-def _frontier_id(state: str, objectives: Sequence[str]) -> str:
-    payload = f"{state}|{'|'.join(objectives)}".encode("utf-8")
+def _frontier_id(
+    state: str,
+    objectives: Sequence[str],
+    frontier_kind: str,
+) -> str:
+    payload = (
+        f"{frontier_kind}|{state}|{'|'.join(objectives)}".encode("utf-8")
+    )
     return f"terminal-frontier::{hashlib.sha1(payload).hexdigest()[:16]}"
 
 
@@ -1042,13 +1466,17 @@ def _empty_outcome() -> Dict[str, Any]:
         "credited": False,
         "replaying_successful_continuation": False,
         "replaying_dormant_terminal_candidate": False,
+        "testing_causal_reduction": False,
         "dormant_lineage_observation": False,
         "dormant_terminal_candidate_nominated": False,
         "dormant_terminal_candidate_confirmed": False,
+        "causal_reduction_confirmed": False,
+        "causal_reduction_refuted": False,
     }
 
 
 __all__ = [
+    "CausalReductionProbe",
     "DormantTerminalContinuation",
     "OnlineTerminalFrontierExplorer",
     "SuccessfulContinuation",

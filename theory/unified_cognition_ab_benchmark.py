@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v25"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v28"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -282,6 +282,39 @@ def _dormant_terminal_lineage_disabled_controller(
     )
 
 
+def _structural_terminal_frontiers_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_structural_terminal_frontiers=False,
+        ),
+    )
+
+
+def _structural_terminal_attribution_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_structural_terminal_attribution=False,
+        ),
+    )
+
+
+def _terminal_causal_reduction_disabled_controller(
+    game_id: str,
+) -> UnifiedCognitiveController:
+    return UnifiedCognitiveController(
+        game_id,
+        config=UnifiedCognitiveConfig(
+            enable_terminal_causal_reduction=False,
+        ),
+    )
+
+
 def _online_mediated_anti_unification_disabled_controller(
     game_id: str,
 ) -> UnifiedCognitiveController:
@@ -376,6 +409,9 @@ def run_unified_cognition_ab_benchmark(
     enable_terminal_negative_frontier_exploration: bool = True,
     enable_adaptive_terminal_frontier_horizon: bool = True,
     enable_dormant_terminal_lineage: bool = True,
+    enable_structural_terminal_frontiers: bool = True,
+    enable_structural_terminal_attribution: bool = True,
+    enable_terminal_causal_reduction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -524,6 +560,27 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _dormant_terminal_lineage_disabled_controller
         )
+    elif (
+        effective_controller_factory is None
+        and not enable_structural_terminal_frontiers
+    ):
+        effective_controller_factory = (
+            _structural_terminal_frontiers_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_structural_terminal_attribution
+    ):
+        effective_controller_factory = (
+            _structural_terminal_attribution_disabled_controller
+        )
+    elif (
+        effective_controller_factory is None
+        and not enable_terminal_causal_reduction
+    ):
+        effective_controller_factory = (
+            _terminal_causal_reduction_disabled_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -633,6 +690,15 @@ def run_unified_cognition_ab_benchmark(
             enable_adaptive_terminal_frontier_horizon
         ),
         dormant_terminal_lineage_enabled=enable_dormant_terminal_lineage,
+        structural_terminal_frontiers_enabled=(
+            enable_structural_terminal_frontiers
+        ),
+        structural_terminal_attribution_enabled=(
+            enable_structural_terminal_attribution
+        ),
+        terminal_causal_reduction_enabled=(
+            enable_terminal_causal_reduction
+        ),
     )
     if not include_traces:
         _omit_step_traces(payload)
@@ -775,6 +841,9 @@ def _run_arm(
     )
     terminal_frontier_summary = dict(
         controller_summary.get("terminal_negative_frontiers", {}) or {}
+    )
+    structural_frontier_summary = dict(
+        controller_summary.get("structural_terminal_frontiers", {}) or {}
     )
     return {
         "arm": arm,
@@ -985,6 +1054,81 @@ def _run_arm(
         "terminal_frontier_maximum_dormant_candidate_length": int(
             terminal_frontier_summary.get(
                 "maximum_dormant_candidate_length",
+                0,
+            ) or 0
+        ),
+        "structural_frontier_signals_generated": int(
+            structural_frontier_summary.get("signals_generated", 0) or 0
+        ),
+        "structural_frontier_captures": int(
+            terminal_frontier_summary.get(
+                "structural_frontiers_captured",
+                0,
+            ) or 0
+        ),
+        "structural_terminal_candidates": int(
+            terminal_frontier_summary.get(
+                "structural_terminal_candidates",
+                0,
+            ) or 0
+        ),
+        "structural_terminal_candidate_confirmations": int(
+            terminal_frontier_summary.get(
+                "structural_candidate_confirmations",
+                0,
+            ) or 0
+        ),
+        "structural_terminal_credits": int(
+            terminal_frontier_summary.get(
+                "structural_terminal_credits",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_probes": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_probes_compiled",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_attempts": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_attempts",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_actions": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_actions",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_confirmations": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_confirmations",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_refutations": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_refutations",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_divergences": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_divergences",
+                0,
+            ) or 0
+        ),
+        "terminal_causal_reduction_credits": int(
+            terminal_frontier_summary.get(
+                "causal_reduction_terminal_credits",
+                0,
+            ) or 0
+        ),
+        "terminal_minimum_confirmed_reduction_length": int(
+            terminal_frontier_summary.get(
+                "minimum_confirmed_reduction_length",
                 0,
             ) or 0
         ),
@@ -2091,6 +2235,9 @@ def _summarize_benchmark(
     terminal_negative_frontier_exploration_enabled: bool,
     adaptive_terminal_frontier_horizon_enabled: bool,
     dormant_terminal_lineage_enabled: bool,
+    structural_terminal_frontiers_enabled: bool,
+    structural_terminal_attribution_enabled: bool,
+    terminal_causal_reduction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2184,6 +2331,15 @@ def _summarize_benchmark(
             ),
             "dormant_terminal_lineage_enabled_in_unified": bool(
                 dormant_terminal_lineage_enabled
+            ),
+            "structural_terminal_frontiers_enabled_in_unified": bool(
+                structural_terminal_frontiers_enabled
+            ),
+            "structural_terminal_attribution_enabled_in_unified": bool(
+                structural_terminal_attribution_enabled
+            ),
+            "terminal_causal_reduction_enabled_in_unified": bool(
+                terminal_causal_reduction_enabled
             ),
             "protocol_gate_passed": protocol_gate,
         },
@@ -2402,6 +2558,55 @@ def _aggregate_arm(
             (
                 int(row["terminal_frontier_maximum_dormant_candidate_length"])
                 for row in rows
+            ),
+            default=0,
+        ),
+        "structural_frontier_signals_generated": sum(
+            int(row["structural_frontier_signals_generated"])
+            for row in rows
+        ),
+        "structural_frontier_captures": sum(
+            int(row["structural_frontier_captures"]) for row in rows
+        ),
+        "structural_terminal_candidates": sum(
+            int(row["structural_terminal_candidates"]) for row in rows
+        ),
+        "structural_terminal_candidate_confirmations": sum(
+            int(row["structural_terminal_candidate_confirmations"])
+            for row in rows
+        ),
+        "structural_terminal_credits": sum(
+            int(row["structural_terminal_credits"]) for row in rows
+        ),
+        "terminal_causal_reduction_probes": sum(
+            int(row["terminal_causal_reduction_probes"]) for row in rows
+        ),
+        "terminal_causal_reduction_attempts": sum(
+            int(row["terminal_causal_reduction_attempts"]) for row in rows
+        ),
+        "terminal_causal_reduction_actions": sum(
+            int(row["terminal_causal_reduction_actions"]) for row in rows
+        ),
+        "terminal_causal_reduction_confirmations": sum(
+            int(row["terminal_causal_reduction_confirmations"])
+            for row in rows
+        ),
+        "terminal_causal_reduction_refutations": sum(
+            int(row["terminal_causal_reduction_refutations"])
+            for row in rows
+        ),
+        "terminal_causal_reduction_divergences": sum(
+            int(row["terminal_causal_reduction_divergences"])
+            for row in rows
+        ),
+        "terminal_causal_reduction_credits": sum(
+            int(row["terminal_causal_reduction_credits"]) for row in rows
+        ),
+        "terminal_minimum_confirmed_reduction_length": min(
+            (
+                int(row["terminal_minimum_confirmed_reduction_length"])
+                for row in rows
+                if int(row["terminal_minimum_confirmed_reduction_length"]) > 0
             ),
             default=0,
         ),
@@ -3581,6 +3786,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Ablate SAGE.9h delayed-terminal lineage and replay only.",
     )
+    parser.add_argument(
+        "--disable-structural-terminal-frontiers",
+        action="store_true",
+        help="Ablate SAGE.9i passive structural frontier generation only.",
+    )
+    parser.add_argument(
+        "--disable-structural-terminal-attribution",
+        action="store_true",
+        help="Ablate SAGE.9j exact replay attribution for structural frontiers.",
+    )
+    parser.add_argument(
+        "--disable-terminal-causal-reduction",
+        action="store_true",
+        help="Ablate SAGE.9k terminally tested causal cuts only.",
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -3662,6 +3882,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_dormant_terminal_lineage=(
             not args.disable_dormant_terminal_lineage
+        ),
+        enable_structural_terminal_frontiers=(
+            not args.disable_structural_terminal_frontiers
+        ),
+        enable_structural_terminal_attribution=(
+            not args.disable_structural_terminal_attribution
+        ),
+        enable_terminal_causal_reduction=(
+            not args.disable_terminal_causal_reduction
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

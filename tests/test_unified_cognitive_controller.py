@@ -297,6 +297,56 @@ def test_nonterminal_objective_completion_opens_terminal_frontier_suffix():
     assert frontier["successful_continuations"] == 1
 
 
+def test_structural_change_opens_frontier_without_completed_objective():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1", "ACTION2"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            enable_operator_planning=False,
+            enable_theory_planning=False,
+            enable_promoted_options=False,
+            enable_temporal_goal_composition=False,
+            enable_causal_hierarchical_options=False,
+        ),
+    )
+    before = _player_grid(2)
+    after = _player_grid(3)
+    first = controller.select_action(
+        current_grid=before,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION1",
+    )
+    controller.observe_transition(
+        action=first.action_name,
+        action_data=first.action_data,
+        grid_before=before,
+        grid_after=after,
+        available_actions=["ACTION1", "ACTION2"],
+    )
+
+    suffix = controller.select_action(
+        current_grid=after,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION2",
+    )
+
+    assert suffix.terminal_frontier_id
+    assert suffix.terminal_frontier_objective_ids == ("structural::generic",)
+    summary = controller.summary()
+    assert summary["structural_terminal_frontiers"]["signals_generated"] == 1
+    assert (
+        summary["terminal_negative_frontiers"][
+            "structural_frontiers_captured"
+        ]
+        == 1
+    )
+    record = summary["terminal_negative_frontiers"]["records"][0]
+    assert record["frontier_kind"] == "structural_change"
+    assert "entity_motion" in record["structural_trigger_families"]
+
+
 def test_click_experiment_uses_objects_and_revises_relational_predictions():
     controller = UnifiedCognitiveController(
         "synthetic",
