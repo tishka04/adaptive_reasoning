@@ -73,7 +73,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v28"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v31"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -132,6 +132,14 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         protocol["structural_terminal_attribution_enabled_in_unified"] is True
     )
     assert protocol["terminal_causal_reduction_enabled_in_unified"] is True
+    assert protocol["active_frontier_reacquisition_enabled_in_unified"] is True
+    assert (
+        protocol[
+            "recursive_terminal_causal_minimization_enabled_in_unified"
+        ]
+        is True
+    )
+    assert protocol["structural_frontier_transfer_enabled_in_unified"] is True
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -164,6 +172,12 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "structural_terminal_credits" in metrics["unified"]
     assert "terminal_causal_reduction_probes" in metrics["unified"]
     assert "terminal_causal_reduction_confirmations" in metrics["unified"]
+    assert "terminal_recursive_reduction_probes" in metrics["unified"]
+    assert "terminal_maximum_reduction_generation" in metrics["unified"]
+    assert "terminal_frontier_acquisition_paths" in metrics["unified"]
+    assert "terminal_frontier_reacquisition_actions" in metrics["unified"]
+    assert "structural_transfer_probes" in metrics["unified"]
+    assert "structural_transfer_terminal_credits" in metrics["unified"]
     assert "terminal_objective_grounded_actions" in metrics["unified"]
     assert "terminal_objective_discriminator_actions" in metrics["unified"]
     assert "terminal_objective_ablation_actions" in metrics["unified"]
@@ -779,8 +793,9 @@ def test_ab_benchmark_exposes_dormant_terminal_lineage_ablation():
     assert protocol["dormant_terminal_lineage_enabled_in_unified"] is False
     metrics = payload["metrics"]["unified"]
     assert metrics["terminal_frontier_dormant_lineages_started"] == 0
-    assert metrics["terminal_frontier_dormant_terminal_candidates"] == 0
-    assert metrics["terminal_frontier_dormant_candidate_replay_actions"] == 0
+    assert metrics["terminal_frontier_dormant_lineage_actions"] == 0
+    assert metrics["terminal_frontier_dormant_lineage_censored"] == 0
+    assert metrics["terminal_frontier_dormant_lineage_expired"] == 0
 
 
 def test_ab_benchmark_exposes_structural_frontier_ablation():
@@ -836,3 +851,64 @@ def test_ab_benchmark_exposes_terminal_causal_reduction_ablation():
     assert metrics["terminal_causal_reduction_probes"] == 0
     assert metrics["terminal_causal_reduction_actions"] == 0
     assert metrics["terminal_causal_reduction_credits"] == 0
+
+
+def test_ab_benchmark_exposes_active_frontier_reacquisition_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-frontier-reacquisition-ablation"],
+        seeds=[101],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_active_frontier_reacquisition=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["active_frontier_reacquisition_enabled_in_unified"]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["terminal_frontier_acquisition_paths"] == 0
+    assert metrics["terminal_frontier_reacquisition_attempts"] == 0
+    assert metrics["terminal_frontier_reacquisition_actions"] == 0
+
+
+def test_ab_benchmark_exposes_recursive_terminal_minimization_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-recursive-minimization-ablation"],
+        seeds=[103],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_recursive_terminal_causal_minimization=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol[
+            "recursive_terminal_causal_minimization_enabled_in_unified"
+        ]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["terminal_recursive_reduction_probes"] == 0
+    assert metrics["terminal_maximum_reduction_generation"] <= 1
+
+
+def test_ab_benchmark_exposes_structural_frontier_transfer_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-structural-transfer-ablation"],
+        seeds=[107],
+        action_budget_per_reset=3,
+        resets=2,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_structural_frontier_transfer=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol["structural_frontier_transfer_enabled_in_unified"] is False
+    metrics = payload["metrics"]["unified"]
+    assert metrics["structural_transfer_probes"] == 0
+    assert metrics["structural_transfer_actions"] == 0
+    assert metrics["structural_transfer_terminal_credits"] == 0

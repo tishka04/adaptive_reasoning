@@ -39,6 +39,7 @@ class StructuralFrontierSignal:
 
     families: Tuple[str, ...]
     trigger_signature: str
+    equivalence_signature: str
     changed_cells: int
     objects_before: int
     objects_after: int
@@ -47,6 +48,7 @@ class StructuralFrontierSignal:
         return {
             "families": list(self.families),
             "trigger_signature": self.trigger_signature,
+            "equivalence_signature": self.equivalence_signature,
             "changed_cells": self.changed_cells,
             "objects_before": self.objects_before,
             "objects_after": self.objects_after,
@@ -146,6 +148,11 @@ class OnlineStructuralFrontierDetector:
             trigger_signature=(
                 f"structural-trigger::{hashlib.sha1(payload.encode('utf-8')).hexdigest()[:16]}"
             ),
+            equivalence_signature=_structural_equivalence_signature(
+                after,
+                objects_after,
+                ordered,
+            ),
             changed_cells=int(diff.num_changed),
             objects_before=len(objects_before),
             objects_after=len(objects_after),
@@ -190,11 +197,14 @@ def _background_value(grid: np.ndarray) -> int:
 
 def _object_type(obj: ObjectInfo) -> tuple[Any, ...]:
     r_min, c_min, r_max, c_max = obj.bbox
-    raw_shape = obj.shape_signature
-    shape = (
-        tuple(int(item) for item in raw_shape)
-        if isinstance(raw_shape, (tuple, list))
-        else (int(raw_shape),)
+    shape = tuple(
+        sorted(
+            (
+                int(row - r_min),
+                int(column - c_min),
+            )
+            for row, column in obj.cells
+        )
     )
     return (
         int(obj.value),
@@ -203,6 +213,27 @@ def _object_type(obj: ObjectInfo) -> tuple[Any, ...]:
         int(c_max - c_min + 1),
         shape,
     )
+
+
+def _structural_equivalence_signature(
+    grid: np.ndarray,
+    objects: Sequence[ObjectInfo],
+    families: Sequence[str],
+) -> str:
+    """Position-free signature used only to nominate online transfer tests."""
+    values, counts = np.unique(grid, return_counts=True)
+    value_counts = tuple(
+        sorted((int(value), int(count)) for value, count in zip(values, counts))
+    )
+    descriptor = (
+        tuple(int(item) for item in grid.shape),
+        _background_value(grid),
+        value_counts,
+        _object_type_multiset(objects),
+        tuple(sorted(str(item) for item in families)),
+    )
+    digest = hashlib.sha1(repr(descriptor).encode("utf-8")).hexdigest()[:16]
+    return f"structural-equivalence::{digest}"
 
 
 def _object_type_multiset(

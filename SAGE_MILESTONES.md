@@ -7039,3 +7039,151 @@ Validation transversale SAGE.9i-SAGE.9k :
   et 101 erreurs proviennent des anciens tests d'environnement qui chargent la
   distribution systeme `arc_agi` sans l'API `Arcade`. Le chemin SAGE.9i-9k
   cible ne presente aucun echec.
+
+## SAGE.9l - active exact frontier reacquisition
+
+Objectif :
+
+- Transformer une recurrence structurelle rare en intervention online
+  volontaire apres confirmation terminale SAGE.9j.
+- Revenir depuis un nouvel etat de RESET a exactement la meme frontiere, sans
+  fabriquer de raccourci d'etat ni reutiliser une trajectoire held-out.
+
+Protocole :
+
+- Pendant l'examen, chaque frontiere structurelle conserve jusqu'a 4 chemins
+  d'acquisition effectivement executes : actions concretes et signatures
+  exactes de tous les etats, depuis le debut de branche jusqu'a la frontiere.
+- Une reacquisition ne devient eligible qu'apres l'existence d'une
+  `SuccessfulContinuation` terminalement confirmee. Elle ne peut commencer
+  qu'au premier pas d'une nouvelle branche dont la signature correspond
+  exactement au depart du chemin appris.
+- Chaque action doit rester disponible et chaque etat intermediaire doit
+  correspondre. Une divergence annule l'essai sans credit; un reset le censure.
+  Le chemin est borne a 80 actions et 2 essais.
+- L'arrivee exacte reactive la frontiere existante. Les continuations, sondes
+  causales et transferts restent ensuite soumis a leurs propres tests
+  terminaux; la reacquisition elle-meme ne recoit aucun credit.
+
+Audit cible `ft09`, seed 0, 20 resets x 80 :
+
+- 10 chemins d'acquisition sont appris.
+- 2 reacquisitions sont tentees et confirmees sur 2 actions au total, sans
+  divergence ni censure.
+- Ces retours rendent enfin executables les 3 sondes SAGE.9k : 27 actions,
+  3 refutations non terminales, zero confirmation et zero credit.
+- L'arm unifie atteint 4 niveaux contre 3 au legacy. Avec l'ablation
+  `--disable-active-frontier-reacquisition`, il reste zero chemin, tentative
+  ou action de reacquisition, les sondes SAGE.9k restent a zero essai et
+  l'unifie atteint 3 niveaux.
+
+Lecture : SAGE.9l debloque empiriquement le verrou de recurrence. Il ne prouve
+pas qu'une coupure est suffisante; il permet au contraire de refuter les trois
+premieres coupures sur une vraie branche online.
+
+## SAGE.9m - recursive terminal causal minimization
+
+Objectif :
+
+- Continuer a reduire une coupure SAGE.9k seulement lorsque cette coupure a
+  elle-meme reproduit un changement de niveau ou `WIN`.
+- Obtenir une continuation minimale par confirmations terminales successives,
+  jamais par similarite locale ou score intermediaire.
+
+Protocole :
+
+- Les trois retraits deterministes debut/milieu/fin sont recompiles sur toute
+  coupure confirmee, jusqu'a 3 generations et 12 sondes totales par frontiere.
+- Chaque sonde garde son parent, sa generation, les indices d'origine
+  conserves et l'ensemble cumulatif des indices retires. Les doublons sont
+  elimines par signature.
+- Une generation suivante n'existe qu'apres confirmation terminale de sa
+  parente. Une refutation, divergence ou censure n'engendre rien et ne recoit
+  aucun credit.
+- L'ablation `--disable-recursive-terminal-causal-minimization` conserve
+  exactement la premiere generation SAGE.9k mais interdit les suivantes.
+
+Audit cible `ft09` :
+
+- Les 3 sondes de generation 1 sont toutes refutees; la generation maximale
+  observee reste donc 1 et zero sonde recursive est compilee.
+- L'ablation SAGE.9m est identique sur ce run reel, comme l'exige le protocole :
+  aucune preuve terminale n'autorise une generation 2.
+- Les tests synthetiques confirment qu'une coupure terminale de generation 1
+  compile bien trois sondes de generation 2 et que l'ablation les bloque.
+
+Lecture : SAGE.9m est operationnel mais correctement dormant sur l'audit reel.
+La prochaine generation ne sera ouverte que lorsqu'une coupure plus courte
+aura reellement passe le test terminal.
+
+## SAGE.9n - terminal-only structural frontier transfer
+
+Objectif :
+
+- Tester une continuation confirmee sur une nouvelle frontiere dont la
+  structure abstraite est equivalente, sans exiger la meme position absolue.
+- Ne transformer l'analogie en connaissance exploitable qu'apres une nouvelle
+  issue terminale online.
+
+Representation et credit :
+
+- Le detecteur SAGE.9i produit une signature d'equivalence sans position a
+  partir de la taille de grille, du fond, des comptes de valeurs, du multiset
+  des types/formes d'objets et des familles de changement structurel.
+- Une continuation source doit deja etre terminalement confirmee. Elle est
+  seulement nommee comme `StructuralTransferProbe` sur une autre frontiere de
+  meme signature; aucune reponse de jeu ni cible held-out n'est encodee.
+- Le transfert n'exige pas l'egalite des etats intermediaires, puisque leur
+  position peut differer. Il reste borne a la sequence source, aux actions
+  disponibles et aux gardes de securite.
+- Seul un changement de niveau ou `WIN` effectivement observe credite et
+  promeut la continuation transferee. Une sequence complete non terminale la
+  refute; une action indisponible la rend inconclusive.
+
+Audit cible `ft09` :
+
+- 6 sondes sont compilees; 5 sont executees sur 60 actions et les 5 sont
+  refutees sans confirmation ni credit.
+- L'ablation `--disable-structural-frontier-transfer` ramene sondes, actions et
+  credits a zero. Elle atteint 3 niveaux contre 4 pour l'arm actif et 3 pour le
+  legacy.
+- Cette difference de score n'est pas attribuable comme succes SAGE.9n :
+  aucune sonde transferee n'a produit de terminal. Elle est donc conservee
+  comme effet comportemental non confirme, sans support scientifique.
+
+Held-out long SAGE.9l-SAGE.9n, 5 jeux public-unseen, seeds 0/1,
+10 resets x 80 :
+
+- Protocole apparie v31 valide, `controller_errors=0`, zero `WIN`.
+- L'unifie conserve 3 niveaux contre 1 au legacy, tous les gains restant sur
+  `ft09` seed 0.
+- 58 chemins sont appris; une reacquisition est confirmee en une action sans
+  divergence. Elle execute une sonde SAGE.9k de 9 actions, refutee sans credit.
+- 5 transferts sont compiles mais aucun n'est tente dans ce budget; zero credit
+  de transfert et zero generation recursive.
+- Les resultats SAGE.9i/9j sont preserves : 5824 signaux, 44 frontieres,
+  2 candidats structurels, une confirmation et un credit structurel.
+
+Implementation et validation SAGE.9l-SAGE.9n :
+
+- chemins d'acquisition, reacquisition exacte, minimisation recursive et
+  transfert structurel dans `theory/online_terminal_frontier.py`;
+- signature d'equivalence abstraite dans
+  `theory/online_structural_frontier.py`;
+- integration dans le chemin unique `UnifiedCognitiveController`;
+- benchmark v31, nouvelles metriques et trois ablations CLI isolees;
+- 65 tests cibles passent, incluant l'integration controleur et les ablations;
+- compilation des quatre modules modifies : passee;
+- diagnostics :
+  `sage9l9m9n_ft09_active.json`,
+  `sage9l_ft09_reacquisition_ablation.json`,
+  `sage9m_ft09_recursive_minimization_ablation.json`,
+  `sage9n_ft09_structural_transfer_ablation.json` et
+  `sage9l9m9n_held_out_long_active.json`.
+
+Lecture finale : SAGE.9l a bien transforme une recurrence manquante en
+experience causale active et a permis de refuter trois raccourcis. SAGE.9m
+respecte son gate terminal et SAGE.9n a elimine cinq analogies insuffisantes.
+Le gain robuste held-out reste celui deja attribue par SAGE.9j; les nouvelles
+briques apportent surtout une capacite de falsification active, sans
+surrevendication de nouveau niveau confirme.

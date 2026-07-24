@@ -171,6 +171,16 @@ class UnifiedCognitiveConfig:
     enable_terminal_causal_reduction: bool = True
     max_terminal_causal_reduction_probes_per_frontier: int = 3
     max_terminal_causal_reduction_replays: int = 1
+    enable_active_frontier_reacquisition: bool = True
+    max_terminal_frontier_acquisition_paths: int = 4
+    max_terminal_frontier_reacquisition_actions: int = 80
+    max_terminal_frontier_reacquisition_attempts: int = 2
+    enable_recursive_terminal_causal_minimization: bool = True
+    max_terminal_causal_reduction_generations: int = 3
+    max_terminal_causal_reduction_probes_total: int = 12
+    enable_structural_frontier_transfer: bool = True
+    max_structural_transfer_probes_per_frontier: int = 2
+    max_structural_transfer_attempts: int = 1
 
 
 @dataclass(frozen=True)
@@ -201,6 +211,8 @@ class CognitiveDecision:
     terminal_frontier_replaying_successful_continuation: bool = False
     terminal_frontier_replaying_dormant_candidate: bool = False
     terminal_frontier_testing_causal_reduction: bool = False
+    terminal_frontier_reacquisition: bool = False
+    terminal_frontier_testing_structural_transfer: bool = False
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -324,6 +336,12 @@ class CognitiveDecision:
             ),
             "terminal_frontier_testing_causal_reduction": (
                 self.terminal_frontier_testing_causal_reduction
+            ),
+            "terminal_frontier_reacquisition": (
+                self.terminal_frontier_reacquisition
+            ),
+            "terminal_frontier_testing_structural_transfer": (
+                self.terminal_frontier_testing_structural_transfer
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -778,6 +796,37 @@ class UnifiedCognitiveController:
             max_causal_reduction_replays=(
                 self.config.max_terminal_causal_reduction_replays
             ),
+            enable_active_frontier_reacquisition=(
+                self.config.enable_active_frontier_reacquisition
+            ),
+            max_frontier_acquisition_paths=(
+                self.config.max_terminal_frontier_acquisition_paths
+            ),
+            max_frontier_reacquisition_actions=(
+                self.config.max_terminal_frontier_reacquisition_actions
+            ),
+            max_frontier_reacquisition_attempts=(
+                self.config.max_terminal_frontier_reacquisition_attempts
+            ),
+            enable_recursive_terminal_causal_minimization=(
+                self.config
+                .enable_recursive_terminal_causal_minimization
+            ),
+            max_causal_reduction_generations=(
+                self.config.max_terminal_causal_reduction_generations
+            ),
+            max_causal_reduction_probes_total=(
+                self.config.max_terminal_causal_reduction_probes_total
+            ),
+            enable_structural_frontier_transfer=(
+                self.config.enable_structural_frontier_transfer
+            ),
+            max_structural_transfer_probes_per_frontier=(
+                self.config.max_structural_transfer_probes_per_frontier
+            ),
+            max_structural_transfer_attempts=(
+                self.config.max_structural_transfer_attempts
+            ),
         )
         self.structural_frontiers = OnlineStructuralFrontierDetector(
             enabled=self.config.enable_structural_terminal_frontiers,
@@ -983,6 +1032,21 @@ class UnifiedCognitiveController:
         )
         if frontier_outcome["frontier_id"]:
             self._terminal_frontier_outcomes.append(frontier_outcome)
+        frontier_reacquisition_observation = bool(
+            frontier_outcome.get("frontier_reacquisition_observation")
+        )
+        if (
+            frontier_outcome.get("frontier_reacquisition_confirmed")
+            and not terminal_level_progress
+            and not terminal_win
+            and not update.record.diff.game_over
+        ):
+            self.terminal_frontiers.activate_reacquired_frontier(
+                state_signature=_terminal_frontier_state_signature(
+                    update.record.obs_after.raw_grid,
+                    update.record.obs_after.levels_completed,
+                )
+            )
         eligible_frontier_objectives = {
             str(item)
             for item in (
@@ -1030,6 +1094,7 @@ class UnifiedCognitiveController:
         )
         if (
             completed_objectives
+            and not frontier_reacquisition_observation
             and not objective_outcome["terminal_success"]
             and not update.record.diff.game_over
         ):
@@ -1044,7 +1109,10 @@ class UnifiedCognitiveController:
                     None if pending is None else pending.action_data,
                 ),
             )
-        elif structural_signal is not None:
+        elif (
+            structural_signal is not None
+            and not frontier_reacquisition_observation
+        ):
             structural_frontier_id = (
                 self.terminal_frontiers.capture_structural(
                     state_signature=_terminal_frontier_state_signature(
@@ -1055,6 +1123,9 @@ class UnifiedCognitiveController:
                         structural_signal.trigger_signature
                     ),
                     trigger_families=structural_signal.families,
+                    equivalence_signature=(
+                        structural_signal.equivalence_signature
+                    ),
                     context_signature=_transition_context_signature(
                         update,
                         None if pending is None else pending.action_data,
@@ -1124,6 +1195,14 @@ class UnifiedCognitiveController:
             )
 
         decision = self._select_escape(observation, safe_actions)
+        if (
+            decision is None
+            and self.terminal_frontiers.active_reacquisition_available
+        ):
+            decision = self._select_terminal_frontier_reacquisition(
+                observation,
+                safe_actions,
+            )
         if (
             decision is None
             and self.terminal_frontiers.active_replay_available
@@ -1334,6 +1413,36 @@ class UnifiedCognitiveController:
             terminal_frontier_testing_causal_reduction=(
                 selection.testing_causal_reduction
             ),
+            terminal_frontier_testing_structural_transfer=(
+                selection.testing_structural_transfer
+            ),
+        )
+
+    def _select_terminal_frontier_reacquisition(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+    ) -> CognitiveDecision | None:
+        """Return one exact SAGE.9l reset-to-frontier replay action."""
+        selection = self.terminal_frontiers.select_reacquisition(
+            state_signature=_terminal_frontier_state_signature(
+                observation.raw_grid,
+                observation.levels_completed,
+            ),
+            available_actions=safe_actions,
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action.action_name,
+            action_data=selection.action.data,
+            source="terminal_frontier_reacquisition",
+            reason=selection.reason,
+            confidence=1.0,
+            terminal_frontier_id=selection.frontier_id,
+            terminal_frontier_suffix_step=selection.step_index,
+            terminal_frontier_suffix_action_limit=selection.action_limit,
+            terminal_frontier_reacquisition=True,
         )
 
     def _annotate_terminal_frontier_suffix(
@@ -1371,6 +1480,8 @@ class UnifiedCognitiveController:
             terminal_frontier_replaying_successful_continuation=False,
             terminal_frontier_replaying_dormant_candidate=False,
             terminal_frontier_testing_causal_reduction=False,
+            terminal_frontier_reacquisition=False,
+            terminal_frontier_testing_structural_transfer=False,
             reason=(
                 f"{decision.reason}; monitored by {selection.reason}"
             ),

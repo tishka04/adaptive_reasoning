@@ -347,6 +347,112 @@ def test_structural_change_opens_frontier_without_completed_objective():
     assert "entity_motion" in record["structural_trigger_families"]
 
 
+def test_controller_reacquires_confirmed_structural_frontier_after_reset():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1", "ACTION2"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            enable_operator_planning=False,
+            enable_theory_planning=False,
+            enable_promoted_options=False,
+            enable_temporal_goal_composition=False,
+            enable_causal_hierarchical_options=False,
+        ),
+    )
+    reset_grid = _player_grid(2)
+    frontier_grid = _player_grid(3)
+    first = controller.select_action(
+        current_grid=reset_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION1",
+    )
+    controller.observe_transition(
+        action=first.action_name,
+        action_data=first.action_data,
+        grid_before=reset_grid,
+        grid_after=frontier_grid,
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    suffix = controller.select_action(
+        current_grid=frontier_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION2",
+    )
+    terminal_grid = frontier_grid.copy()
+    terminal_grid[0, 0] = 7
+    controller.observe_transition(
+        action=suffix.action_name,
+        action_data=suffix.action_data,
+        grid_before=frontier_grid,
+        grid_after=terminal_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        levels_completed_before=0,
+        levels_completed_after=1,
+    )
+
+    # SAGE.9j first confirms the delayed terminal candidate on one naturally
+    # recurring branch; SAGE.9l then makes later recurrence deliberate.
+    controller.on_reset()
+    recurring = controller.select_action(
+        current_grid=reset_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION1",
+    )
+    controller.observe_transition(
+        action=recurring.action_name,
+        action_data=recurring.action_data,
+        grid_before=reset_grid,
+        grid_after=frontier_grid,
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    confirmation = controller.select_action(
+        current_grid=frontier_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION1",
+    )
+    assert confirmation.terminal_frontier_replaying_dormant_candidate is True
+    controller.observe_transition(
+        action=confirmation.action_name,
+        action_data=confirmation.action_data,
+        grid_before=frontier_grid,
+        grid_after=terminal_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        levels_completed_before=0,
+        levels_completed_after=1,
+    )
+
+    controller.on_reset()
+    reacquisition = controller.select_action(
+        current_grid=reset_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION2",
+    )
+    assert reacquisition.source == "terminal_frontier_reacquisition"
+    assert reacquisition.action_name == "ACTION1"
+    assert reacquisition.terminal_frontier_reacquisition is True
+    controller.observe_transition(
+        action=reacquisition.action_name,
+        action_data=reacquisition.action_data,
+        grid_before=reset_grid,
+        grid_after=frontier_grid,
+        available_actions=["ACTION1", "ACTION2"],
+    )
+
+    replay = controller.select_action(
+        current_grid=frontier_grid,
+        available_actions=["ACTION1", "ACTION2"],
+        legacy_action="ACTION1",
+    )
+    assert replay.source == "terminal_frontier_suffix"
+    assert replay.action_name == suffix.action_name
+    assert replay.terminal_frontier_replaying_successful_continuation is True
+    summary = controller.summary()["terminal_negative_frontiers"]
+    assert summary["frontier_acquisition_paths"] == 1
+    assert summary["frontier_reacquisition_confirmations"] == 1
+
+
 def test_click_experiment_uses_objects_and_revises_relational_predictions():
     controller = UnifiedCognitiveController(
         "synthetic",

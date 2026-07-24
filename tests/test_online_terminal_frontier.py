@@ -745,3 +745,294 @@ def test_nonterminal_causal_cut_is_refuted_without_credit():
     summary = explorer.summary()
     assert summary["causal_reduction_refutations"] == 1
     assert summary["terminal_credits"] == credits_before
+
+
+def test_confirmed_frontier_is_reacquired_from_exact_reset_prefix():
+    explorer = OnlineTerminalFrontierExplorer(max_suffix_actions=2)
+    explorer.observe_transition(
+        state_signature_before="reset-state",
+        state_signature_after="structural-state",
+        action_name="ACTION1",
+        action_data={},
+        level_progressed=False,
+        won=False,
+        game_over=False,
+    )
+    frontier_id = explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_motion",),
+        equivalence_signature="equivalence-a",
+    )
+    frontier = explorer.frontiers()[0]
+    terminal_action = _action("ACTION2")
+    frontier.successful_continuations[(terminal_action.signature,)] = (
+        SuccessfulContinuation(
+            actions=(terminal_action,),
+            state_signatures=("structural-state", "next-level"),
+        )
+    )
+
+    explorer.start_branch()
+    selected = explorer.select_reacquisition(
+        state_signature="reset-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert selected is not None
+    assert selected.frontier_id == frontier_id
+    assert selected.action.action_name == "ACTION1"
+    reacquired = explorer.observe_transition(
+        state_signature_before="reset-state",
+        state_signature_after="structural-state",
+        action_name="ACTION1",
+        action_data={},
+        level_progressed=False,
+        won=False,
+        game_over=False,
+    )
+
+    assert reacquired["frontier_reacquisition_confirmed"] is True
+    assert explorer.activate_reacquired_frontier(
+        state_signature="structural-state"
+    ) == frontier_id
+    replay = explorer.select(
+        state_signature="structural-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert replay is not None
+    assert replay.replaying_successful_continuation is True
+    summary = explorer.summary()
+    assert summary["frontier_acquisition_paths"] == 1
+    assert summary["frontier_reacquisition_attempts"] == 1
+    assert summary["frontier_reacquisition_actions"] == 1
+    assert summary["frontier_reacquisition_confirmations"] == 1
+
+
+def test_reacquisition_ablation_records_no_reset_to_frontier_path():
+    explorer = OnlineTerminalFrontierExplorer(
+        enable_active_frontier_reacquisition=False,
+    )
+    explorer.observe_transition(
+        state_signature_before="reset-state",
+        state_signature_after="structural-state",
+        action_name="ACTION1",
+        action_data={},
+        level_progressed=False,
+        won=False,
+        game_over=False,
+    )
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_motion",),
+    )
+
+    assert explorer.summary()["frontier_acquisition_paths"] == 0
+    explorer.start_branch()
+    assert explorer.active_reacquisition_available is False
+
+
+def _confirm_eight_action_structural_continuation(
+    explorer: OnlineTerminalFrontierExplorer,
+) -> None:
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=8,
+        terminal_step=8,
+    )
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=8,
+        terminal_step=8,
+    )
+
+
+def test_terminal_cut_confirmation_compiles_next_reduction_generation():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=8,
+        enable_adaptive_horizon=False,
+        max_causal_reduction_generations=3,
+    )
+    _confirm_eight_action_structural_continuation(explorer)
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    selections, outcomes = _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=6,
+        terminal_step=6,
+    )
+
+    assert all(selection.testing_causal_reduction for selection in selections)
+    assert outcomes[-1]["causal_reduction_confirmed"] is True
+    summary = explorer.summary()
+    assert summary["causal_reduction_probes_compiled"] == 6
+    assert summary["recursive_reduction_probes_compiled"] == 3
+    assert summary["maximum_reduction_generation"] == 2
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    recursive = explorer.select(
+        state_signature="structural-state",
+        available_actions=["ACTION1"],
+    )
+    assert recursive is not None
+    assert recursive.testing_causal_reduction is True
+    assert recursive.action_limit == 5
+
+
+def test_recursive_reduction_ablation_keeps_first_generation_only():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=8,
+        enable_adaptive_horizon=False,
+        enable_recursive_terminal_causal_minimization=False,
+    )
+    _confirm_eight_action_structural_continuation(explorer)
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="structural-state",
+        trigger_signature="trigger-a",
+        trigger_families=("entity_transform",),
+    )
+    _run_suffix(
+        explorer,
+        state="structural-state",
+        steps=6,
+        terminal_step=6,
+    )
+
+    summary = explorer.summary()
+    assert summary["causal_reduction_probes_compiled"] == 3
+    assert summary["recursive_reduction_probes_compiled"] == 0
+    assert summary["maximum_reduction_generation"] == 1
+
+
+def test_structural_equivalence_nominates_terminal_only_transfer():
+    explorer = OnlineTerminalFrontierExplorer(max_suffix_actions=3)
+    explorer.capture_structural(
+        state_signature="source-state",
+        trigger_signature="trigger-source",
+        trigger_families=("entity_motion",),
+        equivalence_signature="equivalence-a",
+    )
+    source = explorer.frontiers()[0]
+    actions = (_action("ACTION1"), _action("ACTION2"))
+    source.successful_continuations[
+        tuple(action.signature for action in actions)
+    ] = SuccessfulContinuation(
+        actions=actions,
+        state_signatures=("source-state", "source-middle", "next-level"),
+    )
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="target-state",
+        trigger_signature="trigger-target",
+        trigger_families=("entity_motion",),
+        equivalence_signature="equivalence-a",
+    )
+
+    first = explorer.select(
+        state_signature="target-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert first is not None
+    assert first.testing_structural_transfer is True
+    explorer.observe_transition(
+        state_signature_before="target-state",
+        state_signature_after="target-middle",
+        action_name="ACTION1",
+        action_data={},
+        level_progressed=False,
+        won=False,
+        game_over=False,
+    )
+    second = explorer.select(
+        state_signature="target-middle",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert second is not None
+    assert second.testing_structural_transfer is True
+    terminal = explorer.observe_transition(
+        state_signature_before="target-middle",
+        state_signature_after="next-level",
+        action_name="ACTION2",
+        action_data={},
+        level_progressed=True,
+        won=False,
+        game_over=False,
+    )
+
+    assert terminal["structural_transfer_confirmed"] is True
+    assert terminal["credited"] is True
+    summary = explorer.summary()
+    assert summary["structural_transfer_probes_compiled"] == 1
+    assert summary["structural_transfer_attempts"] == 1
+    assert summary["structural_transfer_confirmations"] == 1
+    assert summary["structural_transfer_terminal_credits"] == 1
+
+
+def test_nonterminal_structural_transfer_is_refuted_without_credit():
+    explorer = OnlineTerminalFrontierExplorer(max_suffix_actions=3)
+    explorer.capture_structural(
+        state_signature="source-state",
+        trigger_signature="trigger-source",
+        trigger_families=("entity_motion",),
+        equivalence_signature="equivalence-a",
+    )
+    source = explorer.frontiers()[0]
+    action = _action("ACTION1")
+    source.successful_continuations[(action.signature,)] = (
+        SuccessfulContinuation(
+            actions=(action,),
+            state_signatures=("source-state", "next-level"),
+        )
+    )
+    explorer.start_branch()
+    explorer.capture_structural(
+        state_signature="target-state",
+        trigger_signature="trigger-target",
+        trigger_families=("entity_motion",),
+        equivalence_signature="equivalence-a",
+    )
+
+    selected = explorer.select(
+        state_signature="target-state",
+        available_actions=["ACTION1"],
+    )
+    assert selected is not None
+    assert selected.testing_structural_transfer is True
+    outcome = explorer.observe_transition(
+        state_signature_before="target-state",
+        state_signature_after="still-target",
+        action_name="ACTION1",
+        action_data={},
+        level_progressed=False,
+        won=False,
+        game_over=False,
+    )
+
+    assert outcome["structural_transfer_refuted"] is True
+    assert outcome["credited"] is False
+    summary = explorer.summary()
+    assert summary["structural_transfer_refutations"] == 1
+    assert summary["structural_transfer_terminal_credits"] == 0

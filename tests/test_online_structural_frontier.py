@@ -71,3 +71,50 @@ def test_structural_detector_suppresses_noop_and_terminal_transition():
     summary = detector.summary()
     assert summary["noop_suppressions"] == 1
     assert summary["terminal_suppressions"] == 1
+
+
+def test_position_changes_share_one_structural_equivalence_signature():
+    first_before = np.zeros((7, 7), dtype=np.int32)
+    first_before[3, 1] = 2
+    first_after = np.zeros((7, 7), dtype=np.int32)
+    first_after[3, 2] = 2
+    second_before = np.zeros((7, 7), dtype=np.int32)
+    second_before[5, 4] = 2
+    second_after = np.zeros((7, 7), dtype=np.int32)
+    second_after[5, 5] = 2
+    first = build_transition_record(
+        action="ACTION1",
+        grid_before=first_before,
+        grid_after=first_after,
+    )
+    second = build_transition_record(
+        action="ACTION1",
+        grid_before=second_before,
+        grid_after=second_after,
+    )
+    detector = OnlineStructuralFrontierDetector()
+
+    first_signal = detector.observe_transition(
+        grid_before=first_before,
+        grid_after=first_after,
+        objects_before=first.obs_before.objects,
+        objects_after=first.obs_after.objects,
+        diff=first.diff,
+    )
+    second_signal = detector.observe_transition(
+        grid_before=second_before,
+        grid_after=second_after,
+        objects_before=second.obs_before.objects,
+        objects_after=second.obs_after.objects,
+        diff=second.diff,
+    )
+
+    assert first_signal is not None
+    assert second_signal is not None
+    assert first_signal.equivalence_signature.startswith(
+        "structural-equivalence::"
+    )
+    assert (
+        first_signal.equivalence_signature
+        == second_signal.equivalence_signature
+    )
