@@ -625,6 +625,86 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
     assert summary["novel_effects"] == 1
 
 
+def test_controller_relays_delayed_frontier_credit_to_multiform_memory():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION6"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            enable_operator_planning=False,
+            enable_theory_planning=False,
+            enable_terminal_negative_frontier_exploration=False,
+            enable_progressive_terminal_routes=False,
+            enable_terminal_relational_stencil_induction=False,
+            frontier_exploration_min_stagnant_steps=1,
+            frontier_exploration_min_failed_branches=0,
+            delayed_frontier_terminal_credit_window=4,
+        ),
+    )
+    grid = np.zeros((7, 9), dtype=np.int32)
+    grid[2:4, 2:4] = 3
+    candidate = SimpleNamespace(
+        name="ACTION6",
+        action_args={"x": 2, "y": 2},
+    )
+    for _ in range(8):
+        controller.observe_transition(
+            action="ACTION6",
+            action_data={"x": 7, "y": 5},
+            grid_before=grid,
+            grid_after=grid.copy(),
+            available_actions=["ACTION6"],
+        )
+    frontier = controller.select_action(
+        current_grid=grid,
+        available_actions=["ACTION6"],
+        available_action_candidates=(candidate,),
+        legacy_action="ACTION6",
+        legacy_action_data={"x": 7, "y": 5},
+    )
+    assert frontier.source == "frontier_oriented_experiment"
+    empty = np.zeros_like(grid)
+    controller.observe_transition(
+        action=frontier.action_name,
+        action_data=frontier.action_data,
+        grid_before=grid,
+        grid_after=empty,
+        available_actions=["ACTION6"],
+    )
+    controller.observe_transition(
+        action="ACTION6",
+        action_data={"x": 0, "y": 0},
+        grid_before=empty,
+        grid_after=empty.copy(),
+        available_actions=["ACTION6"],
+    )
+    controller.observe_transition(
+        action="ACTION6",
+        action_data={"x": 0, "y": 0},
+        grid_before=empty,
+        grid_after=empty.copy(),
+        available_actions=["ACTION6"],
+        levels_completed_before=0,
+        levels_completed_after=1,
+    )
+
+    summary = controller.summary()
+    frontier_summary = summary["frontier_oriented_exploration"]
+    multiform_summary = summary[
+        "terminal_multiform_relational_induction"
+    ]
+    assert frontier_summary["delayed_terminal_credits"] == 1
+    assert frontier_summary["delayed_credit_max_delay"] == 2
+    assert (
+        multiform_summary[
+            "delayed_frontier_eligibilities_credited"
+        ]
+        == 1
+    )
+    assert multiform_summary["delayed_frontier_pattern_credits"] >= 2
+
+
 def test_controller_reuses_terminal_multiform_relation_on_new_layout():
     controller = UnifiedCognitiveController(
         "synthetic",

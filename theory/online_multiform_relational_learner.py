@@ -14,6 +14,9 @@ Patterns are hypotheses after ordinary transitions.  A pattern can authorize
 an action only after the same relation family has occurred on terminally
 successful transitions in independent online branches.  No game identity,
 level index, reward oracle, or answer trace is available to the learner.
+
+SAGE.10a can also ground the patterns caused by a productive frontier action
+when the terminal arrives several actions later in the same branch.
 """
 
 from __future__ import annotations
@@ -83,6 +86,14 @@ class MultiformActuatorModel:
 
 
 @dataclass(frozen=True)
+class _DelayedFrontierPatternEligibility:
+    eligibility_id: str
+    branch_index: int
+    actuator_signature: str
+    pattern_signatures: Tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class MultiformRelationSelection:
     """One live action supported by terminally grounded relation families."""
 
@@ -129,6 +140,16 @@ class OnlineMultiformRelationalLearner:
         self._family_counts: Counter[str] = Counter()
         self._terminal_family_counts: Counter[str] = Counter()
         self._selection_family_counts: Counter[str] = Counter()
+        self._delayed_frontier_eligibilities: Dict[
+            str,
+            _DelayedFrontierPatternEligibility,
+        ] = {}
+        self._delayed_frontier_eligibilities_registered = 0
+        self._delayed_frontier_eligibilities_credited = 0
+        self._delayed_frontier_pattern_credits = 0
+        self._delayed_frontier_credit_branches: set[int] = set()
+        self._delayed_frontier_eligibilities_expired = 0
+        self._delayed_frontier_eligibilities_discarded = 0
 
     def start_branch(self) -> None:
         self._branch_index += 1
@@ -142,6 +163,7 @@ class OnlineMultiformRelationalLearner:
         action_data: Mapping[str, Any] | None,
         terminal_success: bool,
         game_over: bool,
+        delayed_frontier_eligibility_id: str = "",
     ) -> Tuple[MultiformRelationPattern, ...]:
         """Induce patterns; grant goal authority only on terminal success."""
         if not self.enabled:
@@ -173,10 +195,7 @@ class OnlineMultiformRelationalLearner:
             _concrete_action_key(str(action_name), action_data)
         )
 
-        context = (
-            f"branch-{self._branch_index}::"
-            f"{_observation_signature(observation_before)}"
-        )
+        context = f"branch-{self._branch_index}"
         credited = 0
         for pattern in patterns:
             evidence = self._patterns.get(pattern.signature)
@@ -198,7 +217,84 @@ class OnlineMultiformRelationalLearner:
         self._patterns_observed += len(patterns)
         self._terminal_pattern_credits += credited
         self._terminal_examples += int(bool(terminal_success))
+        eligibility_id = str(delayed_frontier_eligibility_id)
+        if (
+            eligibility_id
+            and patterns
+            and not terminal_success
+            and not game_over
+        ):
+            self._delayed_frontier_eligibilities[eligibility_id] = (
+                _DelayedFrontierPatternEligibility(
+                    eligibility_id=eligibility_id,
+                    branch_index=self._branch_index,
+                    actuator_signature=actuator_signature,
+                    pattern_signatures=tuple(
+                        pattern.signature for pattern in patterns
+                    ),
+                )
+            )
+            self._delayed_frontier_eligibilities_registered += 1
         return patterns
+
+    def resolve_delayed_frontier_credit(
+        self,
+        *,
+        credited_eligibility_ids: Sequence[str] = (),
+        expired_eligibility_ids: Sequence[str] = (),
+        discarded_eligibility_ids: Sequence[str] = (),
+    ) -> Dict[str, int]:
+        """Ground earlier frontier effects in a later branch terminal."""
+        credited_patterns = 0
+        credited_records = 0
+        for raw_id in credited_eligibility_ids:
+            eligibility_id = str(raw_id)
+            record = self._delayed_frontier_eligibilities.pop(
+                eligibility_id,
+                None,
+            )
+            if record is None:
+                continue
+            context = f"branch-{record.branch_index}"
+            record_credits = 0
+            for signature in record.pattern_signatures:
+                evidence = self._patterns.get(signature)
+                if evidence is None:
+                    continue
+                before = len(evidence.terminal_contexts)
+                evidence.terminal_contexts.add(context)
+                if len(evidence.terminal_contexts) > before:
+                    record_credits += 1
+                    self._terminal_family_counts[
+                        evidence.pattern.family
+                    ] += 1
+            model = self._actuators.get(record.actuator_signature)
+            if model is not None:
+                model.terminal_outcomes += 1
+            credited_patterns += record_credits
+            credited_records += 1
+            self._delayed_frontier_credit_branches.add(
+                record.branch_index
+            )
+        expired = self._discard_delayed_frontier_eligibilities(
+            expired_eligibility_ids
+        )
+        discarded = self._discard_delayed_frontier_eligibilities(
+            discarded_eligibility_ids
+        )
+        self._delayed_frontier_eligibilities_credited += (
+            credited_records
+        )
+        self._delayed_frontier_pattern_credits += credited_patterns
+        self._terminal_pattern_credits += credited_patterns
+        self._delayed_frontier_eligibilities_expired += expired
+        self._delayed_frontier_eligibilities_discarded += discarded
+        return {
+            "credited_eligibilities": credited_records,
+            "credited_patterns": credited_patterns,
+            "expired_eligibilities": expired,
+            "discarded_eligibilities": discarded,
+        }
 
     def select(
         self,
@@ -337,6 +433,27 @@ class OnlineMultiformRelationalLearner:
             "selections": self._selections,
             "transferred_selections": self._transferred_selections,
             "unsafe_model_blocks": self._unsafe_model_blocks,
+            "delayed_frontier_eligibilities_registered": (
+                self._delayed_frontier_eligibilities_registered
+            ),
+            "delayed_frontier_eligibilities_pending": len(
+                self._delayed_frontier_eligibilities
+            ),
+            "delayed_frontier_eligibilities_credited": (
+                self._delayed_frontier_eligibilities_credited
+            ),
+            "delayed_frontier_pattern_credits": (
+                self._delayed_frontier_pattern_credits
+            ),
+            "delayed_frontier_credit_branches": len(
+                self._delayed_frontier_credit_branches
+            ),
+            "delayed_frontier_eligibilities_expired": (
+                self._delayed_frontier_eligibilities_expired
+            ),
+            "delayed_frontier_eligibilities_discarded": (
+                self._delayed_frontier_eligibilities_discarded
+            ),
             "family_observations": dict(self._family_counts),
             "terminal_family_credits": dict(
                 self._terminal_family_counts
@@ -353,6 +470,19 @@ class OnlineMultiformRelationalLearner:
                 for evidence in self._patterns.values()
             ],
         }
+
+    def _discard_delayed_frontier_eligibilities(
+        self,
+        eligibility_ids: Sequence[str],
+    ) -> int:
+        discarded = 0
+        for raw_id in eligibility_ids:
+            if self._delayed_frontier_eligibilities.pop(
+                str(raw_id),
+                None,
+            ) is not None:
+                discarded += 1
+        return discarded
 
 
 def extract_multiform_relation_patterns(

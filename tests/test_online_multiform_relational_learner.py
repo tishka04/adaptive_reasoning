@@ -191,6 +191,87 @@ def test_terminal_support_is_required_then_transfers_to_new_palette_position():
     assert summary["transferred_selections"] == 1
 
 
+def test_delayed_frontier_credit_confirms_only_same_branch_patterns():
+    learner = OnlineMultiformRelationalLearner(
+        minimum_terminal_support=2,
+    )
+    empty = np.zeros((9, 11), dtype=np.int32)
+    first_before = _square_grid(color=2, row=1, column=1)
+    learner.start_branch()
+    learner.observe_transition(
+        observation_before=_observation(first_before),
+        observation_after=_observation(empty),
+        action_name="ACTION6",
+        action_data={"x": 1, "y": 1},
+        terminal_success=False,
+        game_over=False,
+        delayed_frontier_eligibility_id="eligibility-1",
+    )
+    resolved = learner.resolve_delayed_frontier_credit(
+        credited_eligibility_ids=("eligibility-1",),
+    )
+
+    assert resolved["credited_eligibilities"] == 1
+    assert resolved["credited_patterns"] >= 2
+    assert learner.confirmed_patterns() == ()
+
+    second_before = _square_grid(color=7, row=4, column=5)
+    learner.start_branch()
+    learner.observe_transition(
+        observation_before=_observation(second_before),
+        observation_after=_observation(empty),
+        action_name="ACTION6",
+        action_data={"x": 5, "y": 4},
+        terminal_success=True,
+        game_over=False,
+    )
+
+    third = _square_grid(color=9, row=6, column=7)
+    selection = learner.select(
+        observation=_observation(third),
+        available_actions=("ACTION6",),
+        available_action_candidates=(
+            SimpleNamespace(
+                name="ACTION6",
+                action_args={"x": 7, "y": 6},
+            ),
+        ),
+    )
+
+    assert selection is not None
+    summary = learner.summary()
+    assert summary["delayed_frontier_eligibilities_registered"] == 1
+    assert summary["delayed_frontier_eligibilities_credited"] == 1
+    assert summary["delayed_frontier_pattern_credits"] >= 2
+    assert summary["delayed_frontier_credit_branches"] == 1
+
+
+def test_expired_delayed_frontier_pattern_never_gains_authority():
+    learner = OnlineMultiformRelationalLearner(
+        minimum_terminal_support=1,
+    )
+    before = _square_grid()
+    learner.observe_transition(
+        observation_before=_observation(before),
+        observation_after=_observation(np.zeros_like(before)),
+        action_name="ACTION6",
+        action_data={"x": 2, "y": 2},
+        terminal_success=False,
+        game_over=False,
+        delayed_frontier_eligibility_id="expired",
+    )
+
+    resolved = learner.resolve_delayed_frontier_credit(
+        expired_eligibility_ids=("expired",),
+    )
+
+    assert resolved["expired_eligibilities"] == 1
+    assert learner.confirmed_patterns() == ()
+    summary = learner.summary()
+    assert summary["delayed_frontier_eligibilities_pending"] == 0
+    assert summary["delayed_frontier_eligibilities_expired"] == 1
+
+
 def test_multiform_learner_ablation_is_inert():
     learner = OnlineMultiformRelationalLearner(enabled=False)
     before = _square_grid()

@@ -210,6 +210,9 @@ class UnifiedCognitiveConfig:
     max_frontier_experiment_sequence_actions: int = 3
     max_frontier_trials_per_actuator: int = 2
     frontier_exploration_min_failed_branches: int = 3
+    enable_delayed_frontier_terminal_credit: bool = True
+    delayed_frontier_terminal_credit_window: int = 12
+    max_delayed_frontier_credits_per_terminal: int = 3
     enable_terminal_multiform_relational_induction: bool = True
     terminal_multiform_min_support: int = 2
 
@@ -1068,6 +1071,15 @@ class UnifiedCognitiveController:
             minimum_failed_branches=(
                 self.config.frontier_exploration_min_failed_branches
             ),
+            enable_delayed_terminal_credit=(
+                self.config.enable_delayed_frontier_terminal_credit
+            ),
+            delayed_terminal_credit_window=(
+                self.config.delayed_frontier_terminal_credit_window
+            ),
+            max_delayed_credits_per_terminal=(
+                self.config.max_delayed_frontier_credits_per_terminal
+            ),
         )
         self.multiform_relations = OnlineMultiformRelationalLearner(
             enabled=(
@@ -1300,21 +1312,29 @@ class UnifiedCognitiveController:
         terminal_success = bool(
             terminal_level_progress or terminal_win
         )
+        frontier_exploration_outcome: Mapping[str, Any] = {
+            "observed": False,
+        }
         if (
             pending is not None
             and pending.frontier_oriented_experiment
         ):
-            self.frontier_exploration.observe_transition(
-                grid_before=update.record.obs_before.raw_grid,
-                grid_after=update.record.obs_after.raw_grid,
-                action_name=action_name,
-                action_data=action_data,
-                no_effect=is_noop,
-                game_over=bool(update.record.diff.game_over),
-                terminal_success=terminal_success,
+            frontier_exploration_outcome = (
+                self.frontier_exploration.observe_transition(
+                    grid_before=update.record.obs_before.raw_grid,
+                    grid_after=update.record.obs_after.raw_grid,
+                    action_name=action_name,
+                    action_data=action_data,
+                    no_effect=is_noop,
+                    game_over=bool(update.record.diff.game_over),
+                    terminal_success=terminal_success,
+                )
             )
-        self.frontier_exploration.note_transition(
-            terminal_success=terminal_success,
+        frontier_credit_update = (
+            self.frontier_exploration.note_transition(
+                terminal_success=terminal_success,
+                game_over=bool(update.record.diff.game_over),
+            )
         )
         self.multiform_relations.observe_transition(
             observation_before=update.record.obs_before,
@@ -1323,6 +1343,24 @@ class UnifiedCognitiveController:
             action_data=action_data,
             terminal_success=terminal_success,
             game_over=bool(update.record.diff.game_over),
+            delayed_frontier_eligibility_id=str(
+                frontier_exploration_outcome.get(
+                    "delayed_credit_eligibility_id",
+                    "",
+                )
+            ),
+        )
+        self.multiform_relations.resolve_delayed_frontier_credit(
+            credited_eligibility_ids=tuple(
+                credit.eligibility_id
+                for credit in frontier_credit_update.credited
+            ),
+            expired_eligibility_ids=(
+                frontier_credit_update.expired_eligibility_ids
+            ),
+            discarded_eligibility_ids=(
+                frontier_credit_update.discarded_eligibility_ids
+            ),
         )
         if (
             pending is not None
@@ -1671,7 +1709,14 @@ class UnifiedCognitiveController:
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
         self.causal_options.start_branch()
-        self.frontier_exploration.start_branch()
+        discarded_frontier_eligibilities = (
+            self.frontier_exploration.start_branch()
+        )
+        self.multiform_relations.resolve_delayed_frontier_credit(
+            discarded_eligibility_ids=(
+                discarded_frontier_eligibilities
+            ),
+        )
         self.multiform_relations.start_branch()
         self._branch_step = 0
         self._operator_plan_actions_since_objective_progress = 0

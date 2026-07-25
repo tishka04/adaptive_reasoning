@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v40"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v41"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -491,6 +491,7 @@ def run_unified_cognition_ab_benchmark(
     enable_structural_regime_abstraction: bool = True,
     enable_hierarchical_structural_theory_composition: bool = True,
     enable_frontier_oriented_exploration: bool = True,
+    enable_delayed_frontier_terminal_credit: bool = True,
     enable_terminal_multiform_relational_induction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
@@ -704,6 +705,7 @@ def run_unified_cognition_ab_benchmark(
         or not enable_structural_regime_abstraction
         or not enable_hierarchical_structural_theory_composition
         or not enable_frontier_oriented_exploration
+        or not enable_delayed_frontier_terminal_credit
         or not enable_terminal_multiform_relational_induction
     ):
         def _configured_structural_revision_controller(
@@ -732,6 +734,9 @@ def run_unified_cognition_ab_benchmark(
                     ),
                     enable_frontier_oriented_exploration=(
                         enable_frontier_oriented_exploration
+                    ),
+                    enable_delayed_frontier_terminal_credit=(
+                        enable_delayed_frontier_terminal_credit
                     ),
                     enable_terminal_multiform_relational_induction=(
                         enable_terminal_multiform_relational_induction
@@ -895,6 +900,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         frontier_oriented_exploration_enabled=(
             enable_frontier_oriented_exploration
+        ),
+        delayed_frontier_terminal_credit_enabled=(
+            enable_delayed_frontier_terminal_credit
         ),
         terminal_multiform_relational_induction_enabled=(
             enable_terminal_multiform_relational_induction
@@ -1740,6 +1748,76 @@ def _run_arm(
         "frontier_terminal_credits": int(
             frontier_exploration_summary.get("terminal_credits", 0) or 0
         ),
+        "frontier_delayed_eligibilities_registered": int(
+            frontier_exploration_summary.get(
+                "delayed_eligibilities_registered",
+                0,
+            )
+            or 0
+        ),
+        "frontier_delayed_eligibilities_pending": int(
+            frontier_exploration_summary.get(
+                "delayed_eligibilities_pending",
+                0,
+            )
+            or 0
+        ),
+        "frontier_delayed_terminal_events": int(
+            frontier_exploration_summary.get(
+                "delayed_terminal_events",
+                0,
+            )
+            or 0
+        ),
+        "frontier_delayed_terminal_credits": int(
+            frontier_exploration_summary.get(
+                "delayed_terminal_credits",
+                0,
+            )
+            or 0
+        ),
+        "frontier_delayed_credit_delay_actions": int(
+            frontier_exploration_summary.get(
+                "delayed_credit_delay_actions",
+                0,
+            )
+            or 0
+        ),
+        "frontier_delayed_credit_max_delay": int(
+            frontier_exploration_summary.get(
+                "delayed_credit_max_delay",
+                0,
+            )
+            or 0
+        ),
+        "frontier_expired_delayed_eligibilities": int(
+            frontier_exploration_summary.get(
+                "expired_delayed_eligibilities",
+                0,
+            )
+            or 0
+        ),
+        "frontier_discarded_delayed_eligibilities": int(
+            frontier_exploration_summary.get(
+                "discarded_delayed_eligibilities",
+                0,
+            )
+            or 0
+        ),
+        "frontier_censored_delayed_eligibilities": int(
+            frontier_exploration_summary.get(
+                "censored_delayed_eligibilities",
+                0,
+            )
+            or 0
+        ),
+        "frontier_unsafe_delayed_eligibilities": int(
+            frontier_exploration_summary.get(
+                "unsafe_delayed_eligibilities",
+                0,
+            )
+            or 0
+        ),
         "frontier_information_gain": float(
             frontier_exploration_summary.get("information_gain", 0.0)
             or 0.0
@@ -1776,6 +1854,55 @@ def _run_arm(
         ),
         "terminal_multiform_unsafe_model_blocks": int(
             multiform_summary.get("unsafe_model_blocks", 0) or 0
+        ),
+        "terminal_multiform_delayed_frontier_eligibilities_registered": int(
+            multiform_summary.get(
+                "delayed_frontier_eligibilities_registered",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_delayed_frontier_eligibilities_pending": int(
+            multiform_summary.get(
+                "delayed_frontier_eligibilities_pending",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_delayed_frontier_eligibilities_credited": int(
+            multiform_summary.get(
+                "delayed_frontier_eligibilities_credited",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_delayed_frontier_pattern_credits": int(
+            multiform_summary.get(
+                "delayed_frontier_pattern_credits",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_delayed_frontier_credit_branches": int(
+            multiform_summary.get(
+                "delayed_frontier_credit_branches",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_delayed_frontier_eligibilities_expired": int(
+            multiform_summary.get(
+                "delayed_frontier_eligibilities_expired",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_delayed_frontier_eligibilities_discarded": int(
+            multiform_summary.get(
+                "delayed_frontier_eligibilities_discarded",
+                0,
+            )
+            or 0
         ),
         **{
             f"terminal_multiform_{family}_observations": int(
@@ -2927,6 +3054,7 @@ def _summarize_benchmark(
     structural_regime_abstraction_enabled: bool,
     hierarchical_structural_theory_composition_enabled: bool,
     frontier_oriented_exploration_enabled: bool,
+    delayed_frontier_terminal_credit_enabled: bool,
     terminal_multiform_relational_induction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
@@ -3067,6 +3195,9 @@ def _summarize_benchmark(
             "frontier_oriented_exploration_enabled_in_unified": bool(
                 frontier_oriented_exploration_enabled
             ),
+            "delayed_frontier_terminal_credit_enabled_in_unified": bool(
+                delayed_frontier_terminal_credit_enabled
+            ),
             "terminal_multiform_relational_induction_enabled_in_unified": bool(
                 terminal_multiform_relational_induction_enabled
             ),
@@ -3144,6 +3275,23 @@ def _summarize_benchmark(
                 unified["frontier_novel_effects"] > 0
                 or unified["frontier_novel_states"] > 0
                 or unified["frontier_terminal_credits"] > 0
+            )
+        ),
+        "delayed_frontier_terminal_credit_gate_passed": bool(
+            unified["frontier_delayed_terminal_events"] > 0
+            and unified["frontier_delayed_terminal_credits"] > 0
+            and (
+                unified[
+                    "terminal_multiform_delayed_frontier_"
+                    "eligibilities_credited"
+                ]
+                > 0
+            )
+            and (
+                unified[
+                    "terminal_multiform_delayed_frontier_pattern_credits"
+                ]
+                > 0
             )
         ),
         "multiform_relational_induction_gate_passed": bool(
@@ -3656,6 +3804,27 @@ def _aggregate_arm(
         "frontier_terminal_credits": sum(
             int(row["frontier_terminal_credits"]) for row in rows
         ),
+        **{
+            metric: sum(int(row[metric]) for row in rows)
+            for metric in (
+                "frontier_delayed_eligibilities_registered",
+                "frontier_delayed_eligibilities_pending",
+                "frontier_delayed_terminal_events",
+                "frontier_delayed_terminal_credits",
+                "frontier_delayed_credit_delay_actions",
+                "frontier_expired_delayed_eligibilities",
+                "frontier_discarded_delayed_eligibilities",
+                "frontier_censored_delayed_eligibilities",
+                "frontier_unsafe_delayed_eligibilities",
+            )
+        },
+        "frontier_delayed_credit_max_delay": max(
+            (
+                int(row["frontier_delayed_credit_max_delay"])
+                for row in rows
+            ),
+            default=0,
+        ),
         "frontier_information_gain": round(
             sum(float(row["frontier_information_gain"]) for row in rows),
             4,
@@ -3674,6 +3843,13 @@ def _aggregate_arm(
                 "terminal_multiform_selections",
                 "terminal_multiform_transferred_selections",
                 "terminal_multiform_unsafe_model_blocks",
+                "terminal_multiform_delayed_frontier_eligibilities_registered",
+                "terminal_multiform_delayed_frontier_eligibilities_pending",
+                "terminal_multiform_delayed_frontier_eligibilities_credited",
+                "terminal_multiform_delayed_frontier_pattern_credits",
+                "terminal_multiform_delayed_frontier_credit_branches",
+                "terminal_multiform_delayed_frontier_eligibilities_expired",
+                "terminal_multiform_delayed_frontier_eligibilities_discarded",
             )
         },
         **{
@@ -4964,6 +5140,14 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--disable-delayed-frontier-terminal-credit",
+        action="store_true",
+        help=(
+            "Ablate SAGE.10a branch-local delayed terminal credit for "
+            "productive frontier experiments only."
+        ),
+    )
+    parser.add_argument(
         "--disable-terminal-multiform-relational-induction",
         action="store_true",
         help=(
@@ -5098,6 +5282,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_frontier_oriented_exploration=(
             not args.disable_frontier_oriented_exploration
+        ),
+        enable_delayed_frontier_terminal_credit=(
+            not args.disable_delayed_frontier_terminal_credit
         ),
         enable_terminal_multiform_relational_induction=(
             not args.disable_terminal_multiform_relational_induction

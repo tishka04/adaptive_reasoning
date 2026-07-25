@@ -7963,3 +7963,92 @@ leur donneraient une nouvelle theorie a confirmer. Le prochain verrou revient
 donc a la jonction revelee par SAGE.9v-SAGE.9w : relier des experiences
 informatives parfois lointaines a une issue terminale retardee, puis utiliser
 ce credit pour convertir les nouveaux etats de `cn04` et `sb26` en progres.
+
+## SAGE.10a - delayed frontier-to-terminal credit
+
+Objectif :
+
+- Relier une experience SAGE.9v productive a une issue terminale qui arrive
+  plusieurs actions plus tard, sans recompenser indistinctement tout
+  l'historique de la branche.
+- Propager cette attribution vers les motifs structurels SAGE.9w afin qu'une
+  relation indirectement terminale puisse gagner de l'autorite en ligne.
+- Isoler causalement le mecanisme avant de revendiquer tout gain ARC.
+
+Mecanisme :
+
+- Toute experience de frontiere sure, non terminale et produisant un effet ou
+  un etat nouveau ouvre une trace d'eligibilite opaque.
+- La trace reste strictement locale a la branche et expire apres 12 actions.
+  Un reset, une fin dangereuse ou une sortie de fenetre la detruit sans
+  credit.
+- Lors d'un terminal, le systeme credite au plus une intervention par sequence
+  scientifique et au plus trois sequences. Le classement privilegie les
+  nouveaux etats, les nouveaux effets et le gain d'information observe.
+- Le learner multi-forme associe l'identifiant d'eligibilite aux relations
+  extraites de la transition initiale. Le terminal retarde ajoute ensuite le
+  contexte de branche correspondant, exactement comme un exemple terminal
+  direct, mais sans requalifier les transitions intermediaires.
+- Deux branches terminales independantes restent necessaires avant qu'un motif
+  n'autorise une politique. La memoire ne traverse ni reset incomplet, ni jeu,
+  ni condition de benchmark.
+
+Instrumentation et ablation :
+
+- Le controleur unifie expose fenetre, plafond de credits et interrupteur
+  `enable_delayed_frontier_terminal_credit`.
+- Le schema du benchmark unifie passe a `v41` et mesure eligibilites creees,
+  en attente, expirees, censurees ou dangereuses, delai des credits, motifs
+  relationnels credites et branches concernees.
+- L'ablation isolee conserve exploration SAGE.9v, induction SAGE.9w,
+  observations, candidats, budgets et resets; seule l'attribution terminale
+  retardee est desactivee.
+
+Preuve procedurale appariee :
+
+- Les deux bras observent la meme disparition productive, deux actions avant
+  un terminal, puis le meme second exemple terminal direct dans une autre
+  branche.
+- Bras actif : 1 eligibilite, 1 credit avec delai 2, 2 motifs multi-formes
+  credites, 2 motifs confirmes, transfert de la bonne politique et succes
+  terminal.
+- Ablation : zero credit, zero motif confirme, aucune politique transferee et
+  aucun succes terminal.
+- Le gate causal SAGE.10a passe. Il prouve la necessite du credit retarde dans
+  cette famille procedurale; il ne constitue pas un niveau ARC.
+
+Audit ARC public-unseen :
+
+- cinq jeux, seed 0, quatre resets, budget 80 par reset et par bras;
+- protocole actif/ablation valide, memes etats de reset, memes budgets et
+  executions reelles dans l'environnement ARC;
+- `ft09` atteint le niveau 1 dans les deux bras : aucun avantage causal;
+- `cn04` produit 6 experiences de frontiere productives et 6 eligibilites,
+  toutes expirees sans terminal dans la fenetre de 12 actions;
+- `wa30`, `tn36`, `ft09` et `sb26` ne produisent aucune eligibilite SAGE.10a
+  sur ces trajectoires;
+- zero credit retarde naturel, zero propagation multi-forme et zero nouveau
+  niveau attribuable a SAGE.10a.
+
+Implementation et validation :
+
+- extension de `theory/online_frontier_exploration.py`;
+- extension de `theory/online_multiform_relational_learner.py`;
+- integration dans `theory/unified_cognitive_controller.py`;
+- benchmark unifie `v41` avec ablation CLI
+  `--disable-delayed-frontier-terminal-credit`;
+- nouveau runner
+  `theory/delayed_frontier_credit_benchmark.py`;
+- diagnostic :
+  `diagnostics/sage/sage10a_delayed_frontier_credit_benchmark.json`;
+- tests d'expiration, reset, securite, plafond par sequence, ablation,
+  propagation relationnelle, integration au controleur et gates
+  anti-surinterpretation.
+
+Lecture finale : SAGE.10a ferme le trou de plomberie causale entre une
+experience productive et un terminal retarde. Le resultat ARC negatif localise
+maintenant le verrou suivant : sur `cn04`, les traces utiles existent mais le
+terminal n'arrive pas dans leur horizon; sur `ft09`, le terminal survient sans
+experience SAGE.9v eligible. Il faut donc apprendre une chaine de sous-effets
+intermediaires qui prolonge ou relaie l'eligibilite jusqu'au terminal, plutot
+que simplement agrandir aveuglement la fenetre temporelle.

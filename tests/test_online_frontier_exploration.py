@@ -281,6 +281,220 @@ def test_frontier_exploration_waits_for_failed_branches_and_yields_to_progress()
     assert summary["terminal_progress_observed"] is True
 
 
+def test_productive_frontier_effect_receives_delayed_terminal_credit():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        delayed_terminal_credit_window=4,
+    )
+    before = _grid()
+    selected = explorer.select(
+        current_grid=before,
+        available_actions=("ACTION6",),
+        available_action_candidates=(_Action(
+            "ACTION6",
+            {"x": 2, "y": 2},
+        ),),
+        branch_diagnostics=_stalled(),
+    )
+    assert selected is not None
+    after = before.copy()
+    after[2:4, 2:4] = 0
+    outcome = explorer.observe_transition(
+        grid_before=before,
+        grid_after=after,
+        action_name=selected.action_name,
+        action_data=selected.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+    )
+    eligibility_id = outcome["delayed_credit_eligibility_id"]
+    assert eligibility_id
+
+    explorer.note_transition(terminal_success=False)
+    explorer.note_transition(terminal_success=False)
+    update = explorer.note_transition(terminal_success=True)
+
+    assert len(update.credited) == 1
+    assert update.credited[0].eligibility_id == eligibility_id
+    assert update.credited[0].delay_actions == 2
+    summary = explorer.summary()
+    assert summary["delayed_eligibilities_registered"] == 1
+    assert summary["delayed_terminal_events"] == 1
+    assert summary["delayed_terminal_credits"] == 1
+    assert summary["delayed_credit_max_delay"] == 2
+    assert summary["delayed_eligibilities_pending"] == 0
+
+
+def test_delayed_frontier_credit_expires_and_never_crosses_reset():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        delayed_terminal_credit_window=1,
+    )
+    before = _grid()
+    selected = explorer.select(
+        current_grid=before,
+        available_actions=("ACTION6",),
+        available_action_candidates=(_Action(
+            "ACTION6",
+            {"x": 2, "y": 2},
+        ),),
+        branch_diagnostics=_stalled(),
+    )
+    assert selected is not None
+    after = before.copy()
+    after[2:4, 2:4] = 0
+    outcome = explorer.observe_transition(
+        grid_before=before,
+        grid_after=after,
+        action_name=selected.action_name,
+        action_data=selected.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+    )
+    eligibility_id = outcome["delayed_credit_eligibility_id"]
+    explorer.note_transition(terminal_success=False)
+    explorer.note_transition(terminal_success=False)
+    expired = explorer.note_transition(terminal_success=False)
+
+    assert expired.expired_eligibility_ids == (eligibility_id,)
+    assert explorer.note_transition(
+        terminal_success=True
+    ).credited == ()
+
+    explorer = OnlineFrontierExplorer(minimum_stagnant_steps=1)
+    selected = explorer.select(
+        current_grid=before,
+        available_actions=("ACTION6",),
+        available_action_candidates=(_Action(
+            "ACTION6",
+            {"x": 2, "y": 2},
+        ),),
+        branch_diagnostics=_stalled(),
+    )
+    assert selected is not None
+    outcome = explorer.observe_transition(
+        grid_before=before,
+        grid_after=after,
+        action_name=selected.action_name,
+        action_data=selected.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+    )
+    discarded = explorer.start_branch()
+
+    assert discarded == (outcome["delayed_credit_eligibility_id"],)
+    assert explorer.note_transition(
+        terminal_success=True
+    ).credited == ()
+    summary = explorer.summary()
+    assert summary["censored_delayed_eligibilities"] == 1
+
+
+def test_delayed_frontier_credit_is_disabled_by_ablation():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        enable_delayed_terminal_credit=False,
+    )
+    before = _grid()
+    selected = explorer.select(
+        current_grid=before,
+        available_actions=("ACTION6",),
+        available_action_candidates=(_Action(
+            "ACTION6",
+            {"x": 2, "y": 2},
+        ),),
+        branch_diagnostics=_stalled(),
+    )
+    assert selected is not None
+    after = before.copy()
+    after[2:4, 2:4] = 0
+    outcome = explorer.observe_transition(
+        grid_before=before,
+        grid_after=after,
+        action_name=selected.action_name,
+        action_data=selected.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+    )
+    explorer.note_transition(terminal_success=False)
+    update = explorer.note_transition(terminal_success=True)
+
+    assert outcome["delayed_credit_eligibility_id"] == ""
+    assert update.credited == ()
+    assert explorer.summary()["delayed_terminal_credits"] == 0
+
+
+def test_delayed_credit_selects_at_most_one_action_per_sequence():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        max_sequence_actions=2,
+        delayed_terminal_credit_window=4,
+    )
+    before = _grid()
+    first = explorer.select(
+        current_grid=before,
+        available_actions=("ACTION6",),
+        available_action_candidates=(_Action(
+            "ACTION6",
+            {"x": 2, "y": 2},
+        ),),
+        branch_diagnostics=_stalled(),
+    )
+    assert first is not None
+    middle = before.copy()
+    middle[2, 2] = 8
+    first_outcome = explorer.observe_transition(
+        grid_before=before,
+        grid_after=middle,
+        action_name=first.action_name,
+        action_data=first.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+    )
+    explorer.note_transition(terminal_success=False)
+    second = explorer.select(
+        current_grid=middle,
+        available_actions=("ACTION6",),
+        available_action_candidates=(_Action(
+            "ACTION6",
+            {"x": 2, "y": 2},
+        ),),
+        branch_diagnostics=_stalled(actions=1),
+    )
+    assert second is not None
+    assert second.sequence_id == first.sequence_id
+    after = middle.copy()
+    after[2, 3] = 7
+    second_outcome = explorer.observe_transition(
+        grid_before=middle,
+        grid_after=after,
+        action_name=second.action_name,
+        action_data=second.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+    )
+    explorer.note_transition(terminal_success=False)
+
+    update = explorer.note_transition(terminal_success=True)
+
+    assert len(update.credited) == 1
+    assert len(update.discarded_eligibility_ids) == 1
+    all_ids = {
+        first_outcome["delayed_credit_eligibility_id"],
+        second_outcome["delayed_credit_eligibility_id"],
+    }
+    assert {
+        update.credited[0].eligibility_id,
+        update.discarded_eligibility_ids[0],
+    } == all_ids
+
+
 def test_disabled_frontier_explorer_is_inert():
     explorer = OnlineFrontierExplorer(
         enabled=False,

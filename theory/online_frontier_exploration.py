@@ -12,6 +12,10 @@ SAGE.9v turns a sterile branch into a bounded scientific phase:
 * prioritize state/action and object/action pairs that have not been tested;
 * continue a productive intervention for a short, bounded burst;
 * credit only observed novel effects, states, or terminal outcomes.
+
+SAGE.10a keeps a bounded eligibility trace for productive, safe frontier
+effects and attributes a later terminal in the same branch to at most one
+intervention per scientific sequence.
 """
 
 from __future__ import annotations
@@ -47,6 +51,35 @@ class FrontierExperimentSelection:
     reason: str
 
 
+@dataclass(frozen=True)
+class DelayedFrontierCredit:
+    """One earlier information-seeking action credited by a later terminal."""
+
+    eligibility_id: str
+    frontier_id: str
+    sequence_id: str
+    action_name: str
+    action_data: Dict[str, Any]
+    actuator_signature: str
+    target_role_signature: str
+    effect_signature: str
+    state_signature_before: str
+    state_signature_after: str
+    delay_actions: int
+    novel_effect: bool
+    novel_state: bool
+    information_gain: float
+
+
+@dataclass(frozen=True)
+class FrontierDelayedCreditUpdate:
+    """Resolution of branch-local frontier eligibility traces."""
+
+    credited: Tuple[DelayedFrontierCredit, ...] = ()
+    expired_eligibility_ids: Tuple[str, ...] = ()
+    discarded_eligibility_ids: Tuple[str, ...] = ()
+
+
 @dataclass
 class _ActuatorEvidence:
     trials: int = 0
@@ -54,6 +87,24 @@ class _ActuatorEvidence:
     unsafe_outcomes: int = 0
     terminal_outcomes: int = 0
     effect_signatures: Counter[str] = field(default_factory=Counter)
+
+
+@dataclass(frozen=True)
+class _FrontierEligibility:
+    eligibility_id: str
+    frontier_id: str
+    sequence_id: str
+    action_name: str
+    action_data: Dict[str, Any]
+    actuator_signature: str
+    target_role_signature: str
+    effect_signature: str
+    state_signature_before: str
+    state_signature_after: str
+    transition_index: int
+    novel_effect: bool
+    novel_state: bool
+    information_gain: float
 
 
 class OnlineFrontierExplorer:
@@ -68,6 +119,9 @@ class OnlineFrontierExplorer:
         max_sequence_actions: int = 3,
         max_trials_per_actuator: int = 2,
         minimum_failed_branches: int = 0,
+        enable_delayed_terminal_credit: bool = True,
+        delayed_terminal_credit_window: int = 12,
+        max_delayed_credits_per_terminal: int = 3,
     ) -> None:
         self.enabled = bool(enabled)
         self.minimum_stagnant_steps = max(
@@ -86,6 +140,17 @@ class OnlineFrontierExplorer:
         self.minimum_failed_branches = max(
             0,
             int(minimum_failed_branches),
+        )
+        self.enable_delayed_terminal_credit = bool(
+            enable_delayed_terminal_credit
+        )
+        self.delayed_terminal_credit_window = max(
+            1,
+            int(delayed_terminal_credit_window),
+        )
+        self.max_delayed_credits_per_terminal = max(
+            1,
+            int(max_delayed_credits_per_terminal),
         )
 
         self._state_visits: Counter[str] = Counter()
@@ -107,6 +172,10 @@ class OnlineFrontierExplorer:
         self._failed_branches = 0
         self._branch_terminal_progress = False
         self._terminal_progress_observed = False
+        self._branch_index = 0
+        self._branch_transition_index = 0
+        self._eligibility_serial = 0
+        self._delayed_eligibilities: list[_FrontierEligibility] = []
 
         self._states_assessed = 0
         self._stagnation_detections = 0
@@ -124,6 +193,15 @@ class OnlineFrontierExplorer:
         self._novel_states = 0
         self._terminal_credits = 0
         self._information_gain = 0.0
+        self._delayed_eligibilities_registered = 0
+        self._delayed_terminal_events = 0
+        self._delayed_terminal_credits = 0
+        self._delayed_credit_delay_actions = 0
+        self._delayed_credit_max_delay = 0
+        self._expired_delayed_eligibilities = 0
+        self._discarded_delayed_eligibilities = 0
+        self._censored_delayed_eligibilities = 0
+        self._unsafe_delayed_eligibilities = 0
 
     def select(
         self,
@@ -346,6 +424,42 @@ class OnlineFrontierExplorer:
             or (not no_effect and not game_over and (novel_effect or novel_state))
         )
         self._productive_experiments += int(productive)
+        eligibility_id = ""
+        if (
+            self.enable_delayed_terminal_credit
+            and productive
+            and not terminal_success
+            and not game_over
+            and (novel_effect or novel_state)
+        ):
+            self._eligibility_serial += 1
+            eligibility_id = (
+                f"frontier-eligibility-{self._branch_index:04d}-"
+                f"{self._eligibility_serial:06d}"
+            )
+            self._delayed_eligibilities.append(
+                _FrontierEligibility(
+                    eligibility_id=eligibility_id,
+                    frontier_id=pending.frontier_id,
+                    sequence_id=pending.sequence_id,
+                    action_name=pending.action_name,
+                    action_data=dict(pending.action_data),
+                    actuator_signature=pending.actuator_signature,
+                    target_role_signature=(
+                        pending.target_role_signature
+                    ),
+                    effect_signature=effect_signature,
+                    state_signature_before=pending.state_signature,
+                    state_signature_after=after_signature,
+                    transition_index=(
+                        self._branch_transition_index + 1
+                    ),
+                    novel_effect=bool(novel_effect),
+                    novel_state=bool(novel_state),
+                    information_gain=float(gain),
+                )
+            )
+            self._delayed_eligibilities_registered += 1
 
         if (
             productive
@@ -373,27 +487,149 @@ class OnlineFrontierExplorer:
             "terminal_credit": bool(terminal_success),
             "information_gain": gain,
             "effect_signature": effect_signature,
+            "delayed_credit_eligibility_id": eligibility_id,
         }
 
-    def start_branch(self) -> None:
+    def start_branch(self) -> Tuple[str, ...]:
         """End any censored burst while retaining cross-reset evidence."""
+        discarded = tuple(
+            eligibility.eligibility_id
+            for eligibility in self._delayed_eligibilities
+        )
+        if discarded:
+            self._censored_delayed_eligibilities += len(discarded)
+            self._discarded_delayed_eligibilities += len(discarded)
+        self._delayed_eligibilities = []
         if self._branches_started > 0:
             if self._branch_terminal_progress:
                 self._failed_branches = 0
             else:
                 self._failed_branches += 1
         self._branches_started += 1
+        self._branch_index += 1
+        self._branch_transition_index = 0
         self._branch_terminal_progress = False
         self._pending = None
         self._clear_sequence()
+        return discarded
 
-    def note_transition(self, *, terminal_success: bool) -> None:
+    def note_transition(
+        self,
+        *,
+        terminal_success: bool,
+        game_over: bool = False,
+    ) -> FrontierDelayedCreditUpdate:
         """Suspend upstream exploration once any existing skill progresses."""
+        self._branch_transition_index += 1
+        expired = []
+        discarded = []
+        credited: list[DelayedFrontierCredit] = []
+        if terminal_success and self.enable_delayed_terminal_credit:
+            eligible = [
+                item
+                for item in self._delayed_eligibilities
+                if (
+                    1
+                    <= self._branch_transition_index
+                    - item.transition_index
+                    <= self.delayed_terminal_credit_window
+                )
+            ]
+            best_by_sequence: Dict[str, _FrontierEligibility] = {}
+            for item in eligible:
+                current = best_by_sequence.get(item.sequence_id)
+                if current is None or self._eligibility_rank(
+                    item
+                ) > self._eligibility_rank(current):
+                    best_by_sequence[item.sequence_id] = item
+            selected = sorted(
+                best_by_sequence.values(),
+                key=self._eligibility_rank,
+                reverse=True,
+            )[: self.max_delayed_credits_per_terminal]
+            selected_ids = {
+                item.eligibility_id for item in selected
+            }
+            for item in selected:
+                delay = (
+                    self._branch_transition_index
+                    - item.transition_index
+                )
+                credited.append(
+                    DelayedFrontierCredit(
+                        eligibility_id=item.eligibility_id,
+                        frontier_id=item.frontier_id,
+                        sequence_id=item.sequence_id,
+                        action_name=item.action_name,
+                        action_data=dict(item.action_data),
+                        actuator_signature=item.actuator_signature,
+                        target_role_signature=(
+                            item.target_role_signature
+                        ),
+                        effect_signature=item.effect_signature,
+                        state_signature_before=(
+                            item.state_signature_before
+                        ),
+                        state_signature_after=(
+                            item.state_signature_after
+                        ),
+                        delay_actions=delay,
+                        novel_effect=item.novel_effect,
+                        novel_state=item.novel_state,
+                        information_gain=item.information_gain,
+                    )
+                )
+                evidence = self._actuator_evidence.get(
+                    item.actuator_signature
+                )
+                if evidence is not None:
+                    evidence.terminal_outcomes += 1
+                self._delayed_terminal_credits += 1
+                self._delayed_credit_delay_actions += delay
+                self._delayed_credit_max_delay = max(
+                    self._delayed_credit_max_delay,
+                    delay,
+                )
+            discarded = [
+                item.eligibility_id
+                for item in self._delayed_eligibilities
+                if item.eligibility_id not in selected_ids
+            ]
+            if credited:
+                self._delayed_terminal_events += 1
+            self._discarded_delayed_eligibilities += len(discarded)
+            self._delayed_eligibilities = []
+        elif game_over:
+            discarded = [
+                item.eligibility_id
+                for item in self._delayed_eligibilities
+            ]
+            self._unsafe_delayed_eligibilities += len(discarded)
+            self._discarded_delayed_eligibilities += len(discarded)
+            self._delayed_eligibilities = []
+        else:
+            retained = []
+            for item in self._delayed_eligibilities:
+                age = (
+                    self._branch_transition_index
+                    - item.transition_index
+                )
+                if age > self.delayed_terminal_credit_window:
+                    expired.append(item.eligibility_id)
+                else:
+                    retained.append(item)
+            self._delayed_eligibilities = retained
+            self._expired_delayed_eligibilities += len(expired)
         if terminal_success:
             self._branch_terminal_progress = True
             self._terminal_progress_observed = True
             self._pending = None
             self._clear_sequence()
+        return FrontierDelayedCreditUpdate(
+            credited=tuple(credited),
+            expired_eligibility_ids=tuple(expired),
+            discarded_eligibility_ids=tuple(discarded),
+        )
 
     @property
     def active_sequence(self) -> bool:
@@ -441,6 +677,15 @@ class OnlineFrontierExplorer:
             "max_sequence_actions": self.max_sequence_actions,
             "max_trials_per_actuator": self.max_trials_per_actuator,
             "minimum_failed_branches": self.minimum_failed_branches,
+            "delayed_terminal_credit_enabled": (
+                self.enable_delayed_terminal_credit
+            ),
+            "delayed_terminal_credit_window": (
+                self.delayed_terminal_credit_window
+            ),
+            "max_delayed_credits_per_terminal": (
+                self.max_delayed_credits_per_terminal
+            ),
             "branches_started": self._branches_started,
             "failed_branches": self._failed_branches,
             "terminal_progress_observed": (
@@ -462,6 +707,32 @@ class OnlineFrontierExplorer:
             "novel_effects": self._novel_effects,
             "novel_states": self._novel_states,
             "terminal_credits": self._terminal_credits,
+            "delayed_eligibilities_registered": (
+                self._delayed_eligibilities_registered
+            ),
+            "delayed_eligibilities_pending": len(
+                self._delayed_eligibilities
+            ),
+            "delayed_terminal_events": self._delayed_terminal_events,
+            "delayed_terminal_credits": self._delayed_terminal_credits,
+            "delayed_credit_delay_actions": (
+                self._delayed_credit_delay_actions
+            ),
+            "delayed_credit_max_delay": (
+                self._delayed_credit_max_delay
+            ),
+            "expired_delayed_eligibilities": (
+                self._expired_delayed_eligibilities
+            ),
+            "discarded_delayed_eligibilities": (
+                self._discarded_delayed_eligibilities
+            ),
+            "censored_delayed_eligibilities": (
+                self._censored_delayed_eligibilities
+            ),
+            "unsafe_delayed_eligibilities": (
+                self._unsafe_delayed_eligibilities
+            ),
             "information_gain": round(self._information_gain, 4),
             "actuator_models": len(self._actuator_evidence),
             "tested_object_roles": len(self._tested_target_roles),
@@ -527,6 +798,18 @@ class OnlineFrontierExplorer:
         self._active_sequence_id = ""
         self._active_sequence_step = 0
         self._active_sequence_remaining = 0
+
+    @staticmethod
+    def _eligibility_rank(
+        eligibility: _FrontierEligibility,
+    ) -> Tuple[int, int, float, int, str]:
+        return (
+            int(eligibility.novel_state),
+            int(eligibility.novel_effect),
+            float(eligibility.information_gain),
+            int(eligibility.transition_index),
+            eligibility.eligibility_id,
+        )
 
 
 def _concrete_candidates(
@@ -697,6 +980,8 @@ def _effect_signature(before: np.ndarray, after: np.ndarray) -> str:
 
 
 __all__ = [
+    "DelayedFrontierCredit",
+    "FrontierDelayedCreditUpdate",
     "FrontierExperimentSelection",
     "OnlineFrontierExplorer",
 ]

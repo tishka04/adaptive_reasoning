@@ -53,6 +53,20 @@ The paired controller-boundary benchmark is reproducible with:
 python -m theory.unified_cognition_ab_benchmark --seeds 0,1 --budget 40 --resets 2
 ```
 
+SAGE.10a adds branch-local delayed terminal credit for productive frontier
+experiments. Its isolated causal audit is reproducible with:
+
+```bash
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.delayed_frontier_credit_benchmark --seeds 0 --budget 80 --resets 4
+```
+
+The controlled proof passes: a frontier effect two actions before the terminal
+is credited and reused structurally, while the isolated ablation cannot
+transfer the policy. On the five-game public-unseen audit, `cn04` creates six
+eligible effects but they expire without a terminal inside the 12-action
+window; `ft09` still reaches level 1 equally in both arms. This is not counted
+as a new ARC level gain.
+
 It creates fresh environments for both arms and checks identical reset frames,
 games, seeds, reset counts, and budgets. The current five-game public-unseen
 run records 20 reset attempts per arm and 800 unified actions. SAGE.8r uses 488
