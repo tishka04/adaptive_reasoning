@@ -7893,3 +7893,73 @@ Lecture finale : SAGE.9y ferme le trou de preuve de SAGE.9u. La memoire
 hierarchique ne sait pas seulement conserver R1 et R2 : lorsque le monde
 redevient structurellement compatible avec R1, elle reactive effectivement le
 programme precedent sans effacer R2.
+
+## SAGE.9z - ARC multi-game replication matrix
+
+Objectif :
+
+- Sortir des preuves procedurales de SAGE.9x-SAGE.9y et retester la chaine
+  complete sur plusieurs jeux ARC, seeds et horizons.
+- Ne compter une condition que si elle combine dans le meme examen une rupture
+  naturelle, une nouvelle theorie terminalement confirmee et un avantage de
+  progression face a l'ablation.
+- Exiger ensuite que cette condition soit repliquee pour un meme jeu sur au
+  moins deux seeds et deux budgets.
+
+Protocole :
+
+- Le nouveau runner croise les cinq jeux `public_unseen`, les seeds 0 et 1,
+  les budgets 80 et 160, et quatre resets par cellule.
+- Chaque cellule compare le controleur complet au meme controleur prive de
+  SAGE.9q-SAGE.9u, avec resets frais, meme seed et meme nombre maximal
+  d'actions.
+- La relation n'est jamais permutee, aucune regle de jeu n'est fournie et
+  aucune memoire online ne traverse une cellule, un seed ou un jeu.
+- La classification est entierement post-evaluation. Les traces d'action ne
+  sont pas conservees dans le diagnostic final; seules les vingt cellules et
+  leurs compteurs causaux le sont.
+
+Gates scientifiques :
+
+- une cellule passe seulement si
+  `breaks_detected > 0`,
+  `revision_hypotheses_generated > 0`,
+  `revision_confirmations > 0`
+  et si niveaux, profondeur maximale ou `WIN` depassent l'ablation;
+- un jeu replique exige au moins deux seeds et deux budgets parmi les cellules
+  qui passent;
+- le gate global exige au moins un jeu replique et un protocole complet sans
+  erreur de controleur;
+- un gain brut sans rupture, une rupture sans confirmation ou une confirmation
+  sans avantage restent trois resultats negatifs distincts.
+
+Audit ARC, 20 cellules :
+
+- protocole valide, deux seeds, deux budgets, cinq jeux et zero erreur de
+  controleur;
+- zero rupture naturelle, zero confirmation de R2 et zero cellule causale;
+- `wa30`, `tn36`, `cn04` et `sb26` restent au niveau 0 dans tous les bras et
+  toutes les conditions;
+- `ft09`, seed 0, atteint le niveau 1 et un changement cumule sous budgets 80
+  et 160, exactement comme l'ablation;
+- `ft09`, seed 1, reste au niveau 0 dans les deux budgets et les deux bras;
+- aucun jeu ne passe le gate de replication. Le gate global SAGE.9z reste
+  explicitement faux.
+
+Implementation et validation :
+
+- nouveau
+  `theory/arc_multigame_replication_benchmark.py`;
+- diagnostic compact :
+  `diagnostics/sage/sage9z_arc_multigame_replication_benchmark.json`;
+- tests des dimensions de protocole, de la replication seed/budget et du
+  refus de causalite lorsqu'une confirmation terminale manque.
+
+Lecture finale : SAGE.9z ne replique pas encore une revision structurelle
+naturelle sur ARC. C'est une conclusion negative mais precise : les mecanismes
+de revision, d'arbitrage et de reactivation sont operationnels sous controle,
+alors que le chemin ARC n'atteint pas encore les observations terminales qui
+leur donneraient une nouvelle theorie a confirmer. Le prochain verrou revient
+donc a la jonction revelee par SAGE.9v-SAGE.9w : relier des experiences
+informatives parfois lointaines a une issue terminale retardee, puis utiliser
+ce credit pour convertir les nouveaux etats de `cn04` et `sb26` en progres.
