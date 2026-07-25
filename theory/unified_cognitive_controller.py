@@ -66,6 +66,7 @@ from .online_terminal_relational_stencil import (
     OnlineTerminalRelationalStencilLearner,
 )
 from .online_structural_frontier import OnlineStructuralFrontierDetector
+from .online_structural_break import OnlineStructuralBreakDetector
 from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
 from .online_causal_option import OnlineCausalOptionStore
 from .online_terminal_objective import (
@@ -189,6 +190,13 @@ class UnifiedCognitiveConfig:
     max_progressive_terminal_route_attempts: int = 8
     enable_terminal_relational_stencil_induction: bool = True
     terminal_relational_stencil_min_support: int = 2
+    permute_terminal_relational_stencil_relation: bool = False
+    enable_online_structural_break_detection: bool = True
+    condition_relational_memory_by_regime: bool = True
+    structural_break_min_consecutive_residuals: int = 3
+    structural_revision_min_terminal_confirmations: int = 2
+    max_structural_revision_hypotheses: int = 3
+    max_structural_revision_actions_per_hypothesis: int = 48
 
 
 @dataclass(frozen=True)
@@ -229,6 +237,10 @@ class CognitiveDecision:
     terminal_relational_stencil_expected_violations_after: int = 0
     terminal_relational_stencil_support: int = 0
     terminal_relational_stencil_count: int = 0
+    structural_regime_signature: str = ""
+    structural_break_scientific_experiment: bool = False
+    structural_revision_hypothesis_id: str = ""
+    structural_revision_policy: bool = False
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -381,6 +393,18 @@ class CognitiveDecision:
             ),
             "terminal_relational_stencil_count": (
                 self.terminal_relational_stencil_count
+            ),
+            "structural_regime_signature": (
+                self.structural_regime_signature
+            ),
+            "structural_break_scientific_experiment": (
+                self.structural_break_scientific_experiment
+            ),
+            "structural_revision_hypothesis_id": (
+                self.structural_revision_hypothesis_id
+            ),
+            "structural_revision_policy": (
+                self.structural_revision_policy
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -888,7 +912,32 @@ class UnifiedCognitiveController:
                 minimum_terminal_support=(
                     self.config.terminal_relational_stencil_min_support
                 ),
+                permute_confirmed_relation=(
+                    self.config
+                    .permute_terminal_relational_stencil_relation
+                ),
             )
+        )
+        self.structural_breaks = OnlineStructuralBreakDetector(
+            enabled=self.config.enable_online_structural_break_detection,
+            condition_memory_by_regime=(
+                self.config.condition_relational_memory_by_regime
+            ),
+            minimum_consecutive_residuals=(
+                self.config
+                .structural_break_min_consecutive_residuals
+            ),
+            minimum_terminal_confirmations=(
+                self.config
+                .structural_revision_min_terminal_confirmations
+            ),
+            max_revision_hypotheses=(
+                self.config.max_structural_revision_hypotheses
+            ),
+            max_actions_per_hypothesis=(
+                self.config
+                .max_structural_revision_actions_per_hypothesis
+            ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
@@ -1107,6 +1156,71 @@ class UnifiedCognitiveController:
                 )
             ),
         )
+        terminal_success = bool(
+            terminal_level_progress or terminal_win
+        )
+        if (
+            pending is not None
+            and pending.terminal_relational_stencil
+            and not pending.structural_break_scientific_experiment
+            and not pending.structural_revision_policy
+        ):
+            base_rules = (
+                self.terminal_relational_stencils.selection_rules()
+            )
+            before_assessment = (
+                self.terminal_relational_stencils.assess(
+                    current_grid=update.record.obs_before.raw_grid,
+                    available_action_candidates=(
+                        pending_action_candidates
+                    ),
+                    rules=base_rules,
+                )
+            )
+            after_assessment = (
+                self.terminal_relational_stencils.assess(
+                    current_grid=update.record.obs_after.raw_grid,
+                    available_action_candidates=(
+                        pending_action_candidates
+                    ),
+                    rules=base_rules,
+                )
+            )
+            self.structural_breaks.observe_base_prediction(
+                before=before_assessment,
+                after=after_assessment,
+                predicted_reduction=max(
+                    0,
+                    pending
+                    .terminal_relational_stencil_violations_before
+                    - pending
+                    .terminal_relational_stencil_expected_violations_after,
+                ),
+                action_no_effect=is_noop,
+                terminal_success=terminal_success,
+                base_rules=base_rules,
+            )
+        elif (
+            pending is not None
+            and pending.structural_break_scientific_experiment
+            and pending.structural_revision_hypothesis_id
+        ):
+            revision_rules = self.structural_breaks.hypothesis_rules(
+                pending.structural_revision_hypothesis_id
+            )
+            revision_after = self.terminal_relational_stencils.assess(
+                current_grid=update.record.obs_after.raw_grid,
+                available_action_candidates=pending_action_candidates,
+                rules=revision_rules,
+            )
+            self.structural_breaks.observe_revision_outcome(
+                hypothesis_id=(
+                    pending.structural_revision_hypothesis_id
+                ),
+                after=revision_after,
+                terminal_success=terminal_success,
+                game_over=bool(update.record.diff.game_over),
+            )
         if frontier_outcome["frontier_id"]:
             self._terminal_frontier_outcomes.append(frontier_outcome)
         frontier_reacquisition_observation = bool(
@@ -1436,6 +1550,9 @@ class UnifiedCognitiveController:
             "terminal_relational_stencil_induction": (
                 self.terminal_relational_stencils.summary()
             ),
+            "online_structural_break_detection": (
+                self.structural_breaks.summary()
+            ),
             "recent_terminal_frontier_outcomes": (
                 self._terminal_frontier_outcomes[-10:]
             ),
@@ -1587,17 +1704,130 @@ class UnifiedCognitiveController:
         observation: GameObservation,
         available_action_candidates: Sequence[Any] | None,
     ) -> CognitiveDecision | None:
-        """Apply a visual relation learned from confirmed terminal evidence."""
+        """Route R1, scientific revisions, and confirmed R2 by regime."""
+        assessment = self.terminal_relational_stencils.assess(
+            current_grid=observation.raw_grid,
+            available_action_candidates=available_action_candidates,
+        )
+        self.structural_breaks.note_state(assessment)
+        signature = assessment.structural_signature
+
+        revision_rules = (
+            self.structural_breaks.confirmed_revision_rules(signature)
+        )
+        if revision_rules:
+            selection = (
+                self.terminal_relational_stencils.select_with_rules(
+                    current_grid=observation.raw_grid,
+                    available_action_candidates=(
+                        available_action_candidates
+                    ),
+                    rules=revision_rules,
+                    reason_prefix=(
+                        "terminal-confirmed contextual revision"
+                    ),
+                )
+            )
+            if selection is not None:
+                self.structural_breaks.note_contextual_policy_action()
+                return self._relational_stencil_decision(
+                    selection,
+                    structural_regime_signature=signature,
+                    structural_revision_policy=True,
+                )
+
+        if self.structural_breaks.is_suspended(signature):
+            self.structural_breaks.note_old_theory_block()
+            for _ in range(
+                max(
+                    1,
+                    self.config.max_structural_revision_hypotheses,
+                )
+            ):
+                hypothesis = (
+                    self.structural_breaks.revision_hypothesis(
+                        signature
+                    )
+                )
+                if hypothesis is None:
+                    return None
+                hypothesis_rules = hypothesis.rule_map()
+                selection = (
+                    self.terminal_relational_stencils.select_with_rules(
+                        current_grid=observation.raw_grid,
+                        available_action_candidates=(
+                            available_action_candidates
+                        ),
+                        rules=hypothesis_rules,
+                        reason_prefix=(
+                            "structural-break discriminating hypothesis "
+                            f"{hypothesis.hypothesis_id}"
+                        ),
+                    )
+                )
+                if selection is not None:
+                    self.structural_breaks.note_revision_action(
+                        hypothesis.hypothesis_id
+                    )
+                    return self._relational_stencil_decision(
+                        selection,
+                        structural_regime_signature=signature,
+                        structural_break_scientific_experiment=True,
+                        structural_revision_hypothesis_id=(
+                            hypothesis.hypothesis_id
+                        ),
+                    )
+                hypothesis_assessment = (
+                    self.terminal_relational_stencils.assess(
+                        current_grid=observation.raw_grid,
+                        available_action_candidates=(
+                            available_action_candidates
+                        ),
+                        rules=hypothesis_rules,
+                    )
+                )
+                if (
+                    hypothesis_assessment.applicable
+                    and hypothesis_assessment.total_violations == 0
+                ):
+                    self.structural_breaks.observe_revision_outcome(
+                        hypothesis_id=hypothesis.hypothesis_id,
+                        after=hypothesis_assessment,
+                        terminal_success=False,
+                        game_over=False,
+                    )
+                    continue
+                return None
+
         selection = self.terminal_relational_stencils.select(
             current_grid=observation.raw_grid,
             available_action_candidates=available_action_candidates,
         )
         if selection is None:
             return None
+        return self._relational_stencil_decision(
+            selection,
+            structural_regime_signature=signature,
+        )
+
+    @staticmethod
+    def _relational_stencil_decision(
+        selection: Any,
+        *,
+        structural_regime_signature: str,
+        structural_break_scientific_experiment: bool = False,
+        structural_revision_hypothesis_id: str = "",
+        structural_revision_policy: bool = False,
+    ) -> CognitiveDecision:
+        source = "terminal_relational_stencil"
+        if structural_break_scientific_experiment:
+            source = "structural_break_experiment"
+        elif structural_revision_policy:
+            source = "structural_revision_policy"
         return CognitiveDecision(
             action_name=selection.action_name,
             action_data=selection.action_data,
-            source="terminal_relational_stencil",
+            source=source,
             reason=selection.reason,
             confidence=1.0,
             terminal_relational_stencil=True,
@@ -1611,6 +1841,16 @@ class UnifiedCognitiveController:
                 selection.supporting_constraints
             ),
             terminal_relational_stencil_count=selection.stencil_count,
+            structural_regime_signature=(
+                structural_regime_signature
+            ),
+            structural_break_scientific_experiment=(
+                structural_break_scientific_experiment
+            ),
+            structural_revision_hypothesis_id=(
+                structural_revision_hypothesis_id
+            ),
+            structural_revision_policy=structural_revision_policy,
         )
 
     def _annotate_terminal_frontier_suffix(

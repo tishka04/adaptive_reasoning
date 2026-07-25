@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v33"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v34"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -473,6 +473,9 @@ def run_unified_cognition_ab_benchmark(
     enable_structural_frontier_transfer: bool = True,
     enable_progressive_terminal_routes: bool = True,
     enable_terminal_relational_stencil_induction: bool = True,
+    enable_online_structural_break_detection: bool = True,
+    permute_terminal_relational_stencil_relation: bool = False,
+    condition_relational_memory_by_regime: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -677,6 +680,30 @@ def run_unified_cognition_ab_benchmark(
         effective_controller_factory = (
             _terminal_relational_stencil_disabled_controller
         )
+    elif effective_controller_factory is None and (
+        not enable_online_structural_break_detection
+        or permute_terminal_relational_stencil_relation
+        or not condition_relational_memory_by_regime
+    ):
+        def _configured_sage9q_controller(
+            game_id: str,
+        ) -> UnifiedCognitiveController:
+            return UnifiedCognitiveController(
+                game_id,
+                config=UnifiedCognitiveConfig(
+                    enable_online_structural_break_detection=(
+                        enable_online_structural_break_detection
+                    ),
+                    permute_terminal_relational_stencil_relation=(
+                        permute_terminal_relational_stencil_relation
+                    ),
+                    condition_relational_memory_by_regime=(
+                        condition_relational_memory_by_regime
+                    ),
+                ),
+            )
+
+        effective_controller_factory = _configured_sage9q_controller
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -809,6 +836,15 @@ def run_unified_cognition_ab_benchmark(
         ),
         terminal_relational_stencil_induction_enabled=(
             enable_terminal_relational_stencil_induction
+        ),
+        online_structural_break_detection_enabled=(
+            enable_online_structural_break_detection
+        ),
+        terminal_relational_stencil_relation_permuted=(
+            permute_terminal_relational_stencil_relation
+        ),
+        relational_memory_conditioned_by_regime=(
+            condition_relational_memory_by_regime
         ),
     )
     if not include_traces:
@@ -959,6 +995,13 @@ def _run_arm(
     terminal_relational_stencil_summary = dict(
         controller_summary.get(
             "terminal_relational_stencil_induction",
+            {},
+        )
+        or {}
+    )
+    structural_break_summary = dict(
+        controller_summary.get(
+            "online_structural_break_detection",
             {},
         )
         or {}
@@ -1431,6 +1474,87 @@ def _run_arm(
                 {},
             )
             or {}
+        ),
+        "structural_regimes": int(
+            structural_break_summary.get("regimes", 0) or 0
+        ),
+        "structural_break_states_assessed": int(
+            structural_break_summary.get("states_assessed", 0) or 0
+        ),
+        "structural_topology_novelties": int(
+            structural_break_summary.get("topology_novelties", 0) or 0
+        ),
+        "structural_prediction_checks": int(
+            structural_break_summary.get("prediction_checks", 0) or 0
+        ),
+        "structural_prediction_residuals": int(
+            structural_break_summary.get(
+                "prediction_residuals",
+                0,
+            )
+            or 0
+        ),
+        "structural_successful_predictions": int(
+            structural_break_summary.get(
+                "successful_predictions",
+                0,
+            )
+            or 0
+        ),
+        "structural_terminal_condition_residuals": int(
+            structural_break_summary.get(
+                "terminal_condition_residuals",
+                0,
+            )
+            or 0
+        ),
+        "structural_peak_consecutive_residuals": int(
+            structural_break_summary.get(
+                "peak_consecutive_residuals",
+                0,
+            )
+            or 0
+        ),
+        "structural_breaks_detected": int(
+            structural_break_summary.get("breaks_detected", 0) or 0
+        ),
+        "structural_old_theory_suspensions": int(
+            structural_break_summary.get(
+                "old_theory_suspensions",
+                0,
+            )
+            or 0
+        ),
+        "structural_old_theory_blocks": int(
+            structural_break_summary.get("old_theory_blocks", 0) or 0
+        ),
+        "structural_revision_hypotheses_generated": int(
+            structural_break_summary.get(
+                "hypotheses_generated",
+                0,
+            )
+            or 0
+        ),
+        "structural_revision_actions": int(
+            structural_break_summary.get("revision_actions", 0) or 0
+        ),
+        "structural_revision_confirmations": int(
+            structural_break_summary.get(
+                "revision_confirmations",
+                0,
+            )
+            or 0
+        ),
+        "structural_revision_refutations": int(
+            structural_break_summary.get("revision_refutations", 0)
+            or 0
+        ),
+        "structural_contextual_policy_actions": int(
+            structural_break_summary.get(
+                "contextual_policy_actions",
+                0,
+            )
+            or 0
         ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
@@ -2555,6 +2679,9 @@ def _summarize_benchmark(
     structural_frontier_transfer_enabled: bool,
     progressive_terminal_routes_enabled: bool,
     terminal_relational_stencil_induction_enabled: bool,
+    online_structural_break_detection_enabled: bool,
+    terminal_relational_stencil_relation_permuted: bool,
+    relational_memory_conditioned_by_regime: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2673,6 +2800,15 @@ def _summarize_benchmark(
             "terminal_relational_stencil_induction_enabled_in_unified": bool(
                 terminal_relational_stencil_induction_enabled
             ),
+            "online_structural_break_detection_enabled_in_unified": bool(
+                online_structural_break_detection_enabled
+            ),
+            "terminal_relational_stencil_relation_permuted_in_unified": bool(
+                terminal_relational_stencil_relation_permuted
+            ),
+            "relational_memory_conditioned_by_regime_in_unified": bool(
+                relational_memory_conditioned_by_regime
+            ),
             "controller_rebranches_after_level_change": True,
             "protocol_gate_passed": protocol_gate,
         },
@@ -2714,6 +2850,15 @@ def _summarize_benchmark(
         ),
         "depth_two_gate_passed": bool(
             unified["max_level_reached"] >= 2
+        ),
+        "depth_five_gate_passed": bool(
+            unified["max_level_reached"] >= 5
+        ),
+        "structural_revision_gate_passed": bool(
+            unified["structural_breaks_detected"] > 0
+            and unified["structural_revision_hypotheses_generated"] > 0
+            and unified["structural_revision_confirmations"] > 0
+            and unified["max_level_reached"] >= 5
         ),
         "pairs": list(pairs),
     }
@@ -3072,6 +3217,72 @@ def _aggregate_arm(
         ),
         "terminal_relational_stencil_rules": sum(
             int(row["terminal_relational_stencil_rules"])
+            for row in rows
+        ),
+        "structural_regimes": sum(
+            int(row["structural_regimes"]) for row in rows
+        ),
+        "structural_break_states_assessed": sum(
+            int(row["structural_break_states_assessed"])
+            for row in rows
+        ),
+        "structural_topology_novelties": sum(
+            int(row["structural_topology_novelties"])
+            for row in rows
+        ),
+        "structural_prediction_checks": sum(
+            int(row["structural_prediction_checks"])
+            for row in rows
+        ),
+        "structural_prediction_residuals": sum(
+            int(row["structural_prediction_residuals"])
+            for row in rows
+        ),
+        "structural_successful_predictions": sum(
+            int(row["structural_successful_predictions"])
+            for row in rows
+        ),
+        "structural_terminal_condition_residuals": sum(
+            int(row["structural_terminal_condition_residuals"])
+            for row in rows
+        ),
+        "structural_peak_consecutive_residuals": max(
+            (
+                int(row["structural_peak_consecutive_residuals"])
+                for row in rows
+            ),
+            default=0,
+        ),
+        "structural_breaks_detected": sum(
+            int(row["structural_breaks_detected"])
+            for row in rows
+        ),
+        "structural_old_theory_suspensions": sum(
+            int(row["structural_old_theory_suspensions"])
+            for row in rows
+        ),
+        "structural_old_theory_blocks": sum(
+            int(row["structural_old_theory_blocks"])
+            for row in rows
+        ),
+        "structural_revision_hypotheses_generated": sum(
+            int(row["structural_revision_hypotheses_generated"])
+            for row in rows
+        ),
+        "structural_revision_actions": sum(
+            int(row["structural_revision_actions"])
+            for row in rows
+        ),
+        "structural_revision_confirmations": sum(
+            int(row["structural_revision_confirmations"])
+            for row in rows
+        ),
+        "structural_revision_refutations": sum(
+            int(row["structural_revision_refutations"])
+            for row in rows
+        ),
+        "structural_contextual_policy_actions": sum(
+            int(row["structural_contextual_policy_actions"])
             for row in rows
         ),
         "levels_completed": sum(
@@ -4294,6 +4505,27 @@ def main(argv: Sequence[str] | None = None) -> int:
             "induction only."
         ),
     )
+    parser.add_argument(
+        "--disable-online-structural-break-detection",
+        action="store_true",
+        help="Ablate SAGE.9q online structural-break detection and revision.",
+    )
+    parser.add_argument(
+        "--permute-terminal-relational-stencil-relation",
+        action="store_true",
+        help=(
+            "Control SAGE.9q with the learned visual relation deliberately "
+            "permuted at selection time."
+        ),
+    )
+    parser.add_argument(
+        "--disable-regime-conditioned-relational-memory",
+        action="store_true",
+        help=(
+            "Control SAGE.9q with the old relation retained globally instead "
+            "of suspended only in the detected regime."
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -4399,6 +4631,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_terminal_relational_stencil_induction=(
             not args.disable_terminal_relational_stencil_induction
+        ),
+        enable_online_structural_break_detection=(
+            not args.disable_online_structural_break_detection
+        ),
+        permute_terminal_relational_stencil_relation=(
+            args.permute_terminal_relational_stencil_relation
+        ),
+        condition_relational_memory_by_regime=(
+            not args.disable_regime_conditioned_relational_memory
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

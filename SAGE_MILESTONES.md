@@ -7289,3 +7289,118 @@ plusieurs fois le premier niveau, il apprend online une relation terminale et
 l'utilise pour avancer jusqu'au niveau 4. Ce n'est pas encore un `WIN` ni une
 preuve de generalisation inter-jeux; le prochain verrou est la nouvelle
 structure rencontree au-dela de cette famille relationnelle.
+
+## SAGE.9q - online structural-break detection and theory revision
+
+Objectif :
+
+- Detecter pendant l'episode qu'une theorie relationnelle apprise a cesse
+  d'expliquer les transitions ou la condition terminale.
+- Suspendre cette theorie uniquement dans le regime visuel concerne, ouvrir
+  des experiences discriminantes, puis promouvoir une relation de remplacement
+  exclusivement apres repetition terminale online.
+- Ne coder ni identifiant de jeu, ni numero de niveau, ni reponse `ft09`.
+
+Representation et detection :
+
+- Chaque disposition de stencils recoit une signature structurelle independante
+  de la position et de la palette : topologie des actions cliquables, positions
+  relatives des stencils et roles d'occupation locaux.
+- La memoire de regime distingue `provisional`, `compatible`, `broken` et
+  `revised`. Deux predictions locales correctes suffisent a rendre un nouveau
+  regime compatible; une courte rafale bruitee ne peut ensuite plus suspendre
+  la theorie sans un second signal independant.
+- Trois residus consecutifs sur une prediction de reduction peuvent declarer
+  une rupture dans un regime encore non valide. Dans un regime deja valide,
+  trois actions simultanement sans effet sont requises.
+- Un second canal couvre la semantique terminale : si la theorie atteint zero
+  violation mais qu'aucun changement de niveau ou `WIN` n'arrive, cette
+  completion non terminale est un residu de condition de but. Trois repetitions
+  rouvrent la theorie meme si la mecanique locale des clics reste correcte.
+
+Revision scientifique :
+
+- La relation precedente n'est jamais effacee globalement. Elle est suspendue
+  seulement pour la signature rompue; les autres regimes continuent a
+  l'utiliser.
+- Jusqu'a trois relations alternatives explicites sont compilees sans
+  connaissance du jeu. Le controleur execute leurs clics comme experiences
+  discriminantes bornees.
+- Une alternative peut etre refutee par `GAME_OVER`, par une completion
+  relationnelle non terminale ou par son budget. Elle ne devient politique
+  contextuelle qu'apres deux confirmations terminales independantes.
+- Le chemin unifie annote separement theorie historique, experience de rupture
+  et politique revisee. Le benchmark v34 expose tous les residus, suspensions,
+  hypotheses, actions, confirmations, refutations et usages contextuels.
+
+Audit reel `ft09`, seed 0, 14 resets x 160 :
+
+- Le diagnostic initial a refute la premisse du jalon : il n'existe pas de
+  rupture naturelle demontree juste apres le niveau 4. Avec l'horizon porte de
+  80 a 160 actions, SAGE.9p continue d'expliquer les cinq dispositions
+  rencontrees, atteint `max_level_reached=6` et obtient un `WIN`.
+- SAGE.9q actif preserve exactement ce resultat : 443 predictions evaluees,
+  309 reductions confirmees, 134 residus mecaniques isoles mais zero residu de
+  condition terminale, zero rupture, zero suspension et
+  `controller_errors=0`.
+- Le gate de profondeur `depth_five_gate_passed` est vrai. Le gate specifique
+  de revision reste volontairement faux, puisqu'aucune rupture naturelle ne
+  justifie une revision sur ce run. Un faux positif qui aurait fabrique une
+  theorie R2 aurait ete un mauvais resultat scientifique.
+
+Stress causal par relation permutee :
+
+- Quand la relation terminale apprise est volontairement inversee, le nouveau
+  canal observe 6 completions non terminales, detecte 3 ruptures, suspend
+  localement l'ancienne theorie, genere 9 hypotheses et execute 158 actions
+  discriminantes.
+- Deux relations contextuelles sont confirmees apres repetition terminale et
+  produisent 84 actions de politique revisee. Le systeme recupere
+  `max_level_reached=3` et 20 changements de niveau cumules.
+- Avec la meme relation permutee mais SAGE.9q desactive, il reste a
+  `max_level_reached=1` et 8 changements cumules. Le retour jusqu'au niveau 3
+  est donc causalement attribuable a la detection/revision, mais la recuperation
+  reste partielle : zero `WIN` et gate de revision maximal encore faux.
+
+Controles preserves, meme seed, resets et budget :
+
+- sans SAGE.9p : zero theorie relationnelle, `max_level_reached=1`, zero
+  `WIN`;
+- sans SAGE.9o : `max_level_reached=6`, 29 changements cumules et 3 `WIN`.
+  Sur cet horizon long, la route memorisee n'est donc pas necessaire et coute
+  meme du budget; son ancien benefice etait propre a l'horizon 80;
+- relation permutee : revision partielle jusqu'au niveau 3, contre niveau 1
+  lorsque SAGE.9q est lui aussi retire;
+- memoire non conditionnee par regime : resultat identique a l'actif
+  (`max_level_reached=6`, un `WIN`) parce que le run naturel ne contient
+  justement aucune rupture. Ce controle est nul sur `ft09`, tandis que les
+  tests controles confirment qu'une rupture detectee ne peut alors ni suspendre
+  R1 ni lancer R2.
+
+Implementation et validation :
+
+- nouveau detecteur et memoire conditionnelle dans
+  `theory/online_structural_break.py`;
+- evaluation structurelle et controle de permutation dans
+  `theory/online_terminal_relational_stencil.py`;
+- integration R1 / experiences / R2 dans `UnifiedCognitiveController`;
+- benchmark v34, gate de profondeur 5, gate de revision et quatre ablations
+  CLI;
+- tests controles de bruit intermittent, rupture mecanique, rupture de
+  condition terminale, suspension locale, promotion apres deux terminaux,
+  memoire non conditionnee, signature structurelle et permutation;
+- diagnostics :
+  `sage9q_ft09_active.json`,
+  `sage9q_ft09_without_9o.json`,
+  `sage9q_ft09_without_9p.json`,
+  `sage9q_ft09_permuted_relation.json`,
+  `sage9q_ft09_permuted_without_revision.json` et
+  `sage9q_ft09_unconditioned_memory.json`.
+
+Lecture finale : SAGE.9q sait maintenant reconnaitre et reviser une theorie
+fausse dans le chemin online, et le stress permute montre un gain causal de
+deux niveaux. Il a aussi evite de surinterpreter `ft09` : le suppose verrou
+apres le niveau 4 etait un artefact du budget, pas une rupture cognitive. La
+prochaine preuve forte doit reproduire une vraie rupture non injectee sur un
+second jeu, puis ameliorer l'ordonnancement des hypotheses afin de transformer
+la recuperation partielle niveau 3 en profondeur complete ou `WIN`.

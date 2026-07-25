@@ -60,6 +60,32 @@ def _terminal_predecessor():
     return _grid(8, colors)
 
 
+def _trained_learner(*, permuted: bool = False):
+    learner = OnlineTerminalRelationalStencilLearner(
+        permute_confirmed_relation=permuted,
+    )
+    predecessor = _terminal_predecessor()
+    after_click = predecessor.copy()
+    after_click[29, 21] = 9
+    learner.observe_transition(
+        grid_before=predecessor,
+        grid_after=after_click,
+        action_name="ACTION6",
+        action_data={"x": 18, "y": 26},
+        available_action_candidates=_actions(),
+        terminal_success_confirmed=False,
+    )
+    learner.observe_transition(
+        grid_before=predecessor,
+        grid_after=np.zeros((8, 8), dtype=np.int64),
+        action_name="ACTION6",
+        action_data={"x": 18, "y": 26},
+        available_action_candidates=_actions(),
+        terminal_success_confirmed=True,
+    )
+    return learner
+
+
 def test_learns_relation_only_from_confirmed_terminal_example():
     learner = OnlineTerminalRelationalStencilLearner()
     actions = _actions()
@@ -153,3 +179,70 @@ def test_ablation_never_learns_or_selects():
         available_action_candidates=actions,
     ) is None
     assert learner.summary()["terminal_examples"] == 0
+
+
+def test_structural_signature_ignores_palette_but_preserves_topology():
+    learner = _trained_learner()
+    colors = {
+        (x, y): 9
+        for y in (10, 18, 26)
+        for x in (10, 18, 26)
+        if (x, y) != STENCIL
+    }
+    first = learner.assess(
+        current_grid=_grid(12, colors),
+        available_action_candidates=_actions(),
+    )
+    second = learner.assess(
+        current_grid=_grid(17, {
+            coordinate: 14 for coordinate in colors
+        }),
+        available_action_candidates=_actions(),
+    )
+    fewer_actions = tuple(
+        action
+        for action in _actions()
+        if action.action_args != {"x": 10, "y": 10}
+    )
+    changed = learner.assess(
+        current_grid=_grid(12, colors),
+        available_action_candidates=fewer_actions,
+    )
+
+    assert first.structural_signature == second.structural_signature
+    assert first.structural_signature != changed.structural_signature
+
+
+def test_permuted_relation_is_a_real_policy_control():
+    normal = _trained_learner()
+    permuted = _trained_learner(permuted=True)
+    current = _grid(
+        12,
+        {
+            (x, y): 9
+            for y in (10, 18, 26)
+            for x in (10, 18, 26)
+            if (x, y) != STENCIL
+        },
+    )
+
+    normal_selection = normal.select(
+        current_grid=current,
+        available_action_candidates=_actions(),
+    )
+    permuted_selection = permuted.select(
+        current_grid=current,
+        available_action_candidates=_actions(),
+    )
+
+    assert normal_selection is not None
+    assert permuted_selection is not None
+    normal_coordinate = (
+        normal_selection.action_data["x"],
+        normal_selection.action_data["y"],
+    )
+    permuted_coordinate = (
+        permuted_selection.action_data["x"],
+        permuted_selection.action_data["y"],
+    )
+    assert normal_coordinate != permuted_coordinate

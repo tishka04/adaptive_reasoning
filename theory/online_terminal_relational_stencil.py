@@ -15,6 +15,7 @@ game.
 
 from __future__ import annotations
 
+import hashlib
 from collections import Counter
 from dataclasses import dataclass
 from typing import Any, Dict, Mapping, Sequence, Tuple
@@ -36,6 +37,19 @@ class RelationalStencilSelection:
     supporting_constraints: int
     stencil_count: int
     reason: str
+
+
+@dataclass(frozen=True)
+class StencilTheoryAssessment:
+    """Auditable fit of one relational rule family to one live layout."""
+
+    structural_signature: str
+    applicable: bool
+    total_constraints: int
+    total_violations: int
+    improving_actions: int
+    stencil_count: int
+    click_count: int
 
 
 @dataclass(frozen=True)
@@ -70,11 +84,15 @@ class OnlineTerminalRelationalStencilLearner:
         *,
         enabled: bool = True,
         minimum_terminal_support: int = 2,
+        permute_confirmed_relation: bool = False,
     ) -> None:
         self.enabled = bool(enabled)
         self.minimum_terminal_support = max(
             1,
             int(minimum_terminal_support),
+        )
+        self.permute_confirmed_relation = bool(
+            permute_confirmed_relation
         )
         self._click_relation_effects: Counter[Tuple[bool, bool]] = Counter()
         self._marker_goal_votes: Counter[Tuple[str, bool]] = Counter()
@@ -134,9 +152,126 @@ class OnlineTerminalRelationalStencilLearner:
         )
         if layout is None:
             return None
-        rules = self._confirmed_rules()
+        rules = self.selection_rules()
         if not rules:
             return None
+        return self._select_from_layout(
+            layout,
+            rules=rules,
+            reason_prefix="confirmed terminal stencil relation",
+        )
+
+    def select_with_rules(
+        self,
+        *,
+        current_grid: Any,
+        available_action_candidates: Sequence[Any] | None,
+        rules: Mapping[str, bool],
+        reason_prefix: str,
+    ) -> RelationalStencilSelection | None:
+        """Select under an explicit, still-testable revision hypothesis."""
+        if not self.enabled or not rules:
+            return None
+        layout = _discover_layout(
+            current_grid,
+            tuple(available_action_candidates or ()),
+        )
+        if layout is None:
+            return None
+        return self._select_from_layout(
+            layout,
+            rules=rules,
+            reason_prefix=str(reason_prefix),
+        )
+
+    def assess(
+        self,
+        *,
+        current_grid: Any,
+        available_action_candidates: Sequence[Any] | None,
+        rules: Mapping[str, bool] | None = None,
+    ) -> StencilTheoryAssessment:
+        """Measure current rule fit without changing any learned state."""
+        layout = _discover_layout(
+            current_grid,
+            tuple(available_action_candidates or ()),
+        )
+        if layout is None:
+            return StencilTheoryAssessment(
+                structural_signature="",
+                applicable=False,
+                total_constraints=0,
+                total_violations=0,
+                improving_actions=0,
+                stencil_count=0,
+                click_count=0,
+            )
+        active_rules = dict(
+            self.selection_rules() if rules is None else rules
+        )
+        if not active_rules:
+            return StencilTheoryAssessment(
+                structural_signature=_layout_structural_signature(layout),
+                applicable=False,
+                total_constraints=0,
+                total_violations=0,
+                improving_actions=0,
+                stencil_count=len(layout.stencils),
+                click_count=len(layout.clicks),
+            )
+        total_constraints = 0
+        total_violations = 0
+        improving_actions = 0
+        for coordinate in layout.clicks:
+            constraints = self._constraints_for_click(
+                layout,
+                coordinate,
+                active_rules,
+            )
+            total_constraints += len(constraints)
+            violations = sum(
+                actual != desired
+                for actual, desired in constraints
+            )
+            total_violations += violations
+            expected_after = sum(
+                self._predicted_relation_after_click(actual) != desired
+                for actual, desired in constraints
+            )
+            if violations > expected_after:
+                improving_actions += 1
+        return StencilTheoryAssessment(
+            structural_signature=_layout_structural_signature(layout),
+            applicable=bool(total_constraints),
+            total_constraints=total_constraints,
+            total_violations=total_violations,
+            improving_actions=improving_actions,
+            stencil_count=len(layout.stencils),
+            click_count=len(layout.clicks),
+        )
+
+    def confirmed_rules(self) -> Dict[str, bool]:
+        """Return terminally grounded semantics without policy ablations."""
+        return dict(self._confirmed_rules())
+
+    def selection_rules(self) -> Dict[str, bool]:
+        """Return the live policy semantics, including permutation control."""
+        rules = self.confirmed_rules()
+        if self.permute_confirmed_relation:
+            return {
+                marker: not relation
+                for marker, relation in rules.items()
+            }
+        return rules
+
+    def _select_from_layout(
+        self,
+        layout: _Layout,
+        *,
+        rules: Mapping[str, bool],
+        reason_prefix: str,
+    ) -> RelationalStencilSelection | None:
+        """Select the best one-step constraint reduction in a layout."""
 
         best: tuple[
             tuple[int, int, int, int, int],
@@ -195,7 +330,7 @@ class OnlineTerminalRelationalStencilLearner:
             supporting_constraints=support,
             stencil_count=len(layout.stencils),
             reason=(
-                "confirmed terminal stencil relation predicts a reduction "
+                f"{reason_prefix} predicts a reduction "
                 f"from {before_count} to {after_count} local violations"
             ),
         )
@@ -204,6 +339,9 @@ class OnlineTerminalRelationalStencilLearner:
         rules = self._confirmed_rules()
         return {
             "enabled": self.enabled,
+            "permute_confirmed_relation": (
+                self.permute_confirmed_relation
+            ),
             "terminal_examples": self._terminal_examples,
             "terminal_constraints": self._terminal_constraints,
             "effect_observations": self._effect_observations,
@@ -216,6 +354,16 @@ class OnlineTerminalRelationalStencilLearner:
                     else "different_from_center"
                 )
                 for marker, desired_equal in sorted(rules.items())
+            },
+            "selection_marker_rules": {
+                marker: (
+                    "equal_to_center"
+                    if desired_equal
+                    else "different_from_center"
+                )
+                for marker, desired_equal in sorted(
+                    self.selection_rules().items()
+                )
             },
             "marker_goal_votes": {
                 f"{marker}:{'equal' if relation else 'different'}": count
@@ -539,7 +687,43 @@ def _same_stencil_geometry(before: _Layout, after: _Layout) -> bool:
     )
 
 
+def _layout_structural_signature(layout: _Layout) -> str:
+    """Return a palette- and translation-independent layout fingerprint."""
+    min_x = min(x for x, _ in layout.clicks)
+    min_y = min(y for _, y in layout.clicks)
+    spacing = max(1, int(layout.spacing))
+    normalized_clicks = tuple(sorted(
+        (
+            (x - min_x) // spacing,
+            (y - min_y) // spacing,
+        )
+        for x, y in layout.clicks
+    ))
+    normalized_stencils = []
+    for stencil in layout.stencils:
+        sx, sy = stencil.coordinate
+        roles = tuple(
+            _marker_role(layout, stencil, dx, dy)
+            for dy in (-1, 0, 1)
+            for dx in (-1, 0, 1)
+            if dx or dy
+        )
+        normalized_stencils.append((
+            (sx - min_x) // spacing,
+            (sy - min_y) // spacing,
+            roles,
+        ))
+    payload = (
+        normalized_clicks,
+        tuple(sorted(normalized_stencils)),
+    )
+    return hashlib.sha1(
+        repr(payload).encode("utf-8")
+    ).hexdigest()[:16]
+
+
 __all__ = [
     "OnlineTerminalRelationalStencilLearner",
     "RelationalStencilSelection",
+    "StencilTheoryAssessment",
 ]

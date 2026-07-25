@@ -108,7 +108,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v33"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v34"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -183,6 +183,18 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         ]
         is True
     )
+    assert (
+        protocol["online_structural_break_detection_enabled_in_unified"]
+        is True
+    )
+    assert (
+        protocol["terminal_relational_stencil_relation_permuted_in_unified"]
+        is False
+    )
+    assert (
+        protocol["relational_memory_conditioned_by_regime_in_unified"]
+        is True
+    )
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -226,6 +238,15 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "progressive_terminal_routes" in metrics["unified"]
     assert "progressive_terminal_route_actions" in metrics["unified"]
     assert "progressive_terminal_route_confirmations" in metrics["unified"]
+    assert "structural_regimes" in metrics["unified"]
+    assert "structural_prediction_residuals" in metrics["unified"]
+    assert "structural_terminal_condition_residuals" in metrics["unified"]
+    assert "structural_breaks_detected" in metrics["unified"]
+    assert "structural_old_theory_suspensions" in metrics["unified"]
+    assert "structural_revision_hypotheses_generated" in metrics["unified"]
+    assert "structural_revision_actions" in metrics["unified"]
+    assert "structural_revision_confirmations" in metrics["unified"]
+    assert "structural_revision_refutations" in metrics["unified"]
     assert "terminal_objective_grounded_actions" in metrics["unified"]
     assert "terminal_objective_discriminator_actions" in metrics["unified"]
     assert "terminal_objective_ablation_actions" in metrics["unified"]
@@ -1020,3 +1041,99 @@ def test_ab_benchmark_exposes_terminal_relational_stencil_ablation():
     assert metrics["terminal_relational_stencil_examples"] == 0
     assert metrics["terminal_relational_stencil_decisions"] == 0
     assert metrics["terminal_relational_stencil_rules"] == 0
+
+
+def test_ab_benchmark_exposes_online_structural_break_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-structural-break-ablation"],
+        seeds=[103],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_online_structural_break_detection=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["online_structural_break_detection_enabled_in_unified"]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["structural_breaks_detected"] == 0
+    assert metrics["structural_revision_hypotheses_generated"] == 0
+    assert metrics["structural_revision_actions"] == 0
+
+
+def test_ab_benchmark_exposes_permuted_relation_control():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-permuted-relation-control"],
+        seeds=[107],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        permute_terminal_relational_stencil_relation=True,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["terminal_relational_stencil_relation_permuted_in_unified"]
+        is True
+    )
+    assert (
+        protocol["relational_memory_conditioned_by_regime_in_unified"]
+        is True
+    )
+
+
+def test_ab_benchmark_composes_permutation_with_revision_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-composed-sage9q-controls"],
+        seeds=[108],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_online_structural_break_detection=False,
+        permute_terminal_relational_stencil_relation=True,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["online_structural_break_detection_enabled_in_unified"]
+        is False
+    )
+    assert (
+        protocol["terminal_relational_stencil_relation_permuted_in_unified"]
+        is True
+    )
+    summary = payload["pairs"][0]["unified"]["controller_summary"]
+    assert (
+        summary["online_structural_break_detection"]["enabled"]
+        is False
+    )
+    assert (
+        summary["terminal_relational_stencil_induction"][
+            "permute_confirmed_relation"
+        ]
+        is True
+    )
+
+
+def test_ab_benchmark_exposes_unconditioned_regime_memory_control():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-unconditioned-regime-memory"],
+        seeds=[109],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        condition_relational_memory_by_regime=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["relational_memory_conditioned_by_regime_in_unified"]
+        is False
+    )
+    assert (
+        protocol["online_structural_break_detection_enabled_in_unified"]
+        is True
+    )
