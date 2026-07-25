@@ -763,6 +763,25 @@ class OnlineTerminalFrontierExplorer:
             for frontier in self._frontiers.values()
         )
 
+    @property
+    def pending_scientific_replay_priority(self) -> bool:
+        """Whether an exact frontier confirmation must keep policy priority."""
+        return bool(
+            self._active is not None
+            or self._active_reacquisition is not None
+            or self._active_progressive_route is not None
+            or any(
+                candidate.confirmations == 0
+                and candidate.refutations == 0
+                and candidate.replay_attempts
+                < self.max_dormant_candidate_replays
+                for frontier in self._frontiers.values()
+                for candidate in (
+                    frontier.dormant_terminal_candidates.values()
+                )
+            )
+        )
+
     def remember_action(
         self,
         state_signature: str,

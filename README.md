@@ -53,19 +53,35 @@ The paired controller-boundary benchmark is reproducible with:
 python -m theory.unified_cognition_ab_benchmark --seeds 0,1 --budget 40 --resets 2
 ```
 
-SAGE.10a adds branch-local delayed terminal credit for productive frontier
-experiments. Its isolated causal audit is reproducible with:
+SAGE.10b-SAGE.10e extend branch-local delayed credit with bounded sub-effect
+relay, generalized stall detection, per-level explorer re-arming, and verified
+per-level route shortening. The compact paired proof is reproducible with:
 
 ```bash
-ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.delayed_frontier_credit_benchmark --seeds 0 --budget 80 --resets 4
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage10b_plus_benchmark
 ```
 
-The controlled proof passes: a frontier effect two actions before the terminal
-is credited and reused structurally, while the isolated ablation cannot
-transfer the policy. On the five-game public-unseen audit, `cn04` creates six
-eligible effects but they expire without a terminal inside the 12-action
-window; `ft09` still reaches level 1 equally in both arms. This is not counted
-as a new ARC level gain.
+All four procedural gates pass against isolated ablations. Eligibility
+identity survives at most three structurally or causally linked sub-effects;
+the three new stall signals do not require exact state recurrence; a level
+change only re-arms the retired explorer after a new stall; and shorter routes
+remain candidate-only until their own live terminal replay.
+
+The long-budget performance track skips ablation overhead and writes compact
+level/WIN/action-efficiency history:
+
+```bash
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.benchmark_score_runner --label sage10b-plus
+```
+
+Its defaults are the five `public_unseen` games, seeds 0/1, budgets
+500/1500/4000, and eight resets. Scientific attribution remains available in
+the unified benchmark through schema `v42` and the isolated flags
+`--disable-subeffect-eligibility-relay`,
+`--disable-generalized-frontier-stall-detection`,
+`--disable-per-level-frontier-rearming`,
+`--disable-level-route-memory`, and
+`--disable-level-route-shortening`.
 
 It creates fresh environments for both arms and checks identical reset frames,
 games, seeds, reset counts, and budgets. The current five-game public-unseen

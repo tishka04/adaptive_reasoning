@@ -108,7 +108,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v41"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v42"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -1256,3 +1256,41 @@ def test_ab_benchmark_exposes_sage9w_multiform_relation_ablation():
     ]
     assert summary["enabled"] is False
     assert payload["multiform_relational_induction_gate_passed"] is False
+
+
+def test_ab_benchmark_exposes_sage10b_plus_isolated_ablations():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-sage10b-plus-ablation"],
+        seeds=[113],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_subeffect_eligibility_relay=False,
+        enable_generalized_frontier_stall_detection=False,
+        enable_per_level_frontier_rearming=False,
+        enable_level_route_memory=False,
+        enable_level_route_shortening=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert protocol[
+        "subeffect_eligibility_relay_enabled_in_unified"
+    ] is False
+    assert protocol[
+        "generalized_frontier_stall_detection_enabled_in_unified"
+    ] is False
+    assert protocol[
+        "per_level_frontier_rearming_enabled_in_unified"
+    ] is False
+    assert protocol["level_route_memory_enabled_in_unified"] is False
+    assert protocol["level_route_shortening_enabled_in_unified"] is False
+    controller = payload["pairs"][0]["unified"]["controller_summary"]
+    frontier = controller["frontier_oriented_exploration"]
+    routes = controller["level_route_memory"]
+    assert frontier["subeffect_eligibility_relay_enabled"] is False
+    assert frontier["generalized_stall_detection_enabled"] is False
+    assert frontier["per_level_rearming_enabled"] is False
+    assert routes["enabled"] is False
+    assert routes["shortening_enabled"] is False
+    assert routes["observed_routes"] == 0
+    assert routes["routes"] == 0

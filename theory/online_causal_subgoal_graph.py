@@ -266,6 +266,8 @@ class OnlineCausalSubgoalGraph:
         self._delayed_credit_events = 0
         self._expired_credit_windows = 0
         self._cross_branch_confirmations = 0
+        self._effect_link_events = 0
+        self._effect_links: Counter[Tuple[str, str]] = Counter()
 
     def edges(self) -> List[CausalSubgoalEdge]:
         return sorted(self._edges.values(), key=lambda item: item.edge_key)
@@ -413,6 +415,42 @@ class OnlineCausalSubgoalGraph:
             if evidence.source_progress_events > 0
             or evidence.enablement_successes > 0
         }
+
+    def effects_causally_linked(
+        self,
+        source_signature: str,
+        target_signature: str,
+    ) -> bool:
+        """Return only effect links learned from shared causal-edge evidence."""
+        source = str(source_signature)
+        target = str(target_signature)
+        if not source or not target:
+            return False
+        if source == target:
+            return any(
+                source in edge.effect_evidence
+                and (
+                    edge.effect_evidence[source].source_progress_events > 0
+                    or edge.effect_evidence[source].enablement_successes > 0
+                )
+                for edge in self.edges()
+            )
+        key = tuple(sorted((source, target)))
+        if self._effect_links[key] > 0:
+            return True
+        return any(
+            source in edge.effect_evidence
+            and target in edge.effect_evidence
+            and (
+                edge.effect_evidence[source].source_progress_events > 0
+                or edge.effect_evidence[source].enablement_successes > 0
+            )
+            and (
+                edge.effect_evidence[target].source_progress_events > 0
+                or edge.effect_evidence[target].enablement_successes > 0
+            )
+            for edge in self.edges()
+        )
 
     def begin_trial(self, edge_key: str, *, context_signature: str) -> None:
         edge = self.edge(edge_key)
@@ -625,6 +663,8 @@ class OnlineCausalSubgoalGraph:
             "delayed_credit_events": self._delayed_credit_events,
             "expired_credit_windows": self._expired_credit_windows,
             "cross_branch_confirmations": self._cross_branch_confirmations,
+            "causal_effect_links": len(self._effect_links),
+            "causal_effect_link_events": self._effect_link_events,
             "confirmed_edges": sum(
                 edge.status == CausalSubgoalEdgeStatus.CONFIRMED for edge in edges
             ),
@@ -644,6 +684,17 @@ class OnlineCausalSubgoalGraph:
     ) -> None:
         if not self.enable_effect_credit:
             return
+        productive_signatures = sorted(
+            signature
+            for signature in trial.effect_signatures
+            if signature
+        )
+        if available:
+            for index, source in enumerate(productive_signatures):
+                for target in productive_signatures[index + 1:]:
+                    key = tuple(sorted((source, target)))
+                    self._effect_links[key] += 1
+                    self._effect_link_events += 1
         for signature in trial.effect_signatures:
             evidence = self._mechanic_evidence(edge.effect_evidence, signature)
             if available:

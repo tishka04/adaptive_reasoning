@@ -20,6 +20,10 @@ def _row(game, seed, budget, *, confirm=True, advantage=True):
         "ablated_max_level_reached": 4,
         "active_controller_errors": 0,
         "ablated_controller_errors": 0,
+        "active_subeffect_relays": 1,
+        "active_delayed_terminal_credits": 1,
+        "active_actuator_coverage_stalls": 1,
+        "active_per_level_rearms": 1,
     }
 
 
@@ -56,7 +60,15 @@ def test_replication_requires_causal_revision_across_seeds_and_budgets():
     )
 
     assert payload["protocol"]["protocol_gate_passed"] is True
+    assert payload["schema_version"] == (
+        "sage.arc_multigame_replication.v2"
+    )
     assert payload["replicated_games"] == 2
+    assert payload["subeffect_relay_conditions"] == 8
+    assert payload["natural_delayed_credit_conditions"] == 8
+    assert payload["generalized_stall_conditions"] == 8
+    assert payload["per_level_rearm_conditions"] == 8
+    assert payload["any_natural_sage10b_credit_observed"] is True
     assert payload["any_replicated_natural_revision_gate_passed"] is True
     assert all(
         game["replicated_natural_revision_gate_passed"]

@@ -1,0 +1,59 @@
+{
+  "all_procedural_gates_passed": true,
+  "evaluation": "paired_sage10b_through_sage10e_procedural_proof",
+  "gates": {
+    "sage10b_relay_necessary_for_credit": true,
+    "sage10c_generalized_stall_necessary_for_intervention": true,
+    "sage10d_level_rearm_necessary_after_terminal_retreat": true,
+    "sage10e_shortening_candidate_requires_terminal_verification": true
+  },
+  "generalized_stall": {
+    "ablated": {
+      "interventions": 0,
+      "new_states": 0
+    },
+    "active": {
+      "interventions": 1,
+      "new_states": 1
+    }
+  },
+  "per_level_rearm": {
+    "ablated": {
+      "rearmed_interventions": 0
+    },
+    "active": {
+      "rearmed_interventions": 1
+    }
+  },
+  "protocol": {
+    "a32_or_a33_written": false,
+    "candidate_only_until_terminal_confirmation": true,
+    "coordinates_or_palette_semantics_used": false,
+    "game_specific_rules_used": false,
+    "paired_active_and_isolated_ablation": true,
+    "reset_and_danger_destroy_eligibility": true
+  },
+  "relay": {
+    "ablated": {
+      "relays_created": 0,
+      "terminal_credits": 0
+    },
+    "active": {
+      "relays_created": 1,
+      "terminal_credits": 1
+    }
+  },
+  "route_shortening": {
+    "ablated": {
+      "actions_saved": 0,
+      "shortening_candidates": 0,
+      "shortening_confirmations": 0
+    },
+    "active": {
+      "actions_saved": 2,
+      "shortening_candidates": 1,
+      "shortening_confirmations": 1
+    }
+  },
+  "schema_version": "sage.sage10b_plus_procedural.v1"
+}

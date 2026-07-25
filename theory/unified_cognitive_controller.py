@@ -62,6 +62,7 @@ from .online_frontier_exploration import OnlineFrontierExplorer
 from .online_multiform_relational_learner import (
     OnlineMultiformRelationalLearner,
 )
+from .online_level_route_memory import OnlineLevelRouteMemory
 from .online_terminal_frontier import (
     OnlineTerminalFrontierExplorer,
     TerminalFrontierAction,
@@ -71,7 +72,10 @@ from .online_terminal_relational_stencil import (
 )
 from .online_structural_frontier import OnlineStructuralFrontierDetector
 from .online_structural_break import OnlineStructuralBreakDetector
-from .online_causal_subgoal_graph import OnlineCausalSubgoalGraph
+from .online_causal_subgoal_graph import (
+    OnlineCausalSubgoalGraph,
+    transition_effect_signature,
+)
 from .online_causal_option import OnlineCausalOptionStore
 from .online_terminal_objective import (
     OnlineTerminalObjectiveStore,
@@ -192,6 +196,11 @@ class UnifiedCognitiveConfig:
     enable_progressive_terminal_routes: bool = True
     max_progressive_terminal_routes_per_frontier: int = 4
     max_progressive_terminal_route_attempts: int = 8
+    enable_level_route_memory: bool = True
+    enable_level_route_shortening: bool = True
+    max_level_routes: int = 48
+    max_level_route_actions: int = 4000
+    max_level_route_replay_attempts: int = 8
     enable_terminal_relational_stencil_induction: bool = True
     terminal_relational_stencil_min_support: int = 2
     permute_terminal_relational_stencil_relation: bool = False
@@ -213,6 +222,12 @@ class UnifiedCognitiveConfig:
     enable_delayed_frontier_terminal_credit: bool = True
     delayed_frontier_terminal_credit_window: int = 12
     max_delayed_frontier_credits_per_terminal: int = 3
+    enable_subeffect_eligibility_relay: bool = True
+    max_subeffect_eligibility_relay_depth: int = 3
+    enable_generalized_frontier_stall_detection: bool = True
+    frontier_effect_novelty_stall_actions: int = 12
+    frontier_zero_terminal_branch_stall_count: int = 3
+    enable_per_level_frontier_rearming: bool = True
     enable_terminal_multiform_relational_induction: bool = True
     terminal_multiform_min_support: int = 2
 
@@ -1007,6 +1022,17 @@ class UnifiedCognitiveController:
         self.structural_frontiers = OnlineStructuralFrontierDetector(
             enabled=self.config.enable_structural_terminal_frontiers,
         )
+        self.level_routes = OnlineLevelRouteMemory(
+            enabled=self.config.enable_level_route_memory,
+            enable_shortening=(
+                self.config.enable_level_route_shortening
+            ),
+            max_routes=self.config.max_level_routes,
+            max_actions_per_route=self.config.max_level_route_actions,
+            max_replay_attempts=(
+                self.config.max_level_route_replay_attempts
+            ),
+        )
         self.terminal_relational_stencils = (
             OnlineTerminalRelationalStencilLearner(
                 enabled=(
@@ -1079,6 +1105,26 @@ class UnifiedCognitiveController:
             ),
             max_delayed_credits_per_terminal=(
                 self.config.max_delayed_frontier_credits_per_terminal
+            ),
+            enable_subeffect_eligibility_relay=(
+                self.config.enable_subeffect_eligibility_relay
+            ),
+            max_subeffect_relay_depth=(
+                self.config.max_subeffect_eligibility_relay_depth
+            ),
+            enable_generalized_stall_detection=(
+                self.config
+                .enable_generalized_frontier_stall_detection
+            ),
+            effect_novelty_stall_actions=(
+                self.config.frontier_effect_novelty_stall_actions
+            ),
+            zero_terminal_branch_stall_count=(
+                self.config
+                .frontier_zero_terminal_branch_stall_count
+            ),
+            enable_per_level_rearming=(
+                self.config.enable_per_level_frontier_rearming
             ),
         )
         self.multiform_relations = OnlineMultiformRelationalLearner(
@@ -1293,6 +1339,21 @@ class UnifiedCognitiveController:
             won=terminal_win,
             game_over=bool(update.record.diff.game_over),
         )
+        self.level_routes.observe_transition(
+            state_signature_before=_terminal_frontier_state_signature(
+                update.record.obs_before.raw_grid,
+                update.record.obs_before.levels_completed,
+            ),
+            state_signature_after=_terminal_frontier_state_signature(
+                update.record.obs_after.raw_grid,
+                update.record.obs_after.levels_completed,
+            ),
+            action_name=action_name,
+            action_data=action_data,
+            level_progressed=terminal_level_progress,
+            won=terminal_win,
+            game_over=bool(update.record.diff.game_over),
+        )
         self.terminal_relational_stencils.observe_transition(
             grid_before=update.record.obs_before.raw_grid,
             grid_after=update.record.obs_after.raw_grid,
@@ -1312,6 +1373,7 @@ class UnifiedCognitiveController:
         terminal_success = bool(
             terminal_level_progress or terminal_win
         )
+        causal_effect_signature = transition_effect_signature(update)
         frontier_exploration_outcome: Mapping[str, Any] = {
             "observed": False,
         }
@@ -1328,12 +1390,31 @@ class UnifiedCognitiveController:
                     no_effect=is_noop,
                     game_over=bool(update.record.diff.game_over),
                     terminal_success=terminal_success,
+                    causal_effect_signature=causal_effect_signature,
                 )
             )
+        linked_frontier_effects = tuple(
+            signature
+            for signature in (
+                self.frontier_exploration
+                .pending_causal_effect_signatures()
+            )
+            if self.causal_subgoals.effects_causally_linked(
+                signature,
+                causal_effect_signature,
+            )
+        )
         frontier_credit_update = (
             self.frontier_exploration.note_transition(
                 terminal_success=terminal_success,
                 game_over=bool(update.record.diff.game_over),
+                grid_before=update.record.obs_before.raw_grid,
+                grid_after=update.record.obs_after.raw_grid,
+                action_data=action_data,
+                causal_effect_signature=causal_effect_signature,
+                causally_linked_effect_signatures=(
+                    linked_frontier_effects
+                ),
             )
         )
         self.multiform_relations.observe_transition(
@@ -1660,6 +1741,18 @@ class UnifiedCognitiveController:
                 safe_actions,
                 available_action_candidates,
             )
+        if (
+            decision is None
+            and self.level_routes.active_route_available
+            and not (
+                self.terminal_frontiers
+                .pending_scientific_replay_priority
+            )
+        ):
+            decision = self._select_level_route(
+                observation,
+                safe_actions,
+            )
         if decision is None:
             decision = self._select_causal_option(observation, safe_actions)
         if decision is None:
@@ -1705,6 +1798,7 @@ class UnifiedCognitiveController:
         self._pending_decision = None
         self._pending_action_candidates = ()
         self.terminal_frontiers.start_branch()
+        self.level_routes.start_branch()
         self.terminal_objectives.start_branch()
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
@@ -1728,6 +1822,7 @@ class UnifiedCognitiveController:
     def on_level_change(self) -> None:
         """Keep transferable mechanics but reset branch-local control state."""
         self.on_reset()
+        self.frontier_exploration.note_level_change()
 
     def summary(self) -> Dict[str, Any]:
         prediction_statuses = Counter(
@@ -1790,6 +1885,7 @@ class UnifiedCognitiveController:
                 self.horizon_learning_arbiter.summary()
             ),
             "terminal_negative_frontiers": self.terminal_frontiers.summary(),
+            "level_route_memory": self.level_routes.summary(),
             "structural_terminal_frontiers": (
                 self.structural_frontiers.summary()
             ),
@@ -1948,6 +2044,35 @@ class UnifiedCognitiveController:
             terminal_progressive_route_id=selection.route_id,
             terminal_progressive_route_confirmed=(
                 selection.confirmed_route
+            ),
+        )
+
+    def _select_level_route(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+    ) -> CognitiveDecision | None:
+        selection = self.level_routes.select(
+            state_signature=_terminal_frontier_state_signature(
+                observation.raw_grid,
+                observation.levels_completed,
+            ),
+            available_actions=safe_actions,
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action.action_name,
+            action_data=dict(selection.action.action_data),
+            source=(
+                "level_route_shortening_probe"
+                if selection.shortening_candidate
+                and not selection.confirmed_route
+                else "level_route_replay"
+            ),
+            reason=selection.reason,
+            confidence=(
+                0.95 if selection.confirmed_route else 0.65
             ),
         )
 

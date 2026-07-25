@@ -1,4 +1,4 @@
-"""SAGE.9z multi-game, multi-seed, multi-budget ARC replication."""
+"""SAGE.9z-bis multi-game, multi-seed, multi-budget ARC replication."""
 
 from __future__ import annotations
 
@@ -15,11 +15,11 @@ from .natural_structural_break_benchmark import (
 from .unified_cognition_ab_benchmark import DEFAULT_HELD_OUT_GAMES
 
 
-SCHEMA_VERSION = "sage.arc_multigame_replication.v1"
+SCHEMA_VERSION = "sage.arc_multigame_replication.v2"
 DEFAULT_OUTPUT_PATH = (
     Path("diagnostics")
     / "sage"
-    / "sage9z_arc_multigame_replication_benchmark.json"
+    / "sage9z_bis_arc_multigame_replication_benchmark.json"
 )
 
 
@@ -159,6 +159,27 @@ def summarize_arc_multigame_replication_rows(
                 for row in game_rows
             ),
             "causal_revision_conditions": len(causal_rows),
+            "subeffect_relay_conditions": sum(
+                int(row.get("active_subeffect_relays", 0)) > 0
+                for row in game_rows
+            ),
+            "natural_delayed_credit_conditions": sum(
+                int(row.get("active_delayed_terminal_credits", 0)) > 0
+                for row in game_rows
+            ),
+            "generalized_stall_conditions": sum(
+                (
+                    int(row.get("active_effect_novelty_stalls", 0))
+                    + int(row.get("active_actuator_coverage_stalls", 0))
+                    + int(row.get("active_zero_terminal_branch_stalls", 0))
+                )
+                > 0
+                for row in game_rows
+            ),
+            "per_level_rearm_conditions": sum(
+                int(row.get("active_per_level_rearms", 0)) > 0
+                for row in game_rows
+            ),
             "replicated_seeds": replicated_seeds,
             "replicated_budgets": replicated_budgets,
             "replicated_natural_revision_gate_passed": (
@@ -217,6 +238,31 @@ def summarize_arc_multigame_replication_rows(
         ),
         "causal_revision_conditions": sum(
             bool(row.get("causal_natural_revision_gate_passed"))
+            for row in reports
+        ),
+        "subeffect_relay_conditions": sum(
+            int(row.get("active_subeffect_relays", 0)) > 0
+            for row in reports
+        ),
+        "natural_delayed_credit_conditions": sum(
+            int(row.get("active_delayed_terminal_credits", 0)) > 0
+            for row in reports
+        ),
+        "generalized_stall_conditions": sum(
+            (
+                int(row.get("active_effect_novelty_stalls", 0))
+                + int(row.get("active_actuator_coverage_stalls", 0))
+                + int(row.get("active_zero_terminal_branch_stalls", 0))
+            )
+            > 0
+            for row in reports
+        ),
+        "per_level_rearm_conditions": sum(
+            int(row.get("active_per_level_rearms", 0)) > 0
+            for row in reports
+        ),
+        "any_natural_sage10b_credit_observed": any(
+            int(row.get("active_delayed_terminal_credits", 0)) > 0
             for row in reports
         ),
         "replicated_games": len(replicated_games),
@@ -308,6 +354,30 @@ def _condition_rows(
             "active_revision_confirmations": int(
                 active.get("structural_revision_confirmations", 0)
             ),
+            "active_subeffect_relays": int(
+                active.get("frontier_subeffect_relays_created", 0)
+            ),
+            "active_delayed_terminal_credits": int(
+                active.get("frontier_delayed_terminal_credits", 0)
+            ),
+            "active_effect_novelty_stalls": int(
+                active.get("frontier_effect_novelty_stalls", 0)
+            ),
+            "active_actuator_coverage_stalls": int(
+                active.get("frontier_actuator_coverage_stalls", 0)
+            ),
+            "active_zero_terminal_branch_stalls": int(
+                active.get("frontier_zero_terminal_branch_stalls", 0)
+            ),
+            "active_per_level_rearms": int(
+                active.get("frontier_per_level_rearms", 0)
+            ),
+            "active_level_route_confirmations": int(
+                active.get("level_route_confirmations", 0)
+            ),
+            "active_level_route_actions_saved": int(
+                active.get("level_route_shortening_actions_saved", 0)
+            ),
             "active_controller_errors": _error_count(
                 active.get("controller_errors", 0)
             ),
@@ -375,6 +445,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             "causal_revision_conditions"
         ],
         "replicated_games": payload["replicated_games"],
+        "subeffect_relay_conditions": payload[
+            "subeffect_relay_conditions"
+        ],
+        "natural_delayed_credit_conditions": payload[
+            "natural_delayed_credit_conditions"
+        ],
+        "generalized_stall_conditions": payload[
+            "generalized_stall_conditions"
+        ],
+        "per_level_rearm_conditions": payload[
+            "per_level_rearm_conditions"
+        ],
         "replication_gate_passed": payload[
             "any_replicated_natural_revision_gate_passed"
         ],
