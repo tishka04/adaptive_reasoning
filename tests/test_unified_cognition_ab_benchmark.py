@@ -108,7 +108,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v39"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v40"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -1228,3 +1228,31 @@ def test_ab_benchmark_exposes_sage9v_frontier_exploration_ablation():
     ]
     assert summary["enabled"] is False
     assert payload["frontier_oriented_exploration_gate_passed"] is False
+
+
+def test_ab_benchmark_exposes_sage9w_multiform_relation_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-sage9w-ablation"],
+        seeds=[112],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_terminal_multiform_relational_induction=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol[
+            "terminal_multiform_relational_induction_enabled_in_unified"
+        ]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["terminal_multiform_observations"] == 0
+    assert metrics["terminal_multiform_confirmed_patterns"] == 0
+    assert metrics["terminal_multiform_selections"] == 0
+    summary = payload["pairs"][0]["unified"]["controller_summary"][
+        "terminal_multiform_relational_induction"
+    ]
+    assert summary["enabled"] is False
+    assert payload["multiform_relational_induction_gate_passed"] is False

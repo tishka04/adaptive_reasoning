@@ -625,6 +625,68 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
     assert summary["novel_effects"] == 1
 
 
+def test_controller_reuses_terminal_multiform_relation_on_new_layout():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION6"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            enable_operator_planning=False,
+            enable_theory_planning=False,
+            enable_terminal_negative_frontier_exploration=False,
+            enable_progressive_terminal_routes=False,
+            enable_terminal_relational_stencil_induction=False,
+            enable_frontier_oriented_exploration=False,
+        ),
+    )
+
+    for index, (color, row, column) in enumerate((
+        (2, 1, 1),
+        (7, 4, 5),
+    )):
+        controller.on_reset()
+        before = np.zeros((9, 11), dtype=np.int32)
+        before[row:row + 2, column:column + 2] = color
+        controller.observe_transition(
+            action="ACTION6",
+            action_data={"x": column, "y": row},
+            grid_before=before,
+            grid_after=np.zeros_like(before),
+            available_actions=["ACTION6"],
+            levels_completed_before=index,
+            levels_completed_after=index + 1,
+        )
+
+    controller.on_reset()
+    live = np.zeros((9, 11), dtype=np.int32)
+    live[6:8, 7:9] = 9
+    candidate = SimpleNamespace(
+        name="ACTION6",
+        action_args={"x": 7, "y": 6},
+    )
+    decision = controller.select_action(
+        current_grid=live,
+        available_actions=["ACTION6"],
+        available_action_candidates=(candidate,),
+        legacy_action="ACTION6",
+        legacy_action_data={"x": 0, "y": 0},
+    )
+
+    assert decision.source == "terminal_multiform_relation"
+    assert decision.action_data == {"x": 7, "y": 6}
+    assert decision.terminal_multiform_relation is True
+    assert {
+        "count",
+        "disappearance",
+    }.issubset(decision.terminal_multiform_families)
+    summary = controller.summary()[
+        "terminal_multiform_relational_induction"
+    ]
+    assert summary["confirmed_patterns"] >= 2
+    assert summary["selections"] == 1
+
+
 def test_registered_arc_agent_enables_the_unified_controller():
     project_root = Path(__file__).resolve().parents[1]
     registry = (

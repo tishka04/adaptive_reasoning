@@ -59,6 +59,9 @@ from .online_horizon_learning_arbiter import (
     OnlineHorizonLearningArbiter,
 )
 from .online_frontier_exploration import OnlineFrontierExplorer
+from .online_multiform_relational_learner import (
+    OnlineMultiformRelationalLearner,
+)
 from .online_terminal_frontier import (
     OnlineTerminalFrontierExplorer,
     TerminalFrontierAction,
@@ -207,6 +210,8 @@ class UnifiedCognitiveConfig:
     max_frontier_experiment_sequence_actions: int = 3
     max_frontier_trials_per_actuator: int = 2
     frontier_exploration_min_failed_branches: int = 3
+    enable_terminal_multiform_relational_induction: bool = True
+    terminal_multiform_min_support: int = 2
 
 
 @dataclass(frozen=True)
@@ -269,6 +274,13 @@ class CognitiveDecision:
     frontier_state_action_untested: bool = False
     frontier_actuator_untested: bool = False
     frontier_object_role_untested: bool = False
+    terminal_multiform_relation: bool = False
+    terminal_multiform_actuator_signature: str = ""
+    terminal_multiform_target_role: str = ""
+    terminal_multiform_pattern_signatures: Tuple[str, ...] = ()
+    terminal_multiform_families: Tuple[str, ...] = ()
+    terminal_multiform_support: int = 0
+    terminal_multiform_score: float = 0.0
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -476,6 +488,25 @@ class CognitiveDecision:
             "frontier_object_role_untested": (
                 self.frontier_object_role_untested
             ),
+            "terminal_multiform_relation": (
+                self.terminal_multiform_relation
+            ),
+            "terminal_multiform_actuator_signature": (
+                self.terminal_multiform_actuator_signature
+            ),
+            "terminal_multiform_target_role": (
+                self.terminal_multiform_target_role
+            ),
+            "terminal_multiform_pattern_signatures": list(
+                self.terminal_multiform_pattern_signatures
+            ),
+            "terminal_multiform_families": list(
+                self.terminal_multiform_families
+            ),
+            "terminal_multiform_support": (
+                self.terminal_multiform_support
+            ),
+            "terminal_multiform_score": self.terminal_multiform_score,
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
             "temporal_plan_status": self.temporal_plan_status,
@@ -1038,6 +1069,15 @@ class UnifiedCognitiveController:
                 self.config.frontier_exploration_min_failed_branches
             ),
         )
+        self.multiform_relations = OnlineMultiformRelationalLearner(
+            enabled=(
+                self.config
+                .enable_terminal_multiform_relational_induction
+            ),
+            minimum_terminal_support=(
+                self.config.terminal_multiform_min_support
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -1275,6 +1315,14 @@ class UnifiedCognitiveController:
             )
         self.frontier_exploration.note_transition(
             terminal_success=terminal_success,
+        )
+        self.multiform_relations.observe_transition(
+            observation_before=update.record.obs_before,
+            observation_after=update.record.obs_after,
+            action_name=action_name,
+            action_data=action_data,
+            terminal_success=terminal_success,
+            game_over=bool(update.record.diff.game_over),
         )
         if (
             pending is not None
@@ -1569,6 +1617,12 @@ class UnifiedCognitiveController:
                 legacy_action_data,
             )
         if decision is None:
+            decision = self._select_terminal_multiform_relation(
+                observation,
+                safe_actions,
+                available_action_candidates,
+            )
+        if decision is None:
             decision = self._select_causal_option(observation, safe_actions)
         if decision is None:
             decision = self._select_temporal_plan(observation, safe_actions)
@@ -1618,6 +1672,7 @@ class UnifiedCognitiveController:
         self.causal_subgoals.start_branch()
         self.causal_options.start_branch()
         self.frontier_exploration.start_branch()
+        self.multiform_relations.start_branch()
         self._branch_step = 0
         self._operator_plan_actions_since_objective_progress = 0
         self.progress.start_new_branch(
@@ -1701,6 +1756,9 @@ class UnifiedCognitiveController:
             ),
             "frontier_oriented_exploration": (
                 self.frontier_exploration.summary()
+            ),
+            "terminal_multiform_relational_induction": (
+                self.multiform_relations.summary()
             ),
             "recent_terminal_frontier_outcomes": (
                 self._terminal_frontier_outcomes[-10:]
@@ -2161,6 +2219,43 @@ class UnifiedCognitiveController:
             structural_experiment_disagreement=(
                 structural_experiment_disagreement
             ),
+        )
+
+    def _select_terminal_multiform_relation(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+        available_action_candidates: Sequence[Any] | None,
+    ) -> CognitiveDecision | None:
+        selection = self.multiform_relations.select(
+            observation=observation,
+            available_actions=safe_actions,
+            available_action_candidates=available_action_candidates,
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action_name,
+            action_data=dict(selection.action_data),
+            source="terminal_multiform_relation",
+            reason=selection.reason,
+            confidence=max(
+                0.0,
+                min(1.0, selection.score / 16.0),
+            ),
+            terminal_multiform_relation=True,
+            terminal_multiform_actuator_signature=(
+                selection.actuator_signature
+            ),
+            terminal_multiform_target_role=selection.target_role,
+            terminal_multiform_pattern_signatures=(
+                selection.predicted_pattern_signatures
+            ),
+            terminal_multiform_families=(
+                selection.predicted_families
+            ),
+            terminal_multiform_support=selection.terminal_support,
+            terminal_multiform_score=selection.score,
         )
 
     def _annotate_terminal_frontier_suffix(

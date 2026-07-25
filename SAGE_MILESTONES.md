@@ -7650,3 +7650,91 @@ Lecture finale : SAGE.9v resout le verrou d'acces au sens causal minimal sur
 atteignent 32 etats nouveaux sans degrader `ft09`. Ces etats ne sont pas encore
 convertis en progres terminal. Le prochain verrou SAGE.9w est donc bien
 l'acquisition relationnelle multi-forme a partir de ces nouvelles transitions.
+
+## SAGE.9w - terminal multi-form relational induction
+
+Objectif :
+
+- Etendre l'apprentissage terminal au-dela de la relation visuelle specialisee
+  de `ft09`, sans introduire de regle propre a un jeu.
+- Induire en ligne des correspondances d'objets, transformations
+  d'attribut/forme/echelle, variations de compte, apparitions, disparitions,
+  epuisements, trajectoires et changements de relations spatiales.
+- Interdire a une regularite seulement visuelle de prendre le controle de la
+  politique : une relation doit etre soutenue par au moins deux succes
+  terminaux issus de branches independantes.
+
+Representation et apprentissage :
+
+- Les objets sont decrits par leur forme normalisee, leur taille et leur role
+  structurel. Les signatures de motif sont invariantes a la palette et a la
+  translation.
+- Un modele d'actionneur associe le nom d'action, le role structurel vise et
+  le schema de ses arguments aux effets relationnels observes.
+- Les transitions ordinaires creent des hypotheses. Seules les transitions
+  qui produisent un changement de niveau ou un `WIN` creditent leur support
+  terminal.
+- Une action concrete n'est selectionnable que si son modele predit au moins
+  un motif terminalement confirme. Les modeles dont les issues dangereuses
+  dominent les succes sont bloques.
+- Le transfert est audite lorsqu'un actionneur structurel confirme est applique
+  a une nouvelle instance concrete, par exemple le meme role a une autre
+  position ou sous une autre palette.
+
+Integration :
+
+- `OnlineMultiformRelationalLearner` observe toutes les transitions live dans
+  `UnifiedCognitiveController`.
+- La priorite reste
+  `rejeu terminal exact > relation multi-forme > mecanismes generiques`.
+  SAGE.9w ne concurrence donc pas une route exacte deja acquise.
+- Toutes les decisions exposent relation, actionneur, role cible, familles,
+  support et score; le resume du controleur expose hypotheses, confirmations,
+  selections, transferts et blocages de securite.
+- Le benchmark unifie passe au schema v40 et offre l'ablation isolee
+  `--disable-terminal-multiform-relational-induction`.
+
+Gates scientifiques :
+
+- `multiform_acquisition_gate_passed` exige au moins deux exemples terminaux,
+  un motif confirme et deux familles confirmees.
+- `multiform_policy_gate_passed` ajoute au moins une selection effectivement
+  produite par cette connaissance.
+- `causal_multiform_progress_gate_passed` exige en plus un avantage de niveau
+  ou de `WIN` face au meme controleur prive uniquement de SAGE.9w.
+- Ces trois gates separent explicitement savoir represente, autorite
+  decisionnelle et progression causale.
+
+Audit public-unseen, 5 jeux, seed 0, 10 resets x 80 :
+
+- protocole actif/ablation valide, budgets identiques et zero erreur de
+  controleur;
+- `ft09` fournit 8 exemples terminaux et confirme 80 motifs dans 5 familles;
+  il passe le gate d'acquisition;
+- aucune selection multi-forme n'est necessaire sur cette trajectoire, car les
+  competences terminales exactes restent prioritaires. Les deux bras obtiennent
+  exactement `max_level_reached=3`, 8 changements cumules et zero `WIN`;
+- `wa30`, `tn36`, `cn04` et `sb26` ne produisent aucun exemple terminal dans
+  cet horizon. Leurs changements visuels restent donc de simples hypotheses
+  sans autorite;
+- le gate de politique et le gate causal restent faux. Ce resultat negatif est
+  conserve : SAGE.9w prouve une acquisition multi-forme disciplinee, pas
+  encore sa conversion en niveau gagne.
+
+Implementation et validation :
+
+- nouveau `theory/online_multiform_relational_learner.py`;
+- nouveau runner apparie
+  `theory/multiform_relational_benchmark.py`;
+- diagnostic :
+  `diagnostics/sage/sage9w_multiform_relational_benchmark.json`;
+- tests unitaires d'extraction des sept familles, invariance
+  palette/translation, support terminal independant, transfert concret,
+  securite d'ablation, integration au controleur et gates
+  anti-surinterpretation.
+
+Lecture finale : SAGE.9w sait maintenant transformer plusieurs formes de
+changements structurels en hypotheses comparables et n'en universalise aucune
+sans preuve terminale repetee. Le verrou suivant n'est plus la representation
+des relations, mais l'attribution de credit entre les experiences
+informatives de SAGE.9v et une issue terminale souvent retardee.

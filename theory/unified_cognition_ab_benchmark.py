@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v39"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v40"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -65,6 +65,15 @@ EXPERIMENT_SOURCES = {
     "structural_break_experiment",
     "frontier_oriented_experiment",
 }
+MULTIFORM_RELATION_FAMILIES = (
+    "correspondence",
+    "transformation",
+    "count",
+    "trajectory",
+    "appearance",
+    "disappearance",
+    "spatial",
+)
 
 EnvFactory = Callable[[str], Any]
 ControllerFactory = Callable[[str], UnifiedCognitiveController]
@@ -482,6 +491,7 @@ def run_unified_cognition_ab_benchmark(
     enable_structural_regime_abstraction: bool = True,
     enable_hierarchical_structural_theory_composition: bool = True,
     enable_frontier_oriented_exploration: bool = True,
+    enable_terminal_multiform_relational_induction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -694,6 +704,7 @@ def run_unified_cognition_ab_benchmark(
         or not enable_structural_regime_abstraction
         or not enable_hierarchical_structural_theory_composition
         or not enable_frontier_oriented_exploration
+        or not enable_terminal_multiform_relational_induction
     ):
         def _configured_structural_revision_controller(
             game_id: str,
@@ -721,6 +732,9 @@ def run_unified_cognition_ab_benchmark(
                     ),
                     enable_frontier_oriented_exploration=(
                         enable_frontier_oriented_exploration
+                    ),
+                    enable_terminal_multiform_relational_induction=(
+                        enable_terminal_multiform_relational_induction
                     ),
                 ),
             )
@@ -881,6 +895,9 @@ def run_unified_cognition_ab_benchmark(
         ),
         frontier_oriented_exploration_enabled=(
             enable_frontier_oriented_exploration
+        ),
+        terminal_multiform_relational_induction_enabled=(
+            enable_terminal_multiform_relational_induction
         ),
     )
     if not include_traces:
@@ -1045,6 +1062,13 @@ def _run_arm(
     frontier_exploration_summary = dict(
         controller_summary.get(
             "frontier_oriented_exploration",
+            {},
+        )
+        or {}
+    )
+    multiform_summary = dict(
+        controller_summary.get(
+            "terminal_multiform_relational_induction",
             {},
         )
         or {}
@@ -1720,6 +1744,59 @@ def _run_arm(
             frontier_exploration_summary.get("information_gain", 0.0)
             or 0.0
         ),
+        "terminal_multiform_observations": int(
+            multiform_summary.get("observations", 0) or 0
+        ),
+        "terminal_multiform_terminal_examples": int(
+            multiform_summary.get("terminal_examples", 0) or 0
+        ),
+        "terminal_multiform_patterns_observed": int(
+            multiform_summary.get("patterns_observed", 0) or 0
+        ),
+        "terminal_multiform_pattern_hypotheses": int(
+            multiform_summary.get("pattern_hypotheses", 0) or 0
+        ),
+        "terminal_multiform_confirmed_patterns": int(
+            multiform_summary.get("confirmed_patterns", 0) or 0
+        ),
+        "terminal_multiform_confirmed_families": len(
+            multiform_summary.get("confirmed_families", []) or []
+        ),
+        "terminal_multiform_actuator_models": int(
+            multiform_summary.get("actuator_models", 0) or 0
+        ),
+        "terminal_multiform_terminal_pattern_credits": int(
+            multiform_summary.get("terminal_pattern_credits", 0) or 0
+        ),
+        "terminal_multiform_selections": int(
+            multiform_summary.get("selections", 0) or 0
+        ),
+        "terminal_multiform_transferred_selections": int(
+            multiform_summary.get("transferred_selections", 0) or 0
+        ),
+        "terminal_multiform_unsafe_model_blocks": int(
+            multiform_summary.get("unsafe_model_blocks", 0) or 0
+        ),
+        **{
+            f"terminal_multiform_{family}_observations": int(
+                dict(
+                    multiform_summary.get("family_observations", {})
+                    or {}
+                ).get(family, 0)
+                or 0
+            )
+            for family in MULTIFORM_RELATION_FAMILIES
+        },
+        **{
+            f"terminal_multiform_{family}_selections": int(
+                dict(
+                    multiform_summary.get("selection_families", {})
+                    or {}
+                ).get(family, 0)
+                or 0
+            )
+            for family in MULTIFORM_RELATION_FAMILIES
+        },
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
         ),
@@ -2850,6 +2927,7 @@ def _summarize_benchmark(
     structural_regime_abstraction_enabled: bool,
     hierarchical_structural_theory_composition_enabled: bool,
     frontier_oriented_exploration_enabled: bool,
+    terminal_multiform_relational_induction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2989,6 +3067,9 @@ def _summarize_benchmark(
             "frontier_oriented_exploration_enabled_in_unified": bool(
                 frontier_oriented_exploration_enabled
             ),
+            "terminal_multiform_relational_induction_enabled_in_unified": bool(
+                terminal_multiform_relational_induction_enabled
+            ),
             "controller_rebranches_after_level_change": True,
             "protocol_gate_passed": protocol_gate,
         },
@@ -3064,6 +3145,12 @@ def _summarize_benchmark(
                 or unified["frontier_novel_states"] > 0
                 or unified["frontier_terminal_credits"] > 0
             )
+        ),
+        "multiform_relational_induction_gate_passed": bool(
+            unified["terminal_multiform_terminal_examples"] >= 2
+            and unified["terminal_multiform_confirmed_patterns"] > 0
+            and unified["terminal_multiform_confirmed_families"] >= 2
+            and unified["terminal_multiform_selections"] > 0
         ),
         "pairs": list(pairs),
     }
@@ -3573,6 +3660,36 @@ def _aggregate_arm(
             sum(float(row["frontier_information_gain"]) for row in rows),
             4,
         ),
+        **{
+            metric: sum(int(row[metric]) for row in rows)
+            for metric in (
+                "terminal_multiform_observations",
+                "terminal_multiform_terminal_examples",
+                "terminal_multiform_patterns_observed",
+                "terminal_multiform_pattern_hypotheses",
+                "terminal_multiform_confirmed_patterns",
+                "terminal_multiform_confirmed_families",
+                "terminal_multiform_actuator_models",
+                "terminal_multiform_terminal_pattern_credits",
+                "terminal_multiform_selections",
+                "terminal_multiform_transferred_selections",
+                "terminal_multiform_unsafe_model_blocks",
+            )
+        },
+        **{
+            f"terminal_multiform_{family}_observations": sum(
+                int(row[f"terminal_multiform_{family}_observations"])
+                for row in rows
+            )
+            for family in MULTIFORM_RELATION_FAMILIES
+        },
+        **{
+            f"terminal_multiform_{family}_selections": sum(
+                int(row[f"terminal_multiform_{family}_selections"])
+                for row in rows
+            )
+            for family in MULTIFORM_RELATION_FAMILIES
+        },
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
         ),
@@ -4846,6 +4963,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             "experiments only."
         ),
     )
+    parser.add_argument(
+        "--disable-terminal-multiform-relational-induction",
+        action="store_true",
+        help=(
+            "Ablate SAGE.9w terminally grounded correspondence, "
+            "transformation, counting, trajectory, appearance and spatial "
+            "relation learning."
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -4972,6 +5098,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_frontier_oriented_exploration=(
             not args.disable_frontier_oriented_exploration
+        ),
+        enable_terminal_multiform_relational_induction=(
+            not args.disable_terminal_multiform_relational_induction
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))
