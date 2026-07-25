@@ -7818,3 +7818,78 @@ Lecture finale : SAGE.9x apporte la preuve qui manquait a SAGE.9s :
 l'arbitrage par desaccord peut changer causalement une issue terminale lorsque
 le budget rend l'ordre des experiences decisif. Cette preuve porte sur une
 famille procedurale controlee; elle ne constitue pas un nouveau niveau ARC.
+
+## SAGE.9y - live R1 -> R2 -> R1 theory reactivation
+
+Objectif :
+
+- Valider SAGE.9u sur une trajectoire d'observations et d'actions concretes,
+  plutot que par appels directs avec des assessments fabriques a la main.
+- Faire apparaitre une famille R1, une famille R2 structurellement distincte,
+  puis le retour naturel de R1 dans le meme episode de memoire.
+- Comparer au meme runtime prive uniquement de la composition hierarchique.
+
+Pourquoi le stress `ft09` de SAGE.9u ne reactiverait jamais R1 :
+
+- La revision R2 confirmee y est abstraite vers la meme famille structurelle
+  que les anciens regimes.
+- Apres reset, ces regimes sont donc legitimement resolus par R2 transferee;
+  le systeme n'observe pas un retour vers une famille dont R1 redeviendrait la
+  meilleure theorie.
+- Le compteur nul de reactivation etait donc un manque de trajectoire
+  discriminante, pas une panne du programme hierarchique.
+
+Trajectoire live SAGE.9y :
+
+- Le learner observe d'abord six transitions de clic qui etablissent la
+  mecanique generique de bascule, puis un exemple terminal qui fonde R1.
+- Une premiere politique live R1 produit un terminal.
+- Le flux visuel passe ensuite d'un stencil melant roles `void` et `filled` a
+  un porteur distinct compose uniquement de roles `filled`.
+- Trois clics reels sans effet attendu declenchent une rupture; l'ancienne
+  theorie est suspendue uniquement dans cette famille.
+- L'arbitrage SAGE.9s choisit une experience discriminante. La meme R2 obtient
+  deux confirmations terminales independantes, puis devient la politique
+  exacte du regime.
+- L'observation suivante revient au stencil R1 initial. La resolution choisit
+  le programme de base deja compile et le marque comme reactive, sans signal
+  externe demandant un retour.
+
+Controle apparie :
+
+- Les deux bras recoivent les memes 15 transitions rendues, les memes clics,
+  les memes issues terminales et les memes signatures de regime.
+- Seul
+  `enable_hierarchical_structural_theory_composition`
+  differe.
+- Les deux bras executent bien la sequence de politiques
+  `base -> exact_revision -> base` et reussissent les trois terminaux de
+  politique. La composition n'est donc pas creditee d'un gain artificiel de
+  performance.
+- Le bras actif compile 2 programmes, observe 2 changements de theorie et 1
+  reactivation. L'ablation observe zero changement et zero reactivation.
+
+Gates scientifiques :
+
+- `observation_return_gate_passed` exige le retour a la signature R1 exacte
+  apres une signature et une famille R2 distinctes.
+- `policy_sequence_gate_passed` exige R1 -> R2 -> R1 et un terminal sous
+  chaque politique dans les deux bras.
+- `natural_theory_reactivation_gate_passed` ajoute une reactivation uniquement
+  dans le bras actif, avec deux switches et aucune difference de trajectoire.
+- Aucun niveau ARC ni `WIN` n'est revendique par ce benchmark procedural.
+
+Implementation et validation :
+
+- nouveau runner
+  `theory/natural_theory_reactivation_benchmark.py`;
+- diagnostic :
+  `diagnostics/sage/sage9y_natural_theory_reactivation_benchmark.json`;
+- test d'integration couvrant familles distinctes, rupture live, double
+  confirmation terminale, identite des programmes, retour R1 et ablation
+  hierarchique.
+
+Lecture finale : SAGE.9y ferme le trou de preuve de SAGE.9u. La memoire
+hierarchique ne sait pas seulement conserver R1 et R2 : lorsque le monde
+redevient structurellement compatible avec R1, elle reactive effectivement le
+programme precedent sans effacer R2.
