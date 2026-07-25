@@ -211,6 +211,74 @@ def test_structural_signature_ignores_palette_but_preserves_topology():
 
     assert first.structural_signature == second.structural_signature
     assert first.structural_signature != changed.structural_signature
+    assert (
+        first.structural_family_signature
+        == second.structural_family_signature
+    )
+
+
+def test_structural_family_ignores_global_layout_extent():
+    learner = _trained_learner()
+    colors = {
+        (x, y): 9
+        for y in (10, 18, 26)
+        for x in (10, 18, 26)
+        if (x, y) != STENCIL
+    }
+    base = learner.assess(
+        current_grid=_grid(12, colors),
+        available_action_candidates=_actions(),
+    )
+    extended_actions = _actions() + (
+        SimpleNamespace(
+            name="ACTION6",
+            action_args={"x": 34, "y": 34},
+        ),
+    )
+    extended = learner.assess(
+        current_grid=_grid(12, colors),
+        available_action_candidates=extended_actions,
+    )
+
+    assert base.structural_signature != extended.structural_signature
+    assert (
+        base.structural_family_signature
+        == extended.structural_family_signature
+    )
+
+
+def test_active_experiment_maximizes_disagreement_between_rule_candidates():
+    learner = _trained_learner()
+    current = _grid(
+        12,
+        {
+            (x, y): 9
+            for y in (10, 18, 26)
+            for x in (10, 18, 26)
+            if (x, y) != STENCIL
+        },
+    )
+    rules = learner.confirmed_rules()
+    inverted = {
+        marker: not desired
+        for marker, desired in rules.items()
+    }
+
+    experiment = learner.select_discriminating_experiment(
+        current_grid=current,
+        available_action_candidates=_actions(),
+        hypothesis_rules={
+            "normal": rules,
+            "inverted": inverted,
+        },
+        hypothesis_priority=("normal", "inverted"),
+    )
+
+    assert experiment is not None
+    assert experiment.hypothesis_id in {"normal", "inverted"}
+    assert experiment.compared_hypothesis_ids == ("inverted", "normal")
+    assert experiment.disagreement_score > 0
+    assert len(set(dict(experiment.predicted_reductions).values())) > 1
 
 
 def test_permuted_relation_is_a_real_policy_control():

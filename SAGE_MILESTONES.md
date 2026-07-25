@@ -7404,3 +7404,170 @@ apres le niveau 4 etait un artefact du budget, pas une rupture cognitive. La
 prochaine preuve forte doit reproduire une vraie rupture non injectee sur un
 second jeu, puis ameliorer l'ordonnancement des hypotheses afin de transformer
 la recuperation partielle niveau 3 en profondeur complete ou `WIN`.
+
+## SAGE.9r - natural multi-game structural-break benchmark
+
+Objectif :
+
+- Chercher une rupture de theorie non injectee sur plusieurs jeux publics non
+  utilises pour concevoir le mecanisme.
+- Comparer sur les memes jeux, seeds, budgets et resets un controleur complet
+  et un controleur prive de SAGE.9q-SAGE.9u.
+- Ne qualifier un succes que si la rupture est detectee online, qu'une theorie
+  de remplacement est confirmee terminalement et que le front causal depasse
+  celui de l'ablation.
+
+Protocole :
+
+- Le nouveau runner `theory/natural_structural_break_benchmark.py` execute les
+  deux bras sans permutation de relation et sans transfert de memoire entre
+  jeux.
+- La classification est uniquement post-hoc : le benchmark ne communique ni
+  identifiant, ni niveau, ni resultat du bras oppose au controleur en cours.
+- `natural_break_candidate` exige une rupture et une hypothese generee;
+  `natural_revision_gate_passed` ajoute confirmation terminale et avantage
+  causal; le gate fort exige aussi une profondeur d'au moins 5.
+
+Criblage public-unseen, 5 jeux, seed 0, 10 resets x 80 :
+
+- protocole apparie valide et `controller_errors=0`;
+- zero candidat de rupture naturelle et zero revision terminalement confirmee;
+- quatre jeux restent au niveau 0 dans les deux bras;
+- sur `ft09`, l'actif atteint le niveau 3 et 8 changements cumules, contre le
+  niveau 1 et 4 changements pour l'ablation. Cette difference n'est pas
+  attribuee a la revision structurelle, car le detecteur ne s'est jamais
+  declenche.
+
+Diagnostic :
+`diagnostics/sage/sage9r_natural_structural_break_benchmark.json`.
+
+Lecture : SAGE.9r fournit maintenant le test multi-jeu falsifiable qui
+manquait. Son premier resultat est negatif et conserve comme tel : aucune
+preuve de rupture naturelle n'a encore ete obtenue dans cet horizon.
+
+## SAGE.9s - active revision-hypothesis arbitration
+
+Objectif :
+
+- Choisir activement l'experience qui departage le mieux les theories R2
+  encore vivantes, au lieu de les parcourir dans un ordre fixe.
+- Conserver une hypothese choisie jusqu'a confirmation, refutation ou
+  epuisement de son budget, puis rearbitrer.
+
+Mecanisme :
+
+- Chaque clic legal est simule sous toutes les relations candidates. Le score
+  favorise la diversite des reductions predites, leur ecart et les oppositions
+  de signe.
+- La decision expose l'ensemble des hypotheses comparees, leurs predictions,
+  le desaccord mesure et l'hypothese sponsor.
+- Une hypothese sans aucune action susceptible de reduire ses violations est
+  refutee immediatement comme non actionnable.
+
+Stress `ft09` a relation permutee, seed 0, 14 resets x 160 :
+
+- 5 arbitrages actifs, 5 experiences discriminantes et 3 hypotheses non
+  actionnables refutees;
+- `max_level_reached=6`, 26 changements cumules et 2 `WIN`;
+- l'ablation SAGE.9s obtient exactement le meme score et le meme cout de
+  revision. Sur ce stress, l'ordre sequentiel historique choisissait deja la
+  bonne hypothese : le mecanisme est actif, mais son gain causal est nul.
+
+Diagnostics :
+`diagnostics/sage/sage9s9t9u_ft09_permuted_relation.json` et
+`diagnostics/sage/sage9s_ft09_arbitration_ablation.json`.
+
+## SAGE.9t - structural regime-family abstraction
+
+Objectif :
+
+- Reconnaître que plusieurs signatures exactes appartiennent a une meme
+  famille structurelle, afin de transferer R2 vers une nouvelle disposition
+  sans reapprendre la relation depuis zero.
+- Garder separees la memoire exacte du regime et la memoire abstraite de sa
+  famille.
+
+Mecanisme :
+
+- Une seconde signature factorise palette, translation et etendue globale,
+  tout en preservant le vocabulaire de roles et les relations locales entre
+  cellules porteuses.
+- Les confirmations terminales votent pour une relation au niveau de la
+  famille. Une relation n'est transferee que lorsqu'elle est confirmee; les
+  conflits restent audites et bloquent l'universalisation.
+- La resolution de politique respecte la priorite
+  `R2 exacte > R2 de famille > R1 historique`.
+
+Preuve causale sur le meme stress permute :
+
+- actif : 4 transferts de famille, 358 actions transferees, zero conflit,
+  `max_level_reached=6` et 2 `WIN`;
+- sans SAGE.9t : zero transfert, `max_level_reached=3` et zero `WIN`, malgre
+  104 actions de revision et 2 confirmations;
+- sans aucune revision structurelle : `max_level_reached=1`, 8 changements
+  cumules et zero `WIN`.
+
+SAGE.9t transforme donc la recuperation partielle de SAGE.9q en recuperation
+complete sur ce stress. C'est le gain causal principal de SAGE.9r-SAGE.9u.
+
+Diagnostics :
+`diagnostics/sage/sage9t_ft09_regime_abstraction_ablation.json` et
+`diagnostics/sage/sage9r9s9t9u_ft09_permuted_without_revision.json`.
+
+## SAGE.9u - hierarchical structural-theory composition
+
+Objectif :
+
+- Representer explicitement la competence comme un programme de theories
+  conditionnelles : R1 pour sa famille historique, R2 pour la famille revisee,
+  puis retour a R1 si un ancien regime reapparait.
+- Auditer chaque activation, changement et reactivation de theorie.
+
+Mecanisme :
+
+- `StructuralTheoryProgram` conserve theorie de base, theorie revisee,
+  famille/source, confirmations terminales et compteurs d'usage.
+- `StructuralPolicyResolution` rend la theorie effectivement choisie visible
+  dans chaque decision du controleur.
+- Les programmes ne remplacent ni n'effacent les theories precedentes; le
+  contexte decide laquelle detient l'autorite.
+
+Validation :
+
+- le stress permute compile 2 programmes et observe un changement R1 vers R2;
+  il n'observe aucune reactivation, car la trajectoire ne revient pas dans une
+  ancienne famille;
+- l'ablation SAGE.9u conserve le meme score (`max_level_reached=6`, 2 `WIN`)
+  mais supprime tout changement de programme. La composition est donc
+  comportementalement neutre sur cette trajectoire monotone;
+- un test controle force R1 -> R2 -> R1 et verifie la reactivation correcte
+  sans contamination des regles.
+
+Diagnostic :
+`diagnostics/sage/sage9u_ft09_theory_composition_ablation.json`.
+
+## Bilan SAGE.9r-SAGE.9u
+
+- Le chemin naturel `ft09` reste stable : niveau 6, 23 changements cumules,
+  un `WIN`, zero fausse rupture.
+- Sous relation permutee, le systeme passe du niveau 3 et zero `WIN` dans
+  SAGE.9q au niveau 6 et 2 `WIN`; l'ablation SAGE.9t attribue ce gain au
+  transfert abstrait de R2.
+- SAGE.9s est operationnel mais non discriminant sur ce cas; SAGE.9u rend la
+  hierarchie explicite mais sa reactivation reste demontree seulement en test
+  controle.
+- SAGE.9r ne trouve encore aucune rupture naturelle sur cinq jeux publics. La
+  prochaine preuve forte reste donc une confirmation terminale non injectee
+  sur un second jeu ou un horizon d'exploration plus riche.
+
+Implementation et validation :
+
+- extension de `theory/online_terminal_relational_stencil.py` pour les
+  signatures de famille et les experiences discriminantes;
+- extension de `theory/online_structural_break.py` pour l'arbitrage, les
+  familles de regimes et les programmes hierarchiques;
+- integration complete dans `UnifiedCognitiveController`;
+- benchmark unifie v38, trois ablations isolees et runner naturel multi-jeu;
+- tests unitaires et d'integration couvrant arbitrage, engagement,
+  refutation, transfert, conflits, reactivation et gates sans
+  surinterpretation.

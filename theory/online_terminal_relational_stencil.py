@@ -50,6 +50,18 @@ class StencilTheoryAssessment:
     improving_actions: int
     stencil_count: int
     click_count: int
+    structural_family_signature: str = ""
+
+
+@dataclass(frozen=True)
+class DiscriminatingStencilExperiment:
+    """One action selected for its disagreement across candidate theories."""
+
+    selection: RelationalStencilSelection
+    hypothesis_id: str
+    compared_hypothesis_ids: Tuple[str, ...]
+    predicted_reductions: Tuple[Tuple[str, int], ...]
+    disagreement_score: float
 
 
 @dataclass(frozen=True)
@@ -205,6 +217,7 @@ class OnlineTerminalRelationalStencilLearner:
                 improving_actions=0,
                 stencil_count=0,
                 click_count=0,
+                structural_family_signature="",
             )
         active_rules = dict(
             self.selection_rules() if rules is None else rules
@@ -218,6 +231,9 @@ class OnlineTerminalRelationalStencilLearner:
                 improving_actions=0,
                 stencil_count=len(layout.stencils),
                 click_count=len(layout.clicks),
+                structural_family_signature=(
+                    _layout_structural_family_signature(layout)
+                ),
             )
         total_constraints = 0
         total_violations = 0
@@ -248,6 +264,150 @@ class OnlineTerminalRelationalStencilLearner:
             improving_actions=improving_actions,
             stencil_count=len(layout.stencils),
             click_count=len(layout.clicks),
+            structural_family_signature=(
+                _layout_structural_family_signature(layout)
+            ),
+        )
+
+    def select_discriminating_experiment(
+        self,
+        *,
+        current_grid: Any,
+        available_action_candidates: Sequence[Any] | None,
+        hypothesis_rules: Mapping[str, Mapping[str, bool]],
+        hypothesis_priority: Sequence[str] = (),
+    ) -> DiscriminatingStencilExperiment | None:
+        """Choose the click that maximally separates live rule candidates."""
+        if not self.enabled or not hypothesis_rules:
+            return None
+        layout = _discover_layout(
+            current_grid,
+            tuple(available_action_candidates or ()),
+        )
+        if layout is None:
+            return None
+
+        priority = {
+            str(hypothesis_id): index
+            for index, hypothesis_id in enumerate(hypothesis_priority)
+        }
+        hypothesis_ids = tuple(sorted(str(key) for key in hypothesis_rules))
+        best: tuple[
+            tuple[int, int, int, int, int, int],
+            _ClickCandidate,
+            str,
+            int,
+            int,
+            int,
+            Tuple[Tuple[str, int], ...],
+            float,
+        ] | None = None
+        for coordinate, candidate in layout.clicks.items():
+            predictions = []
+            details: Dict[str, Tuple[int, int, int]] = {}
+            for hypothesis_id in hypothesis_ids:
+                rules = hypothesis_rules[hypothesis_id]
+                constraints = self._constraints_for_click(
+                    layout,
+                    coordinate,
+                    rules,
+                )
+                violations_before = sum(
+                    actual != desired
+                    for actual, desired in constraints
+                )
+                expected_after = sum(
+                    self._predicted_relation_after_click(actual) != desired
+                    for actual, desired in constraints
+                )
+                reduction = violations_before - expected_after
+                predictions.append((hypothesis_id, reduction))
+                details[hypothesis_id] = (
+                    violations_before,
+                    expected_after,
+                    len(constraints),
+                )
+            positive = [
+                hypothesis_id
+                for hypothesis_id, reduction in predictions
+                if reduction > 0
+            ]
+            if not positive:
+                continue
+            reduction_values = tuple(
+                reduction for _, reduction in predictions
+            )
+            disagreement = max(reduction_values) - min(reduction_values)
+            distinct_predictions = len(set(reduction_values))
+            polarity = (
+                sum(value > 0 for value in reduction_values)
+                * sum(value <= 0 for value in reduction_values)
+            )
+            sponsor = min(
+                positive,
+                key=lambda hypothesis_id: (
+                    -dict(predictions)[hypothesis_id],
+                    priority.get(hypothesis_id, len(priority)),
+                    hypothesis_id,
+                ),
+            )
+            before_count, after_count, support = details[sponsor]
+            key = (
+                int(distinct_predictions > 1),
+                int(disagreement),
+                int(polarity),
+                int(dict(predictions)[sponsor]),
+                int(support),
+                -coordinate[1] * 10_000 - coordinate[0],
+            )
+            disagreement_score = float(
+                disagreement
+                + int(distinct_predictions > 1)
+                + polarity
+            )
+            if best is None or key > best[0]:
+                best = (
+                    key,
+                    candidate,
+                    sponsor,
+                    before_count,
+                    after_count,
+                    support,
+                    tuple(predictions),
+                    disagreement_score,
+                )
+        if best is None:
+            return None
+
+        (
+            _,
+            candidate,
+            sponsor,
+            before_count,
+            after_count,
+            support,
+            predictions,
+            disagreement_score,
+        ) = best
+        self._selection_counts[candidate.coordinate] += 1
+        self._decisions += 1
+        return DiscriminatingStencilExperiment(
+            selection=RelationalStencilSelection(
+                action_name=candidate.action_name,
+                action_data=dict(candidate.action_data),
+                violations_before=before_count,
+                expected_violations_after=after_count,
+                supporting_constraints=support,
+                stencil_count=len(layout.stencils),
+                reason=(
+                    "active structural theory discrimination "
+                    f"for {sponsor}"
+                ),
+            ),
+            hypothesis_id=sponsor,
+            compared_hypothesis_ids=hypothesis_ids,
+            predicted_reductions=predictions,
+            disagreement_score=disagreement_score,
         )
 
     def confirmed_rules(self) -> Dict[str, bool]:
@@ -722,7 +882,37 @@ def _layout_structural_signature(layout: _Layout) -> str:
     ).hexdigest()[:16]
 
 
+def _layout_structural_family_signature(layout: _Layout) -> str:
+    """Abstract layouts that instantiate the same local relation carrier."""
+    role_vocabulary = set()
+    relative_offsets = set()
+    spacing = max(1, int(layout.spacing))
+    for stencil in layout.stencils:
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                if not (dx or dy):
+                    continue
+                role_vocabulary.add(
+                    _marker_role(layout, stencil, dx, dy)
+                )
+        sx, sy = stencil.coordinate
+        for cx, cy in layout.clicks:
+            dx = (cx - sx) // spacing
+            dy = (cy - sy) // spacing
+            if dx in {-1, 0, 1} and dy in {-1, 0, 1} and (dx or dy):
+                relative_offsets.add((dx, dy))
+    payload = (
+        tuple(sorted(role_vocabulary)),
+        tuple(sorted(relative_offsets)),
+        bool(layout.stencils),
+    )
+    return hashlib.sha1(
+        repr(payload).encode("utf-8")
+    ).hexdigest()[:16]
+
+
 __all__ = [
+    "DiscriminatingStencilExperiment",
     "OnlineTerminalRelationalStencilLearner",
     "RelationalStencilSelection",
     "StencilTheoryAssessment",

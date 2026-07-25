@@ -197,6 +197,9 @@ class UnifiedCognitiveConfig:
     structural_revision_min_terminal_confirmations: int = 2
     max_structural_revision_hypotheses: int = 3
     max_structural_revision_actions_per_hypothesis: int = 48
+    enable_active_structural_hypothesis_arbitration: bool = True
+    enable_structural_regime_abstraction: bool = True
+    enable_hierarchical_structural_theory_composition: bool = True
 
 
 @dataclass(frozen=True)
@@ -241,6 +244,13 @@ class CognitiveDecision:
     structural_break_scientific_experiment: bool = False
     structural_revision_hypothesis_id: str = ""
     structural_revision_policy: bool = False
+    structural_theory_id: str = ""
+    structural_theory_source: str = ""
+    structural_family_signature: str = ""
+    structural_family_transfer: bool = False
+    structural_theory_reactivated: bool = False
+    structural_experiment_compared_hypotheses: Tuple[str, ...] = ()
+    structural_experiment_disagreement: float = 0.0
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -405,6 +415,23 @@ class CognitiveDecision:
             ),
             "structural_revision_policy": (
                 self.structural_revision_policy
+            ),
+            "structural_theory_id": self.structural_theory_id,
+            "structural_theory_source": self.structural_theory_source,
+            "structural_family_signature": (
+                self.structural_family_signature
+            ),
+            "structural_family_transfer": (
+                self.structural_family_transfer
+            ),
+            "structural_theory_reactivated": (
+                self.structural_theory_reactivated
+            ),
+            "structural_experiment_compared_hypotheses": list(
+                self.structural_experiment_compared_hypotheses
+            ),
+            "structural_experiment_disagreement": (
+                self.structural_experiment_disagreement
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -937,6 +964,17 @@ class UnifiedCognitiveController:
             max_actions_per_hypothesis=(
                 self.config
                 .max_structural_revision_actions_per_hypothesis
+            ),
+            enable_active_hypothesis_arbitration=(
+                self.config
+                .enable_active_structural_hypothesis_arbitration
+            ),
+            enable_regime_abstraction=(
+                self.config.enable_structural_regime_abstraction
+            ),
+            enable_hierarchical_theory_composition=(
+                self.config
+                .enable_hierarchical_structural_theory_composition
             ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
@@ -1709,32 +1747,48 @@ class UnifiedCognitiveController:
             current_grid=observation.raw_grid,
             available_action_candidates=available_action_candidates,
         )
-        self.structural_breaks.note_state(assessment)
         signature = assessment.structural_signature
-
-        revision_rules = (
-            self.structural_breaks.confirmed_revision_rules(signature)
+        base_rules = self.terminal_relational_stencils.selection_rules()
+        resolution = self.structural_breaks.resolve_policy(
+            assessment=assessment,
+            base_rules=base_rules,
         )
-        if revision_rules:
+        if resolution is not None and resolution.source != "base":
             selection = (
                 self.terminal_relational_stencils.select_with_rules(
                     current_grid=observation.raw_grid,
                     available_action_candidates=(
                         available_action_candidates
                     ),
-                    rules=revision_rules,
+                    rules=resolution.rule_map(),
                     reason_prefix=(
-                        "terminal-confirmed contextual revision"
+                        "hierarchical terminal-confirmed "
+                        f"{resolution.source}"
                     ),
                 )
             )
             if selection is not None:
-                self.structural_breaks.note_contextual_policy_action()
+                self.structural_breaks.note_policy_action(
+                    resolution.theory_id,
+                    transferred=resolution.transferred,
+                )
                 return self._relational_stencil_decision(
                     selection,
                     structural_regime_signature=signature,
                     structural_revision_policy=True,
+                    structural_theory_id=resolution.theory_id,
+                    structural_theory_source=resolution.source,
+                    structural_family_signature=(
+                        resolution.structural_family_signature
+                    ),
+                    structural_family_transfer=(
+                        resolution.transferred
+                    ),
+                    structural_theory_reactivated=(
+                        resolution.reactivated
+                    ),
                 )
+            return None
 
         if self.structural_breaks.is_suspended(signature):
             self.structural_breaks.note_old_theory_block()
@@ -1744,70 +1798,197 @@ class UnifiedCognitiveController:
                     self.config.max_structural_revision_hypotheses,
                 )
             ):
-                hypothesis = (
-                    self.structural_breaks.revision_hypothesis(
+                hypothesis_rules = (
+                    self.structural_breaks.revision_hypothesis_rules(
                         signature
                     )
                 )
-                if hypothesis is None:
+                if not hypothesis_rules:
                     return None
-                hypothesis_rules = hypothesis.rule_map()
-                selection = (
-                    self.terminal_relational_stencils.select_with_rules(
-                        current_grid=observation.raw_grid,
-                        available_action_candidates=(
-                            available_action_candidates
-                        ),
-                        rules=hypothesis_rules,
-                        reason_prefix=(
-                            "structural-break discriminating hypothesis "
-                            f"{hypothesis.hypothesis_id}"
-                        ),
-                    )
-                )
-                if selection is not None:
-                    self.structural_breaks.note_revision_action(
-                        hypothesis.hypothesis_id
-                    )
-                    return self._relational_stencil_decision(
-                        selection,
-                        structural_regime_signature=signature,
-                        structural_break_scientific_experiment=True,
-                        structural_revision_hypothesis_id=(
-                            hypothesis.hypothesis_id
-                        ),
-                    )
-                hypothesis_assessment = (
-                    self.terminal_relational_stencils.assess(
-                        current_grid=observation.raw_grid,
-                        available_action_candidates=(
-                            available_action_candidates
-                        ),
-                        rules=hypothesis_rules,
+                hypotheses = (
+                    self.structural_breaks.revision_hypotheses(
+                        signature
                     )
                 )
                 if (
-                    hypothesis_assessment.applicable
-                    and hypothesis_assessment.total_violations == 0
+                    self.config
+                    .enable_active_structural_hypothesis_arbitration
                 ):
-                    self.structural_breaks.observe_revision_outcome(
-                        hypothesis_id=hypothesis.hypothesis_id,
-                        after=hypothesis_assessment,
-                        terminal_success=False,
-                        game_over=False,
+                    committed = (
+                        self.structural_breaks
+                        .committed_revision_hypothesis(signature)
                     )
-                    continue
-                return None
+                    if committed is not None:
+                        committed_selection = (
+                            self.terminal_relational_stencils
+                            .select_with_rules(
+                                current_grid=observation.raw_grid,
+                                available_action_candidates=(
+                                    available_action_candidates
+                                ),
+                                rules=committed.rule_map(),
+                                reason_prefix=(
+                                    "committed structural experiment "
+                                    f"{committed.hypothesis_id}"
+                                ),
+                            )
+                        )
+                        if committed_selection is not None:
+                            self.structural_breaks.note_revision_action(
+                                committed.hypothesis_id
+                            )
+                            return self._relational_stencil_decision(
+                                committed_selection,
+                                structural_regime_signature=signature,
+                                structural_break_scientific_experiment=True,
+                                structural_revision_hypothesis_id=(
+                                    committed.hypothesis_id
+                                ),
+                                structural_family_signature=(
+                                    assessment
+                                    .structural_family_signature
+                                ),
+                            )
+                        committed_assessment = (
+                            self.terminal_relational_stencils.assess(
+                                current_grid=observation.raw_grid,
+                                available_action_candidates=(
+                                    available_action_candidates
+                                ),
+                                rules=committed.rule_map(),
+                            )
+                        )
+                        if (
+                            committed_assessment.applicable
+                            and committed_assessment.improving_actions
+                            == 0
+                        ):
+                            (
+                                self.structural_breaks
+                                .refute_unactionable_hypothesis(
+                                    committed.hypothesis_id
+                                )
+                            )
+                            continue
+                        return None
+                    experiment = (
+                        self.terminal_relational_stencils
+                        .select_discriminating_experiment(
+                            current_grid=observation.raw_grid,
+                            available_action_candidates=(
+                                available_action_candidates
+                            ),
+                            hypothesis_rules=hypothesis_rules,
+                            hypothesis_priority=tuple(
+                                hypothesis.hypothesis_id
+                                for hypothesis in hypotheses
+                            ),
+                        )
+                    )
+                    if experiment is not None:
+                        self.structural_breaks.note_revision_action(
+                            experiment.hypothesis_id,
+                            discriminating=True,
+                            disagreement_score=(
+                                experiment.disagreement_score
+                            ),
+                        )
+                        return self._relational_stencil_decision(
+                            experiment.selection,
+                            structural_regime_signature=signature,
+                            structural_break_scientific_experiment=True,
+                            structural_revision_hypothesis_id=(
+                                experiment.hypothesis_id
+                            ),
+                            structural_family_signature=(
+                                assessment.structural_family_signature
+                            ),
+                            structural_experiment_compared_hypotheses=(
+                                experiment.compared_hypothesis_ids
+                            ),
+                            structural_experiment_disagreement=(
+                                experiment.disagreement_score
+                            ),
+                        )
+                elif hypotheses:
+                    hypothesis = hypotheses[0]
+                    selection = (
+                        self.terminal_relational_stencils.select_with_rules(
+                            current_grid=observation.raw_grid,
+                            available_action_candidates=(
+                                available_action_candidates
+                            ),
+                            rules=hypothesis.rule_map(),
+                            reason_prefix=(
+                                "sequential structural-break hypothesis "
+                                f"{hypothesis.hypothesis_id}"
+                            ),
+                        )
+                    )
+                    if selection is not None:
+                        self.structural_breaks.note_revision_action(
+                            hypothesis.hypothesis_id
+                        )
+                        return self._relational_stencil_decision(
+                            selection,
+                            structural_regime_signature=signature,
+                            structural_break_scientific_experiment=True,
+                            structural_revision_hypothesis_id=(
+                                hypothesis.hypothesis_id
+                            ),
+                            structural_family_signature=(
+                                assessment.structural_family_signature
+                            ),
+                        )
 
-        selection = self.terminal_relational_stencils.select(
+                refuted = False
+                for hypothesis in hypotheses:
+                    hypothesis_assessment = (
+                        self.terminal_relational_stencils.assess(
+                            current_grid=observation.raw_grid,
+                            available_action_candidates=(
+                                available_action_candidates
+                            ),
+                            rules=hypothesis.rule_map(),
+                        )
+                    )
+                    if (
+                        hypothesis_assessment.applicable
+                        and hypothesis_assessment.improving_actions == 0
+                    ):
+                        refuted = bool(
+                            self.structural_breaks
+                            .refute_unactionable_hypothesis(
+                                hypothesis.hypothesis_id
+                            )
+                            or refuted
+                        )
+                if not refuted:
+                    return None
+
+        if resolution is None:
+            return None
+        selection = self.terminal_relational_stencils.select_with_rules(
             current_grid=observation.raw_grid,
             available_action_candidates=available_action_candidates,
+            rules=resolution.rule_map(),
+            reason_prefix="hierarchical base relational theory",
         )
         if selection is None:
             return None
+        self.structural_breaks.note_policy_action(
+            resolution.theory_id,
+            transferred=False,
+        )
         return self._relational_stencil_decision(
             selection,
             structural_regime_signature=signature,
+            structural_theory_id=resolution.theory_id,
+            structural_theory_source=resolution.source,
+            structural_family_signature=(
+                resolution.structural_family_signature
+            ),
+            structural_theory_reactivated=resolution.reactivated,
         )
 
     @staticmethod
@@ -1818,6 +1999,13 @@ class UnifiedCognitiveController:
         structural_break_scientific_experiment: bool = False,
         structural_revision_hypothesis_id: str = "",
         structural_revision_policy: bool = False,
+        structural_theory_id: str = "",
+        structural_theory_source: str = "",
+        structural_family_signature: str = "",
+        structural_family_transfer: bool = False,
+        structural_theory_reactivated: bool = False,
+        structural_experiment_compared_hypotheses: Tuple[str, ...] = (),
+        structural_experiment_disagreement: float = 0.0,
     ) -> CognitiveDecision:
         source = "terminal_relational_stencil"
         if structural_break_scientific_experiment:
@@ -1851,6 +2039,17 @@ class UnifiedCognitiveController:
                 structural_revision_hypothesis_id
             ),
             structural_revision_policy=structural_revision_policy,
+            structural_theory_id=structural_theory_id,
+            structural_theory_source=structural_theory_source,
+            structural_family_signature=structural_family_signature,
+            structural_family_transfer=structural_family_transfer,
+            structural_theory_reactivated=structural_theory_reactivated,
+            structural_experiment_compared_hypotheses=(
+                structural_experiment_compared_hypotheses
+            ),
+            structural_experiment_disagreement=(
+                structural_experiment_disagreement
+            ),
         )
 
     def _annotate_terminal_frontier_suffix(

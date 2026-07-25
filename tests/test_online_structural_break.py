@@ -12,15 +12,23 @@ BASE_RULES = {"void": True, "filled": False}
 def _assessment(
     signature: str,
     violations: int,
+    *,
+    family: str = "",
+    improving_actions: int | None = None,
 ) -> StencilTheoryAssessment:
     return StencilTheoryAssessment(
         structural_signature=signature,
         applicable=True,
         total_constraints=8,
         total_violations=violations,
-        improving_actions=max(0, violations),
+        improving_actions=(
+            max(0, violations)
+            if improving_actions is None
+            else improving_actions
+        ),
         stencil_count=1,
         click_count=8,
+        structural_family_signature=family,
     )
 
 
@@ -233,3 +241,180 @@ def test_repeated_nonterminal_theory_completion_detects_goal_break():
     assert outcome.break_detected is True
     assert detector.is_suspended("changed-terminal-condition") is True
     assert detector.summary()["terminal_condition_residuals"] == 3
+
+
+def _break_regime(
+    detector: OnlineStructuralBreakDetector,
+    signature: str,
+    *,
+    family: str = "",
+):
+    assessment = _assessment(signature, 3, family=family)
+    for _ in range(3):
+        detector.observe_base_prediction(
+            before=assessment,
+            after=assessment,
+            predicted_reduction=1,
+            action_no_effect=False,
+            terminal_success=False,
+            base_rules=BASE_RULES,
+        )
+    return assessment
+
+
+def _confirm_first_revision(
+    detector: OnlineStructuralBreakDetector,
+    signature: str,
+    assessment: StencilTheoryAssessment,
+):
+    hypothesis = detector.revision_hypothesis(signature)
+    assert hypothesis is not None
+    for _ in range(2):
+        detector.observe_revision_outcome(
+            hypothesis_id=hypothesis.hypothesis_id,
+            after=assessment,
+            terminal_success=True,
+            game_over=False,
+        )
+    return hypothesis
+
+
+def test_active_arbitration_commits_until_outcome_then_reopens_choice():
+    detector = OnlineStructuralBreakDetector(
+        enable_active_hypothesis_arbitration=True,
+    )
+    _break_regime(detector, "arbitrated")
+    first = detector.revision_hypothesis("arbitrated")
+    assert first is not None
+    detector.note_revision_action(
+        first.hypothesis_id,
+        discriminating=True,
+        disagreement_score=2.0,
+    )
+
+    committed = detector.committed_revision_hypothesis("arbitrated")
+    assert committed is not None
+    assert committed.hypothesis_id == first.hypothesis_id
+    detector.refute_unactionable_hypothesis(first.hypothesis_id)
+    next_hypothesis = detector.revision_hypothesis("arbitrated")
+    assert next_hypothesis is not None
+    assert next_hypothesis.hypothesis_id != first.hypothesis_id
+    summary = detector.summary()
+    assert summary["arbitration_decisions"] == 1
+    assert summary["discriminating_experiments"] == 1
+
+
+def test_unactionable_hypothesis_is_refuted_without_spending_budget():
+    detector = OnlineStructuralBreakDetector()
+    _break_regime(detector, "unactionable")
+    hypothesis = detector.revision_hypothesis("unactionable")
+    assert hypothesis is not None
+
+    assert detector.refute_unactionable_hypothesis(
+        hypothesis.hypothesis_id
+    )
+    assert hypothesis.status == "refuted"
+    assert detector.summary()["unactionable_hypotheses_refuted"] == 1
+
+
+def test_confirmed_revision_transfers_to_abstract_structural_family():
+    detector = OnlineStructuralBreakDetector(
+        enable_regime_abstraction=True,
+    )
+    source = _break_regime(
+        detector,
+        "source-layout",
+        family="shared-carrier",
+    )
+    hypothesis = _confirm_first_revision(
+        detector,
+        "source-layout",
+        source,
+    )
+    target = _assessment(
+        "new-layout",
+        4,
+        family="shared-carrier",
+    )
+    resolution = detector.resolve_policy(
+        assessment=target,
+        base_rules=BASE_RULES,
+    )
+
+    assert resolution is not None
+    assert resolution.source == "family_revision"
+    assert resolution.transferred is True
+    assert resolution.rule_map() == hypothesis.rule_map()
+    assert detector.summary()["family_transfers"] == 1
+
+
+def test_regime_abstraction_ablation_keeps_revision_exact():
+    detector = OnlineStructuralBreakDetector(
+        enable_regime_abstraction=False,
+    )
+    source = _break_regime(
+        detector,
+        "source-exact",
+        family="ignored-family",
+    )
+    _confirm_first_revision(detector, "source-exact", source)
+    target = _assessment(
+        "other-exact",
+        4,
+        family="ignored-family",
+    )
+    resolution = detector.resolve_policy(
+        assessment=target,
+        base_rules=BASE_RULES,
+    )
+
+    assert resolution is not None
+    assert resolution.source == "base"
+    assert detector.summary()["family_transfers"] == 0
+
+
+def test_hierarchical_program_reactivates_prior_theory_by_regime():
+    detector = OnlineStructuralBreakDetector(
+        enable_regime_abstraction=True,
+        enable_hierarchical_theory_composition=True,
+    )
+    base_context = _assessment(
+        "base-context",
+        3,
+        family="base-family",
+    )
+    first = detector.resolve_policy(
+        assessment=base_context,
+        base_rules=BASE_RULES,
+    )
+    assert first is not None
+    assert first.source == "base"
+
+    revised_context = _break_regime(
+        detector,
+        "revised-context",
+        family="revision-family",
+    )
+    _confirm_first_revision(
+        detector,
+        "revised-context",
+        revised_context,
+    )
+    second = detector.resolve_policy(
+        assessment=revised_context,
+        base_rules=BASE_RULES,
+    )
+    returned = detector.resolve_policy(
+        assessment=base_context,
+        base_rules=BASE_RULES,
+    )
+
+    assert second is not None
+    assert second.source == "exact_revision"
+    assert returned is not None
+    assert returned.source == "base"
+    assert returned.reactivated is True
+    summary = detector.summary()
+    assert summary["theory_programs"] == 2
+    assert summary["theory_switches"] == 2
+    assert summary["theory_reactivations"] == 1

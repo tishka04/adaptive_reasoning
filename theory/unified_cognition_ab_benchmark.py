@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v34"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v38"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -476,6 +476,9 @@ def run_unified_cognition_ab_benchmark(
     enable_online_structural_break_detection: bool = True,
     permute_terminal_relational_stencil_relation: bool = False,
     condition_relational_memory_by_regime: bool = True,
+    enable_active_structural_hypothesis_arbitration: bool = True,
+    enable_structural_regime_abstraction: bool = True,
+    enable_hierarchical_structural_theory_composition: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -684,8 +687,11 @@ def run_unified_cognition_ab_benchmark(
         not enable_online_structural_break_detection
         or permute_terminal_relational_stencil_relation
         or not condition_relational_memory_by_regime
+        or not enable_active_structural_hypothesis_arbitration
+        or not enable_structural_regime_abstraction
+        or not enable_hierarchical_structural_theory_composition
     ):
-        def _configured_sage9q_controller(
+        def _configured_structural_revision_controller(
             game_id: str,
         ) -> UnifiedCognitiveController:
             return UnifiedCognitiveController(
@@ -700,10 +706,21 @@ def run_unified_cognition_ab_benchmark(
                     condition_relational_memory_by_regime=(
                         condition_relational_memory_by_regime
                     ),
+                    enable_active_structural_hypothesis_arbitration=(
+                        enable_active_structural_hypothesis_arbitration
+                    ),
+                    enable_structural_regime_abstraction=(
+                        enable_structural_regime_abstraction
+                    ),
+                    enable_hierarchical_structural_theory_composition=(
+                        enable_hierarchical_structural_theory_composition
+                    ),
                 ),
             )
 
-        effective_controller_factory = _configured_sage9q_controller
+        effective_controller_factory = (
+            _configured_structural_revision_controller
+        )
 
     pairs: List[Dict[str, Any]] = []
     for game_id in games:
@@ -845,6 +862,15 @@ def run_unified_cognition_ab_benchmark(
         ),
         relational_memory_conditioned_by_regime=(
             condition_relational_memory_by_regime
+        ),
+        active_structural_hypothesis_arbitration_enabled=(
+            enable_active_structural_hypothesis_arbitration
+        ),
+        structural_regime_abstraction_enabled=(
+            enable_structural_regime_abstraction
+        ),
+        hierarchical_structural_theory_composition_enabled=(
+            enable_hierarchical_structural_theory_composition
         ),
     )
     if not include_traces:
@@ -1552,6 +1578,60 @@ def _run_arm(
         "structural_contextual_policy_actions": int(
             structural_break_summary.get(
                 "contextual_policy_actions",
+                0,
+            )
+            or 0
+        ),
+        "structural_arbitration_decisions": int(
+            structural_break_summary.get(
+                "arbitration_decisions",
+                0,
+            )
+            or 0
+        ),
+        "structural_discriminating_experiments": int(
+            structural_break_summary.get(
+                "discriminating_experiments",
+                0,
+            )
+            or 0
+        ),
+        "structural_unactionable_hypotheses_refuted": int(
+            structural_break_summary.get(
+                "unactionable_hypotheses_refuted",
+                0,
+            )
+            or 0
+        ),
+        "structural_regime_families": int(
+            structural_break_summary.get("regime_families", 0) or 0
+        ),
+        "structural_family_transfers": int(
+            structural_break_summary.get("family_transfers", 0) or 0
+        ),
+        "structural_family_transfer_actions": int(
+            structural_break_summary.get(
+                "family_transfer_actions",
+                0,
+            )
+            or 0
+        ),
+        "structural_family_rule_conflicts": int(
+            structural_break_summary.get(
+                "family_rule_conflicts",
+                0,
+            )
+            or 0
+        ),
+        "structural_theory_programs": int(
+            structural_break_summary.get("theory_programs", 0) or 0
+        ),
+        "structural_theory_switches": int(
+            structural_break_summary.get("theory_switches", 0) or 0
+        ),
+        "structural_theory_reactivations": int(
+            structural_break_summary.get(
+                "theory_reactivations",
                 0,
             )
             or 0
@@ -2682,6 +2762,9 @@ def _summarize_benchmark(
     online_structural_break_detection_enabled: bool,
     terminal_relational_stencil_relation_permuted: bool,
     relational_memory_conditioned_by_regime: bool,
+    active_structural_hypothesis_arbitration_enabled: bool,
+    structural_regime_abstraction_enabled: bool,
+    hierarchical_structural_theory_composition_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2809,6 +2892,15 @@ def _summarize_benchmark(
             "relational_memory_conditioned_by_regime_in_unified": bool(
                 relational_memory_conditioned_by_regime
             ),
+            "active_structural_hypothesis_arbitration_enabled_in_unified": bool(
+                active_structural_hypothesis_arbitration_enabled
+            ),
+            "structural_regime_abstraction_enabled_in_unified": bool(
+                structural_regime_abstraction_enabled
+            ),
+            "hierarchical_structural_theory_composition_enabled_in_unified": bool(
+                hierarchical_structural_theory_composition_enabled
+            ),
             "controller_rebranches_after_level_change": True,
             "protocol_gate_passed": protocol_gate,
         },
@@ -2859,6 +2951,21 @@ def _summarize_benchmark(
             and unified["structural_revision_hypotheses_generated"] > 0
             and unified["structural_revision_confirmations"] > 0
             and unified["max_level_reached"] >= 5
+        ),
+        "active_revision_arbitration_gate_passed": bool(
+            unified["structural_breaks_detected"] > 0
+            and unified["structural_arbitration_decisions"] > 0
+            and unified["structural_discriminating_experiments"] > 0
+        ),
+        "regime_abstraction_gate_passed": bool(
+            unified["structural_revision_confirmations"] > 0
+            and unified["structural_family_transfers"] > 0
+            and unified["structural_family_transfer_actions"] > 0
+        ),
+        "hierarchical_theory_composition_gate_passed": bool(
+            unified["structural_theory_programs"] >= 2
+            and unified["structural_theory_switches"] > 0
+            and unified["structural_theory_reactivations"] > 0
         ),
         "pairs": list(pairs),
     }
@@ -3283,6 +3390,46 @@ def _aggregate_arm(
         ),
         "structural_contextual_policy_actions": sum(
             int(row["structural_contextual_policy_actions"])
+            for row in rows
+        ),
+        "structural_arbitration_decisions": sum(
+            int(row["structural_arbitration_decisions"])
+            for row in rows
+        ),
+        "structural_discriminating_experiments": sum(
+            int(row["structural_discriminating_experiments"])
+            for row in rows
+        ),
+        "structural_unactionable_hypotheses_refuted": sum(
+            int(row["structural_unactionable_hypotheses_refuted"])
+            for row in rows
+        ),
+        "structural_regime_families": sum(
+            int(row["structural_regime_families"])
+            for row in rows
+        ),
+        "structural_family_transfers": sum(
+            int(row["structural_family_transfers"])
+            for row in rows
+        ),
+        "structural_family_transfer_actions": sum(
+            int(row["structural_family_transfer_actions"])
+            for row in rows
+        ),
+        "structural_family_rule_conflicts": sum(
+            int(row["structural_family_rule_conflicts"])
+            for row in rows
+        ),
+        "structural_theory_programs": sum(
+            int(row["structural_theory_programs"])
+            for row in rows
+        ),
+        "structural_theory_switches": sum(
+            int(row["structural_theory_switches"])
+            for row in rows
+        ),
+        "structural_theory_reactivations": sum(
+            int(row["structural_theory_reactivations"])
             for row in rows
         ),
         "levels_completed": sum(
@@ -4526,6 +4673,30 @@ def main(argv: Sequence[str] | None = None) -> int:
             "of suspended only in the detected regime."
         ),
     )
+    parser.add_argument(
+        "--disable-active-structural-hypothesis-arbitration",
+        action="store_true",
+        help=(
+            "Ablate SAGE.9s disagreement-maximizing revision "
+            "experiments only."
+        ),
+    )
+    parser.add_argument(
+        "--disable-structural-regime-abstraction",
+        action="store_true",
+        help=(
+            "Ablate SAGE.9t structural-family transfer while retaining "
+            "exact-regime revision."
+        ),
+    )
+    parser.add_argument(
+        "--disable-hierarchical-structural-theory-composition",
+        action="store_true",
+        help=(
+            "Ablate SAGE.9u explicit Rn/policy program switching and "
+            "reactivation."
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -4640,6 +4811,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         condition_relational_memory_by_regime=(
             not args.disable_regime_conditioned_relational_memory
+        ),
+        enable_active_structural_hypothesis_arbitration=(
+            not args.disable_active_structural_hypothesis_arbitration
+        ),
+        enable_structural_regime_abstraction=(
+            not args.disable_structural_regime_abstraction
+        ),
+        enable_hierarchical_structural_theory_composition=(
+            not args.disable_hierarchical_structural_theory_composition
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

@@ -108,7 +108,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v34"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v38"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -195,6 +195,22 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
         protocol["relational_memory_conditioned_by_regime_in_unified"]
         is True
     )
+    assert (
+        protocol[
+            "active_structural_hypothesis_arbitration_enabled_in_unified"
+        ]
+        is True
+    )
+    assert (
+        protocol["structural_regime_abstraction_enabled_in_unified"]
+        is True
+    )
+    assert (
+        protocol[
+            "hierarchical_structural_theory_composition_enabled_in_unified"
+        ]
+        is True
+    )
     assert len(payload["pairs"]) == 2
     assert len(created) == 8  # 2 seeds x 2 arms x 2 fresh resets
 
@@ -247,6 +263,18 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     assert "structural_revision_actions" in metrics["unified"]
     assert "structural_revision_confirmations" in metrics["unified"]
     assert "structural_revision_refutations" in metrics["unified"]
+    assert "structural_arbitration_decisions" in metrics["unified"]
+    assert "structural_discriminating_experiments" in metrics["unified"]
+    assert (
+        "structural_unactionable_hypotheses_refuted"
+        in metrics["unified"]
+    )
+    assert "structural_regime_families" in metrics["unified"]
+    assert "structural_family_transfers" in metrics["unified"]
+    assert "structural_family_transfer_actions" in metrics["unified"]
+    assert "structural_theory_programs" in metrics["unified"]
+    assert "structural_theory_switches" in metrics["unified"]
+    assert "structural_theory_reactivations" in metrics["unified"]
     assert "terminal_objective_grounded_actions" in metrics["unified"]
     assert "terminal_objective_discriminator_actions" in metrics["unified"]
     assert "terminal_objective_ablation_actions" in metrics["unified"]
@@ -1137,3 +1165,40 @@ def test_ab_benchmark_exposes_unconditioned_regime_memory_control():
         protocol["online_structural_break_detection_enabled_in_unified"]
         is True
     )
+
+
+def test_ab_benchmark_exposes_sage9s_9t_9u_ablations():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-sage9stu-ablations"],
+        seeds=[110],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_active_structural_hypothesis_arbitration=False,
+        enable_structural_regime_abstraction=False,
+        enable_hierarchical_structural_theory_composition=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol[
+            "active_structural_hypothesis_arbitration_enabled_in_unified"
+        ]
+        is False
+    )
+    assert (
+        protocol["structural_regime_abstraction_enabled_in_unified"]
+        is False
+    )
+    assert (
+        protocol[
+            "hierarchical_structural_theory_composition_enabled_in_unified"
+        ]
+        is False
+    )
+    summary = payload["pairs"][0]["unified"]["controller_summary"][
+        "online_structural_break_detection"
+    ]
+    assert summary["active_hypothesis_arbitration_enabled"] is False
+    assert summary["regime_abstraction_enabled"] is False
+    assert summary["hierarchical_theory_composition_enabled"] is False
