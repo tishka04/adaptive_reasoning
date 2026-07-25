@@ -22,6 +22,11 @@ from typing import Any, Dict, Mapping, Sequence, Tuple
 
 import numpy as np
 
+from .structural_hypothesis_arbitration import (
+    StructuralExperimentOption,
+    select_discriminating_structural_experiment,
+)
+
 
 Coordinate = Tuple[int, int]
 
@@ -287,21 +292,13 @@ class OnlineTerminalRelationalStencilLearner:
         if layout is None:
             return None
 
-        priority = {
-            str(hypothesis_id): index
-            for index, hypothesis_id in enumerate(hypothesis_priority)
-        }
         hypothesis_ids = tuple(sorted(str(key) for key in hypothesis_rules))
-        best: tuple[
-            tuple[int, int, int, int, int, int],
-            _ClickCandidate,
+        options = []
+        candidates_by_key: Dict[str, _ClickCandidate] = {}
+        details_by_key: Dict[
             str,
-            int,
-            int,
-            int,
-            Tuple[Tuple[str, int], ...],
-            float,
-        ] | None = None
+            Dict[str, Tuple[int, int, int]],
+        ] = {}
         for coordinate, candidate in layout.clicks.items():
             predictions = []
             details: Dict[str, Tuple[int, int, int]] = {}
@@ -327,68 +324,35 @@ class OnlineTerminalRelationalStencilLearner:
                     expected_after,
                     len(constraints),
                 )
-            positive = [
-                hypothesis_id
-                for hypothesis_id, reduction in predictions
-                if reduction > 0
-            ]
-            if not positive:
-                continue
-            reduction_values = tuple(
-                reduction for _, reduction in predictions
-            )
-            disagreement = max(reduction_values) - min(reduction_values)
-            distinct_predictions = len(set(reduction_values))
-            polarity = (
-                sum(value > 0 for value in reduction_values)
-                * sum(value <= 0 for value in reduction_values)
-            )
-            sponsor = min(
-                positive,
-                key=lambda hypothesis_id: (
-                    -dict(predictions)[hypothesis_id],
-                    priority.get(hypothesis_id, len(priority)),
-                    hypothesis_id,
-                ),
-            )
-            before_count, after_count, support = details[sponsor]
-            key = (
-                int(distinct_predictions > 1),
-                int(disagreement),
-                int(polarity),
-                int(dict(predictions)[sponsor]),
-                int(support),
-                -coordinate[1] * 10_000 - coordinate[0],
-            )
-            disagreement_score = float(
-                disagreement
-                + int(distinct_predictions > 1)
-                + polarity
-            )
-            if best is None or key > best[0]:
-                best = (
-                    key,
-                    candidate,
-                    sponsor,
-                    before_count,
-                    after_count,
-                    support,
-                    tuple(predictions),
-                    disagreement_score,
+            action_key = f"{coordinate[0]},{coordinate[1]}"
+            candidates_by_key[action_key] = candidate
+            details_by_key[action_key] = details
+            options.append(
+                StructuralExperimentOption(
+                    action_key=action_key,
+                    predicted_reductions=tuple(predictions),
+                    hypothesis_support=tuple(
+                        (
+                            hypothesis_id,
+                            details[hypothesis_id][2],
+                        )
+                        for hypothesis_id in hypothesis_ids
+                    ),
+                    tie_break=(
+                        -coordinate[1] * 10_000 - coordinate[0]
+                    ),
                 )
-        if best is None:
+            )
+        choice = select_discriminating_structural_experiment(
+            options=tuple(options),
+            hypothesis_priority=hypothesis_priority,
+        )
+        if choice is None:
             return None
-
-        (
-            _,
-            candidate,
-            sponsor,
-            before_count,
-            after_count,
-            support,
-            predictions,
-            disagreement_score,
-        ) = best
+        candidate = candidates_by_key[choice.action_key]
+        before_count, after_count, support = details_by_key[
+            choice.action_key
+        ][choice.hypothesis_id]
         self._selection_counts[candidate.coordinate] += 1
         self._decisions += 1
         return DiscriminatingStencilExperiment(
@@ -401,13 +365,15 @@ class OnlineTerminalRelationalStencilLearner:
                 stencil_count=len(layout.stencils),
                 reason=(
                     "active structural theory discrimination "
-                    f"for {sponsor}"
+                    f"for {choice.hypothesis_id}"
                 ),
             ),
-            hypothesis_id=sponsor,
-            compared_hypothesis_ids=hypothesis_ids,
-            predicted_reductions=predictions,
-            disagreement_score=disagreement_score,
+            hypothesis_id=choice.hypothesis_id,
+            compared_hypothesis_ids=(
+                choice.compared_hypothesis_ids
+            ),
+            predicted_reductions=choice.predicted_reductions,
+            disagreement_score=choice.disagreement_score,
         )
 
     def confirmed_rules(self) -> Dict[str, bool]:

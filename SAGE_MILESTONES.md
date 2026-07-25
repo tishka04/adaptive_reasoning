@@ -7738,3 +7738,83 @@ changements structurels en hypotheses comparables et n'en universalise aucune
 sans preuve terminale repetee. Le verrou suivant n'est plus la representation
 des relations, mais l'attribution de credit entre les experiences
 informatives de SAGE.9v et une issue terminale souvent retardee.
+
+## SAGE.9x - causal validation of structural arbitration
+
+Objectif :
+
+- Tester causalement SAGE.9s dans des episodes ou trois theories sont
+  simultanement plausibles et ou l'ordre des experiences change l'issue.
+- Comparer la regle de production qui maximise le desaccord entre predictions
+  a l'ablation historique qui optimise uniquement la premiere hypothese
+  generee.
+- Separer explicitement cette preuve procedurale d'une revendication de niveau
+  ou de `WIN` ARC.
+
+Extraction du mecanisme :
+
+- Le score d'arbitrage de SAGE.9s est maintenant un composant generique,
+  `select_discriminating_structural_experiment`, partage par le stencil live
+  et le benchmark procedural.
+- Il classe une intervention par diversite des predictions, amplitude du
+  desaccord, opposition de signe, reduction promise par la theorie sponsor,
+  support structurel et departage stable.
+- L'ablation `sequential_structural_experiment` recoit exactement la meme
+  matrice de predictions, mais choisit l'action favorite de la premiere
+  theorie. Aucun bras ne connait la theorie cachee ni l'issue terminale.
+- Apres l'observation, `surviving_hypotheses` mesure combien de theories
+  restent compatibles avec la reduction reellement produite.
+
+Episodes proceduraux :
+
+- Chaque seed regenere des identifiants opaques, permute les interventions et
+  varie l'amplitude des effets.
+- Trois theories disposent chacune d'au moins une experience favorable. La
+  vraie theorie alterne entre les deux positions non historiques.
+- L'experience de la premiere theorie laisse les deux alternatives
+  observationnellement confondues; l'experience a desaccord maximal produit
+  trois predictions distinctes.
+- Chaque bras dispose d'une seule action. Le terminal depend uniquement de
+  l'intervention correcte pour la theorie cachee.
+- Un controle replace ensuite la vraie theorie en tete de l'ordre sequentiel;
+  un second controle inverse les priorites donnees a l'arbitre actif.
+
+Gates scientifiques :
+
+- `ambiguous_episode_gate_passed` exige trois theories actionnables dans chaque
+  episode.
+- `order_sensitivity_gate_passed` exige que les actions active et sequentielle
+  different et que mettre la vraie theorie en premier change l'issue du
+  controle sequentiel.
+- `priority_permutation_gate_passed` exige que le choix actif soit invariant a
+  l'inversion de la priorite des hypotheses.
+- `causal_arbitration_gate_passed` ajoute, a budget identique, un avantage
+  terminal et une meilleure elimination des theories concurrentes.
+
+Resultat, 64 seeds :
+
+- protocole apparie valide et tous les episodes passent les gates d'ambiguite,
+  d'ordre et de permutation;
+- arbitre actif : 64 succes terminaux et 64 identifications d'une theorie
+  unique;
+- ablation sequentielle : zero succes terminal et zero identification unique;
+- controle vraie-theorie-en-premier : l'issue sequentielle est inversee sur
+  chaque episode;
+- gate causal SAGE.9x valide avec un avantage terminal de `+64`.
+
+Implementation et validation :
+
+- nouveau `theory/structural_hypothesis_arbitration.py`;
+- refactorisation sans changement de semantique de
+  `OnlineTerminalRelationalStencilLearner`;
+- nouveau runner
+  `theory/structural_arbitration_benchmark.py`;
+- diagnostic :
+  `diagnostics/sage/sage9x_structural_arbitration_benchmark.json`;
+- tests du score, de l'invariance a l'ordre, de l'elimination des hypotheses,
+  du controle sequentiel et du gate anti-surinterpretation.
+
+Lecture finale : SAGE.9x apporte la preuve qui manquait a SAGE.9s :
+l'arbitrage par desaccord peut changer causalement une issue terminale lorsque
+le budget rend l'ordre des experiences decisif. Cette preuve porte sur une
+famille procedurale controlee; elle ne constitue pas un nouveau niveau ARC.

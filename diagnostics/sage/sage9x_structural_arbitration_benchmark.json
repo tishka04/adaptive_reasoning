@@ -1,0 +1,3419 @@
+{
+  "action_budget_per_arm": 1,
+  "active_single_theory_identifications": 64,
+  "active_terminal_successes": 64,
+  "ambiguous_episode_gate_passed": true,
+  "causal_arbitration_gate_passed": true,
+  "episodes": 64,
+  "evaluation": "paired_procedural_causal_structural_hypothesis_arbitration",
+  "order_sensitivity_gate_passed": true,
+  "priority_permutation_gate_passed": true,
+  "protocol": {
+    "arc_level_or_win_claimed": false,
+    "classification_is_post_evaluation_only": true,
+    "hidden_true_hypothesis_not_exposed_to_selectors": true,
+    "production_sage9s_arbiter_used": true,
+    "protocol_gate_passed": true,
+    "same_action_budget_per_arm": true,
+    "same_episode_and_prediction_matrix_per_arm": true,
+    "sequential_ablation_uses_first_generated_hypothesis": true
+  },
+  "runs": [
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-f32fa089c9",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f51fb8d0a1",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f51fb8d0a1"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 0,
+      "sequential_ablation": {
+        "action_key": "intervention-192c6181ba",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-acbcb255a6",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-b0707b2572",
+          "hypothesis-f51fb8d0a1"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-f32fa089c9",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f51fb8d0a1",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f51fb8d0a1"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-ffc0cf7b7b",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-92831e61e4",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-92831e61e4"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 1,
+      "sequential_ablation": {
+        "action_key": "intervention-ff9650759b",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-9c525c307b",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-14363f616b",
+          "hypothesis-92831e61e4"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-ffc0cf7b7b",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-92831e61e4",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-92831e61e4"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-1815026449",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-52e49832a0",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-52e49832a0"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 2,
+      "sequential_ablation": {
+        "action_key": "intervention-4b79092586",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-9b592dae4f",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-4325d53a78",
+          "hypothesis-52e49832a0"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-1815026449",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-52e49832a0",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-52e49832a0"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-d789891110",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-718a6c0a39",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-718a6c0a39"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 3,
+      "sequential_ablation": {
+        "action_key": "intervention-0466262687",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-e6eea4bba5",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-304b524508",
+          "hypothesis-718a6c0a39"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-d789891110",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-718a6c0a39",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-718a6c0a39"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-29d42ed68f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-3b60acc81b",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-3b60acc81b"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 4,
+      "sequential_ablation": {
+        "action_key": "intervention-1a0d1094a0",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5f56132c53",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-3b60acc81b",
+          "hypothesis-c3fb01cb1f"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-29d42ed68f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-3b60acc81b",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-3b60acc81b"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-c131f23184",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f4854d04cd",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f4854d04cd"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 5,
+      "sequential_ablation": {
+        "action_key": "intervention-10e5ef4586",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-223c260891",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-05fd3f2c55",
+          "hypothesis-f4854d04cd"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-c131f23184",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f4854d04cd",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f4854d04cd"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-0cb5e79a12",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6af6284b2e",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-6af6284b2e"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 6,
+      "sequential_ablation": {
+        "action_key": "intervention-b8bc1210b7",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d62ed78384",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-03a466e089",
+          "hypothesis-6af6284b2e"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-0cb5e79a12",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6af6284b2e",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-6af6284b2e"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-80f617afbb",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-db9d1295ac",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-db9d1295ac"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 7,
+      "sequential_ablation": {
+        "action_key": "intervention-35e0ffc305",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-52965d136d",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0ff6962a0c",
+          "hypothesis-db9d1295ac"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-80f617afbb",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-db9d1295ac",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-db9d1295ac"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-f402454f66",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4fd7c1b5ed",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-4fd7c1b5ed"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 8,
+      "sequential_ablation": {
+        "action_key": "intervention-fc5c759220",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-cdda901bce",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-4fd7c1b5ed",
+          "hypothesis-b49abf1569"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-f402454f66",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4fd7c1b5ed",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-4fd7c1b5ed"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-1f01199a1d",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-53fce39d31",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-53fce39d31"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 9,
+      "sequential_ablation": {
+        "action_key": "intervention-d16f6f330d",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-533d16f1f8",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-53fce39d31",
+          "hypothesis-5f82a5991d"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-1f01199a1d",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-53fce39d31",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-53fce39d31"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-e8525edeea",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-80b7513d26",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-80b7513d26"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 10,
+      "sequential_ablation": {
+        "action_key": "intervention-448b383dfa",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5d09d8cd00",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-80b7513d26",
+          "hypothesis-aa8d229077"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-e8525edeea",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-80b7513d26",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-80b7513d26"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-b32ea494a4",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-3b53d608e6",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-3b53d608e6"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 11,
+      "sequential_ablation": {
+        "action_key": "intervention-5a96ea5ae0",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1fec5a6e43",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-3b53d608e6",
+          "hypothesis-6fd1cd8079"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-b32ea494a4",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-3b53d608e6",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-3b53d608e6"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-38b9af7fb6",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0690e18594",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0690e18594"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 12,
+      "sequential_ablation": {
+        "action_key": "intervention-4148abc8c3",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4493e79486",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0690e18594",
+          "hypothesis-d5ab175aef"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-38b9af7fb6",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0690e18594",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0690e18594"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-f7589055e6",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a813de5ee5",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-a813de5ee5"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 13,
+      "sequential_ablation": {
+        "action_key": "intervention-4eb83d98b9",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-cc1aadb63c",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-335d12a309",
+          "hypothesis-a813de5ee5"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-f7589055e6",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a813de5ee5",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-a813de5ee5"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-f8785e5542",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ded0f2311a",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ded0f2311a"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 14,
+      "sequential_ablation": {
+        "action_key": "intervention-a0a37963d2",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-06ea12a901",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-4a0db72f7f",
+          "hypothesis-ded0f2311a"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-f8785e5542",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ded0f2311a",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ded0f2311a"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-c7e2fc8e98",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f2f5ce1ebf",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f2f5ce1ebf"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 15,
+      "sequential_ablation": {
+        "action_key": "intervention-1a94bda968",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-e595983f88",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0bf0f51e2e",
+          "hypothesis-f2f5ce1ebf"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-c7e2fc8e98",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f2f5ce1ebf",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f2f5ce1ebf"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-b0e3262183",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-92b7acabbc",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-92b7acabbc"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 16,
+      "sequential_ablation": {
+        "action_key": "intervention-ab872ec45c",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-7d85af8005",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-92b7acabbc",
+          "hypothesis-da8479d733"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-b0e3262183",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-92b7acabbc",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-92b7acabbc"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-cbb1d2dec2",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-307e96dfd6",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-307e96dfd6"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 17,
+      "sequential_ablation": {
+        "action_key": "intervention-c7d70b312a",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-be5dfe36c9",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-307e96dfd6",
+          "hypothesis-bd0748a4b7"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-cbb1d2dec2",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-307e96dfd6",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-307e96dfd6"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-833cbbc5b0",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0ea86f6022",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0ea86f6022"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 18,
+      "sequential_ablation": {
+        "action_key": "intervention-3720b17a1c",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-131b9d7f11",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0ea86f6022",
+          "hypothesis-ddfbe47225"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-833cbbc5b0",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0ea86f6022",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0ea86f6022"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-864288f14f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0dc428bfea",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0dc428bfea"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 19,
+      "sequential_ablation": {
+        "action_key": "intervention-6589826500",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-21fceb5739",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0dc428bfea",
+          "hypothesis-4ef59a483b"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-864288f14f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0dc428bfea",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0dc428bfea"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-851706c67d",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6126b9422a",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-6126b9422a"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 20,
+      "sequential_ablation": {
+        "action_key": "intervention-03f7c7bb66",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4b83fb811e",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-6126b9422a",
+          "hypothesis-ced917e119"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-851706c67d",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6126b9422a",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-6126b9422a"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-bac5b7bc1f",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-36019f75d4",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-36019f75d4"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 21,
+      "sequential_ablation": {
+        "action_key": "intervention-b685e92588",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a68e64e025",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-36019f75d4",
+          "hypothesis-d16bcf4afc"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-bac5b7bc1f",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-36019f75d4",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-36019f75d4"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-6e67e6d63f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5e92889683",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-5e92889683"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 22,
+      "sequential_ablation": {
+        "action_key": "intervention-9d9d6aa172",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0974c563e9",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-5e92889683",
+          "hypothesis-a3e0bbe7b4"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-6e67e6d63f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5e92889683",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-5e92889683"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-0345e4bd4b",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a09e309f0d",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-a09e309f0d"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 23,
+      "sequential_ablation": {
+        "action_key": "intervention-293643f5bc",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-2c7ea2c4fd",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-8e9164e9e4",
+          "hypothesis-a09e309f0d"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-0345e4bd4b",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a09e309f0d",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-a09e309f0d"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-f1cd03a564",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0505bd5633",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0505bd5633"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 24,
+      "sequential_ablation": {
+        "action_key": "intervention-75d516d6dc",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-90bd0e687f",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0505bd5633",
+          "hypothesis-ab8f2c1733"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-f1cd03a564",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0505bd5633",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0505bd5633"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-ae6dc60117",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-bce610f4ab",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-bce610f4ab"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 25,
+      "sequential_ablation": {
+        "action_key": "intervention-2a29c938bb",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-77ae75f1e6",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-2eef345b2c",
+          "hypothesis-bce610f4ab"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-ae6dc60117",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-bce610f4ab",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-bce610f4ab"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-1d80db62fa",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ae04903355",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ae04903355"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 26,
+      "sequential_ablation": {
+        "action_key": "intervention-677d6be725",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f0edef60da",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-7aa7730401",
+          "hypothesis-ae04903355"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-1d80db62fa",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ae04903355",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ae04903355"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-cd0875aa0e",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-84342da8fb",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-84342da8fb"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 27,
+      "sequential_ablation": {
+        "action_key": "intervention-baf4690da7",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-66d65789cf",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-7271a2b480",
+          "hypothesis-84342da8fb"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-cd0875aa0e",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-84342da8fb",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-84342da8fb"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-13e4a4e05b",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-edad5a6035",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-edad5a6035"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 28,
+      "sequential_ablation": {
+        "action_key": "intervention-cd3713170e",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d43c490695",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-edad5a6035",
+          "hypothesis-fed8ce2947"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-13e4a4e05b",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-edad5a6035",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-edad5a6035"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-0f765c6a72",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ae1724ab47",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ae1724ab47"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 29,
+      "sequential_ablation": {
+        "action_key": "intervention-b8b5800718",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-307f7aa830",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-5eaaa669fc",
+          "hypothesis-ae1724ab47"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-0f765c6a72",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ae1724ab47",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ae1724ab47"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-19b42e4db7",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-72488c27d4",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-72488c27d4"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 30,
+      "sequential_ablation": {
+        "action_key": "intervention-6f77924958",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5fe6696368",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-72488c27d4",
+          "hypothesis-c92ebfb8c1"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-19b42e4db7",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-72488c27d4",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-72488c27d4"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-10a8190be9",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-36c4cf6265",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-36c4cf6265"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 31,
+      "sequential_ablation": {
+        "action_key": "intervention-23dc26c03c",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4d011e5040",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-36c4cf6265",
+          "hypothesis-ab1809f9f9"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-10a8190be9",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-36c4cf6265",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-36c4cf6265"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-a369bb8087",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0882de6051",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0882de6051"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 32,
+      "sequential_ablation": {
+        "action_key": "intervention-11d9eb7ee4",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-2e491f7393",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0882de6051",
+          "hypothesis-c7f0c354b9"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-a369bb8087",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0882de6051",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0882de6051"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-026d434fc0",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5264e15b62",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-5264e15b62"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 33,
+      "sequential_ablation": {
+        "action_key": "intervention-566841dde9",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d25d10a670",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-5264e15b62",
+          "hypothesis-8d39b36fa0"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-026d434fc0",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5264e15b62",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-5264e15b62"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-371e47b387",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-470d2815fa",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-470d2815fa"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 34,
+      "sequential_ablation": {
+        "action_key": "intervention-09f920e9eb",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f94d41c68a",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-470d2815fa",
+          "hypothesis-9d30c53506"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-371e47b387",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-470d2815fa",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-470d2815fa"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-5186981093",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5f63e3b5f5",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-5f63e3b5f5"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 35,
+      "sequential_ablation": {
+        "action_key": "intervention-620cb89d4f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f51546d446",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-55932a9109",
+          "hypothesis-5f63e3b5f5"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-5186981093",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5f63e3b5f5",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-5f63e3b5f5"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-0b914ae1de",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1f7298c974",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-1f7298c974"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 36,
+      "sequential_ablation": {
+        "action_key": "intervention-8ef9f69eb5",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0f2b4f7270",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-1f7298c974",
+          "hypothesis-84fa3d76fc"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-0b914ae1de",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1f7298c974",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-1f7298c974"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-1e7eced419",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d15ff723a9",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d15ff723a9"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 37,
+      "sequential_ablation": {
+        "action_key": "intervention-baacd125fc",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5d454a8aa7",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-a9757c8484",
+          "hypothesis-d15ff723a9"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-1e7eced419",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d15ff723a9",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d15ff723a9"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-8a23801320",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-fcd263f017",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-fcd263f017"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 38,
+      "sequential_ablation": {
+        "action_key": "intervention-97da29b2b7",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a3910eb4c2",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-bd124b08f0",
+          "hypothesis-fcd263f017"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-8a23801320",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-fcd263f017",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-fcd263f017"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-2f1cc3b2d7",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d1088b81c2",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d1088b81c2"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 39,
+      "sequential_ablation": {
+        "action_key": "intervention-03d898f182",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1934118196",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-7f906abd53",
+          "hypothesis-d1088b81c2"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-2f1cc3b2d7",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d1088b81c2",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d1088b81c2"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-ec7ef3a4c9",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-97c6b4ddf7",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-97c6b4ddf7"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 40,
+      "sequential_ablation": {
+        "action_key": "intervention-cc9dabf168",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-69e2dfe2fc",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-49dee3beb0",
+          "hypothesis-97c6b4ddf7"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-ec7ef3a4c9",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-97c6b4ddf7",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-97c6b4ddf7"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-1426ed8bd3",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-e33eddd443",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-e33eddd443"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 41,
+      "sequential_ablation": {
+        "action_key": "intervention-441f20739f",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-15174fd962",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-55b0b24989",
+          "hypothesis-e33eddd443"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-1426ed8bd3",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-e33eddd443",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-e33eddd443"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-741e74875b",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-beaf9e6ddb",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-beaf9e6ddb"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 42,
+      "sequential_ablation": {
+        "action_key": "intervention-987cfe01ce",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1da28b2d1f",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-7b27968b7e",
+          "hypothesis-beaf9e6ddb"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-741e74875b",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-beaf9e6ddb",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-beaf9e6ddb"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-01f91b0a45",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-32c016d061",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-32c016d061"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 43,
+      "sequential_ablation": {
+        "action_key": "intervention-c5981255d7",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-5cf40d0514",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-32c016d061",
+          "hypothesis-eead56fa55"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-01f91b0a45",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-32c016d061",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-32c016d061"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-f46aa18408",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-999fc31a9e",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-999fc31a9e"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 44,
+      "sequential_ablation": {
+        "action_key": "intervention-eab7ef8ca4",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-c98ef51ad0",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-4921ea814e",
+          "hypothesis-999fc31a9e"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-f46aa18408",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-999fc31a9e",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-999fc31a9e"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-96b6bbd340",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-8174980df2",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-8174980df2"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 45,
+      "sequential_ablation": {
+        "action_key": "intervention-203a6ce9c0",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-53897bb992",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-2808a3b1cd",
+          "hypothesis-8174980df2"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-96b6bbd340",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-8174980df2",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-8174980df2"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-5d2e4d4ab9",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-8f27a15399",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-8f27a15399"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 46,
+      "sequential_ablation": {
+        "action_key": "intervention-f69897ecb8",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6a63226d66",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-8f27a15399",
+          "hypothesis-a922703ce0"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-5d2e4d4ab9",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-8f27a15399",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-8f27a15399"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-d69e5e3c6b",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-b9518c8b63",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-b9518c8b63"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 47,
+      "sequential_ablation": {
+        "action_key": "intervention-ab6dbbef60",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-789dd15b1a",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-5990d3fb94",
+          "hypothesis-b9518c8b63"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-d69e5e3c6b",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-b9518c8b63",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-b9518c8b63"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-c4d6c3c7e5",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ae50b8b3ed",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ae50b8b3ed"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 48,
+      "sequential_ablation": {
+        "action_key": "intervention-ae2126955d",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-278299acb5",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-63351e4383",
+          "hypothesis-ae50b8b3ed"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-c4d6c3c7e5",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-ae50b8b3ed",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-ae50b8b3ed"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-a539684b23",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-2fb1bfbc0d",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-2fb1bfbc0d"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 49,
+      "sequential_ablation": {
+        "action_key": "intervention-5f1b616d24",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-57b1b59877",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-2fb1bfbc0d",
+          "hypothesis-33ae07c472"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-a539684b23",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-2fb1bfbc0d",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-2fb1bfbc0d"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-bca1e8e921",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-477b22b6be",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-477b22b6be"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 50,
+      "sequential_ablation": {
+        "action_key": "intervention-ad749c444b",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4a2ecbad70",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-477b22b6be",
+          "hypothesis-548de8546b"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-bca1e8e921",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-477b22b6be",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-477b22b6be"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-218069d115",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4cc62d3c38",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-4cc62d3c38"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 51,
+      "sequential_ablation": {
+        "action_key": "intervention-bb136e1cf5",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-7df619b06a",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-4cc62d3c38",
+          "hypothesis-acb569a904"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-218069d115",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4cc62d3c38",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-4cc62d3c38"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-0838ae3e7d",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-c7c7c401b2",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-c7c7c401b2"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 52,
+      "sequential_ablation": {
+        "action_key": "intervention-80337e4a85",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-32da36c1e8",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-b758130a45",
+          "hypothesis-c7c7c401b2"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-0838ae3e7d",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-c7c7c401b2",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-c7c7c401b2"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-ff85b5cd93",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-cacf9c159d",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-cacf9c159d"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 53,
+      "sequential_ablation": {
+        "action_key": "intervention-a1406ae7bf",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-c53ac4e842",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-24c5f733c7",
+          "hypothesis-cacf9c159d"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-ff85b5cd93",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-cacf9c159d",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-cacf9c159d"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-66c63fdc17",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-aeccb8b1cc",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-aeccb8b1cc"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 54,
+      "sequential_ablation": {
+        "action_key": "intervention-94c3d7c038",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-fa8be5998f",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-aeccb8b1cc",
+          "hypothesis-b7644a95bf"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-66c63fdc17",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-aeccb8b1cc",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-aeccb8b1cc"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-1a0ecccbf1",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d208776927",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d208776927"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 55,
+      "sequential_ablation": {
+        "action_key": "intervention-3881675d93",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6683629c5c",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-d208776927",
+          "hypothesis-db1f53d336"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-1a0ecccbf1",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d208776927",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d208776927"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-9d1ffd634c",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a69df3c346",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-a69df3c346"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 56,
+      "sequential_ablation": {
+        "action_key": "intervention-5f00d5ed3d",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-9488a2140a",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-94070c46e5",
+          "hypothesis-a69df3c346"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-9d1ffd634c",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-a69df3c346",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-a69df3c346"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-e0eaa7b938",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0975dfc6f6",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0975dfc6f6"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 57,
+      "sequential_ablation": {
+        "action_key": "intervention-8142a020bf",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-2bc3ac76e5",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0975dfc6f6",
+          "hypothesis-e569618463"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-e0eaa7b938",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0975dfc6f6",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-0975dfc6f6"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-2ef5f78a55",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4d7b93bff9",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-4d7b93bff9"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 58,
+      "sequential_ablation": {
+        "action_key": "intervention-50a696f6f9",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1314983cd9",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-1966a9c90f",
+          "hypothesis-4d7b93bff9"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-2ef5f78a55",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-4d7b93bff9",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-4d7b93bff9"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-011004d103",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-79b7e3ae46",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-79b7e3ae46"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 59,
+      "sequential_ablation": {
+        "action_key": "intervention-7dcb76f990",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-39f64643df",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-79b7e3ae46",
+          "hypothesis-b7b3ee48d7"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-011004d103",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-79b7e3ae46",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-79b7e3ae46"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-9ebca7dc61",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-59d7979a10",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-59d7979a10"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 60,
+      "sequential_ablation": {
+        "action_key": "intervention-2f8e8901b0",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-577f9bc753",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-59d7979a10",
+          "hypothesis-795312586f"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-9ebca7dc61",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-59d7979a10",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-59d7979a10"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-2414f99e7d",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d72c2b5ca0",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d72c2b5ca0"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 61,
+      "sequential_ablation": {
+        "action_key": "intervention-2a44054420",
+        "action_selected": true,
+        "disagreement_score": 7.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-1fee1a9ba6",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-1232c8b862",
+          "hypothesis-d72c2b5ca0"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-2414f99e7d",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 4,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-d72c2b5ca0",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-d72c2b5ca0"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-43e908c4f5",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f682ba2723",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f682ba2723"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 62,
+      "sequential_ablation": {
+        "action_key": "intervention-d76ea43047",
+        "action_selected": true,
+        "disagreement_score": 9.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -3,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-0a99b5fd0b",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-b321a0f580",
+          "hypothesis-f682ba2723"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-43e908c4f5",
+        "action_selected": true,
+        "disagreement_score": 12.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 6,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-f682ba2723",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-f682ba2723"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 1
+    },
+    {
+      "action_budget": 1,
+      "active": {
+        "action_key": "intervention-bf506ef5fb",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6697c4dd9a",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-6697c4dd9a"
+        ],
+        "terminal_success": true
+      },
+      "active_and_sequential_actions_differ": true,
+      "active_priority_permutation_invariant": true,
+      "hypotheses": 3,
+      "plausible_hypotheses": 3,
+      "seed": 63,
+      "sequential_ablation": {
+        "action_key": "intervention-5c8542b545",
+        "action_selected": true,
+        "disagreement_score": 5.0,
+        "distinct_predictions": 2,
+        "observed_reduction": -1,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-493d227752",
+        "surviving_hypotheses": 2,
+        "survivor_ids": [
+          "hypothesis-0a8fd2c46d",
+          "hypothesis-6697c4dd9a"
+        ],
+        "terminal_success": false
+      },
+      "sequential_order_changes_terminal_outcome": true,
+      "true_first_order_control": {
+        "action_key": "intervention-bf506ef5fb",
+        "action_selected": true,
+        "disagreement_score": 6.0,
+        "distinct_predictions": 3,
+        "observed_reduction": 2,
+        "polarity_pairs": 2,
+        "sponsor_hypothesis_id": "hypothesis-6697c4dd9a",
+        "surviving_hypotheses": 1,
+        "survivor_ids": [
+          "hypothesis-6697c4dd9a"
+        ],
+        "terminal_success": true
+      },
+      "true_hypothesis_priority_index": 2
+    }
+  ],
+  "schema_version": "sage.structural_arbitration_causal.v1",
+  "sequential_single_theory_identifications": 0,
+  "sequential_terminal_successes": 0,
+  "terminal_success_advantage": 64
+}
