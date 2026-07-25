@@ -58,6 +58,7 @@ from .online_horizon_learning_arbiter import (
     HorizonLearningSignals,
     OnlineHorizonLearningArbiter,
 )
+from .online_frontier_exploration import OnlineFrontierExplorer
 from .online_terminal_frontier import (
     OnlineTerminalFrontierExplorer,
     TerminalFrontierAction,
@@ -200,6 +201,12 @@ class UnifiedCognitiveConfig:
     enable_active_structural_hypothesis_arbitration: bool = True
     enable_structural_regime_abstraction: bool = True
     enable_hierarchical_structural_theory_composition: bool = True
+    enable_frontier_oriented_exploration: bool = True
+    frontier_exploration_min_stagnant_steps: int = 6
+    max_frontier_experiments_per_state: int = 8
+    max_frontier_experiment_sequence_actions: int = 3
+    max_frontier_trials_per_actuator: int = 2
+    frontier_exploration_min_failed_branches: int = 3
 
 
 @dataclass(frozen=True)
@@ -251,6 +258,17 @@ class CognitiveDecision:
     structural_theory_reactivated: bool = False
     structural_experiment_compared_hypotheses: Tuple[str, ...] = ()
     structural_experiment_disagreement: float = 0.0
+    frontier_oriented_experiment: bool = False
+    frontier_exploration_id: str = ""
+    frontier_actuator_signature: str = ""
+    frontier_target_role_signature: str = ""
+    frontier_information_score: float = 0.0
+    frontier_sequence_id: str = ""
+    frontier_sequence_step: int = 0
+    frontier_sequence_limit: int = 0
+    frontier_state_action_untested: bool = False
+    frontier_actuator_untested: bool = False
+    frontier_object_role_untested: bool = False
     temporal_plan_id: str = ""
     temporal_target_objective_id: str = ""
     temporal_plan_status: str = ""
@@ -432,6 +450,31 @@ class CognitiveDecision:
             ),
             "structural_experiment_disagreement": (
                 self.structural_experiment_disagreement
+            ),
+            "frontier_oriented_experiment": (
+                self.frontier_oriented_experiment
+            ),
+            "frontier_exploration_id": self.frontier_exploration_id,
+            "frontier_actuator_signature": (
+                self.frontier_actuator_signature
+            ),
+            "frontier_target_role_signature": (
+                self.frontier_target_role_signature
+            ),
+            "frontier_information_score": (
+                self.frontier_information_score
+            ),
+            "frontier_sequence_id": self.frontier_sequence_id,
+            "frontier_sequence_step": self.frontier_sequence_step,
+            "frontier_sequence_limit": self.frontier_sequence_limit,
+            "frontier_state_action_untested": (
+                self.frontier_state_action_untested
+            ),
+            "frontier_actuator_untested": (
+                self.frontier_actuator_untested
+            ),
+            "frontier_object_role_untested": (
+                self.frontier_object_role_untested
             ),
             "temporal_plan_id": self.temporal_plan_id,
             "temporal_target_objective_id": self.temporal_target_objective_id,
@@ -977,6 +1020,24 @@ class UnifiedCognitiveController:
                 .enable_hierarchical_structural_theory_composition
             ),
         )
+        self.frontier_exploration = OnlineFrontierExplorer(
+            enabled=self.config.enable_frontier_oriented_exploration,
+            minimum_stagnant_steps=(
+                self.config.frontier_exploration_min_stagnant_steps
+            ),
+            max_experiments_per_state=(
+                self.config.max_frontier_experiments_per_state
+            ),
+            max_sequence_actions=(
+                self.config.max_frontier_experiment_sequence_actions
+            ),
+            max_trials_per_actuator=(
+                self.config.max_frontier_trials_per_actuator
+            ),
+            minimum_failed_branches=(
+                self.config.frontier_exploration_min_failed_branches
+            ),
+        )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
@@ -1076,6 +1137,8 @@ class UnifiedCognitiveController:
                 "terminal_objective_discriminator",
                 "terminal_objective_ablation",
                 "terminal_frontier_suffix",
+                "structural_break_experiment",
+                "frontier_oriented_experiment",
                 "temporal_subgoal_probe",
                 "causal_option_downstream_probe",
                 "causal_option_effect_subgoal_probe",
@@ -1196,6 +1259,22 @@ class UnifiedCognitiveController:
         )
         terminal_success = bool(
             terminal_level_progress or terminal_win
+        )
+        if (
+            pending is not None
+            and pending.frontier_oriented_experiment
+        ):
+            self.frontier_exploration.observe_transition(
+                grid_before=update.record.obs_before.raw_grid,
+                grid_after=update.record.obs_after.raw_grid,
+                action_name=action_name,
+                action_data=action_data,
+                no_effect=is_noop,
+                game_over=bool(update.record.diff.game_over),
+                terminal_success=terminal_success,
+            )
+        self.frontier_exploration.note_transition(
+            terminal_success=terminal_success,
         )
         if (
             pending is not None
@@ -1432,7 +1511,32 @@ class UnifiedCognitiveController:
                 self.causal_subgoals.edges()
             )
 
-        decision = self._select_escape(observation, safe_actions)
+        branch_stalled = self.progress.should_kill_branch()
+        escape_requested = self.anti_attractor.should_escape(self._step)
+        decision = None
+        if (
+            branch_stalled
+            or escape_requested
+            or self.frontier_exploration.active_sequence
+        ):
+            decision = self._select_frontier_oriented_experiment(
+                observation,
+                safe_actions,
+                available_action_candidates,
+            )
+            if decision is not None:
+                self.anti_attractor.note_escape(self._step)
+                if branch_stalled:
+                    self.progress.start_new_branch(
+                        current_validated_ops=(
+                            self.operator_inducer.num_locked()
+                        ),
+                        current_validated_rules=(
+                            self._validated_rule_count()
+                        ),
+                    )
+        if decision is None:
+            decision = self._select_escape(observation, safe_actions)
         if (
             decision is None
             and self.terminal_frontiers.active_progressive_route_available
@@ -1488,7 +1592,10 @@ class UnifiedCognitiveController:
                 reason="no confirmed theory plan or useful experiment/operator plan",
             )
 
+        frontier_selected = decision.frontier_oriented_experiment
         decision = self._guard_decision(decision, observation, safe_actions)
+        if frontier_selected and not decision.frontier_oriented_experiment:
+            self.frontier_exploration.cancel_pending()
         decision = self._annotate_terminal_frontier_suffix(
             decision,
             observation,
@@ -1510,6 +1617,7 @@ class UnifiedCognitiveController:
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
         self.causal_options.start_branch()
+        self.frontier_exploration.start_branch()
         self._branch_step = 0
         self._operator_plan_actions_since_objective_progress = 0
         self.progress.start_new_branch(
@@ -1590,6 +1698,9 @@ class UnifiedCognitiveController:
             ),
             "online_structural_break_detection": (
                 self.structural_breaks.summary()
+            ),
+            "frontier_oriented_exploration": (
+                self.frontier_exploration.summary()
             ),
             "recent_terminal_frontier_outcomes": (
                 self._terminal_frontier_outcomes[-10:]
@@ -2105,6 +2216,50 @@ class UnifiedCognitiveController:
                 continue
             result.append(action)
         return result
+
+    def _select_frontier_oriented_experiment(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+        available_action_candidates: Sequence[Any] | None,
+    ) -> CognitiveDecision | None:
+        selection = self.frontier_exploration.select(
+            current_grid=observation.raw_grid,
+            available_actions=safe_actions,
+            available_action_candidates=available_action_candidates,
+            branch_diagnostics=self.progress.branch_diagnostics(),
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action_name,
+            action_data=dict(selection.action_data),
+            source="frontier_oriented_experiment",
+            reason=selection.reason,
+            confidence=max(
+                0.0,
+                min(1.0, selection.information_score / 16.0),
+            ),
+            frontier_oriented_experiment=True,
+            frontier_exploration_id=selection.frontier_id,
+            frontier_actuator_signature=(
+                selection.actuator_signature
+            ),
+            frontier_target_role_signature=(
+                selection.target_role_signature
+            ),
+            frontier_information_score=selection.information_score,
+            frontier_sequence_id=selection.sequence_id,
+            frontier_sequence_step=selection.sequence_step,
+            frontier_sequence_limit=selection.sequence_limit,
+            frontier_state_action_untested=(
+                selection.state_action_untested
+            ),
+            frontier_actuator_untested=selection.actuator_untested,
+            frontier_object_role_untested=(
+                selection.object_role_untested
+            ),
+        )
 
     def _select_escape(
         self,

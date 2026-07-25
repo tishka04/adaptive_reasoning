@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v38"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v39"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -62,6 +62,8 @@ EXPERIMENT_SOURCES = {
     "causal_option_mediated_exploitation",
     "causal_option_mediated_exploitation_restoration",
     "causal_option_mediated_replication",
+    "structural_break_experiment",
+    "frontier_oriented_experiment",
 }
 
 EnvFactory = Callable[[str], Any]
@@ -479,6 +481,7 @@ def run_unified_cognition_ab_benchmark(
     enable_active_structural_hypothesis_arbitration: bool = True,
     enable_structural_regime_abstraction: bool = True,
     enable_hierarchical_structural_theory_composition: bool = True,
+    enable_frontier_oriented_exploration: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
 ) -> Dict[str, Any]:
@@ -690,6 +693,7 @@ def run_unified_cognition_ab_benchmark(
         or not enable_active_structural_hypothesis_arbitration
         or not enable_structural_regime_abstraction
         or not enable_hierarchical_structural_theory_composition
+        or not enable_frontier_oriented_exploration
     ):
         def _configured_structural_revision_controller(
             game_id: str,
@@ -714,6 +718,9 @@ def run_unified_cognition_ab_benchmark(
                     ),
                     enable_hierarchical_structural_theory_composition=(
                         enable_hierarchical_structural_theory_composition
+                    ),
+                    enable_frontier_oriented_exploration=(
+                        enable_frontier_oriented_exploration
                     ),
                 ),
             )
@@ -872,6 +879,9 @@ def run_unified_cognition_ab_benchmark(
         hierarchical_structural_theory_composition_enabled=(
             enable_hierarchical_structural_theory_composition
         ),
+        frontier_oriented_exploration_enabled=(
+            enable_frontier_oriented_exploration
+        ),
     )
     if not include_traces:
         _omit_step_traces(payload)
@@ -1028,6 +1038,13 @@ def _run_arm(
     structural_break_summary = dict(
         controller_summary.get(
             "online_structural_break_detection",
+            {},
+        )
+        or {}
+    )
+    frontier_exploration_summary = dict(
+        controller_summary.get(
+            "frontier_oriented_exploration",
             {},
         )
         or {}
@@ -1635,6 +1652,73 @@ def _run_arm(
                 0,
             )
             or 0
+        ),
+        "frontier_states_assessed": int(
+            frontier_exploration_summary.get("states_assessed", 0) or 0
+        ),
+        "frontier_stagnation_detections": int(
+            frontier_exploration_summary.get(
+                "stagnation_detections",
+                0,
+            )
+            or 0
+        ),
+        "frontier_entries": int(
+            frontier_exploration_summary.get("frontier_entries", 0) or 0
+        ),
+        "frontier_experiments": int(
+            frontier_exploration_summary.get("experiments", 0) or 0
+        ),
+        "frontier_sequence_actions": int(
+            frontier_exploration_summary.get("sequence_actions", 0) or 0
+        ),
+        "frontier_multi_step_sequences": int(
+            frontier_exploration_summary.get(
+                "multi_step_sequences",
+                0,
+            )
+            or 0
+        ),
+        "frontier_untested_state_actions": int(
+            frontier_exploration_summary.get(
+                "untested_state_actions",
+                0,
+            )
+            or 0
+        ),
+        "frontier_untested_actuator_actions": int(
+            frontier_exploration_summary.get(
+                "untested_actuator_actions",
+                0,
+            )
+            or 0
+        ),
+        "frontier_untested_object_actions": int(
+            frontier_exploration_summary.get(
+                "untested_object_actions",
+                0,
+            )
+            or 0
+        ),
+        "frontier_productive_experiments": int(
+            frontier_exploration_summary.get(
+                "productive_experiments",
+                0,
+            )
+            or 0
+        ),
+        "frontier_novel_effects": int(
+            frontier_exploration_summary.get("novel_effects", 0) or 0
+        ),
+        "frontier_novel_states": int(
+            frontier_exploration_summary.get("novel_states", 0) or 0
+        ),
+        "frontier_terminal_credits": int(
+            frontier_exploration_summary.get("terminal_credits", 0) or 0
+        ),
+        "frontier_information_gain": float(
+            frontier_exploration_summary.get("information_gain", 0.0)
+            or 0.0
         ),
         "levels_completed_delta": sum(
             int(attempt["levels_completed_delta"]) for attempt in attempts
@@ -2765,6 +2849,7 @@ def _summarize_benchmark(
     active_structural_hypothesis_arbitration_enabled: bool,
     structural_regime_abstraction_enabled: bool,
     hierarchical_structural_theory_composition_enabled: bool,
+    frontier_oriented_exploration_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
     unified = _aggregate_arm(pairs, "unified")
@@ -2901,6 +2986,9 @@ def _summarize_benchmark(
             "hierarchical_structural_theory_composition_enabled_in_unified": bool(
                 hierarchical_structural_theory_composition_enabled
             ),
+            "frontier_oriented_exploration_enabled_in_unified": bool(
+                frontier_oriented_exploration_enabled
+            ),
             "controller_rebranches_after_level_change": True,
             "protocol_gate_passed": protocol_gate,
         },
@@ -2966,6 +3054,16 @@ def _summarize_benchmark(
             unified["structural_theory_programs"] >= 2
             and unified["structural_theory_switches"] > 0
             and unified["structural_theory_reactivations"] > 0
+        ),
+        "frontier_oriented_exploration_gate_passed": bool(
+            unified["frontier_stagnation_detections"] > 0
+            and unified["frontier_experiments"] > 0
+            and unified["frontier_untested_actuator_actions"] > 0
+            and (
+                unified["frontier_novel_effects"] > 0
+                or unified["frontier_novel_states"] > 0
+                or unified["frontier_terminal_credits"] > 0
+            )
         ),
         "pairs": list(pairs),
     }
@@ -3431,6 +3529,49 @@ def _aggregate_arm(
         "structural_theory_reactivations": sum(
             int(row["structural_theory_reactivations"])
             for row in rows
+        ),
+        "frontier_states_assessed": sum(
+            int(row["frontier_states_assessed"]) for row in rows
+        ),
+        "frontier_stagnation_detections": sum(
+            int(row["frontier_stagnation_detections"]) for row in rows
+        ),
+        "frontier_entries": sum(
+            int(row["frontier_entries"]) for row in rows
+        ),
+        "frontier_experiments": sum(
+            int(row["frontier_experiments"]) for row in rows
+        ),
+        "frontier_sequence_actions": sum(
+            int(row["frontier_sequence_actions"]) for row in rows
+        ),
+        "frontier_multi_step_sequences": sum(
+            int(row["frontier_multi_step_sequences"]) for row in rows
+        ),
+        "frontier_untested_state_actions": sum(
+            int(row["frontier_untested_state_actions"]) for row in rows
+        ),
+        "frontier_untested_actuator_actions": sum(
+            int(row["frontier_untested_actuator_actions"]) for row in rows
+        ),
+        "frontier_untested_object_actions": sum(
+            int(row["frontier_untested_object_actions"]) for row in rows
+        ),
+        "frontier_productive_experiments": sum(
+            int(row["frontier_productive_experiments"]) for row in rows
+        ),
+        "frontier_novel_effects": sum(
+            int(row["frontier_novel_effects"]) for row in rows
+        ),
+        "frontier_novel_states": sum(
+            int(row["frontier_novel_states"]) for row in rows
+        ),
+        "frontier_terminal_credits": sum(
+            int(row["frontier_terminal_credits"]) for row in rows
+        ),
+        "frontier_information_gain": round(
+            sum(float(row["frontier_information_gain"]) for row in rows),
+            4,
         ),
         "levels_completed": sum(
             int(row["levels_completed_delta"]) for row in rows
@@ -4697,6 +4838,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             "reactivation."
         ),
     )
+    parser.add_argument(
+        "--disable-frontier-oriented-exploration",
+        action="store_true",
+        help=(
+            "Ablate SAGE.9v stalled-state concrete actuator/object "
+            "experiments only."
+        ),
+    )
     args = parser.parse_args(list(argv) if argv is not None else None)
     games = [
         game_splits.resolve_full_game_id(item.strip())
@@ -4820,6 +4969,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_hierarchical_structural_theory_composition=(
             not args.disable_hierarchical_structural_theory_composition
+        ),
+        enable_frontier_oriented_exploration=(
+            not args.disable_frontier_oriented_exploration
         ),
     )
     print(json.dumps(payload["metrics"], indent=2, sort_keys=True))

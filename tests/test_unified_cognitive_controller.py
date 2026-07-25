@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 
@@ -552,6 +553,76 @@ def test_resized_frames_are_aligned_before_structured_revision():
     assert update.record.obs_before.raw_grid.shape == (5, 5)
     assert update.record.obs_after.raw_grid.shape == (5, 5)
     assert controller.summary()["transitions_observed"] == 1
+
+
+def test_stalled_controller_runs_parameterized_frontier_experiment():
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION6"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            frontier_exploration_min_stagnant_steps=2,
+            frontier_exploration_min_failed_branches=0,
+        ),
+    )
+    grid = np.zeros((7, 9), dtype=np.int32)
+    grid[2:4, 2:4] = 3
+    candidates = (
+        SimpleNamespace(
+            name="ACTION6",
+            action_args={"x": 2, "y": 2},
+        ),
+        SimpleNamespace(
+            name="ACTION6",
+            action_args={"x": 7, "y": 5},
+        ),
+    )
+    for _ in range(8):
+        decision = controller.select_action(
+            current_grid=grid,
+            available_actions=["ACTION6"],
+            available_action_candidates=candidates,
+            legacy_action="ACTION6",
+            legacy_action_data={"x": 7, "y": 5},
+        )
+        controller.observe_transition(
+            action=decision.action_name,
+            action_data=decision.action_data,
+            grid_before=grid,
+            grid_after=grid.copy(),
+            available_actions=["ACTION6"],
+        )
+
+    frontier = controller.select_action(
+        current_grid=grid,
+        available_actions=["ACTION6"],
+        available_action_candidates=candidates,
+        legacy_action="ACTION6",
+        legacy_action_data={"x": 7, "y": 5},
+    )
+
+    assert frontier.source == "frontier_oriented_experiment"
+    assert frontier.frontier_oriented_experiment is True
+    assert frontier.frontier_state_action_untested is True
+    assert frontier.frontier_actuator_untested is True
+    assert frontier.frontier_sequence_step == 1
+    payload = frontier.to_dict()
+    assert payload["frontier_exploration_id"].startswith("frontier::")
+
+    changed = grid.copy()
+    changed[2, 2] = 4
+    controller.observe_transition(
+        action=frontier.action_name,
+        action_data=frontier.action_data,
+        grid_before=grid,
+        grid_after=changed,
+        available_actions=["ACTION6"],
+    )
+    summary = controller.summary()["frontier_oriented_exploration"]
+    assert summary["experiments"] == 1
+    assert summary["productive_experiments"] == 1
+    assert summary["novel_effects"] == 1
 
 
 def test_registered_arc_agent_enables_the_unified_controller():

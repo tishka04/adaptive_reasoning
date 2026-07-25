@@ -7571,3 +7571,82 @@ Implementation et validation :
 - tests unitaires et d'integration couvrant arbitrage, engagement,
   refutation, transfert, conflits, reactivation et gates sans
   surinterpretation.
+
+## SAGE.9v - frontier-oriented causal exploration
+
+Objectif :
+
+- Detecter les branches reellement steriles et remplacer l'echappement aveugle
+  par des experiences courtes sur les actionneurs et objets encore non testes.
+- Maximiser l'information causale observee sans concurrencer une competence
+  qui sait deja produire un changement de niveau ou un `WIN`.
+- Ne coder ni jeu, ni niveau, ni coordonnee cible, ni semantique de solution.
+
+Detection et isolation :
+
+- Une absence de progres terminal ne suffit jamais seule. L'explorateur exige
+  aussi une repetition d'etat, un cycle a faible nouveaute ou la recurrence
+  exacte de l'etat courant.
+- SAGE.9v reste inactif pendant les trois premieres branches infructueuses.
+  Il cible ainsi les jeux sans aucun signal terminal au lieu de perturber leur
+  phase normale d'acquisition.
+- Des qu'une transition quelconque produit un changement de niveau ou un
+  `WIN`, l'explorateur se retire pour toute la partie. Sur les niveaux deja
+  accessibles, les competences terminales gardent donc l'autorite.
+
+Experiences :
+
+- Les actions parametrees sont enumerees concretement; deux clics `ACTION6`
+  visant des roles d'objet differents sont deux actionneurs distincts.
+- La cible est decrite sans palette : occupation, taille de composante, forme
+  locale et secteur relatif de la grille.
+- Le score prefere dans l'ordre les paires etat/action non testees, les
+  actionneurs inconnus et les roles d'objet inconnus, puis penalise les no-op
+  et issues dangereuses observes.
+- Chaque actionneur abstrait est teste au plus deux fois. Une intervention
+  productive peut ouvrir une rafale de trois actions maximum; toute preuve
+  vient exclusivement des transitions live.
+
+Gates scientifiques :
+
+- `information_gate_passed` exige stagnation, intervention sur un actionneur
+  non teste et nouvel effet, nouvel etat ou terminal observe.
+- `frontier_access_gate_passed` est plus strict : au moins un nouvel etat doit
+  etre physiquement atteint.
+- `causal_frontier_progress_gate_passed` ajoute un avantage de niveau ou de
+  `WIN` face au meme controleur prive uniquement de SAGE.9v.
+
+Audit public-unseen, 5 jeux, seed 0, 10 resets x 80 :
+
+- protocole actif/ablation valide, memes examens et `controller_errors=0`;
+- `cn04` : 15 experiences, 12 productives, 9 effets nouveaux et 12 etats
+  nouveaux, soit 21 points d'information;
+- `sb26` : 21 experiences toutes productives, 13 effets nouveaux et 20 etats
+  nouveaux, soit 33 points d'information;
+- `wa30` et `tn36` ne presentent pas la combinaison de signaux suffisante :
+  zero intervention, ce qui evite de fabriquer une stagnation;
+- `ft09` produit un terminal avant l'autorisation de 9v. L'explorateur reste
+  donc inactif et preserve exactement l'ablation : `max_level_reached=3`,
+  8 changements cumules et zero `WIN`;
+- deux jeux passent le gate d'acces a de nouveaux etats. Aucun ne gagne encore
+  de niveau supplementaire : le gate de progression causale reste faux.
+
+Implementation et validation :
+
+- nouveau `theory/online_frontier_exploration.py`;
+- integration et trace complete dans `UnifiedCognitiveController`;
+- benchmark unifie v39 avec
+  `--disable-frontier-oriented-exploration`;
+- nouveau runner apparie
+  `theory/frontier_exploration_benchmark.py`;
+- diagnostic :
+  `diagnostics/sage/sage9v_frontier_exploration_benchmark.json`;
+- tests de stagnation, roles invariants a la palette, actionneurs inconnus,
+  bornage, danger, rafales, retrait apres terminal, ablation et gates
+  anti-surinterpretation.
+
+Lecture finale : SAGE.9v resout le verrou d'acces au sens causal minimal sur
+`cn04` et `sb26` : il transforme une boucle sterile en interventions qui
+atteignent 32 etats nouveaux sans degrader `ft09`. Ces etats ne sont pas encore
+convertis en progres terminal. Le prochain verrou SAGE.9w est donc bien
+l'acquisition relationnelle multi-forme a partir de ces nouvelles transitions.

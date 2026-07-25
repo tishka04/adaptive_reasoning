@@ -108,7 +108,7 @@ def test_ab_benchmark_pairs_fresh_resets_budgets_seeds_and_reports_failures():
     )
 
     protocol = payload["paired_protocol"]
-    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v38"
+    assert payload["schema_version"] == "sage.unified_cognition_ab_held_out.v39"
     assert protocol["protocol_gate_passed"] is True
     assert protocol["same_reset_visual_states"] is True
     assert protocol["online_learning_within_arm_only"] is True
@@ -1202,3 +1202,29 @@ def test_ab_benchmark_exposes_sage9s_9t_9u_ablations():
     assert summary["active_hypothesis_arbitration_enabled"] is False
     assert summary["regime_abstraction_enabled"] is False
     assert summary["hierarchical_theory_composition_enabled"] is False
+
+
+def test_ab_benchmark_exposes_sage9v_frontier_exploration_ablation():
+    payload = run_unified_cognition_ab_benchmark(
+        game_ids=["held-out-sage9v-ablation"],
+        seeds=[111],
+        action_budget_per_reset=3,
+        resets=1,
+        env_factory=lambda _game_id: _FakeEnv(),
+        enable_frontier_oriented_exploration=False,
+    )
+
+    protocol = payload["paired_protocol"]
+    assert (
+        protocol["frontier_oriented_exploration_enabled_in_unified"]
+        is False
+    )
+    metrics = payload["metrics"]["unified"]
+    assert metrics["frontier_stagnation_detections"] == 0
+    assert metrics["frontier_experiments"] == 0
+    assert metrics["frontier_terminal_credits"] == 0
+    summary = payload["pairs"][0]["unified"]["controller_summary"][
+        "frontier_oriented_exploration"
+    ]
+    assert summary["enabled"] is False
+    assert payload["frontier_oriented_exploration_gate_passed"] is False
