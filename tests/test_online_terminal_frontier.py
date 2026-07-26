@@ -1122,6 +1122,30 @@ def test_confirmed_prefix_and_suffix_compose_exact_progressive_route():
     assert summary["progressive_route_confirmations"] == 1
 
 
+def test_progressive_route_startable_probe_is_state_specific_and_read_only():
+    explorer = OnlineTerminalFrontierExplorer(
+        max_suffix_actions=1,
+        enable_terminal_causal_reduction=False,
+    )
+    _confirm_composed_progressive_route(explorer)
+
+    assert not explorer.progressive_route_startable(
+        state_signature="different-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    assert explorer.progressive_route_startable(
+        state_signature="reset-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+    selected = explorer.select_progressive_route(
+        state_signature="reset-state",
+        available_actions=["ACTION1", "ACTION2"],
+    )
+
+    assert selected is not None
+    assert selected.action.action_name == "ACTION1"
+
+
 def test_progressive_route_ablation_never_compiles_or_replays_route():
     explorer = OnlineTerminalFrontierExplorer(
         max_suffix_actions=1,

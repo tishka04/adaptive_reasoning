@@ -1,0 +1,2453 @@
+{
+  "action_budgets": [
+    500,
+    1500,
+    4000
+  ],
+  "created_at_utc": "2026-07-26T09:51:06.970897+00:00",
+  "evaluation": "unified_only_long_budget_completion_efficiency",
+  "feature_flags": {
+    "generalized_frontier_stall_detection": true,
+    "level_route_memory": true,
+    "level_route_shortening": true,
+    "per_level_frontier_rearming": true,
+    "subeffect_eligibility_relay": true
+  },
+  "held_out_games": [
+    "wa30-ee6fef47",
+    "tn36-ab4f63cc",
+    "ft09-0d8bbf25",
+    "cn04-65d47d14",
+    "sb26-7fbdac44"
+  ],
+  "label": "sage10e_authority_repair_full14",
+  "maximum_level_reached": 6,
+  "normalized_score_proxy": 0.93561615,
+  "resets_per_game_seed_condition": 14,
+  "rows": [
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 2800,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 0,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 0,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 0,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 528.209,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 2800,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 0,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 0,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 0,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 506.4679,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 854,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 17,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 498,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 40,
+        "frontier_zero_terminal_branch_stalls": 515,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 112.5995,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 854,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 17,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 498,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 40,
+        "frontier_zero_terminal_branch_stalls": 515,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 103.8798,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 1822,
+      "actions_to_each_level": [
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 2
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 57,
+          "cumulative_actions": 109,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 130,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 151,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 58,
+          "cumulative_actions": 110,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 131,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 19,
+          "cumulative_actions": 150,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 48,
+          "cumulative_actions": 100,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 121,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 142,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 38,
+          "cumulative_actions": 38,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 45,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 59,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 38,
+          "cumulative_actions": 38,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 45,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 59,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 13
+        }
+      ],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_after_level_progress": 9,
+        "terminal_before_level_progress": 2,
+        "win": 3
+      },
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 43,
+      "max_level_reached": 6,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 12,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 7,
+        "frontier_per_level_rearms": 12,
+        "frontier_subeffect_relays_created": 27,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 2,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 13,
+        "level_routes_observed": 13,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 363,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 2310,
+        "terminal_multiform_nonprogress_outcomes": 14,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.21990718,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 273.1229,
+      "wins": 3
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 727,
+      "actions_to_each_level": [
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 11,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 25,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 73,
+          "cumulative_actions": 98,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 119,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 140,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 11,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 25,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 13
+        }
+      ],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_after_level_progress": 2,
+        "terminal_before_level_progress": 11,
+        "win": 1
+      },
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 10,
+      "max_level_reached": 6,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 11,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 122,
+        "frontier_per_level_rearms": 3,
+        "frontier_subeffect_relays_created": 33,
+        "frontier_zero_terminal_branch_stalls": 193,
+        "level_route_replay_actions": 1,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 7,
+        "level_routes_observed": 7,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 4250,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.09196487,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 151.2526,
+      "wins": 1
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 2100,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 24,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 25,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 45,
+        "frontier_zero_terminal_branch_stalls": 43,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 233.3263,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 2100,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 24,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 22,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 29,
+        "frontier_zero_terminal_branch_stalls": 34,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 206.6932,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 3846,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "budget_exhausted_no_level_progress": 2,
+        "terminal_before_level_progress": 12
+      },
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 15,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 1141,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 34,
+        "frontier_zero_terminal_branch_stalls": 1220,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 128.8914,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 1792,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 18,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 851,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 45,
+        "frontier_zero_terminal_branch_stalls": 1100,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 113.6184,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 2800,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 0,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 0,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 0,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 534.62,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 2800,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 0,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 0,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 0,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 505.3576,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 854,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 17,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 498,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 40,
+        "frontier_zero_terminal_branch_stalls": 515,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 105.1833,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 854,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 17,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 498,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 40,
+        "frontier_zero_terminal_branch_stalls": 515,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 104.4996,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 1822,
+      "actions_to_each_level": [
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 2
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 57,
+          "cumulative_actions": 109,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 130,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 151,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 58,
+          "cumulative_actions": 110,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 131,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 19,
+          "cumulative_actions": 150,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 48,
+          "cumulative_actions": 100,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 121,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 142,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 38,
+          "cumulative_actions": 38,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 45,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 59,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 38,
+          "cumulative_actions": 38,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 45,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 59,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 13
+        }
+      ],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_after_level_progress": 9,
+        "terminal_before_level_progress": 2,
+        "win": 3
+      },
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 43,
+      "max_level_reached": 6,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 12,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 7,
+        "frontier_per_level_rearms": 12,
+        "frontier_subeffect_relays_created": 27,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 2,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 13,
+        "level_routes_observed": 13,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 363,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 2310,
+        "terminal_multiform_nonprogress_outcomes": 14,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.21990718,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 279.7883,
+      "wins": 3
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 727,
+      "actions_to_each_level": [
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 11,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 25,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 73,
+          "cumulative_actions": 98,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 119,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 140,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 11,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 25,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 13
+        }
+      ],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_after_level_progress": 2,
+        "terminal_before_level_progress": 11,
+        "win": 1
+      },
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 10,
+      "max_level_reached": 6,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 11,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 122,
+        "frontier_per_level_rearms": 3,
+        "frontier_subeffect_relays_created": 33,
+        "frontier_zero_terminal_branch_stalls": 193,
+        "level_route_replay_actions": 1,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 7,
+        "level_routes_observed": 7,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 4250,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.09196487,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 148.3257,
+      "wins": 1
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 2100,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 24,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 25,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 45,
+        "frontier_zero_terminal_branch_stalls": 43,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 223.1494,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 2100,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 24,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 22,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 29,
+        "frontier_zero_terminal_branch_stalls": 34,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 204.3931,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 5846,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "budget_exhausted_no_level_progress": 2,
+        "terminal_before_level_progress": 12
+      },
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 15,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 2141,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 34,
+        "frontier_zero_terminal_branch_stalls": 2220,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 181.1952,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 1792,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 18,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 851,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 45,
+        "frontier_zero_terminal_branch_stalls": 1100,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 113.7223,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 2800,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 0,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 0,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 0,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 44973.9157,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 2800,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 0,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 0,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 0,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 546.6159,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 854,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 17,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 498,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 40,
+        "frontier_zero_terminal_branch_stalls": 515,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 110.3693,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 854,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 17,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 498,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 40,
+        "frontier_zero_terminal_branch_stalls": 515,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 107.399,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 1822,
+      "actions_to_each_level": [
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 2
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 57,
+          "cumulative_actions": 109,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 130,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 151,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 3
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 4
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 5
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 6
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 58,
+          "cumulative_actions": 110,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 131,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 19,
+          "cumulative_actions": 150,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 7
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 48,
+          "cumulative_actions": 100,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 121,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 142,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 8
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 9
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 10
+        },
+        {
+          "actions_used_for_level": 31,
+          "cumulative_actions": 31,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 38,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 52,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 38,
+          "cumulative_actions": 38,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 45,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 59,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 38,
+          "cumulative_actions": 38,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 45,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 59,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 13
+        }
+      ],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_after_level_progress": 9,
+        "terminal_before_level_progress": 2,
+        "win": 3
+      },
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 43,
+      "max_level_reached": 6,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 12,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 7,
+        "frontier_per_level_rearms": 12,
+        "frontier_subeffect_relays_created": 27,
+        "frontier_zero_terminal_branch_stalls": 0,
+        "level_route_replay_actions": 2,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 13,
+        "level_routes_observed": 13,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 363,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 2310,
+        "terminal_multiform_nonprogress_outcomes": 14,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.21990718,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 285.0438,
+      "wins": 3
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 727,
+      "actions_to_each_level": [
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 11
+        },
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 11,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 25,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 73,
+          "cumulative_actions": 98,
+          "level_after": 4,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 119,
+          "level_after": 5,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 21,
+          "cumulative_actions": 140,
+          "level_after": 6,
+          "levels_gained": 1,
+          "reset_index": 12
+        },
+        {
+          "actions_used_for_level": 4,
+          "cumulative_actions": 4,
+          "level_after": 1,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 7,
+          "cumulative_actions": 11,
+          "level_after": 2,
+          "levels_gained": 1,
+          "reset_index": 13
+        },
+        {
+          "actions_used_for_level": 14,
+          "cumulative_actions": 25,
+          "level_after": 3,
+          "levels_gained": 1,
+          "reset_index": 13
+        }
+      ],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_after_level_progress": 2,
+        "terminal_before_level_progress": 11,
+        "win": 1
+      },
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 10,
+      "max_level_reached": 6,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 11,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 122,
+        "frontier_per_level_rearms": 3,
+        "frontier_subeffect_relays_created": 33,
+        "frontier_zero_terminal_branch_stalls": 193,
+        "level_route_replay_actions": 1,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 7,
+        "level_routes_observed": 7,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 4250,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.09196487,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 143.5531,
+      "wins": 1
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 2100,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 24,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 25,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 45,
+        "frontier_zero_terminal_branch_stalls": 43,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 235.3864,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 2100,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 24,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 22,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 29,
+        "frontier_zero_terminal_branch_stalls": 34,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 209.743,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 10846,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "budget_exhausted_no_level_progress": 2,
+        "terminal_before_level_progress": 12
+      },
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 15,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 4641,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 34,
+        "frontier_zero_terminal_branch_stalls": 4720,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 0,
+      "wall_clock_seconds": 326.1815,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 1792,
+      "actions_to_each_level": [],
+      "controller_errors": 0,
+      "failure_causes": {
+        "terminal_before_level_progress": 14
+      },
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "mechanism_counters": {
+        "frontier_actuator_coverage_stalls": 18,
+        "frontier_delayed_terminal_credits": 0,
+        "frontier_effect_novelty_stalls": 851,
+        "frontier_per_level_rearms": 0,
+        "frontier_subeffect_relays_created": 45,
+        "frontier_zero_terminal_branch_stalls": 1100,
+        "level_route_replay_actions": 0,
+        "level_route_shortening_actions_saved": 0,
+        "level_route_shortening_confirmations": 0,
+        "level_routes_confirmed": 0,
+        "level_routes_observed": 0,
+        "protected_route_preemptions": 0,
+        "terminal_multiform_branch_cap_blocks": 0,
+        "terminal_multiform_context_cap_blocks": 0,
+        "terminal_multiform_demotions": 0,
+        "terminal_multiform_level_gating_blocks": 0,
+        "terminal_multiform_nonprogress_outcomes": 0,
+        "terminal_multiform_reactivations": 0
+      },
+      "normalized_score_proxy": 0.0,
+      "resets": 14,
+      "seed": 1,
+      "wall_clock_seconds": 113.758,
+      "wins": 0
+    }
+  ],
+  "saturation_table": [
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 5600,
+      "conditions": 2,
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 1034.6769,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 5600,
+      "conditions": 2,
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 1039.9776,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 5600,
+      "conditions": 2,
+      "game_id": "wa30-ee6fef47",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 45520.5316,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 1708,
+      "conditions": 2,
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 216.4793,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 1708,
+      "conditions": 2,
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 209.6829,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 1708,
+      "conditions": 2,
+      "game_id": "tn36-ab4f63cc",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 217.7683,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 2549,
+      "conditions": 2,
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 53,
+      "max_level_reached": 6,
+      "normalized_score_proxy": 0.15593603,
+      "wall_clock_seconds": 424.3755,
+      "wins": 4
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 2549,
+      "conditions": 2,
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 53,
+      "max_level_reached": 6,
+      "normalized_score_proxy": 0.15593603,
+      "wall_clock_seconds": 428.114,
+      "wins": 4
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 2549,
+      "conditions": 2,
+      "game_id": "ft09-0d8bbf25",
+      "levels_completed": 53,
+      "max_level_reached": 6,
+      "normalized_score_proxy": 0.15593603,
+      "wall_clock_seconds": 428.5969,
+      "wins": 4
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 4200,
+      "conditions": 2,
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 440.0195,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 4200,
+      "conditions": 2,
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 427.5425,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 4200,
+      "conditions": 2,
+      "game_id": "cn04-65d47d14",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 445.1294,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 500,
+      "actions_executed": 5638,
+      "conditions": 2,
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 242.5098,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 1500,
+      "actions_executed": 7638,
+      "conditions": 2,
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 294.9175,
+      "wins": 0
+    },
+    {
+      "action_budget_per_reset": 4000,
+      "actions_executed": 12638,
+      "conditions": 2,
+      "game_id": "sb26-7fbdac44",
+      "levels_completed": 0,
+      "max_level_reached": 0,
+      "normalized_score_proxy": 0.0,
+      "wall_clock_seconds": 439.9395,
+      "wins": 0
+    }
+  ],
+  "schema_version": "sage.benchmark_score.v1",
+  "score_definition": {
+    "higher_is_better": true,
+    "normalized_score_proxy": "sum(per_level_efficiency) / resets",
+    "per_level_efficiency": "levels_gained_on_transition / actions_since_previous_level"
+  },
+  "seeds": [
+    0,
+    1
+  ],
+  "total_levels_completed": 159,
+  "total_wins": 12,
+  "wall_clock_seconds": 51810.285
+}

@@ -1,0 +1,2861 @@
+{
+  "aggregate": {
+    "source_schemas": 8,
+    "target_effect_confirmations": 7,
+    "target_level_delta": 0,
+    "target_probe_selections": 12,
+    "target_promotions": 0,
+    "target_win_delta": 0
+  },
+  "frozen_library": {
+    "format_version": "sage-causal-schema-v1",
+    "frozen": true,
+    "schema_count": 8,
+    "schemas": [
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000003:terminal-000000"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000005:terminal-000001"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000011:terminal-000007"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000015:terminal-000010"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000019:terminal-000013"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000023:terminal-000016"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000029:terminal-000022"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000035:terminal-000028"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000039:terminal-000031"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000043:terminal-000034"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000047:terminal-000037"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000051:terminal-000040"
+          }
+        ],
+        "schema_id": "causal-schema::33a3fa73f6a0033e",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "left_one",
+                "family": "trajectory",
+                "predicate": "object_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::864143e64d4fdcca",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "left_one",
+                "family": "trajectory",
+                "predicate": "object_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::56a549e84d269e05",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "left_one",
+                "family": "trajectory",
+                "predicate": "object_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::bd3623ce43d0cf3b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 12
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000007:terminal-000003"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000013:terminal-000009"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000017:terminal-000012"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000021:terminal-000015"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000025:terminal-000018"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000031:terminal-000024"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000037:terminal-000030"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000041:terminal-000033"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000045:terminal-000036"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000049:terminal-000039"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000053:terminal-000042"
+          }
+        ],
+        "schema_id": "causal-schema::bb1e594624af5599",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::2caa9e933d1ffe0d",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::0d5be64d8250ed51",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::fbf23864cac84124",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "",
+                "family": "disappearance",
+                "predicate": "object_disappeared",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 11
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000006:terminal-000002"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000012:terminal-000008"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000016:terminal-000011"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000020:terminal-000014"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000024:terminal-000017"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000030:terminal-000023"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000036:terminal-000029"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000040:terminal-000032"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000044:terminal-000035"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000048:terminal-000038"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000052:terminal-000041"
+          }
+        ],
+        "schema_id": "causal-schema::caacd2ad5d9dc875",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "left_one",
+                "family": "trajectory",
+                "predicate": "object_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::2c27e2336d6aa3f6",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "left_one",
+                "family": "trajectory",
+                "predicate": "object_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::cf852d1087a2ddc4",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "left_one",
+                "family": "trajectory",
+                "predicate": "object_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::0bf4afe0f9c83aea",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "",
+                "family": "disappearance",
+                "predicate": "object_disappeared",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 11
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000009:terminal-000005"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000027:terminal-000020"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000033:terminal-000026"
+          }
+        ],
+        "schema_id": "causal-schema::2511a66dd27c8f03",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::8c089295c80688c6",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::82074c721dd6d15b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::87ea882d04a473a3",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "",
+                "family": "disappearance",
+                "predicate": "object_disappeared",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 3
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000010:terminal-000006"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000028:terminal-000021"
+          },
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000034:terminal-000027"
+          }
+        ],
+        "schema_id": "causal-schema::c01f61c4d4aa1fd1",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::82074c721dd6d15b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:mixed"
+            },
+            "target_role": "object:large:square:mixed"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::7aa20b921392c41c",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:mixed"
+            },
+            "target_role": "object:large:square:mixed"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::82074c721dd6d15b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:mixed"
+            },
+            "target_role": "object:large:square:mixed"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:mixed"
+            },
+            "target_role": "object:large:square:mixed"
+          }
+        ],
+        "terminal_support": 3
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000026:terminal-000019"
+          }
+        ],
+        "schema_id": "causal-schema::2197beed403f03c5",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "acted_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_column",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::82074c721dd6d15b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::7aa20b921392c41c",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::3efe6a4683786a08",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "",
+                "family": "disappearance",
+                "predicate": "object_disappeared",
+                "source_binding": "other_object",
+                "target_binding": ""
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 1
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000008:terminal-000004"
+          }
+        ],
+        "schema_id": "causal-schema::40a88102ca6bd389",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::b7fa62b7e9bbfa6d",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "few",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::82074c721dd6d15b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::3efe6a4683786a08",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "",
+                "family": "disappearance",
+                "predicate": "object_disappeared",
+                "source_binding": "other_object",
+                "target_binding": ""
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 1
+      },
+      {
+        "provenance": [
+          {
+            "source_tag": "online-controller",
+            "terminal_context": "branch-000032:terminal-000025"
+          }
+        ],
+        "schema_id": "causal-schema::48d99b0ff2d2c5a9",
+        "steps": [
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::7aa20b921392c41c",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "adjacent",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "appeared",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "broken",
+                "family": "spatial",
+                "predicate": "aligned_row",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "scale_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              }
+            ],
+            "next_subgoal": "effect::82074c721dd6d15b",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "transformation",
+                "predicate": "attribute_converted",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              }
+            ],
+            "next_subgoal": "effect::3efe6a4683786a08",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          },
+          {
+            "action_family": "point",
+            "effects": [
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "appearance",
+                "predicate": "object_appeared",
+                "source_binding": "",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_moved",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "acted_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "acted_object"
+              },
+              {
+                "direction": "",
+                "family": "correspondence",
+                "predicate": "object_correspondence_transformed",
+                "source_binding": "other_object",
+                "target_binding": "other_object"
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_decrease",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_exhaust",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "acted_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "many",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "one",
+                "family": "count",
+                "predicate": "object_count_increase",
+                "source_binding": "other_object",
+                "target_binding": ""
+              },
+              {
+                "direction": "",
+                "family": "disappearance",
+                "predicate": "object_disappeared",
+                "source_binding": "other_object",
+                "target_binding": ""
+              }
+            ],
+            "next_subgoal": "terminal_progress",
+            "precondition": {
+              "action_family_available": "point",
+              "target_role_present": "object:large:square:solid"
+            },
+            "target_role": "object:large:square:solid"
+          }
+        ],
+        "terminal_support": 1
+      }
+    ]
+  },
+  "gates": {
+    "G1_frozen_library_imported": true,
+    "G2_source_evidence_is_probe_only": true,
+    "G3_target_mechanism_activated": true,
+    "G4_zero_protected_preemptions": true,
+    "G5_target_terminal_promotion_observed": false
+  },
+  "protocol": {
+    "action_budget_per_reset": 80,
+    "library_imported_frozen": true,
+    "resets": 4,
+    "seed": 0,
+    "source_controller_available": false,
+    "target_game_ids": [
+      "tn36-ab4f63cc",
+      "cn04-65d47d14",
+      "sb26-7fbdac44"
+    ]
+  },
+  "schema_version": "sage.causal_schema_target_only.v1",
+  "targets": [
+    {
+      "delta": {
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "wins": 0
+      },
+      "game_id": "tn36-ab4f63cc",
+      "same_action_budget": true,
+      "same_fresh_reset_states": true,
+      "transfer_ablated": {
+        "actions_executed": 244,
+        "causal_schema_cross_family_adapter_confirmations": 0,
+        "causal_schema_cross_family_adapter_probes": 0,
+        "causal_schema_effect_confirmations": 0,
+        "causal_schema_probe_selections": 0,
+        "causal_schema_promotions": 0,
+        "causal_schema_terminal_backcredits": 0,
+        "controller_errors": [],
+        "frontier_context_actuator_demotions": 0,
+        "frontier_eligibility_assessments": 244,
+        "game_id": "tn36-ab4f63cc",
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "protected_route_preemptions": 0,
+        "wins": 0
+      },
+      "transfer_active": {
+        "actions_executed": 244,
+        "causal_schema_cross_family_adapter_confirmations": 0,
+        "causal_schema_cross_family_adapter_probes": 0,
+        "causal_schema_effect_confirmations": 3,
+        "causal_schema_probe_selections": 4,
+        "causal_schema_promotions": 0,
+        "causal_schema_terminal_backcredits": 0,
+        "controller_errors": [],
+        "frontier_context_actuator_demotions": 0,
+        "frontier_eligibility_assessments": 244,
+        "game_id": "tn36-ab4f63cc",
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "protected_route_preemptions": 0,
+        "wins": 0
+      },
+      "transfer_mechanisms": {
+        "branch_cap_blocks": 47,
+        "candidate_probe_selections": 4,
+        "chain_advances": 0,
+        "context_cap_blocks": 66,
+        "cross_family_adapter_confirmations": 0,
+        "cross_family_adapter_probes": 0,
+        "demoted_context_steps": 0,
+        "demotion_blocks": 0,
+        "demotions": 0,
+        "effect_confirmations": 3,
+        "effect_mismatches": 1,
+        "enabled": true,
+        "library_format_version": "sage-causal-schema-v1",
+        "library_frozen": true,
+        "local_effect_confirmation_threshold": 2,
+        "locally_confirmed_steps": 0,
+        "max_probes_per_branch": 4,
+        "max_probes_per_schema_context": 1,
+        "nonprogress_outcomes": 1,
+        "promoted_policy_selections": 0,
+        "promoted_schemas": 0,
+        "promotion_requires_target_terminal": true,
+        "promotions": 0,
+        "protected_competence_blocks": 0,
+        "selections": 4,
+        "source_evidence_grants_policy_authority": false,
+        "source_schemas": 8,
+        "terminal_backcredits": 0,
+        "unsafe_outcomes": 0
+      }
+    },
+    {
+      "delta": {
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "wins": 0
+      },
+      "game_id": "cn04-65d47d14",
+      "same_action_budget": true,
+      "same_fresh_reset_states": true,
+      "transfer_ablated": {
+        "actions_executed": 320,
+        "causal_schema_cross_family_adapter_confirmations": 0,
+        "causal_schema_cross_family_adapter_probes": 0,
+        "causal_schema_effect_confirmations": 0,
+        "causal_schema_probe_selections": 0,
+        "causal_schema_promotions": 0,
+        "causal_schema_terminal_backcredits": 0,
+        "controller_errors": [],
+        "frontier_context_actuator_demotions": 0,
+        "frontier_eligibility_assessments": 320,
+        "game_id": "cn04-65d47d14",
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "protected_route_preemptions": 0,
+        "wins": 0
+      },
+      "transfer_active": {
+        "actions_executed": 320,
+        "causal_schema_cross_family_adapter_confirmations": 1,
+        "causal_schema_cross_family_adapter_probes": 2,
+        "causal_schema_effect_confirmations": 2,
+        "causal_schema_probe_selections": 4,
+        "causal_schema_promotions": 0,
+        "causal_schema_terminal_backcredits": 0,
+        "controller_errors": [],
+        "frontier_context_actuator_demotions": 0,
+        "frontier_eligibility_assessments": 320,
+        "game_id": "cn04-65d47d14",
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "protected_route_preemptions": 0,
+        "wins": 0
+      },
+      "transfer_mechanisms": {
+        "branch_cap_blocks": 69,
+        "candidate_probe_selections": 4,
+        "chain_advances": 0,
+        "context_cap_blocks": 9,
+        "cross_family_adapter_confirmations": 1,
+        "cross_family_adapter_probes": 2,
+        "demoted_context_steps": 0,
+        "demotion_blocks": 0,
+        "demotions": 0,
+        "effect_confirmations": 2,
+        "effect_mismatches": 2,
+        "enabled": true,
+        "library_format_version": "sage-causal-schema-v1",
+        "library_frozen": true,
+        "local_effect_confirmation_threshold": 2,
+        "locally_confirmed_steps": 0,
+        "max_probes_per_branch": 4,
+        "max_probes_per_schema_context": 1,
+        "nonprogress_outcomes": 2,
+        "promoted_policy_selections": 0,
+        "promoted_schemas": 0,
+        "promotion_requires_target_terminal": true,
+        "promotions": 0,
+        "protected_competence_blocks": 0,
+        "selections": 4,
+        "source_evidence_grants_policy_authority": false,
+        "source_schemas": 8,
+        "terminal_backcredits": 0,
+        "unsafe_outcomes": 0
+      }
+    },
+    {
+      "delta": {
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "wins": 0
+      },
+      "game_id": "sb26-7fbdac44",
+      "same_action_budget": true,
+      "same_fresh_reset_states": true,
+      "transfer_ablated": {
+        "actions_executed": 320,
+        "causal_schema_cross_family_adapter_confirmations": 0,
+        "causal_schema_cross_family_adapter_probes": 0,
+        "causal_schema_effect_confirmations": 0,
+        "causal_schema_probe_selections": 0,
+        "causal_schema_promotions": 0,
+        "causal_schema_terminal_backcredits": 0,
+        "controller_errors": [],
+        "frontier_context_actuator_demotions": 0,
+        "frontier_eligibility_assessments": 320,
+        "game_id": "sb26-7fbdac44",
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "protected_route_preemptions": 0,
+        "wins": 0
+      },
+      "transfer_active": {
+        "actions_executed": 320,
+        "causal_schema_cross_family_adapter_confirmations": 2,
+        "causal_schema_cross_family_adapter_probes": 2,
+        "causal_schema_effect_confirmations": 2,
+        "causal_schema_probe_selections": 4,
+        "causal_schema_promotions": 0,
+        "causal_schema_terminal_backcredits": 0,
+        "controller_errors": [],
+        "frontier_context_actuator_demotions": 0,
+        "frontier_eligibility_assessments": 320,
+        "game_id": "sb26-7fbdac44",
+        "levels_completed": 0,
+        "max_level_reached": 0,
+        "protected_route_preemptions": 0,
+        "wins": 0
+      },
+      "transfer_mechanisms": {
+        "branch_cap_blocks": 70,
+        "candidate_probe_selections": 4,
+        "chain_advances": 0,
+        "context_cap_blocks": 2,
+        "cross_family_adapter_confirmations": 2,
+        "cross_family_adapter_probes": 2,
+        "demoted_context_steps": 0,
+        "demotion_blocks": 0,
+        "demotions": 0,
+        "effect_confirmations": 2,
+        "effect_mismatches": 2,
+        "enabled": true,
+        "library_format_version": "sage-causal-schema-v1",
+        "library_frozen": true,
+        "local_effect_confirmation_threshold": 2,
+        "locally_confirmed_steps": 0,
+        "max_probes_per_branch": 4,
+        "max_probes_per_schema_context": 1,
+        "nonprogress_outcomes": 2,
+        "promoted_policy_selections": 0,
+        "promoted_schemas": 0,
+        "promotion_requires_target_terminal": true,
+        "promotions": 0,
+        "protected_competence_blocks": 0,
+        "selections": 4,
+        "source_evidence_grants_policy_authority": false,
+        "source_schemas": 8,
+        "terminal_backcredits": 0,
+        "unsafe_outcomes": 0
+      }
+    }
+  ]
+}

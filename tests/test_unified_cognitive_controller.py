@@ -578,6 +578,7 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
             action_args={"x": 7, "y": 5},
         ),
     )
+    frontier = None
     for _ in range(8):
         decision = controller.select_action(
             current_grid=grid,
@@ -586,6 +587,9 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
             legacy_action="ACTION6",
             legacy_action_data={"x": 7, "y": 5},
         )
+        if decision.source == "frontier_oriented_experiment":
+            frontier = decision
+            break
         controller.observe_transition(
             action=decision.action_name,
             action_data=decision.action_data,
@@ -594,14 +598,7 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
             available_actions=["ACTION6"],
         )
 
-    frontier = controller.select_action(
-        current_grid=grid,
-        available_actions=["ACTION6"],
-        available_action_candidates=candidates,
-        legacy_action="ACTION6",
-        legacy_action_data={"x": 7, "y": 5},
-    )
-
+    assert frontier is not None
     assert frontier.source == "frontier_oriented_experiment"
     assert frontier.frontier_oriented_experiment is True
     assert frontier.frontier_state_action_untested is True
@@ -623,6 +620,102 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
     assert summary["experiments"] == 1
     assert summary["productive_experiments"] == 1
     assert summary["novel_effects"] == 1
+
+
+def test_protected_progressive_route_outranks_stalled_frontier(monkeypatch):
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            frontier_exploration_min_failed_branches=0,
+        ),
+    )
+    frontier_calls = []
+    monkeypatch.setattr(
+        controller.terminal_frontiers,
+        "progressive_route_startable",
+        lambda **_kwargs: True,
+    )
+    monkeypatch.setattr(
+        controller,
+        "_select_progressive_terminal_route",
+        lambda _observation, _actions: CognitiveDecision(
+            action_name="ACTION1",
+            source="terminal_progressive_route",
+            terminal_progressive_route=True,
+        ),
+    )
+    monkeypatch.setattr(
+        controller,
+        "_select_frontier_oriented_experiment",
+        lambda *_args, **_kwargs: frontier_calls.append(True),
+    )
+    monkeypatch.setattr(
+        controller.progress,
+        "should_kill_branch",
+        lambda: True,
+    )
+
+    decision = controller.select_action(
+        current_grid=_player_grid(2),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+
+    assert decision.source == "terminal_progressive_route"
+    assert frontier_calls == []
+    assert controller.summary()["protected_route_preemptions"] == 0
+
+
+def test_controller_assesses_frontier_without_outer_kill_branch_gate(
+    monkeypatch,
+):
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            enable_active_goal_hypotheses=False,
+            enable_operator_planning=False,
+            enable_theory_planning=False,
+            enable_terminal_negative_frontier_exploration=False,
+            enable_terminal_relational_stencil_induction=False,
+            enable_terminal_multiform_relational_induction=False,
+            frontier_exploration_min_stagnant_steps=2,
+            frontier_exploration_min_failed_branches=0,
+        ),
+    )
+    monkeypatch.setattr(
+        controller.progress,
+        "should_kill_branch",
+        lambda: False,
+    )
+    monkeypatch.setattr(
+        controller.progress,
+        "branch_diagnostics",
+        lambda: {
+            "branch_id": 0,
+            "branch_actions": 8,
+            "actions_since_terminal_improvement": 8,
+            "max_hash_repeat": 1,
+            "max_diff_repeat": 1,
+            "unique_states_in_window": 8,
+            "window_actions": 8,
+        },
+    )
+
+    decision = controller.select_action(
+        current_grid=_player_grid(2),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+
+    assert decision.source == "frontier_oriented_experiment"
+    assert (
+        controller.summary()["frontier_eligibility_assessments"]
+        == 1
+    )
 
 
 def test_controller_relays_delayed_frontier_credit_to_multiform_memory():

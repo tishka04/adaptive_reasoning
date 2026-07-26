@@ -763,6 +763,116 @@ class OnlineTerminalFrontierExplorer:
             for frontier in self._frontiers.values()
         )
 
+    def progressive_route_startable(
+        self,
+        *,
+        state_signature: str,
+        available_actions: Sequence[str],
+    ) -> bool:
+        """Return whether an exact progressive route can emit an action now.
+
+        This is deliberately a read-only availability probe.  Arbitration can
+        therefore protect branch step zero without consuming the one permitted
+        route-start check.
+        """
+        if (
+            not self.enabled
+            or not self.enable_progressive_terminal_routes
+            or self._active is not None
+            or self._active_reacquisition is not None
+        ):
+            return False
+        state = str(state_signature)
+        allowed = {str(action).upper() for action in available_actions}
+        active = self._active_progressive_route
+        if active is not None:
+            if active.pending is not None:
+                return False
+            step = len(active.actions)
+            route = active.route
+            return bool(
+                step < len(route.actions)
+                and step < len(route.state_signatures)
+                and route.state_signatures[step] == state
+                and route.actions[step].action_name in allowed
+            )
+        if self._progressive_route_start_checked or self._branch_actions:
+            return False
+        return any(
+            route.actions
+            and route.state_signatures
+            and route.state_signatures[0] == state
+            and route.actions[0].action_name in allowed
+            and route.refutations == 0
+            and route.attempts < self.max_progressive_route_attempts
+            for frontier in self._frontiers.values()
+            for route in frontier.progressive_terminal_routes.values()
+        )
+
+    def reacquisition_startable(
+        self,
+        *,
+        state_signature: str,
+        available_actions: Sequence[str],
+    ) -> bool:
+        """Return whether an exact frontier-reacquisition action can run now."""
+        if (
+            not self.enabled
+            or not self.enable_active_frontier_reacquisition
+            or self._active is not None
+            or self._active_progressive_route is not None
+        ):
+            return False
+        state = str(state_signature)
+        allowed = {str(action).upper() for action in available_actions}
+        active = self._active_reacquisition
+        if active is not None:
+            if active.pending is not None:
+                return False
+            step = len(active.actions)
+            path = active.path
+            return bool(
+                step < len(path.actions)
+                and step < len(path.state_signatures)
+                and path.state_signatures[step] == state
+                and path.actions[step].action_name in allowed
+            )
+        if self._reacquisition_start_checked or self._branch_actions:
+            return False
+        return any(
+            frontier.frontier_kind == "structural_change"
+            and bool(frontier.successful_continuations)
+            and any(
+                path.actions
+                and path.state_signatures
+                and path.state_signatures[0] == state
+                and path.actions[0].action_name in allowed
+                and path.attempts
+                < self.max_frontier_reacquisition_attempts
+                for path in frontier.acquisition_paths.values()
+            )
+            for frontier in self._frontiers.values()
+        )
+
+    @property
+    def pending_scientific_replay_priority(self) -> bool:
+        """Whether an exact frontier confirmation must keep policy priority."""
+        return bool(
+            self._active is not None
+            or self._active_reacquisition is not None
+            or self._active_progressive_route is not None
+            or any(
+                candidate.confirmations == 0
+                and candidate.refutations == 0
+                and candidate.replay_attempts
+                < self.max_dormant_candidate_replays
+                for frontier in self._frontiers.values()
+                for candidate in (
+                    frontier.dormant_terminal_candidates.values()
+                )
+            )
+        )
+
     def remember_action(
         self,
         state_signature: str,

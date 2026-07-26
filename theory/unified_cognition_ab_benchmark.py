@@ -43,7 +43,7 @@ DEFAULT_OUTPUT_PATH = (
 DEFAULT_HELD_OUT_GAMES = tuple(
     game_splits.resolve("public_unseen_split", full_ids=True)
 )
-SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v41"
+SCHEMA_VERSION = "sage.unified_cognition_ab_held_out.v42"
 WIN_STATES = {"WIN", "WON", "VICTORY"}
 TERMINAL_STATES = WIN_STATES | {"GAME_OVER", "TERMINATED", "FINISHED"}
 EXPERIMENT_SOURCES = {
@@ -64,6 +64,8 @@ EXPERIMENT_SOURCES = {
     "causal_option_mediated_replication",
     "structural_break_experiment",
     "frontier_oriented_experiment",
+    "transfer_causal_schema_probe",
+    "level_route_shortening_probe",
 }
 MULTIFORM_RELATION_FAMILIES = (
     "correspondence",
@@ -492,6 +494,11 @@ def run_unified_cognition_ab_benchmark(
     enable_hierarchical_structural_theory_composition: bool = True,
     enable_frontier_oriented_exploration: bool = True,
     enable_delayed_frontier_terminal_credit: bool = True,
+    enable_subeffect_eligibility_relay: bool = True,
+    enable_generalized_frontier_stall_detection: bool = True,
+    enable_per_level_frontier_rearming: bool = True,
+    enable_level_route_memory: bool = True,
+    enable_level_route_shortening: bool = True,
     enable_terminal_multiform_relational_induction: bool = True,
     write_path: str | Path | None = None,
     include_traces: bool = False,
@@ -706,6 +713,11 @@ def run_unified_cognition_ab_benchmark(
         or not enable_hierarchical_structural_theory_composition
         or not enable_frontier_oriented_exploration
         or not enable_delayed_frontier_terminal_credit
+        or not enable_subeffect_eligibility_relay
+        or not enable_generalized_frontier_stall_detection
+        or not enable_per_level_frontier_rearming
+        or not enable_level_route_memory
+        or not enable_level_route_shortening
         or not enable_terminal_multiform_relational_induction
     ):
         def _configured_structural_revision_controller(
@@ -737,6 +749,21 @@ def run_unified_cognition_ab_benchmark(
                     ),
                     enable_delayed_frontier_terminal_credit=(
                         enable_delayed_frontier_terminal_credit
+                    ),
+                    enable_subeffect_eligibility_relay=(
+                        enable_subeffect_eligibility_relay
+                    ),
+                    enable_generalized_frontier_stall_detection=(
+                        enable_generalized_frontier_stall_detection
+                    ),
+                    enable_per_level_frontier_rearming=(
+                        enable_per_level_frontier_rearming
+                    ),
+                    enable_level_route_memory=(
+                        enable_level_route_memory
+                    ),
+                    enable_level_route_shortening=(
+                        enable_level_route_shortening
                     ),
                     enable_terminal_multiform_relational_induction=(
                         enable_terminal_multiform_relational_induction
@@ -904,6 +931,17 @@ def run_unified_cognition_ab_benchmark(
         delayed_frontier_terminal_credit_enabled=(
             enable_delayed_frontier_terminal_credit
         ),
+        subeffect_eligibility_relay_enabled=(
+            enable_subeffect_eligibility_relay
+        ),
+        generalized_frontier_stall_detection_enabled=(
+            enable_generalized_frontier_stall_detection
+        ),
+        per_level_frontier_rearming_enabled=(
+            enable_per_level_frontier_rearming
+        ),
+        level_route_memory_enabled=enable_level_route_memory,
+        level_route_shortening_enabled=enable_level_route_shortening,
         terminal_multiform_relational_induction_enabled=(
             enable_terminal_multiform_relational_induction
         ),
@@ -1074,6 +1112,9 @@ def _run_arm(
         )
         or {}
     )
+    level_route_summary = dict(
+        controller_summary.get("level_route_memory", {}) or {}
+    )
     multiform_summary = dict(
         controller_summary.get(
             "terminal_multiform_relational_induction",
@@ -1081,7 +1122,25 @@ def _run_arm(
         )
         or {}
     )
+    causal_schema_export_summary = dict(
+        controller_summary.get(
+            "transferable_causal_schema_export",
+            {},
+        )
+        or {}
+    )
+    causal_schema_transfer_summary = dict(
+        controller_summary.get(
+            "transferable_causal_schema_transfer",
+            {},
+        )
+        or {}
+    )
     return {
+        "protected_route_preemptions": int(
+            controller_summary.get("protected_route_preemptions", 0)
+            or 0
+        ),
         "arm": arm,
         "game_id": game_id,
         "seed": seed,
@@ -1790,6 +1849,88 @@ def _run_arm(
             )
             or 0
         ),
+        "frontier_subeffect_relays_created": int(
+            frontier_exploration_summary.get(
+                "subeffect_relays_created",
+                0,
+            )
+            or 0
+        ),
+        "frontier_effect_novelty_stalls": int(
+            frontier_exploration_summary.get(
+                "effect_novelty_stalls",
+                0,
+            )
+            or 0
+        ),
+        "frontier_actuator_coverage_stalls": int(
+            frontier_exploration_summary.get(
+                "actuator_coverage_stalls",
+                0,
+            )
+            or 0
+        ),
+        "frontier_zero_terminal_branch_stalls": int(
+            frontier_exploration_summary.get(
+                "zero_terminal_branch_stalls",
+                0,
+            )
+            or 0
+        ),
+        "frontier_level_changes_observed": int(
+            frontier_exploration_summary.get(
+                "level_changes_observed",
+                0,
+            )
+            or 0
+        ),
+        "frontier_per_level_rearms": int(
+            frontier_exploration_summary.get(
+                "per_level_rearms",
+                0,
+            )
+            or 0
+        ),
+        "level_routes_observed": int(
+            level_route_summary.get("observed_routes", 0) or 0
+        ),
+        "level_routes_confirmed": int(
+            level_route_summary.get("confirmed_routes", 0) or 0
+        ),
+        "level_route_replay_attempts": int(
+            level_route_summary.get("route_replay_attempts", 0) or 0
+        ),
+        "level_route_replay_actions": int(
+            level_route_summary.get("route_replay_actions", 0) or 0
+        ),
+        "level_route_confirmations": int(
+            level_route_summary.get("route_confirmations", 0) or 0
+        ),
+        "level_route_refutations": int(
+            level_route_summary.get("route_refutations", 0) or 0
+        ),
+        "level_route_divergences": int(
+            level_route_summary.get("route_divergences", 0) or 0
+        ),
+        "level_route_shortening_candidates": int(
+            level_route_summary.get("shortening_candidates", 0) or 0
+        ),
+        "level_route_shortening_confirmations": int(
+            level_route_summary.get(
+                "shortening_confirmations",
+                0,
+            )
+            or 0
+        ),
+        "level_route_shortening_refutations": int(
+            level_route_summary.get("shortening_refutations", 0) or 0
+        ),
+        "level_route_shortening_actions_saved": int(
+            level_route_summary.get("shortening_actions_saved", 0) or 0
+        ),
+        "level_route_completed_levels_measured": int(
+            level_route_summary.get("completed_levels_measured", 0) or 0
+        ),
         "frontier_expired_delayed_eligibilities": int(
             frontier_exploration_summary.get(
                 "expired_delayed_eligibilities",
@@ -1821,6 +1962,82 @@ def _run_arm(
         "frontier_information_gain": float(
             frontier_exploration_summary.get("information_gain", 0.0)
             or 0.0
+        ),
+        "frontier_eligibility_assessments": int(
+            controller_summary.get(
+                "frontier_eligibility_assessments",
+                0,
+            )
+            or 0
+        ),
+        "frontier_context_actuator_demotions": int(
+            frontier_exploration_summary.get(
+                "context_actuator_demotions",
+                0,
+            )
+            or 0
+        ),
+        "frontier_context_actuator_demotion_blocks": int(
+            frontier_exploration_summary.get(
+                "context_actuator_demotion_blocks",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_exported": int(
+            causal_schema_export_summary.get("frozen_schemas", 0) or 0
+        ),
+        "causal_schema_terminal_chains": int(
+            causal_schema_export_summary.get(
+                "terminal_chains_observed",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_probe_selections": int(
+            causal_schema_transfer_summary.get(
+                "candidate_probe_selections",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_effect_confirmations": int(
+            causal_schema_transfer_summary.get(
+                "effect_confirmations",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_chain_advances": int(
+            causal_schema_transfer_summary.get("chain_advances", 0)
+            or 0
+        ),
+        "causal_schema_terminal_backcredits": int(
+            causal_schema_transfer_summary.get(
+                "terminal_backcredits",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_promotions": int(
+            causal_schema_transfer_summary.get("promotions", 0) or 0
+        ),
+        "causal_schema_demotions": int(
+            causal_schema_transfer_summary.get("demotions", 0) or 0
+        ),
+        "causal_schema_cross_family_adapter_probes": int(
+            causal_schema_transfer_summary.get(
+                "cross_family_adapter_probes",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_cross_family_adapter_confirmations": int(
+            causal_schema_transfer_summary.get(
+                "cross_family_adapter_confirmations",
+                0,
+            )
+            or 0
         ),
         "terminal_multiform_observations": int(
             multiform_summary.get("observations", 0) or 0
@@ -1854,6 +2071,28 @@ def _run_arm(
         ),
         "terminal_multiform_unsafe_model_blocks": int(
             multiform_summary.get("unsafe_model_blocks", 0) or 0
+        ),
+        "terminal_multiform_branch_cap_blocks": int(
+            multiform_summary.get("branch_cap_blocks", 0) or 0
+        ),
+        "terminal_multiform_context_cap_blocks": int(
+            multiform_summary.get("context_cap_blocks", 0) or 0
+        ),
+        "terminal_multiform_nonprogress_outcomes": int(
+            multiform_summary.get(
+                "nonprogress_selection_outcomes",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_demotions": int(
+            multiform_summary.get("demotions", 0) or 0
+        ),
+        "terminal_multiform_reactivations": int(
+            multiform_summary.get("reactivations", 0) or 0
+        ),
+        "terminal_multiform_level_gating_blocks": int(
+            multiform_summary.get("level_gating_blocks", 0) or 0
         ),
         "terminal_multiform_delayed_frontier_eligibilities_registered": int(
             multiform_summary.get(
@@ -3055,6 +3294,11 @@ def _summarize_benchmark(
     hierarchical_structural_theory_composition_enabled: bool,
     frontier_oriented_exploration_enabled: bool,
     delayed_frontier_terminal_credit_enabled: bool,
+    subeffect_eligibility_relay_enabled: bool,
+    generalized_frontier_stall_detection_enabled: bool,
+    per_level_frontier_rearming_enabled: bool,
+    level_route_memory_enabled: bool,
+    level_route_shortening_enabled: bool,
     terminal_multiform_relational_induction_enabled: bool,
 ) -> Dict[str, Any]:
     legacy = _aggregate_arm(pairs, "legacy_only")
@@ -3198,6 +3442,21 @@ def _summarize_benchmark(
             "delayed_frontier_terminal_credit_enabled_in_unified": bool(
                 delayed_frontier_terminal_credit_enabled
             ),
+            "subeffect_eligibility_relay_enabled_in_unified": bool(
+                subeffect_eligibility_relay_enabled
+            ),
+            "generalized_frontier_stall_detection_enabled_in_unified": bool(
+                generalized_frontier_stall_detection_enabled
+            ),
+            "per_level_frontier_rearming_enabled_in_unified": bool(
+                per_level_frontier_rearming_enabled
+            ),
+            "level_route_memory_enabled_in_unified": bool(
+                level_route_memory_enabled
+            ),
+            "level_route_shortening_enabled_in_unified": bool(
+                level_route_shortening_enabled
+            ),
             "terminal_multiform_relational_induction_enabled_in_unified": bool(
                 terminal_multiform_relational_induction_enabled
             ),
@@ -3292,6 +3551,29 @@ def _summarize_benchmark(
                     "terminal_multiform_delayed_frontier_pattern_credits"
                 ]
                 > 0
+            )
+        ),
+        "subeffect_eligibility_relay_gate_passed": bool(
+            unified["frontier_subeffect_relays_created"] > 0
+            and unified["frontier_delayed_terminal_credits"] > 0
+        ),
+        "generalized_frontier_stall_gate_passed": bool(
+            (
+                unified["frontier_effect_novelty_stalls"] > 0
+                or unified["frontier_actuator_coverage_stalls"] > 0
+                or unified["frontier_zero_terminal_branch_stalls"] > 0
+            )
+            and unified["frontier_experiments"] > 0
+        ),
+        "per_level_frontier_rearming_gate_passed": bool(
+            unified["frontier_per_level_rearms"] > 0
+            and unified["frontier_experiments"] > 0
+        ),
+        "level_route_efficiency_gate_passed": bool(
+            unified["level_route_confirmations"] > 0
+            and (
+                unified["level_route_shortening_confirmations"] > 0
+                or unified["level_route_replay_actions"] > 0
             )
         ),
         "multiform_relational_induction_gate_passed": bool(
@@ -3812,10 +4094,28 @@ def _aggregate_arm(
                 "frontier_delayed_terminal_events",
                 "frontier_delayed_terminal_credits",
                 "frontier_delayed_credit_delay_actions",
+                "frontier_subeffect_relays_created",
+                "frontier_effect_novelty_stalls",
+                "frontier_actuator_coverage_stalls",
+                "frontier_zero_terminal_branch_stalls",
+                "frontier_level_changes_observed",
+                "frontier_per_level_rearms",
                 "frontier_expired_delayed_eligibilities",
                 "frontier_discarded_delayed_eligibilities",
                 "frontier_censored_delayed_eligibilities",
                 "frontier_unsafe_delayed_eligibilities",
+                "level_routes_observed",
+                "level_routes_confirmed",
+                "level_route_replay_attempts",
+                "level_route_replay_actions",
+                "level_route_confirmations",
+                "level_route_refutations",
+                "level_route_divergences",
+                "level_route_shortening_candidates",
+                "level_route_shortening_confirmations",
+                "level_route_shortening_refutations",
+                "level_route_shortening_actions_saved",
+                "level_route_completed_levels_measured",
             )
         },
         "frontier_delayed_credit_max_delay": max(
@@ -5148,6 +5448,35 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--disable-subeffect-eligibility-relay",
+        action="store_true",
+        help=(
+            "Ablate SAGE.10b identity-preserving sub-effect relay only."
+        ),
+    )
+    parser.add_argument(
+        "--disable-generalized-frontier-stall-detection",
+        action="store_true",
+        help=(
+            "Ablate SAGE.10c effect, actuator-coverage, and branch stalls."
+        ),
+    )
+    parser.add_argument(
+        "--disable-per-level-frontier-rearming",
+        action="store_true",
+        help="Ablate SAGE.10d level-scoped explorer re-arming only.",
+    )
+    parser.add_argument(
+        "--disable-level-route-memory",
+        action="store_true",
+        help="Ablate SAGE.10e exact per-level route memory only.",
+    )
+    parser.add_argument(
+        "--disable-level-route-shortening",
+        action="store_true",
+        help="Ablate SAGE.10e verified route shortening only.",
+    )
+    parser.add_argument(
         "--disable-terminal-multiform-relational-induction",
         action="store_true",
         help=(
@@ -5285,6 +5614,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         ),
         enable_delayed_frontier_terminal_credit=(
             not args.disable_delayed_frontier_terminal_credit
+        ),
+        enable_subeffect_eligibility_relay=(
+            not args.disable_subeffect_eligibility_relay
+        ),
+        enable_generalized_frontier_stall_detection=(
+            not args.disable_generalized_frontier_stall_detection
+        ),
+        enable_per_level_frontier_rearming=(
+            not args.disable_per_level_frontier_rearming
+        ),
+        enable_level_route_memory=(
+            not args.disable_level_route_memory
+        ),
+        enable_level_route_shortening=(
+            not args.disable_level_route_shortening
         ),
         enable_terminal_multiform_relational_induction=(
             not args.disable_terminal_multiform_relational_induction

@@ -160,6 +160,27 @@ def test_causal_edge_compiles_into_a_state_guarded_temporal_plan():
     assert plan.causal_edge_utility < initial_utility
 
 
+def test_effect_link_query_requires_productive_shared_edge_evidence():
+    store, source_id, target_id = _store()
+    graph = OnlineCausalSubgoalGraph()
+    observation = _observation(_grid())
+    graph.note_blocked(target_id, observation, store)
+    edge = _edge_for(graph, source_id, target_id)
+    edge.effect_evidence["effect-a"] = CausalMechanicEvidence(
+        signature="effect-a",
+        observations=1,
+        source_progress_events=1,
+    )
+    edge.effect_evidence["effect-b"] = CausalMechanicEvidence(
+        signature="effect-b",
+        observations=1,
+        enablement_successes=1,
+    )
+
+    assert graph.effects_causally_linked("effect-a", "effect-b") is True
+    assert graph.effects_causally_linked("effect-a", "unknown") is False
+
+
 def test_two_independent_availability_recoveries_confirm_an_edge_only():
     store, source_id, target_id = _store()
     graph = OnlineCausalSubgoalGraph(minimum_independent_support=2)

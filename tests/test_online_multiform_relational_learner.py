@@ -13,12 +13,12 @@ from theory.online_multiform_relational_learner import (
 )
 
 
-def _observation(grid: np.ndarray):
+def _observation(grid: np.ndarray, *, level: int = 0):
     return build_observation(
         grid,
         available_actions=("ACTION6",),
         game_state="NOT_FINISHED",
-        levels_completed=0,
+        levels_completed=level,
         infer_players=False,
     )
 
@@ -285,3 +285,103 @@ def test_multiform_learner_ablation_is_inert():
         game_over=False,
     ) == ()
     assert learner.summary()["observations"] == 0
+
+
+def test_multiform_demotes_two_nonprogress_selections_then_reactivates():
+    learner = OnlineMultiformRelationalLearner(
+        minimum_terminal_support=1,
+        max_selections_per_branch=10,
+        max_selections_per_context=10,
+        nonprogress_demotion_threshold=2,
+    )
+    empty = np.zeros((9, 11), dtype=np.int32)
+    training = _square_grid(color=2, row=1, column=1)
+    learner.start_branch()
+    learner.observe_transition(
+        observation_before=_observation(training),
+        observation_after=_observation(empty),
+        action_name="ACTION6",
+        action_data={"x": 1, "y": 1},
+        terminal_success=True,
+        game_over=False,
+    )
+    target = _square_grid(color=7, row=4, column=5)
+    candidate = (
+        SimpleNamespace(
+            name="ACTION6",
+            action_args={"x": 5, "y": 4},
+        ),
+    )
+
+    for _ in range(2):
+        selection = learner.select(
+            observation=_observation(target),
+            available_actions=("ACTION6",),
+            available_action_candidates=candidate,
+        )
+        assert selection is not None
+        learner.observe_transition(
+            observation_before=_observation(target),
+            observation_after=_observation(target),
+            action_name="ACTION6",
+            action_data=selection.action_data,
+            terminal_success=False,
+            game_over=False,
+        )
+
+    assert learner.select(
+        observation=_observation(target),
+        available_actions=("ACTION6",),
+        available_action_candidates=candidate,
+    ) is None
+    assert learner.summary()["demotions"] == 1
+
+    learner.start_branch()
+    support = _square_grid(color=9, row=2, column=3)
+    learner.observe_transition(
+        observation_before=_observation(support),
+        observation_after=_observation(empty),
+        action_name="ACTION6",
+        action_data={"x": 3, "y": 2},
+        terminal_success=True,
+        game_over=False,
+    )
+    reactivated = learner.select(
+        observation=_observation(target),
+        available_actions=("ACTION6",),
+        available_action_candidates=candidate,
+    )
+
+    assert reactivated is not None
+    assert learner.summary()["reactivations"] == 1
+
+
+def test_multiform_requires_level_specific_evidence_for_cross_level_use():
+    learner = OnlineMultiformRelationalLearner(
+        minimum_terminal_support=1,
+    )
+    before = _square_grid()
+    empty = np.zeros_like(before)
+    learner.start_branch()
+    learner.observe_transition(
+        observation_before=_observation(before, level=0),
+        observation_after=_observation(empty, level=1),
+        action_name="ACTION6",
+        action_data={"x": 2, "y": 2},
+        terminal_success=True,
+        game_over=False,
+    )
+
+    selection = learner.select(
+        observation=_observation(before, level=1),
+        available_actions=("ACTION6",),
+        available_action_candidates=(
+            SimpleNamespace(
+                name="ACTION6",
+                action_args={"x": 2, "y": 2},
+            ),
+        ),
+    )
+
+    assert selection is None
+    assert learner.summary()["level_gating_blocks"] > 0

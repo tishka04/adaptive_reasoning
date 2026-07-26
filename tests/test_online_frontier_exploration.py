@@ -53,6 +53,23 @@ def test_frontier_exploration_waits_for_observed_stagnation():
     assert explorer.summary()["experiments"] == 0
 
 
+def test_protected_competence_blocks_rearmed_or_active_frontier_authority():
+    explorer = OnlineFrontierExplorer(minimum_stagnant_steps=1)
+
+    selected = explorer.select(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=_stalled(),
+        protected_competence_available=True,
+    )
+
+    assert selected is None
+    summary = explorer.summary()
+    assert summary["experiments"] == 0
+    assert summary["protected_competence_blocks"] == 1
+
+
 def test_frontier_exploration_selects_and_credits_untested_actuator():
     explorer = OnlineFrontierExplorer(minimum_stagnant_steps=2)
     before = _grid()
@@ -493,6 +510,290 @@ def test_delayed_credit_selects_at_most_one_action_per_sequence():
         update.credited[0].eligibility_id,
         update.discarded_eligibility_ids[0],
     } == all_ids
+
+
+def test_subeffect_relay_refreshes_identity_and_enables_terminal_credit():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        delayed_terminal_credit_window=1,
+        max_subeffect_relay_depth=3,
+    )
+    before = _grid()
+    selected = explorer.select(
+        current_grid=before,
+        available_actions=("ACTION6",),
+        available_action_candidates=(
+            _Action("ACTION6", {"x": 2, "y": 2}),
+        ),
+        branch_diagnostics=_stalled(),
+    )
+    assert selected is not None
+    after = before.copy()
+    after[2, 2] = 8
+    outcome = explorer.observe_transition(
+        grid_before=before,
+        grid_after=after,
+        action_name=selected.action_name,
+        action_data=selected.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=False,
+        causal_effect_signature="effect-a",
+    )
+    eligibility_id = outcome["delayed_credit_eligibility_id"]
+    explorer.note_transition(
+        terminal_success=False,
+        grid_before=before,
+        grid_after=after,
+        action_data=selected.action_data,
+        causal_effect_signature="effect-a",
+    )
+    middle = after.copy()
+    middle[3, 2] = 8
+    relay = explorer.note_transition(
+        terminal_success=False,
+        grid_before=after,
+        grid_after=middle,
+        action_data={"x": 2, "y": 2},
+        causal_effect_signature="effect-b",
+        causally_linked_effect_signatures=("effect-a",),
+    )
+    credit = explorer.note_transition(terminal_success=True)
+
+    assert relay.relayed_eligibility_ids == (eligibility_id,)
+    assert len(credit.credited) == 1
+    assert credit.credited[0].eligibility_id == eligibility_id
+    assert credit.credited[0].relay_hops == 1
+    assert credit.credited[0].delay_actions == 2
+    summary = explorer.summary()
+    assert summary["subeffect_relays_created"] == 1
+    assert summary["subeffect_relay_depth_histogram"] == {"1": 1}
+
+
+def test_subeffect_relay_is_bounded_and_ablatable():
+    for enabled, expected in ((True, 1), (False, 0)):
+        explorer = OnlineFrontierExplorer(
+            minimum_stagnant_steps=1,
+            delayed_terminal_credit_window=1,
+            max_subeffect_relay_depth=1,
+            enable_subeffect_eligibility_relay=enabled,
+        )
+        before = _grid()
+        selected = explorer.select(
+            current_grid=before,
+            available_actions=("ACTION6",),
+            available_action_candidates=(
+                _Action("ACTION6", {"x": 2, "y": 2}),
+            ),
+            branch_diagnostics=_stalled(),
+        )
+        assert selected is not None
+        after = before.copy()
+        after[2, 2] = 8
+        explorer.observe_transition(
+            grid_before=before,
+            grid_after=after,
+            action_name=selected.action_name,
+            action_data=selected.action_data,
+            no_effect=False,
+            game_over=False,
+            terminal_success=False,
+            causal_effect_signature="effect-a",
+        )
+        explorer.note_transition(
+            terminal_success=False,
+            grid_before=before,
+            grid_after=after,
+            action_data=selected.action_data,
+        )
+        later = after.copy()
+        later[3, 2] = 8
+        explorer.note_transition(
+            terminal_success=False,
+            grid_before=after,
+            grid_after=later,
+            action_data={"x": 2, "y": 2},
+            causal_effect_signature="effect-b",
+            causally_linked_effect_signatures=("effect-a",),
+        )
+        later_again = later.copy()
+        later_again[3, 3] = 8
+        explorer.note_transition(
+            terminal_success=False,
+            grid_before=later,
+            grid_after=later_again,
+            action_data={"x": 2, "y": 2},
+        )
+        assert explorer.summary()["subeffect_relays_created"] == expected
+
+
+def test_generalized_stall_fires_without_state_recurrence():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=3,
+        minimum_failed_branches=0,
+        enable_generalized_stall_detection=True,
+    )
+    decision = explorer.select(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics={
+            "branch_actions": 8,
+            "actions_since_terminal_improvement": 8,
+            "max_hash_repeat": 1,
+            "unique_states_in_window": 8,
+            "window_actions": 8,
+        },
+    )
+
+    assert decision is not None
+    summary = explorer.summary()
+    assert summary["actuator_coverage_stalls"] == 1
+    assert summary["last_stall_reasons"] == [
+        "actuator_coverage_stall"
+    ]
+
+
+def test_eligibility_assessment_is_read_only_and_directly_selectable():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=3,
+        minimum_failed_branches=0,
+    )
+    diagnostics = {
+        "branch_actions": 8,
+        "actions_since_terminal_improvement": 8,
+        "max_hash_repeat": 1,
+        "unique_states_in_window": 8,
+        "window_actions": 8,
+    }
+    first = explorer.assess_eligibility(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=diagnostics,
+    )
+    second = explorer.assess_eligibility(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=diagnostics,
+    )
+
+    assert first == second
+    assert first.eligible is True
+    assert first.stall_reasons == ("actuator_coverage_stall",)
+    assert explorer.summary()["states_assessed"] == 0
+    assert explorer.summary()["experiments"] == 0
+
+    selected = explorer.select(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=diagnostics,
+        assessment=first,
+    )
+    assert selected is not None
+    assert explorer.summary()["states_assessed"] == 1
+
+
+def test_frontier_demotes_repeated_unproductive_context_actuator():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        minimum_failed_branches=0,
+        max_trials_per_actuator=4,
+        nonprogress_demotion_threshold=2,
+    )
+    grid = _grid()
+    for _ in range(2):
+        assessment = explorer.assess_eligibility(
+            current_grid=grid,
+            available_actions=("ACTION1",),
+            available_action_candidates=(_Action("ACTION1"),),
+            branch_diagnostics=_stalled(),
+        )
+        selection = explorer.select(
+            current_grid=grid,
+            available_actions=("ACTION1",),
+            available_action_candidates=(_Action("ACTION1"),),
+            branch_diagnostics=_stalled(),
+            assessment=assessment,
+        )
+        assert selection is not None
+        explorer.observe_transition(
+            grid_before=grid,
+            grid_after=grid.copy(),
+            action_name=selection.action_name,
+            action_data=selection.action_data,
+            no_effect=True,
+            game_over=False,
+            terminal_success=False,
+        )
+
+    blocked = explorer.assess_eligibility(
+        current_grid=grid,
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=_stalled(),
+    )
+    assert blocked.eligible is False
+    assert blocked.blocked_reason == "all_context_actuators_demoted"
+    assert explorer.summary()["context_actuator_demotions"] == 1
+
+
+def test_per_level_rearm_waits_for_stall_and_preserves_terminal_retreat():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=2,
+        minimum_failed_branches=3,
+    )
+    for _ in range(4):
+        explorer.start_branch()
+    grid = _grid()
+    selected = explorer.select(
+        current_grid=grid,
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=_stalled(),
+    )
+    assert selected is not None
+    explorer.observe_transition(
+        grid_before=grid,
+        grid_after=grid,
+        action_name=selected.action_name,
+        action_data=selected.action_data,
+        no_effect=False,
+        game_over=False,
+        terminal_success=True,
+    )
+    explorer.note_transition(terminal_success=True)
+    explorer.start_branch()
+    explorer.note_level_change()
+
+    assert explorer.select(
+        current_grid=grid,
+        available_actions=("ACTION2",),
+        available_action_candidates=(_Action("ACTION2"),),
+        branch_diagnostics={
+            "branch_actions": 1,
+            "actions_since_terminal_improvement": 1,
+            "max_hash_repeat": 1,
+            "unique_states_in_window": 1,
+        },
+    ) is None
+    rearmed = explorer.select(
+        current_grid=grid,
+        available_actions=("ACTION2",),
+        available_action_candidates=(_Action("ACTION2"),),
+        branch_diagnostics={
+            "branch_actions": 4,
+            "actions_since_terminal_improvement": 4,
+            "max_hash_repeat": 1,
+            "unique_states_in_window": 4,
+            "window_actions": 4,
+        },
+    )
+
+    assert rearmed is not None
+    assert explorer.summary()["per_level_rearms"] == 1
 
 
 def test_disabled_frontier_explorer_is_inert():

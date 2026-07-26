@@ -57,6 +57,7 @@ class MultiformPatternEvidence:
     pattern: MultiformRelationPattern
     observations: int = 0
     terminal_contexts: set[str] = field(default_factory=set)
+    terminal_levels: set[int] = field(default_factory=set)
     action_names: Counter[str] = field(default_factory=Counter)
     actuator_signatures: Counter[str] = field(default_factory=Counter)
 
@@ -65,6 +66,7 @@ class MultiformPatternEvidence:
             **self.pattern.to_dict(),
             "observations": self.observations,
             "terminal_confirmations": len(self.terminal_contexts),
+            "terminal_levels": sorted(self.terminal_levels),
             "confirmed": (
                 len(self.terminal_contexts) >= minimum_terminal_support
             ),
@@ -89,7 +91,15 @@ class MultiformActuatorModel:
 class _DelayedFrontierPatternEligibility:
     eligibility_id: str
     branch_index: int
+    source_level: int
     actuator_signature: str
+    pattern_signatures: Tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class _PendingMultiformSelection:
+    action_name: str
+    context_signature: str
     pattern_signatures: Tuple[str, ...]
 
 
@@ -117,6 +127,9 @@ class OnlineMultiformRelationalLearner:
         enabled: bool = True,
         minimum_terminal_support: int = 2,
         maximum_patterns_per_transition: int = 32,
+        max_selections_per_branch: int = 2,
+        max_selections_per_context: int = 2,
+        nonprogress_demotion_threshold: int = 2,
     ) -> None:
         self.enabled = bool(enabled)
         self.minimum_terminal_support = max(
@@ -127,9 +140,31 @@ class OnlineMultiformRelationalLearner:
             1,
             int(maximum_patterns_per_transition),
         )
+        self.max_selections_per_branch = max(
+            1,
+            int(max_selections_per_branch),
+        )
+        self.max_selections_per_context = max(
+            1,
+            int(max_selections_per_context),
+        )
+        self.nonprogress_demotion_threshold = max(
+            1,
+            int(nonprogress_demotion_threshold),
+        )
         self._patterns: Dict[str, MultiformPatternEvidence] = {}
         self._actuators: Dict[str, MultiformActuatorModel] = {}
         self._branch_index = 0
+        self._branch_selections = 0
+        self._context_selections: Counter[str] = Counter()
+        self._context_nonprogress: Counter[str] = Counter()
+        self._context_pattern_support: Dict[str, set[str]] = {}
+        self._demoted_context_versions: Dict[
+            str,
+            Dict[str, int],
+        ] = {}
+        self._pattern_terminal_versions: Counter[str] = Counter()
+        self._pending_selection: _PendingMultiformSelection | None = None
         self._observations = 0
         self._terminal_examples = 0
         self._patterns_observed = 0
@@ -137,6 +172,15 @@ class OnlineMultiformRelationalLearner:
         self._selections = 0
         self._transferred_selections = 0
         self._unsafe_model_blocks = 0
+        self._branch_cap_blocks = 0
+        self._context_cap_blocks = 0
+        self._nonprogress_outcomes = 0
+        self._productive_outcomes = 0
+        self._demotions = 0
+        self._demotion_blocks = 0
+        self._reactivations = 0
+        self._level_gating_blocks = 0
+        self._protected_route_reactivations = 0
         self._family_counts: Counter[str] = Counter()
         self._terminal_family_counts: Counter[str] = Counter()
         self._selection_family_counts: Counter[str] = Counter()
@@ -153,6 +197,10 @@ class OnlineMultiformRelationalLearner:
 
     def start_branch(self) -> None:
         self._branch_index += 1
+        self._branch_selections = 0
+        self._context_selections.clear()
+        self._context_nonprogress.clear()
+        self._pending_selection = None
 
     def observe_transition(
         self,
@@ -172,6 +220,49 @@ class OnlineMultiformRelationalLearner:
             observation_before,
             observation_after,
         )[: self.maximum_patterns_per_transition]
+        context_signature = _selection_context_signature(
+            observation_before
+        )
+        context_support = self._context_pattern_support.setdefault(
+            context_signature,
+            set(),
+        )
+        observed_signatures = {
+            pattern.signature for pattern in patterns
+        }
+        novel_context_effect = bool(
+            observed_signatures.difference(context_support)
+        )
+        pending = self._pending_selection
+        if (
+            pending is not None
+            and pending.action_name == str(action_name)
+            and pending.context_signature == context_signature
+        ):
+            productive = bool(terminal_success or novel_context_effect)
+            if productive:
+                self._productive_outcomes += 1
+                self._context_nonprogress[context_signature] = 0
+            else:
+                self._nonprogress_outcomes += 1
+                self._context_nonprogress[context_signature] += 1
+                if (
+                    self._context_nonprogress[context_signature]
+                    >= self.nonprogress_demotion_threshold
+                    and context_signature
+                    not in self._demoted_context_versions
+                ):
+                    self._demoted_context_versions[context_signature] = {
+                        signature: self._pattern_terminal_versions[
+                            signature
+                        ]
+                        for signature in pending.pattern_signatures
+                    }
+                    self._demotions += 1
+            self._pending_selection = None
+        elif pending is not None:
+            self._pending_selection = None
+        context_support.update(observed_signatures)
         target_role = _acted_role(observation_before, action_data)
         actuator_signature = _actuator_signature(
             str(action_name),
@@ -196,6 +287,7 @@ class OnlineMultiformRelationalLearner:
         )
 
         context = f"branch-{self._branch_index}"
+        source_level = int(observation_before.levels_completed)
         credited = 0
         for pattern in patterns:
             evidence = self._patterns.get(pattern.signature)
@@ -210,8 +302,12 @@ class OnlineMultiformRelationalLearner:
             if terminal_success:
                 before = len(evidence.terminal_contexts)
                 evidence.terminal_contexts.add(context)
+                evidence.terminal_levels.add(source_level)
                 if len(evidence.terminal_contexts) > before:
                     credited += 1
+                    self._pattern_terminal_versions[
+                        pattern.signature
+                    ] += 1
                     self._terminal_family_counts[pattern.family] += 1
         self._observations += 1
         self._patterns_observed += len(patterns)
@@ -228,6 +324,7 @@ class OnlineMultiformRelationalLearner:
                 _DelayedFrontierPatternEligibility(
                     eligibility_id=eligibility_id,
                     branch_index=self._branch_index,
+                    source_level=source_level,
                     actuator_signature=actuator_signature,
                     pattern_signatures=tuple(
                         pattern.signature for pattern in patterns
@@ -263,8 +360,10 @@ class OnlineMultiformRelationalLearner:
                     continue
                 before = len(evidence.terminal_contexts)
                 evidence.terminal_contexts.add(context)
+                evidence.terminal_levels.add(record.source_level)
                 if len(evidence.terminal_contexts) > before:
                     record_credits += 1
+                    self._pattern_terminal_versions[signature] += 1
                     self._terminal_family_counts[
                         evidence.pattern.family
                     ] += 1
@@ -306,6 +405,34 @@ class OnlineMultiformRelationalLearner:
         """Choose a concrete action whose learned effects match terminal rules."""
         if not self.enabled:
             return None
+        if self._branch_selections >= self.max_selections_per_branch:
+            self._branch_cap_blocks += 1
+            return None
+        context_signature = _selection_context_signature(observation)
+        if (
+            self._context_selections[context_signature]
+            >= self.max_selections_per_context
+        ):
+            self._context_cap_blocks += 1
+            return None
+        demoted_versions = self._demoted_context_versions.get(
+            context_signature
+        )
+        if demoted_versions is not None:
+            new_terminal_support = any(
+                self._pattern_terminal_versions[signature] > version
+                for signature, version in demoted_versions.items()
+            )
+            if new_terminal_support:
+                self._demoted_context_versions.pop(
+                    context_signature,
+                    None,
+                )
+                self._context_nonprogress[context_signature] = 0
+                self._reactivations += 1
+            else:
+                self._demotion_blocks += 1
+                return None
         confirmed = {
             signature: evidence
             for signature, evidence in self._patterns.items()
@@ -313,6 +440,23 @@ class OnlineMultiformRelationalLearner:
             >= self.minimum_terminal_support
         }
         if not confirmed:
+            return None
+        current_level = int(observation.levels_completed)
+        context_support = self._context_pattern_support.get(
+            context_signature,
+            set(),
+        )
+        level_eligible = {
+            signature: evidence
+            for signature, evidence in confirmed.items()
+            if (
+                not evidence.terminal_levels
+                or current_level in evidence.terminal_levels
+                or signature in context_support
+            )
+        }
+        self._level_gating_blocks += len(confirmed) - len(level_eligible)
+        if not level_eligible:
             return None
         candidates = _concrete_candidates(
             observation,
@@ -331,9 +475,9 @@ class OnlineMultiformRelationalLearner:
                 self._unsafe_model_blocks += 1
                 continue
             supported = [
-                (signature, confirmed[signature])
+                (signature, level_eligible[signature])
                 for signature in model.pattern_counts
-                if signature in confirmed
+                if signature in level_eligible
             ]
             if not supported:
                 continue
@@ -385,6 +529,13 @@ class OnlineMultiformRelationalLearner:
             families,
         ) = ranked[0]
         self._selections += 1
+        self._branch_selections += 1
+        self._context_selections[context_signature] += 1
+        self._pending_selection = _PendingMultiformSelection(
+            action_name=action_name,
+            context_signature=context_signature,
+            pattern_signatures=signatures,
+        )
         transferred = bool(
             concrete_action_key
             not in self._actuators[actuator].concrete_action_keys
@@ -407,6 +558,26 @@ class OnlineMultiformRelationalLearner:
             ),
         )
 
+    def cancel_pending_selection(self) -> None:
+        """Withdraw a guarded selection without charging its outcome."""
+        self._pending_selection = None
+
+    def note_protected_route_failure(
+        self,
+        observation: GameObservation,
+    ) -> None:
+        """Re-enable this context after exact competence is refuted/diverges."""
+        context_signature = _selection_context_signature(observation)
+        changed = bool(
+            context_signature in self._demoted_context_versions
+            or self._context_nonprogress[context_signature]
+        )
+        self._demoted_context_versions.pop(context_signature, None)
+        self._context_nonprogress[context_signature] = 0
+        self._context_selections[context_signature] = 0
+        if changed:
+            self._protected_route_reactivations += 1
+
     def confirmed_patterns(self) -> Tuple[MultiformRelationPattern, ...]:
         return tuple(
             evidence.pattern
@@ -420,6 +591,11 @@ class OnlineMultiformRelationalLearner:
         return {
             "enabled": self.enabled,
             "minimum_terminal_support": self.minimum_terminal_support,
+            "max_selections_per_branch": self.max_selections_per_branch,
+            "max_selections_per_context": self.max_selections_per_context,
+            "nonprogress_demotion_threshold": (
+                self.nonprogress_demotion_threshold
+            ),
             "observations": self._observations,
             "terminal_examples": self._terminal_examples,
             "patterns_observed": self._patterns_observed,
@@ -433,6 +609,18 @@ class OnlineMultiformRelationalLearner:
             "selections": self._selections,
             "transferred_selections": self._transferred_selections,
             "unsafe_model_blocks": self._unsafe_model_blocks,
+            "branch_cap_blocks": self._branch_cap_blocks,
+            "context_cap_blocks": self._context_cap_blocks,
+            "productive_selection_outcomes": self._productive_outcomes,
+            "nonprogress_selection_outcomes": self._nonprogress_outcomes,
+            "demotions": self._demotions,
+            "demotion_blocks": self._demotion_blocks,
+            "reactivations": self._reactivations,
+            "level_gating_blocks": self._level_gating_blocks,
+            "protected_route_reactivations": (
+                self._protected_route_reactivations
+            ),
+            "demoted_contexts": len(self._demoted_context_versions),
             "delayed_frontier_eligibilities_registered": (
                 self._delayed_frontier_eligibilities_registered
             ),
@@ -866,6 +1054,14 @@ def _observation_signature(observation: GameObservation) -> str:
         tuple(sorted(spatial.items())),
     )
     return hashlib.sha1(repr(payload).encode("utf-8")).hexdigest()[:16]
+
+
+def _selection_context_signature(observation: GameObservation) -> str:
+    """Identify the live level/state context without using game identity."""
+    return (
+        f"level-{int(observation.levels_completed)}:"
+        f"grid-{int(observation.grid_hash)}"
+    )
 
 
 def _direction(dy: int, dx: int) -> str:
