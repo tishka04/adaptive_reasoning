@@ -96,6 +96,12 @@ from .online_temporal_goal_composition import (
 )
 from .promoted_relational_rule import PromotedRelationalRule
 from .theory_conditioned_planner import TheoryConditionedPlanner
+from .sage11.authority import (
+    NeuralActionCandidate,
+    NeuralAuthorityConfig,
+    NeuralAuthorityMode,
+    NeuroSymbolicRanker,
+)
 
 
 @dataclass(frozen=True)
@@ -250,6 +256,13 @@ class UnifiedCognitiveConfig:
     terminal_multiform_max_selections_per_branch: int = 2
     terminal_multiform_max_selections_per_context: int = 2
     terminal_multiform_nonprogress_demotion_threshold: int = 2
+    neural_authority_mode: str = "off"
+    neural_bounded_gate_passed: bool = False
+    neural_active_gate_passed: bool = False
+    neural_maximum_advisory_risk: float = 0.10
+    neural_minimum_information_gain: float = 0.0
+    neural_nonproductive_demotion_threshold: int = 2
+    neural_max_inference_ms: float = 10.0
 
 
 @dataclass(frozen=True)
@@ -827,6 +840,8 @@ class UnifiedCognitiveController:
         frozen_causal_schema_library: (
             FrozenCausalSchemaLibrary | None
         ) = None,
+        neural_ranker: NeuroSymbolicRanker | None = None,
+        neuro_transition_collector: Any | None = None,
     ) -> None:
         self.game_id = str(game_id)
         self.config = config or UnifiedCognitiveConfig()
@@ -1201,7 +1216,7 @@ class UnifiedCognitiveController:
         )
         self.causal_schema_exporter = OnlineCausalSchemaExporter(
             enabled=self.config.enable_transferable_causal_schema_export,
-            source_tag="online-controller",
+            source_tag=self.game_id.split("-", 1)[0],
             max_steps_per_schema=(
                 self.config.transferable_causal_schema_max_steps
             ),
@@ -1254,6 +1269,31 @@ class UnifiedCognitiveController:
         self.progress = ProgressTracker()
         self.danger_memory = DangerMemoryV5()
         self.anti_attractor = AntiAttractor()
+        self.neural_ranker = neural_ranker or NeuroSymbolicRanker(
+            config=NeuralAuthorityConfig(
+                mode=NeuralAuthorityMode(
+                    self.config.neural_authority_mode
+                ),
+                bounded_gate_passed=(
+                    self.config.neural_bounded_gate_passed
+                ),
+                active_gate_passed=(
+                    self.config.neural_active_gate_passed
+                ),
+                maximum_advisory_risk=(
+                    self.config.neural_maximum_advisory_risk
+                ),
+                minimum_information_gain=(
+                    self.config.neural_minimum_information_gain
+                ),
+                nonproductive_demotion_threshold=(
+                    self.config
+                    .neural_nonproductive_demotion_threshold
+                ),
+                max_inference_ms=self.config.neural_max_inference_ms,
+            )
+        )
+        self.neuro_transition_collector = neuro_transition_collector
 
         self._step = 0
         self._experiment_decisions = 0
@@ -1497,6 +1537,10 @@ class UnifiedCognitiveController:
             self.multiform_relations.note_protected_route_failure(
                 update.record.obs_before
             )
+            self.causal_schema_transfer.rearm_demotions(
+                reason="route_refutation"
+            )
+            self.neural_ranker.rearm(reason="route_refutation")
         self.terminal_relational_stencils.observe_transition(
             grid_before=update.record.obs_before.raw_grid,
             grid_after=update.record.obs_after.raw_grid,
@@ -1590,16 +1634,44 @@ class UnifiedCognitiveController:
             game_over=bool(update.record.diff.game_over),
             patterns=reusable_patterns,
         )
-        self.causal_schema_transfer.observe_transition(
-            observation_before=update.record.obs_before,
-            observation_after=update.record.obs_after,
-            action_name=action_name,
-            action_data=action_data,
-            terminal_success=terminal_success,
-            game_over=bool(update.record.diff.game_over),
-            no_effect=is_noop,
-            patterns=reusable_patterns,
+        transfer_schema_outcome = (
+            self.causal_schema_transfer.observe_transition(
+                observation_before=update.record.obs_before,
+                observation_after=update.record.obs_after,
+                action_name=action_name,
+                action_data=action_data,
+                terminal_success=terminal_success,
+                game_over=bool(update.record.diff.game_over),
+                no_effect=is_noop,
+                patterns=reusable_patterns,
+            )
         )
+        matched_transfer_effects = tuple(
+            transfer_schema_outcome.get(
+                "matched_effect_core_signatures",
+                (),
+            )
+        )
+        if (
+            transfer_schema_outcome.get("effect_matched")
+            and matched_transfer_effects
+        ):
+            self.causal_subgoals.note_confirmed_external_effect(
+                matched_transfer_effects,
+                intervention_signature=repr((
+                    action_name,
+                    tuple(sorted(dict(action_data or {}).items())),
+                )),
+                context_signature=(
+                    f"branch:{self._branch_step}:"
+                    f"{update.record.obs_before.grid_hash}"
+                ),
+            )
+            self.causal_schema_transfer.rearm_demotions(
+                reason="new_effect",
+                effect_signatures=matched_transfer_effects,
+            )
+            self.neural_ranker.rearm(reason="new_effect")
         self.multiform_relations.resolve_delayed_frontier_credit(
             credited_eligibility_ids=tuple(
                 credit.eligibility_id
@@ -1807,6 +1879,55 @@ class UnifiedCognitiveController:
             operator_predicted_ok=operator_predicted_ok,
             is_click=action_name == "ACTION6",
             is_transform=int(update.record.diff.num_changed) >= 5,
+        )
+        if self.neuro_transition_collector is not None:
+            self.neuro_transition_collector.record(
+                update,
+                action_name=action_name,
+                action_data=action_data,
+                terminal_event=terminal_success,
+                level_completed=terminal_level_progress,
+                won=terminal_win,
+                unsafe=bool(
+                    update.record.diff.game_over
+                    and not terminal_success
+                ),
+                frontier_credit=bool(
+                    frontier_credit_update.credited
+                ),
+                subgoal_graph_advance=bool(
+                    matched_transfer_effects
+                    or completed_objectives
+                ),
+                route_confirmation=bool(
+                    terminal_success
+                    and pending is not None
+                    and pending.source in {
+                        "terminal_progressive_route",
+                        "terminal_frontier_reacquisition",
+                        "terminal_frontier_suffix",
+                        "level_route_replay",
+                        "level_route_shortening_probe",
+                    }
+                ),
+                subeffect_relay=bool(linked_frontier_effects),
+            )
+        self.neural_ranker.observe_outcome(
+            productive=bool(terminal_success or not is_noop),
+            unsafe=bool(
+                update.record.diff.game_over and not terminal_success
+            ),
+            successful_route=bool(
+                terminal_success
+                and pending is not None
+                and pending.source in {
+                    "terminal_progressive_route",
+                    "terminal_frontier_reacquisition",
+                    "terminal_frontier_suffix",
+                    "level_route_replay",
+                    "level_route_shortening_probe",
+                }
+            ),
         )
         self._pending_decision = None
         self._pending_action_candidates = ()
@@ -2030,6 +2151,50 @@ class UnifiedCognitiveController:
             and not decision.transfer_causal_schema
         ):
             self.causal_schema_transfer.cancel_pending()
+        if (
+            self.neural_ranker.configured_mode
+            != NeuralAuthorityMode.OFF
+        ):
+            symbolic_decision = decision
+            neural_arbitration = self.neural_ranker.arbitrate(
+                symbolic_action_name=decision.action_name,
+                symbolic_action_data=decision.action_data,
+                symbolic_source=decision.source,
+                observation=observation,
+                candidates=_neural_action_candidates(
+                    safe_actions,
+                    available_action_candidates,
+                    observation=observation,
+                    default_action_data=(
+                        self._neural_candidate_action_data
+                    ),
+                ),
+                protected_competence_available=(
+                    protected_competence_available
+                ),
+                context_signature=_terminal_frontier_state_signature(
+                    observation.raw_grid,
+                    observation.levels_completed,
+                ),
+                danger_veto=lambda action_name, action_data: (
+                    self._neural_danger_veto(
+                        observation.grid_hash,
+                        action_name,
+                        action_data,
+                    )
+                ),
+            )
+            if neural_arbitration.applied:
+                self._cancel_unexecuted_symbolic_decision(
+                    symbolic_decision
+                )
+                decision = CognitiveDecision(
+                    action_name=neural_arbitration.action_name,
+                    action_data=dict(neural_arbitration.action_data),
+                    source=neural_arbitration.source,
+                    reason=neural_arbitration.reason,
+                    confidence=neural_arbitration.confidence,
+                )
         decision = self._annotate_terminal_frontier_suffix(
             decision,
             observation,
@@ -2054,6 +2219,9 @@ class UnifiedCognitiveController:
         self.causal_options.start_branch()
         self.causal_schema_exporter.start_branch()
         self.causal_schema_transfer.start_branch()
+        self.neural_ranker.start_branch()
+        if self.neuro_transition_collector is not None:
+            self.neuro_transition_collector.on_reset()
         discarded_frontier_eligibilities = (
             self.frontier_exploration.start_branch()
         )
@@ -2074,6 +2242,10 @@ class UnifiedCognitiveController:
         """Keep transferable mechanics but reset branch-local control state."""
         self.on_reset()
         self.frontier_exploration.note_level_change()
+        self.causal_schema_transfer.rearm_demotions(
+            reason="level_change"
+        )
+        self.neural_ranker.rearm(reason="level_change")
 
     def summary(self) -> Dict[str, Any]:
         prediction_statuses = Counter(
@@ -2161,6 +2333,7 @@ class UnifiedCognitiveController:
             "transferable_causal_schema_transfer": (
                 self.causal_schema_transfer.summary()
             ),
+            "sage11_neural_authority": self.neural_ranker.summary(),
             "terminal_multiform_relational_induction": (
                 self.multiform_relations.summary()
             ),
@@ -2845,6 +3018,10 @@ class UnifiedCognitiveController:
             experiment_eligible=experiment_eligible,
             protected_competence_available=(
                 protected_competence_available
+            ),
+            confirmed_effect_utilities=(
+                self.causal_subgoals
+                .confirmed_external_effect_utilities()
             ),
         )
         if selection is None:
@@ -4371,6 +4548,50 @@ class UnifiedCognitiveController:
             competing_hypotheses=decision.competing_hypotheses,
         )
 
+    def _neural_danger_veto(
+        self,
+        grid_hash: int,
+        action_name: str,
+        action_data: Mapping[str, Any],
+    ) -> bool:
+        """Keep observed symbolic danger memory supreme over neural scores."""
+        primitive = PrimitiveAction(
+            str(action_name),
+            x=_optional_int(action_data.get("x")),
+            y=_optional_int(action_data.get("y")),
+        )
+        return bool(
+            self.danger_memory.is_lethal(
+                int(grid_hash),
+                action_key(primitive),
+            )
+            or self.anti_attractor.is_banned_noop(
+                int(grid_hash),
+                str(action_name),
+            )
+        )
+
+    def _cancel_unexecuted_symbolic_decision(
+        self,
+        decision: CognitiveDecision,
+    ) -> None:
+        """Cancel candidate evidence when a bounded neural probe replaces it."""
+        if decision.frontier_oriented_experiment:
+            self.frontier_exploration.cancel_pending()
+        if decision.transfer_causal_schema:
+            self.causal_schema_transfer.cancel_pending()
+        if decision.terminal_multiform_relation:
+            self.multiform_relations.cancel_pending_selection()
+        if decision.temporal_plan_id:
+            self.temporal_goals.reject_active_step(
+                "bounded_neural_probe"
+            )
+        if decision.causal_subgoal_edge_key:
+            self.causal_subgoals.cancel_trial(
+                decision.causal_subgoal_edge_key,
+                count_failure=False,
+            )
+
     def _default_action_data(
         self,
         action: str,
@@ -4385,6 +4606,20 @@ class UnifiedCognitiveController:
         selected = clicks[self._click_cursor % len(clicks)]
         self._click_cursor += 1
         return dict(selected.action_args)
+
+    def _neural_candidate_action_data(
+        self,
+        action: str,
+        observation: GameObservation,
+    ) -> Dict[str, Any]:
+        """Read-only candidate payload construction for shadow equivalence."""
+        if action != "ACTION6":
+            return {}
+        clicks = self._click_actions(observation)
+        if clicks:
+            return dict(clicks[0].action_args)
+        height, width = observation.raw_grid.shape
+        return {"x": int(width // 2), "y": int(height // 2)}
 
     def _click_actions(
         self,
@@ -4844,6 +5079,41 @@ def _normalize_actions(actions: Iterable[Any]) -> List[str]:
         if name and name != "RESET" and name not in result:
             result.append(name)
     return result
+
+
+def _neural_action_candidates(
+    safe_actions: Sequence[str],
+    available_action_candidates: Sequence[Any] | None,
+    *,
+    observation: GameObservation,
+    default_action_data: Any,
+) -> Tuple[NeuralActionCandidate, ...]:
+    """Normalize primitive/click alternatives for counterfactual ranking."""
+    candidates: Dict[str, NeuralActionCandidate] = {}
+    for item in tuple(available_action_candidates or ()):
+        action_name = _normalize_action(item)
+        raw_data = getattr(item, "action_args", None)
+        if raw_data is None and isinstance(item, Mapping):
+            raw_data = item.get("action_data", item.get("action_args", {}))
+        candidate = NeuralActionCandidate(
+            action_name=action_name,
+            action_data=dict(raw_data or {}),
+        )
+        candidates[candidate.key] = candidate
+    for action_name in safe_actions:
+        if action_name == "ACTION6" and any(
+            candidate.action_name == "ACTION6"
+            for candidate in candidates.values()
+        ):
+            continue
+        candidate = NeuralActionCandidate(
+            action_name=action_name,
+            action_data=dict(
+                default_action_data(action_name, observation)
+            ),
+        )
+        candidates[candidate.key] = candidate
+    return tuple(candidates.values())
 
 
 def _grid_hash(grid: Any) -> int:

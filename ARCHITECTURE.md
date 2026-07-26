@@ -1732,3 +1732,51 @@ game is won or the wall-clock budget is exhausted.
 > planned V4-Learn layer does not replace this architecture; it teaches the
 > agent which internal abstractions deserve trust, budget, and control
 > authority by learning from retrospective outcomes over attempts.
+
+## SAGE.11 firewalled neuro-symbolic authority
+
+SAGE.11 is an optional layer inside the existing
+`UnifiedCognitiveController`, not a second agent. The default mode is `off`,
+which bypasses predictor invocation and preserves the current action path.
+`shadow` computes per-candidate counterfactual rankings but returns the
+byte-identical symbolic decision. `bounded` may replace one unprotected action
+per branch/context with a symbolically admissible positive-information probe
+only after the shadow gates. `active` is separately gated.
+
+```text
+real transition
+  -> typed observation/FrameDiff atoms
+  -> source-only graph world model (5 bootstrap heads, <5M params)
+  -> candidate hypotheses (support=0)
+  -> symbolic admissibility + danger-memory hard veto
+  -> off/shadow/bounded/active authority gate
+  -> observed outcome
+  -> symbolic evidence + bounded target-local adapter
+```
+
+The split firewall is content-addressed and covers all 25 offline games:
+11 source train, three source validation, five `NEURO_HOLDOUT_V1`, five
+historical report-only, and `ar25` regression-only. Training and tuning APIs
+fail closed if an artifact touches a holdout/historical game for the wrong
+purpose. Dataset shards are checksummed, transition-signature deduplicated,
+per-game capped, and collected with a fixed 70/20/10 active/random/frontier
+mixture.
+
+Only observed level/WIN/terminal events are strong labels. Frontier credit,
+subgoal-graph advance, route confirmation, and sub-effect relay are explicitly
+weak progress labels; they receive reduced loss weight and cannot enable the
+terminal head. Source terminal support orders experiments but grants no target
+policy authority.
+
+The compact model uses JEPA, symbolic-effect, action-contrast, bootstrap
+consistency, changed/progress/terminal/risk/no-op losses. Training is preceded
+by a cheap effect-predictability pilot. Promotion is change-weighted and
+requires action-shuffle sensitivity, effect macro-F1 above majority,
+calibration, no latent collapse, retrospective productivity, inference-cost
+compliance, paired bootstrap score gain, no lost WIN, at least one novel
+holdout success, and zero unsafe/error/preemption outcomes.
+
+During online adaptation the encoder is frozen. Only a small game context and
+dynamics head update from a 2,048-transition replay every 32 steps, for at
+most four gradients. All target-local state, including optimizer state, resets
+at each game/seed.

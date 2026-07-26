@@ -1,0 +1,32 @@
+{
+  "authority_default": "off",
+  "format_version": "sage11-implementation-audit-v1",
+  "legacy_weights_loaded": false,
+  "runtime": {
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_version": "12.1",
+    "torch": "2.5.1+cu121"
+  },
+  "split_registry_checksum": "22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d",
+  "status": {
+    "dataset_100k_collected": false,
+    "effect_pilot_executed_on_real_data": false,
+    "empirical_promotion_claim": false,
+    "implementation_complete": true,
+    "trained_checkpoint_present": false,
+    "validation": {
+      "complete_pytest_passed": 1642,
+      "diff_check_passed": true,
+      "ruff_passed": true,
+      "warning": "joblib physical-core discovery unavailable; logical-core fallback used"
+    }
+  },
+  "world_model": {
+    "format_version": "sage11-world-model-v1",
+    "legacy_weights_loaded": false,
+    "parameter_count": 1540953,
+    "strong_terminal_events": 0,
+    "terminal_head_enabled": false
+  }
+}
