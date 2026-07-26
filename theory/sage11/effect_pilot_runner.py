@@ -81,10 +81,11 @@ def _resolve_shard_path(
     raise FileNotFoundError(f"cannot resolve source shard {raw_path}")
 
 
-def _iter_rows(
+def iter_source_rows(
     manifest_path: Path,
     manifest_payload: Mapping[str, Any],
 ) -> Iterator[Dict[str, Any]]:
+    """Yield verified-manifest rows in published shard order."""
     for shard in manifest_payload["shards"]:
         shard_path = _resolve_shard_path(
             str(shard["path"]),
@@ -106,7 +107,7 @@ def load_effect_pilot_dataset(
     train_atoms: set[str] = set()
     train_effects: set[Tuple[str, ...]] = set()
     total_rows = 0
-    for row in _iter_rows(path, payload):
+    for row in iter_source_rows(path, payload):
         total_rows += 1
         if row["source_split"] == "source_train":
             train_atoms.update(str(atom) for atom in row["atoms_before"])
@@ -133,7 +134,7 @@ def load_effect_pilot_dataset(
     unseen_atom_rows = 0
     unseen_effect_rows = 0
 
-    for index, row in enumerate(_iter_rows(path, payload)):
+    for index, row in enumerate(iter_source_rows(path, payload)):
         split = str(row["source_split"])
         is_train = split == "source_train"
         if not is_train and split != "source_validation":
@@ -444,6 +445,7 @@ __all__ = [
     "DEFAULT_MANIFEST_PATH",
     "DEFAULT_RESULT_PATH",
     "EffectPilotDataset",
+    "iter_source_rows",
     "load_effect_pilot_dataset",
     "run_source_effect_pilot",
 ]
