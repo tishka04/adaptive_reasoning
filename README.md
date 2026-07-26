@@ -154,8 +154,12 @@ action/state baseline, conditional action-shuffle degradation was only
 0.0180, and fixed signatures predicted game identity with 99.17% accuracy.
 GPU training is blocked. The active route is a smaller corpus preserving
 contact, alignment, proximity, and object-relative action features—not another
-100,000-row recollection. See
-`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
+100,000-row recollection. That replacement is now frozen before collection:
+10,027 source-train rows and 52 versioned relation columns, followed by the
+same LOGO/action-shuffle gates plus an explicit requirement that relations add
+at least +0.05 changed-cells F1. See
+`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md` and
+`reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`.
 
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:

@@ -53,6 +53,17 @@ existing controller remains the single execution path.
   current-action shuffling, and explicit fixed-signature identity/ablation
   tests. It does not open source-validation, historical, holdout, or
   regression-only shards.
+- `relational_features.py` implements the fixed 52-column contact, alignment,
+  proximity, and object-relative action schema used at both collection and
+  future live inference. `relational_dataset.py` archives it beside a nested
+  auditable base transition.
+- `relational_pilot_collection.py` recollects only 10,027 source-train rows:
+  1,000 per game except the verified finite `lp85` capacity of 27. It attaches
+  a resumable relational sidecar to the unchanged 70/20/10 controller policy.
+- `relational_effect_pilot.py` runs the frozen LOGO replacement: fixed
+  game-signature atoms are removed, action/state/full/no-relations views are
+  compared, and action-dependent columns are shuffled within exact relational
+  state signatures.
 - `model.py` implements a 1,552,178-parameter graph-atom encoder with five
   bootstrap dynamics heads. It consumes the shared 77 features and predicts
   next latent state, separate changed-cells/player-moved effects, progress,
@@ -115,11 +126,16 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.factorized_effect_pilot_runner
 ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.anti_shortcut_audit
+ARC-AGI-3-Agents\.venv\Scripts\python.exe `
+  -m theory.sage11.relational_pilot_collection --workers 8
+ARC-AGI-3-Agents\.venv\Scripts\python.exe `
+  -m theory.sage11.relational_effect_pilot
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest -q `
   tests\test_sage10g_i_symbolic_repairs.py `
   tests\test_sage11_splits_dataset.py `
   tests\test_sage11_streaming_features.py `
   tests\test_sage11_anti_shortcut_audit.py `
+  tests\test_sage11_relational_features.py `
   tests\test_sage11_model_training.py `
   tests\test_sage11_authority.py
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m ruff check theory\sage11
@@ -164,7 +180,10 @@ was evaluated by the separately frozen source-train-only anti-shortcut audit.
 The audit failed: changed-cells transfer was -0.1026 versus the stronger
 baseline, conditional action-shuffle degradation was 0.0180, and only 5/11
 folds were non-negative. Fixed signatures predicted game identity at 99.17%;
-removing them improved changed-cells F1. GPU training remains blocked while a
-smaller relational-data pilot is collected—not another 100,000-row corpus.
-Historical and holdout games remain untouched. See
-`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
+removing them improved changed-cells F1. GPU training remains blocked. The
+replacement collection/pilot implementation is frozen before collection:
+10,027 rows, 52 generic relation columns, LOGO source-train validation,
+changed-cells +0.10, conditional shuffle +0.10, and an explicit +0.05
+relations-added requirement. Historical and holdout games remain untouched.
+See `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md` and
+`reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`.

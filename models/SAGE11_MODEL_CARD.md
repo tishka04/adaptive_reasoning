@@ -114,6 +114,13 @@ identity with 99.17% accuracy; removing them improved changed-cells F1 from
 `c4afd1adecbd40b6e3dccba96f3f2e43414d91ad9a04b1dc71f9540027e66a8a`.
 See `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
 
+The prescribed replacement is pre-registered before collection in
+`reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`. It caps recollection at 10,027
+source-train rows and archives a fixed 52-column generic relation vector
+(contact, alignment, proximity, and object-relative action geometry), checksum
+`84f044dd08f3240f968a6ba1bf528896eab00eb39066dcce95d0f87e9a9193f7`.
+The world-model input width will not change unless that replacement passes.
+
 ## Required gates
 
 - change-weighted next-state accuracy beats persistence;

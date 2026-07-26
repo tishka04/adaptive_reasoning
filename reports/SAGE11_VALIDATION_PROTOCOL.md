@@ -5,7 +5,8 @@ no-go, then a separately pre-registered factorized v2 formal go. The exact
 77-feature/factorized interface is now implemented across archived-row
 loading, the model/trainer, and live inference. The stricter source-train-only
 anti-shortcut audit failed; the smaller relational-data replacement pilot is
-now required before step 5. The first source-capacity gate failed
+now implemented and frozen before collection, and it is required before step
+5. The first source-capacity gate failed
 closed at an optimistic maximum of 98,708/100,000 under the 8,000/game base
 cap. On 2026-07-26 the user approved the minimum 1,292-row aggregate overflow
 on five source-training games with demonstrated remaining unique capacity.
@@ -24,7 +25,8 @@ started. See `reports/SAGE11_SOURCE_CAPACITY_RESULT.md`,
 `reports/SAGE11_EFFECT_PILOT_RESULT.md`,
 `reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`,
 `reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`, and
-`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
+`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`. The replacement is frozen in
+`reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`.
 
 Final repository validation after pilot v2 on 2026-07-26: Ruff passed on the
 full SAGE.11 package and updated pilot tests, `git diff --check` passed, the
@@ -153,6 +155,26 @@ shuffle degradation 0.0180, 5/11 non-negative folds, and a worst fold of
 removing them improved changed-cells F1 from 0.1704 to 0.3379. Result checksum:
 `c4afd1adecbd40b6e3dccba96f3f2e43414d91ad9a04b1dc71f9540027e66a8a`.
 GPU world-model training remains prohibited.
+
+## Step 4 small relational replacement
+
+The replacement collector is capped at exactly 10,027 source-training rows:
+1,000 from each source-training game except the known finite `lp85` capacity
+of 27. It preserves 52 derived binary relations (22 state and 30
+current-action-dependent) with schema checksum
+`84f044dd08f3240f968a6ba1bf528896eab00eb39066dcce95d0f87e9a9193f7`.
+No source-validation, historical, holdout, or regression-only game is in
+scope.
+
+The frozen LOGO pilot removes the harmful availability/object-role atoms,
+compares action-only, state-only, full-without-relations, and full views, and
+conditionally shuffles action-dependent columns within exact relational state
+signatures. In addition to the earlier +0.10 changed-cells, +0.10 shuffle, and
+fold-robustness requirements, the new relations themselves must add at least
++0.05 changed-cells macro-F1 over full-without-relations. Collection and
+fitting have not started. Pre-collection validation passed Ruff,
+`git diff --check`, and 44 focused SAGE.10g/SAGE.11 tests, including an
+end-to-end injected-environment test that records ten live relational rows.
 
 ## Non-regression and report-only matrix
 
