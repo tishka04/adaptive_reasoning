@@ -67,6 +67,28 @@ the three new stall signals do not require exact state recurrence; a level
 change only re-arms the retired explorer after a new stall; and shorter routes
 remain candidate-only until their own live terminal replay.
 
+SAGE.10g-SAGE.10i and SAGE.11 add the frozen multi-source curriculum and a
+firewalled neuro-symbolic world-model path. The neural path defaults to `off`;
+`shadow` executes the byte-identical symbolic action, and bounded/active
+authority remains inaccessible until the pre-registered source, productivity,
+calibration, inference-cost, and paired holdout gates pass. Observed symbolic
+danger is always a hard veto, protected terminal competence remains supreme,
+and every neural hypothesis enters with support zero.
+
+The implementation, split registry, data policy, model card, and validation
+protocol are documented in:
+
+- `theory/sage11/README.md`
+- `training/SAGE11_DATA_POLICY.md`
+- `models/SAGE11_MODEL_CARD.md`
+- `reports/SAGE11_VALIDATION_PROTOCOL.md`
+
+The environment/model audit is reproducible with:
+
+```bash
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.audit
+```
+
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:
 
@@ -75,7 +97,7 @@ ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.benchmark_score_runner --lab
 ```
 
 Its defaults are the five `public_unseen` games, seeds 0/1, budgets
-500/1500/4000, and eight resets. Scientific attribution remains available in
+500/1500/4000, and 14 resets. Scientific attribution remains available in
 the unified benchmark through schema `v42` and the isolated flags
 `--disable-subeffect-eligibility-relay`,
 `--disable-generalized-frontier-stall-detection`,

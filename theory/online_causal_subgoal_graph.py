@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum
-from collections import Counter
+from collections import Counter, defaultdict
 from typing import Any, Dict, List, Sequence, Tuple
 
 import numpy as np
@@ -268,6 +268,12 @@ class OnlineCausalSubgoalGraph:
         self._cross_branch_confirmations = 0
         self._effect_link_events = 0
         self._effect_links: Counter[Tuple[str, str]] = Counter()
+        self._external_effect_contexts: Dict[str, set[str]] = defaultdict(set)
+        self._external_effect_interventions: Dict[
+            str,
+            Counter[str],
+        ] = defaultdict(Counter)
+        self._external_effect_confirmation_events = 0
 
     def edges(self) -> List[CausalSubgoalEdge]:
         return sorted(self._edges.values(), key=lambda item: item.edge_key)
@@ -451,6 +457,46 @@ class OnlineCausalSubgoalGraph:
             )
             for edge in self.edges()
         )
+
+    def note_confirmed_external_effect(
+        self,
+        effect_signatures: Sequence[str],
+        *,
+        intervention_signature: str,
+        context_signature: str,
+    ) -> Tuple[str, ...]:
+        """Register target-local transferred effects as graph evidence.
+
+        This is deliberately not edge support or terminal credit.  It only
+        makes a repeatable, locally observed intervention effect available to
+        later causal-subgoal action ordering.
+        """
+        context = str(context_signature)
+        intervention = str(intervention_signature)
+        newly_confirmed = []
+        for raw_signature in effect_signatures:
+            signature = str(raw_signature)
+            if not signature or not context:
+                continue
+            contexts = self._external_effect_contexts[signature]
+            before = len(contexts)
+            contexts.add(context)
+            if intervention:
+                self._external_effect_interventions[signature][
+                    intervention
+                ] += int(len(contexts) > before)
+            if len(contexts) > before:
+                self._external_effect_confirmation_events += 1
+                newly_confirmed.append(signature)
+        return tuple(sorted(newly_confirmed))
+
+    def confirmed_external_effect_utilities(self) -> Dict[str, float]:
+        """Return bounded utilities from repeatable target-local effects."""
+        return {
+            signature: min(2.0, 0.5 * len(contexts))
+            for signature, contexts in self._external_effect_contexts.items()
+            if contexts
+        }
 
     def begin_trial(self, edge_key: str, *, context_signature: str) -> None:
         edge = self.edge(edge_key)
@@ -665,6 +711,12 @@ class OnlineCausalSubgoalGraph:
             "cross_branch_confirmations": self._cross_branch_confirmations,
             "causal_effect_links": len(self._effect_links),
             "causal_effect_link_events": self._effect_link_events,
+            "external_effect_confirmation_events": (
+                self._external_effect_confirmation_events
+            ),
+            "confirmed_external_effects": len(
+                self._external_effect_contexts
+            ),
             "confirmed_edges": sum(
                 edge.status == CausalSubgoalEdgeStatus.CONFIRMED for edge in edges
             ),

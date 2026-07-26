@@ -52,6 +52,13 @@ de policy en support scientifique.
 | SAGE.10d - Per-level frontier explorer re-arming | Fait - eligibility-only et subordonne | `theory/online_frontier_exploration.py`, `theory/unified_cognitive_controller.py`, `tests/test_online_frontier_exploration.py`, `diagnostics/sage/sage10b_plus_procedural_benchmark.json`, `diagnostics/sage/sage10e_authority_repair_ft09_regression.json` | Le changement de niveau rend l'explorateur eligible mais jamais prioritaire; competence exacte reverifiee avant chaque experience et sequence; actif=1 rearm dans le cas procedural sans competence protegee, ablation=0; 0 pre-emption dans le gate ft09; support=0; aucun write A32/A33 |
 | SAGE.10e - Per-level route memory + authority-ordering repair | Fait - 4/4 gates, ft09 niveau 6/WIN restaure | `theory/online_level_route_memory.py`, `theory/online_terminal_frontier.py`, `theory/online_frontier_exploration.py`, `theory/online_multiform_relational_learner.py`, `theory/unified_cognitive_controller.py`, `theory/ft09_regression_benchmark.py`, `tests/test_ft09_regression_benchmark.py`, `diagnostics/sage/sage10e_authority_repair_ft09_regression.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json` | Tier protege strict avant frontier/multiform; multiform cappe 2 par branche/contexte, demotion apres 2 non-progres, reactivation bornee et gate de niveau; full ft09 seed0/budget160/14 resets=43 niveaux, niveau max6, 3 WIN, 0 pre-emption; protocole complet=159 niveaux/12 WIN mais uniquement ft09; support=0; aucun write A32/A33 |
 | SAGE.10f - Frozen causal-schema transfer + frontier activation repair | Fait - transfert d'effets actif, transfert terminal non encore observe | `theory/online_transferable_causal_schema.py`, `theory/causal_schema_transfer_benchmark.py`, `theory/online_frontier_exploration.py`, `theory/unified_cognitive_controller.py`, `tests/test_online_transferable_causal_schema.py`, `tests/test_causal_schema_transfer_benchmark.py`, `diagnostics/perf/sage10f_ft09_nonregression.json`, `diagnostics/sage/sage10f_ft09_to_wa30_transfer_pilot.json`, `diagnostics/sage/sage10f_ft09_frozen_to_other_unseen_pilot.json` | Exporte 8 schemas causalement abstraits depuis 43 terminaux ft09, les fige avant cible et ne les autorise que comme probes bornes; 16 probes sur wa30/tn36/cn04/sb26 donnent 8 confirmations d'effet, 0 danger et 0 pre-emption, mais 0 chaine, 0 promotion, 0 niveau et 0 WIN; ft09 reste max6/43 niveaux/3 WIN; aucune revendication de competence cross-game |
+| SAGE.10g - Multi-source frozen curriculum | Implemente logiciellement - collecte source en attente | `theory/sage11/curriculum.py`, `theory/online_transferable_causal_schema.py`, `tests/test_sage10g_i_symbolic_repairs.py`, `training/SAGE11_DATA_POLICY.md` | Fusion deterministe de bibliotheques figees content-addressed, provenance conservee, schemas dupliques coalesces, sources limitees aux 11 jeux train et holdout rejete avant construction cible; aucun support cible fabrique |
+| SAGE.10h - Chain economics repair | Implemente logiciellement - pilot live en attente | `theory/online_transferable_causal_schema.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage10g_i_symbolic_repairs.py` | Ledger de confirmations cross-branch persistant, scheduler focalise sur seuil/depth, escalation depth-0, demotion apres 2 non-progres et re-arm seulement sur contexte/nouvel effet/refutation/level; competence protegee prioritaire |
+| SAGE.10i - Confirmed-effect causal exploitation | Implemente logiciellement - delta multi-jeu en attente | `theory/online_causal_subgoal_graph.py`, `theory/online_transferable_causal_schema.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage10g_i_symbolic_repairs.py` | Les effets transferes confirmes localement alimentent l'ordre du graphe causal sans creer edge support, credit terminal ni autorite de policy; support=0 |
+| SAGE.11a - Firewall + dataset | Implemente logiciellement - corpus 100k non collecte | `theory/sage11/splits.py`, `theory/sage11/dataset.py`, `training/SAGE11_DATA_POLICY.md`, `tests/test_sage11_splits_dataset.py` | Registry 25 jeux checksumme; fuite rejetee; mixture 70/20/10 fixe; cap jeu, dedup signature, couverture ACTION6, shards/manifest checksums; labels forts/faibles explicites; M2/v4 interdits |
+| SAGE.11b - Pilot + compact world model | Implemente logiciellement - modele non entraine | `theory/sage11/pilot.py`, `theory/sage11/model.py`, `theory/sage11/training.py`, `models/SAGE11_MODEL_CARD.md`, `tests/test_sage11_model_training.py` | Pilot GBM go/no-go; graph model 1,540,953 params, 5 heads bootstrap, losses JEPA/effect/contrast/consistency/calibration; terminal head bloque sous 100 events forts; gates amendes implementes |
+| SAGE.11c/11d - Typed bridge + shadow | Implemente logiciellement - shadow live en attente | `theory/sage11/atoms.py`, `theory/sage11/bridge.py`, `theory/sage11/authority.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage11_authority.py` | Atomes partages FrameDiff/schema, hypotheses support=0; off ne lance pas le predicteur; shadow action-identique et log top-k/pre-emption/cout; bounded inaccessible sans gates |
+| SAGE.11e/11f - Bounded/active + adaptation | Implemente logiciellement - promotion non revendiquee | `theory/sage11/authority.py`, `theory/sage11/adaptation.py`, `theory/sage11/evaluation.py`, `reports/SAGE11_VALIDATION_PROTOCOL.md`, `diagnostics/sage/sage11_implementation_audit.json` | Veto danger symbolique dur, competence protegee, info-gain positif, 1 probe branche/contexte, demotion 2 echecs, re-arm explicite; encodeur gele, replay 2048, update/32 <=4 gradients, reset jeu/seed; bootstrap holdout 5x5 implemente mais non execute |
 | SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
 
 ## SAGE.0 - Known-game closed-loop scaffold
@@ -8648,3 +8655,118 @@ intra-reset, etait le verrou de mesure. La generalisation reste nulle sur
 quatre jeux. Les resultats ARC longs restent rapportes tels quels dans
 `diagnostics/perf/score_history.json`; aucun gain ne sera retroactivement
 transforme en support A32/A33.
+
+## SAGE.10g-SAGE.10i - prerequis symboliques pour le pivot neuro-symbolique
+
+Implementation du 2026-07-26 :
+
+- `merge_frozen_causal_schema_libraries()` coalesce les schemas par contenu,
+  additionne le support terminal source uniquement pour l'ordre des probes,
+  preserve la provenance et calcule un checksum immutable. Les allow/deny
+  lists rejettent une source holdout avant le controller cible.
+- `FrozenSchemaCurriculum` lie cette fusion au registry SAGE.11 : seulement
+  les onze jeux `source_train` peuvent produire la bibliotheque multi-source.
+- `OnlineCausalSchemaTransfer` conserve maintenant un ledger de confirmations
+  de pas entre branches. Le scheduler favorise un pas a une confirmation du
+  seuil, le depth-0 confirme peut escalader le prochain pas, et les demotions
+  ne sont rearmees que sur changement de contexte/niveau, nouvel effet
+  confirme ou refutation de route.
+- Un effet transfere confirme localement entre dans
+  `OnlineCausalSubgoalGraph` comme evidence externe d'ordre. Cette evidence ne
+  cree ni edge confirme, ni support d'objectif, ni credit terminal.
+- `UnifiedCognitiveController` relaie les nouveaux effets et refutations tout
+  en conservant le tier protege avant les probes.
+
+Validation logicielle : les tests proceduraux couvrent fusion multi-source,
+provenance, rejet holdout, checksum et pont effet-graphe sans fabrication de
+credit. Les runs multi-source ARC longs restent a executer; aucune hausse de
+niveau ou WIN n'est revendiquee.
+
+## SAGE.11a-SAGE.11f - implementation du pivot neuro-symbolique
+
+Firewall et donnees :
+
+- Le registry `sage11-splits-v1` couvre exactement 25 jeux disjoints :
+  11 train, 3 val-source, 5 `NEURO_HOLDOUT_V1`, 5 historiques report-only et
+  `ar25` regression-only. Son checksum est
+  `22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d`.
+- Toute production/lecture d'artefact declare un purpose. Une operation train
+  sur holdout, historique ou `ar25` echoue.
+- La collecte est fixee avant outcome a 70% controller actif, 20% random legal
+  et 10% probe frontier-stall, avec cap 8000/jeu, dedup de signature,
+  couverture ACTION6, shards JSONL et checksums.
+- Les seuls labels forts sont level/WIN/terminal observe. Frontier credit,
+  avance graphe, confirmation route et relais sous-effet sont faibles,
+  ponderes 0.25 et exclus du seuil de 100 events du terminal head.
+- Le collector du controller archive directement les runs prerequis dans ce
+  schema. Aucun corpus de 100k n'est fabrique dans ce commit.
+
+Pilot et modele :
+
+- Le pilot `HistGradientBoostingClassifier` mesure le plafond predictif des
+  effets avant toute depense GNN et retourne explicitement go/no-go contre la
+  majority macro-F1.
+- Le modele par defaut a 1,540,953 parametres, trois couches de messages et
+  cinq heads bootstrap. Il predit latent suivant, effet symbolique, change,
+  progress, terminal, risque et no-op.
+- Les losses JEPA, effet, contraste action, consistency, changed, progress,
+  terminal, risk et no-op sont implementees. Les gates imposent le gain
+  change-weighted sur persistence, +15 points changed, shuffle degradation
+  >=10%, effect F1 >= majority+0.10, ECE <=0.10 et non-collapse latent.
+- Torch `2.5.1+cu121`, CUDA `12.1`, un device visible ont ete verifies dans
+  `ARC-AGI-3-Agents/.venv`.
+
+Bridge et autorite :
+
+- Les observations, `FrameDiff` et predicates de schema partagent des atomes
+  types. Le bridge produit uniquement des hypotheses falsifiables
+  `support=0`.
+- `off` court-circuite le predicteur. `shadow` log les rankings, productivite,
+  pre-emption hypothetique et cout mais rend l'action symbolique identique.
+- `bounded` et `active` se degradent automatiquement vers `shadow` sans leurs
+  gates. L'autorite exige info-gain positif, action symboliquement admissible,
+  cout respecte, aucune competence protegee, danger-memory non lethal et un
+  contexte non demote.
+- Le danger symbolique reste un veto dur independant de l'ECE/risk neural.
+  Une seule probe est depensee par branche/contexte; deux outcomes
+  non-productifs demotent; un re-arm exige une preuve de contexte/effet/route.
+- L'adaptation garde l'encodeur gele : replay 2048, update chaque 32
+  transitions, au plus 4 gradients, reset replay/contexte/optimiseur par
+  jeu/seed.
+
+Validation/promotion :
+
+- Les gates shadow et holdout sont codees dans `evaluation.py`.
+- Le holdout requiert exactement 5 jeux x 5 seeds, active/off, digests apparies,
+  bootstrap-95% lower bound >0, aucun WIN perdu, au moins un nouveau
+  level/WIN, zero unsafe, erreur et pre-emption.
+- `CheckpointedRunLog` ecrit atomiquement chaque run afin qu'une matrice
+  multi-jours reprenne apres interruption.
+- La suite complete passe : 1642 tests, Ruff sur tous les Python modifies et
+  `git diff --check`. L'unique warning joblib remplace le compte de coeurs
+  physiques indisponible sous Windows par le compte logique.
+- Le default reste `off`. Aucun modele n'est entraine, aucun checkpoint n'est
+  publie et aucune promotion empirique n'est revendiquee par cette
+  implementation.
+
+Documentation :
+
+- `theory/sage11/README.md`;
+- `training/SAGE11_DATA_POLICY.md`;
+- `models/SAGE11_MODEL_CARD.md`;
+- `reports/SAGE11_VALIDATION_PROTOCOL.md`;
+- `diagnostics/sage/sage11_implementation_audit.json`.
+
+Commandes reproductibles :
+
+```text
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.audit
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m pytest -q tests/test_sage10g_i_symbolic_repairs.py tests/test_sage11_splits_dataset.py tests/test_sage11_model_training.py tests/test_sage11_authority.py
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m ruff check theory/sage11
+```
+
+Lecture finale : l'architecture, les firewalls, les modes d'autorite et les
+gates de promotion sont implementes et testables sans ouvrir l'autorite. La
+phase empirique lourde est volontairement separee : tant que le corpus, le
+pilot, le checkpoint et les matrices appairees ne sont pas publies avec leurs
+checksums, SAGE.11 ne formule aucune revendication de generalisation.

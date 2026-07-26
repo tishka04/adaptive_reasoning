@@ -14,6 +14,7 @@ executed chain receives target-terminal credit.
 from __future__ import annotations
 
 import hashlib
+import json
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from typing import Any, Dict, Mapping, Sequence, Tuple
@@ -207,6 +208,26 @@ class FrozenCausalSchemaLibrary:
     schemas: Tuple[TransferableCausalSchema, ...] = ()
     format_version: str = "sage-causal-schema-v1"
 
+    @property
+    def source_tags(self) -> Tuple[str, ...]:
+        """Return sorted audit-only source tags represented by the artifact."""
+        return tuple(sorted({
+            item.source_tag
+            for schema in self.schemas
+            for item in schema.provenance
+            if item.source_tag
+        }))
+
+    @property
+    def content_checksum(self) -> str:
+        """Return a deterministic checksum for manifests and split firewalls."""
+        payload = json.dumps(
+            self.to_dict(),
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+        return hashlib.sha256(payload).hexdigest()
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "format_version": self.format_version,
@@ -237,6 +258,105 @@ class FrozenCausalSchemaLibrary:
         if len(schema_ids) != len(set(schema_ids)):
             raise ValueError("causal-schema library contains duplicate ids")
         return cls(schemas=schemas, format_version=version)
+
+
+def merge_frozen_causal_schema_libraries(
+    libraries: Sequence[FrozenCausalSchemaLibrary],
+    *,
+    allowed_source_tags: Sequence[str] | None = None,
+    forbidden_source_tags: Sequence[str] = (),
+    max_schemas: int = 64,
+) -> FrozenCausalSchemaLibrary:
+    """Merge source-frozen libraries without leaking target-side evidence.
+
+    Schema identity is content-addressed, so duplicate abstract chains are
+    coalesced while provenance remains audit-only.  Optional source allow/deny
+    lists let the SAGE.11 split firewall reject a contaminated curriculum
+    before a target controller is constructed.
+    """
+    allowed = (
+        None
+        if allowed_source_tags is None
+        else {str(tag) for tag in allowed_source_tags}
+    )
+    forbidden = {str(tag) for tag in forbidden_source_tags}
+    evidence: Dict[
+        str,
+        Tuple[
+            Tuple[TransferableCausalSchemaStep, ...],
+            set[Tuple[str, str]],
+            int,
+        ],
+    ] = {}
+    for library in libraries:
+        if library.format_version != "sage-causal-schema-v1":
+            raise ValueError(
+                f"unsupported causal-schema format: {library.format_version}"
+            )
+        for schema in library.schemas:
+            provenance_pairs = {
+                (item.source_tag, item.terminal_context)
+                for item in schema.provenance
+            }
+            source_tags = {tag for tag, _ in provenance_pairs if tag}
+            rejected = source_tags.intersection(forbidden)
+            if rejected:
+                raise ValueError(
+                    "causal-schema curriculum contains forbidden sources: "
+                    + ", ".join(sorted(rejected))
+                )
+            if allowed is not None:
+                unexpected = source_tags.difference(allowed)
+                if unexpected:
+                    raise ValueError(
+                        "causal-schema curriculum contains non-source games: "
+                        + ", ".join(sorted(unexpected))
+                    )
+            existing = evidence.get(schema.schema_id)
+            if existing is None:
+                evidence[schema.schema_id] = (
+                    schema.steps,
+                    set(provenance_pairs),
+                    int(schema.terminal_support),
+                )
+                continue
+            steps, merged_provenance, support = existing
+            if steps != schema.steps:
+                raise ValueError(
+                    "causal-schema id collision with different contents"
+                )
+            merged_provenance.update(provenance_pairs)
+            evidence[schema.schema_id] = (
+                steps,
+                merged_provenance,
+                support + int(schema.terminal_support),
+            )
+    schemas = [
+        TransferableCausalSchema(
+            schema_id=schema_id,
+            steps=steps,
+            terminal_support=max(support, len(provenance)),
+            provenance=tuple(
+                CausalSchemaProvenance(
+                    source_tag=source_tag,
+                    terminal_context=terminal_context,
+                )
+                for source_tag, terminal_context in sorted(provenance)
+            ),
+        )
+        for schema_id, (steps, provenance, support) in evidence.items()
+    ]
+    schemas.sort(
+        key=lambda schema: (
+            -len({item.source_tag for item in schema.provenance}),
+            -schema.terminal_support,
+            len(schema.steps),
+            schema.schema_id,
+        )
+    )
+    return FrozenCausalSchemaLibrary(
+        schemas=tuple(schemas[: max(1, int(max_schemas))])
+    )
 
 
 @dataclass(frozen=True)
@@ -493,6 +613,10 @@ class OnlineCausalSchemaTransfer:
         self._protected_competence_blocks = 0
         self._cross_family_adapter_probes = 0
         self._cross_family_adapter_confirmations = 0
+        self._focused_scheduler_selections = 0
+        self._depth_zero_escalations = 0
+        self._demotion_rearms = 0
+        self._last_context_signature = ""
 
     def start_branch(self) -> None:
         self._branch_index += 1
@@ -510,6 +634,7 @@ class OnlineCausalSchemaTransfer:
         available_action_candidates: Sequence[Any] | None,
         experiment_eligible: bool,
         protected_competence_available: bool = False,
+        confirmed_effect_utilities: Mapping[str, float] | None = None,
     ) -> CausalSchemaSelection | None:
         """Select one bounded local test; source evidence never counts as proof."""
         if not self.enabled or not self.library.schemas:
@@ -518,6 +643,14 @@ class OnlineCausalSchemaTransfer:
             self._protected_competence_blocks += 1
             return None
         context = _target_context_signature(observation)
+        if (
+            self._last_context_signature
+            and context != self._last_context_signature
+        ):
+            self._active_chain = None
+            self._demotion_rearms += 1
+        self._last_context_signature = context
+        effect_utilities = dict(confirmed_effect_utilities or {})
         candidates = _concrete_candidates(
             observation,
             available_actions,
@@ -560,11 +693,26 @@ class OnlineCausalSchemaTransfer:
                         5.0 * float(promoted)
                         + 2.0 * float(schema.terminal_support)
                         + 1.5 * float(local_support)
+                        + 3.5 * float(
+                            local_support
+                            == self.local_effect_confirmation_threshold - 1
+                        )
+                        + 0.75 * float(step_index)
                         + float(role_score)
                         + 3.0 * float(family_exact)
                         + 0.5 * float(
                             self._active_chain
                             == (schema.schema_id, step_index)
+                        )
+                        + max(
+                            (
+                                float(effect_utilities.get(
+                                    effect.core_key,
+                                    0.0,
+                                ))
+                                for effect in step.effects
+                            ),
+                            default=0.0,
                         )
                     )
                     ranked.append((
@@ -655,6 +803,10 @@ class OnlineCausalSchemaTransfer:
         self._cross_family_adapter_probes += int(
             not family_exact and not promoted
         )
+        self._focused_scheduler_selections += int(
+            local_support
+            == self.local_effect_confirmation_threshold - 1
+        )
         return selection
 
     def observe_transition(
@@ -715,6 +867,13 @@ class OnlineCausalSchemaTransfer:
                 for effect in pending.selection.predicted_effects
             }
             overlap = predicted_effects.intersection(observed_effects)
+            matched_core_effects = {
+                effect.core_key
+                for effect in pending.selection.predicted_effects
+                if (
+                    effect.core_key if cross_family else effect.key
+                ) in overlap
+            }
             fraction = (
                 0.0
                 if not predicted_effects
@@ -756,6 +915,12 @@ class OnlineCausalSchemaTransfer:
                     >= self.local_effect_confirmation_threshold
                     and pending.selection.step_index + 1 < len(schema.steps)
                 ):
+                    if (
+                        pending.selection.step_index == 0
+                        and before_support
+                        < self.local_effect_confirmation_threshold
+                    ):
+                        self._depth_zero_escalations += 1
                     self._active_chain = (
                         schema.schema_id,
                         pending.selection.step_index + 1,
@@ -782,6 +947,10 @@ class OnlineCausalSchemaTransfer:
                 "effect_match_fraction": fraction,
                 "matched_effects": len(overlap),
                 "predicted_effects": len(predicted_effects),
+                "matched_effect_signatures": tuple(sorted(overlap)),
+                "matched_effect_core_signatures": tuple(
+                    sorted(matched_core_effects)
+                ),
                 "schema_id": pending.selection.schema_id,
                 "step_index": pending.selection.step_index,
                 "local_effect_confirmations": len(
@@ -796,6 +965,47 @@ class OnlineCausalSchemaTransfer:
             self._active_chain = None
             self._branch_matched_steps.clear()
         return result
+
+    def rearm_demotions(
+        self,
+        *,
+        reason: str,
+        effect_signatures: Sequence[str] = (),
+    ) -> int:
+        """Re-arm bounded probes after genuinely new target-side evidence."""
+        normalized_reason = str(reason).strip().lower()
+        allowed_reasons = {
+            "context_change",
+            "new_effect",
+            "route_refutation",
+            "level_change",
+        }
+        if normalized_reason not in allowed_reasons:
+            raise ValueError(
+                "demotion re-arm requires context/effect/route evidence"
+            )
+        signatures = {str(item) for item in effect_signatures if str(item)}
+        removable = set()
+        for context_key in self._demoted_context_steps:
+            _, schema_id, step_index = context_key
+            schema = self._schema_by_id.get(schema_id)
+            if schema is None:
+                continue
+            if normalized_reason != "new_effect":
+                removable.add(context_key)
+                continue
+            step = schema.steps[step_index]
+            if any(
+                effect.key in signatures or effect.core_key in signatures
+                for effect in step.effects
+            ):
+                removable.add(context_key)
+        self._demoted_context_steps.difference_update(removable)
+        for key in removable:
+            self._context_nonprogress[key] = 0
+        if removable:
+            self._demotion_rearms += len(removable)
+        return len(removable)
 
     def cancel_pending(self) -> None:
         """Cancel a vetoed action without fabricating target evidence."""
@@ -871,6 +1081,17 @@ class OnlineCausalSchemaTransfer:
             "cross_family_adapter_confirmations": (
                 self._cross_family_adapter_confirmations
             ),
+            "confirmed_step_ledger": {
+                f"{schema_id}:{step_index}": len(contexts)
+                for (schema_id, step_index), contexts in sorted(
+                    self._local_confirmation_contexts.items()
+                )
+            },
+            "focused_scheduler_selections": (
+                self._focused_scheduler_selections
+            ),
+            "depth_zero_escalations": self._depth_zero_escalations,
+            "demotion_rearms": self._demotion_rearms,
             "source_evidence_grants_policy_authority": False,
             "promotion_requires_target_terminal": True,
         }
@@ -1177,4 +1398,5 @@ __all__ = [
     "OnlineCausalSchemaTransfer",
     "TransferableCausalSchema",
     "TransferableCausalSchemaStep",
+    "merge_frozen_causal_schema_libraries",
 ]
