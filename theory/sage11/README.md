@@ -43,18 +43,31 @@ existing controller remains the single execution path.
   player-movement, reconstructs only leakage-free trajectory relations from
   archived rows, compares a 77-feature full model with a learned 10-feature
   action-only model, and preserves aggregate/per-game controls and checksums.
-- `model.py` implements a 1,540,953-parameter graph-atom encoder with five
-  bootstrap dynamics heads. It predicts next latent state, symbolic effects,
-  changed/no-op, progress, terminal, and risk. The terminal head is forced off
-  until at least 100 strong terminal/level events exist.
-- `training.py` implements JEPA, symbolic-effect, action-contrast,
-  consistency, progress, terminal, risk, and no-op losses. Weak progress labels
-  receive one-quarter weight. Its concrete optimizer trains bootstrap heads on
-  resampled rows, clips gradients, and writes split/data-checksummed
-  checkpoints. Promotion uses the amended change-weighted persistence,
-  action-shuffle, macro-F1, calibration, and latent-collapse gates.
-- `bridge.py` converts calibrated model outputs to typed, falsifiable
-  hypotheses while preserving `support=0`.
+- `streaming_features.py` owns the versioned 77-column interface used
+  identically by archived-row loading and live counterfactual inference. Its
+  tracker encodes multiple candidates without mutating state, then advances
+  history only after the observed transition. `streaming_dataset.py` provides
+  checksum-verified full-corpus and source-train-only loaders.
+- `anti_shortcut_audit.py` implements the frozen source-train-only
+  leave-one-game-out audit: action-only/state-only/full views, conditional
+  current-action shuffling, and explicit fixed-signature identity/ablation
+  tests. It does not open source-validation, historical, holdout, or
+  regression-only shards.
+- `model.py` implements a 1,552,178-parameter graph-atom encoder with five
+  bootstrap dynamics heads. It consumes the shared 77 features and predicts
+  next latent state, separate changed-cells/player-moved effects, progress,
+  terminal, risk, and no-op. The terminal head is forced off until at least
+  100 strong terminal/level events exist.
+- `training.py` implements JEPA, factorized-effect, action-contrast,
+  consistency, progress, terminal, risk, and no-op losses. Weak progress
+  labels receive one-quarter weight. Its concrete optimizer trains bootstrap
+  heads on resampled rows, clips gradients, and writes split/data/schema-
+  checksummed checkpoints. Promotion uses the amended change-weighted
+  persistence, action-shuffle, factor macro-F1, calibration, and
+  latent-collapse gates.
+- `bridge.py` uses the same stateful tracker for live candidates and converts
+  calibrated factor-head outputs to typed, falsifiable hypotheses while
+  preserving `support=0`.
 - `authority.py` implements `off`, `shadow`, `bounded`, and `active`. Off does
   not call the predictor. Shadow logs rankings but returns the byte-identical
   symbolic action. Bounded/active require their gates, yield to protected
@@ -100,9 +113,13 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.effect_pilot_runner
 ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.factorized_effect_pilot_runner
+ARC-AGI-3-Agents\.venv\Scripts\python.exe `
+  -m theory.sage11.anti_shortcut_audit
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest -q `
   tests\test_sage10g_i_symbolic_repairs.py `
   tests\test_sage11_splits_dataset.py `
+  tests\test_sage11_streaming_features.py `
+  tests\test_sage11_anti_shortcut_audit.py `
   tests\test_sage11_model_training.py `
   tests\test_sage11_authority.py
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m ruff check theory\sage11
@@ -139,8 +156,11 @@ conditions. Result checksum:
 
 The result is qualified: player movement supplies nearly all the gain,
 changed-cells F1 remains 0.1562, current-action shuffle degradation is only
-0.0078, and raw object relations were not archived. V2 permits implementation
-of its versioned streaming/factorized interface; it does not permit training
-the current 19-atom graph model or touching historical/holdout games. See
-`reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md` and
-`reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`.
+0.0078, and raw object relations were not archived. The exact v2 interface is
+now implemented with schema checksum
+`39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd`,
+and the factorized model/trainer/live bridge all consume it. GPU training is
+still blocked pending the separately frozen source-train-only anti-shortcut
+audit in `reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`. A pass permits GPU
+training; a fail requires a smaller relational-data pilot, not another
+100,000-row collection. Historical and holdout games remain untouched.

@@ -12,6 +12,7 @@ from theory.sage11.adaptation import (
 from theory.sage11.bridge import WorldModelActionPredictor
 from theory.sage11.authority import NeuralActionCandidate
 from theory.live_transition_loop import build_observation
+from theory.sage11.atoms import observation_atoms
 from theory.sage11.model import Sage11GraphWorldModel, WorldModelConfig
 from theory.sage11.pilot import run_effect_predictability_pilot
 from theory.sage11.evaluation import (
@@ -22,6 +23,7 @@ from theory.sage11.evaluation import (
     shadow_gate_report,
 )
 from theory.sage11.splits import NEURO_HOLDOUT_V1
+from theory.sage11.streaming_features import StreamingFeatureSchema
 from theory.sage11.training import (
     Sage11WorldModelTrainer,
     TrainerConfig,
@@ -33,30 +35,39 @@ from theory.sage11.training import (
 
 def test_graph_world_model_stays_below_parameter_cap_and_gates_terminal_head():
     model = Sage11GraphWorldModel()
+    assert model.parameter_count == 1_552_178
     assert model.parameter_count < 5_000_000
+    assert model.config.format_version == "sage11-world-model-v2"
     atom_ids = torch.tensor([[1, 2, 0], [3, 4, 5]])
     atom_mask = atom_ids != 0
-    action = torch.zeros((2, 6))
-    disabled = model(atom_ids, atom_mask, action)
+    features = torch.zeros((2, model.config.streaming_features))
+    disabled = model(atom_ids, atom_mask, features)
     assert torch.all(disabled["terminal_logit"] < -10)
-    assert disabled["effect_logits"].shape == (2, 64)
+    assert disabled["changed_cells_logits"].shape == (2, 5)
+    assert disabled["player_moved_logit"].shape == (2,)
     model.set_strong_terminal_events(100)
-    enabled = model(atom_ids, atom_mask, action)
+    enabled = model(atom_ids, atom_mask, features)
     assert model.terminal_head_enabled
     assert enabled["next_latent"].shape == (2, 128)
     assert model.checkpoint_metadata()["legacy_weights_loaded"] is False
 
 
 def test_world_model_loss_downweights_weak_progress_and_is_finite():
-    model = Sage11GraphWorldModel(WorldModelConfig(effect_classes=4))
+    model = Sage11GraphWorldModel(WorldModelConfig(
+        changed_cell_classes=4,
+    ))
     model.set_strong_terminal_events(100)
     atom_ids = torch.tensor([[1, 2], [3, 4]])
-    output = model(atom_ids, atom_ids != 0, torch.zeros((2, 6)))
+    output = model(
+        atom_ids,
+        atom_ids != 0,
+        torch.zeros((2, model.config.streaming_features)),
+    )
     targets = {
         "next_latent": torch.randn((2, 128)),
         "shuffled_next_latent": torch.randn((2, 128)),
-        "effect_class": torch.tensor([0, 1]),
-        "changed": torch.tensor([1.0, 1.0]),
+        "changed_cells": torch.tensor([0, 1]),
+        "player_moved": torch.tensor([1.0, 0.0]),
         "progress": torch.tensor([1.0, 1.0]),
         "progress_is_weak": torch.tensor([False, True]),
         "terminal": torch.tensor([1.0, 0.0]),
@@ -70,12 +81,15 @@ def test_world_model_loss_downweights_weak_progress_and_is_finite():
     )
     assert torch.isfinite(losses["total"])
     assert losses["terminal"].item() > 0.0
+    assert losses["changed_cells"].item() > 0.0
+    assert losses["player_moved"].item() > 0.0
 
 
 def test_concrete_trainer_updates_bootstrap_heads_and_emits_checkpoint():
     model = Sage11GraphWorldModel(WorldModelConfig(
         vocab_size=128,
-        effect_classes=4,
+        streaming_features=12,
+        changed_cell_classes=4,
         hidden_size=32,
         latent_size=16,
         message_layers=1,
@@ -110,9 +124,9 @@ def test_concrete_trainer_updates_bootstrap_heads_and_emits_checkpoint():
             [True, True, True],
             [True, True, False],
         ]),
-        "action": torch.zeros((4, 6)),
-        "effect_class": torch.tensor([0, 1, 2, 3]),
-        "changed": torch.tensor([1.0, 1.0, 0.0, 1.0]),
+        "streaming_features": torch.zeros((4, 12)),
+        "changed_cells": torch.tensor([0, 1, 2, 3]),
+        "player_moved": torch.tensor([1.0, 1.0, 0.0, 1.0]),
         "progress": torch.tensor([0.0, 1.0, 0.0, 1.0]),
         "progress_is_weak": torch.tensor([False, True, False, False]),
         "terminal": torch.zeros(4),
@@ -163,8 +177,10 @@ def test_amended_world_model_gates_pass_only_source_validation():
         changed_transition_accuracy=0.80,
         persistence_changed_accuracy=0.60,
         action_shuffle_degradation=0.12,
-        effect_macro_f1=0.70,
-        effect_majority_macro_f1=0.50,
+        changed_cells_macro_f1=0.70,
+        changed_cells_majority_macro_f1=0.50,
+        player_moved_macro_f1=0.75,
+        player_moved_majority_macro_f1=0.55,
         risk_ece=0.08,
         noop_ece=0.09,
         latent_feature_std=0.2,
@@ -209,12 +225,22 @@ def test_online_adapter_updates_every_32_steps_with_at_most_four_gradients():
 
 
 def test_world_model_bridge_emits_zero_support_typed_hypotheses():
-    model = Sage11GraphWorldModel()
     observation = build_observation(
         np.zeros((4, 4), dtype=np.int32),
         available_actions=("ACTION1", "ACTION2"),
     )
-    predictor = WorldModelActionPredictor(model, device="cpu")
+    schema = StreamingFeatureSchema.fit([
+        tuple(atom.key for atom in observation_atoms(observation))
+    ])
+    model = Sage11GraphWorldModel(WorldModelConfig(
+        streaming_features=schema.feature_count,
+        streaming_feature_schema_checksum=schema.checksum,
+    ))
+    predictor = WorldModelActionPredictor(
+        model,
+        feature_schema=schema,
+        device="cpu",
+    )
     predictions = predictor(
         observation,
         (
@@ -227,6 +253,13 @@ def test_world_model_bridge_emits_zero_support_typed_hypotheses():
         atom.support == 0
         for prediction in predictions
         for atom in prediction.hypotheses
+    )
+    assert all(
+        {atom.predicate for atom in prediction.hypotheses}.issuperset({
+            "changed_cells",
+            "player_moved",
+        })
+        for prediction in predictions
     )
 
 

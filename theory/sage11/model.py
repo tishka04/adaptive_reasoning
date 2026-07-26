@@ -10,19 +10,25 @@ from torch import Tensor, nn
 from torch.nn import functional as F
 
 from .dataset import MINIMUM_STRONG_TERMINAL_EVENTS
+from .streaming_features import (
+    CHANGED_BUCKETS,
+    STREAMING_FEATURE_FORMAT_VERSION,
+)
 
 
 @dataclass(frozen=True)
 class WorldModelConfig:
     vocab_size: int = 4096
-    action_features: int = 6
-    effect_classes: int = 64
+    streaming_features: int = 77
+    changed_cell_classes: int = len(CHANGED_BUCKETS)
     hidden_size: int = 192
     latent_size: int = 128
     message_layers: int = 3
     bootstrap_heads: int = 5
     max_parameters: int = 5_000_000
-    format_version: str = "sage11-world-model-v1"
+    streaming_feature_version: str = STREAMING_FEATURE_FORMAT_VERSION
+    streaming_feature_schema_checksum: str = ""
+    format_version: str = "sage11-world-model-v2"
 
 
 class GraphAtomEncoder(nn.Module):
@@ -63,7 +69,7 @@ class GraphAtomEncoder(nn.Module):
 class BootstrapPredictionHead(nn.Module):
     def __init__(self, config: WorldModelConfig) -> None:
         super().__init__()
-        joint = config.latent_size + config.action_features
+        joint = config.latent_size + config.streaming_features
         self.trunk = nn.Sequential(
             nn.Linear(joint, config.hidden_size),
             nn.SiLU(),
@@ -72,19 +78,29 @@ class BootstrapPredictionHead(nn.Module):
             nn.SiLU(),
         )
         self.next_latent = nn.Linear(config.hidden_size, config.latent_size)
-        self.effects = nn.Linear(config.hidden_size, config.effect_classes)
-        self.changed = nn.Linear(config.hidden_size, 1)
+        self.changed_cells = nn.Linear(
+            config.hidden_size,
+            config.changed_cell_classes,
+        )
+        self.player_moved = nn.Linear(config.hidden_size, 1)
         self.progress = nn.Linear(config.hidden_size, 1)
         self.terminal = nn.Linear(config.hidden_size, 1)
         self.risk = nn.Linear(config.hidden_size, 1)
         self.noop = nn.Linear(config.hidden_size, 1)
 
-    def forward(self, latent: Tensor, action: Tensor) -> Dict[str, Tensor]:
-        hidden = self.trunk(torch.cat((latent, action), dim=-1))
+    def forward(
+        self,
+        latent: Tensor,
+        streaming_features: Tensor,
+    ) -> Dict[str, Tensor]:
+        hidden = self.trunk(torch.cat(
+            (latent, streaming_features),
+            dim=-1,
+        ))
         return {
             "next_latent": F.normalize(self.next_latent(hidden), dim=-1),
-            "effect_logits": self.effects(hidden),
-            "changed_logit": self.changed(hidden).squeeze(-1),
+            "changed_cells_logits": self.changed_cells(hidden),
+            "player_moved_logit": self.player_moved(hidden).squeeze(-1),
             "progress_logit": self.progress(hidden).squeeze(-1),
             "terminal_logit": self.terminal(hidden).squeeze(-1),
             "risk_logit": self.risk(hidden).squeeze(-1),
@@ -98,6 +114,11 @@ class Sage11GraphWorldModel(nn.Module):
     def __init__(self, config: WorldModelConfig | None = None) -> None:
         super().__init__()
         self.config = config or WorldModelConfig()
+        if (
+            self.config.streaming_feature_version
+            != STREAMING_FEATURE_FORMAT_VERSION
+        ):
+            raise ValueError("world model requires streaming feature v2")
         self.encoder = GraphAtomEncoder(self.config)
         self.heads = nn.ModuleList([
             BootstrapPredictionHead(self.config)
@@ -132,10 +153,21 @@ class Sage11GraphWorldModel(nn.Module):
         self,
         atom_ids: Tensor,
         atom_mask: Tensor,
-        action: Tensor,
+        streaming_features: Tensor,
     ) -> Dict[str, Any]:
+        if (
+            streaming_features.ndim != 2
+            or streaming_features.shape[-1]
+            != self.config.streaming_features
+        ):
+            raise ValueError(
+                "world model streaming feature width does not match config"
+            )
         latent = self.encoder(atom_ids, atom_mask)
-        members = tuple(head(latent, action) for head in self.heads)
+        members = tuple(
+            head(latent, streaming_features)
+            for head in self.heads
+        )
         aggregate: Dict[str, Tensor] = {"latent": latent}
         for key in members[0]:
             values = torch.stack([member[key] for member in members], dim=0)

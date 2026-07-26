@@ -1,24 +1,35 @@
 # SAGE.11 graph world model — model card
 
-Status: architecture implemented and software-validated; untrained. The
-original joint-target pilot failed. The separately pre-registered factorized
-v2 pilot passed its cheap gate on 2026-07-26, but its 77-feature streaming
-interface is not the current graph model's 19-atom interface. Training remains
-blocked until that interface mismatch is resolved; no checkpoint is promoted.
+Status: factorized architecture and shared streaming interface implemented and
+software-validated; untrained. The original joint-target pilot failed. The
+separately pre-registered factorized v2 pilot passed its cheap gate on
+2026-07-26, and its exact 77-feature representation is now shared by dataset
+loading and live inference. Training remains blocked on the stricter,
+source-train-only anti-shortcut audit; no checkpoint is promoted.
 
 ## Model
 
-The default model has 1,540,953 trainable parameters, below the strict
+The default model has 1,552,178 trainable parameters, below the strict
 5,000,000-parameter limit. It uses a permutation-invariant typed-atom graph
 encoder and five independently initialized bootstrap heads. Inputs are
-structural state atoms plus a six-value action/argument vector. Outputs are
-next-state latent, symbolic effect class, changed, progress, terminal, risk,
-and no-op predictions with bootstrap variance.
+structural state atoms plus the shared 77-value streaming representation.
+Outputs are next-state latent, separate five-class changed-cells and binary
+player-moved effects, progress, terminal, risk, and no-op predictions with
+bootstrap variance.
 
-The model format is `sage11-world-model-v1`. It rejects legacy M2/v4 state
-loading. The concrete trainer uses bootstrap-resampled head losses, gradient
-clipping, and checkpoint metadata containing the split and dataset-manifest
-checksums. The encoder is frozen during target-side online adaptation.
+The model format is `sage11-world-model-v2`. It rejects legacy M2/v4 and
+joint-effect state loading. The concrete trainer uses bootstrap-resampled head
+losses, gradient clipping, and checkpoint metadata containing the split,
+dataset-manifest, and streaming-schema checksums. The encoder is frozen during
+target-side online adaptation.
+
+The feature format is `sage11-streaming-features-v2`. On the frozen source
+corpus it has 77 columns and checksum
+`39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd`.
+`StreamingFeatureTracker` encodes every candidate against one immutable
+pre-action context and commits the observed transition only afterward. The
+archived-row loader uses the same tracker lifecycle; a parity test confirms
+feature names, values, labels, and split masks are identical to pilot v2.
 
 ## Intended use
 
@@ -32,11 +43,15 @@ symbolic controller. Every bridged hypothesis begins with `support=0`.
 2. Cheap effect-predictability pilot improves macro-F1 by at least 0.10 over
    its frozen primary baseline (per-action majority in v1, learned
    action-only in v2); otherwise revisit labels/features.
-3. The trained model must consume the same versioned input/target interface
-   that passed its cheap pilot. Pilot v2 does not authorize training the old
-   19-atom/joint-class interface.
-4. Terminal head remains disabled until 100 strong terminal/level events.
-5. All tuning is restricted to the 11 source-train and three
+3. A source-train-only leave-one-game-out anti-shortcut audit must show at
+   least +0.10 changed-cells macro-F1 above both action-only and state-only,
+   at least 0.10 degradation under conditional action shuffling, robust
+   per-game gains, and no reliance on fixed game-signature atoms.
+4. The trained model must consume `sage11-streaming-features-v2` and the
+   separate changed-cells/player-moved targets. Joint-target checkpoints are
+   invalid.
+5. Terminal head remains disabled until 100 strong terminal/level events.
+6. All tuning is restricted to the 11 source-train and three
    source-validation games.
 
 ## Cheap-pilot evidence
@@ -82,15 +97,21 @@ world-model action-shuffle gate therefore remains unmet, and the result may
 largely reflect implicit game-regime signatures in near-constant atoms.
 
 See `reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md` and
-`reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`. V2 permits implementation of its
-input interface, not training or promotion of the unmodified graph model.
+`reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`. The interface is now implemented.
+Before any PyTorch training, the frozen
+`reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md` repeats the test as
+leave-one-game-out validation over only the 11 source-training games, makes
+changed-cells the non-compensable primary target, conditions the action
+shuffle on fixed state signatures, and explicitly ablates availability/object
+atoms that may identify games.
 
 ## Required gates
 
 - change-weighted next-state accuracy beats persistence;
 - at least a 15 percentage-point gain on changed transitions;
 - action shuffling degrades performance by at least 10%;
-- effect macro-F1 is at least majority macro-F1 + 0.10;
+- changed-cells and player-moved macro-F1 each exceed their majority
+  comparator by at least 0.10;
 - risk and no-op ECE are each at most 0.10;
 - latent feature standard deviation is at least 0.01;
 - validation games are exactly source-side games.
@@ -113,6 +134,7 @@ refutation, or level change.
 The current random initialization is not useful for acting. Pilot v1 is
 evidence against the original representation/target pairing. Pilot v2
 demonstrates factorized predictability but not robust changed-cell or
-current-action sensitivity. There is no claim of a useful learned world
-model, cross-game competence, score gain, or holdout generalization.
-Historical and holdout games remain untouched.
+current-action sensitivity. The stricter audit is pre-registered but not yet
+executed. There is no claim of a useful learned world model, cross-game
+competence, score gain, or holdout generalization. Historical and holdout
+games remain untouched.

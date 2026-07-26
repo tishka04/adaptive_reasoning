@@ -373,10 +373,19 @@ class NeuroSymbolicRanker:
                     self._demoted_contexts.add(pending.context_signature)
                     self._demotions += 1
 
+    def observe_transition(self, record: Any) -> None:
+        """Advance a stateful predictor only from an observed transition."""
+        observer = getattr(self.predictor, "observe_transition", None)
+        if callable(observer):
+            observer(record)
+
     def start_branch(self) -> None:
         self._branch_index += 1
         self._probed_contexts.clear()
         self._pending = None
+        reset = getattr(self.predictor, "on_reset", None)
+        if callable(reset):
+            reset()
 
     def rearm(self, *, reason: str) -> int:
         if str(reason) not in {

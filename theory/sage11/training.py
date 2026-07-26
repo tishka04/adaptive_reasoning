@@ -19,10 +19,10 @@ from .splits import SAGE11_SPLITS
 @dataclass(frozen=True)
 class LossWeights:
     jepa: float = 1.0
-    symbolic_effect: float = 1.0
+    changed_cells: float = 1.0
+    player_moved: float = 1.0
     action_contrast: float = 0.25
     consistency: float = 0.25
-    changed: float = 0.5
     progress: float = 0.5
     terminal: float = 0.5
     risk: float = 0.5
@@ -52,13 +52,13 @@ def world_model_loss(
         targets["next_latent"].detach(),
         dim=-1,
     ).mean()
-    effect = F.cross_entropy(
-        output["effect_logits"],
-        targets["effect_class"].long(),
+    changed_cells = F.cross_entropy(
+        output["changed_cells_logits"],
+        targets["changed_cells"].long(),
     )
-    changed = F.binary_cross_entropy_with_logits(
-        output["changed_logit"],
-        targets["changed"].float(),
+    player_moved = F.binary_cross_entropy_with_logits(
+        output["player_moved_logit"],
+        targets["player_moved"].float(),
     )
     progress_weights = torch.where(
         targets["progress_is_weak"].bool(),
@@ -108,10 +108,10 @@ def world_model_loss(
         action_contrast = torch.zeros_like(jepa)
     total = (
         weight.jepa * jepa
-        + weight.symbolic_effect * effect
+        + weight.changed_cells * changed_cells
+        + weight.player_moved * player_moved
         + weight.action_contrast * action_contrast
         + weight.consistency * consistency
-        + weight.changed * changed
         + weight.progress * progress
         + weight.terminal * terminal
         + weight.risk * risk
@@ -120,10 +120,10 @@ def world_model_loss(
     return {
         "total": total,
         "jepa": jepa,
-        "symbolic_effect": effect,
+        "changed_cells": changed_cells,
+        "player_moved": player_moved,
         "action_contrast": action_contrast,
         "consistency": consistency,
-        "changed": changed,
         "progress": progress,
         "terminal": terminal,
         "risk": risk,
@@ -141,11 +141,27 @@ class Sage11WorldModelTrainer:
         config: TrainerConfig | None = None,
         loss_weights: LossWeights | None = None,
         dataset_manifest_checksum: str = "",
+        streaming_feature_schema_checksum: str = "",
     ) -> None:
         self.model = model
         self.config = config or TrainerConfig()
         self.loss_weights = loss_weights or LossWeights()
         self.dataset_manifest_checksum = str(dataset_manifest_checksum)
+        self.streaming_feature_schema_checksum = str(
+            streaming_feature_schema_checksum
+        )
+        configured_schema = (
+            self.model.config.streaming_feature_schema_checksum
+        )
+        if (
+            configured_schema
+            and self.streaming_feature_schema_checksum
+            and configured_schema
+            != self.streaming_feature_schema_checksum
+        ):
+            raise ValueError(
+                "trainer and model streaming schemas do not match"
+            )
         requested = torch.device(self.config.device)
         self.device = (
             requested
@@ -179,13 +195,13 @@ class Sage11WorldModelTrainer:
         output = self.model(
             tensors["atom_ids"],
             tensors["atom_mask"],
-            tensors["action"],
+            tensors["streaming_features"],
         )
         targets = {
             "next_latent": next_latent,
             "shuffled_next_latent": shuffled,
-            "effect_class": tensors["effect_class"],
-            "changed": tensors["changed"],
+            "changed_cells": tensors["changed_cells"],
+            "player_moved": tensors["player_moved"],
             "progress": tensors["progress"],
             "progress_is_weak": tensors["progress_is_weak"],
             "terminal": tensors["terminal"],
@@ -231,6 +247,10 @@ class Sage11WorldModelTrainer:
                 "dataset_manifest_checksum": (
                     self.dataset_manifest_checksum
                 ),
+                "streaming_feature_schema_checksum": (
+                    self.streaming_feature_schema_checksum
+                    or self.model.config.streaming_feature_schema_checksum
+                ),
             },
             "model_state_dict": self.model.state_dict(),
             "optimizer_state_dict": self.optimizer.state_dict(),
@@ -246,7 +266,7 @@ class Sage11WorldModelTrainer:
         members: Sequence[Mapping[str, Tensor]],
         targets: Mapping[str, Tensor],
     ) -> Tensor:
-        batch_size = int(targets["effect_class"].shape[0])
+        batch_size = int(targets["changed_cells"].shape[0])
         losses = []
         for index, member in enumerate(members):
             generator = torch.Generator(device=self.device)
@@ -260,12 +280,12 @@ class Sage11WorldModelTrainer:
                 mask[index % batch_size] = True
             member_loss = (
                 F.cross_entropy(
-                    member["effect_logits"][mask],
-                    targets["effect_class"][mask].long(),
+                    member["changed_cells_logits"][mask],
+                    targets["changed_cells"][mask].long(),
                 )
                 + F.binary_cross_entropy_with_logits(
-                    member["changed_logit"][mask],
-                    targets["changed"][mask].float(),
+                    member["player_moved_logit"][mask],
+                    targets["player_moved"][mask].float(),
                 )
                 + F.binary_cross_entropy_with_logits(
                     member["risk_logit"][mask],
@@ -287,8 +307,10 @@ class WorldModelGateMetrics:
     changed_transition_accuracy: float
     persistence_changed_accuracy: float
     action_shuffle_degradation: float
-    effect_macro_f1: float
-    effect_majority_macro_f1: float
+    changed_cells_macro_f1: float
+    changed_cells_majority_macro_f1: float
+    player_moved_macro_f1: float
+    player_moved_majority_macro_f1: float
     risk_ece: float
     noop_ece: float
     latent_feature_std: float
@@ -328,9 +350,13 @@ def evaluate_world_model_gates(
         "action_shuffle_degradation_at_least_10pct": (
             metrics.action_shuffle_degradation >= 0.10
         ),
-        "effect_macro_f1_majority_plus_0_10": (
-            metrics.effect_macro_f1
-            >= metrics.effect_majority_macro_f1 + 0.10
+        "changed_cells_macro_f1_majority_plus_0_10": (
+            metrics.changed_cells_macro_f1
+            >= metrics.changed_cells_majority_macro_f1 + 0.10
+        ),
+        "player_moved_macro_f1_majority_plus_0_10": (
+            metrics.player_moved_macro_f1
+            >= metrics.player_moved_majority_macro_f1 + 0.10
         ),
         "risk_ece_at_most_0_10": metrics.risk_ece <= 0.10,
         "noop_ece_at_most_0_10": metrics.noop_ece <= 0.10,

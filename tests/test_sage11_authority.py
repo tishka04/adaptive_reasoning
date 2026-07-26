@@ -196,3 +196,33 @@ def test_controller_shadow_is_byte_identical_to_off_across_transitions():
                 grid_after=grid.copy(),
                 available_actions=["ACTION1", "ACTION2"],
             )
+
+
+def test_ranker_forwards_observed_transitions_and_resets_to_predictor():
+    class StatefulPredictor:
+        def __init__(self):
+            self.transitions = []
+            self.resets = 0
+
+        def __call__(self, _observation, candidates):
+            return tuple(
+                NeuralActionPrediction(
+                    action_name=candidate.action_name,
+                    action_data=candidate.action_data,
+                )
+                for candidate in candidates
+            )
+
+        def observe_transition(self, record):
+            self.transitions.append(record)
+
+        def on_reset(self):
+            self.resets += 1
+
+    predictor = StatefulPredictor()
+    ranker = NeuroSymbolicRanker(predictor)
+    record = object()
+    ranker.observe_transition(record)
+    ranker.start_branch()
+    assert predictor.transitions == [record]
+    assert predictor.resets == 1

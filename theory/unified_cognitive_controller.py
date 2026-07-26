@@ -1912,6 +1912,7 @@ class UnifiedCognitiveController:
                 ),
                 subeffect_relay=bool(linked_frontier_effects),
             )
+        self.neural_ranker.observe_transition(update.record)
         self.neural_ranker.observe_outcome(
             productive=bool(terminal_success or not is_noop),
             unsafe=bool(

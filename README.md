@@ -139,12 +139,21 @@ ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.factorized_effect_pil
 
 Pilot v2 formally passed its frozen cheap gate: full composite macro-F1
 0.5506 versus 0.3431 for a learned action-only comparator, a +0.2075 gain,
-with non-negative gains on all three source-validation games. This is not
-permission to train the current graph model. Player movement supplied nearly
-all the improvement, changed-cells F1 remained 0.1562, and action shuffling
-degraded the composite by only 0.0078. The passing 77-feature
-streaming/factorized interface must be implemented and still pass every
-world-model gate before training or evaluation can advance.
+with non-negative gains on all three source-validation games. Player movement
+supplied nearly all the improvement, changed-cells F1 remained 0.1562, and
+action shuffling degraded the composite by only 0.0078.
+
+The passing representation is now a shared, versioned 77-feature interface
+used identically by source-row loading and live counterfactual inference
+(schema checksum
+`39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd`).
+The 1,552,178-parameter world model now has separate changed-cells and
+player-moved heads. Training remains blocked pending the pre-registered
+source-train-only leave-one-game-out anti-shortcut audit in
+`reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`. It requires meaningful
+changed-cells improvement, conditional action sensitivity, robust game-wise
+transfer, and no fixed-signature shortcut. A failure routes to a smaller
+relational-data pilot instead of another 100,000-row corpus.
 
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:
