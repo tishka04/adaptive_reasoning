@@ -1,7 +1,9 @@
 # SAGE.11 validation and publication protocol
 
-Status: roadmap steps 1-4 complete; step 4 is a documented no-go. The first
-source-capacity gate failed
+Status: roadmap steps 1-4 complete. Step 4 first produced a documented v1
+no-go, then a separately pre-registered factorized v2 formal go. Step 5 has
+not started because the passing v2 interface is not yet implemented in the
+graph model. The first source-capacity gate failed
 closed at an optimistic maximum of 98,708/100,000 under the 8,000/game base
 cap. On 2026-07-26 the user approved the minimum 1,292-row aggregate overflow
 on five source-training games with demonstrated remaining unique capacity.
@@ -12,14 +14,18 @@ The frozen curriculum checksum is
 `d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
 The cheap effect classifier improved macro-F1 by only 0.0288 over the
 train-only per-action majority baseline, below the required 0.10. Authority
-remains `off`; no graph-model training, historical evaluation, or holdout
-evaluation was started. See `reports/SAGE11_SOURCE_CAPACITY_RESULT.md` and
-`reports/SAGE11_EFFECT_PILOT_RESULT.md`.
+remains `off`. Factorized pilot v2 later improved 0.2075 over its learned
+action-only comparator and passed its frozen gate, but showed only 0.0078
+action-shuffle degradation and does not authorize the unmodified model. No
+graph-model training, historical evaluation, or holdout evaluation was
+started. See `reports/SAGE11_SOURCE_CAPACITY_RESULT.md`,
+`reports/SAGE11_EFFECT_PILOT_RESULT.md`, and
+`reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`.
 
-Final repository validation after the pilot on 2026-07-26: Ruff passed on the
-full SAGE.11 package and updated test file, `git diff --check` passed, the
-focused SAGE.10g/SAGE.11 suite passed 29 tests, and the complete suite passed
-1,649 tests. The sole warning was joblib falling back from physical-core
+Final repository validation after pilot v2 on 2026-07-26: Ruff passed on the
+full SAGE.11 package and updated pilot tests, `git diff --check` passed, the
+focused SAGE.10g/SAGE.11 suite passed 32 tests, and the complete suite passed
+1,652 tests. The sole warning was joblib falling back from physical-core
 discovery to the available logical-core count on Windows; it does not affect
 results.
 
@@ -58,11 +64,11 @@ The focused implementation suite covers:
 8. Run active only after bounded passes.
 
 The data-policy amendment required by step 3 is approved and independently
-verified. Step 4 is complete and failed closed. Steps 5-8 are blocked unless a
-separately pre-registered representation or effect-label revision first
-passes a new cheap pilot.
+verified. Step 4 is complete: v1 failed and v2 formally passed. Steps 5-8
+remain blocked until a model consumes the exact passing v2 input/target
+interface and then passes every existing source-only world-model gate.
 
-## Step 4 result
+## Step 4 v1 result
 
 The single fixed `HistGradientBoostingClassifier` fit 76,908 source-training
 rows using 19 train-fitted binary pre-action atoms and six action features.
@@ -82,6 +88,32 @@ The laptop RTX 4050 was detected but not used because the fixed
 scikit-learn estimator is CPU-only and the 100,000-by-25 matrix completed in
 9.764 seconds on CPU; changing estimators solely to use CUDA would have
 changed the pre-registered pilot.
+
+## Step 4 factorized v2 result
+
+The v2 protocol was committed and pushed as `2660f4b` before fitting. It used
+separate changed-cells and player-moved heads, a learned 10-feature
+action-only comparator, and a 77-feature full representation with
+leakage-free trajectory context. The single source-only execution passed all
+frozen conditions:
+
+- full composite macro-F1: 0.5506;
+- learned action-only composite macro-F1: 0.3431;
+- absolute improvement: +0.2075, gate required +0.10;
+- both core heads non-negative against action-only;
+- per-game composite improvement: `re86` +0.1084, `ls20` +0.0802,
+  `sc25` +0.0329.
+
+The formal pass is not a promotion claim. Changed-cells F1 was only 0.1562 and
+remained below its per-action majority. Player-moved supplied nearly all the
+gain, and current-action shuffling degraded the composite by only 0.0078,
+below the later world-model requirement of 0.10. The current atoms can act as
+implicit game-regime signatures. The graph model must not train until the v2
+interface is implemented, and it must still pass the unchanged
+action-conditioning and changed-transition gates.
+
+V2 result checksum:
+`45f58d1537a1b1a6800636b77df401ab3bf1f94f4ed6dc3bcf2d107864f0328f`.
 
 ## Non-regression and report-only matrix
 

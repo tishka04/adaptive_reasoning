@@ -83,6 +83,8 @@ protocol are documented in:
 - `models/SAGE11_MODEL_CARD.md`
 - `reports/SAGE11_VALIDATION_PROTOCOL.md`
 - `reports/SAGE11_EFFECT_PILOT_RESULT.md`
+- `reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md`
+- `reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`
 
 The environment/model audit is reproducible with:
 
@@ -128,6 +130,21 @@ per-action majority baseline, a gain of +0.0288 rather than the required
 within-game action shuffling degraded macro-F1 by only +0.0059. No graph-model
 training or holdout evaluation followed. The checksummed result is documented
 in `reports/SAGE11_EFFECT_PILOT_RESULT.md`.
+
+The separately pre-registered factorized follow-up is reproducible with:
+
+```bash
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.factorized_effect_pilot_runner
+```
+
+Pilot v2 formally passed its frozen cheap gate: full composite macro-F1
+0.5506 versus 0.3431 for a learned action-only comparator, a +0.2075 gain,
+with non-negative gains on all three source-validation games. This is not
+permission to train the current graph model. Player movement supplied nearly
+all the improvement, changed-cells F1 remained 0.1562, and action shuffling
+degraded the composite by only 0.0078. The passing 77-feature
+streaming/factorized interface must be implemented and still pass every
+world-model gate before training or evaluation can advance.
 
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:

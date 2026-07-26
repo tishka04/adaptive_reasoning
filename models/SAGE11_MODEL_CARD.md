@@ -1,9 +1,10 @@
 # SAGE.11 graph world model — model card
 
 Status: architecture implemented and software-validated; untrained. The
-source-only cheap effect pilot failed its pre-registered gate on 2026-07-26,
-so graph-model training is not currently permitted and no checkpoint is
-promoted.
+original joint-target pilot failed. The separately pre-registered factorized
+v2 pilot passed its cheap gate on 2026-07-26, but its 77-feature streaming
+interface is not the current graph model's 19-atom interface. Training remains
+blocked until that interface mismatch is resolved; no checkpoint is promoted.
 
 ## Model
 
@@ -29,9 +30,13 @@ symbolic controller. Every bridged hypothesis begins with `support=0`.
 
 1. Checksummed source-only dataset with at least 100,000 transitions.
 2. Cheap effect-predictability pilot improves macro-F1 by at least 0.10 over
-   the per-action majority baseline; otherwise revisit labels/features.
-3. Terminal head remains disabled until 100 strong terminal/level events.
-4. All tuning is restricted to the 11 source-train and three
+   its frozen primary baseline (per-action majority in v1, learned
+   action-only in v2); otherwise revisit labels/features.
+3. The trained model must consume the same versioned input/target interface
+   that passed its cheap pilot. Pilot v2 does not authorize training the old
+   19-atom/joint-class interface.
+4. Terminal head remains disabled until 100 strong terminal/level events.
+5. All tuning is restricted to the 11 source-train and three
    source-validation games.
 
 ## Cheap-pilot evidence
@@ -54,6 +59,31 @@ The machine-readable result checksum is
 See `reports/SAGE11_EFFECT_PILOT_RESULT.md`. The graph architecture remains a
 software artifact only until a separately pre-registered representation or
 label revision passes a new cheap pilot.
+
+### Factorized pilot v2
+
+Protocol v2 was pushed in commit `2660f4b` before fitting. It replaced the
+joint class with independently scored changed-cells and player-moved heads,
+replaced raw coordinates with categorical/topological action features, and
+added leakage-free streaming context. Its learned action-only comparator used
+10 features; the full representation used 77.
+
+The full composite reached 0.5506 macro-F1 versus 0.3431 action-only, a
++0.2075 gain. Both core heads were non-negative and all three validation games
+improved against action-only, so the frozen v2 gate formally passed. Result
+checksum:
+`45f58d1537a1b1a6800636b77df401ab3bf1f94f4ed6dc3bcf2d107864f0328f`.
+
+The pass is qualified. Player-moved supplied nearly all the gain (0.9450 F1,
++0.3720), while changed-cells reached only 0.1562 and remained 0.0154 below
+the per-action majority. Current-action shuffling degraded the composite by
+only 0.0078 and argument shuffling by approximately zero. The later
+world-model action-shuffle gate therefore remains unmet, and the result may
+largely reflect implicit game-regime signatures in near-constant atoms.
+
+See `reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md` and
+`reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`. V2 permits implementation of its
+input interface, not training or promotion of the unmodified graph model.
 
 ## Required gates
 
@@ -80,8 +110,9 @@ followed by immediate return to symbolic control. Two non-productive probes
 demote the context until context change, a new confirmed effect, route
 refutation, or level change.
 
-The current random initialization is not useful for acting. The failed cheap
-pilot is evidence against the present representation/target pairing, so there
-is no claim of a useful learned world model, cross-game competence, score
-gain, or holdout generalization. Historical and holdout games remain
-untouched.
+The current random initialization is not useful for acting. Pilot v1 is
+evidence against the original representation/target pairing. Pilot v2
+demonstrates factorized predictability but not robust changed-cell or
+current-action sensitivity. There is no claim of a useful learned world
+model, cross-game competence, score gain, or holdout generalization.
+Historical and holdout games remain untouched.

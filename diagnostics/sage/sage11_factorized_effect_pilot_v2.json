@@ -1,0 +1,515 @@
+{
+  "classifier": {
+    "class_weight": "balanced",
+    "early_stopping": false,
+    "hyperparameter_searches": 0,
+    "learning_rate": 0.08,
+    "max_depth": 4,
+    "max_iter": 100,
+    "name": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "random_state": 11
+  },
+  "controls": {
+    "action_shuffle": "all current action-only features permuted within each validation game without retraining",
+    "argument_shuffle": "direct argument predicates permuted within each validation game/action stratum without retraining",
+    "controls_are_gate_conditions": false,
+    "random_state": 11
+  },
+  "coverage": {
+    "source_train": {
+      "exact_contiguous_predecessor_rate": 0.8528241535340927,
+      "exact_contiguous_predecessor_rows": 65589,
+      "revisited_state_rate": 0.06258126592812191,
+      "revisited_state_rows": 4813,
+      "rows": 76908,
+      "xy_argument_rate": 0.258789722785666,
+      "xy_argument_rows": 19903
+    },
+    "source_validation": {
+      "exact_contiguous_predecessor_rate": 0.7721288758011432,
+      "exact_contiguous_predecessor_rows": 17830,
+      "revisited_state_rate": 0.14009180668629828,
+      "revisited_state_rows": 3235,
+      "rows": 23092,
+      "xy_argument_rate": 0.1815347306426468,
+      "xy_argument_rows": 4192
+    }
+  },
+  "dataset": {
+    "action_only_features": 10,
+    "atom_vocabulary_size": 19,
+    "full_features": 77,
+    "manifest_checksum": "d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b",
+    "manifest_path": "training/sage11/source_dataset_v2/manifest.json",
+    "raw_coordinates_used": false,
+    "raw_grids_available": false,
+    "rows": 100000,
+    "source_train_games": [
+      "bp35",
+      "cd82",
+      "dc22",
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ],
+    "source_train_rows": 76908,
+    "source_validation_games": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "source_validation_rows": 23092
+  },
+  "decision": {
+    "gate": {
+      "core_heads_nonnegative": {
+        "changed_cells": true,
+        "player_moved": true
+      },
+      "go": true,
+      "minimum_overall_full_minus_action_only": 0.1,
+      "overall_improvement_pass": true,
+      "validation_games_nonnegative": {
+        "ls20": true,
+        "re86": true,
+        "sc25": true
+      }
+    },
+    "go": true,
+    "next_step": "implement_the_v2_input_interface_before_model_training"
+  },
+  "features": {
+    "action_only_names": [
+      "current_action:ACTION1",
+      "current_action:ACTION2",
+      "current_action:ACTION3",
+      "current_action:ACTION4",
+      "current_action:ACTION5",
+      "current_action:ACTION6",
+      "current_argument:has_xy",
+      "current_argument:on_boundary",
+      "current_argument:on_corner",
+      "current_argument:on_diagonal"
+    ],
+    "argument_names": [
+      "current_argument:has_xy",
+      "current_argument:on_boundary",
+      "current_argument:on_corner",
+      "current_argument:on_diagonal"
+    ],
+    "excluded": [
+      "game identity",
+      "policy arm",
+      "raw x and y",
+      "state digest bytes or prefixes",
+      "current-row post-action atoms and effects",
+      "historical and holdout rows"
+    ],
+    "names": [
+      "current_action:ACTION1",
+      "current_action:ACTION2",
+      "current_action:ACTION3",
+      "current_action:ACTION4",
+      "current_action:ACTION5",
+      "current_action:ACTION6",
+      "current_argument:has_xy",
+      "current_argument:on_boundary",
+      "current_argument:on_corner",
+      "current_argument:on_diagonal",
+      "current_atom:action:available(ACTION1)",
+      "current_atom:action:available(ACTION2)",
+      "current_atom:action:available(ACTION3)",
+      "current_atom:action:available(ACTION4)",
+      "current_atom:action:available(ACTION5)",
+      "current_atom:action:available(ACTION6)",
+      "current_atom:object:role_present(few:horizontal)",
+      "current_atom:object:role_present(few:square)",
+      "current_atom:object:role_present(few:vertical)",
+      "current_atom:object:role_present(many:horizontal)",
+      "current_atom:object:role_present(many:square)",
+      "current_atom:object:role_present(many:vertical)",
+      "current_atom:object:role_present(one:square)",
+      "current_atom:object:role_present(some:horizontal)",
+      "current_atom:object:role_present(some:square)",
+      "current_atom:object:role_present(some:vertical)",
+      "current_atom:progress:levels_completed_bucket(one)",
+      "current_atom:progress:levels_completed_bucket(zero)",
+      "current_atom:state:game_state(not_finished)",
+      "context:exact_continuity",
+      "reset_step:zero",
+      "reset_step:one_to_three",
+      "reset_step:four_to_fifteen",
+      "reset_step:sixteen_plus",
+      "state_visit:first",
+      "state_visit:second",
+      "state_visit:third_or_fourth",
+      "state_visit:fifth_plus",
+      "state_recency:new",
+      "state_recency:one",
+      "state_recency:two_to_four",
+      "state_recency:five_to_sixteen",
+      "state_recency:seventeen_plus",
+      "previous_action:ACTION1",
+      "previous_action:ACTION2",
+      "previous_action:ACTION3",
+      "previous_action:ACTION4",
+      "previous_action:ACTION5",
+      "previous_action:ACTION6",
+      "previous_action:same_as_current",
+      "previous_changed:zero",
+      "previous_changed:one",
+      "previous_changed:few",
+      "previous_changed:some",
+      "previous_changed:many",
+      "previous_effect:player_moved",
+      "previous_effect:level_complete",
+      "previous_effect:game_over",
+      "relative_target:has_xy",
+      "relative_target:same_target",
+      "relative_target:same_row",
+      "relative_target:same_column",
+      "relative_target:dx_negative",
+      "relative_target:dx_zero",
+      "relative_target:dx_positive",
+      "relative_target:dy_negative",
+      "relative_target:dy_zero",
+      "relative_target:dy_positive",
+      "relative_target:distance_zero",
+      "relative_target:distance_one_to_four",
+      "relative_target:distance_five_to_sixteen",
+      "relative_target:distance_seventeen_plus",
+      "atom_delta:zero",
+      "atom_delta:one",
+      "atom_delta:few",
+      "atom_delta:some",
+      "atom_delta:many"
+    ]
+  },
+  "format_version": "sage11-factorized-effect-pilot-v2",
+  "hardware": {
+    "cpu": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_decision": "The frozen balanced scikit-learn histogram gradient boosters use 77 dense features and have no CUDA backend. Changing estimator to use the GPU would change the pre-registered method rather than accelerate it effectively.",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "logical_cpu_count": 16,
+    "training_device": "cpu"
+  },
+  "metrics": {
+    "audit_heads": {
+      "game_over": {
+        "action_only_macro_f1": null,
+        "action_shuffled_macro_f1": 0.4495722044661076,
+        "argument_shuffled_macro_f1": 0.44952431075937765,
+        "full_macro_f1": 0.44952431075937765,
+        "full_minus_action_only": null,
+        "full_minus_majority": -0.047633975937920014,
+        "label_support": {
+          "False": 22831,
+          "True": 261
+        },
+        "per_action_majority_macro_f1": 0.49715828669729767,
+        "rows": 23092
+      },
+      "level_complete": {
+        "action_only_macro_f1": null,
+        "action_shuffled_macro_f1": 0.49619286571397403,
+        "argument_shuffled_macro_f1": 0.4963576881134133,
+        "full_macro_f1": 0.4963576881134133,
+        "full_minus_action_only": null,
+        "full_minus_majority": -0.5036423118865867,
+        "label_support": {
+          "False": 23092,
+          "True": 0
+        },
+        "per_action_majority_macro_f1": 1.0,
+        "rows": 23092
+      }
+    },
+    "overall": {
+      "composite": {
+        "action_only_macro_f1": 0.34309743167428125,
+        "action_shuffle_degradation": 0.00776036282979653,
+        "argument_shuffle_degradation": -1.9227556959489078e-05,
+        "full_macro_f1": 0.5506073966890304,
+        "full_minus_action_only": 0.2075099650147491,
+        "full_minus_majority": 0.26897487357927274,
+        "per_action_majority_macro_f1": 0.2816325231097576
+      },
+      "heads": {
+        "changed_cells": {
+          "action_only_macro_f1": 0.11312189496974971,
+          "action_shuffled_macro_f1": 0.1417649569234059,
+          "argument_shuffled_macro_f1": 0.1562156782000023,
+          "full_macro_f1": 0.1561772230860833,
+          "full_minus_action_only": 0.0430553281163336,
+          "full_minus_majority": -0.015396350306056378,
+          "label_support": {
+            "few": 3425,
+            "many": 14203,
+            "one": 23,
+            "some": 2189,
+            "zero": 3252
+          },
+          "per_action_majority_macro_f1": 0.1715735733921397,
+          "rows": 23092
+        },
+        "player_moved": {
+          "action_only_macro_f1": 0.5730729683788128,
+          "action_shuffled_macro_f1": 0.9439291107950618,
+          "argument_shuffled_macro_f1": 0.9450375702919773,
+          "full_macro_f1": 0.9450375702919773,
+          "full_minus_action_only": 0.3719646019131645,
+          "full_minus_majority": 0.5533460974646018,
+          "label_support": {
+            "False": 14869,
+            "True": 8223
+          },
+          "per_action_majority_macro_f1": 0.3916914728273755,
+          "rows": 23092
+        }
+      }
+    },
+    "per_game": {
+      "ls20": {
+        "composite": {
+          "action_only_macro_f1": 0.16148381459421696,
+          "action_shuffle_degradation": -0.0007782101167315147,
+          "argument_shuffle_degradation": 0.0,
+          "full_macro_f1": 0.24171140939597316,
+          "full_minus_action_only": 0.0802275948017562,
+          "full_minus_majority": -0.14545498925991016,
+          "per_action_majority_macro_f1": 0.3871663986558833
+        },
+        "coverage": {
+          "exact_contiguous_predecessor_rate": 0.6522021566844225,
+          "exact_contiguous_predecessor_rows": 5020,
+          "revisited_state_rate": 0.0010393659867480836,
+          "revisited_state_rows": 8,
+          "rows": 7697,
+          "xy_argument_rate": 0.0,
+          "xy_argument_rows": 0
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only_macro_f1": 0.08036904151717068,
+            "action_shuffled_macro_f1": 0.0015564202334630351,
+            "argument_shuffled_macro_f1": 0.0,
+            "full_macro_f1": 0.0,
+            "full_minus_action_only": -0.08036904151717068,
+            "full_minus_majority": -0.2909099785198203,
+            "label_support": {
+              "few": 1730,
+              "many": 5959,
+              "one": 0,
+              "some": 0,
+              "zero": 8
+            },
+            "per_action_majority_macro_f1": 0.2909099785198203,
+            "rows": 7697
+          },
+          "player_moved": {
+            "action_only_macro_f1": 0.24259858767126322,
+            "action_shuffled_macro_f1": 0.4834228187919463,
+            "argument_shuffled_macro_f1": 0.4834228187919463,
+            "full_macro_f1": 0.4834228187919463,
+            "full_minus_action_only": 0.2408242311206831,
+            "full_minus_majority": 0.0,
+            "label_support": {
+              "False": 7203,
+              "True": 494
+            },
+            "per_action_majority_macro_f1": 0.4834228187919463,
+            "rows": 7697
+          }
+        }
+      },
+      "re86": {
+        "composite": {
+          "action_only_macro_f1": 0.2619970314663922,
+          "action_shuffle_degradation": 0.0015682346671520575,
+          "argument_shuffle_degradation": 0.0,
+          "full_macro_f1": 0.3703547584132644,
+          "full_minus_action_only": 0.10835772694687218,
+          "full_minus_majority": 0.2557526233805877,
+          "per_action_majority_macro_f1": 0.11460213503267669
+        },
+        "coverage": {
+          "exact_contiguous_predecessor_rate": 0.9811639386853728,
+          "exact_contiguous_predecessor_rows": 7553,
+          "revisited_state_rate": 0.0011691348402182386,
+          "revisited_state_rows": 9,
+          "rows": 7698,
+          "xy_argument_rate": 0.0,
+          "xy_argument_rows": 0
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only_macro_f1": 0.06712165529195104,
+            "action_shuffled_macro_f1": 0.22576812790723835,
+            "argument_shuffled_macro_f1": 0.22510646545680485,
+            "full_macro_f1": 0.22510646545680485,
+            "full_minus_action_only": 0.15798481016485383,
+            "full_minus_majority": 0.0026118728108062983,
+            "label_support": {
+              "few": 1494,
+              "many": 6172,
+              "one": 23,
+              "some": 0,
+              "zero": 9
+            },
+            "per_action_majority_macro_f1": 0.22249459264599855,
+            "rows": 7698
+          },
+          "player_moved": {
+            "action_only_macro_f1": 0.45687240764083337,
+            "action_shuffled_macro_f1": 0.5118049195849863,
+            "argument_shuffled_macro_f1": 0.515603051369724,
+            "full_macro_f1": 0.515603051369724,
+            "full_minus_action_only": 0.058730643728890586,
+            "full_minus_majority": 0.5088933739503692,
+            "label_support": {
+              "False": 52,
+              "True": 7646
+            },
+            "per_action_majority_macro_f1": 0.006709677419354839,
+            "rows": 7698
+          }
+        }
+      },
+      "sc25": {
+        "composite": {
+          "action_only_macro_f1": 0.3089076195021019,
+          "action_shuffle_degradation": 0.0011776629086028279,
+          "argument_shuffle_degradation": -5.127534005111567e-05,
+          "full_macro_f1": 0.34179128234406464,
+          "full_minus_action_only": 0.03288366284196276,
+          "full_minus_majority": 0.00044434751732896904,
+          "per_action_majority_macro_f1": 0.34134693482673567
+        },
+        "coverage": {
+          "exact_contiguous_predecessor_rate": 0.6829933740418345,
+          "exact_contiguous_predecessor_rows": 5257,
+          "revisited_state_rate": 0.41808496816941665,
+          "revisited_state_rows": 3218,
+          "rows": 7697,
+          "xy_argument_rate": 0.5446277770559959,
+          "xy_argument_rows": 4192
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only_macro_f1": 0.2006163644091216,
+            "action_shuffled_macro_f1": 0.15063828609169372,
+            "argument_shuffled_macro_f1": 0.18652695243623968,
+            "full_macro_f1": 0.18642440175613734,
+            "full_minus_action_only": -0.014191962652984252,
+            "full_minus_majority": 0.001020062505644237,
+            "label_support": {
+              "few": 201,
+              "many": 2072,
+              "one": 0,
+              "some": 2189,
+              "zero": 3235
+            },
+            "per_action_majority_macro_f1": 0.1854043392504931,
+            "rows": 7697
+          },
+          "player_moved": {
+            "action_only_macro_f1": 0.4171988745950822,
+            "action_shuffled_macro_f1": 0.5305889527792299,
+            "argument_shuffled_macro_f1": 0.4971581629319919,
+            "full_macro_f1": 0.4971581629319919,
+            "full_minus_action_only": 0.07995928833690968,
+            "full_minus_majority": -0.00013136747098635437,
+            "label_support": {
+              "False": 7614,
+              "True": 83
+            },
+            "per_action_majority_macro_f1": 0.49728953040297824,
+            "rows": 7697
+          }
+        }
+      }
+    }
+  },
+  "reproduction": {
+    "command": "ARC-AGI-3-Agents\\.venv\\Scripts\\python.exe -m theory.sage11.factorized_effect_pilot_runner",
+    "protocol": "reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md"
+  },
+  "result_checksum": "45f58d1537a1b1a6800636b77df401ab3bf1f94f4ed6dc3bcf2d107864f0328f",
+  "run_date": "2026-07-26",
+  "software": {
+    "numpy": "2.4.3",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "torch": "2.5.1+cu121"
+  },
+  "targets": {
+    "audit_estimator_modes": {
+      "game_over": "balanced_hist_gradient_booster",
+      "level_complete": "balanced_hist_gradient_booster"
+    },
+    "audit_heads": [
+      "level_complete",
+      "game_over"
+    ],
+    "core_heads": [
+      "changed_cells",
+      "player_moved"
+    ],
+    "training_support": {
+      "changed_cells": {
+        "few": 10771,
+        "many": 36555,
+        "one": 15778,
+        "some": 8424,
+        "zero": 5380
+      },
+      "game_over": {
+        "False": 75443,
+        "True": 1465
+      },
+      "level_complete": {
+        "False": 76864,
+        "True": 44
+      },
+      "player_moved": {
+        "False": 60018,
+        "True": 16890
+      }
+    },
+    "validation_support": {
+      "changed_cells": {
+        "few": 3425,
+        "many": 14203,
+        "one": 23,
+        "some": 2189,
+        "zero": 3252
+      },
+      "game_over": {
+        "False": 22831,
+        "True": 261
+      },
+      "level_complete": {
+        "False": 23092,
+        "True": 0
+      },
+      "player_moved": {
+        "False": 14869,
+        "True": 8223
+      }
+    },
+    "value_multiset_delta": "excluded from scoring because its cardinality duplicates the current changed-cell set"
+  },
+  "timing_seconds": {
+    "evaluate_and_serialize": 0.107,
+    "fit_all_heads": 10.466,
+    "total": 13.722,
+    "verify_load_and_encode": 3.148
+  }
+}

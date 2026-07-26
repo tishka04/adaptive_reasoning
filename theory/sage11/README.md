@@ -38,6 +38,11 @@ existing controller remains the single execution path.
   source-training rows, evaluates the three frozen source-validation games,
   runs a within-game action-shuffle control, and publishes a checksummed
   go/no-go artifact.
+- `factorized_effect_pilot_runner.py` implements the separately pre-registered
+  v2 follow-up. It removes raw coordinates, factors changed-cells from
+  player-movement, reconstructs only leakage-free trajectory relations from
+  archived rows, compares a 77-feature full model with a learned 10-feature
+  action-only model, and preserves aggregate/per-game controls and checksums.
 - `model.py` implements a 1,540,953-parameter graph-atom encoder with five
   bootstrap dynamics heads. It predicts next latent state, symbolic effects,
   changed/no-op, progress, terminal, and risk. The terminal head is forced off
@@ -93,6 +98,8 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.source_dataset_runner --workers 8
 ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.effect_pilot_runner
+ARC-AGI-3-Agents\.venv\Scripts\python.exe `
+  -m theory.sage11.factorized_effect_pilot_runner
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest -q `
   tests\test_sage10g_i_symbolic_repairs.py `
   tests\test_sage11_splits_dataset.py `
@@ -122,3 +129,18 @@ validation games failed independently. Result checksum:
 `c724aeb6d2ab71154a7c72fa381f3f5f4347a5135644ba64ac82a5542e528136`.
 See `reports/SAGE11_EFFECT_PILOT_RESULT.md`. No graph-model, historical, or
 holdout run followed.
+
+Factorized pilot v2 was pre-registered in pushed commit `2660f4b` and then
+executed once. It formally passed: full composite macro-F1 0.5506 versus
+0.3431 for the learned action-only comparator, a +0.2075 gain; both core heads
+and all three source-validation games met the frozen non-regression
+conditions. Result checksum:
+`45f58d1537a1b1a6800636b77df401ab3bf1f94f4ed6dc3bcf2d107864f0328f`.
+
+The result is qualified: player movement supplies nearly all the gain,
+changed-cells F1 remains 0.1562, current-action shuffle degradation is only
+0.0078, and raw object relations were not archived. V2 permits implementation
+of its versioned streaming/factorized interface; it does not permit training
+the current 19-atom graph model or touching historical/holdout games. See
+`reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md` and
+`reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`.

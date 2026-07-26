@@ -56,7 +56,7 @@ de policy en support scientifique.
 | SAGE.10h - Chain economics repair | Implemente logiciellement - pilot live en attente | `theory/online_transferable_causal_schema.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage10g_i_symbolic_repairs.py` | Ledger de confirmations cross-branch persistant, scheduler focalise sur seuil/depth, escalation depth-0, demotion apres 2 non-progres et re-arm seulement sur contexte/nouvel effet/refutation/level; competence protegee prioritaire |
 | SAGE.10i - Confirmed-effect causal exploitation | Implemente logiciellement - delta multi-jeu en attente | `theory/online_causal_subgoal_graph.py`, `theory/online_transferable_causal_schema.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage10g_i_symbolic_repairs.py` | Les effets transferes confirmes localement alimentent l'ordre du graphe causal sans creer edge support, credit terminal ni autorite de policy; support=0 |
 | SAGE.11a - Firewall + dataset | Fait - 100,000 lignes verifiees | `theory/sage11/splits.py`, `theory/sage11/dataset.py`, `theory/sage11/source_dataset_runner.py`, `training/sage11/source_dataset_v2/manifest.json`, `training/SAGE11_DATA_POLICY.md`, `reports/SAGE11_SOURCE_CAPACITY_RESULT.md` | Registry 25 jeux checksumme; 76,908 train + 23,092 val-source; mixture 69,999/20,002/9,999; pool global exact +1,292 sur cinq jeux train; manifest `d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b`; aucun holdout/historique touche |
-| SAGE.11b - Pilot + compact world model | Pilot execute - no-go, modele non entraine | `theory/sage11/pilot.py`, `theory/sage11/effect_pilot_runner.py`, `diagnostics/sage/sage11_effect_predictability_pilot.json`, `reports/SAGE11_EFFECT_PILOT_RESULT.md`, `theory/sage11/model.py`, `theory/sage11/training.py`, `models/SAGE11_MODEL_CARD.md`, `tests/test_sage11_model_training.py` | GBM source-only: F1 0.0779 contre majority par action 0.0490, gain +0.0288 < gate +0.10; 3/3 jeux val echouent; shuffle action +0.0059; checksum resultat `c724aeb6d2ab71154a7c72fa381f3f5f4347a5135644ba64ac82a5542e528136`; graph model 1,540,953 params reste non entraine |
+| SAGE.11b - Pilot + compact world model | V1 no-go; v2 factorise go formel; modele non entraine | `theory/sage11/pilot.py`, `theory/sage11/effect_pilot_runner.py`, `theory/sage11/factorized_effect_pilot_runner.py`, `diagnostics/sage/sage11_effect_predictability_pilot.json`, `diagnostics/sage/sage11_factorized_effect_pilot_v2.json`, `reports/SAGE11_EFFECT_PILOT_RESULT.md`, `reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md`, `reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`, `models/SAGE11_MODEL_CARD.md` | V1 joint: +0.0288 < +0.10, no-go. V2 pre-enregistre commit `2660f4b`: composite full 0.5506 contre action-only 0.3431, +0.2075 et 3/3 jeux non-negatifs, go formel; mais changed F1 0.1562, shuffle action +0.0078, interface 77 features non implementee dans le GNN; checksum v2 `45f58d1537a1b1a6800636b77df401ab3bf1f94f4ed6dc3bcf2d107864f0328f` |
 | SAGE.11c/11d - Typed bridge + shadow | Implemente logiciellement - shadow live en attente | `theory/sage11/atoms.py`, `theory/sage11/bridge.py`, `theory/sage11/authority.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage11_authority.py` | Atomes partages FrameDiff/schema, hypotheses support=0; off ne lance pas le predicteur; shadow action-identique et log top-k/pre-emption/cout; bounded inaccessible sans gates |
 | SAGE.11e/11f - Bounded/active + adaptation | Implemente logiciellement - promotion non revendiquee | `theory/sage11/authority.py`, `theory/sage11/adaptation.py`, `theory/sage11/evaluation.py`, `reports/SAGE11_VALIDATION_PROTOCOL.md`, `diagnostics/sage/sage11_implementation_audit.json` | Veto danger symbolique dur, competence protegee, info-gain positif, 1 probe branche/contexte, demotion 2 echecs, re-arm explicite; encodeur gele, replay 2048, update/32 <=4 gradients, reset jeu/seed; bootstrap holdout 5x5 implemente mais non execute |
 | SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
@@ -8746,6 +8746,20 @@ Pilot et modele :
 - Le RTX 4050/CUDA 12.1 est visible mais non utilise: le GBM sklearn fixe est
   CPU-only et la matrice 100,000 x 25 termine en 9.764 s CPU. Changer
   d'estimateur seulement pour CUDA aurait modifie le pilot pre-enregistre.
+- Le pilot v2 factorise a ete fige et pousse au commit `2660f4b` avant fit. Il
+  compare 77 features de contexte pre-action a un classifieur action-only de
+  10 features, avec heads changed-cells/player-moved separes et poids de
+  classes equilibres. Le composite full atteint 0.5506 contre 0.3431, soit
+  +0.2075; les deux heads sont non-negatifs globalement et les trois jeux val
+  sont non-negatifs: go formel selon le protocole.
+- Le go v2 reste qualifie: player-moved fournit +0.3720, changed-cells
+  seulement +0.0431 et reste sous la majority par action; le shuffle action ne
+  degrade que +0.0078 et le shuffle arguments environ zero. Les atomes quasi
+  constants peuvent encoder implicitement le regime/jeu. Le GNN actuel ne
+  consomme pas l'interface v2 et reste non entraine.
+- Checksum resultat v2:
+  `45f58d1537a1b1a6800636b77df401ab3bf1f94f4ed6dc3bcf2d107864f0328f`.
+  Le run complet v2 prend 13.722 s CPU; CUDA n'accelere pas le GBM fixe.
 - Le modele par defaut a 1,540,953 parametres, trois couches de messages et
   cinq heads bootstrap. Il predit latent suivant, effet symbolique, change,
   progress, terminal, risque et no-op.
@@ -8777,9 +8791,11 @@ Bridge et autorite :
 Validation/promotion :
 
 - Les gates shadow et holdout sont codees dans `evaluation.py`.
-- Le gate bon marche de l'etape 4 a echoue; l'entrainement world-model et les
-  etapes shadow/bounded/active sont bloques. Aucun tuning post-outcome,
-  historique ou holdout n'a ete lance.
+- Le gate bon marche v1 a echoue, puis le v2 factorise pre-enregistre a passe.
+  L'entrainement world-model et les etapes shadow/bounded/active restent
+  bloques jusqu'a implementation exacte de l'interface v2 et passage des
+  gates changed/action-shuffle/calibration existants. Aucun tuning
+  post-outcome, historique ou holdout n'a ete lance.
 - Le holdout requiert exactement 5 jeux x 5 seeds, active/off, digests apparies,
   bootstrap-95% lower bound >0, aucun WIN perdu, au moins un nouveau
   level/WIN, zero unsafe, erreur et pre-emption.
@@ -8800,6 +8816,8 @@ Documentation :
 - `reports/SAGE11_VALIDATION_PROTOCOL.md`;
 - `reports/SAGE11_SOURCE_CAPACITY_RESULT.md`;
 - `reports/SAGE11_EFFECT_PILOT_RESULT.md`;
+- `reports/SAGE11_EFFECT_PILOT_V2_PROTOCOL.md`;
+- `reports/SAGE11_EFFECT_PILOT_V2_RESULT.md`;
 - `diagnostics/sage/sage11_implementation_audit.json`.
 
 Commandes reproductibles :
@@ -8808,6 +8826,7 @@ Commandes reproductibles :
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.audit
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.source_dataset_runner --workers 8 --seeds 0,1,2,3,4
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.effect_pilot_runner
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.factorized_effect_pilot_runner
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m pytest -q tests/test_sage10g_i_symbolic_repairs.py tests/test_sage11_splits_dataset.py tests/test_sage11_model_training.py tests/test_sage11_authority.py
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m ruff check theory/sage11
 ```
@@ -8815,8 +8834,9 @@ ARC-AGI-3-Agents/.venv/Scripts/python.exe -m ruff check theory/sage11
 Lecture finale : l'architecture, les firewalls, les modes d'autorite et les
 gates de promotion sont implementes et testables sans ouvrir l'autorite. Le
 corpus amende atteint maintenant 100,000 lignes, mais la phase empirique
-suivante produit un resultat negatif utile: les atomes pre-action actuels et
-la cible d'effet jointe ne passent pas le pilot cross-game bon marche. Une
-nouvelle representation/cible doit etre pre-enregistree et passer ce meme type
-de gate avant toute depense GNN; jusque-la SAGE.11 ne formule aucune
-revendication de generalisation.
+suivante produit deux resultats complementaires: la cible jointe v1 echoue,
+tandis que le contexte/factorisation v2 passe son gate bon marche. Le passage
+v2 est domine par player-moved et ne montre presque aucune sensibilite a
+l'action courante; il autorise l'implementation de l'interface v2, jamais le
+training du GNN actuel. SAGE.11 ne formule toujours aucune revendication de
+generalisation ou promotion.
