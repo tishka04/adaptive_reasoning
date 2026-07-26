@@ -176,6 +176,14 @@ fitting have not started. Pre-collection validation passed Ruff,
 `git diff --check`, and 44 focused SAGE.10g/SAGE.11 tests, including an
 end-to-end injected-environment test that records ten live relational rows.
 
+The real collection then completed exactly 10,027 rows with manifest checksum
+`11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`.
+Policy counts are 7,019 active-controller, 2,005 uniform-legal, and 1,003
+frontier-stall rows. All 11 shard hashes, row counts, source-train
+provenance, cross-shard deduplication, and schema checksum verify. The frozen
+relational fit has not yet run. See
+`reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md`.
+
 ## Non-regression and report-only matrix
 
 - Off must be identical to the current controller.

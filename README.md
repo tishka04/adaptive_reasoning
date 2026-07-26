@@ -161,6 +161,12 @@ at least +0.05 changed-cells F1. See
 `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md` and
 `reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`.
 
+The relational collection now verifies at exactly 10,027 rows, manifest
+checksum
+`11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`.
+The fit has not yet run. See
+`reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md`.
+
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:
 

@@ -1,0 +1,198 @@
+{
+  "artifact_purpose": "train",
+  "collection_policy": {
+    "active_controller": 0.7,
+    "frontier_stall_probe": 0.1,
+    "uniform_legal": 0.2
+  },
+  "format_version": "sage11-relational-pilot-manifest-v1",
+  "game_counts": {
+    "bp35": 1000,
+    "cd82": 1000,
+    "dc22": 1000,
+    "g50t": 1000,
+    "ka59": 1000,
+    "lf52": 1000,
+    "lp85": 27,
+    "sp80": 1000,
+    "su15": 1000,
+    "tr87": 1000,
+    "tu93": 1000
+  },
+  "game_quotas": {
+    "bp35": 1000,
+    "cd82": 1000,
+    "dc22": 1000,
+    "g50t": 1000,
+    "ka59": 1000,
+    "lf52": 1000,
+    "lp85": 27,
+    "sp80": 1000,
+    "su15": 1000,
+    "tr87": 1000,
+    "tu93": 1000
+  },
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "historical_shards_opened": false,
+  "holdout_shards_opened": false,
+  "manifest_checksum": "11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c",
+  "raw_action_coordinates_archived_for_audit": true,
+  "raw_action_coordinates_used_as_model_features": false,
+  "raw_grids_archived": false,
+  "relational_schema": {
+    "action_dependent_feature_count": 30,
+    "checksum": "84f044dd08f3240f968a6ba1bf528896eab00eb39066dcce95d0f87e9a9193f7",
+    "feature_count": 52,
+    "feature_names": [
+      "state_object_count:zero",
+      "state_object_count:one",
+      "state_object_count:few",
+      "state_object_count:some",
+      "state_object_count:many",
+      "state_player:present",
+      "state_object_pair:any_contact",
+      "state_object_pair:any_row_aligned",
+      "state_object_pair:any_column_aligned",
+      "state_object_pair:min_distance_unavailable",
+      "state_object_pair:min_distance_contact",
+      "state_object_pair:min_distance_near",
+      "state_object_pair:min_distance_medium",
+      "state_object_pair:min_distance_far",
+      "state_player_object:any_contact",
+      "state_player_object:any_row_aligned",
+      "state_player_object:any_column_aligned",
+      "state_player_object:min_distance_unavailable",
+      "state_player_object:min_distance_zero",
+      "state_player_object:min_distance_one",
+      "state_player_object:min_distance_two_to_four",
+      "state_player_object:min_distance_five_plus",
+      "action_target:has_xy",
+      "action_target:inside_object",
+      "action_target:contacts_object",
+      "action_target:row_aligned_with_object",
+      "action_target:column_aligned_with_object",
+      "action_target:object_distance_unavailable",
+      "action_target:object_distance_zero",
+      "action_target:object_distance_one",
+      "action_target:object_distance_two_to_four",
+      "action_target:object_distance_five_plus",
+      "action_target:nearest_object_row_negative",
+      "action_target:nearest_object_row_zero",
+      "action_target:nearest_object_row_positive",
+      "action_target:nearest_object_column_negative",
+      "action_target:nearest_object_column_zero",
+      "action_target:nearest_object_column_positive",
+      "action_target:nearest_object_size_one",
+      "action_target:nearest_object_size_few",
+      "action_target:nearest_object_size_some",
+      "action_target:nearest_object_size_many",
+      "action_target:nearest_object_aspect_square",
+      "action_target:nearest_object_aspect_vertical",
+      "action_target:nearest_object_aspect_horizontal",
+      "action_target:player_distance_unavailable",
+      "action_target:player_distance_zero",
+      "action_target:player_distance_one",
+      "action_target:player_distance_two_to_four",
+      "action_target:player_distance_five_plus",
+      "action_target:row_aligned_with_player",
+      "action_target:column_aligned_with_player"
+    ],
+    "format_version": "sage11-object-relations-v1",
+    "state_feature_count": 22
+  },
+  "shards": [
+    {
+      "game_id": "bp35",
+      "path": "training/sage11/relational_pilot_v1/shards/bp35.jsonl",
+      "sha256": "c996f14eda558f85f603785209653a8bc442538b3d3d85b1ec1275284b41ed03",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "cd82",
+      "path": "training/sage11/relational_pilot_v1/shards/cd82.jsonl",
+      "sha256": "0f1f31de9702cb18c27863642ed4184e88d30b32d2ff19e671ae2e661159a241",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "dc22",
+      "path": "training/sage11/relational_pilot_v1/shards/dc22.jsonl",
+      "sha256": "e802c2afcc63c07487d5a175b31a49735fe4e106721a13f1dcc93dbb1ba3bd52",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "g50t",
+      "path": "training/sage11/relational_pilot_v1/shards/g50t.jsonl",
+      "sha256": "c6f48682301d0e4ae31f012f7d4148de37d1ab0803e066aca81ee2ceb4b9cf2b",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "ka59",
+      "path": "training/sage11/relational_pilot_v1/shards/ka59.jsonl",
+      "sha256": "c13875646f7f1fd51ca2ead86f3be6f6787810698bebc730668c288d15a64ff5",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "lf52",
+      "path": "training/sage11/relational_pilot_v1/shards/lf52.jsonl",
+      "sha256": "4e10bdb421ce5476db523e4eaae3c09233c5ded081943e105fe5f9eb4508b508",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "lp85",
+      "path": "training/sage11/relational_pilot_v1/shards/lp85.jsonl",
+      "sha256": "869bbae4796b51f76b10b0087e1a0ff547b14337be9d871c654bc06ca0d18973",
+      "source_split": "source_train",
+      "transitions": 27
+    },
+    {
+      "game_id": "sp80",
+      "path": "training/sage11/relational_pilot_v1/shards/sp80.jsonl",
+      "sha256": "38c903a1730e846abcb778542047d4fb48c55ebb2914ad19d3625021eb0d984b",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "su15",
+      "path": "training/sage11/relational_pilot_v1/shards/su15.jsonl",
+      "sha256": "477add3c95ca358e10be9bfdd19671b2425e6e777b428af12a094b98eba3ee01",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "tr87",
+      "path": "training/sage11/relational_pilot_v1/shards/tr87.jsonl",
+      "sha256": "564024fb0bcd1dba7b2ef7c1d31aefc6e1a234a91bdff9365fdd3daf9d79cd20",
+      "source_split": "source_train",
+      "transitions": 1000
+    },
+    {
+      "game_id": "tu93",
+      "path": "training/sage11/relational_pilot_v1/shards/tu93.jsonl",
+      "sha256": "e8fa4b4e55d69d93f11fc5cbbaf81bb88180578d7615af8bee0028982190d6e4",
+      "source_split": "source_train",
+      "transitions": 1000
+    }
+  ],
+  "source_validation_shards_opened": false,
+  "split_registry_checksum": "22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d",
+  "target_transitions": 10027,
+  "total_transitions": 10027
+}

@@ -53,6 +53,17 @@ def run_relational_pilot_collection(
 ) -> Dict[str, Any]:
     """Collect every frozen source-train quota without opening other games."""
     destination = Path(output_dir)
+    manifest_path = destination / "manifest.json"
+    report_path = destination / "collection_report.json"
+    if manifest_path.exists() and report_path.exists():
+        manifest = verify_relational_manifest(manifest_path)
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        if (
+            report.get("status") == "COMPLETE"
+            and report.get("manifest_checksum")
+            == manifest["manifest_checksum"]
+        ):
+            return {"manifest": manifest, "report": report}
     shard_dir = destination / "shards"
     base_work_dir = destination / "base_work"
     shard_dir.mkdir(parents=True, exist_ok=True)
@@ -134,7 +145,6 @@ def run_relational_pilot_collection(
         for game in SOURCE_TRAIN
     ]
     manifest = build_relational_manifest(shard_metadata)
-    manifest_path = destination / "manifest.json"
     _write_json_atomic(manifest_path, manifest)
     verify_relational_manifest(manifest_path)
     report = {
@@ -159,7 +169,7 @@ def run_relational_pilot_collection(
         "historical_shards_opened": False,
         "holdout_shards_opened": False,
     }
-    _write_json_atomic(destination / "collection_report.json", report)
+    _write_json_atomic(report_path, report)
     return {"manifest": manifest, "report": report}
 
 

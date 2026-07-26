@@ -184,6 +184,10 @@ removing them improved changed-cells F1. GPU training remains blocked. The
 replacement collection/pilot implementation is frozen before collection:
 10,027 rows, 52 generic relation columns, LOGO source-train validation,
 changed-cells +0.10, conditional shuffle +0.10, and an explicit +0.05
-relations-added requirement. Historical and holdout games remain untouched.
+relations-added requirement. Collection is complete at exactly 10,027 rows,
+manifest checksum
+`11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`;
+the fit has not run. Historical and holdout games remain untouched.
 See `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md` and
-`reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`.
+`reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`, plus
+`reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md`.

@@ -120,6 +120,9 @@ source-train rows and archives a fixed 52-column generic relation vector
 (contact, alignment, proximity, and object-relative action geometry), checksum
 `84f044dd08f3240f968a6ba1bf528896eab00eb39066dcce95d0f87e9a9193f7`.
 The world-model input width will not change unless that replacement passes.
+The collection is complete at 10,027 rows with manifest checksum
+`11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`;
+the frozen relational fit has not run.
 
 ## Required gates
 

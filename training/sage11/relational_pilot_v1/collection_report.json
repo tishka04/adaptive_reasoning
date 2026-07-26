@@ -1,0 +1,605 @@
+{
+  "format_version": "sage11-relational-pilot-collection-v1",
+  "game_quotas": {
+    "bp35": 1000,
+    "cd82": 1000,
+    "dc22": 1000,
+    "g50t": 1000,
+    "ka59": 1000,
+    "lf52": 1000,
+    "lp85": 27,
+    "sp80": 1000,
+    "su15": 1000,
+    "tr87": 1000,
+    "tu93": 1000
+  },
+  "game_reports": {
+    "bp35": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 19,
+        "discriminating_experiment": 52,
+        "frontier_oriented_experiment": 26,
+        "legacy_fallback": 721,
+        "operator_plan": 41,
+        "temporal_subgoal_probe": 12,
+        "terminal_objective_discriminator": 4,
+        "uniform_legal": 207
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "bp35",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1082,
+      "rejected_duplicates": 82,
+      "relational_shard": {
+        "game_id": "bp35",
+        "path": "training/sage11/relational_pilot_v1/shards/bp35.jsonl",
+        "sha256": "c996f14eda558f85f603785209653a8bc442538b3d3d85b1ec1275284b41ed03",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 33,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 33,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/bp35.jsonl",
+      "shard_sha256": "7eb77fcfa1961d88627290ffb572ea378bf31c8966037617dbad54fe7c46cecc",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "cd82": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "discriminating_experiment": 68,
+        "frontier_oriented_experiment": 14,
+        "legacy_fallback": 453,
+        "level_route_replay": 57,
+        "operator_plan": 249,
+        "relational_experiment": 1,
+        "temporal_subgoal_probe": 5,
+        "terminal_frontier_suffix": 7,
+        "terminal_multiform_relation": 8,
+        "terminal_objective_discriminator": 11,
+        "uniform_legal": 202
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "cd82",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1075,
+      "rejected_duplicates": 75,
+      "relational_shard": {
+        "game_id": "cd82",
+        "path": "training/sage11/relational_pilot_v1/shards/cd82.jsonl",
+        "sha256": "0f1f31de9702cb18c27863642ed4184e88d30b32d2ff19e671ae2e661159a241",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 10,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 10,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/cd82.jsonl",
+      "shard_sha256": "4cc851bae087902183d9f8f4020bcb301a77fb4863d32eab017a4b2997f81dfa",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "dc22": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 102,
+        "discriminating_experiment": 15,
+        "frontier_oriented_experiment": 12,
+        "legacy_fallback": 39,
+        "operator_plan": 632,
+        "relational_experiment": 21,
+        "safety_veto": 2,
+        "temporal_subgoal_probe": 14,
+        "terminal_objective_discriminator": 4,
+        "uniform_legal": 203
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "dc22",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1044,
+      "rejected_duplicates": 44,
+      "relational_shard": {
+        "game_id": "dc22",
+        "path": "training/sage11/relational_pilot_v1/shards/dc22.jsonl",
+        "sha256": "e802c2afcc63c07487d5a175b31a49735fe4e106721a13f1dcc93dbb1ba3bd52",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 10,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 10,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/dc22.jsonl",
+      "shard_sha256": "e0e71e40647ebf8e6b4ba884dfb35650c34f02baf9c6032a208c6d3464fb0534",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "g50t": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 7,
+        "discriminating_experiment": 96,
+        "frontier_oriented_experiment": 10,
+        "legacy_fallback": 700,
+        "safety_veto": 1,
+        "temporal_subgoal_probe": 44,
+        "uniform_legal": 209
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "g50t",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1067,
+      "rejected_duplicates": 67,
+      "relational_shard": {
+        "game_id": "g50t",
+        "path": "training/sage11/relational_pilot_v1/shards/g50t.jsonl",
+        "sha256": "c6f48682301d0e4ae31f012f7d4148de37d1ab0803e066aca81ee2ceb4b9cf2b",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 9,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 9,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/g50t.jsonl",
+      "shard_sha256": "a4193ba2c038cb57e558702e71d90c86045cffd411f603938fa3af51c7b2bce3",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "ka59": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 15,
+        "discriminating_experiment": 49,
+        "frontier_oriented_experiment": 22,
+        "legacy_fallback": 610,
+        "operator_plan": 14,
+        "relational_experiment": 39,
+        "temporal_subgoal_probe": 62,
+        "uniform_legal": 204
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "ka59",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1015,
+      "rejected_duplicates": 15,
+      "relational_shard": {
+        "game_id": "ka59",
+        "path": "training/sage11/relational_pilot_v1/shards/ka59.jsonl",
+        "sha256": "c13875646f7f1fd51ca2ead86f3be6f6787810698bebc730668c288d15a64ff5",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 11,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 11,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/ka59.jsonl",
+      "shard_sha256": "589546e3fe346357abe0bfd26ee9c419faf6936f13205ebd883266b79895ffc6",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "lf52": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 153,
+        "discriminating_experiment": 13,
+        "frontier_oriented_experiment": 15,
+        "legacy_fallback": 865,
+        "operator_plan": 762,
+        "relational_experiment": 4,
+        "safety_veto": 8,
+        "temporal_subgoal_probe": 15,
+        "terminal_objective_discriminator": 4,
+        "uniform_legal": 249
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "lf52",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 2088,
+      "rejected_duplicates": 1088,
+      "relational_shard": {
+        "game_id": "lf52",
+        "path": "training/sage11/relational_pilot_v1/shards/lf52.jsonl",
+        "sha256": "4e10bdb421ce5476db523e4eaae3c09233c5ded081943e105fe5f9eb4508b508",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 32,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 32,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/lf52.jsonl",
+      "shard_sha256": "4c177543aaf456bf8c2884b5772b20b2d05861a3f643f624545c0cbc498e2bc9",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "lp85": {
+      "accepted_transitions": 27,
+      "decision_sources": {
+        "frontier_oriented_experiment": 4,
+        "legacy_fallback": 9,
+        "operator_plan": 5177,
+        "relational_experiment": 3,
+        "temporal_subgoal_probe": 28,
+        "terminal_objective_discriminator": 8,
+        "uniform_legal": 5
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "lp85",
+      "next_seed_position": 1,
+      "policy_counts": {
+        "active_controller": 19,
+        "frontier_stall_probe": 3,
+        "uniform_legal": 5
+      },
+      "quota": 27,
+      "raw_transitions": 5234,
+      "rejected_duplicates": 5207,
+      "relational_shard": {
+        "game_id": "lp85",
+        "path": "training/sage11/relational_pilot_v1/shards/lp85.jsonl",
+        "sha256": "869bbae4796b51f76b10b0087e1a0ff547b14337be9d871c654bc06ca0d18973",
+        "source_split": "source_train",
+        "transitions": 27
+      },
+      "resets": 15,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [
+        0
+      ],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 1,
+      "seeds_attempted": [
+        0,
+        1
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/lp85.jsonl",
+      "shard_sha256": "9ea2e355b0d55a71965325e1421da6d95b1c2c3f729013f00c6ba6f279dc5938",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 4000,
+      "trailing_duplicate_streaks": {
+        "0": 4000,
+        "1": 0
+      }
+    },
+    "sp80": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 55,
+        "discriminating_experiment": 51,
+        "frontier_oriented_experiment": 24,
+        "legacy_fallback": 189,
+        "level_route_replay": 30,
+        "operator_plan": 689,
+        "temporal_subgoal_probe": 17,
+        "terminal_frontier_suffix": 35,
+        "terminal_multiform_relation": 1,
+        "terminal_objective_discriminator": 1,
+        "terminal_progressive_route": 130,
+        "uniform_legal": 217
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "sp80",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1439,
+      "rejected_duplicates": 439,
+      "relational_shard": {
+        "game_id": "sp80",
+        "path": "training/sage11/relational_pilot_v1/shards/sp80.jsonl",
+        "sha256": "38c903a1730e846abcb778542047d4fb48c55ebb2914ad19d3625021eb0d984b",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 40,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 40,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/sp80.jsonl",
+      "shard_sha256": "5b17ecc242406506b32dc00dec041bbe3229fbb0bf81cdf2c22de257c371cc2a",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "su15": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "frontier_oriented_experiment": 28,
+        "legacy_fallback": 748,
+        "operator_plan": 943,
+        "temporal_subgoal_probe": 10,
+        "terminal_objective_discriminator": 4,
+        "uniform_legal": 204
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "su15",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1937,
+      "rejected_duplicates": 937,
+      "relational_shard": {
+        "game_id": "su15",
+        "path": "training/sage11/relational_pilot_v1/shards/su15.jsonl",
+        "sha256": "477add3c95ca358e10be9bfdd19671b2425e6e777b428af12a094b98eba3ee01",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 61,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 61,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/su15.jsonl",
+      "shard_sha256": "cfaa16c3a6efe4aa57bcafd52b02c8da7f7705a95dfdc0b0198f6a9a367cf322",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "tr87": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 4,
+        "discriminating_experiment": 13,
+        "frontier_oriented_experiment": 8,
+        "legacy_fallback": 760,
+        "temporal_subgoal_probe": 21,
+        "uniform_legal": 203
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "tr87",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1009,
+      "rejected_duplicates": 9,
+      "relational_shard": {
+        "game_id": "tr87",
+        "path": "training/sage11/relational_pilot_v1/shards/tr87.jsonl",
+        "sha256": "564024fb0bcd1dba7b2ef7c1d31aefc6e1a234a91bdff9365fdd3daf9d79cd20",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 8,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 8,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/tr87.jsonl",
+      "shard_sha256": "47159eba59cb02ad6370a87ef10f3f416cf87c897887809fd069ad6fbe80d5b9",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    },
+    "tu93": {
+      "accepted_transitions": 1000,
+      "decision_sources": {
+        "anti_attractor_escape": 7,
+        "discriminating_experiment": 122,
+        "frontier_oriented_experiment": 8,
+        "legacy_fallback": 990,
+        "safety_veto": 3,
+        "temporal_subgoal_probe": 24,
+        "uniform_legal": 304
+      },
+      "format_version": "sage11-source-collection-v2",
+      "game_id": "tu93",
+      "next_seed_position": 0,
+      "policy_counts": {
+        "active_controller": 700,
+        "frontier_stall_probe": 100,
+        "uniform_legal": 200
+      },
+      "quota": 1000,
+      "raw_transitions": 1458,
+      "rejected_duplicates": 458,
+      "relational_shard": {
+        "game_id": "tu93",
+        "path": "training/sage11/relational_pilot_v1/shards/tu93.jsonl",
+        "sha256": "e8fa4b4e55d69d93f11fc5cbbaf81bb88180578d7615af8bee0028982190d6e4",
+        "source_split": "source_train",
+        "transitions": 1000
+      },
+      "resets": 30,
+      "resumed_completed_game": false,
+      "resumed_partial_game": false,
+      "saturated_seeds": [],
+      "schema_checksum": "",
+      "schema_path": null,
+      "seed_window_resets": 200,
+      "seed_window_resets_used": 30,
+      "seeds_attempted": [
+        0
+      ],
+      "shard_path": "training/sage11/relational_pilot_v1/base_work/tu93.jsonl",
+      "shard_sha256": "9a15b9bcdb2773c8e8e882125e7e6dac873997a8e27386d31700a0ac8e0ad816",
+      "source_split": "source_train",
+      "status": "COMPLETE",
+      "trailing_duplicate_streak": 0,
+      "trailing_duplicate_streaks": {
+        "0": 0
+      }
+    }
+  },
+  "historical_shards_opened": false,
+  "holdout_shards_opened": false,
+  "manifest_checksum": "11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c",
+  "manifest_path": "training/sage11/relational_pilot_v1/manifest.json",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_shards_opened": false,
+  "status": "COMPLETE",
+  "target_transitions": 10027,
+  "total_transitions": 10027,
+  "workers": 8
+}
