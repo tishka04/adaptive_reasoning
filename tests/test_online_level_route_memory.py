@@ -147,3 +147,29 @@ def test_failed_shortening_candidate_is_never_promoted():
     )
     assert candidate.confirmations == 0
     assert candidate.status == "refuted"
+
+
+def test_confirmed_probe_protects_terminal_route_from_shortening_candidate():
+    memory = OnlineLevelRouteMemory(enable_shortening=True)
+    _observe(memory, before="s0", after="s1", action="ACTION1")
+    _observe(
+        memory,
+        before="s1",
+        after="level-1",
+        action="ACTION2",
+        level=True,
+    )
+    memory.start_branch()
+
+    assert memory.confirmed_route_startable(
+        state_signature="s0",
+        available_actions=("ACTION1", "ACTION2"),
+    )
+    selected = memory.select_confirmed(
+        state_signature="s0",
+        available_actions=("ACTION1", "ACTION2"),
+    )
+
+    assert selected is not None
+    assert selected.shortening_candidate is False
+    assert selected.action.action_name == "ACTION1"

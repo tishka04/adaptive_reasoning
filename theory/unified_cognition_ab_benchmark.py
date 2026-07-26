@@ -1122,6 +1122,10 @@ def _run_arm(
         or {}
     )
     return {
+        "protected_route_preemptions": int(
+            controller_summary.get("protected_route_preemptions", 0)
+            or 0
+        ),
         "arm": arm,
         "game_id": game_id,
         "seed": seed,
@@ -1976,6 +1980,28 @@ def _run_arm(
         ),
         "terminal_multiform_unsafe_model_blocks": int(
             multiform_summary.get("unsafe_model_blocks", 0) or 0
+        ),
+        "terminal_multiform_branch_cap_blocks": int(
+            multiform_summary.get("branch_cap_blocks", 0) or 0
+        ),
+        "terminal_multiform_context_cap_blocks": int(
+            multiform_summary.get("context_cap_blocks", 0) or 0
+        ),
+        "terminal_multiform_nonprogress_outcomes": int(
+            multiform_summary.get(
+                "nonprogress_selection_outcomes",
+                0,
+            )
+            or 0
+        ),
+        "terminal_multiform_demotions": int(
+            multiform_summary.get("demotions", 0) or 0
+        ),
+        "terminal_multiform_reactivations": int(
+            multiform_summary.get("reactivations", 0) or 0
+        ),
+        "terminal_multiform_level_gating_blocks": int(
+            multiform_summary.get("level_gating_blocks", 0) or 0
         ),
         "terminal_multiform_delayed_frontier_eligibilities_registered": int(
             multiform_summary.get(

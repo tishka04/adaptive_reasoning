@@ -53,6 +53,23 @@ def test_frontier_exploration_waits_for_observed_stagnation():
     assert explorer.summary()["experiments"] == 0
 
 
+def test_protected_competence_blocks_rearmed_or_active_frontier_authority():
+    explorer = OnlineFrontierExplorer(minimum_stagnant_steps=1)
+
+    selected = explorer.select(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=_stalled(),
+        protected_competence_available=True,
+    )
+
+    assert selected is None
+    summary = explorer.summary()
+    assert summary["experiments"] == 0
+    assert summary["protected_competence_blocks"] == 1
+
+
 def test_frontier_exploration_selects_and_credits_untested_actuator():
     explorer = OnlineFrontierExplorer(minimum_stagnant_steps=2)
     before = _grid()

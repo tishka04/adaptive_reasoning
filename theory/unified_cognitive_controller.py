@@ -230,6 +230,9 @@ class UnifiedCognitiveConfig:
     enable_per_level_frontier_rearming: bool = True
     enable_terminal_multiform_relational_induction: bool = True
     terminal_multiform_min_support: int = 2
+    terminal_multiform_max_selections_per_branch: int = 2
+    terminal_multiform_max_selections_per_context: int = 2
+    terminal_multiform_nonprogress_demotion_threshold: int = 2
 
 
 @dataclass(frozen=True)
@@ -1135,6 +1138,18 @@ class UnifiedCognitiveController:
             minimum_terminal_support=(
                 self.config.terminal_multiform_min_support
             ),
+            max_selections_per_branch=(
+                self.config
+                .terminal_multiform_max_selections_per_branch
+            ),
+            max_selections_per_context=(
+                self.config
+                .terminal_multiform_max_selections_per_context
+            ),
+            nonprogress_demotion_threshold=(
+                self.config
+                .terminal_multiform_nonprogress_demotion_threshold
+            ),
         )
         self.operator_searcher = OperatorSearcher(beam_width=4, max_depth=5)
         self.progress = ProgressTracker()
@@ -1152,6 +1167,7 @@ class UnifiedCognitiveController:
         self._promoted_prediction_keys: set[str] = set()
         self._option_context_attempts: Counter[Tuple[str, int]] = Counter()
         self._decision_sources: Counter[str] = Counter()
+        self._protected_route_preemptions = 0
         self._observed_transitions = 0
         self._branch_step = 0
         self._operator_plans = 0
@@ -1339,7 +1355,7 @@ class UnifiedCognitiveController:
             won=terminal_win,
             game_over=bool(update.record.diff.game_over),
         )
-        self.level_routes.observe_transition(
+        level_route_outcome = self.level_routes.observe_transition(
             state_signature_before=_terminal_frontier_state_signature(
                 update.record.obs_before.raw_grid,
                 update.record.obs_before.levels_completed,
@@ -1354,6 +1370,22 @@ class UnifiedCognitiveController:
             won=terminal_win,
             game_over=bool(update.record.diff.game_over),
         )
+        protected_route_failed = bool(
+            frontier_outcome.get("progressive_route_diverged")
+            or frontier_outcome.get("progressive_route_refuted")
+            or frontier_outcome.get(
+                "frontier_reacquisition_diverged"
+            )
+            or frontier_outcome.get(
+                "frontier_reacquisition_refuted"
+            )
+            or level_route_outcome.get("route_diverged")
+            or level_route_outcome.get("route_refuted")
+        )
+        if protected_route_failed:
+            self.multiform_relations.note_protected_route_failure(
+                update.record.obs_before
+            )
         self.terminal_relational_stencils.observe_transition(
             grid_before=update.record.obs_before.raw_grid,
             grid_after=update.record.obs_after.raw_grid,
@@ -1681,32 +1713,12 @@ class UnifiedCognitiveController:
         branch_stalled = self.progress.should_kill_branch()
         escape_requested = self.anti_attractor.should_escape(self._step)
         decision = None
-        if (
-            branch_stalled
-            or escape_requested
-            or self.frontier_exploration.active_sequence
-        ):
-            decision = self._select_frontier_oriented_experiment(
-                observation,
-                safe_actions,
-                available_action_candidates,
-            )
-            if decision is not None:
-                self.anti_attractor.note_escape(self._step)
-                if branch_stalled:
-                    self.progress.start_new_branch(
-                        current_validated_ops=(
-                            self.operator_inducer.num_locked()
-                        ),
-                        current_validated_rules=(
-                            self._validated_rule_count()
-                        ),
-                    )
-        if decision is None:
-            decision = self._select_escape(observation, safe_actions)
-        if (
-            decision is None
-            and self.terminal_frontiers.active_progressive_route_available
+        if self.terminal_frontiers.progressive_route_startable(
+            state_signature=_terminal_frontier_state_signature(
+                observation.raw_grid,
+                observation.levels_completed,
+            ),
+            available_actions=safe_actions,
         ):
             decision = self._select_progressive_terminal_route(
                 observation,
@@ -1714,7 +1726,13 @@ class UnifiedCognitiveController:
             )
         if (
             decision is None
-            and self.terminal_frontiers.active_reacquisition_available
+            and self.terminal_frontiers.reacquisition_startable(
+                state_signature=_terminal_frontier_state_signature(
+                    observation.raw_grid,
+                    observation.levels_completed,
+                ),
+                available_actions=safe_actions,
+            )
         ):
             decision = self._select_terminal_frontier_reacquisition(
                 observation,
@@ -1735,12 +1753,73 @@ class UnifiedCognitiveController:
                 legacy_name,
                 legacy_action_data,
             )
+        if (
+            decision is None
+            and self.level_routes.confirmed_route_startable(
+                state_signature=_terminal_frontier_state_signature(
+                    observation.raw_grid,
+                    observation.levels_completed,
+                ),
+                available_actions=safe_actions,
+            )
+        ):
+            decision = self._select_level_route(
+                observation,
+                safe_actions,
+                confirmed_only=True,
+            )
+        protected_competence_available = (
+            self._protected_competence_available(
+                observation,
+                safe_actions,
+            )
+        )
+        if (
+            decision is None
+            and (branch_stalled or escape_requested)
+        ):
+            decision = self._select_frontier_oriented_experiment(
+                observation,
+                safe_actions,
+                available_action_candidates,
+                protected_competence_available=(
+                    protected_competence_available
+                ),
+            )
+            if decision is not None:
+                if protected_competence_available:
+                    self._protected_route_preemptions += 1
+                    self.frontier_exploration.cancel_pending()
+                    decision = None
+                else:
+                    self.anti_attractor.note_escape(self._step)
+                    if branch_stalled:
+                        self.progress.start_new_branch(
+                            current_validated_ops=(
+                                self.operator_inducer.num_locked()
+                            ),
+                            current_validated_rules=(
+                                self._validated_rule_count()
+                            ),
+                        )
+        if decision is None:
+            decision = self._select_escape(observation, safe_actions)
         if decision is None:
             decision = self._select_terminal_multiform_relation(
                 observation,
                 safe_actions,
                 available_action_candidates,
             )
+            if (
+                decision is not None
+                and self._protected_competence_available(
+                    observation,
+                    safe_actions,
+                )
+            ):
+                self._protected_route_preemptions += 1
+                self.multiform_relations.cancel_pending_selection()
+                decision = None
         if (
             decision is None
             and self.level_routes.active_route_available
@@ -1752,6 +1831,7 @@ class UnifiedCognitiveController:
             decision = self._select_level_route(
                 observation,
                 safe_actions,
+                confirmed_only=False,
             )
         if decision is None:
             decision = self._select_causal_option(observation, safe_actions)
@@ -1778,9 +1858,12 @@ class UnifiedCognitiveController:
             )
 
         frontier_selected = decision.frontier_oriented_experiment
+        multiform_selected = decision.terminal_multiform_relation
         decision = self._guard_decision(decision, observation, safe_actions)
         if frontier_selected and not decision.frontier_oriented_experiment:
             self.frontier_exploration.cancel_pending()
+        if multiform_selected and not decision.terminal_multiform_relation:
+            self.multiform_relations.cancel_pending_selection()
         decision = self._annotate_terminal_frontier_suffix(
             decision,
             observation,
@@ -1832,6 +1915,9 @@ class UnifiedCognitiveController:
             "execution_path": "unified_cognitive_controller",
             "transitions_observed": self._observed_transitions,
             "decision_sources": dict(self._decision_sources),
+            "protected_route_preemptions": (
+                self._protected_route_preemptions
+            ),
             "experiments_selected": self._experiment_decisions,
             "relational_experiments_selected": self._generic_experiment_decisions,
             "generic_hypothesis_revisions": self._generic_revisions,
@@ -2051,8 +2137,15 @@ class UnifiedCognitiveController:
         self,
         observation: GameObservation,
         safe_actions: Sequence[str],
+        *,
+        confirmed_only: bool = False,
     ) -> CognitiveDecision | None:
-        selection = self.level_routes.select(
+        selector = (
+            self.level_routes.select_confirmed
+            if confirmed_only
+            else self.level_routes.select
+        )
+        selection = selector(
             state_signature=_terminal_frontier_state_signature(
                 observation.raw_grid,
                 observation.levels_completed,
@@ -2470,6 +2563,32 @@ class UnifiedCognitiveController:
             ),
         )
 
+    def _protected_competence_available(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+    ) -> bool:
+        """Check exact terminal competence without mutating route memories."""
+        state_signature = _terminal_frontier_state_signature(
+            observation.raw_grid,
+            observation.levels_completed,
+        )
+        return bool(
+            self.terminal_frontiers.progressive_route_startable(
+                state_signature=state_signature,
+                available_actions=safe_actions,
+            )
+            or self.terminal_frontiers.reacquisition_startable(
+                state_signature=state_signature,
+                available_actions=safe_actions,
+            )
+            or self.terminal_frontiers.active_replay_available
+            or self.level_routes.confirmed_route_startable(
+                state_signature=state_signature,
+                available_actions=safe_actions,
+            )
+        )
+
     def _safe_actions(self, grid_hash: int, actions: Sequence[str]) -> List[str]:
         result = []
         for action in actions:
@@ -2487,12 +2606,17 @@ class UnifiedCognitiveController:
         observation: GameObservation,
         safe_actions: Sequence[str],
         available_action_candidates: Sequence[Any] | None,
+        *,
+        protected_competence_available: bool = False,
     ) -> CognitiveDecision | None:
         selection = self.frontier_exploration.select(
             current_grid=observation.raw_grid,
             available_actions=safe_actions,
             available_action_candidates=available_action_candidates,
             branch_diagnostics=self.progress.branch_diagnostics(),
+            protected_competence_available=(
+                protected_competence_available
+            ),
         )
         if selection is None:
             return None

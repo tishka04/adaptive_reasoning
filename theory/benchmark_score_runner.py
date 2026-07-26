@@ -44,7 +44,7 @@ def run_benchmark_score(
     game_ids: Sequence[str] | None = None,
     seeds: Sequence[int] = (0, 1),
     action_budgets: Sequence[int] = (500, 1500, 4000),
-    resets: int = 8,
+    resets: int = 14,
     environments_dir: str | Path | None = None,
     env_factory: EnvFactory | None = None,
     controller_factory: Callable[
@@ -317,6 +317,13 @@ def _compact_condition(
         "level_route_replay_actions",
         "level_route_shortening_confirmations",
         "level_route_shortening_actions_saved",
+        "protected_route_preemptions",
+        "terminal_multiform_branch_cap_blocks",
+        "terminal_multiform_context_cap_blocks",
+        "terminal_multiform_nonprogress_outcomes",
+        "terminal_multiform_demotions",
+        "terminal_multiform_reactivations",
+        "terminal_multiform_level_gating_blocks",
     )
     return {
         "game_id": str(arm.get("game_id", "")),
@@ -375,7 +382,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--seeds", default="0,1")
     parser.add_argument("--budgets", default="500,1500,4000")
-    parser.add_argument("--resets", type=int, default=8)
+    parser.add_argument("--resets", type=int, default=14)
     parser.add_argument("--environments-dir", default=None)
     parser.add_argument("--label", default="current")
     parser.add_argument("--out", default=str(DEFAULT_OUTPUT_PATH))

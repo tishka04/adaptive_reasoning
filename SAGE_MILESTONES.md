@@ -49,9 +49,9 @@ de policy en support scientifique.
 | SAGE.7 - Third unknown-game bounded transfer | Fait - 3/3 gates passes, mini-frontiere parametree requise | `theory/sage/third_unknown_game_transfer.py`, `tests/test_sage_third_unknown_game_transfer.py`, `diagnostics/sage/sage7_third_unknown_game_transfer_results.json` | Selectionne tn36 par ordre public_unseen fixe apres exclusion de sb26/wa30; budgets 50/150/300 passes; 172 switches, 0 repetition d'argument; quarantaine A33.2/A33.3 respectee; surface live=11 variantes ACTION6 d'une seule famille; 145 placeholders M2/M3 non materialises; support=0; aucun write A32/A33 |
 | SAGE.10b - Sub-effect chain eligibility relay | Fait - gate procedural passe | `theory/online_frontier_exploration.py`, `theory/online_causal_subgoal_graph.py`, `tests/test_online_frontier_exploration.py`, `tests/test_online_causal_subgoal_graph.py`, `diagnostics/sage/sage10b_plus_procedural_benchmark.json` | Identite d'eligibilite preservee sur au plus 3 relais structurels; reset/danger detruisent la trace; au plus un credit par sequence; ablation `--disable-subeffect-eligibility-relay`; preuve appariee actif=1 relais/1 credit, ablation=0/0; support=0; aucun write A32/A33 |
 | SAGE.10c - Generalized frontier stall detection | Fait - gate procedural passe | `theory/online_frontier_exploration.py`, `tests/test_online_frontier_exploration.py`, `tests/test_sage10b_plus_benchmark.py`, `diagnostics/sage/sage10b_plus_procedural_benchmark.json` | Ajoute stall de nouveaute d'effet, couverture d'actuateurs et branches sans terminal sans exiger un hash recurrent; grace initiale de 3 branches conservee; preuve appariee sans recurrence exacte actif=1 intervention/1 nouvel etat, ablation=0; support=0; aucun write A32/A33 |
-| SAGE.10d - Per-level frontier explorer re-arming | Fait - gate procedural passe | `theory/online_frontier_exploration.py`, `theory/unified_cognitive_controller.py`, `tests/test_online_frontier_exploration.py`, `diagnostics/sage/sage10b_plus_procedural_benchmark.json` | Le premier terminal retire toujours l'explorateur; seul un changement de niveau suivi d'un stall SAGE.10c le rearme; replay exact et politiques confirmees gardent la priorite; actif=1 rearm, ablation=0; support=0; aucun write A32/A33 |
-| SAGE.10e - Verified per-level route memory and shortening | Fait - gate procedural passe | `theory/online_level_route_memory.py`, `tests/test_online_level_route_memory.py`, `theory/benchmark_score_runner.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage10b_plus_procedural_benchmark.json` | Chaque niveau reellement termine compile une route exacte; les suppressions d'actions restent candidate-only jusqu'a leur propre terminal; echec/divergence interdit la promotion; preuve active raccourcit 3->1 et economise 2 actions, ablation ne cree aucun candidat; support=0; aucun write A32/A33 |
-| SAGE.9z-bis - Replication and completion-efficiency track | Fait - runners/schemas et matrices live executees | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/score_history.json` | Matrice scientifique v2 complete : 20 conditions, 2 seeds, budgets 80/160, 4 resets par bras; 502 relais, 571 stalls, 2 rearms, mais 0 credit terminal naturel et gate stricte false; actif=2 niveaux, ablation=2, 0 WIN. Paire performance budgets 500/1500/4000 : baseline=actif=0 niveau/0 WIN/score 0. Aucune revendication de gain; protocole overnight garde 2 seeds x 8 resets |
+| SAGE.10d - Per-level frontier explorer re-arming | Fait - eligibility-only et subordonne | `theory/online_frontier_exploration.py`, `theory/unified_cognitive_controller.py`, `tests/test_online_frontier_exploration.py`, `diagnostics/sage/sage10b_plus_procedural_benchmark.json`, `diagnostics/sage/sage10e_authority_repair_ft09_regression.json` | Le changement de niveau rend l'explorateur eligible mais jamais prioritaire; competence exacte reverifiee avant chaque experience et sequence; actif=1 rearm dans le cas procedural sans competence protegee, ablation=0; 0 pre-emption dans le gate ft09; support=0; aucun write A32/A33 |
+| SAGE.10e - Per-level route memory + authority-ordering repair | Fait - 4/4 gates, ft09 niveau 6/WIN restaure | `theory/online_level_route_memory.py`, `theory/online_terminal_frontier.py`, `theory/online_frontier_exploration.py`, `theory/online_multiform_relational_learner.py`, `theory/unified_cognitive_controller.py`, `theory/ft09_regression_benchmark.py`, `tests/test_ft09_regression_benchmark.py`, `diagnostics/sage/sage10e_authority_repair_ft09_regression.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json` | Tier protege strict avant frontier/multiform; multiform cappe 2 par branche/contexte, demotion apres 2 non-progres, reactivation bornee et gate de niveau; full ft09 seed0/budget160/14 resets=43 niveaux, niveau max6, 3 WIN, 0 pre-emption; protocole complet=159 niveaux/12 WIN mais uniquement ft09; support=0; aucun write A32/A33 |
+| SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
 
 ## SAGE.0 - Known-game closed-loop scaffold
 
@@ -8181,20 +8181,25 @@ Mecanisme :
 - Le premier terminal conserve exactement la semantique de retraite
   precedente : l'explorateur devient inactif et toutes les sequences en cours
   sont fermees.
-- `on_level_change` marque un rearm potentiel, mais ne l'execute pas.
-- Seul un stall SAGE.10c observe dans le nouveau niveau rearme l'explorateur.
-  Une simple transition de niveau ou un reset ordinaire ne suffit pas.
+- `on_level_change` marque un rearm potentiel, mais ne lui donne aucune
+  autorite. Seul un stall SAGE.10c observe dans le nouveau niveau le rend
+  eligible. Une simple transition de niveau ou un reset ordinaire ne suffit
+  pas.
 - Le rearm de niveau peut contourner la grace de branches deja consommee sur
   le niveau precedent; les limites de sequence, d'actuateur et de securite
   restent intactes.
-- Reacquisition exacte SAGE.9l, routes progressives SAGE.9o, suffixes
-  confirmes et relations multi-formes confirmees gardent la priorite de
-  decision sur une nouvelle experience de frontiere.
+- Le controleur reverifie avant chaque action la reacquisition exacte
+  SAGE.9l, les routes progressives SAGE.9o, le stencil exact, les suffixes
+  confirmes et les routes de niveau observees. Le flag
+  `protected_competence_available` bloque aussi une sequence de frontiere
+  active; une experience ne conserve donc jamais une autorite collante.
+- La relation multi-forme reste sous le tier protege et sous l'experience de
+  frontiere dans sa position d'arbitrage stricte.
 
 Instrumentation et ablation :
 
-- Compteurs `level_changes_observed`, `level_rearm_pending` et
-  `per_level_rearms`.
+- Compteurs `level_changes_observed`, `level_rearm_pending`,
+  `per_level_rearms` et `protected_competence_blocks`.
 - Ablation CLI :
   `--disable-per-level-frontier-rearming`.
 
@@ -8208,9 +8213,9 @@ Preuve procedurale appariee :
 - Le gate
   `sage10d_level_rearm_necessary_after_terminal_retreat` passe.
 
-Lecture finale : SAGE.10d ferme le verrou de portee identifie sur `ft09` tout
-en preservant la priorite des solutions deja confirmees. Un depassement reel
-du niveau 3 ou un avantage face a l'ablation demeure le gate ARC.
+Lecture finale : SAGE.10d est desormais une eligibilite d'exploration, jamais
+une priorite. Le gate ARC SAGE.10e ci-dessous restaure `ft09` au niveau 6 et
+au `WIN` avec zero pre-emption de competence protegee.
 
 ## SAGE.10e - verified per-level route memory and shortening
 
@@ -8264,6 +8269,87 @@ Lecture finale : la conversion des niveaux en memoire efficace est maintenant
 operationnelle et falsifiable. Le nombre d'actions economisees reste une
 mesure, jamais une preuve de completion.
 
+### SAGE.10e - authority-ordering repair (strict now, adaptive later)
+
+Cause racine confirmee :
+
+- SAGE.10d etait evalue avant toute competence terminale dans
+  `select_action()`. Une action de frontiere rearmee consommait donc le
+  premier pas de branche.
+- `select_progressive_route()` et `select_reacquisition()` ne peuvent
+  commencer que sur une branche intacte. Ce premier pas exploratoire rendait
+  ensuite le replay impossible pour toute la branche.
+- SAGE.9w pouvait en plus selectionner sans cap de branche/contexte, sans
+  demotion apres non-progres et sans preuve au niveau courant. Le bisect live
+  avait mesure la premiere chute avec SAGE.9w (niveau 6/`WIN` vers niveau 3)
+  puis la seconde avec stall+rearm SAGE.10d (niveau 3 vers niveau 1).
+
+Reparation stricte :
+
+- `progressive_route_startable()` et `reacquisition_startable()` exposent une
+  sonde exacte, dependante de l'etat et read-only. Elle ne consomme pas le
+  controle one-shot du debut de branche.
+- `confirmed_route_startable()` et `select_confirmed()` separent les routes
+  de niveau observees au terminal des candidats de raccourcissement.
+- L'ordre protege est maintenant : route progressive, reacquisition, stencil
+  terminal exact, replay exact, route de niveau observee. Frontier puis
+  multiform ne sont evalues que si ce tier ne produit rien.
+- `protected_route_preemptions` compte toute violation defensive; les gates
+  exigent zero. `OnlineFrontierExplorer.select()` recoit en plus
+  `protected_competence_available` et cede meme si une sequence etait active.
+- SAGE.9w est limite a deux selections par branche et par contexte. Deux
+  resultats sans terminal ni nouvel effet demotent le contexte. Seuls un
+  support terminal plus recent, un contexte different ou la
+  divergence/refutation d'une route protegee le rendent de nouveau eligible.
+  Une relation apprise a un niveau inferieur requiert une observation du
+  contexte courant avant transfert vers un nouveau niveau.
+
+Gate canonique :
+
+- Nouveau `theory/ft09_regression_benchmark.py`, diagnostic compact
+  `diagnostics/sage/sage10e_authority_repair_ft09_regression.json`.
+- G1 passe : full, `ft09`, seed 0, budget 160, 14 resets produit profondeur
+  maximale 6, 43 niveaux termines, 3 `WIN`, 1822 actions.
+- G2 passe : post-9u, +9v, +9w et +10a restent tous a profondeur 6,
+  23 niveaux et 1 `WIN`; le full ne tombe sous aucun de ces niveaux de
+  competence.
+- G3 passe : relais, stalls, rearm, shortening et multiform restent non nuls
+  dans leurs cas proceduraux sans competence protegee. La preuve multiform
+  force 3 selections, 1 demotion et 1 reactivation.
+- G4 passe : `protected_route_preemptions=0` dans les cinq bras et aucune
+  erreur controleur.
+
+Validation logicielle :
+
+- 75 tests focalises passent apres integration.
+- Suite complete : 1609 tests passent en 260.09 s.
+- Ruff passe sur tous les fichiers modifies. Le scan global non scope
+  conserve 569 erreurs preexistantes dans les projets legacy/nestes; aucune
+  n'a ete modifiee dans ce jalon.
+
+Politique d'evaluation corrigee :
+
+- Le default de `benchmark_score_runner.py` passe de 8 a 14 resets, dans
+  l'API et la CLI.
+- Le pilot deux resets est explicitement requalifie comme aveugle a la
+  latence inter-reset : seed 0 ne termine son premier niveau qu'au reset 3;
+  seed 1 ne le fait qu'au reset 12. `actions_to_each_level` conserve cette
+  courbe d'apprentissage.
+
+Lecture finale : il s'agit d'une reparation d'une regression d'autorite
+auto-infligee, pas d'une nouvelle preuve de generalisation. Elle restaure et
+ameliore la competence historique `ft09`, sans write A32/A33 et sans transformer
+les hypotheses candidate-only en support scientifique.
+
+Suite preregistree SAGE.11 :
+
+- Etendre `OnlineHorizonLearningArbiter` en shadow mode pour scorer replay,
+  multiform et frontier depuis leur productivite live, sans aucune autorite.
+- La cible sera d'apprendre quand abandonner une route qui echoue, pas de
+  reapprendre qu'une route confirmee merite la priorite.
+- Aucune promotion hors shadow mode avant que les logs montrent zero
+  pre-emption hypothetique d'une route qui se confirme ensuite.
+
 ## SAGE.9z-bis - replication matrix and completion-efficiency track
 
 Objectif :
@@ -8289,7 +8375,9 @@ Runner performance :
 
 - Nouveau `theory/benchmark_score_runner.py`.
 - Le runner execute uniquement `UnifiedCognitiveController`, avec defaults
-  cinq jeux `public_unseen`, seeds 0/1, budgets 500/1500/4000 et huit resets.
+  cinq jeux `public_unseen`, seeds 0/1, budgets 500/1500/4000 et quatorze
+  resets. Le passage 8 -> 14 fait partie de la reparation de politique
+  d'evaluation SAGE.10e.
 - Pour chaque condition il conserve profondeur maximale, niveaux termines,
   `WIN`, actions cumulees vers chaque niveau, actions propres au niveau,
   temps mur et compteurs SAGE.10b+.
@@ -8315,7 +8403,7 @@ Validation disponible :
   Il termine en 332.3607 s avec zero niveau, zero `WIN`, profondeur maximale
   0 et proxy 0.0 dans les quinze conditions. Sur cet echantillon, augmenter
   le budget seul ne leve donc aucun verrou; cette conclusion ne remplace pas
-  le protocole complet a deux seeds et huit resets.
+  le protocole complet a deux seeds et quatorze resets.
 - L'echantillon actif apparie conserve exactement les memes jeux, seed,
   budgets et nombre de resets avec SAGE.10b-SAGE.10e actives. Il termine en
   342.764 s, sans erreur d'environnement ni erreur controleur, avec zero
@@ -8324,7 +8412,21 @@ Validation disponible :
   conditions. Le resultat actif est donc nul, non superieur a la baseline :
   la preuve procedurale isole les mecanismes mais ce premier echantillon live
   ne montre aucun gain de completion.
-- La matrice scientifique SAGE.9z-bis par defaut est executee integralement :
+- Le pilot d'escalade performance execute ensuite les cinq jeux, seeds 0/1,
+  budgets 500/1500/4000 et deux resets, soit trente conditions agregees. Il
+  termine en 983.3416 s sans erreur d'environnement ni erreur controleur.
+  Les deux seeds restent identiquement a profondeur 0, zero niveau, zero
+  `WIN` et score 0.0. Tous les compteurs SAGE.10b+ sont egalement nuls :
+  aucun relais, credit retarde, stall generalise, rearm, route, replay ou
+  raccourcissement. La difference de volume execute, 4041 actions pour seed
+  0 contre 3579 pour seed 1, ne constitue ni completion ni variance de score.
+  La gate d'escalade predefinie avait donc bloque le protocole huit resets.
+  SAGE.10e montre que cette lecture etait structurellement invalide :
+  l'historique `ft09` ne produisait aucun niveau dans les deux premiers resets
+  et son `WIN` exigeait quatorze resets. Ce pilot est conserve comme preuve du
+  mauvais horizon, pas comme preuve d'absence de potentiel.
+- Avant la reparation d'autorite, la matrice scientifique SAGE.9z-bis par
+  defaut avait ete executee integralement :
   cinq jeux, seeds 0/1, budgets 80/160 et quatre resets pour chacun des bras
   actif et ablate, soit vingt conditions appariees. Elle termine en 2034.2 s,
   sans erreur controleur. Le bras actif produit 502 relais de sous-effets,
@@ -8338,24 +8440,58 @@ Validation disponible :
   `any_replicated_natural_revision_gate_passed=false`. Ce resultat valide
   l'activation live des mecanismes diagnostiques, pas un avantage causal ou
   de performance.
+- Apres SAGE.10e, la meme matrice est rejouee sans changer ses dimensions. En
+  1947.4 s et sans erreur controleur, le bras actif atteint 11 niveaux, un
+  `WIN` et une profondeur maximale 6, contre 4 niveaux, zero `WIN` et
+  profondeur 1 pour l'ablation. Quinze conditions contiennent un relais,
+  seize un stall generalise et deux un rearm. Il n'y a toujours aucune
+  rupture naturelle ni revision terminale : le gate scientifique strict reste
+  donc false. Le resultat restaure un avantage de completion `ft09`; il ne
+  prouve pas la causalite du mecanisme de revision vise par SAGE.9z-bis.
+- Le protocole performance complet SAGE.10e execute ensuite cinq jeux, seeds
+  0/1, budgets 500/1500/4000 et quatorze resets : trente conditions,
+  420 resets, 51810.285 s. Il termine sans erreur d'environnement ni erreur
+  controleur avec 159 niveaux, 12 `WIN`, profondeur maximale 6 et proxy
+  normalise 0.93561615. `protected_route_preemptions=0`.
+- Les trois budgets produisent exactement 53 niveaux, 4 `WIN` et profondeur 6
+  chacun : le budget intra-reset est sature des 500 actions, tandis que la
+  repetition des resets porte l'apprentissage. Pour `ft09`, seed 0 produit
+  43 niveaux et 3 `WIN` par budget; seed 1 produit 10 niveaux et 1 `WIN`.
+  Seed 0 progresse d'abord au reset d'index 2 (troisieme reset); seed 1 au
+  reset d'index 11 (douzieme reset).
+- Lecture negative obligatoire : les 159 niveaux et 12 `WIN` viennent tous de
+  `ft09`. `wa30`, `tn36`, `cn04` et `sb26` restent a profondeur 0, zero niveau
+  et zero `WIN`. Le protocole demontre une competence restauree et repliquee
+  sur deux seeds pour un jeu, pas une generalisation aux cinq jeux.
+- Les mecanismes restent actifs sur le protocole complet : 879 relais,
+  13992 stalls de nouveaute, 414 stalls de couverture, 15360 stalls sans
+  terminal, 45 rearms, 60 routes observees/confirmees et 9 actions de replay.
+  Les 1089 blocages par cap de branche et 19680 blocages de transfert de niveau
+  montrent que SAGE.9w est borne; les cas live n'exercent aucune demotion,
+  couverte separement par la preuve procedurale (1 demotion, 1 reactivation).
 - Diagnostic :
   `diagnostics/perf/phase0_budget_saturation.json` et
-  `diagnostics/perf/sage10b_plus_budget_saturation.json`; les deux premieres
-  lignes propres de `diagnostics/perf/score_history.json` portent les labels
-  `phase0-pre-sage10b-plus` et `sage10b-plus-active`. La matrice scientifique
-  est conservee dans
+  `diagnostics/perf/sage10b_plus_budget_saturation.json` et
+  `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json` et
+  `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`; les
+  lignes propres de `diagnostics/perf/score_history.json` portent
+  les labels `phase0-pre-sage10b-plus`, `sage10b-plus-active` et
+  `sage10b-plus-2seed-2reset-pilot`, puis
+  `sage10e_authority_repair_full14`. La matrice scientifique est conservee dans
   `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`.
 
 Commandes reproductibles :
 
 ```text
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage10b_plus_benchmark
-ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.benchmark_score_runner --label sage10b-plus
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.ft09_regression_benchmark
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.benchmark_score_runner --label sage10e_authority_repair_full14 --out diagnostics/perf/sage10e_authority_repair_budget_saturation.json
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.arc_multigame_replication_benchmark
 ```
 
-Lecture finale : les increments SAGE.10b-SAGE.10e sont implementes, ablatables
-et procedurally causal. Les runners separent desormais clairement la preuve de
-mecanisme de la performance longue. Les resultats ARC longs doivent rester
-rapportes tels quels dans `diagnostics/perf/score_history.json`; aucun gain ne
-sera retroactivement transforme en support A32/A33.
+Lecture finale : SAGE.10e repare le chemin de competence `ft09`, le replique
+sur deux seeds et demontre que la latence inter-reset, pas le budget
+intra-reset, etait le verrou de mesure. La generalisation reste nulle sur
+quatre jeux. Les resultats ARC longs restent rapportes tels quels dans
+`diagnostics/perf/score_history.json`; aucun gain ne sera retroactivement
+transforme en support A32/A33.

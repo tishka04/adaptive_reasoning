@@ -625,6 +625,52 @@ def test_stalled_controller_runs_parameterized_frontier_experiment():
     assert summary["novel_effects"] == 1
 
 
+def test_protected_progressive_route_outranks_stalled_frontier(monkeypatch):
+    controller = UnifiedCognitiveController(
+        "synthetic",
+        available_actions=["ACTION1"],
+        config=UnifiedCognitiveConfig(
+            max_bootstrap_experiments=0,
+            frontier_exploration_min_failed_branches=0,
+        ),
+    )
+    frontier_calls = []
+    monkeypatch.setattr(
+        controller.terminal_frontiers,
+        "progressive_route_startable",
+        lambda **_kwargs: True,
+    )
+    monkeypatch.setattr(
+        controller,
+        "_select_progressive_terminal_route",
+        lambda _observation, _actions: CognitiveDecision(
+            action_name="ACTION1",
+            source="terminal_progressive_route",
+            terminal_progressive_route=True,
+        ),
+    )
+    monkeypatch.setattr(
+        controller,
+        "_select_frontier_oriented_experiment",
+        lambda *_args, **_kwargs: frontier_calls.append(True),
+    )
+    monkeypatch.setattr(
+        controller.progress,
+        "should_kill_branch",
+        lambda: True,
+    )
+
+    decision = controller.select_action(
+        current_grid=_player_grid(2),
+        available_actions=["ACTION1"],
+        legacy_action="ACTION1",
+    )
+
+    assert decision.source == "terminal_progressive_route"
+    assert frontier_calls == []
+    assert controller.summary()["protected_route_preemptions"] == 0
+
+
 def test_controller_relays_delayed_frontier_credit_to_multiform_memory():
     controller = UnifiedCognitiveController(
         "synthetic",

@@ -141,6 +141,44 @@ class OnlineLevelRouteMemory:
             for route in self._routes.values()
         )
 
+    def confirmed_route_startable(
+        self,
+        *,
+        state_signature: str,
+        available_actions: Sequence[str],
+    ) -> bool:
+        """Return whether a terminal-observed non-candidate route can run now."""
+        if not self.enabled:
+            return False
+        state = str(state_signature)
+        allowed = {str(action).upper() for action in available_actions}
+        active = self._active
+        if active is not None:
+            route = active.route
+            if route.candidate_only or active.pending is not None:
+                return False
+            step = len(active.actions)
+            return bool(
+                step < len(route.actions)
+                and (
+                    not route.state_signatures
+                    or step >= len(route.state_signatures)
+                    or route.state_signatures[step] == state
+                )
+                and route.actions[step].action_name in allowed
+            )
+        if self._route_start_checked or self._branch_actions:
+            return False
+        return any(
+            not route.candidate_only
+            and route.start_state_signature == state
+            and route.actions
+            and route.actions[0].action_name in allowed
+            and route.refutations == 0
+            and route.attempts < self.max_replay_attempts
+            for route in self._routes.values()
+        )
+
     def routes(self) -> Tuple[LevelRoute, ...]:
         return tuple(sorted(
             self._routes.values(),
@@ -153,6 +191,32 @@ class OnlineLevelRouteMemory:
         state_signature: str,
         available_actions: Sequence[str],
     ) -> LevelRouteSelection | None:
+        return self._select(
+            state_signature=state_signature,
+            available_actions=available_actions,
+            confirmed_only=False,
+        )
+
+    def select_confirmed(
+        self,
+        *,
+        state_signature: str,
+        available_actions: Sequence[str],
+    ) -> LevelRouteSelection | None:
+        """Select only a terminal-observed route, never a shortening probe."""
+        return self._select(
+            state_signature=state_signature,
+            available_actions=available_actions,
+            confirmed_only=True,
+        )
+
+    def _select(
+        self,
+        *,
+        state_signature: str,
+        available_actions: Sequence[str],
+        confirmed_only: bool,
+    ) -> LevelRouteSelection | None:
         if not self.enabled:
             return None
         state = str(state_signature)
@@ -161,7 +225,6 @@ class OnlineLevelRouteMemory:
         if active is None:
             if self._route_start_checked or self._branch_actions:
                 return None
-            self._route_start_checked = True
             candidates = [
                 route
                 for route in self._routes.values()
@@ -169,9 +232,11 @@ class OnlineLevelRouteMemory:
                 and route.actions
                 and route.refutations == 0
                 and route.attempts < self.max_replay_attempts
+                and (not confirmed_only or not route.candidate_only)
             ]
             if not candidates:
                 return None
+            self._route_start_checked = True
             route = min(
                 candidates,
                 key=lambda item: (
@@ -186,6 +251,8 @@ class OnlineLevelRouteMemory:
             self._route_replay_attempts += 1
             active = _ActiveRoute(route=route, actions=[])
             self._active = active
+        elif confirmed_only and active.route.candidate_only:
+            return None
         if active.pending is not None:
             return None
         route = active.route

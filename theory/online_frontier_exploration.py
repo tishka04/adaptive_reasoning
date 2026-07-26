@@ -253,6 +253,7 @@ class OnlineFrontierExplorer:
         self._zero_terminal_branch_stalls = 0
         self._level_changes_observed = 0
         self._per_level_rearms = 0
+        self._protected_competence_blocks = 0
 
     def select(
         self,
@@ -261,9 +262,14 @@ class OnlineFrontierExplorer:
         available_actions: Sequence[str],
         available_action_candidates: Sequence[Any] | None,
         branch_diagnostics: Mapping[str, Any],
+        protected_competence_available: bool = False,
     ) -> FrontierExperimentSelection | None:
         """Return the most informative safe-looking concrete intervention."""
         if not self.enabled:
+            return None
+        if protected_competence_available:
+            self._protected_competence_blocks += 1
+            self._clear_sequence()
             return None
         if (
             self._failed_branches < self.minimum_failed_branches
@@ -974,6 +980,9 @@ class OnlineFrontierExplorer:
             "level_changes_observed": self._level_changes_observed,
             "level_rearm_pending": self._level_rearm_pending,
             "per_level_rearms": self._per_level_rearms,
+            "protected_competence_blocks": (
+                self._protected_competence_blocks
+            ),
             "last_stall_reasons": list(self._last_stall_reasons),
             "information_gain": round(self._information_gain, 4),
             "actuator_models": len(self._actuator_evidence),
