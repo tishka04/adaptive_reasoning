@@ -152,9 +152,9 @@ player-moved heads. The pre-registered source-train-only leave-one-game-out
 anti-shortcut audit then failed: changed-cells was 0.1026 below the stronger
 action/state baseline, conditional action-shuffle degradation was only
 0.0180, and fixed signatures predicted game identity with 99.17% accuracy.
-GPU training is blocked. The active route is a smaller corpus preserving
+GPU training was blocked, which activated a smaller corpus preserving
 contact, alignment, proximity, and object-relative action features—not another
-100,000-row recollection. That replacement is now frozen before collection:
+100,000-row recollection. That replacement was frozen before collection:
 10,027 source-train rows and 52 versioned relation columns, followed by the
 same LOGO/action-shuffle gates plus an explicit requirement that relations add
 at least +0.05 changed-cells F1. See
@@ -164,8 +164,14 @@ at least +0.05 changed-cells F1. See
 The relational collection now verifies at exactly 10,027 rows, manifest
 checksum
 `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`.
-The fit has not yet run. See
-`reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md`.
+The frozen relational fit then failed all four gates: changed-cells
+full-minus-best-baseline -0.0059, conditional shuffle degradation 0.0048,
+relations contribution -0.1202, and only 6/11 non-negative folds. Result
+checksum:
+`272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`.
+The current world-model track stops without GPU training or shadow
+evaluation. See `reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md` and
+`reports/SAGE11_RELATIONAL_PILOT_RESULT.md`.
 
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:

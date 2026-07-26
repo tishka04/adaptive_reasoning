@@ -1,0 +1,778 @@
+{
+  "classifier": {
+    "class_weight": "balanced",
+    "early_stopping": false,
+    "hyperparameter_searches": 0,
+    "learning_rate": 0.08,
+    "max_depth": 4,
+    "max_iter": 100,
+    "name": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "random_state": 11
+  },
+  "conditional_shuffle": {
+    "fold_random_states": {
+      "bp35": 11,
+      "cd82": 12,
+      "dc22": 13,
+      "g50t": 14,
+      "ka59": 15,
+      "lf52": 16,
+      "lp85": 17,
+      "sp80": 18,
+      "su15": 19,
+      "tr87": 20,
+      "tu93": 21
+    },
+    "method": "permute all current-action-dependent streaming and object-relative columns within each held-out game's exact 22-bit relational state signature"
+  },
+  "decision": {
+    "gate": {
+      "changed_cells_improvement_at_least_0_10": false,
+      "composite_action_shuffle_degradation_at_least_0_10": false,
+      "fold_robustness": false,
+      "observed": {
+        "changed_cells_full_minus_best_baseline": -0.005925563028505831,
+        "changed_cells_full_minus_without_relations": -0.1201916989183511,
+        "composite_action_shuffle_degradation": 0.004836250494656913,
+        "nonnegative_changed_folds": 6,
+        "worst_changed_fold_delta": -0.4888014773991583
+      },
+      "passed": false,
+      "relational_changed_contribution_at_least_0_05": false,
+      "thresholds": {
+        "minimum_action_shuffle_degradation": 0.1,
+        "minimum_allowed_fold_delta": -0.05,
+        "minimum_changed_improvement": 0.1,
+        "minimum_nonnegative_folds": 9,
+        "minimum_relational_changed_contribution": 0.05
+      }
+    },
+    "next_step": "stop_world_model_track_and_revisit_representation",
+    "passed": false
+  },
+  "features": {
+    "action_dependent_columns": 55,
+    "action_only_columns": 10,
+    "fixed_game_signature_atoms_removed": true,
+    "full_columns": 113,
+    "full_without_relations_columns": 61,
+    "relational_schema": {
+      "action_dependent_feature_count": 30,
+      "checksum": "84f044dd08f3240f968a6ba1bf528896eab00eb39066dcce95d0f87e9a9193f7",
+      "feature_count": 52,
+      "feature_names": [
+        "state_object_count:zero",
+        "state_object_count:one",
+        "state_object_count:few",
+        "state_object_count:some",
+        "state_object_count:many",
+        "state_player:present",
+        "state_object_pair:any_contact",
+        "state_object_pair:any_row_aligned",
+        "state_object_pair:any_column_aligned",
+        "state_object_pair:min_distance_unavailable",
+        "state_object_pair:min_distance_contact",
+        "state_object_pair:min_distance_near",
+        "state_object_pair:min_distance_medium",
+        "state_object_pair:min_distance_far",
+        "state_player_object:any_contact",
+        "state_player_object:any_row_aligned",
+        "state_player_object:any_column_aligned",
+        "state_player_object:min_distance_unavailable",
+        "state_player_object:min_distance_zero",
+        "state_player_object:min_distance_one",
+        "state_player_object:min_distance_two_to_four",
+        "state_player_object:min_distance_five_plus",
+        "action_target:has_xy",
+        "action_target:inside_object",
+        "action_target:contacts_object",
+        "action_target:row_aligned_with_object",
+        "action_target:column_aligned_with_object",
+        "action_target:object_distance_unavailable",
+        "action_target:object_distance_zero",
+        "action_target:object_distance_one",
+        "action_target:object_distance_two_to_four",
+        "action_target:object_distance_five_plus",
+        "action_target:nearest_object_row_negative",
+        "action_target:nearest_object_row_zero",
+        "action_target:nearest_object_row_positive",
+        "action_target:nearest_object_column_negative",
+        "action_target:nearest_object_column_zero",
+        "action_target:nearest_object_column_positive",
+        "action_target:nearest_object_size_one",
+        "action_target:nearest_object_size_few",
+        "action_target:nearest_object_size_some",
+        "action_target:nearest_object_size_many",
+        "action_target:nearest_object_aspect_square",
+        "action_target:nearest_object_aspect_vertical",
+        "action_target:nearest_object_aspect_horizontal",
+        "action_target:player_distance_unavailable",
+        "action_target:player_distance_zero",
+        "action_target:player_distance_one",
+        "action_target:player_distance_two_to_four",
+        "action_target:player_distance_five_plus",
+        "action_target:row_aligned_with_player",
+        "action_target:column_aligned_with_player"
+      ],
+      "format_version": "sage11-object-relations-v1",
+      "state_feature_count": 22
+    },
+    "state_only_columns": 58,
+    "streaming_schema": {
+      "atom_vocabulary": [
+        "action:available(ACTION1)",
+        "action:available(ACTION2)",
+        "action:available(ACTION3)",
+        "action:available(ACTION4)",
+        "action:available(ACTION5)",
+        "action:available(ACTION6)",
+        "object:role_present(few:horizontal)",
+        "object:role_present(few:square)",
+        "object:role_present(few:vertical)",
+        "object:role_present(many:horizontal)",
+        "object:role_present(many:square)",
+        "object:role_present(many:vertical)",
+        "object:role_present(one:square)",
+        "object:role_present(some:horizontal)",
+        "object:role_present(some:square)",
+        "object:role_present(some:vertical)",
+        "progress:levels_completed_bucket(one)",
+        "progress:levels_completed_bucket(zero)",
+        "state:game_state(not_finished)"
+      ],
+      "checksum": "39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd",
+      "feature_count": 77,
+      "feature_names": [
+        "current_action:ACTION1",
+        "current_action:ACTION2",
+        "current_action:ACTION3",
+        "current_action:ACTION4",
+        "current_action:ACTION5",
+        "current_action:ACTION6",
+        "current_argument:has_xy",
+        "current_argument:on_boundary",
+        "current_argument:on_corner",
+        "current_argument:on_diagonal",
+        "current_atom:action:available(ACTION1)",
+        "current_atom:action:available(ACTION2)",
+        "current_atom:action:available(ACTION3)",
+        "current_atom:action:available(ACTION4)",
+        "current_atom:action:available(ACTION5)",
+        "current_atom:action:available(ACTION6)",
+        "current_atom:object:role_present(few:horizontal)",
+        "current_atom:object:role_present(few:square)",
+        "current_atom:object:role_present(few:vertical)",
+        "current_atom:object:role_present(many:horizontal)",
+        "current_atom:object:role_present(many:square)",
+        "current_atom:object:role_present(many:vertical)",
+        "current_atom:object:role_present(one:square)",
+        "current_atom:object:role_present(some:horizontal)",
+        "current_atom:object:role_present(some:square)",
+        "current_atom:object:role_present(some:vertical)",
+        "current_atom:progress:levels_completed_bucket(one)",
+        "current_atom:progress:levels_completed_bucket(zero)",
+        "current_atom:state:game_state(not_finished)",
+        "context:exact_continuity",
+        "reset_step:zero",
+        "reset_step:one_to_three",
+        "reset_step:four_to_fifteen",
+        "reset_step:sixteen_plus",
+        "state_visit:first",
+        "state_visit:second",
+        "state_visit:third_or_fourth",
+        "state_visit:fifth_plus",
+        "state_recency:new",
+        "state_recency:one",
+        "state_recency:two_to_four",
+        "state_recency:five_to_sixteen",
+        "state_recency:seventeen_plus",
+        "previous_action:ACTION1",
+        "previous_action:ACTION2",
+        "previous_action:ACTION3",
+        "previous_action:ACTION4",
+        "previous_action:ACTION5",
+        "previous_action:ACTION6",
+        "previous_action:same_as_current",
+        "previous_changed:zero",
+        "previous_changed:one",
+        "previous_changed:few",
+        "previous_changed:some",
+        "previous_changed:many",
+        "previous_effect:player_moved",
+        "previous_effect:level_complete",
+        "previous_effect:game_over",
+        "relative_target:has_xy",
+        "relative_target:same_target",
+        "relative_target:same_row",
+        "relative_target:same_column",
+        "relative_target:dx_negative",
+        "relative_target:dx_zero",
+        "relative_target:dx_positive",
+        "relative_target:dy_negative",
+        "relative_target:dy_zero",
+        "relative_target:dy_positive",
+        "relative_target:distance_zero",
+        "relative_target:distance_one_to_four",
+        "relative_target:distance_five_to_sixteen",
+        "relative_target:distance_seventeen_plus",
+        "atom_delta:zero",
+        "atom_delta:one",
+        "atom_delta:few",
+        "atom_delta:some",
+        "atom_delta:many"
+      ],
+      "format_version": "sage11-streaming-features-v2"
+    }
+  },
+  "firewall": {
+    "historical_shards_opened": false,
+    "holdout_shards_opened": false,
+    "leave_one_game_out_folds": 11,
+    "manifest_checksum": "11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c",
+    "manifest_path": "training/sage11/relational_pilot_v1/manifest.json",
+    "source_train_games": [
+      "bp35",
+      "cd82",
+      "dc22",
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ],
+    "source_train_rows": 10027,
+    "source_validation_shards_opened": false
+  },
+  "format_version": "sage11-relational-effect-logo-v1",
+  "hardware": {
+    "cpu": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_decision": "The frozen scikit-learn pilot estimator has no CUDA backend; GPU use begins only after a pass.",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "logical_cpu_count": 16,
+    "training_device": "cpu"
+  },
+  "metrics": {
+    "aggregate_out_of_fold": {
+      "composite": {
+        "action_only": 0.34840862381289106,
+        "best_action_or_state_baseline": 0.38715819255026995,
+        "conditional_action_shuffle_degradation": 0.004836250494656913,
+        "conditional_action_shuffled": 0.39235118112672607,
+        "full": 0.397187431621383,
+        "full_minus_best_baseline": 0.010029239071113027,
+        "full_minus_without_relations": -0.07602825445289957,
+        "full_without_relations": 0.47321568607428255,
+        "per_action_majority": 0.3004429115360661,
+        "state_only": 0.38715819255026995
+      },
+      "heads": {
+        "changed_cells": {
+          "action_only": 0.22830419455060982,
+          "best_action_or_state_baseline": 0.22830419455060982,
+          "conditional_action_shuffle_degradation": 0.023574567537161778,
+          "conditional_action_shuffled": 0.19880406398494221,
+          "full": 0.222378631522104,
+          "full_minus_best_baseline": -0.005925563028505831,
+          "full_minus_without_relations": -0.1201916989183511,
+          "full_without_relations": 0.3425703304404551,
+          "per_action_majority": 0.16268546448853743,
+          "state_only": 0.18824375691590425
+        },
+        "player_moved": {
+          "action_only": 0.46851305307517227,
+          "best_action_or_state_baseline": 0.5860726281846357,
+          "conditional_action_shuffle_degradation": -0.01390206654784798,
+          "conditional_action_shuffled": 0.5858982982685099,
+          "full": 0.5719962317206619,
+          "full_minus_best_baseline": -0.01407639646397374,
+          "full_minus_without_relations": -0.03186480998744812,
+          "full_without_relations": 0.6038610417081101,
+          "per_action_majority": 0.4382003585835948,
+          "state_only": 0.5860726281846357
+        }
+      }
+    },
+    "per_held_out_game": {
+      "bp35": {
+        "composite": {
+          "action_only": 0.6251587313711282,
+          "best_action_or_state_baseline": 0.6251587313711282,
+          "conditional_action_shuffle_degradation": -0.021955216031787905,
+          "conditional_action_shuffled": 0.33516598905456396,
+          "full": 0.31321077302277606,
+          "full_minus_best_baseline": -0.31194795834835215,
+          "full_minus_without_relations": -0.1139806526635937,
+          "full_without_relations": 0.42719142568636975,
+          "per_action_majority": 0.30051112579863404,
+          "state_only": 0.33174077741522
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.5011181573000948,
+            "best_action_or_state_baseline": 0.5011181573000948,
+            "conditional_action_shuffle_degradation": 0.03863036864055294,
+            "conditional_action_shuffled": 0.23582783537543198,
+            "full": 0.2744582040159849,
+            "full_minus_best_baseline": -0.22665995328410987,
+            "full_minus_without_relations": 0.10508265474669673,
+            "full_without_relations": 0.1693755492692882,
+            "per_action_majority": 0.2619607843137255,
+            "state_only": 0.20791385477744587
+          },
+          "player_moved": {
+            "action_only": 0.7491993054421616,
+            "best_action_or_state_baseline": 0.7491993054421616,
+            "conditional_action_shuffle_degradation": -0.08254080070412873,
+            "conditional_action_shuffled": 0.4345041427336959,
+            "full": 0.3519633420295672,
+            "full_minus_best_baseline": -0.39723596341259443,
+            "full_minus_without_relations": -0.3330439600738841,
+            "full_without_relations": 0.6850073021034513,
+            "per_action_majority": 0.33906146728354264,
+            "state_only": 0.4555677000529942
+          }
+        },
+        "rows": 1000
+      },
+      "cd82": {
+        "composite": {
+          "action_only": 0.11809990954667329,
+          "best_action_or_state_baseline": 0.39193277663466225,
+          "conditional_action_shuffle_degradation": 0.015218590259145626,
+          "conditional_action_shuffled": 0.4095399183296865,
+          "full": 0.42475850858883213,
+          "full_minus_best_baseline": 0.03282573195416988,
+          "full_minus_without_relations": 0.13342940904155492,
+          "full_without_relations": 0.2913290995472772,
+          "per_action_majority": 0.31006918873636313,
+          "state_only": 0.39193277663466225
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.08623611106197977,
+            "best_action_or_state_baseline": 0.08777381349583743,
+            "conditional_action_shuffle_degradation": 0.017535306487299007,
+            "conditional_action_shuffled": 0.1386707602771422,
+            "full": 0.1562060667644412,
+            "full_minus_best_baseline": 0.06843225326860378,
+            "full_minus_without_relations": -0.03647419426789725,
+            "full_without_relations": 0.19268026103233846,
+            "per_action_majority": 0.12467924528301885,
+            "state_only": 0.08777381349583743
+          },
+          "player_moved": {
+            "action_only": 0.14996370803136683,
+            "best_action_or_state_baseline": 0.696091739773487,
+            "conditional_action_shuffle_degradation": 0.0129018740309923,
+            "conditional_action_shuffled": 0.6804090763822308,
+            "full": 0.6933109504132231,
+            "full_minus_best_baseline": -0.0027807893602639355,
+            "full_minus_without_relations": 0.3033330123510072,
+            "full_without_relations": 0.3899779380622159,
+            "per_action_majority": 0.4954591321897074,
+            "state_only": 0.696091739773487
+          }
+        },
+        "rows": 1000
+      },
+      "dc22": {
+        "composite": {
+          "action_only": 0.280548994513819,
+          "best_action_or_state_baseline": 0.32123210067374963,
+          "conditional_action_shuffle_degradation": 0.010198416500347474,
+          "conditional_action_shuffled": 0.30101402518502196,
+          "full": 0.31121244168536943,
+          "full_minus_best_baseline": -0.010019658988380198,
+          "full_minus_without_relations": -0.07176769153831675,
+          "full_without_relations": 0.3829801332236862,
+          "per_action_majority": 0.5,
+          "state_only": 0.32123210067374963
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.12100840336134452,
+            "best_action_or_state_baseline": 0.16113640051762376,
+            "conditional_action_shuffle_degradation": 0.014657501360968023,
+            "conditional_action_shuffled": 0.15451423821534774,
+            "full": 0.16917173957631576,
+            "full_minus_best_baseline": 0.008035339058691998,
+            "full_minus_without_relations": -0.16985442944985324,
+            "full_without_relations": 0.339026169026169,
+            "per_action_majority": 0.0,
+            "state_only": 0.16113640051762376
+          },
+          "player_moved": {
+            "action_only": 0.4400895856662934,
+            "best_action_or_state_baseline": 0.48132780082987553,
+            "conditional_action_shuffle_degradation": 0.005739331639727008,
+            "conditional_action_shuffled": 0.44751381215469616,
+            "full": 0.45325314379442316,
+            "full_minus_best_baseline": -0.028074657035452366,
+            "full_minus_without_relations": 0.026319046373219745,
+            "full_without_relations": 0.4269340974212034,
+            "per_action_majority": 1.0,
+            "state_only": 0.48132780082987553
+          }
+        },
+        "rows": 1000
+      },
+      "g50t": {
+        "composite": {
+          "action_only": 0.25591127139114755,
+          "best_action_or_state_baseline": 0.35464023522455734,
+          "conditional_action_shuffle_degradation": 0.015762399736185928,
+          "conditional_action_shuffled": 0.3487813184467412,
+          "full": 0.36454371818292713,
+          "full_minus_best_baseline": 0.009903482958369791,
+          "full_minus_without_relations": 0.026141450155605594,
+          "full_without_relations": 0.33840226802732154,
+          "per_action_majority": 0.2875572376056898,
+          "state_only": 0.35464023522455734
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.08544891640866872,
+            "best_action_or_state_baseline": 0.32916435995958465,
+            "conditional_action_shuffle_degradation": -0.011849815644891237,
+            "conditional_action_shuffled": 0.3017596614988853,
+            "full": 0.28990984585399404,
+            "full_minus_best_baseline": -0.03925451410559061,
+            "full_minus_without_relations": 0.13578518573709025,
+            "full_without_relations": 0.1541246601169038,
+            "per_action_majority": 0.24445851804939836,
+            "state_only": 0.32916435995958465
+          },
+          "player_moved": {
+            "action_only": 0.4263736263736264,
+            "best_action_or_state_baseline": 0.4263736263736264,
+            "conditional_action_shuffle_degradation": 0.04337461511726315,
+            "conditional_action_shuffled": 0.3958029753945971,
+            "full": 0.4391775905118602,
+            "full_minus_best_baseline": 0.012803964138233814,
+            "full_minus_without_relations": -0.08350228542587912,
+            "full_without_relations": 0.5226798759377393,
+            "per_action_majority": 0.33065595716198126,
+            "state_only": 0.3801161104895301
+          }
+        },
+        "rows": 1000
+      },
+      "ka59": {
+        "composite": {
+          "action_only": 0.43229231834908494,
+          "best_action_or_state_baseline": 0.43229231834908494,
+          "conditional_action_shuffle_degradation": 0.07819796130229995,
+          "conditional_action_shuffled": 0.28788825832517084,
+          "full": 0.3660862196274708,
+          "full_minus_best_baseline": -0.06620609872161415,
+          "full_minus_without_relations": -0.1411974498145041,
+          "full_without_relations": 0.5072836694419749,
+          "per_action_majority": 0.33668939816554144,
+          "state_only": 0.3171036951921755
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.278601594832775,
+            "best_action_or_state_baseline": 0.278601594832775,
+            "conditional_action_shuffle_degradation": 0.10282701882217055,
+            "conditional_action_shuffled": 0.22221130156061958,
+            "full": 0.3250383203827901,
+            "full_minus_best_baseline": 0.0464367255500151,
+            "full_minus_without_relations": 0.0252118283659577,
+            "full_without_relations": 0.2998264920168324,
+            "per_action_majority": 0.2530889412586192,
+            "state_only": 0.24441838958965773
+          },
+          "player_moved": {
+            "action_only": 0.5859830418653948,
+            "best_action_or_state_baseline": 0.5859830418653948,
+            "conditional_action_shuffle_degradation": 0.0535689037824294,
+            "conditional_action_shuffled": 0.35356521508972205,
+            "full": 0.40713411887215145,
+            "full_minus_best_baseline": -0.1788489229932434,
+            "full_minus_without_relations": -0.3076067279949658,
+            "full_without_relations": 0.7147408468671173,
+            "per_action_majority": 0.42028985507246375,
+            "state_only": 0.38978900079469336
+          }
+        },
+        "rows": 1000
+      },
+      "lf52": {
+        "composite": {
+          "action_only": 0.15268141015722467,
+          "best_action_or_state_baseline": 0.18784867162807894,
+          "conditional_action_shuffle_degradation": -0.065645153178432,
+          "conditional_action_shuffled": 0.24254211334398262,
+          "full": 0.17689696016555062,
+          "full_minus_best_baseline": -0.010951711462528324,
+          "full_minus_without_relations": -0.0033464899048449293,
+          "full_without_relations": 0.18024345007039555,
+          "per_action_majority": 0.23941488071922853,
+          "state_only": 0.18784867162807894
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.053816589984847854,
+            "best_action_or_state_baseline": 0.0849484622300278,
+            "conditional_action_shuffle_degradation": -0.001414928199745022,
+            "conditional_action_shuffled": 0.0858427645143738,
+            "full": 0.08442783631462877,
+            "full_minus_best_baseline": -0.0005206259153990311,
+            "full_minus_without_relations": 0.015733935254766074,
+            "full_without_relations": 0.0686939010598627,
+            "per_action_majority": 0.02230802230802231,
+            "state_only": 0.0849484622300278
+          },
+          "player_moved": {
+            "action_only": 0.2515462303296015,
+            "best_action_or_state_baseline": 0.2907488810261301,
+            "conditional_action_shuffle_degradation": -0.12987537815711897,
+            "conditional_action_shuffled": 0.39924146217359147,
+            "full": 0.2693660840164725,
+            "full_minus_best_baseline": -0.021382797009657617,
+            "full_minus_without_relations": -0.022426915064455877,
+            "full_without_relations": 0.2917929990809284,
+            "per_action_majority": 0.45652173913043476,
+            "state_only": 0.2907488810261301
+          }
+        },
+        "rows": 1000
+      },
+      "lp85": {
+        "composite": {
+          "action_only": 0.24528301886792453,
+          "best_action_or_state_baseline": 0.24528301886792453,
+          "conditional_action_shuffle_degradation": 0.010581568190263846,
+          "conditional_action_shuffled": 0.3554279464041564,
+          "full": 0.36600951459442027,
+          "full_minus_best_baseline": 0.12072649572649574,
+          "full_minus_without_relations": 0.10882173382173382,
+          "full_without_relations": 0.25718778077268645,
+          "per_action_majority": 0.24528301886792453,
+          "state_only": 0.23
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.0,
+            "best_action_or_state_baseline": 0.0,
+            "conditional_action_shuffle_degradation": 0.02116313638052772,
+            "conditional_action_shuffled": 0.22028985507246376,
+            "full": 0.24145299145299148,
+            "full_minus_best_baseline": 0.24145299145299148,
+            "full_minus_without_relations": 0.21764346764346768,
+            "full_without_relations": 0.023809523809523808,
+            "per_action_majority": 0.0,
+            "state_only": 0.0
+          },
+          "player_moved": {
+            "action_only": 0.49056603773584906,
+            "best_action_or_state_baseline": 0.49056603773584906,
+            "conditional_action_shuffle_degradation": 0.0,
+            "conditional_action_shuffled": 0.49056603773584906,
+            "full": 0.49056603773584906,
+            "full_minus_best_baseline": 0.0,
+            "full_minus_without_relations": 0.0,
+            "full_without_relations": 0.49056603773584906,
+            "per_action_majority": 0.49056603773584906,
+            "state_only": 0.46
+          }
+        },
+        "rows": 27
+      },
+      "sp80": {
+        "composite": {
+          "action_only": 0.32130079188904415,
+          "best_action_or_state_baseline": 0.34970250856714874,
+          "conditional_action_shuffle_degradation": 0.04492788604353265,
+          "conditional_action_shuffled": 0.35794012916949597,
+          "full": 0.4028680152130286,
+          "full_minus_best_baseline": 0.05316550664587988,
+          "full_minus_without_relations": 0.05148707907454264,
+          "full_without_relations": 0.351380936138486,
+          "per_action_majority": 0.4716911683614312,
+          "state_only": 0.34970250856714874
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.2868759455370651,
+            "best_action_or_state_baseline": 0.2868759455370651,
+            "conditional_action_shuffle_degradation": 0.05130633668233042,
+            "conditional_action_shuffled": 0.11171022477542139,
+            "full": 0.1630165614577518,
+            "full_minus_best_baseline": -0.12385938407931327,
+            "full_minus_without_relations": -0.03584736609916353,
+            "full_without_relations": 0.19886392755691534,
+            "per_action_majority": 0.47558031437054743,
+            "state_only": 0.13289224990318008
+          },
+          "player_moved": {
+            "action_only": 0.35572563824102327,
+            "best_action_or_state_baseline": 0.5665127672311174,
+            "conditional_action_shuffle_degradation": 0.03854943540473488,
+            "conditional_action_shuffled": 0.6041700335635706,
+            "full": 0.6427194689683055,
+            "full_minus_best_baseline": 0.07620670173718802,
+            "full_minus_without_relations": 0.13882152424824878,
+            "full_without_relations": 0.5038979447200567,
+            "per_action_majority": 0.46780202235231505,
+            "state_only": 0.5665127672311174
+          }
+        },
+        "rows": 1000
+      },
+      "su15": {
+        "composite": {
+          "action_only": 0.24859237688536923,
+          "best_action_or_state_baseline": 0.24859237688536923,
+          "conditional_action_shuffle_degradation": 0.019496923330398153,
+          "conditional_action_shuffled": 0.2500392875851231,
+          "full": 0.26953621091552127,
+          "full_minus_best_baseline": 0.020943834030152042,
+          "full_minus_without_relations": -0.21047044453783237,
+          "full_without_relations": 0.48000665545335364,
+          "per_action_majority": 0.23917579551382367,
+          "state_only": 0.18716410248183143
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.018833162743091096,
+            "best_action_or_state_baseline": 0.018833162743091096,
+            "conditional_action_shuffle_degradation": 0.03762541806020067,
+            "conditional_action_shuffled": 0.02391304347826087,
+            "full": 0.06153846153846154,
+            "full_minus_best_baseline": 0.042705298795370446,
+            "full_minus_without_relations": -0.1209566336721559,
+            "full_without_relations": 0.18249509521061744,
+            "per_action_majority": 0.0,
+            "state_only": 0.0
+          },
+          "player_moved": {
+            "action_only": 0.47835159102764735,
+            "best_action_or_state_baseline": 0.47835159102764735,
+            "conditional_action_shuffle_degradation": 0.0013684286005956614,
+            "conditional_action_shuffled": 0.47616553169198533,
+            "full": 0.477533960292581,
+            "full_minus_best_baseline": -0.0008176307350663548,
+            "full_minus_without_relations": -0.2999842554035088,
+            "full_without_relations": 0.7775182156960898,
+            "per_action_majority": 0.47835159102764735,
+            "state_only": 0.37432820496366287
+          }
+        },
+        "rows": 1000
+      },
+      "tr87": {
+        "composite": {
+          "action_only": 0.3494593050963349,
+          "best_action_or_state_baseline": 0.35575063323929557,
+          "conditional_action_shuffle_degradation": -0.017502826906894198,
+          "conditional_action_shuffled": 0.2938724832305645,
+          "full": 0.2763696563236703,
+          "full_minus_best_baseline": -0.07938097691562529,
+          "full_minus_without_relations": -0.0984318068576654,
+          "full_without_relations": 0.37480146318133567,
+          "per_action_majority": 0.4292557598264396,
+          "state_only": 0.35575063323929557
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.6522074567131655,
+            "best_action_or_state_baseline": 0.6522074567131655,
+            "conditional_action_shuffle_degradation": -0.019256372204593003,
+            "conditional_action_shuffled": 0.1826623515186002,
+            "full": 0.1634059793140072,
+            "full_minus_best_baseline": -0.4888014773991583,
+            "full_minus_without_relations": -0.08436369342201022,
+            "full_without_relations": 0.2477696727360174,
+            "per_action_majority": 0.3710691823899371,
+            "state_only": 0.10152649469271996
+          },
+          "player_moved": {
+            "action_only": 0.04671115347950429,
+            "best_action_or_state_baseline": 0.6099747717858712,
+            "conditional_action_shuffle_degradation": -0.01574928160919542,
+            "conditional_action_shuffled": 0.40508261494252873,
+            "full": 0.3893333333333333,
+            "full_minus_best_baseline": -0.22064143845253792,
+            "full_minus_without_relations": -0.11249992029332057,
+            "full_without_relations": 0.5018332536266539,
+            "per_action_majority": 0.48744233726294206,
+            "state_only": 0.6099747717858712
+          }
+        },
+        "rows": 1000
+      },
+      "tu93": {
+        "composite": {
+          "action_only": 0.2724718607109672,
+          "best_action_or_state_baseline": 0.3187579284282991,
+          "conditional_action_shuffle_degradation": -0.0020117438167184254,
+          "conditional_action_shuffled": 0.3429690564531538,
+          "full": 0.34095731263643536,
+          "full_minus_best_baseline": 0.022199384208136275,
+          "full_minus_without_relations": 5.7513434488565274e-05,
+          "full_without_relations": 0.3408997992019468,
+          "per_action_majority": 0.27732443719099503,
+          "state_only": 0.3187579284282991
+        },
+        "heads": {
+          "changed_cells": {
+            "action_only": 0.10707171314741036,
+            "best_action_or_state_baseline": 0.1466889917594143,
+            "conditional_action_shuffle_degradation": -0.00309000301571441,
+            "conditional_action_shuffled": 0.19643957004629353,
+            "full": 0.19334956703057912,
+            "full_minus_best_baseline": 0.04666057527116482,
+            "full_minus_without_relations": 0.03949974494041367,
+            "full_without_relations": 0.15384982209016546,
+            "per_action_majority": 0.22399291722000883,
+            "state_only": 0.1466889917594143
+          },
+          "player_moved": {
+            "action_only": 0.437872008274524,
+            "best_action_or_state_baseline": 0.49082686509718393,
+            "conditional_action_shuffle_degradation": -0.0009334846177224687,
+            "conditional_action_shuffled": 0.48949854286001404,
+            "full": 0.48856505824229157,
+            "full_minus_best_baseline": -0.0022618068548923564,
+            "full_minus_without_relations": -0.03938471807143651,
+            "full_without_relations": 0.5279497763137281,
+            "per_action_majority": 0.33065595716198126,
+            "state_only": 0.49082686509718393
+          }
+        },
+        "rows": 1000
+      }
+    },
+    "relational_state_signature_identity": {
+      "game_exclusive_row_rate": 0.13972274857883715,
+      "row_weighted_majority_game_accuracy": 0.6419666899371697,
+      "shared_signature_count": 10,
+      "signature_count": 26
+    }
+  },
+  "reproduction": {
+    "command": "ARC-AGI-3-Agents\\.venv\\Scripts\\python.exe -m theory.sage11.relational_effect_pilot",
+    "protocol": "reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md"
+  },
+  "result_checksum": "272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b",
+  "run_date": "2026-07-26",
+  "software": {
+    "numpy": "2.4.3",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "torch": "2.5.1+cu121"
+  },
+  "timing_seconds": {
+    "evaluate_and_serialize": 0.026,
+    "fit_logo_models": 59.983,
+    "total": 62.097,
+    "verify_load_and_encode": 2.087
+  }
+}

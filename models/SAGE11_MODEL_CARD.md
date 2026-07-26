@@ -1,12 +1,10 @@
 # SAGE.11 graph world model — model card
 
 Status: factorized architecture and shared streaming interface implemented and
-software-validated; untrained. The original joint-target pilot failed. The
-separately pre-registered factorized v2 pilot passed its cheap gate on
-2026-07-26, and its exact 77-feature representation is now shared by dataset
-loading and live inference. The stricter source-train-only anti-shortcut audit
-then failed. Training is blocked pending a smaller relational-data pilot; no
-checkpoint is promoted.
+software-validated; untrained and stopped. The original joint-target pilot
+failed. The factorized v2 cheap pilot passed, but its stricter source-train
+anti-shortcut audit failed. The prescribed smaller relational-data pilot also
+failed every gate. No training or checkpoint is authorized.
 
 ## Model
 
@@ -122,7 +120,11 @@ source-train rows and archives a fixed 52-column generic relation vector
 The world-model input width will not change unless that replacement passes.
 The collection is complete at 10,027 rows with manifest checksum
 `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`;
-the frozen relational fit has not run.
+the frozen relational fit failed: changed-cells delta -0.0059, conditional
+shuffle +0.0048, relations contribution -0.1202, and 6/11 non-negative
+folds. Result checksum
+`272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`.
+The current world-model track stops without GPU training or shadow mode.
 
 ## Required gates
 
@@ -153,8 +155,8 @@ refutation, or level change.
 The current random initialization is not useful for acting. Pilot v1 is
 evidence against the original representation/target pairing. Pilot v2
 demonstrates factorized predictability but not robust changed-cell or
-current-action sensitivity. The stricter audit rejects the current interface
-for training and activates the smaller relational-data route. There is no
+current-action sensitivity. The stricter audit rejected that interface, and
+the smaller relational replacement also failed. There is no
 claim of a useful learned world model, cross-game
 competence, score gain, or holdout generalization. Historical and holdout
 games remain untouched.

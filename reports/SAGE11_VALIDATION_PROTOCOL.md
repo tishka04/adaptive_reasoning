@@ -4,9 +4,9 @@ Status: roadmap steps 1-4 complete. Step 4 first produced a documented v1
 no-go, then a separately pre-registered factorized v2 formal go. The exact
 77-feature/factorized interface is now implemented across archived-row
 loading, the model/trainer, and live inference. The stricter source-train-only
-anti-shortcut audit failed; the smaller relational-data replacement pilot is
-now implemented and frozen before collection, and it is required before step
-5. The first source-capacity gate failed
+anti-shortcut audit failed; the smaller relational-data replacement was
+implemented, frozen, collected, and also failed. The current world-model track
+stops before step 5. The first source-capacity gate failed
 closed at an optimistic maximum of 98,708/100,000 under the 8,000/game base
 cap. On 2026-07-26 the user approved the minimum 1,292-row aggregate overflow
 on five source-training games with demonstrated remaining unique capacity.
@@ -79,8 +79,8 @@ The focused implementation suite covers:
 The data-policy amendment required by step 3 is approved and independently
 verified. The first parts of step 4 are complete: v1 failed, v2 formally
 passed, and its exact interface is implemented. The anti-shortcut audit then
-failed. Steps 5-8 remain blocked pending the prescribed smaller relational
-recollection and replacement pilot.
+failed, and the prescribed smaller relational replacement also failed.
+Steps 5-8 are not entered under this plan.
 
 ## Step 4 v1 result
 
@@ -180,9 +180,30 @@ The real collection then completed exactly 10,027 rows with manifest checksum
 `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`.
 Policy counts are 7,019 active-controller, 2,005 uniform-legal, and 1,003
 frontier-stall rows. All 11 shard hashes, row counts, source-train
-provenance, cross-shard deduplication, and schema checksum verify. The frozen
-relational fit has not yet run. See
+provenance, cross-shard deduplication, and schema checksum verify. At that
+collection checkpoint the frozen fit had not run. See
 `reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md`.
+
+The one frozen fit then failed all four conditions:
+
+- changed-cells full-minus-best-baseline: -0.0059;
+- composite conditional action-shuffle degradation: +0.0048;
+- changed-cells full-minus-without-relations: -0.1202;
+- fold robustness: 6/11 non-negative, worst -0.4888.
+
+The relational state signature was less game-specific than the old atoms
+(64.20% versus 99.17% majority-game accuracy), but it did not provide useful
+action-conditioned changed-cell prediction. Result checksum:
+`272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`.
+Steps 5-8 are not entered. Neural authority remains `off`; no GPU training,
+source-validation shadow, historical, or holdout run occurred. See
+`reports/SAGE11_RELATIONAL_PILOT_RESULT.md`.
+
+Post-result validation reproduced the machine-result checksum, passed Ruff
+and `git diff --check`, and passed all 44 focused SAGE.10g/SAGE.11 tests. The
+complete repository suite passed 1,667 tests in 221.52 seconds. The only
+warning was the previously documented benign Windows joblib physical-core
+discovery fallback.
 
 ## Non-regression and report-only matrix
 

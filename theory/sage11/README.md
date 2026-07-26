@@ -187,7 +187,13 @@ changed-cells +0.10, conditional shuffle +0.10, and an explicit +0.05
 relations-added requirement. Collection is complete at exactly 10,027 rows,
 manifest checksum
 `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`;
-the fit has not run. Historical and holdout games remain untouched.
+the frozen fit failed every gate: changed-cells delta -0.0059, conditional
+shuffle +0.0048, relations contribution -0.1202, and 6/11 non-negative
+folds. Result checksum
+`272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`.
+The current world-model track stops without GPU training or shadow mode.
+Historical and holdout games remain untouched.
 See `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md` and
 `reports/SAGE11_RELATIONAL_PILOT_PROTOCOL.md`, plus
-`reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md`.
+`reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md` and
+`reports/SAGE11_RELATIONAL_PILOT_RESULT.md`.
