@@ -148,12 +148,14 @@ used identically by source-row loading and live counterfactual inference
 (schema checksum
 `39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd`).
 The 1,552,178-parameter world model now has separate changed-cells and
-player-moved heads. Training remains blocked pending the pre-registered
-source-train-only leave-one-game-out anti-shortcut audit in
-`reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`. It requires meaningful
-changed-cells improvement, conditional action sensitivity, robust game-wise
-transfer, and no fixed-signature shortcut. A failure routes to a smaller
-relational-data pilot instead of another 100,000-row corpus.
+player-moved heads. The pre-registered source-train-only leave-one-game-out
+anti-shortcut audit then failed: changed-cells was 0.1026 below the stronger
+action/state baseline, conditional action-shuffle degradation was only
+0.0180, and fixed signatures predicted game identity with 99.17% accuracy.
+GPU training is blocked. The active route is a smaller corpus preserving
+contact, alignment, proximity, and object-relative action features—not another
+100,000-row recollection. See
+`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
 
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:

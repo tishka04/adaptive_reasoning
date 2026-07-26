@@ -56,7 +56,7 @@ de policy en support scientifique.
 | SAGE.10h - Chain economics repair | Implemente logiciellement - pilot live en attente | `theory/online_transferable_causal_schema.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage10g_i_symbolic_repairs.py` | Ledger de confirmations cross-branch persistant, scheduler focalise sur seuil/depth, escalation depth-0, demotion apres 2 non-progres et re-arm seulement sur contexte/nouvel effet/refutation/level; competence protegee prioritaire |
 | SAGE.10i - Confirmed-effect causal exploitation | Implemente logiciellement - delta multi-jeu en attente | `theory/online_causal_subgoal_graph.py`, `theory/online_transferable_causal_schema.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage10g_i_symbolic_repairs.py` | Les effets transferes confirmes localement alimentent l'ordre du graphe causal sans creer edge support, credit terminal ni autorite de policy; support=0 |
 | SAGE.11a - Firewall + dataset | Fait - 100,000 lignes verifiees | `theory/sage11/splits.py`, `theory/sage11/dataset.py`, `theory/sage11/source_dataset_runner.py`, `training/sage11/source_dataset_v2/manifest.json`, `training/SAGE11_DATA_POLICY.md`, `reports/SAGE11_SOURCE_CAPACITY_RESULT.md` | Registry 25 jeux checksumme; 76,908 train + 23,092 val-source; mixture 69,999/20,002/9,999; pool global exact +1,292 sur cinq jeux train; manifest `d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b`; aucun holdout/historique touche |
-| SAGE.11b - Pilot + compact world model | Interface v2 factorisee implementee; audit anti-shortcut pre-enregistre; modele non entraine | `theory/sage11/streaming_features.py`, `theory/sage11/streaming_dataset.py`, `theory/sage11/anti_shortcut_audit.py`, `theory/sage11/model.py`, `theory/sage11/training.py`, `reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`, `models/SAGE11_MODEL_CARD.md` | V1 joint no-go; v2 composite +0.2075 mais changed F1 0.1562 et shuffle +0.0078. Interface partagee exacte 77 colonnes checksum `39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd`; heads changed-cells/player-moved separes; modele v2 1,552,178 params; audit LOGO 11 jeux source-train gele avant execution; aucun train/val/historique/holdout |
+| SAGE.11b - Pilot + compact world model | Audit anti-shortcut no-go; petite recollecte relationnelle requise; modele non entraine | `theory/sage11/streaming_features.py`, `theory/sage11/anti_shortcut_audit.py`, `diagnostics/sage/sage11_source_train_anti_shortcut_logo.json`, `reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`, `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`, `models/SAGE11_MODEL_CARD.md` | Interface partagee 77 colonnes + heads factorises implementes. Audit LOGO source-train: changed delta -0.1026, shuffle +0.0180, 5/11 folds non-negatifs, pire -0.2314; signatures fixes identifient jeu a 99.17% et leur retrait ameliore changed F1 0.1704 -> 0.3379; checksum `c4afd1adecbd40b6e3dccba96f3f2e43414d91ad9a04b1dc71f9540027e66a8a`; training GPU bloque |
 | SAGE.11c/11d - Typed bridge + shadow | Implemente logiciellement - shadow live en attente | `theory/sage11/atoms.py`, `theory/sage11/bridge.py`, `theory/sage11/authority.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage11_authority.py` | Atomes partages FrameDiff/schema, hypotheses support=0; off ne lance pas le predicteur; shadow action-identique et log top-k/pre-emption/cout; bounded inaccessible sans gates |
 | SAGE.11e/11f - Bounded/active + adaptation | Implemente logiciellement - promotion non revendiquee | `theory/sage11/authority.py`, `theory/sage11/adaptation.py`, `theory/sage11/evaluation.py`, `reports/SAGE11_VALIDATION_PROTOCOL.md`, `diagnostics/sage/sage11_implementation_audit.json` | Veto danger symbolique dur, competence protegee, info-gain positif, 1 probe branche/contexte, demotion 2 echecs, re-arm explicite; encodeur gele, replay 2048, update/32 <=4 gradients, reset jeu/seed; bootstrap holdout 5x5 implemente mais non execute |
 | SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
@@ -8773,7 +8773,11 @@ Pilot et modele :
 - L'audit `sage11-anti-shortcut-logo-v1` est pre-enregistre sur les seuls
   76,908 rows/11 jeux source-train en LOGO. Il exige changed +0.10 contre le
   meilleur action/state, shuffle conditionnel >=0.10, robustesse 9/11 et
-  aucune dependance aux signatures fixes. Il n'est pas encore execute.
+  aucune dependance aux signatures fixes. Le run unique echoue: changed
+  -0.1026, shuffle +0.0180, 5/11 folds, pire -0.2314. Les signatures fixes
+  identifient le jeu a 99.17%; les retirer ameliore changed 0.1704 -> 0.3379.
+  Checksum resultat:
+  `c4afd1adecbd40b6e3dccba96f3f2e43414d91ad9a04b1dc71f9540027e66a8a`.
 - Torch `2.5.1+cu121`, CUDA `12.1`, un device visible ont ete verifies dans
   `ARC-AGI-3-Agents/.venv`.
 
@@ -8799,9 +8803,9 @@ Validation/promotion :
 
 - Les gates shadow et holdout sont codees dans `evaluation.py`.
 - Le gate bon marche v1 a echoue, puis le v2 factorise pre-enregistre a passe.
-  L'interface v2 est implementee, mais l'entrainement world-model et les etapes
-  shadow/bounded/active restent bloques jusqu'au passage de l'audit
-  anti-shortcut et des gates changed/action-shuffle/calibration existants.
+  L'interface v2 est implementee, mais l'audit anti-shortcut echoue.
+  L'entrainement world-model et les etapes shadow/bounded/active restent
+  bloques pendant la petite recollecte relationnelle et son nouveau pilot.
   Aucun tuning
   post-outcome, historique ou holdout n'a ete lance.
 - Le holdout requiert exactement 5 jeux x 5 seeds, active/off, digests apparies,

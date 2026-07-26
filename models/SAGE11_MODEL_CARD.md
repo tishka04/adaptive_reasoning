@@ -4,8 +4,9 @@ Status: factorized architecture and shared streaming interface implemented and
 software-validated; untrained. The original joint-target pilot failed. The
 separately pre-registered factorized v2 pilot passed its cheap gate on
 2026-07-26, and its exact 77-feature representation is now shared by dataset
-loading and live inference. Training remains blocked on the stricter,
-source-train-only anti-shortcut audit; no checkpoint is promoted.
+loading and live inference. The stricter source-train-only anti-shortcut audit
+then failed. Training is blocked pending a smaller relational-data pilot; no
+checkpoint is promoted.
 
 ## Model
 
@@ -105,6 +106,14 @@ changed-cells the non-compensable primary target, conditions the action
 shuffle on fixed state signatures, and explicitly ablates availability/object
 atoms that may identify games.
 
+The one execution failed: changed-cells full-minus-best-baseline was -0.1026,
+conditional action-shuffle degradation was 0.0180, only 5/11 game folds were
+non-negative, and the worst fold was -0.2314. Fixed signatures predicted game
+identity with 99.17% accuracy; removing them improved changed-cells F1 from
+0.1704 to 0.3379. Result checksum:
+`c4afd1adecbd40b6e3dccba96f3f2e43414d91ad9a04b1dc71f9540027e66a8a`.
+See `reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
+
 ## Required gates
 
 - change-weighted next-state accuracy beats persistence;
@@ -134,7 +143,8 @@ refutation, or level change.
 The current random initialization is not useful for acting. Pilot v1 is
 evidence against the original representation/target pairing. Pilot v2
 demonstrates factorized predictability but not robust changed-cell or
-current-action sensitivity. The stricter audit is pre-registered but not yet
-executed. There is no claim of a useful learned world model, cross-game
+current-action sensitivity. The stricter audit rejects the current interface
+for training and activates the smaller relational-data route. There is no
+claim of a useful learned world model, cross-game
 competence, score gain, or holdout generalization. Historical and holdout
 games remain untouched.

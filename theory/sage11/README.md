@@ -160,7 +160,11 @@ changed-cells F1 remains 0.1562, current-action shuffle degradation is only
 now implemented with schema checksum
 `39bb692848fba64ef994e0c0a304785128e1a69adaf6308f1d22623a8f0876bd`,
 and the factorized model/trainer/live bridge all consume it. GPU training is
-still blocked pending the separately frozen source-train-only anti-shortcut
-audit in `reports/SAGE11_ANTI_SHORTCUT_AUDIT_PROTOCOL.md`. A pass permits GPU
-training; a fail requires a smaller relational-data pilot, not another
-100,000-row collection. Historical and holdout games remain untouched.
+was evaluated by the separately frozen source-train-only anti-shortcut audit.
+The audit failed: changed-cells transfer was -0.1026 versus the stronger
+baseline, conditional action-shuffle degradation was 0.0180, and only 5/11
+folds were non-negative. Fixed signatures predicted game identity at 99.17%;
+removing them improved changed-cells F1. GPU training remains blocked while a
+smaller relational-data pilot is collected—not another 100,000-row corpus.
+Historical and holdout games remain untouched. See
+`reports/SAGE11_ANTI_SHORTCUT_AUDIT_RESULT.md`.
