@@ -1,0 +1,38 @@
+{
+  "runs": [
+    {
+      "action_budgets": [
+        160
+      ],
+      "created_at_utc": "2026-07-26T11:07:55.565522+00:00",
+      "feature_flags": {
+        "generalized_frontier_stall_detection": true,
+        "level_route_memory": true,
+        "level_route_shortening": true,
+        "per_level_frontier_rearming": true,
+        "subeffect_eligibility_relay": true
+      },
+      "label": "sage10f-ft09-nonregression",
+      "maximum_level_reached": 6,
+      "normalized_score_proxy": 0.21990718,
+      "resets_per_game_seed_condition": 14,
+      "saturation_table": [
+        {
+          "action_budget_per_reset": 160,
+          "actions_executed": 1822,
+          "conditions": 1,
+          "game_id": "ft09-0d8bbf25",
+          "levels_completed": 43,
+          "max_level_reached": 6,
+          "normalized_score_proxy": 0.21990718,
+          "wall_clock_seconds": 471.5881,
+          "wins": 3
+        }
+      ],
+      "total_levels_completed": 43,
+      "total_wins": 3,
+      "wall_clock_seconds": 471.5887
+    }
+  ],
+  "schema_version": "sage.score_history.v1"
+}

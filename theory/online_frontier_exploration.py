@@ -42,6 +42,7 @@ class FrontierExperimentSelection:
     action_data: Dict[str, Any]
     frontier_id: str
     state_signature: str
+    context_signature: str
     actuator_signature: str
     target_role_signature: str
     information_score: float
@@ -52,6 +53,21 @@ class FrontierExperimentSelection:
     actuator_untested: bool
     object_role_untested: bool
     reason: str
+
+
+@dataclass(frozen=True)
+class FrontierEligibilityAssessment:
+    """Read-only diagnosis of whether frontier authority is currently eligible."""
+
+    eligible: bool
+    state_signature: str = ""
+    context_signature: str = ""
+    stagnant: bool = False
+    stall_reasons: Tuple[str, ...] = ()
+    in_active_sequence: bool = False
+    untested_actuator_available: bool = False
+    candidate_count: int = 0
+    blocked_reason: str = ""
 
 
 @dataclass(frozen=True)
@@ -142,6 +158,7 @@ class OnlineFrontierExplorer:
         effect_novelty_stall_actions: int = 12,
         zero_terminal_branch_stall_count: int = 3,
         enable_per_level_rearming: bool = True,
+        nonprogress_demotion_threshold: int = 2,
     ) -> None:
         self.enabled = bool(enabled)
         self.minimum_stagnant_steps = max(
@@ -191,6 +208,10 @@ class OnlineFrontierExplorer:
             int(zero_terminal_branch_stall_count),
         )
         self.enable_per_level_rearming = bool(enable_per_level_rearming)
+        self.nonprogress_demotion_threshold = max(
+            1,
+            int(nonprogress_demotion_threshold),
+        )
 
         self._state_visits: Counter[str] = Counter()
         self._state_action_trials: Counter[Tuple[str, str]] = Counter()
@@ -201,6 +222,10 @@ class OnlineFrontierExplorer:
         self._seen_states: set[str] = set()
         self._frontier_states: set[str] = set()
         self._target_role_actions: Dict[str, set[str]] = defaultdict(set)
+        self._context_actuator_nonprogress: Counter[
+            Tuple[str, str]
+        ] = Counter()
+        self._demoted_context_actuators: set[Tuple[str, str]] = set()
 
         self._pending: FrontierExperimentSelection | None = None
         self._active_sequence_id = ""
@@ -254,6 +279,105 @@ class OnlineFrontierExplorer:
         self._level_changes_observed = 0
         self._per_level_rearms = 0
         self._protected_competence_blocks = 0
+        self._nonprogress_outcomes = 0
+        self._context_actuator_demotions = 0
+        self._context_actuator_demotion_blocks = 0
+        self._context_actuator_reactivations = 0
+
+    def assess_eligibility(
+        self,
+        *,
+        current_grid: Any,
+        available_actions: Sequence[str],
+        available_action_candidates: Sequence[Any] | None,
+        branch_diagnostics: Mapping[str, Any],
+    ) -> FrontierEligibilityAssessment:
+        """Diagnose a frontier without consuming authority or mutating memory."""
+        if not self.enabled:
+            return FrontierEligibilityAssessment(
+                eligible=False,
+                blocked_reason="disabled",
+            )
+        if (
+            self._failed_branches < self.minimum_failed_branches
+            and not self._level_rearm_pending
+        ):
+            return FrontierEligibilityAssessment(
+                eligible=False,
+                blocked_reason="minimum_failed_branches",
+            )
+        grid = np.asarray(current_grid, dtype=np.int32)
+        if grid.ndim != 2 or grid.size == 0:
+            return FrontierEligibilityAssessment(
+                eligible=False,
+                blocked_reason="invalid_grid",
+            )
+        state_signature = _state_signature(grid)
+        context_signature = _context_signature(grid)
+        candidates = _concrete_candidates(
+            grid,
+            available_actions,
+            available_action_candidates,
+        )
+        if not candidates:
+            return FrontierEligibilityAssessment(
+                eligible=False,
+                state_signature=state_signature,
+                context_signature=context_signature,
+                blocked_reason="no_candidates",
+            )
+        eligible_candidates = tuple(
+            candidate
+            for candidate in candidates
+            if (
+                context_signature,
+                candidate[2],
+            ) not in self._demoted_context_actuators
+        )
+        untested_actuator_available = any(
+            (
+                self._actuator_evidence.get(actuator) is None
+                or self._actuator_evidence[actuator].trials
+                < self.max_trials_per_actuator
+            )
+            for _, _, actuator, _ in eligible_candidates
+        )
+        stagnant, stall_reasons = self._stagnation_assessment(
+            state_signature,
+            branch_diagnostics,
+            untested_actuator_available=untested_actuator_available,
+            prospective_state_visits=(
+                self._state_visits[state_signature] + 1
+            ),
+        )
+        in_active_sequence = bool(self._active_sequence_remaining > 0)
+        blocked_reason = ""
+        if not eligible_candidates:
+            blocked_reason = "all_context_actuators_demoted"
+        elif (
+            self._state_experiments[state_signature]
+            >= self.max_experiments_per_state
+        ):
+            blocked_reason = "state_experiment_budget"
+        elif self._terminal_progress_observed and not (
+            self.enable_per_level_rearming
+            and self._level_rearm_pending
+            and stagnant
+        ):
+            blocked_reason = "terminal_retreat"
+        elif not stagnant and not in_active_sequence:
+            blocked_reason = "not_stagnant"
+        return FrontierEligibilityAssessment(
+            eligible=not bool(blocked_reason),
+            state_signature=state_signature,
+            context_signature=context_signature,
+            stagnant=bool(stagnant),
+            stall_reasons=stall_reasons,
+            in_active_sequence=in_active_sequence,
+            untested_actuator_available=untested_actuator_available,
+            candidate_count=len(eligible_candidates),
+            blocked_reason=blocked_reason,
+        )
 
     def select(
         self,
@@ -263,6 +387,7 @@ class OnlineFrontierExplorer:
         available_action_candidates: Sequence[Any] | None,
         branch_diagnostics: Mapping[str, Any],
         protected_competence_available: bool = False,
+        assessment: FrontierEligibilityAssessment | None = None,
     ) -> FrontierExperimentSelection | None:
         """Return the most informative safe-looking concrete intervention."""
         if not self.enabled:
@@ -271,20 +396,29 @@ class OnlineFrontierExplorer:
             self._protected_competence_blocks += 1
             self._clear_sequence()
             return None
-        if (
-            self._failed_branches < self.minimum_failed_branches
-            and not self._level_rearm_pending
-        ):
-            return None
         grid = np.asarray(current_grid, dtype=np.int32)
         if grid.ndim != 2 or grid.size == 0:
             return None
+        if assessment is None:
+            assessment = self.assess_eligibility(
+                current_grid=grid,
+                available_actions=available_actions,
+                available_action_candidates=available_action_candidates,
+                branch_diagnostics=branch_diagnostics,
+            )
+        if not assessment.eligible:
+            if assessment.blocked_reason == "all_context_actuators_demoted":
+                self._context_actuator_demotion_blocks += 1
+            if assessment.in_active_sequence:
+                self._clear_sequence()
+            return None
 
         self._states_assessed += 1
-        state_signature = _state_signature(grid)
+        state_signature = assessment.state_signature
+        context_signature = assessment.context_signature
         self._state_visits[state_signature] += 1
         self._seen_states.add(state_signature)
-        in_active_sequence = bool(self._active_sequence_remaining > 0)
+        in_active_sequence = assessment.in_active_sequence
         candidates = _concrete_candidates(
             grid,
             available_actions,
@@ -292,19 +426,8 @@ class OnlineFrontierExplorer:
         )
         if not candidates:
             return None
-        untested_actuator_available = any(
-            (
-                self._actuator_evidence.get(actuator) is None
-                or self._actuator_evidence[actuator].trials
-                < self.max_trials_per_actuator
-            )
-            for _, _, actuator, _ in candidates
-        )
-        stagnant, stall_reasons = self._stagnation_assessment(
-            state_signature,
-            branch_diagnostics,
-            untested_actuator_available=untested_actuator_available,
-        )
+        stagnant = assessment.stagnant
+        stall_reasons = assessment.stall_reasons
         self._last_stall_reasons = stall_reasons
         if self._terminal_progress_observed:
             if not (
@@ -339,6 +462,12 @@ class OnlineFrontierExplorer:
 
         ranked = []
         for action_name, action_data, actuator, target_role in candidates:
+            if (
+                context_signature,
+                actuator,
+            ) in self._demoted_context_actuators:
+                self._context_actuator_demotion_blocks += 1
+                continue
             state_trials = self._state_action_trials[
                 (state_signature, actuator)
             ]
@@ -417,6 +546,7 @@ class OnlineFrontierExplorer:
             action_data=dict(action_data),
             frontier_id=frontier_id,
             state_signature=state_signature,
+            context_signature=context_signature,
             actuator_signature=actuator,
             target_role_signature=target_role,
             information_score=float(score),
@@ -511,6 +641,28 @@ class OnlineFrontierExplorer:
             or (not no_effect and not game_over and (novel_effect or novel_state))
         )
         self._productive_experiments += int(productive)
+        context_actuator_key = (
+            pending.context_signature,
+            pending.actuator_signature,
+        )
+        if productive:
+            self._context_actuator_nonprogress[context_actuator_key] = 0
+            if context_actuator_key in self._demoted_context_actuators:
+                self._demoted_context_actuators.discard(
+                    context_actuator_key
+                )
+                self._context_actuator_reactivations += 1
+        else:
+            self._nonprogress_outcomes += 1
+            self._context_actuator_nonprogress[context_actuator_key] += 1
+            if (
+                self._context_actuator_nonprogress[context_actuator_key]
+                >= self.nonprogress_demotion_threshold
+                and context_actuator_key
+                not in self._demoted_context_actuators
+            ):
+                self._demoted_context_actuators.add(context_actuator_key)
+                self._context_actuator_demotions += 1
         eligibility_id = ""
         if (
             self.enable_delayed_terminal_credit
@@ -832,6 +984,12 @@ class OnlineFrontierExplorer:
         if terminal_success:
             self._branch_terminal_progress = True
             self._terminal_progress_observed = True
+            if self._demoted_context_actuators:
+                self._context_actuator_reactivations += len(
+                    self._demoted_context_actuators
+                )
+                self._demoted_context_actuators.clear()
+                self._context_actuator_nonprogress.clear()
             self._pending = None
             self._clear_sequence()
         return FrontierDelayedCreditUpdate(
@@ -912,6 +1070,9 @@ class OnlineFrontierExplorer:
             "per_level_rearming_enabled": (
                 self.enable_per_level_rearming
             ),
+            "nonprogress_demotion_threshold": (
+                self.nonprogress_demotion_threshold
+            ),
             "branches_started": self._branches_started,
             "failed_branches": self._failed_branches,
             "terminal_progress_observed": (
@@ -983,6 +1144,19 @@ class OnlineFrontierExplorer:
             "protected_competence_blocks": (
                 self._protected_competence_blocks
             ),
+            "nonprogress_outcomes": self._nonprogress_outcomes,
+            "context_actuator_demotions": (
+                self._context_actuator_demotions
+            ),
+            "context_actuator_demotion_blocks": (
+                self._context_actuator_demotion_blocks
+            ),
+            "context_actuator_reactivations": (
+                self._context_actuator_reactivations
+            ),
+            "demoted_context_actuators": len(
+                self._demoted_context_actuators
+            ),
             "last_stall_reasons": list(self._last_stall_reasons),
             "information_gain": round(self._information_gain, 4),
             "actuator_models": len(self._actuator_evidence),
@@ -1006,6 +1180,7 @@ class OnlineFrontierExplorer:
         diagnostics: Mapping[str, Any],
         *,
         untested_actuator_available: bool,
+        prospective_state_visits: int | None = None,
     ) -> Tuple[bool, Tuple[str, ...]]:
         branch_actions = int(diagnostics.get("branch_actions", 0) or 0)
         if branch_actions < self.minimum_stagnant_steps:
@@ -1035,7 +1210,12 @@ class OnlineFrontierExplorer:
             <= max(2, int(window_actions * 0.35))
         )
         recurrent_current_state = bool(
-            self._state_visits[state_signature] >= 3
+            (
+                self._state_visits[state_signature]
+                if prospective_state_visits is None
+                else prospective_state_visits
+            )
+            >= 3
             and max_hash_repeat >= 2
         )
         reasons = []
@@ -1260,6 +1440,42 @@ def _state_signature(grid: np.ndarray) -> str:
     return hashlib.sha1(repr(payload).encode("latin1")).hexdigest()[:16]
 
 
+def _context_signature(grid: np.ndarray) -> str:
+    """Return a palette/position-light local context for demotion scope."""
+    background = _background_value(grid)
+    visited: set[Tuple[int, int]] = set()
+    components = []
+    height, width = grid.shape
+    for y in range(height):
+        for x in range(width):
+            if (x, y) in visited or int(grid[y, x]) == background:
+                continue
+            value = int(grid[y, x])
+            component = _component(grid, x, y, value)
+            visited.update(component)
+            xs = [coordinate[0] for coordinate in component]
+            ys = [coordinate[1] for coordinate in component]
+            area = len(component)
+            components.append((
+                (
+                    "single"
+                    if area == 1
+                    else "small"
+                    if area <= 4
+                    else "medium"
+                    if area <= 15
+                    else "large"
+                ),
+                min(5, max(xs) - min(xs) + 1),
+                min(5, max(ys) - min(ys) + 1),
+            ))
+    payload = (
+        tuple(int(value) for value in grid.shape),
+        tuple(sorted(components)),
+    )
+    return hashlib.sha1(repr(payload).encode("utf-8")).hexdigest()[:16]
+
+
 def _effect_signature(before: np.ndarray, after: np.ndarray) -> str:
     if before.shape != after.shape:
         payload = ("shape_change", before.shape, after.shape)
@@ -1341,6 +1557,7 @@ def _effect_component_signatures(
 __all__ = [
     "DelayedFrontierCredit",
     "FrontierDelayedCreditUpdate",
+    "FrontierEligibilityAssessment",
     "FrontierExperimentSelection",
     "OnlineFrontierExplorer",
 ]

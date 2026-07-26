@@ -654,6 +654,92 @@ def test_generalized_stall_fires_without_state_recurrence():
     ]
 
 
+def test_eligibility_assessment_is_read_only_and_directly_selectable():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=3,
+        minimum_failed_branches=0,
+    )
+    diagnostics = {
+        "branch_actions": 8,
+        "actions_since_terminal_improvement": 8,
+        "max_hash_repeat": 1,
+        "unique_states_in_window": 8,
+        "window_actions": 8,
+    }
+    first = explorer.assess_eligibility(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=diagnostics,
+    )
+    second = explorer.assess_eligibility(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=diagnostics,
+    )
+
+    assert first == second
+    assert first.eligible is True
+    assert first.stall_reasons == ("actuator_coverage_stall",)
+    assert explorer.summary()["states_assessed"] == 0
+    assert explorer.summary()["experiments"] == 0
+
+    selected = explorer.select(
+        current_grid=_grid(),
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=diagnostics,
+        assessment=first,
+    )
+    assert selected is not None
+    assert explorer.summary()["states_assessed"] == 1
+
+
+def test_frontier_demotes_repeated_unproductive_context_actuator():
+    explorer = OnlineFrontierExplorer(
+        minimum_stagnant_steps=1,
+        minimum_failed_branches=0,
+        max_trials_per_actuator=4,
+        nonprogress_demotion_threshold=2,
+    )
+    grid = _grid()
+    for _ in range(2):
+        assessment = explorer.assess_eligibility(
+            current_grid=grid,
+            available_actions=("ACTION1",),
+            available_action_candidates=(_Action("ACTION1"),),
+            branch_diagnostics=_stalled(),
+        )
+        selection = explorer.select(
+            current_grid=grid,
+            available_actions=("ACTION1",),
+            available_action_candidates=(_Action("ACTION1"),),
+            branch_diagnostics=_stalled(),
+            assessment=assessment,
+        )
+        assert selection is not None
+        explorer.observe_transition(
+            grid_before=grid,
+            grid_after=grid.copy(),
+            action_name=selection.action_name,
+            action_data=selection.action_data,
+            no_effect=True,
+            game_over=False,
+            terminal_success=False,
+        )
+
+    blocked = explorer.assess_eligibility(
+        current_grid=grid,
+        available_actions=("ACTION1",),
+        available_action_candidates=(_Action("ACTION1"),),
+        branch_diagnostics=_stalled(),
+    )
+    assert blocked.eligible is False
+    assert blocked.blocked_reason == "all_context_actuators_demoted"
+    assert explorer.summary()["context_actuator_demotions"] == 1
+
+
 def test_per_level_rearm_waits_for_stall_and_preserves_terminal_retreat():
     explorer = OnlineFrontierExplorer(
         minimum_stagnant_steps=2,

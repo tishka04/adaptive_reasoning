@@ -64,6 +64,7 @@ EXPERIMENT_SOURCES = {
     "causal_option_mediated_replication",
     "structural_break_experiment",
     "frontier_oriented_experiment",
+    "transfer_causal_schema_probe",
     "level_route_shortening_probe",
 }
 MULTIFORM_RELATION_FAMILIES = (
@@ -1121,6 +1122,20 @@ def _run_arm(
         )
         or {}
     )
+    causal_schema_export_summary = dict(
+        controller_summary.get(
+            "transferable_causal_schema_export",
+            {},
+        )
+        or {}
+    )
+    causal_schema_transfer_summary = dict(
+        controller_summary.get(
+            "transferable_causal_schema_transfer",
+            {},
+        )
+        or {}
+    )
     return {
         "protected_route_preemptions": int(
             controller_summary.get("protected_route_preemptions", 0)
@@ -1947,6 +1962,82 @@ def _run_arm(
         "frontier_information_gain": float(
             frontier_exploration_summary.get("information_gain", 0.0)
             or 0.0
+        ),
+        "frontier_eligibility_assessments": int(
+            controller_summary.get(
+                "frontier_eligibility_assessments",
+                0,
+            )
+            or 0
+        ),
+        "frontier_context_actuator_demotions": int(
+            frontier_exploration_summary.get(
+                "context_actuator_demotions",
+                0,
+            )
+            or 0
+        ),
+        "frontier_context_actuator_demotion_blocks": int(
+            frontier_exploration_summary.get(
+                "context_actuator_demotion_blocks",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_exported": int(
+            causal_schema_export_summary.get("frozen_schemas", 0) or 0
+        ),
+        "causal_schema_terminal_chains": int(
+            causal_schema_export_summary.get(
+                "terminal_chains_observed",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_probe_selections": int(
+            causal_schema_transfer_summary.get(
+                "candidate_probe_selections",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_effect_confirmations": int(
+            causal_schema_transfer_summary.get(
+                "effect_confirmations",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_chain_advances": int(
+            causal_schema_transfer_summary.get("chain_advances", 0)
+            or 0
+        ),
+        "causal_schema_terminal_backcredits": int(
+            causal_schema_transfer_summary.get(
+                "terminal_backcredits",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_promotions": int(
+            causal_schema_transfer_summary.get("promotions", 0) or 0
+        ),
+        "causal_schema_demotions": int(
+            causal_schema_transfer_summary.get("demotions", 0) or 0
+        ),
+        "causal_schema_cross_family_adapter_probes": int(
+            causal_schema_transfer_summary.get(
+                "cross_family_adapter_probes",
+                0,
+            )
+            or 0
+        ),
+        "causal_schema_cross_family_adapter_confirmations": int(
+            causal_schema_transfer_summary.get(
+                "cross_family_adapter_confirmations",
+                0,
+            )
+            or 0
         ),
         "terminal_multiform_observations": int(
             multiform_summary.get("observations", 0) or 0

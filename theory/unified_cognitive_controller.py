@@ -58,9 +58,17 @@ from .online_horizon_learning_arbiter import (
     HorizonLearningSignals,
     OnlineHorizonLearningArbiter,
 )
-from .online_frontier_exploration import OnlineFrontierExplorer
+from .online_frontier_exploration import (
+    FrontierEligibilityAssessment,
+    OnlineFrontierExplorer,
+)
 from .online_multiform_relational_learner import (
     OnlineMultiformRelationalLearner,
+)
+from .online_transferable_causal_schema import (
+    FrozenCausalSchemaLibrary,
+    OnlineCausalSchemaExporter,
+    OnlineCausalSchemaTransfer,
 )
 from .online_level_route_memory import OnlineLevelRouteMemory
 from .online_terminal_frontier import (
@@ -228,6 +236,15 @@ class UnifiedCognitiveConfig:
     frontier_effect_novelty_stall_actions: int = 12
     frontier_zero_terminal_branch_stall_count: int = 3
     enable_per_level_frontier_rearming: bool = True
+    frontier_nonprogress_demotion_threshold: int = 2
+    enable_transferable_causal_schema_export: bool = True
+    enable_transferable_causal_schema_priors: bool = True
+    transferable_causal_schema_max_steps: int = 4
+    transferable_causal_schema_max_schemas: int = 64
+    transferable_causal_schema_local_confirmation_threshold: int = 2
+    transferable_causal_schema_max_probes_per_branch: int = 4
+    transferable_causal_schema_max_probes_per_context: int = 1
+    transferable_causal_schema_nonprogress_demotion_threshold: int = 2
     enable_terminal_multiform_relational_induction: bool = True
     terminal_multiform_min_support: int = 2
     terminal_multiform_max_selections_per_branch: int = 2
@@ -295,6 +312,19 @@ class CognitiveDecision:
     frontier_state_action_untested: bool = False
     frontier_actuator_untested: bool = False
     frontier_object_role_untested: bool = False
+    transfer_causal_schema: bool = False
+    transfer_causal_schema_experiment: bool = False
+    transfer_causal_schema_id: str = ""
+    transfer_causal_schema_step: int = 0
+    transfer_causal_schema_step_count: int = 0
+    transfer_causal_schema_source_action_family: str = ""
+    transfer_causal_schema_action_family: str = ""
+    transfer_causal_schema_target_role: str = ""
+    transfer_causal_schema_predicted_effects: Tuple[str, ...] = ()
+    transfer_causal_schema_source_support: int = 0
+    transfer_causal_schema_local_support: int = 0
+    transfer_causal_schema_promoted: bool = False
+    transfer_causal_schema_score: float = 0.0
     terminal_multiform_relation: bool = False
     terminal_multiform_actuator_signature: str = ""
     terminal_multiform_target_role: str = ""
@@ -508,6 +538,39 @@ class CognitiveDecision:
             ),
             "frontier_object_role_untested": (
                 self.frontier_object_role_untested
+            ),
+            "transfer_causal_schema": self.transfer_causal_schema,
+            "transfer_causal_schema_experiment": (
+                self.transfer_causal_schema_experiment
+            ),
+            "transfer_causal_schema_id": self.transfer_causal_schema_id,
+            "transfer_causal_schema_step": self.transfer_causal_schema_step,
+            "transfer_causal_schema_step_count": (
+                self.transfer_causal_schema_step_count
+            ),
+            "transfer_causal_schema_source_action_family": (
+                self.transfer_causal_schema_source_action_family
+            ),
+            "transfer_causal_schema_action_family": (
+                self.transfer_causal_schema_action_family
+            ),
+            "transfer_causal_schema_target_role": (
+                self.transfer_causal_schema_target_role
+            ),
+            "transfer_causal_schema_predicted_effects": list(
+                self.transfer_causal_schema_predicted_effects
+            ),
+            "transfer_causal_schema_source_support": (
+                self.transfer_causal_schema_source_support
+            ),
+            "transfer_causal_schema_local_support": (
+                self.transfer_causal_schema_local_support
+            ),
+            "transfer_causal_schema_promoted": (
+                self.transfer_causal_schema_promoted
+            ),
+            "transfer_causal_schema_score": (
+                self.transfer_causal_schema_score
             ),
             "terminal_multiform_relation": (
                 self.terminal_multiform_relation
@@ -761,6 +824,9 @@ class UnifiedCognitiveController:
         *,
         available_actions: Sequence[Any] | None = None,
         config: UnifiedCognitiveConfig | None = None,
+        frozen_causal_schema_library: (
+            FrozenCausalSchemaLibrary | None
+        ) = None,
     ) -> None:
         self.game_id = str(game_id)
         self.config = config or UnifiedCognitiveConfig()
@@ -1129,6 +1195,39 @@ class UnifiedCognitiveController:
             enable_per_level_rearming=(
                 self.config.enable_per_level_frontier_rearming
             ),
+            nonprogress_demotion_threshold=(
+                self.config.frontier_nonprogress_demotion_threshold
+            ),
+        )
+        self.causal_schema_exporter = OnlineCausalSchemaExporter(
+            enabled=self.config.enable_transferable_causal_schema_export,
+            source_tag="online-controller",
+            max_steps_per_schema=(
+                self.config.transferable_causal_schema_max_steps
+            ),
+            max_schemas=(
+                self.config.transferable_causal_schema_max_schemas
+            ),
+        )
+        self.causal_schema_transfer = OnlineCausalSchemaTransfer(
+            frozen_causal_schema_library,
+            enabled=self.config.enable_transferable_causal_schema_priors,
+            local_effect_confirmation_threshold=(
+                self.config
+                .transferable_causal_schema_local_confirmation_threshold
+            ),
+            max_probes_per_branch=(
+                self.config
+                .transferable_causal_schema_max_probes_per_branch
+            ),
+            max_probes_per_schema_context=(
+                self.config
+                .transferable_causal_schema_max_probes_per_context
+            ),
+            nonprogress_demotion_threshold=(
+                self.config
+                .transferable_causal_schema_nonprogress_demotion_threshold
+            ),
         )
         self.multiform_relations = OnlineMultiformRelationalLearner(
             enabled=(
@@ -1168,6 +1267,7 @@ class UnifiedCognitiveController:
         self._option_context_attempts: Counter[Tuple[str, int]] = Counter()
         self._decision_sources: Counter[str] = Counter()
         self._protected_route_preemptions = 0
+        self._frontier_eligibility_assessments = 0
         self._observed_transitions = 0
         self._branch_step = 0
         self._operator_plans = 0
@@ -1201,6 +1301,16 @@ class UnifiedCognitiveController:
     def seed_task_program(self, path: Any) -> None:
         """Feed the same Task Program to the scientific belief store."""
         self.belief_loop.seed_task_program(path)
+
+    def freeze_transferable_causal_schemas(
+        self,
+        *,
+        minimum_terminal_support: int = 1,
+    ) -> FrozenCausalSchemaLibrary:
+        """Freeze source learning before constructing any target controller."""
+        return self.causal_schema_exporter.freeze(
+            minimum_terminal_support=minimum_terminal_support,
+        )
 
     def register_predictions(
         self,
@@ -1253,6 +1363,7 @@ class UnifiedCognitiveController:
                 "terminal_frontier_suffix",
                 "structural_break_experiment",
                 "frontier_oriented_experiment",
+                "transfer_causal_schema_probe",
                 "temporal_subgoal_probe",
                 "causal_option_downstream_probe",
                 "causal_option_effect_subgoal_probe",
@@ -1449,19 +1560,45 @@ class UnifiedCognitiveController:
                 ),
             )
         )
-        self.multiform_relations.observe_transition(
+        observed_multiform_patterns = (
+            self.multiform_relations.observe_transition(
+                observation_before=update.record.obs_before,
+                observation_after=update.record.obs_after,
+                action_name=action_name,
+                action_data=action_data,
+                terminal_success=terminal_success,
+                game_over=bool(update.record.diff.game_over),
+                delayed_frontier_eligibility_id=str(
+                    frontier_exploration_outcome.get(
+                        "delayed_credit_eligibility_id",
+                        "",
+                    )
+                ),
+            )
+        )
+        reusable_patterns = (
+            observed_multiform_patterns
+            if self.config.enable_terminal_multiform_relational_induction
+            else None
+        )
+        self.causal_schema_exporter.observe_transition(
             observation_before=update.record.obs_before,
             observation_after=update.record.obs_after,
             action_name=action_name,
             action_data=action_data,
             terminal_success=terminal_success,
             game_over=bool(update.record.diff.game_over),
-            delayed_frontier_eligibility_id=str(
-                frontier_exploration_outcome.get(
-                    "delayed_credit_eligibility_id",
-                    "",
-                )
-            ),
+            patterns=reusable_patterns,
+        )
+        self.causal_schema_transfer.observe_transition(
+            observation_before=update.record.obs_before,
+            observation_after=update.record.obs_after,
+            action_name=action_name,
+            action_data=action_data,
+            terminal_success=terminal_success,
+            game_over=bool(update.record.diff.game_over),
+            no_effect=is_noop,
+            patterns=reusable_patterns,
         )
         self.multiform_relations.resolve_delayed_frontier_credit(
             credited_eligibility_ids=tuple(
@@ -1711,7 +1848,15 @@ class UnifiedCognitiveController:
             )
 
         branch_stalled = self.progress.should_kill_branch()
-        escape_requested = self.anti_attractor.should_escape(self._step)
+        frontier_assessment = (
+            self.frontier_exploration.assess_eligibility(
+                current_grid=observation.raw_grid,
+                available_actions=safe_actions,
+                available_action_candidates=available_action_candidates,
+                branch_diagnostics=self.progress.branch_diagnostics(),
+            )
+        )
+        self._frontier_eligibility_assessments += 1
         decision = None
         if self.terminal_frontiers.progressive_route_startable(
             state_signature=_terminal_frontier_state_signature(
@@ -1774,14 +1919,29 @@ class UnifiedCognitiveController:
                 safe_actions,
             )
         )
+        if decision is None:
+            decision = self._select_transfer_causal_schema(
+                observation,
+                safe_actions,
+                available_action_candidates,
+                experiment_eligible=frontier_assessment.eligible,
+                protected_competence_available=(
+                    protected_competence_available
+                ),
+            )
+            if decision is not None and protected_competence_available:
+                self._protected_route_preemptions += 1
+                self.causal_schema_transfer.cancel_pending()
+                decision = None
         if (
             decision is None
-            and (branch_stalled or escape_requested)
+            and frontier_assessment.eligible
         ):
             decision = self._select_frontier_oriented_experiment(
                 observation,
                 safe_actions,
                 available_action_candidates,
+                assessment=frontier_assessment,
                 protected_competence_available=(
                     protected_competence_available
                 ),
@@ -1858,12 +2018,18 @@ class UnifiedCognitiveController:
             )
 
         frontier_selected = decision.frontier_oriented_experiment
+        transfer_schema_selected = decision.transfer_causal_schema
         multiform_selected = decision.terminal_multiform_relation
         decision = self._guard_decision(decision, observation, safe_actions)
         if frontier_selected and not decision.frontier_oriented_experiment:
             self.frontier_exploration.cancel_pending()
         if multiform_selected and not decision.terminal_multiform_relation:
             self.multiform_relations.cancel_pending_selection()
+        if (
+            transfer_schema_selected
+            and not decision.transfer_causal_schema
+        ):
+            self.causal_schema_transfer.cancel_pending()
         decision = self._annotate_terminal_frontier_suffix(
             decision,
             observation,
@@ -1886,6 +2052,8 @@ class UnifiedCognitiveController:
         self.temporal_goals.start_branch()
         self.causal_subgoals.start_branch()
         self.causal_options.start_branch()
+        self.causal_schema_exporter.start_branch()
+        self.causal_schema_transfer.start_branch()
         discarded_frontier_eligibilities = (
             self.frontier_exploration.start_branch()
         )
@@ -1917,6 +2085,9 @@ class UnifiedCognitiveController:
             "decision_sources": dict(self._decision_sources),
             "protected_route_preemptions": (
                 self._protected_route_preemptions
+            ),
+            "frontier_eligibility_assessments": (
+                self._frontier_eligibility_assessments
             ),
             "experiments_selected": self._experiment_decisions,
             "relational_experiments_selected": self._generic_experiment_decisions,
@@ -1983,6 +2154,12 @@ class UnifiedCognitiveController:
             ),
             "frontier_oriented_exploration": (
                 self.frontier_exploration.summary()
+            ),
+            "transferable_causal_schema_export": (
+                self.causal_schema_exporter.summary()
+            ),
+            "transferable_causal_schema_transfer": (
+                self.causal_schema_transfer.summary()
             ),
             "terminal_multiform_relational_induction": (
                 self.multiform_relations.summary()
@@ -2608,6 +2785,7 @@ class UnifiedCognitiveController:
         available_action_candidates: Sequence[Any] | None,
         *,
         protected_competence_available: bool = False,
+        assessment: FrontierEligibilityAssessment | None = None,
     ) -> CognitiveDecision | None:
         selection = self.frontier_exploration.select(
             current_grid=observation.raw_grid,
@@ -2617,6 +2795,7 @@ class UnifiedCognitiveController:
             protected_competence_available=(
                 protected_competence_available
             ),
+            assessment=assessment,
         )
         if selection is None:
             return None
@@ -2648,6 +2827,63 @@ class UnifiedCognitiveController:
             frontier_object_role_untested=(
                 selection.object_role_untested
             ),
+        )
+
+    def _select_transfer_causal_schema(
+        self,
+        observation: GameObservation,
+        safe_actions: Sequence[str],
+        available_action_candidates: Sequence[Any] | None,
+        *,
+        experiment_eligible: bool,
+        protected_competence_available: bool,
+    ) -> CognitiveDecision | None:
+        selection = self.causal_schema_transfer.select(
+            observation=observation,
+            available_actions=safe_actions,
+            available_action_candidates=available_action_candidates,
+            experiment_eligible=experiment_eligible,
+            protected_competence_available=(
+                protected_competence_available
+            ),
+        )
+        if selection is None:
+            return None
+        return CognitiveDecision(
+            action_name=selection.action_name,
+            action_data=dict(selection.action_data),
+            source=(
+                "transfer_causal_schema_policy"
+                if selection.promoted
+                else "transfer_causal_schema_probe"
+            ),
+            reason=selection.reason,
+            confidence=(
+                1.0
+                if selection.promoted
+                else max(0.0, min(0.75, selection.score / 16.0))
+            ),
+            transfer_causal_schema=True,
+            transfer_causal_schema_experiment=not selection.promoted,
+            transfer_causal_schema_id=selection.schema_id,
+            transfer_causal_schema_step=selection.step_index,
+            transfer_causal_schema_step_count=selection.step_count,
+            transfer_causal_schema_source_action_family=(
+                selection.source_action_family
+            ),
+            transfer_causal_schema_action_family=selection.action_family,
+            transfer_causal_schema_target_role=selection.target_role,
+            transfer_causal_schema_predicted_effects=tuple(
+                effect.key for effect in selection.predicted_effects
+            ),
+            transfer_causal_schema_source_support=(
+                selection.terminal_support
+            ),
+            transfer_causal_schema_local_support=(
+                selection.local_effect_confirmations
+            ),
+            transfer_causal_schema_promoted=selection.promoted,
+            transfer_causal_schema_score=selection.score,
         )
 
     def _select_escape(
