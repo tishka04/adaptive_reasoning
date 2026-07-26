@@ -1,0 +1,4072 @@
+{
+  "format_version": "sage-causal-schema-v1",
+  "frozen": true,
+  "schema_count": 12,
+  "schemas": [
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000004:terminal-000000"
+        },
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000007:terminal-000001"
+        },
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000068:terminal-000011"
+        }
+      ],
+      "schema_id": "causal-schema::e8007d8504d7ea68",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::dc2dc16c74ffdeab",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION3",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_left_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION3",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::7e7e795e0e9b9987",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 3
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000013:terminal-000002"
+        },
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000016:terminal-000003"
+        }
+      ],
+      "schema_id": "causal-schema::906d4e21aa48441c",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::017972d1a3d50470",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::89203210235b2ea4",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 2
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000033:terminal-000007"
+        }
+      ],
+      "schema_id": "causal-schema::1f25c3670c647c29",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION2",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_left_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::dc2dc16c74ffdeab",
+          "precondition": {
+            "action_family_available": "primitive:ACTION2",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION3",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_left_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::4c4846681537428f",
+          "precondition": {
+            "action_family_available": "primitive:ACTION3",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            }
+          ],
+          "next_subgoal": "effect::0780e6a5a3d46752",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000029:terminal-000006"
+        }
+      ],
+      "schema_id": "causal-schema::27413aee061a14bd",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "up_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::dc2dc16c74ffdeab",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION3",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_left_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION3",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::7e7e795e0e9b9987",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000021:terminal-000004"
+        }
+      ],
+      "schema_id": "causal-schema::3f54ad063266c74b",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION2",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::15a770e055976cb1",
+          "precondition": {
+            "action_family_available": "primitive:ACTION2",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::7e7e795e0e9b9987",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000098:terminal-000013"
+        }
+      ],
+      "schema_id": "causal-schema::660c5b236360d85d",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::3afc3248cb2272f7",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION3",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "up_left_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::d4d7b9fb6ce1649a",
+          "precondition": {
+            "action_family_available": "primitive:ACTION3",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::89203210235b2ea4",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000036:terminal-000008"
+        }
+      ],
+      "schema_id": "causal-schema::7c31c7ecc01f032a",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "up_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::017972d1a3d50470",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::89203210235b2ea4",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000100:terminal-000014"
+        }
+      ],
+      "schema_id": "causal-schema::812eef08d80cdf75",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "down_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::017972d1a3d50470",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::0780e6a5a3d46752",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000052:terminal-000010"
+        }
+      ],
+      "schema_id": "causal-schema::962f4b891de017d1",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "up_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::5fb264f5951bc95f",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "up_right_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::d16bff95caeb1640",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000026:terminal-000005"
+        }
+      ],
+      "schema_id": "causal-schema::ba1f2514f62478e6",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION2",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::017972d1a3d50470",
+          "precondition": {
+            "action_family_available": "primitive:ACTION2",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::89203210235b2ea4",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000047:terminal-000009"
+        }
+      ],
+      "schema_id": "causal-schema::d1c4c24a9ffe790d",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION2",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::017972d1a3d50470",
+          "precondition": {
+            "action_family_available": "primitive:ACTION2",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::5ec57728edf72d86",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            }
+          ],
+          "next_subgoal": "effect::89203210235b2ea4",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    },
+    {
+      "provenance": [
+        {
+          "source_tag": "cd82",
+          "terminal_context": "branch-000073:terminal-000012"
+        }
+      ],
+      "schema_id": "causal-schema::ee924a33109efb89",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION3",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "near",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "up_left_many",
+              "family": "trajectory",
+              "predicate": "object_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::7c66e72e72f12d25",
+          "precondition": {
+            "action_family_available": "primitive:ACTION3",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION2",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::f91d11e24bb72815",
+          "precondition": {
+            "action_family_available": "primitive:ACTION2",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "acted_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::d16bff95caeb1640",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "object:medium:square:solid"
+          },
+          "target_role": "object:medium:square:solid"
+        },
+        {
+          "action_family": "primitive:ACTION5",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "",
+              "family": "disappearance",
+              "predicate": "object_disappeared",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "primitive:ACTION5",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        }
+      ],
+      "terminal_support": 1
+    }
+  ]
+}

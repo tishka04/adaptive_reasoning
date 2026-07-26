@@ -25,6 +25,7 @@ import hashlib
 import math
 from collections import Counter
 from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Any, Dict, Mapping, Sequence, Tuple
 
 from v3.schemas import GameObservation, ObjectInfo
@@ -795,6 +796,44 @@ def _match_objects(
     Tuple[ObjectInfo, ...],
     Tuple[ObjectInfo, ...],
 ]:
+    before_descriptors = tuple(
+        _match_descriptor(obj)
+        for obj in before
+    )
+    after_descriptors = tuple(
+        _match_descriptor(obj)
+        for obj in after
+    )
+    matched_indices, removed_indices, appeared_indices = (
+        _match_object_indices(before_descriptors, after_descriptors)
+    )
+    return (
+        tuple((before[left], after[right]) for left, right in matched_indices),
+        tuple(before[index] for index in removed_indices),
+        tuple(after[index] for index in appeared_indices),
+    )
+
+
+def _match_descriptor(obj: ObjectInfo) -> Tuple[Any, ...]:
+    return (
+        int(obj.object_id),
+        _shape_key(obj),
+        int(obj.area),
+        float(obj.center[0]),
+        float(obj.center[1]),
+        int(obj.value),
+    )
+
+
+@lru_cache(maxsize=4_096)
+def _match_object_indices(
+    before: Tuple[Tuple[Any, ...], ...],
+    after: Tuple[Tuple[Any, ...], ...],
+) -> Tuple[
+    Tuple[Tuple[int, int], ...],
+    Tuple[int, ...],
+    Tuple[int, ...],
+]:
     scored = []
     diagonal = 1.0
     all_objects = tuple(before) + tuple(after)
@@ -802,52 +841,61 @@ def _match_objects(
         diagonal = max(
             1.0,
             math.sqrt(max(
-                (obj.center[0] ** 2 + obj.center[1] ** 2)
+                (obj[3] ** 2 + obj[4] ** 2)
                 for obj in all_objects
             )),
         )
-    for source in before:
-        for target in after:
-            shape_same = _shape_key(source) == _shape_key(target)
-            area_similarity = min(source.area, target.area) / max(
+    for source_index, source in enumerate(before):
+        for target_index, target in enumerate(after):
+            shape_same = source[1] == target[1]
+            area_similarity = min(source[2], target[2]) / max(
                 1,
-                max(source.area, target.area),
+                max(source[2], target[2]),
             )
-            distance = math.dist(source.center, target.center) / diagonal
+            distance = math.dist(
+                (source[3], source[4]),
+                (target[3], target[4]),
+            ) / diagonal
             score = (
                 4.0 * float(shape_same)
                 + 2.0 * area_similarity
-                + 0.25 * float(source.value == target.value)
+                + 0.25 * float(source[5] == target[5])
                 - distance
             )
-            scored.append((score, source, target))
+            scored.append((
+                score,
+                source_index,
+                target_index,
+                source[0],
+                target[0],
+            ))
     scored.sort(
         key=lambda item: (
             item[0],
-            -item[1].object_id,
-            -item[2].object_id,
+            -item[3],
+            -item[4],
         ),
         reverse=True,
     )
     used_before = set()
     used_after = set()
     matched = []
-    for score, source, target in scored:
+    for score, source_index, target_index, _, _ in scored:
         if score < 1.5:
             break
         if (
-            source.object_id in used_before
-            or target.object_id in used_after
+            source_index in used_before
+            or target_index in used_after
         ):
             continue
-        used_before.add(source.object_id)
-        used_after.add(target.object_id)
-        matched.append((source, target))
+        used_before.add(source_index)
+        used_after.add(target_index)
+        matched.append((source_index, target_index))
     removed = tuple(
-        obj for obj in before if obj.object_id not in used_before
+        index for index in range(len(before)) if index not in used_before
     )
     appeared = tuple(
-        obj for obj in after if obj.object_id not in used_after
+        index for index in range(len(after)) if index not in used_after
     )
     return tuple(matched), removed, appeared
 
@@ -855,26 +903,45 @@ def _match_objects(
 def _spatial_facts(
     objects: Sequence[ObjectInfo],
 ) -> Counter[Tuple[str, str, str]]:
+    descriptors = tuple(
+        (
+            _object_role(obj),
+            float(obj.center[0]),
+            float(obj.center[1]),
+            int(obj.bbox[0]),
+            int(obj.bbox[1]),
+            int(obj.bbox[2]),
+            int(obj.bbox[3]),
+        )
+        for obj in objects
+    )
+    return Counter(dict(_cached_spatial_fact_items(descriptors)))
+
+
+@lru_cache(maxsize=4_096)
+def _cached_spatial_fact_items(
+    objects: Tuple[Tuple[Any, ...], ...],
+) -> Tuple[Tuple[Tuple[str, str, str], int], ...]:
     facts: Counter[Tuple[str, str, str]] = Counter()
     for index, source in enumerate(objects):
         for target in objects[index + 1:]:
             left_role, right_role = sorted((
-                _object_role(source),
-                _object_role(target),
+                source[0],
+                target[0],
             ))
-            sr, sc = source.center
-            tr, tc = target.center
+            sr, sc = source[1], source[2]
+            tr, tc = target[1], target[2]
             row_gap = _interval_gap(
-                source.bbox[0],
-                source.bbox[2],
-                target.bbox[0],
-                target.bbox[2],
+                source[3],
+                source[5],
+                target[3],
+                target[5],
             )
             col_gap = _interval_gap(
-                source.bbox[1],
-                source.bbox[3],
-                target.bbox[1],
-                target.bbox[3],
+                source[4],
+                source[6],
+                target[4],
+                target[6],
             )
             if row_gap + col_gap <= 1:
                 facts[("adjacent", left_role, right_role)] += 1
@@ -884,7 +951,7 @@ def _spatial_facts(
                 facts[("aligned_column", left_role, right_role)] += 1
             if math.dist((sr, sc), (tr, tc)) <= 3.0:
                 facts[("near", left_role, right_role)] += 1
-    return facts
+    return tuple(sorted(facts.items()))
 
 
 def _interval_gap(
@@ -959,6 +1026,13 @@ def _shape_key(obj: ObjectInfo) -> str:
         (int(row - min_row), int(col - min_col))
         for row, col in obj.cells
     ))
+    return _normalized_shape_key(normalized)
+
+
+@lru_cache(maxsize=65_536)
+def _normalized_shape_key(
+    normalized: Tuple[Tuple[int, int], ...],
+) -> str:
     return hashlib.sha1(
         repr(normalized).encode("utf-8")
     ).hexdigest()[:12]

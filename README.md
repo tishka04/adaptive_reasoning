@@ -89,6 +89,32 @@ The environment/model audit is reproducible with:
 ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.audit
 ```
 
+The resumable real-environment source collection and SAGE.10g curriculum
+freeze are reproducible with:
+
+```bash
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.source_dataset_runner --workers 8
+```
+
+It attempts to publish exactly 100,000 deduplicated rows in separate
+source-train and source-validation shards, verifies every row count and
+checksum, rotates the five registered seeds in deterministic 200-reset windows
+with independent controllers and saturation counters, resumes only
+checksum-verified partial shards, and never touches the neural holdout or
+historical report-only games. The first
+five-seed capacity run failed closed at an optimistic maximum of 98,708 rows
+under the base 8,000/game cap. The user then approved the minimum 1,292-row
+global overflow on proven high-capacity training games; see
+`reports/SAGE11_SOURCE_CAPACITY_RESULT.md`.
+
+The amended run is complete: 100,000 verified rows (76,908 train / 23,092
+validation), manifest
+`d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b`,
+and an 11-source frozen curriculum
+`d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
+The terminal head remains disabled because the corpus contains 44 strong
+events, below its pre-registered threshold of 100.
+
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:
 

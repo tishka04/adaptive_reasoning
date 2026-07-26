@@ -1,12 +1,21 @@
 # SAGE.11 validation and publication protocol
 
-Status: implementation tests pass; long-running empirical gates have not been
-executed in this change. Authority therefore defaults to `off`, and no trained
-model is promoted.
+Status: roadmap steps 1-3 complete. The first source-capacity gate failed
+closed at an optimistic maximum of 98,708/100,000 under the 8,000/game base
+cap. On 2026-07-26 the user approved the minimum 1,292-row aggregate overflow
+on five source-training games with demonstrated remaining unique capacity.
+The amended collection now verifies at exactly 100,000 rows (76,908
+source-train / 23,092 source-validation), manifest
+`d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b`.
+The frozen curriculum checksum is
+`d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
+Authority remains `off`; no model training or holdout evaluation was started.
+See `reports/SAGE11_SOURCE_CAPACITY_RESULT.md`.
 
 Final repository validation on 2026-07-26: Ruff passed on all changed Python
-files, `git diff --check` passed, and the complete suite passed with 1,642
-tests. The sole warning was joblib falling back from physical-core discovery
+files, `git diff --check` passed, the focused source/dataset/frontier suite
+passed 48 tests, and the complete suite passed 1,648 tests. The sole warning
+was joblib falling back from physical-core discovery
 to the available logical-core count on Windows; it does not affect results.
 
 ## Software evidence
@@ -42,6 +51,9 @@ The focused implementation suite covers:
 7. Run bounded with one neural probe per branch/context, symbolic danger veto,
    protected competence, two-failure demotion, and explicit re-arming.
 8. Run active only after bounded passes.
+
+The data-policy amendment required by step 3 is approved and independently
+verified. Steps 4-8 remain separate future work.
 
 ## Non-regression and report-only matrix
 

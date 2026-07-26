@@ -16,8 +16,20 @@ existing controller remains the single execution path.
   sources before a target controller is created.
 - `dataset.py` implements the pre-registered 70/20/10 active-controller,
   uniform-legal, and frontier-stall mixture. It enforces per-game caps,
-  transition-signature deduplication, ACTION6 argument-coverage accounting,
-  checksummed JSONL shards, and a versioned manifest.
+  exact-state transition-signature deduplication, train/validation accounting,
+  ACTION6 argument-coverage accounting, checksummed JSONL shards, and a
+  versioned manifest.
+- `source_dataset_runner.py` executes that policy on the real offline
+  environments with independent per-game controllers. It resumes completed
+  games and checksum-verified partial shards, rotates seeds deterministically
+  in 200-reset windows with independent controllers and duplicate-streak
+  counters, merges their content-addressed causal libraries, freezes all 11
+  source game libraries, detects finite-state saturation only after 4,000
+  consecutive duplicates on every seed, applies the approved 1,292-row
+  aggregate overflow only to five source-training games, closes verified
+  partial caps once aggregate unique capacity reaches the target, publishes
+  deterministic exact-row prefixes, verifies the 100,000-row manifest, and
+  merges the source-only SAGE.10g curriculum.
 - `atoms.py` provides a shared typed vocabulary for observations, `FrameDiff`
   effects, causal-schema predicates, and neural candidate hypotheses.
 - `pilot.py` runs the mandatory cheap gradient-boosted effect classifier
@@ -74,6 +86,8 @@ From the repository root:
 
 ```powershell
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage11.audit
+ARC-AGI-3-Agents\.venv\Scripts\python.exe `
+  -m theory.sage11.source_dataset_runner --workers 8
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest -q `
   tests\test_sage10g_i_symbolic_repairs.py `
   tests\test_sage11_splits_dataset.py `
@@ -82,8 +96,15 @@ ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest -q `
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m ruff check theory\sage11
 ```
 
-The data shards and trained checkpoint are intentionally not fabricated by
-this implementation change. When collected, JSONL shards and the selected
-checkpoint must be stored through Git LFS, referenced by checksums in the
-manifest/model card, and pass the source-only pilot and world-model gates
-before shadow evaluation begins.
+Publishable JSONL shards are stored through Git LFS and referenced by
+checksums in the manifest. The first capacity run stopped before publication:
+two exact-dedup source games made 98,708 the optimistic upper bound under the
+base 8,000/game cap. The approved amendment adds one aggregate 1,292-row
+overflow pool across five high-capacity training games. See
+`reports/SAGE11_SOURCE_CAPACITY_RESULT.md`. The amended corpus now verifies at
+exactly 100,000 rows with manifest
+`d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b`;
+the frozen 11-source curriculum checksum is
+`d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
+Model training has not started, and the terminal head remains disabled at
+44/100 strong events.

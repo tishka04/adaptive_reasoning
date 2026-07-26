@@ -1758,9 +1758,30 @@ The split firewall is content-addressed and covers all 25 offline games:
 11 source train, three source validation, five `NEURO_HOLDOUT_V1`, five
 historical report-only, and `ar25` regression-only. Training and tuning APIs
 fail closed if an artifact touches a holdout/historical game for the wrong
-purpose. Dataset shards are checksummed, transition-signature deduplicated,
-per-game capped, and collected with a fixed 70/20/10 active/random/frontier
-mixture.
+purpose. Dataset shards are checksummed, exact-state transition-signature
+deduplicated, per-game capped, and collected with a fixed 70/20/10
+active/random/frontier mixture. The source runner checkpoints independent
+per-game controllers, resumes only checksum-verified partial shards, rotates
+registered seeds deterministically in bounded 200-reset windows with fresh
+controller state, merges the per-window causal libraries, freezes the 11
+training libraries, stops only after every seed reaches its own 4,000-duplicate
+saturation window or verified aggregate unique capacity reaches the target,
+and verifies the final 100,000-row manifest before merging the source-only
+curriculum. The amended policy keeps the 8,000-row base cap and adds one exact
+1,292-row aggregate overflow pool:
+`cd82` and `dc22` receive +259 each, while `g50t`, `ka59`, and `tr87` receive
++258 each. No validation or holdout game receives overflow. The 70/20/10
+assignment remains deterministic in 10-row blocks across seed rotations; only
+a final shard tail may differ from the ideal ratio. Source-validation shards
+remain distinct from training shards.
+
+The published amended corpus contains exactly 100,000 verified rows: 76,908
+source-train and 23,092 source-validation. Its manifest checksum is
+`d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b`;
+the 11-source/31-schema curriculum checksum is
+`d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
+Only 44 strong terminal/level events were observed, so the terminal head stays
+disabled and authority remains `off`.
 
 Only observed level/WIN/terminal events are strong labels. Frontier credit,
 subgoal-graph advance, route confirmation, and sub-effect relay are explicitly

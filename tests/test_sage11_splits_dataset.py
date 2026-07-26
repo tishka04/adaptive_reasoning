@@ -110,7 +110,7 @@ def test_mixture_policy_is_deterministic_and_exercises_every_arm():
 
 def test_dataset_enforces_dedup_caps_and_action6_coverage(tmp_path: Path):
     builder = Sage11DatasetBuilder(
-        target_transitions=10,
+        target_transitions=2,
         per_game_cap=2,
     )
     click = _transition(
@@ -130,6 +130,25 @@ def test_dataset_enforces_dedup_caps_and_action6_coverage(tmp_path: Path):
     summary = builder.summary()
     assert summary["rejected_duplicates"] == 1
     assert summary["rejected_per_game_cap"] == 1
+
+
+def test_dataset_manifest_records_and_enforces_amended_game_cap(
+    tmp_path: Path,
+):
+    builder = Sage11DatasetBuilder(
+        target_transitions=3,
+        per_game_cap=2,
+        game_caps={"bp35": 3},
+    )
+    for step in range(3):
+        assert builder.add(_transition(step=step))
+    assert not builder.add(_transition(step=3))
+
+    shard = builder.write_jsonl_shard(tmp_path / "amended.jsonl")
+    manifest = builder.manifest([shard])
+    assert manifest.game_caps == {"bp35": 3}
+    assert manifest.to_dict()["overflow_transitions"] == 1
+    verify_manifest(manifest)
 
 
 def test_terminal_head_counts_only_strong_labels():
@@ -182,5 +201,7 @@ def test_live_controller_transitions_archive_in_sage11_format():
         available_actions=["ACTION1"],
     )
     assert len(builder.records) == 1
-    assert builder.records[0].format_version == "sage11-transition-v1"
+    assert builder.records[0].format_version == "sage11-transition-v2"
+    assert builder.records[0].source_split == "source_train"
+    assert len(builder.records[0].state_digest_before) == 64
     assert builder.records[0].labels.strength == "negative"

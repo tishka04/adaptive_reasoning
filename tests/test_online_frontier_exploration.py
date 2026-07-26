@@ -6,7 +6,11 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from theory.online_frontier_exploration import OnlineFrontierExplorer
+from theory.online_frontier_exploration import (
+    OnlineFrontierExplorer,
+    _cached_target_role_signatures,
+    _target_role_signature,
+)
 
 
 @dataclass(frozen=True)
@@ -37,6 +41,18 @@ def _candidates() -> tuple[_Action, ...]:
         _Action("ACTION6", {"x": 2, "y": 2}),
         _Action("ACTION6", {"x": 7, "y": 5}),
     )
+
+
+def test_target_role_signature_reuses_exact_grid_component_search():
+    grid = _grid()
+    action = {"x": 2, "y": 2}
+    _cached_target_role_signatures.cache_clear()
+
+    first = _target_role_signature(grid, action)
+    second = _target_role_signature(grid.copy(), action)
+
+    assert first == second
+    assert _cached_target_role_signatures.cache_info().hits == 1
 
 
 def test_frontier_exploration_waits_for_observed_stagnation():

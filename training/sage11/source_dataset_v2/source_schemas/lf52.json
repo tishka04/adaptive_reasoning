@@ -1,0 +1,461 @@
+{
+  "format_version": "sage-causal-schema-v1",
+  "frozen": true,
+  "schema_count": 1,
+  "schemas": [
+    {
+      "provenance": [
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000032:terminal-000000"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000036:terminal-000001"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000038:terminal-000002"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000040:terminal-000003"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000042:terminal-000004"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000045:terminal-000005"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000047:terminal-000006"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000050:terminal-000007"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000052:terminal-000008"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000054:terminal-000009"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000056:terminal-000010"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000061:terminal-000011"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000064:terminal-000012"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000066:terminal-000013"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000068:terminal-000014"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000070:terminal-000015"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000072:terminal-000016"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000074:terminal-000017"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000077:terminal-000018"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000079:terminal-000019"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000081:terminal-000020"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000083:terminal-000021"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000085:terminal-000022"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000087:terminal-000023"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000089:terminal-000024"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000091:terminal-000025"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000093:terminal-000026"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000096:terminal-000027"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000098:terminal-000028"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000101:terminal-000029"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000104:terminal-000030"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000107:terminal-000031"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000109:terminal-000032"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000111:terminal-000033"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000113:terminal-000034"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000115:terminal-000035"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000117:terminal-000036"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000119:terminal-000037"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000124:terminal-000038"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000128:terminal-000039"
+        },
+        {
+          "source_tag": "lf52",
+          "terminal_context": "branch-000130:terminal-000040"
+        }
+      ],
+      "schema_id": "causal-schema::e98f5d3909b8a26f",
+      "steps": [
+        {
+          "action_family": "primitive:ACTION1",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_column",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::4d9456ffc85df5ca",
+          "precondition": {
+            "action_family_available": "primitive:ACTION1",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION3",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::4d9456ffc85df5ca",
+          "precondition": {
+            "action_family_available": "primitive:ACTION3",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "primitive:ACTION4",
+          "effects": [
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "adjacent",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "appeared",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "broken",
+              "family": "spatial",
+              "predicate": "aligned_row",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "transformation",
+              "predicate": "scale_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            }
+          ],
+          "next_subgoal": "effect::34b99d78c1397cbc",
+          "precondition": {
+            "action_family_available": "primitive:ACTION4",
+            "target_role_present": "global"
+          },
+          "target_role": "global"
+        },
+        {
+          "action_family": "point",
+          "effects": [
+            {
+              "direction": "",
+              "family": "appearance",
+              "predicate": "object_appeared",
+              "source_binding": "",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_moved",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "",
+              "family": "correspondence",
+              "predicate": "object_correspondence_transformed",
+              "source_binding": "other_object",
+              "target_binding": "other_object"
+            },
+            {
+              "direction": "many",
+              "family": "count",
+              "predicate": "object_count_decrease",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_decrease",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_exhaust",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "few",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            },
+            {
+              "direction": "one",
+              "family": "count",
+              "predicate": "object_count_increase",
+              "source_binding": "other_object",
+              "target_binding": ""
+            }
+          ],
+          "next_subgoal": "terminal_progress",
+          "precondition": {
+            "action_family_available": "point",
+            "target_role_present": "background"
+          },
+          "target_role": "background"
+        }
+      ],
+      "terminal_support": 41
+    }
+  ]
+}

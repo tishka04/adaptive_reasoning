@@ -250,16 +250,14 @@ def _relation_signature(
 ) -> tuple[tuple[Any, ...], ...]:
     """Coarse relation multiset independent of transient object identifiers."""
     selected = sorted(
-        objects,
-        key=lambda obj: (_object_type(obj), obj.bbox, obj.object_id),
+        ((obj, _object_type(obj)) for obj in objects),
+        key=lambda item: (item[1], item[0].bbox, item[0].object_id),
     )[:limit]
     relations: Counter[tuple[Any, ...]] = Counter()
-    for index, left in enumerate(selected):
-        left_type = _object_type(left)
+    for index, (left, left_type) in enumerate(selected):
         lr, lc = left.center
         l_min_r, l_min_c, l_max_r, l_max_c = left.bbox
-        for right in selected[index + 1 :]:
-            right_type = _object_type(right)
+        for right, right_type in selected[index + 1 :]:
             rr, rc = right.center
             r_min_r, r_min_c, r_max_r, r_max_c = right.bbox
             kinds: list[str] = []

@@ -10,11 +10,13 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, Mapping, Sequence, Tuple
 
+import numpy as np
+
 from .atoms import frame_diff_atoms, observation_atoms
 from .splits import ArtifactPurpose, SAGE11_SPLITS, short_game_id
 
 
-DATASET_FORMAT_VERSION = "sage11-transition-v1"
+DATASET_FORMAT_VERSION = "sage11-transition-v2"
 MIXTURE_POLICY_VERSION = "sage11-mixture-v1"
 DEFAULT_TARGET_TRANSITIONS = 100_000
 DEFAULT_PER_GAME_CAP = 8_000
@@ -53,20 +55,33 @@ class MixturePolicy:
         reset_index: int,
         step_index: int,
     ) -> str:
-        """Assign an arm deterministically, independent of transition outcome."""
+        """Assign an outcome-independent arm in deterministic 10-row blocks."""
+        weights = (
+            self.active_controller,
+            self.uniform_legal,
+            self.frontier_stall_probe,
+        )
+        counts = tuple(round(weight * 10) for weight in weights)
+        if sum(counts) != 10:
+            raise ValueError(
+                "SAGE.11 exact mixture requires tenths-based weights"
+            )
+        schedule = (
+            ["active_controller"] * counts[0]
+            + ["uniform_legal"] * counts[1]
+            + ["frontier_stall_probe"] * counts[2]
+        )
+        block = max(0, int(step_index)) // 10
+        offset = max(0, int(step_index)) % 10
         key = (
             f"{self.version}|{short_game_id(game_id)}|{int(seed)}|"
-            f"{int(reset_index)}|{int(step_index)}"
+            f"{int(reset_index)}|{block}"
         ).encode("utf-8")
-        unit = int.from_bytes(
-            hashlib.sha256(key).digest()[:8],
-            "big",
-        ) / float(2**64)
-        if unit < self.active_controller:
-            return "active_controller"
-        if unit < self.active_controller + self.uniform_legal:
-            return "uniform_legal"
-        return "frontier_stall_probe"
+        digest = hashlib.sha256(key).digest()
+        for index in range(len(schedule) - 1, 0, -1):
+            swap = digest[index] % (index + 1)
+            schedule[index], schedule[swap] = schedule[swap], schedule[index]
+        return schedule[offset]
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -133,6 +148,9 @@ class NeuroTransition:
     changed: bool
     noop: bool
     unsafe: bool
+    source_split: str = ""
+    state_digest_before: str = ""
+    state_digest_after: str = ""
     labels: ProgressLabels = field(default_factory=ProgressLabels)
     format_version: str = DATASET_FORMAT_VERSION
 
@@ -145,6 +163,14 @@ class NeuroTransition:
             raise ValueError(f"unknown SAGE.11 policy arm {self.policy_arm}")
         if self.format_version != DATASET_FORMAT_VERSION:
             raise ValueError("unsupported SAGE.11 transition version")
+        expected_split = SAGE11_SPLITS.split_for(self.game_id)
+        if self.source_split and self.source_split != expected_split:
+            raise ValueError(
+                f"SAGE.11 transition split mismatch for {self.game_id}: "
+                f"{self.source_split} != {expected_split}"
+            )
+        if not self.source_split:
+            object.__setattr__(self, "source_split", expected_split)
 
     def to_dict(self) -> Dict[str, Any]:
         payload = asdict(self)
@@ -154,15 +180,51 @@ class NeuroTransition:
         payload["effect_atoms"] = list(self.effect_atoms)
         return payload
 
+    @classmethod
+    def from_dict(cls, payload: Mapping[str, Any]) -> "NeuroTransition":
+        labels_payload = dict(payload.get("labels", {}) or {})
+        return cls(
+            game_id=str(payload["game_id"]),
+            seed=int(payload["seed"]),
+            reset_index=int(payload["reset_index"]),
+            step_index=int(payload["step_index"]),
+            policy_arm=str(payload["policy_arm"]),
+            action_name=str(payload["action_name"]),
+            action_data=dict(payload.get("action_data", {}) or {}),
+            atoms_before=tuple(payload.get("atoms_before", ()) or ()),
+            atoms_after=tuple(payload.get("atoms_after", ()) or ()),
+            effect_atoms=tuple(payload.get("effect_atoms", ()) or ()),
+            changed=bool(payload.get("changed", False)),
+            noop=bool(payload.get("noop", False)),
+            unsafe=bool(payload.get("unsafe", False)),
+            source_split=str(payload.get("source_split", "")),
+            state_digest_before=str(
+                payload.get("state_digest_before", "")
+            ),
+            state_digest_after=str(payload.get("state_digest_after", "")),
+            labels=ProgressLabels(**labels_payload),
+            format_version=str(
+                payload.get("format_version", DATASET_FORMAT_VERSION)
+            ),
+        )
+
     @property
     def transition_signature(self) -> str:
-        """Deduplicate the behavioral transition, not run metadata."""
+        """Deduplicate exact behavior while excluding run metadata.
+
+        Abstract atoms remain model inputs, but exact state digests prevent
+        distinct concrete states from collapsing into one coarse signature.
+        """
         payload = {
             "game_id": short_game_id(self.game_id),
             "action_name": self.action_name,
             "action_data": _json_safe_mapping(self.action_data),
-            "atoms_before": list(self.atoms_before),
-            "atoms_after": list(self.atoms_after),
+            "state_digest_before": (
+                self.state_digest_before or list(self.atoms_before)
+            ),
+            "state_digest_after": (
+                self.state_digest_after or list(self.atoms_after)
+            ),
             "effect_atoms": list(self.effect_atoms),
         }
         return _checksum_json(payload)
@@ -174,6 +236,7 @@ class DatasetShard:
     sha256: str
     transitions: int
     games: Tuple[str, ...]
+    split_counts: Mapping[str, int] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -189,6 +252,8 @@ class DatasetManifest:
     strong_terminal_events: int
     weak_progress_events: int
     game_counts: Mapping[str, int]
+    split_counts: Mapping[str, int]
+    game_caps: Mapping[str, int]
     policy_counts: Mapping[str, int]
     action6_argument_coverage: Mapping[str, int]
     dataset_format_version: str = DATASET_FORMAT_VERSION
@@ -210,6 +275,12 @@ class DatasetManifest:
             "weak_progress_events": int(self.weak_progress_events),
             "terminal_head_enabled": self.terminal_head_enabled,
             "game_counts": dict(sorted(self.game_counts.items())),
+            "split_counts": dict(sorted(self.split_counts.items())),
+            "game_caps": dict(sorted(self.game_caps.items())),
+            "overflow_transitions": sum(
+                max(0, int(cap) - int(self.per_game_cap))
+                for cap in self.game_caps.values()
+            ),
             "policy_counts": dict(sorted(self.policy_counts.items())),
             "action6_argument_coverage": dict(
                 sorted(self.action6_argument_coverage.items())
@@ -222,10 +293,60 @@ class DatasetManifest:
                     "sha256": shard.sha256,
                     "transitions": shard.transitions,
                     "games": list(shard.games),
+                    "split_counts": dict(sorted(shard.split_counts.items())),
                 }
                 for shard in self.shards
             ],
         }
+
+    @classmethod
+    def from_dict(cls, payload: Mapping[str, Any]) -> "DatasetManifest":
+        version = str(
+            payload.get("dataset_format_version", DATASET_FORMAT_VERSION)
+        )
+        if version != DATASET_FORMAT_VERSION:
+            raise ValueError(f"unsupported SAGE.11 manifest version {version}")
+        return cls(
+            shards=tuple(
+                DatasetShard(
+                    path=str(item["path"]),
+                    sha256=str(item["sha256"]),
+                    transitions=int(item["transitions"]),
+                    games=tuple(item.get("games", ()) or ()),
+                    split_counts=dict(item.get("split_counts", {}) or {}),
+                )
+                for item in tuple(payload.get("shards", ()) or ())
+            ),
+            split_registry_checksum=str(
+                payload["split_registry_checksum"]
+            ),
+            mixture_policy=dict(payload.get("mixture_policy", {}) or {}),
+            target_transitions=int(payload["target_transitions"]),
+            per_game_cap=int(payload["per_game_cap"]),
+            total_transitions=int(payload["total_transitions"]),
+            strong_terminal_events=int(
+                payload.get("strong_terminal_events", 0)
+            ),
+            weak_progress_events=int(
+                payload.get("weak_progress_events", 0)
+            ),
+            game_counts=dict(payload.get("game_counts", {}) or {}),
+            split_counts=dict(payload.get("split_counts", {}) or {}),
+            game_caps={
+                str(game): int(cap)
+                for game, cap in dict(
+                    payload.get("game_caps", {}) or {}
+                ).items()
+            },
+            policy_counts=dict(payload.get("policy_counts", {}) or {}),
+            action6_argument_coverage=dict(
+                payload.get("action6_argument_coverage", {}) or {}
+            ),
+            dataset_format_version=version,
+            legacy_weights_loaded=bool(
+                payload.get("legacy_weights_loaded", False)
+            ),
+        )
 
     @property
     def checksum(self) -> str:
@@ -242,14 +363,20 @@ class Sage11DatasetBuilder:
         mixture_policy: MixturePolicy | None = None,
         target_transitions: int = DEFAULT_TARGET_TRANSITIONS,
         per_game_cap: int = DEFAULT_PER_GAME_CAP,
+        game_caps: Mapping[str, int] | None = None,
     ) -> None:
         self.purpose = purpose
         self.mixture_policy = mixture_policy or MixturePolicy()
         self.target_transitions = max(1, int(target_transitions))
         self.per_game_cap = max(1, int(per_game_cap))
+        self.game_caps = {
+            short_game_id(game): max(1, int(cap))
+            for game, cap in dict(game_caps or {}).items()
+        }
         self._records: list[NeuroTransition] = []
         self._signatures: set[str] = set()
         self._game_counts: Counter[str] = Counter()
+        self._split_counts: Counter[str] = Counter()
         self._policy_counts: Counter[str] = Counter()
         self._action6_coverage: Counter[str] = Counter()
         self._rejected_duplicates = 0
@@ -262,7 +389,8 @@ class Sage11DatasetBuilder:
     def add(self, transition: NeuroTransition) -> bool:
         game = short_game_id(transition.game_id)
         SAGE11_SPLITS.assert_authorized([game], purpose=self.purpose)
-        if self._game_counts[game] >= self.per_game_cap:
+        cap = self.game_caps.get(game, self.per_game_cap)
+        if self._game_counts[game] >= cap:
             self._rejected_caps += 1
             return False
         signature = transition.transition_signature
@@ -274,6 +402,7 @@ class Sage11DatasetBuilder:
         self._signatures.add(signature)
         self._records.append(transition)
         self._game_counts[game] += 1
+        self._split_counts[transition.source_split] += 1
         self._policy_counts[transition.policy_arm] += 1
         if transition.action_name == "ACTION6":
             data = _json_safe_mapping(transition.action_data)
@@ -284,6 +413,26 @@ class Sage11DatasetBuilder:
                     f"xy:{data['x']}:{data['y']}"
                 ] += 1
         return True
+
+    def load_jsonl_shard(self, path: str | Path) -> int:
+        """Restore a completed shard through the same firewall and dedup path."""
+        loaded = 0
+        with Path(path).open("r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, start=1):
+                if not line.strip():
+                    continue
+                try:
+                    transition = NeuroTransition.from_dict(json.loads(line))
+                except Exception as exc:
+                    raise ValueError(
+                        f"invalid SAGE.11 row {path}:{line_number}"
+                    ) from exc
+                if not self.add(transition):
+                    raise ValueError(
+                        f"rejected SAGE.11 row {path}:{line_number}"
+                    )
+                loaded += 1
+        return loaded
 
     def write_jsonl_shard(self, path: str | Path) -> DatasetShard:
         target = Path(path)
@@ -303,6 +452,7 @@ class Sage11DatasetBuilder:
             sha256=hashlib.sha256(content).hexdigest(),
             transitions=len(self._records),
             games=tuple(sorted(self._game_counts)),
+            split_counts=dict(self._split_counts),
         )
 
     def manifest(
@@ -323,6 +473,11 @@ class Sage11DatasetBuilder:
                 item.labels.weak_progress for item in self._records
             ),
             game_counts=dict(self._game_counts),
+            split_counts=dict(self._split_counts),
+            game_caps={
+                game: self.game_caps.get(game, self.per_game_cap)
+                for game in self._game_counts
+            },
             policy_counts=dict(self._policy_counts),
             action6_argument_coverage=dict(self._action6_coverage),
         )
@@ -352,12 +507,21 @@ class Sage11ControllerCollector:
         self.game_id = short_game_id(game_id)
         self.seed = int(seed)
         self.policy_arm = str(policy_arm)
-        self.reset_index = 0
+        self.reset_index = -1
         self.step_index = 0
 
     def on_reset(self) -> None:
         self.reset_index += 1
         self.step_index = 0
+
+    def set_policy_arm(self, policy_arm: str) -> None:
+        if policy_arm not in {
+            "active_controller",
+            "uniform_legal",
+            "frontier_stall_probe",
+        }:
+            raise ValueError(f"unknown SAGE.11 policy arm {policy_arm}")
+        self.policy_arm = str(policy_arm)
 
     def record(
         self,
@@ -396,6 +560,17 @@ class Sage11ControllerCollector:
             changed=bool(update.record.diff.num_changed),
             noop=not bool(update.record.diff.num_changed),
             unsafe=bool(unsafe),
+            source_split=SAGE11_SPLITS.split_for(self.game_id),
+            state_digest_before=state_digest(
+                update.record.obs_before.raw_grid,
+                game_state=update.record.obs_before.game_state,
+                levels_completed=update.record.obs_before.levels_completed,
+            ),
+            state_digest_after=state_digest(
+                update.record.obs_after.raw_grid,
+                game_state=update.record.obs_after.game_state,
+                levels_completed=update.record.obs_after.levels_completed,
+            ),
             labels=ProgressLabels(
                 terminal_event=bool(terminal_event),
                 level_completed=bool(level_completed),
@@ -410,6 +585,30 @@ class Sage11ControllerCollector:
         return self.builder.add(transition)
 
 
+def state_digest(
+    grid: Any,
+    *,
+    game_state: Any = "",
+    levels_completed: int = 0,
+) -> str:
+    """Content-address an exact environment state for behavioral dedup."""
+    array = np.asarray(grid, dtype=np.int32)
+    digest = hashlib.sha256()
+    digest.update(
+        json.dumps(
+            {
+                "shape": list(array.shape),
+                "game_state": str(game_state),
+                "levels_completed": int(levels_completed),
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+    )
+    digest.update(array.tobytes())
+    return digest.hexdigest()
+
+
 def verify_manifest(
     manifest: DatasetManifest,
     *,
@@ -420,12 +619,45 @@ def verify_manifest(
         raise ValueError("SAGE.11 dataset was built with different splits")
     if manifest.legacy_weights_loaded:
         raise ValueError("SAGE.11 artifacts may not load M2/v4 weights")
+    if manifest.total_transitions != manifest.target_transitions:
+        raise ValueError(
+            "SAGE.11 dataset is incomplete: "
+            f"{manifest.total_transitions}/{manifest.target_transitions}"
+        )
+    if sum(manifest.game_counts.values()) != manifest.total_transitions:
+        raise ValueError("SAGE.11 manifest game counts do not sum to total")
+    cap_violations = {
+        game: count
+        for game, count in manifest.game_counts.items()
+        if int(count) > int(
+            manifest.game_caps.get(game, manifest.per_game_cap)
+        )
+    }
+    if cap_violations:
+        raise ValueError(
+            f"SAGE.11 manifest exceeds game caps: {cap_violations}"
+        )
+    if sum(manifest.split_counts.values()) != manifest.total_transitions:
+        raise ValueError("SAGE.11 manifest split counts do not sum to total")
+    if sum(manifest.policy_counts.values()) != manifest.total_transitions:
+        raise ValueError("SAGE.11 manifest policy counts do not sum to total")
+    if sum(shard.transitions for shard in manifest.shards) != (
+        manifest.total_transitions
+    ):
+        raise ValueError("SAGE.11 shard counts do not sum to total")
     base = Path(root)
     for shard in manifest.shards:
         path = base / shard.path
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         if digest != shard.sha256:
             raise ValueError(f"SAGE.11 shard checksum mismatch: {path}")
+        observed = sum(
+            1
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        )
+        if observed != shard.transitions:
+            raise ValueError(f"SAGE.11 shard row-count mismatch: {path}")
 
 
 def _checksum_json(payload: Mapping[str, Any]) -> str:
@@ -453,5 +685,6 @@ __all__ = [
     "ProgressLabels",
     "Sage11DatasetBuilder",
     "Sage11ControllerCollector",
+    "state_digest",
     "verify_manifest",
 ]

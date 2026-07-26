@@ -26,6 +26,7 @@ from __future__ import annotations
 import hashlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field, replace
+from functools import lru_cache
 from typing import Any, Dict, Mapping, Sequence, Tuple
 
 import numpy as np
@@ -1374,36 +1375,62 @@ def _target_role_signature(
     height, width = grid.shape
     if not (0 <= x < width and 0 <= y < height):
         return "outside_grid"
+    signatures = _cached_target_role_signatures(
+        tuple(int(item) for item in grid.shape),
+        grid.dtype.str,
+        grid.tobytes(),
+    )
+    return signatures[y * width + x]
+
+
+@lru_cache(maxsize=1_024)
+def _cached_target_role_signatures(
+    shape: Tuple[int, ...],
+    dtype: str,
+    content: bytes,
+) -> Tuple[str, ...]:
+    grid = np.frombuffer(content, dtype=np.dtype(dtype)).reshape(shape)
+    height, width = grid.shape
     background = _background_value(grid)
-    value = int(grid[y, x])
-    occupancy = "background" if value == background else "object"
-    component = _component(grid, x, y, value)
-    xs = [coordinate[0] for coordinate in component]
-    ys = [coordinate[1] for coordinate in component]
-    component_width = max(xs) - min(xs) + 1
-    component_height = max(ys) - min(ys) + 1
-    area = len(component)
-    area_bucket = (
-        "single"
-        if area == 1
-        else "small"
-        if area <= 4
-        else "medium"
-        if area <= 15
-        else "large"
-    )
-    position = (
-        min(2, (3 * x) // max(1, width)),
-        min(2, (3 * y) // max(1, height)),
-    )
-    payload = (
-        occupancy,
-        area_bucket,
-        min(component_width, 5),
-        min(component_height, 5),
-        position,
-    )
-    return repr(payload)
+    signatures = [""] * (height * width)
+    visited: set[Tuple[int, int]] = set()
+    role_values: Dict[Tuple[Any, ...], str] = {}
+    for y in range(height):
+        for x in range(width):
+            if (x, y) in visited:
+                continue
+            value = int(grid[y, x])
+            component = _component(grid, x, y, value)
+            visited.update(component)
+            xs = [coordinate[0] for coordinate in component]
+            ys = [coordinate[1] for coordinate in component]
+            component_width = max(xs) - min(xs) + 1
+            component_height = max(ys) - min(ys) + 1
+            area = len(component)
+            area_bucket = (
+                "single"
+                if area == 1
+                else "small"
+                if area <= 4
+                else "medium"
+                if area <= 15
+                else "large"
+            )
+            base = (
+                "background" if value == background else "object",
+                area_bucket,
+                min(component_width, 5),
+                min(component_height, 5),
+            )
+            for component_x, component_y in component:
+                position = (
+                    min(2, (3 * component_x) // max(1, width)),
+                    min(2, (3 * component_y) // max(1, height)),
+                )
+                payload = (*base, position)
+                signature = role_values.setdefault(payload, repr(payload))
+                signatures[component_y * width + component_x] = signature
+    return tuple(signatures)
 
 
 def _component(
@@ -1535,8 +1562,10 @@ def _effect_component_signatures(
             visited.update(component)
             xs = [coordinate[0] for coordinate in component]
             ys = [coordinate[1] for coordinate in component]
+            min_x = min(xs)
+            min_y = min(ys)
             normalized = tuple(sorted(
-                (cx - min(xs), cy - min(ys))
+                (cx - min_x, cy - min_y)
                 for cx, cy in component
             ))
             payload = (
