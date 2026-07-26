@@ -138,6 +138,26 @@ def test_effect_pilot_detects_clear_predictable_structure():
     assert result.classifier_macro_f1 > result.majority_macro_f1
 
 
+def test_effect_pilot_uses_train_only_per_action_majorities():
+    generator = np.random.default_rng(12)
+    features = generator.normal(size=(30, 3))
+    labels = np.asarray(
+        [0] * 10 + [1] * 10 + [0] * 5 + [1] * 5,
+        dtype=np.int64,
+    )
+    actions = ["ACTION1"] * 10 + ["ACTION2"] * 10
+    actions += ["ACTION1"] * 5 + ["ACTION2"] * 5
+    train_mask = np.arange(len(labels)) < 20
+    result = run_effect_predictability_pilot(
+        features,
+        labels,
+        train_mask=train_mask,
+        baseline_groups=actions,
+    )
+    assert result.majority_macro_f1 == 1.0
+    assert not result.go
+
+
 def test_amended_world_model_gates_pass_only_source_validation():
     metrics = WorldModelGateMetrics(
         changed_transition_accuracy=0.80,

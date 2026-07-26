@@ -32,9 +32,12 @@ existing controller remains the single execution path.
   merges the source-only SAGE.10g curriculum.
 - `atoms.py` provides a shared typed vocabulary for observations, `FrameDiff`
   effects, causal-schema predicates, and neural candidate hypotheses.
-- `pilot.py` runs the mandatory cheap gradient-boosted effect classifier
-  before graph-model training. A near-ceiling majority baseline is a no-go,
-  not an invitation to train the larger model.
+- `pilot.py` defines the mandatory fixed gradient-boosted effect classifier
+  and the train-only grouped-majority baseline. `effect_pilot_runner.py`
+  verifies the source corpus, fits state/effect vocabularies only on
+  source-training rows, evaluates the three frozen source-validation games,
+  runs a within-game action-shuffle control, and publishes a checksummed
+  go/no-go artifact.
 - `model.py` implements a 1,540,953-parameter graph-atom encoder with five
   bootstrap dynamics heads. It predicts next latent state, symbolic effects,
   changed/no-op, progress, terminal, and risk. The terminal head is forced off
@@ -88,6 +91,8 @@ From the repository root:
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage11.audit
 ARC-AGI-3-Agents\.venv\Scripts\python.exe `
   -m theory.sage11.source_dataset_runner --workers 8
+ARC-AGI-3-Agents\.venv\Scripts\python.exe `
+  -m theory.sage11.effect_pilot_runner
 ARC-AGI-3-Agents\.venv\Scripts\python.exe -m pytest -q `
   tests\test_sage10g_i_symbolic_repairs.py `
   tests\test_sage11_splits_dataset.py `
@@ -108,3 +113,12 @@ the frozen 11-source curriculum checksum is
 `d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
 Model training has not started, and the terminal head remains disabled at
 44/100 strong events.
+
+The cheap effect pilot was executed on 2026-07-26 and failed closed:
+classifier macro-F1 0.0779 versus 0.0490 for the train-only per-action
+majority baseline, a gain of +0.0288 rather than the required +0.10.
+Within-game action shuffling degraded macro-F1 by only +0.0059, and all three
+validation games failed independently. Result checksum:
+`c724aeb6d2ab71154a7c72fa381f3f5f4347a5135644ba64ac82a5542e528136`.
+See `reports/SAGE11_EFFECT_PILOT_RESULT.md`. No graph-model, historical, or
+holdout run followed.

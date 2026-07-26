@@ -1,0 +1,166 @@
+{
+  "action_shuffle_control": {
+    "method": "shuffle all six action features within each validation game without retraining",
+    "random_state": 11
+  },
+  "baseline": {
+    "name": "train-only per-action majority",
+    "unseen_action_fallback": "global source-training majority"
+  },
+  "classifier": {
+    "early_stopping": false,
+    "learning_rate": 0.08,
+    "max_depth": 4,
+    "max_iter": 100,
+    "name": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "random_state": 11,
+    "tuning_runs": 0
+  },
+  "dataset": {
+    "action_features": 6,
+    "manifest_checksum": "d4fd8210f2015c00b906cdd98e01630b309deefa7cd9498b38aba8e55130fa1b",
+    "manifest_path": "training/sage11/source_dataset_v2/manifest.json",
+    "rows": 100000,
+    "source_train_games": [
+      "bp35",
+      "cd82",
+      "dc22",
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ],
+    "source_train_rows": 76908,
+    "source_validation_games": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "source_validation_rows": 23092,
+    "state_atom_features": 19,
+    "total_features": 25,
+    "training_effect_classes": 20,
+    "unseen_validation_atom_rows": 0,
+    "unseen_validation_effect_rows": 0,
+    "validation_effect_classes": 16
+  },
+  "decision": {
+    "gate": "validation effect macro-F1 must exceed the train-only per-action majority baseline by at least 0.10",
+    "go": false,
+    "next_step": "stop_and_revisit_effect_labels_or_state_features"
+  },
+  "features": {
+    "action": [
+      "action_index",
+      "has_xy",
+      "bounded_x",
+      "bounded_y",
+      "has_action_data",
+      "bias"
+    ],
+    "excluded": [
+      "game identity",
+      "policy arm",
+      "post-action atoms",
+      "effect labels",
+      "holdout and historical rows"
+    ],
+    "state": "train-fitted binary presence of pre-action typed object/state/action-availability atoms",
+    "state_atom_vocabulary": [
+      "action:available(ACTION1)",
+      "action:available(ACTION2)",
+      "action:available(ACTION3)",
+      "action:available(ACTION4)",
+      "action:available(ACTION5)",
+      "action:available(ACTION6)",
+      "object:role_present(few:horizontal)",
+      "object:role_present(few:square)",
+      "object:role_present(few:vertical)",
+      "object:role_present(many:horizontal)",
+      "object:role_present(many:square)",
+      "object:role_present(many:vertical)",
+      "object:role_present(one:square)",
+      "object:role_present(some:horizontal)",
+      "object:role_present(some:square)",
+      "object:role_present(some:vertical)",
+      "progress:levels_completed_bucket(one)",
+      "progress:levels_completed_bucket(zero)",
+      "state:game_state(not_finished)"
+    ]
+  },
+  "format_version": "sage11-effect-pilot-v1",
+  "hardware": {
+    "cpu": "Intel64 Family 6 Model 197 Stepping 2, GenuineIntel",
+    "cuda_available": true,
+    "cuda_version": "12.1",
+    "device_decision": "The fixed scikit-learn histogram gradient booster has no CUDA backend. With only 25 dense features, a GPU implementation or new dependency would add transfer/setup overhead and change the pre-registered estimator, so CPU is the effective path.",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "logical_cpu_count": 16,
+    "training_device": "cpu"
+  },
+  "metrics": {
+    "overall": {
+      "absolute_improvement": 0.028810811378502624,
+      "action_shuffle_degradation": 0.00593237823739351,
+      "action_shuffled_macro_f1": 0.07192223283068291,
+      "classifier_macro_f1": 0.07785461106807642,
+      "meets_effect_gate": false,
+      "per_action_majority_macro_f1": 0.0490437996895738,
+      "rows": 23092,
+      "validation_effect_classes": 16
+    },
+    "per_game": {
+      "ls20": {
+        "absolute_improvement": -0.05427646657023326,
+        "action_shuffle_degradation": 0.00398385690859604,
+        "action_shuffled_macro_f1": 0.04141890411539538,
+        "classifier_macro_f1": 0.04540276102399142,
+        "meets_effect_gate": false,
+        "per_action_majority_macro_f1": 0.09967922759422468,
+        "rows": 7697,
+        "validation_effect_classes": 8
+      },
+      "re86": {
+        "absolute_improvement": -0.006991038282025901,
+        "action_shuffle_degradation": -0.01823486345838976,
+        "action_shuffled_macro_f1": 0.04980046412119009,
+        "classifier_macro_f1": 0.03156560066280033,
+        "meets_effect_gate": false,
+        "per_action_majority_macro_f1": 0.03855663894482623,
+        "rows": 7698,
+        "validation_effect_classes": 9
+      },
+      "sc25": {
+        "absolute_improvement": 0.023401263288486462,
+        "action_shuffle_degradation": 0.026143563640656904,
+        "action_shuffled_macro_f1": 0.04491563849501989,
+        "classifier_macro_f1": 0.07105920213567679,
+        "meets_effect_gate": false,
+        "per_action_majority_macro_f1": 0.04765793884719033,
+        "rows": 7697,
+        "validation_effect_classes": 12
+      }
+    }
+  },
+  "reproduction": {
+    "command": "ARC-AGI-3-Agents\\.venv\\Scripts\\python.exe -m theory.sage11.effect_pilot_runner"
+  },
+  "result_checksum": "c724aeb6d2ab71154a7c72fa381f3f5f4347a5135644ba64ac82a5542e528136",
+  "run_date": "2026-07-26",
+  "software": {
+    "numpy": "2.4.3",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "torch": "2.5.1+cu121"
+  },
+  "timing_seconds": {
+    "evaluate": 1.148,
+    "fit": 6.642,
+    "load_and_encode": 1.974,
+    "total": 9.764
+  }
+}

@@ -82,6 +82,7 @@ protocol are documented in:
 - `training/SAGE11_DATA_POLICY.md`
 - `models/SAGE11_MODEL_CARD.md`
 - `reports/SAGE11_VALIDATION_PROTOCOL.md`
+- `reports/SAGE11_EFFECT_PILOT_RESULT.md`
 
 The environment/model audit is reproducible with:
 
@@ -114,6 +115,19 @@ and an 11-source frozen curriculum
 `d11948c5cfcb70ce888b435d63d217b95ce2a0006e4423ae7ac70374d81c630c`.
 The terminal head remains disabled because the corpus contains 44 strong
 events, below its pre-registered threshold of 100.
+
+The source-only cheap effect pilot is reproducible with:
+
+```bash
+ARC-AGI-3-Agents/.venv/Scripts/python.exe -m theory.sage11.effect_pilot_runner
+```
+
+It failed closed: 0.0779 classifier macro-F1 versus 0.0490 for the train-only
+per-action majority baseline, a gain of +0.0288 rather than the required
++0.10. All three source-validation games failed independently and
+within-game action shuffling degraded macro-F1 by only +0.0059. No graph-model
+training or holdout evaluation followed. The checksummed result is documented
+in `reports/SAGE11_EFFECT_PILOT_RESULT.md`.
 
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:
