@@ -308,11 +308,12 @@ def _compact_graph(
         and relation.object_id in entity_ids
     ]
     relations = _stratified_relations(candidates, maximum_relations)
+    relation_kinds = {relation.kind for relation in graph.relations}
     state = {
         predicate
         for predicate in graph.state_predicates
         if predicate.split("|", 1)[0]
-        not in {relation.kind for relation in graph.relations}
+        not in relation_kinds
         and (
             predicate.split("|")[1] in entity_ids
             if len(predicate.split("|")) > 1
@@ -352,11 +353,12 @@ def _relation_shuffle_graph(
         for relation in graph.relations
     ]
     relations = _stratified_relations(candidates, maximum_relations)
+    relation_kinds = {relation.kind for relation in graph.relations}
     state = {
         predicate
         for predicate in graph.state_predicates
         if predicate.split("|", 1)[0]
-        not in {relation.kind for relation in graph.relations}
+        not in relation_kinds
     }
     state.update(relation.key for relation in relations)
     return SceneGraph(
