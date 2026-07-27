@@ -135,3 +135,22 @@ publication order. The fixed prospective collection and predictive controls
 will still run so the representation receives a complete positive or negative
 transfer audit. No tracker, prior, threshold, gate, or feature is changed
 after this preflight.
+
+## Final execution result
+
+Prospective collection completed at 768 transitions and 576 unique
+eight-transition windows. The structured inducer reached macro Brier 0.0377
+versus 0.0708 for the stronger local action-only baseline: +0.4676 Brier skill
+with bootstrap 95% interval [+0.4089, +0.5232]. Macro-F1 gained +0.1526,
+context removal lost 0.7637 skill, outcome shuffling lost 0.3987, and every
+game transferred positively.
+
+Macro ECE was 0.1056, above the frozen 0.10 maximum. Combined with the already
+failed source actor-role preflight, the final status is `FAIL_CLOSED`.
+Result checksum:
+`5987eb9531f568dc814dad46eb9e78d13a3813a9c30db3d6cb1fa8a319e16927`.
+
+All frozen Qwen prompts exceeded the 512-token cap at 879 tokens and were
+rejected before generation. This non-gating configuration failure was
+published without changing the cap. The complete result and interpretation
+are in `reports/SAGE12_MECHANIC_INDUCTION_V4_RESULT.md`.

@@ -245,3 +245,11 @@ python -m theory.sage12.mechanic_induction evaluate
 The frozen design is documented in
 `reports/SAGE12_MECHANIC_INDUCTION_V4_PROTOCOL.md`. V4 remains offline and
 cannot fit a world model or EBM unless every structured gate passes.
+
+V4 finished `FAIL_CLOSED`, but unlike V1-V3 it found a strong temporal signal.
+The structured inducer gained +0.4676 macro Brier skill and +0.1526 macro-F1
+over the local action-only baseline, with positive transfer in all three
+games. Source actor tracking and prospective calibration failed their frozen
+thresholds, so no world model was fit. Qwen generated nothing because the
+frozen 512-token cap rejected every 879-token prompt. See
+`reports/SAGE12_MECHANIC_INDUCTION_V4_RESULT.md`.

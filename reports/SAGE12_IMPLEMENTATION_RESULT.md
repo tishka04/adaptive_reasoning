@@ -140,3 +140,29 @@ python -m pytest -q
 Targeted Ruff validation of the V3 schema, collector, pilot, and tests also
 passes. The warning remains the same harmless Joblib physical-core query
 fallback.
+
+## Temporal mechanic-induction V4
+
+V4 implements reset-local role tracking, bounded semantic transition events,
+eight-transition windows, typed zero-support mechanic rules, separate Beta
+evidence, source-only priors, outcome-blind prospective queries, balanced
+chronological collection, global/local/template baselines, context, binding,
+outcome, and label controls, block bootstrap, calibration, Qwen diagnostics,
+and full checksummed artifacts.
+
+Post-V4 validation:
+
+```text
+targeted SAGE12 tests: 57 passed in 12.50s
+targeted Ruff checks: All checks passed!
+full repository suite: 1724 passed, 1 warning in 271.84s (0:04:31)
+```
+
+The sole warning remains the harmless Joblib physical-core query fallback.
+
+It derived 1,911 source windows and collected 768 fresh transitions yielding
+576 prospective windows. Structured prediction strongly beat the local
+action-only baseline, but source actor-role quality and calibration failed the
+frozen conjunctive protocol. Result checksum:
+`5987eb9531f568dc814dad46eb9e78d13a3813a9c30db3d6cb1fa8a319e16927`.
+No world model, EBM, or controller evaluation followed.

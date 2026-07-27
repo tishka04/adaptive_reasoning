@@ -1,13 +1,22 @@
 # SAGE12 semantic planner — model card
 
 Status: software implementation complete; free-generation V1, constrained V2,
-and action-target V3 Stage A pilots failed closed. The world model and EBM
-remain untrained and unauthorized.
+action-target V3, and temporal mechanic V4 pilots failed closed. V4 produced
+strong positive temporal evidence, but the world model and EBM remain
+untrained and unauthorized.
 
 The separately frozen V4 pilot now evaluates sequence-conditioned mechanic
 induction from eight observed transitions. Its primary model is a bounded
 structured Beta rule inducer; Qwen is a non-authoritative ablation. This
 changes no current model or controller authority.
+
+V4 subsequently failed closed despite strong predictive evidence. Structured
+macro Brier was 0.0377 versus 0.0708 for the stronger local action-only
+baseline, and macro-F1 gained 0.1526. Every validation game improved and
+outcome shuffling removed 0.3987 Brier skill. Source actor-role quality failed
+at 0.831 and macro ECE narrowly failed at 0.1056. Qwen prompts exceeded their
+frozen input cap before generation. The world model and EBM therefore remain
+untrained and unauthorized.
 
 ## Components
 
@@ -129,6 +138,14 @@ failed on 540 training rows. The next credible repair therefore needs
 persistent object identity and short transition histories from which to infer
 a game mechanic; simply collecting more rows for the same global one-step
 projection is not supported.
+
+V4 demonstrates that a short observed history substantially repairs the
+static-representation failure, especially for actor and target movement.
+Creation and removal remain weak at the fixed classification threshold,
+binding-shuffle sensitivity is modest, calibration remains above the gate,
+and actor identity is still unstable in two source-training games. The result
+supports temporal mechanic induction but makes no trajectory, ranking, score,
+or live-control claim.
 
 See `theory/sage12/README.md`,
 `training/SAGE12_DATA_POLICY.md`, and

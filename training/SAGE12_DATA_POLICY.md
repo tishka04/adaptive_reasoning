@@ -1,7 +1,8 @@
 # SAGE12 semantic-trajectory data policy
 
-Status: Stage A V1, V2, and action-target V3 are complete negative results.
-World-model and EBM fitting remain unauthorized.
+Status: Stage A V1-V4 are complete. V4 produced positive temporal predictive
+evidence but failed its conjunctive promotion gate. World-model and EBM
+fitting remain unauthorized.
 
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows
@@ -11,6 +12,14 @@ transitions under a separately checksummed manifest. V4 retains chronological
 repeats because they are evidence about a mechanic; scored window digests,
 frame continuity, reset boundaries, and all raw/model-view separation remain
 audited.
+
+V4 completed with 1,911 source-training windows, 768 fresh prospective
+transitions, and 576 prospective windows. Its result is `FAIL_CLOSED`,
+checksum
+`5987eb9531f568dc814dad46eb9e78d13a3813a9c30db3d6cb1fa8a319e16927`.
+The corpus remains audited research data. Its strong temporal prediction
+signal does not override the failed source actor-quality and calibration
+gates, and it authorizes neither world-model nor EBM fitting.
 
 Format: `sage12-semantic-trajectory-v1`.
 

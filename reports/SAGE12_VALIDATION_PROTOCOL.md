@@ -16,14 +16,23 @@ Only a full V3 structured-model pass may authorize a new world-model protocol.
 No V3 outcome directly authorizes an EBM, shadow mode, bounded probes, or
 controller authority.
 
-Status: Stage A V1, V2, and action-target V3 executed and failed closed.
-Stages B-E are unauthorized and have not run.
+Status: Stage A V1-V4 executed and failed closed. V4 found strong temporal
+signal but did not pass every gate. Stages B-E are unauthorized and have not
+run.
 
 SAGE12 V4 is a new Stage A temporal amendment. It tests whether eight observed
 transitions can induce a game-local typed rule that predicts the next effect.
 Its structured rule inducer is primary and Qwen is secondary. Only a full V4
 pass can authorize a separately frozen deterministic-hypothesis world-model
 pilot; it grants no EBM or controller authority.
+
+V4 completed `FAIL_CLOSED`. The temporal inducer achieved +0.4676 macro Brier
+skill and +0.1526 macro-F1 over the stronger local action-only baseline, with
+a positive bootstrap lower bound, strong outcome-shuffle degradation, and
+positive transfer in every validation game. Promotion still failed because
+source actor-role coverage was only 0.831 and macro ECE was 0.1056 versus the
+0.10 maximum. No Stage B model was fit. Full result:
+`reports/SAGE12_MECHANIC_INDUCTION_V4_RESULT.md`.
 
 ## Research question
 
