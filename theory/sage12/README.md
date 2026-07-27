@@ -383,3 +383,10 @@ The frozen design and publication sequence are in
 `reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_PROTOCOL.md`. At this checkpoint,
 only the implementation, tests, protocol, and manifest exist; no V4.3 outcome
 has been observed and all downstream authority remains closed.
+
+The source collector subsequently completed all 352 roots, producing 2,396
+pairs and 4,792 executed arms with zero replay failures. Creation and removal
+meet their frozen class-capacity minima, but target movement has only 8 source
+positives versus the required 75. The raw corpus is published before the
+official source preflight and no validation game is open. See
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_COLLECTION.md`.

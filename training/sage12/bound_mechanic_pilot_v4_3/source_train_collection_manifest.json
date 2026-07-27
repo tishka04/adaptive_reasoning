@@ -1,0 +1,287 @@
+{
+  "ar25_opened": false,
+  "arms": 4792,
+  "capacity": {
+    "pairs": 2396,
+    "per_game": {
+      "bp35": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "cd82": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "dc22": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "g50t": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "ka59": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "lf52": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "lp85": {
+        "pairs": 164,
+        "windows": 328
+      },
+      "sp80": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "su15": {
+        "pairs": 216,
+        "windows": 432
+      },
+      "tr87": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "tu93": {
+        "pairs": 224,
+        "windows": 448
+      }
+    },
+    "per_label": {
+      "target_created": {
+        "applicable": 3893,
+        "negatives": 3705,
+        "positives": 188
+      },
+      "target_moved": {
+        "applicable": 2638,
+        "negatives": 2630,
+        "positives": 8
+      },
+      "target_removed": {
+        "applicable": 2638,
+        "negatives": 2019,
+        "positives": 619
+      }
+    },
+    "windows": 4792
+  },
+  "chronological_repeats_retained": true,
+  "format_version": "sage12-bound-collection-v4.3",
+  "frozen_manifest_checksum": "2376ddd8c9c1c10083dc42ae92b9633ffc55272cf675770908b9467642370cea",
+  "game_reports": {
+    "bp35": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "bp35",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "cd82": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "cd82",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 4,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "dc22": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "dc22",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "g50t": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "g50t",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "ka59": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "ka59",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "lf52": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "lf52",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "lp85": {
+      "arms": 328,
+      "complete_depth_three_trees": 22,
+      "game_id": "lp85",
+      "pairs": 164,
+      "replay_failures": 0,
+      "resets_used": 11,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "sp80": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "sp80",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 9,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "su15": {
+      "arms": 432,
+      "complete_depth_three_trees": 30,
+      "game_id": "su15",
+      "pairs": 216,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "tr87": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "tr87",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    },
+    "tu93": {
+      "arms": 448,
+      "complete_depth_three_trees": 32,
+      "game_id": "tu93",
+      "pairs": 224,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "roots": 32,
+      "source_split": "source_train"
+    }
+  },
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "historical_opened": false,
+  "holdout_opened": false,
+  "outcome_adaptive": false,
+  "pairs": 2396,
+  "replay_verified": true,
+  "report_checksum": "a842c0bdd99a1e10ad48c03ded447e231a6767e6af7410192b2f21c4b2948722",
+  "roots": 352,
+  "shards": [
+    {
+      "arms": 448,
+      "game_id": "bp35",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/bp35.jsonl",
+      "sha256": "2c2d97fe934543f6fc19250c8f73f314120074c0dfbbe442e1704db7bed6c04b"
+    },
+    {
+      "arms": 448,
+      "game_id": "cd82",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/cd82.jsonl",
+      "sha256": "eee5871f51cfc58d9e0441784083453629cdb65df2824f2f2013582ba23410ea"
+    },
+    {
+      "arms": 448,
+      "game_id": "dc22",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/dc22.jsonl",
+      "sha256": "7e94dfaf7609c45f9d81e8016ed8d246668094e751cc17112651687213af23d6"
+    },
+    {
+      "arms": 448,
+      "game_id": "g50t",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/g50t.jsonl",
+      "sha256": "314cceaae603ecc82b339ed99934cc8d6bce4886768939132cdcebbb6fd8acff"
+    },
+    {
+      "arms": 448,
+      "game_id": "ka59",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/ka59.jsonl",
+      "sha256": "879fa2c9aa67b317b88ba15e95bd0066b4a9f3b5feff0eede19de126275d0f5d"
+    },
+    {
+      "arms": 448,
+      "game_id": "lf52",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/lf52.jsonl",
+      "sha256": "0e1b171ac09f23734f8f8cb8686c176cc0f6ff02b2dfbd4891e8079f9fd24aa9"
+    },
+    {
+      "arms": 328,
+      "game_id": "lp85",
+      "pairs": 164,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/lp85.jsonl",
+      "sha256": "7dee5fa89bace32af5f744c02489a22d4703b96e4dea3fef6d6971c9e1f7461c"
+    },
+    {
+      "arms": 448,
+      "game_id": "sp80",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/sp80.jsonl",
+      "sha256": "aab95e73dae8957b70ba32380ac17b9e45e4c70c7786628d3c1b4d73fcdc6db4"
+    },
+    {
+      "arms": 432,
+      "game_id": "su15",
+      "pairs": 216,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/su15.jsonl",
+      "sha256": "d089568302893ba8e409694919d9c744400d53565d3e6f90ddbd5f1012753224"
+    },
+    {
+      "arms": 448,
+      "game_id": "tr87",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/tr87.jsonl",
+      "sha256": "53229b7b0d3584960a86cafbc2e89426e54eaa4c559a5762b383d9da26f5cdfa"
+    },
+    {
+      "arms": 448,
+      "game_id": "tu93",
+      "pairs": 224,
+      "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/tu93.jsonl",
+      "sha256": "0b0d9fede128c1cddb93a0ec95725b5cc29f6fda7512f0e0c5613170185eae49"
+    }
+  ],
+  "split": "source_train",
+  "status": "COMPLETE"
+}

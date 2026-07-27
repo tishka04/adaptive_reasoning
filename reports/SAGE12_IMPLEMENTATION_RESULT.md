@@ -350,3 +350,9 @@ The pre-outcome replay resolver now deterministically accepts the first
 identical candidate; exact replay-state verification remains authoritative.
 A regression test covers this representation detail. No schema, feature,
 seed, quota, outcome rule, metric, or gate changed.
+
+The successful source run then completed 352/352 roots, 2,396 pairs, and
+4,792 arms with zero replay failures. Raw capacity includes 188 creation, 619
+removal, and 8 movement positives. The collection is documented in
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_COLLECTION.md` and published before
+source preflight.

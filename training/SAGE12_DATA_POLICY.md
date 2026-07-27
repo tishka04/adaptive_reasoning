@@ -301,3 +301,11 @@ A failed binding result remains immutable negative-result audit data and
 forbids world-model fitting. A passing binding result authorizes only the
 frozen structured world-model evaluation; even a world-model pass does not
 authorize an EBM, controller, holdout, historical set, or `ar25`.
+
+The V4.3 source collection is now immutable: 352 roots, 2,396 pairs, 4,792
+arms, and report checksum
+`a842c0bdd99a1e10ad48c03ded447e231a6767e6af7410192b2f21c4b2948722`.
+It contains every observed arm, including terminally truncated trees, and had
+zero replay failures. These source shards may be read only by the already
+frozen V4.3 source preflight. They do not authorize validation collection or
+any downstream model by themselves.
