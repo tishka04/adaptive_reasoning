@@ -40,6 +40,11 @@ Its source windows, priors, calibration, and token audit are frozen.
 Collection of the exact preregistered 768 transitions is therefore
 authorized; no other game, seed, row count, or adaptive policy is permitted.
 
+That collection completed at exactly 768 rows under report checksum
+`6bdec774c744061e3e5014ced8d3d0191d1cdc13243130817ea9ec84fd50dce7`.
+Its three raw shards and combined checksum are frozen before prospective
+evaluation. Chronological repeats remain part of the audit corpus.
+
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows
 from the immutable V3 training traces, excludes the already inspected V3

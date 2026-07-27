@@ -296,3 +296,7 @@ The frozen design is
 
 The source preflight passed all 11 gates without opening validation outcomes.
 See `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PREFLIGHT.md`.
+
+The subsequent frozen collection completed at 768 transitions and was
+published before evaluation. See
+`reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_COLLECTION.md`.

@@ -234,3 +234,9 @@ macro-F1 gain +0.0749, context skill +0.4328, macro-ECE 0.0365, and the
 complete Qwen prompt range 295–317 tokens. Preflight checksum:
 `68747717f45289775cd543aaa027eb24164200b255b42b57368e4c6fba0816ff`.
 Only the frozen prospective collection is authorized by this checkpoint.
+
+The collector then produced exactly 768 fresh rows, 256 per validation game,
+with balanced legal-action coverage, eight resets per game, no outcome
+adaptation, and 91 chronological repeats retained. Collection report checksum:
+`6bdec774c744061e3e5014ced8d3d0191d1cdc13243130817ea9ec84fd50dce7`.
+The raw shards were frozen before any prospective metric or Qwen generation.

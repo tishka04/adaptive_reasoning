@@ -141,3 +141,14 @@ skill +0.1821, macro-F1 gain +0.0749, context skill +0.4328, macro-ECE
 0.0365, and Qwen prompts 295–317 tokens. Prospective collection is now
 authorized under the unchanged manifest. Full ledger:
 `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PREFLIGHT.md`.
+
+## Executed prospective collection
+
+The authorized collector produced exactly 768 transitions, 256 per game,
+under report checksum
+`6bdec774c744061e3e5014ced8d3d0191d1cdc13243130817ea9ec84fd50dce7`.
+All games used eight resets, legal-action counts were balanced, the policy
+was outcome-independent, and 91 chronological exact repeats were retained.
+No prospective metric or Qwen output was computed before publishing the raw
+shards. Collection ledger:
+`reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_COLLECTION.md`.
