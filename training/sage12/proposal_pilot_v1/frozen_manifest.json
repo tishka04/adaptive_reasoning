@@ -1,0 +1,114 @@
+{
+  "collection": {
+    "action_budget_per_reset": 200,
+    "maximum_resets_per_game": 300,
+    "policy": "balanced_legal_action_family_v1",
+    "policy_seeds": [
+      0,
+      1
+    ],
+    "state_action_repeat_cap": 4
+  },
+  "device_benchmark": {
+    "games": [
+      "bp35",
+      "cd82",
+      "re86",
+      "ls20"
+    ],
+    "minimum_gpu_speedup": 1.1,
+    "quality_metrics_used_for_device_selection": false
+  },
+  "evaluation": {
+    "action_only_baseline": "source_train_per_action_majority_mechanism",
+    "game_identity_probe": "source_train_logistic_regression_3fold",
+    "relation_shuffle": "deterministic_entity_permutation_v1",
+    "representative_rows_per_game": 8,
+    "sample_salt": "sage12-proposal-pilot-sample-v1",
+    "subgoal": "level_complete",
+    "template_baseline": "sage12_deterministic_template_v1"
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "split_by_game": true
+  },
+  "format_version": "sage12-proposal-pilot-v1",
+  "frozen_at": "2026-07-27",
+  "game_quotas": {
+    "bp35": 160,
+    "cd82": 160,
+    "dc22": 160,
+    "g50t": 160,
+    "ka59": 160,
+    "lf52": 160,
+    "lp85": 24,
+    "ls20": 160,
+    "re86": 160,
+    "sc25": 160,
+    "sp80": 160,
+    "su15": 160,
+    "tr87": 160,
+    "tu93": 160
+  },
+  "game_splits": {
+    "bp35": "source_train",
+    "cd82": "source_train",
+    "dc22": "source_train",
+    "g50t": "source_train",
+    "ka59": "source_train",
+    "lf52": "source_train",
+    "lp85": "source_train",
+    "ls20": "source_validation",
+    "re86": "source_validation",
+    "sc25": "source_validation",
+    "sp80": "source_train",
+    "su15": "source_train",
+    "tr87": "source_train",
+    "tu93": "source_train"
+  },
+  "gates": {
+    "maximum_identity_gain_over_majority": 0.1,
+    "minimum_grounded_hypothesis_rate": 0.9,
+    "minimum_recall_gain": 0.1,
+    "minimum_relation_shuffle_degradation": 0.1,
+    "minimum_strict_json_validity": 0.99,
+    "minimum_support_zero_rate": 0.95,
+    "require_every_validation_game_nonnegative": true
+  },
+  "manifest_checksum": "0260eb15fd9a0cecb21644160888bde9b6e5be03b4428f1afd989401686c148b",
+  "model": {
+    "decoding": {
+      "do_sample": false,
+      "maximum_new_tokens": 256,
+      "temperature": 0.0
+    },
+    "maximum_hypotheses": 8,
+    "name": "Qwen2.5-0.5B-Instruct",
+    "path": "models/qwen2_5_0.5b_instruct",
+    "weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
+  },
+  "sage11_split_registry_checksum": "22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d",
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_OUTCOMES",
+  "target_transitions": 2104,
+  "world_model_fit_authorized": false
+}

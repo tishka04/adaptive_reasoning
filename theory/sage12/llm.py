@@ -119,7 +119,7 @@ class TransformersJSONModel:
         device_map = (
             "auto"
             if self.config.device == "auto"
-            else self.config.device
+            else {"": self.config.device}
         )
         self._model = AutoModelForCausalLM.from_pretrained(
             str(path),

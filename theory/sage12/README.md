@@ -115,3 +115,24 @@ The future evidence gates and data firewall are specified in
 `training/SAGE12_DATA_POLICY.md`. The implementation outcome is recorded in
 `reports/SAGE12_IMPLEMENTATION_RESULT.md`; limitations are summarized in
 `models/SAGE12_MODEL_CARD.md`.
+
+## Frozen grounded-proposal pilot
+
+Stage A is preregistered in
+`reports/SAGE12_PROPOSAL_PILOT_PROTOCOL.md` and the checksummed
+`training/sage12/proposal_pilot_v1/frozen_manifest.json`. It collects exactly
+2,104 source-only executed traces under balanced randomized legal-action
+coverage, times identical Qwen2.5 0.5B decoding on CPU and CUDA, and evaluates
+112 outcome-blind representative scenes plus relation-shuffled controls.
+
+The collector and evaluator are:
+
+```powershell
+python -m theory.sage12.proposal_pilot_runner benchmark
+python -m theory.sage12.proposal_pilot_collection --workers 4
+python -m theory.sage12.proposal_pilot_runner evaluate
+```
+
+The protocol must be committed before the first command. Any failed JSON,
+grounding, recall, relation-sensitivity, per-game, or identity-leakage gate
+stops the experiment before semantic world-model fitting.

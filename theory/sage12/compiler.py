@@ -51,28 +51,30 @@ class HypothesisCompiler:
         graph: SceneGraph,
         legal_candidates: Sequence[Any],
     ) -> CompilationResult:
-        legal = {
-            _action_key(
-                str(getattr(candidate, "action_name", "")),
-                getattr(candidate, "action_data", {}),
-            )
-            for candidate in legal_candidates
-        }
-        legal.update(
-            _action_key(str(candidate), {})
-            for candidate in legal_candidates
-            if isinstance(candidate, str)
-        )
+        legal_specs = tuple(_candidate_spec(item) for item in legal_candidates)
         options = []
         rejected = []
         for hypothesis in hypotheses:
-            action_key = _action_key(
-                hypothesis.action_name,
-                hypothesis.action_data,
+            matching_actions = tuple(
+                (name, action_data)
+                for name, action_data in legal_specs
+                if name == hypothesis.action_name
+                and (
+                    not hypothesis.action_data
+                    or _action_key(name, action_data)
+                    == _action_key(
+                        hypothesis.action_name,
+                        hypothesis.action_data,
+                    )
+                )
             )
-            if action_key not in legal:
+            if not matching_actions:
                 rejected.append(
-                    f"{hypothesis.hypothesis_id}:illegal_action:{action_key}"
+                    f"{hypothesis.hypothesis_id}:illegal_action:"
+                    + _action_key(
+                        hypothesis.action_name,
+                        hypothesis.action_data,
+                    )
                 )
                 continue
             roles = sorted(
@@ -101,67 +103,79 @@ class HypothesisCompiler:
                     + ",".join(missing)
                 )
                 continue
-            combinations = (
-                itertools.product(
-                    *(candidates_by_role[role] for role in roles)
-                )
-                if roles
-                else ((),)
-            )
             compiled_for_hypothesis = 0
-            for entities in combinations:
-                if compiled_for_hypothesis >= self.maximum_bindings_per_hypothesis:
-                    break
-                bindings = {
-                    role: entity.entity_id
-                    for role, entity in zip(roles, entities)
-                }
-                if len(bindings.values()) != len(set(bindings.values())):
-                    continue
-                preconditions = tuple(
-                    predicate_key(predicate, bindings)
-                    for predicate in hypothesis.preconditions
-                )
-                if not set(preconditions).issubset(graph.state_predicates):
-                    continue
-                asserted = tuple(
-                    predicate_key(effect.predicate, bindings)
-                    for effect in hypothesis.effects
-                    if effect.operation == "assert"
-                )
-                retracted = tuple(
-                    predicate_key(effect.predicate, bindings)
-                    for effect in hypothesis.effects
-                    if effect.operation == "retract"
-                )
-                canonical = json.dumps(
-                    {
-                        "hypothesis": hypothesis.hypothesis_id,
-                        "action": action_key,
-                        "bindings": bindings,
-                        "asserted": asserted,
-                        "retracted": retracted,
-                    },
-                    sort_keys=True,
-                )
-                option_id = "s12_" + hashlib.sha256(
-                    canonical.encode("utf-8")
-                ).hexdigest()[:12]
-                options.append(
-                    CompiledSemanticOption(
-                        option_id=option_id,
-                        hypothesis_id=hypothesis.hypothesis_id,
-                        action_name=hypothesis.action_name,
-                        action_data=dict(hypothesis.action_data),
-                        bindings=bindings,
-                        preconditions=preconditions,
-                        asserted_effects=asserted,
-                        retracted_effects=retracted,
-                        confidence=hypothesis.confidence,
-                        source=hypothesis.source,
+            for action_name, action_data in matching_actions:
+                action_key = _action_key(action_name, action_data)
+                combinations = (
+                    itertools.product(
+                        *(candidates_by_role[role] for role in roles)
                     )
+                    if roles
+                    else ((),)
                 )
-                compiled_for_hypothesis += 1
+                for entities in combinations:
+                    if (
+                        compiled_for_hypothesis
+                        >= self.maximum_bindings_per_hypothesis
+                    ):
+                        break
+                    bindings = {
+                        role: entity.entity_id
+                        for role, entity in zip(roles, entities)
+                    }
+                    if len(bindings.values()) != len(set(bindings.values())):
+                        continue
+                    preconditions = tuple(
+                        predicate_key(predicate, bindings)
+                        for predicate in hypothesis.preconditions
+                    )
+                    if not set(preconditions).issubset(
+                        graph.state_predicates
+                    ):
+                        continue
+                    asserted = tuple(
+                        predicate_key(effect.predicate, bindings)
+                        for effect in hypothesis.effects
+                        if effect.operation == "assert"
+                    )
+                    retracted = tuple(
+                        predicate_key(effect.predicate, bindings)
+                        for effect in hypothesis.effects
+                        if effect.operation == "retract"
+                    )
+                    canonical = json.dumps(
+                        {
+                            "hypothesis": hypothesis.hypothesis_id,
+                            "action": action_key,
+                            "bindings": bindings,
+                            "asserted": asserted,
+                            "retracted": retracted,
+                        },
+                        sort_keys=True,
+                    )
+                    option_id = "s12_" + hashlib.sha256(
+                        canonical.encode("utf-8")
+                    ).hexdigest()[:12]
+                    options.append(
+                        CompiledSemanticOption(
+                            option_id=option_id,
+                            hypothesis_id=hypothesis.hypothesis_id,
+                            action_name=action_name,
+                            action_data=dict(action_data),
+                            bindings=bindings,
+                            preconditions=preconditions,
+                            asserted_effects=asserted,
+                            retracted_effects=retracted,
+                            confidence=hypothesis.confidence,
+                            source=hypothesis.source,
+                        )
+                    )
+                    compiled_for_hypothesis += 1
+                if (
+                    compiled_for_hypothesis
+                    >= self.maximum_bindings_per_hypothesis
+                ):
+                    break
             if compiled_for_hypothesis == 0:
                 rejected.append(
                     f"{hypothesis.hypothesis_id}:preconditions_not_grounded"
@@ -187,6 +201,15 @@ def _action_key(action_name: str, action_data: Mapping[str, Any]) -> str:
             separators=(",", ":"),
             default=str,
         )
+    )
+
+
+def _candidate_spec(candidate: Any) -> tuple[str, Mapping[str, Any]]:
+    if isinstance(candidate, str):
+        return str(candidate).strip().upper(), {}
+    return (
+        str(getattr(candidate, "action_name", "")).strip().upper(),
+        dict(getattr(candidate, "action_data", {}) or {}),
     )
 
 
