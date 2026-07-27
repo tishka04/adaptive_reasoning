@@ -981,8 +981,8 @@ def _vectorize_features(
     from sklearn.feature_extraction import DictVectorizer
 
     vectorizer = DictVectorizer(sparse=True)
-    train = vectorizer.fit_transform(train_rows)
-    validation = vectorizer.transform(validation_rows)
+    train = vectorizer.fit_transform(train_rows).toarray()
+    validation = vectorizer.transform(validation_rows).toarray()
     return train, validation
 
 

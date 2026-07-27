@@ -8,6 +8,21 @@ Frozen manifest:
 Manifest checksum:
 `033274922c2f25d3cb7918bc2f308fffdc03d4811f034e9db171147d4aec25aa`.
 
+## Execution amendment before metrics
+
+The first evaluation launch completed the frozen GPU embedding passes, then
+stopped while fitting the first deterministic baseline because this Windows
+scikit-learn build rejected a tiny sparse matrix whose index arrays were
+`int64`. No metric, prediction artifact, gate result, or validation summary
+was computed or written.
+
+The action-only and one-bit-motif baseline matrices are now materialized as
+dense arrays before the same preregistered liblinear fits. This changes only
+the in-memory container for at most seven scalar baseline columns. Qwen
+prompts, embeddings, targets, labels, splits, regularization, thresholds,
+controls, and gates are unchanged. The clean evaluation restarts from zero
+after this amendment is committed.
+
 ## Question
 
 Can a frozen Qwen2.5 0.5B encoder plus a native constrained multi-label head

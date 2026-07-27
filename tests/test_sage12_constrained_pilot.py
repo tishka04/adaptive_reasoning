@@ -4,6 +4,7 @@ from theory.sage12 import HypothesisCompiler, SemanticActionCandidate
 from theory.sage12.constrained_pilot import (
     DEFAULT_FROZEN_MANIFEST_PATH,
     _load_frozen_manifest,
+    _vectorize_features,
     invariant_motif,
     invariant_prompt,
     render_hypotheses_json,
@@ -177,3 +178,14 @@ def test_v2_manifest_is_frozen_and_cannot_authorize_world_model() -> None:
     assert manifest["source_corpus"]["source_train_rows"] == 1_624
     assert manifest["source_corpus"]["source_validation_rows"] == 480
     assert manifest["world_model_fit_authorized"] is False
+
+
+def test_tiny_baseline_features_use_dense_sklearn_compatible_arrays() -> None:
+    train, validation = _vectorize_features(
+        [{"action:ACTION1": 1}, {"action:ACTION2": 1}],
+        [{"action:ACTION1": 1}],
+    )
+
+    assert train.shape == (2, 2)
+    assert validation.shape == (1, 2)
+    assert not hasattr(train, "indices")
