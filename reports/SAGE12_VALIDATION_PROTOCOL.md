@@ -1,7 +1,7 @@
 # SAGE12 preregistered validation protocol
 
-Status: protocol implemented with the software stack; no empirical SAGE12
-pilot has been run.
+Status: Stage A executed and failed closed; Stages B-E are unauthorized and
+have not run.
 
 ## Research question
 
@@ -136,7 +136,16 @@ the last passed stage.
 
 ## Current result
 
-Only software tests have run. No dataset, LLM proposal benchmark, semantic
-world-model fit, learned EBM fit, shadow episode, bounded probe, or holdout
-evaluation has occurred. All empirical gates are therefore unpassed and the
-live default is `off`.
+Stage A collected 2,104 source-only executed traces and evaluated 224 frozen
+Qwen2.5 0.5B generations. All seven gates failed: strict typed parsing and
+LLM recall@8 were zero, relation-shuffle degradation was zero, the action-only
+baseline reached 0.895 recall, all three validation games transferred
+negatively, and game-identity accuracy was 0.999 versus a 0.099 majority.
+
+Result checksum:
+`fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`.
+The complete audit is in `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.
+
+Failure stopped Stage B before semantic world-model fitting. No learned EBM,
+shadow episode, bounded probe, holdout, historical, or `ar25` evaluation
+occurred. The live default remains `off`.

@@ -1,0 +1,46 @@
+{
+  "cpu_gpu_exact_output_equality": 0.25,
+  "decoding": {
+    "do_sample": false,
+    "maximum_new_tokens": 256,
+    "temperature": 0.0
+  },
+  "devices": {
+    "cpu": {
+      "device": "cpu",
+      "inference_seconds": [
+        32.528365800040774,
+        23.847896400024183,
+        29.108956899959594,
+        17.338906100019813
+      ],
+      "mean_inference_seconds": 25.70603130001109,
+      "median_inference_seconds": 26.47842664999189,
+      "model_load_seconds": 3.462078900076449,
+      "prompt_count": 4,
+      "strict_json_valid_rate": 0.0
+    },
+    "cuda:0": {
+      "device": "cuda:0",
+      "inference_seconds": [
+        5.899226899957284,
+        4.102778300060891,
+        8.00692150008399,
+        9.51069839997217
+      ],
+      "mean_inference_seconds": 6.879906275018584,
+      "median_inference_seconds": 6.953074200020637,
+      "model_load_seconds": 2.6383390000555664,
+      "prompt_count": 4,
+      "strict_json_valid_rate": 0.0
+    }
+  },
+  "format_version": "sage12-qwen-device-benchmark-v1",
+  "frozen_manifest_checksum": "03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287",
+  "gpu_speedup": 3.808161093680447,
+  "model_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+  "result_checksum": "e6874d94708611e870415a6decd32314f15e117b2fdd24dd1c20d9d33a66ecdb",
+  "selected_device": "cuda:0",
+  "selection_uses_quality_outcomes": false,
+  "status": "COMPLETE"
+}

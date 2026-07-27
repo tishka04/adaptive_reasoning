@@ -59,7 +59,7 @@ de policy en support scientifique.
 | SAGE.11b - Pilot + compact world model | Relational pilot no-go; track world-model arrete sans training | `theory/sage11/relational_features.py`, `theory/sage11/relational_effect_pilot.py`, `training/sage11/relational_pilot_v1/manifest.json`, `diagnostics/sage/sage11_relational_effect_pilot.json`, `reports/SAGE11_RELATIONAL_PILOT_RESULT.md` | Collecte 10,027 verifiee manifest `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`. Fit LOGO: changed delta -0.0059, shuffle +0.0048, apport relations -0.1202, 6/11 folds, pire -0.4888; signatures relationnelles jeu 64.20% (contre 99.17% anciennes); checksum `272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`; aucun training GPU/shadow/historique/holdout |
 | SAGE.11c/11d - Typed bridge + shadow | Implemente logiciellement - shadow live en attente | `theory/sage11/atoms.py`, `theory/sage11/bridge.py`, `theory/sage11/authority.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage11_authority.py` | Atomes partages FrameDiff/schema, hypotheses support=0; off ne lance pas le predicteur; shadow action-identique et log top-k/pre-emption/cout; bounded inaccessible sans gates |
 | SAGE.11e/11f - Bounded/active + adaptation | Implemente logiciellement - promotion non revendiquee | `theory/sage11/authority.py`, `theory/sage11/adaptation.py`, `theory/sage11/evaluation.py`, `reports/SAGE11_VALIDATION_PROTOCOL.md`, `diagnostics/sage/sage11_implementation_audit.json` | Veto danger symbolique dur, competence protegee, info-gain positif, 1 probe branche/contexte, demotion 2 echecs, re-arm explicite; encodeur gele, replay 2048, update/32 <=4 gradients, reset jeu/seed; bootstrap holdout 5x5 implemente mais non execute |
-| SAGE.12 - Planification de trajectoires semantiques | Implemente logiciellement - gates empiriques non executes, autorite off | `theory/sage12/`, `theory/unified_cognitive_controller.py`, `tests/test_sage12_semantic_planning.py`, `training/SAGE12_DATA_POLICY.md`, `models/SAGE12_MODEL_CARD.md`, `reports/SAGE12_VALIDATION_PROTOCOL.md`, `reports/SAGE12_IMPLEMENTATION_RESULT.md` | Graphe de scene relationnel sans feature explicite d'identite jeu; LLM local open-weight proposal-only avec DSL `support=0`; compilation grounding/action exacte; world model semantique; energie heuristique + EBM pairwise optionnel; sous-buts hierarchiques et execution receding-horizon d'une action; veto danger/competence protegee; 14 tests focuses passes; aucun corpus/training/promotion revendique |
+| SAGE.12 - Planification de trajectoires semantiques | Stage A FAIL_CLOSED - world model non fit, autorite off | `theory/sage12/`, `training/sage12/proposal_pilot_v1/`, `tests/test_sage12_proposal_pilot.py`, `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`, `training/SAGE12_DATA_POLICY.md`, `models/SAGE12_MODEL_CARD.md`, `reports/SAGE12_VALIDATION_PROTOCOL.md` | 2,104 transitions source-only; GPU 3.808x plus rapide; 224 generations Qwen2.5 0.5B; JSON strict/grounding/recall LLM=0, baseline action-only=0.895, shuffle delta=0, gains val negatifs 3/3, identite jeu=99.94% contre 9.85%; checksum resultat `fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`; aucun fit world-model/EBM, holdout/historique/ar25 fermes |
 | SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
 
 ## SAGE.0 - Known-game closed-loop scaffold
@@ -8898,8 +8898,22 @@ Validation logicielle :
   integration controller, baseline template et mecanique EBM.
 - Le test EBM est seulement un smoke-test d'optimisation, pas un resultat
   scientifique.
-- Aucun corpus SAGE.12, benchmark LLM, fit world-model, checkpoint EBM,
-  episode shadow, probe bounded, holdout ou training GPU n'a ete execute.
+- Le pilot Stage A a collecte 2,104 transitions executees source-only :
+  1,624 train et 480 validation, checksum shards
+  `ce5cfe1217f9add9ab250f60315ed66d154ae8ed903e51bb572b69a4b3`.
+- Le benchmark identique CPU/GPU a selectionne le RTX 4050 : mediane 26.478 s
+  CPU contre 6.953 s CUDA, soit 3.808x.
+- Les 112 scenes representatives plus 112 controls relation-shuffle ont donne
+  224 generations propres. JSON strict, grounding et recall@8 LLM valent zero;
+  le baseline action-only vaut 0.895; le delta shuffle vaut zero; les trois
+  jeux validation ont un gain negatif.
+- Le probe d'identite atteint 99.94% contre 9.85% majority. Les ablations
+  action-only, entites-only et relations-only restent toutes largement au
+  dessus du seuil, donc l'absence de game ID explicite ne suffit pas.
+- Stage A est `FAIL_CLOSED`, checksum
+  `fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`.
+  Aucun fit world-model/EBM, episode shadow, probe bounded, holdout,
+  historique ou `ar25` n'a ete execute.
 
 Protocoles :
 
@@ -8911,9 +8925,12 @@ Protocoles :
 - `models/SAGE12_MODEL_CARD.md` documente intended/prohibited use, inputs,
   limites et autorite.
 - `reports/SAGE12_IMPLEMENTATION_RESULT.md` enregistre le resultat logiciel et
-  l'absence volontaire de revendication empirique.
+  `reports/SAGE12_PROPOSAL_PILOT_RESULT.md` publie le no-go empirique complet,
+  ses amendements, controles, checksums et diagnostics.
 
 Lecture finale : l'idee observation -> hypotheses LLM -> trajectoires world
 model -> energie -> controller hierarchique est maintenant executable et
-auditable. Elle reste candidate-only et `off` tant que ses gates empiriques ne
-sont pas passes. Seule une transition observee peut creer evidence/support.
+auditable. Le premier proposal pilot a cependant rejete le couple representation
+compacte + generation texte non contrainte. Elle reste `off`; le world model
+ne doit pas etre fit sur cette version. Seule une transition observee peut
+creer evidence/support.

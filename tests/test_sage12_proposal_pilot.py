@@ -24,6 +24,7 @@ from theory.sage12.proposal_pilot_runner import (
     _mechanism_names,
     _representative_sample,
     _shuffle_relations,
+    _strip_single_json_fence,
 )
 from theory.sage12.llm import _compact_scene
 from theory.sage12.scene_graph import (
@@ -285,3 +286,15 @@ def test_prompt_scene_compaction_is_deterministic_and_bounded() -> None:
         "aligned",
         "near",
     }
+
+
+def test_posthoc_fence_stripping_is_explicit_and_non_repairing() -> None:
+    stripped, had_fence = _strip_single_json_fence(
+        '```json\n{"hypotheses": []}\n```'
+    )
+    unchanged, no_fence = _strip_single_json_fence('{"hypotheses": []}')
+
+    assert had_fence is True
+    assert stripped == '{"hypotheses": []}'
+    assert no_fence is False
+    assert unchanged == '{"hypotheses": []}'

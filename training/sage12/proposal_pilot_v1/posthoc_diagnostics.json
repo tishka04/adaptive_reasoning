@@ -1,0 +1,64 @@
+{
+  "changes_primary_result": false,
+  "format_version": "sage12-proposal-posthoc-diagnostics-v1",
+  "game_identity_ablation": {
+    "available_actions_only": {
+      "accuracy": 0.5898943462632408,
+      "fold_accuracies": [
+        0.6014760147601476,
+        0.5859519408502772,
+        0.5822550831792976
+      ],
+      "gain_over_majority": 0.49137217877555606,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "entity_structure_only": {
+      "accuracy": 0.9353470521766217,
+      "fold_accuracies": [
+        0.9317343173431735,
+        0.933456561922366,
+        0.9408502772643254
+      ],
+      "gain_over_majority": 0.836824884688937,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "full": {
+      "accuracy": 0.9993838570548368,
+      "fold_accuracies": [
+        1.0,
+        1.0,
+        0.9981515711645101
+      ],
+      "gain_over_majority": 0.9008616895671521,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "relations_only": {
+      "accuracy": 0.842981313362117,
+      "fold_accuracies": [
+        0.8413284132841329,
+        0.8428835489833642,
+        0.844731977818854
+      ],
+      "gain_over_majority": 0.7444591458744323,
+      "majority_accuracy": 0.09852216748768473
+    }
+  },
+  "inference_seconds": {
+    "maximum": 27.00221559999045,
+    "mean": 7.348700034378063,
+    "median": 7.695927100023255,
+    "minimum": 2.3166588000021875
+  },
+  "json_valid_after_fence_removal_rate": 0.42857142857142855,
+  "markdown_json_fence_rate": 1.0,
+  "original_shuffle_exact_response_equality": 0.125,
+  "output_rows": 224,
+  "pilot_result_checksum": "fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a",
+  "result_checksum": "e5549bcf6f1f5c19371a771cbf95d76b9f4d8d38bdff535362f7e35f1198742d",
+  "status": "POSTHOC_NO_GATE_EFFECT",
+  "top_level_json_types_after_fence_removal": {
+    "list": 96
+  },
+  "typed_valid_after_fence_removal_rate": 0.0,
+  "world_model_fit_started": false
+}

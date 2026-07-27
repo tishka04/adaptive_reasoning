@@ -100,9 +100,13 @@ requires its separate active gate.
 ## Current status
 
 The software stack and controller integration are implemented and tested.
-No SAGE12 semantic corpus has been collected, no local LLM benchmark has been
-run, no EBM checkpoint has been trained, and no authority gate is claimed to
-have passed. Production authority therefore remains `off`.
+Stage A collected 2,104 source-only executed traces and evaluated 224 local
+Qwen2.5 0.5B outputs. The pilot failed all seven frozen gates: no output passed
+the strict typed parser, recall@8 was zero against an action-only baseline of
+0.895, relation-shuffle degradation was zero, every validation-game gain was
+negative, and full compact scene signatures identified source-training games
+at 99.94% accuracy. No semantic world model or EBM was fit. Production
+authority remains `off`.
 
 Run the focused software validation from the repository root:
 
@@ -114,7 +118,8 @@ The future evidence gates and data firewall are specified in
 `reports/SAGE12_VALIDATION_PROTOCOL.md` and
 `training/SAGE12_DATA_POLICY.md`. The implementation outcome is recorded in
 `reports/SAGE12_IMPLEMENTATION_RESULT.md`; limitations are summarized in
-`models/SAGE12_MODEL_CARD.md`.
+`models/SAGE12_MODEL_CARD.md`. The Stage A result is published in
+`reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.
 
 ## Frozen grounded-proposal pilot
 
@@ -142,3 +147,13 @@ produce a 1.68-million-token prompt. Before any completed generation or
 outcome, the protocol was amended to a deterministic 24-entity/96-relation
 proposal view with an 8,192-token hard cap. All task, data, decoding, baseline,
 and pass-gate choices remain unchanged.
+
+The completed benchmark selected `cuda:0`: median inference fell from 26.478
+seconds on CPU to 6.953 seconds on the laptop RTX 4050, a 3.808x speedup with
+unchanged decoding. The clean evaluation then produced `FAIL_CLOSED`, checksum
+`fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`.
+Run the non-gating explanatory diagnostics with:
+
+```powershell
+python -m theory.sage12.proposal_pilot_runner diagnose
+```

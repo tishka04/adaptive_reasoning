@@ -10,6 +10,11 @@ Frozen manifest:
 Manifest checksum:
 `0dfdff9a61e45e02b16601a47d987454c991a2d5f99c8964a5486c17ed17aceb`
 
+Post-run annotation: the clean pilot failed closed without changing these
+gates. The result is published in
+`reports/SAGE12_PROPOSAL_PILOT_RESULT.md`, checksum
+`fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`.
+
 ## Feasibility amendment before outcomes
 
 The first device preflight exposed an unbounded serialization defect: the

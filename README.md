@@ -182,22 +182,27 @@ action before replanning. LLM proposals always have `support=0`, observed
 transitions are the only evidence, and symbolic danger/protected competence
 remain hard vetoes.
 
-The implementation is integrated but defaults to `off`. Bounded and active
-modes automatically fall back to shadow until independent proposal,
-world-model, and energy gates pass. No SAGE12 corpus has been collected, no
-empirical model has been trained, and no performance promotion is claimed.
-See:
+The implementation is integrated but defaults to `off`. The frozen Stage A
+pilot collected 2,104 source-only executed traces and ran 224 Qwen2.5 0.5B
+generations on the laptop GPU after measuring a 3.808x median speedup over
+CPU. It failed closed: strict JSON and grounded recall were zero, the
+action-only baseline reached 0.895 recall, relation-shuffle degradation was
+zero, and the compact scene signature identified source-training games at
+99.94% accuracy. No semantic world model or EBM was fit, and no performance
+promotion is claimed. See:
 
 - `theory/sage12/README.md`
 - `training/SAGE12_DATA_POLICY.md`
 - `models/SAGE12_MODEL_CARD.md`
 - `reports/SAGE12_VALIDATION_PROTOCOL.md`
 - `reports/SAGE12_IMPLEMENTATION_RESULT.md`
+- `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`
 
 Focused software validation:
 
 ```bash
 python -m pytest -q tests/test_sage12_semantic_planning.py
+python -m pytest -q tests/test_sage12_proposal_pilot.py
 ```
 
 The long-budget performance track skips ablation overhead and writes compact

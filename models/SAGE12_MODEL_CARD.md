@@ -1,7 +1,7 @@
 # SAGE12 semantic planner — model card
 
-Status: software implementation complete; empirically untrained and
-unauthorized.
+Status: software implementation complete; Stage A proposal pilot failed
+closed; world model and EBM remain untrained and unauthorized.
 
 ## Components
 
@@ -53,16 +53,20 @@ corresponding protocol stages pass.
 
 ## Training and evaluation
 
-No SAGE12 corpus has been collected and no SAGE12 model checkpoint exists.
-The pairwise EBM implementation has six inputs and a default hidden width of
-16. Its unit test verifies optimization mechanics only; this is not an
-empirical result or promotion evidence. GPU training was not run for this
-implementation because there is no preregistered SAGE12 training corpus yet.
+The frozen Stage A corpus contains 2,104 source-only executed transitions:
+1,624 source-training and 480 source-validation rows. Qwen2.5 0.5B Instruct
+was evaluated on 112 outcome-blind representative scenes and their 112
+relation-shuffled controls. All 224 outputs failed the strict typed parser,
+productive-mechanism recall@8 was zero, and the stronger action-only baseline
+reached 0.895. Full scene signatures identified source-training games with
+99.94% accuracy against a 9.85% majority baseline.
 
-The future device policy allows CUDA for the 0.5B local-model inference and
-pairwise EBM when a frozen CPU/GPU timing comparison shows a real benefit.
-Hardware choice cannot change the task definition, decoding, inputs, labels,
-or gates.
+The laptop RTX 4050 was selected only after identical-decoding inference was
+3.808x faster by median wall time than CPU. This accelerated proposal
+evaluation; it did not change a quality gate. No semantic world-model
+checkpoint or pairwise EBM checkpoint exists because Stage A failed and
+authorized no later fitting. The pairwise EBM unit test still verifies
+optimization mechanics only.
 
 ## Safety and epistemic boundaries
 
@@ -82,11 +86,15 @@ or gates.
 Entity identity is currently reconstructed per frame and may be unstable under
 large scene rearrangements. The abstract world model assumes effects are
 adequately represented by the bounded predicate vocabulary. The template
-generator is only a baseline. Strict JSON generation can produce zero
-proposals, which is intentional. The heuristic energy is hand-weighted. No
-claim of cross-game generalization, improved game score, calibration, or safe
-live authority is made.
+generator is only a baseline. In Stage A, every Qwen response was Markdown
+fenced, fewer than half were JSON after removing only the fence, and none
+matched the typed schema. More importantly, the supposedly structural entity,
+relation, and action views all carried strong game signatures. Constrained
+output alone therefore would not repair the transfer problem. The heuristic
+energy is hand-weighted. No claim of cross-game generalization, improved game
+score, calibration, or safe live authority is made.
 
 See `theory/sage12/README.md`,
 `training/SAGE12_DATA_POLICY.md`, and
-`reports/SAGE12_VALIDATION_PROTOCOL.md`.
+`reports/SAGE12_VALIDATION_PROTOCOL.md`. The full negative result is in
+`reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.

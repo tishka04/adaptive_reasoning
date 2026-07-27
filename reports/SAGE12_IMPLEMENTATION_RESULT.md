@@ -51,17 +51,31 @@ the logical core count; it does not affect a test result. Focused Ruff
 validation of `theory/sage12`, its tests, and the unified-controller
 integration also passes.
 
+Post-pilot regression:
+
+```text
+python -m pytest -q
+1692 passed, 1 environment warning in 212.93s
+```
+
+The focused semantic-planning and proposal-pilot suites pass 25 tests
+together, and targeted Ruff validation remains clean.
+
 ## GPU decision
 
-No empirical SAGE12 model was trained in this implementation task, so using
-the laptop GPU would not have accelerated meaningful training. The only
-PyTorch run was a tiny unit-level optimization check. The local proposal
-backend and future EBM training both support automatic CUDA placement, with
-the reproducibility/timing rules frozen in `training/SAGE12_DATA_POLICY.md`.
+The subsequent Stage A proposal pilot compared identical Qwen2.5 0.5B
+decoding on CPU and the laptop RTX 4050. Median inference fell from 26.478
+seconds to 6.953 seconds, a 3.808x speedup, so the GPU was used for the 224
+clean proposal generations. This was inference only. No semantic world model
+or EBM was trained because the proposal gate failed.
 
 ## Authority result
 
-No proposal, world-model, energy, shadow, bounded, active, or holdout gate has
-been evaluated. The integrated default remains `off`; bounded and active
-downgrade to shadow without all prerequisite gates. This report makes no
-claim that SAGE12 improves game performance or cross-game generalization.
+The proposal gate has now been evaluated and failed closed. Strict typed JSON,
+grounding, recall gain, relation sensitivity, per-game transfer, and
+game-signature leakage all failed their frozen requirements. The world-model,
+energy, shadow, bounded, active, and holdout stages were therefore not run.
+The integrated default remains `off`; bounded and active downgrade to shadow
+without all prerequisite gates. See
+`reports/SAGE12_PROPOSAL_PILOT_RESULT.md` for the complete result and artifact
+checksums.

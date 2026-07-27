@@ -1,6 +1,7 @@
 # SAGE12 semantic-trajectory data policy
 
-Status: Stage A collection frozen before outcomes; collection not started.
+Status: Stage A collection complete; proposal pilot failed closed and later
+training stages are unauthorized.
 
 Format: `sage12-semantic-trajectory-v1`.
 
@@ -10,6 +11,13 @@ The first concrete collection is preregistered as
 `0dfdff9a61e45e02b16601a47d987454c991a2d5f99c8964a5486c17ed17aceb`.
 It is a 2,104-row source-only proposal pilot and cannot authorize world-model
 fitting unless every frozen Stage A gate passes.
+
+The collection completed with exactly 1,624 source-training and 480
+source-validation rows. Its compact-shard checksum is
+`ce5cfe1217f9de1ef9add9ab250f60315ed66d154ae8ed903e51bb572b69a4b3`.
+Stage A subsequently failed all seven gates, so this data remains an audited
+negative-result corpus and cannot be used to fit the semantic world model
+under this protocol. See `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.
 
 ## Purpose
 

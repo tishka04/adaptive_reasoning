@@ -51,6 +51,7 @@ from .scene_graph import GroundedRelation, SceneGraph, build_scene_graph
 
 BENCHMARK_FORMAT_VERSION = "sage12-qwen-device-benchmark-v1"
 RESULT_FORMAT_VERSION = "sage12-grounded-proposal-result-v1"
+DIAGNOSTIC_FORMAT_VERSION = "sage12-proposal-posthoc-diagnostics-v1"
 
 
 def run_device_benchmark(
@@ -199,6 +200,101 @@ def run_evaluation(
     result["result_checksum"] = _payload_checksum(result)
     _write_json_atomic(destination / "pilot_result.json", result)
     return result
+
+
+def run_posthoc_diagnostics(
+    *,
+    frozen_manifest_path: str | Path = DEFAULT_FROZEN_MANIFEST_PATH,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+) -> dict[str, Any]:
+    """Explain a completed result without changing any gate or score."""
+    frozen = load_frozen_manifest(frozen_manifest_path)
+    destination = Path(output_dir)
+    result = json.loads(
+        (destination / "pilot_result.json").read_text(encoding="utf-8")
+    )
+    if result.get("status") not in {"PASS", "FAIL_CLOSED"}:
+        raise ValueError("posthoc diagnostics require a completed pilot")
+    outputs = []
+    with (destination / "model_outputs.jsonl").open(
+        "r", encoding="utf-8"
+    ) as handle:
+        outputs = [json.loads(line) for line in handle if line.strip()]
+    fenced = 0
+    fenced_json_valid = 0
+    typed_after_fence = 0
+    top_level_types: Counter[str] = Counter()
+    for item in outputs:
+        raw = str(item["raw_response"])
+        stripped, had_fence = _strip_single_json_fence(raw)
+        fenced += int(had_fence)
+        try:
+            payload = json.loads(stripped)
+            fenced_json_valid += 1
+            top_level_types[type(payload).__name__] += 1
+            parsed = hypotheses_from_json(
+                stripped,
+                maximum=int(frozen["model"]["maximum_hypotheses"]),
+            )
+            typed_after_fence += int(bool(parsed))
+        except (ValueError, TypeError, KeyError, json.JSONDecodeError):
+            continue
+    traces = _load_collection(frozen, destination)
+    train = [
+        trace for trace in traces if trace.source_split == "source_train"
+    ]
+    identity_views = {
+        view: _game_identity_probe_view(train, view=view)
+        for view in (
+            "available_actions_only",
+            "entity_structure_only",
+            "relations_only",
+            "full",
+        )
+    }
+    originals = {
+        item["trace_digest"]: item["raw_response"]
+        for item in outputs
+        if item["variant"] == "original"
+    }
+    shuffles = {
+        item["trace_digest"]: item["raw_response"]
+        for item in outputs
+        if item["variant"] == "relation_shuffle"
+    }
+    latencies = [float(item["inference_seconds"]) for item in outputs]
+    payload = {
+        "format_version": DIAGNOSTIC_FORMAT_VERSION,
+        "status": "POSTHOC_NO_GATE_EFFECT",
+        "pilot_result_checksum": result["result_checksum"],
+        "output_rows": len(outputs),
+        "markdown_json_fence_rate": fenced / len(outputs),
+        "json_valid_after_fence_removal_rate": (
+            fenced_json_valid / len(outputs)
+        ),
+        "typed_valid_after_fence_removal_rate": (
+            typed_after_fence / len(outputs)
+        ),
+        "top_level_json_types_after_fence_removal": dict(
+            sorted(top_level_types.items())
+        ),
+        "original_shuffle_exact_response_equality": _mean(
+            originals[key] == shuffles[key]
+            for key in sorted(set(originals) & set(shuffles))
+        ),
+        "inference_seconds": {
+            "median": statistics.median(latencies),
+            "mean": statistics.fmean(latencies),
+            "minimum": min(latencies),
+            "maximum": max(latencies),
+        },
+        "game_identity_ablation": identity_views,
+        "changes_primary_result": False,
+        "world_model_fit_started": False,
+    }
+    payload["result_checksum"] = _payload_checksum(payload)
+    _write_json_atomic(destination / "posthoc_diagnostics.json", payload)
+    return payload
 
 
 def _benchmark_graphs(
@@ -752,6 +848,66 @@ def _identity_features(trace: ProposalPilotTrace) -> dict[str, float]:
     return {key: float(value) for key, value in features.items()}
 
 
+def _game_identity_probe_view(
+    traces: Sequence[ProposalPilotTrace],
+    *,
+    view: str,
+) -> dict[str, Any]:
+    from sklearn.feature_extraction import DictVectorizer
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import StratifiedKFold, cross_val_score
+
+    prefixes = {
+        "available_actions_only": ("available:",),
+        "entity_structure_only": (
+            "entity_count",
+            "area:",
+            "aspect:",
+            "role:",
+        ),
+        "relations_only": ("relation:",),
+        "full": ("",),
+    }[view]
+    rows = []
+    labels = []
+    for trace in traces:
+        full = _identity_features(trace)
+        rows.append(
+            {
+                key: value
+                for key, value in full.items()
+                if any(key.startswith(prefix) for prefix in prefixes)
+            }
+        )
+        labels.append(trace.game_id)
+    matrix = DictVectorizer(sparse=True).fit_transform(rows)
+    labels_array = np.asarray(labels)
+    scores = cross_val_score(
+        LogisticRegression(max_iter=1_000, random_state=12),
+        matrix,
+        labels_array,
+        cv=StratifiedKFold(n_splits=3, shuffle=True, random_state=12),
+        scoring="accuracy",
+    )
+    majority = max(Counter(labels).values()) / len(labels)
+    return {
+        "accuracy": float(np.mean(scores)),
+        "fold_accuracies": [float(value) for value in scores],
+        "majority_accuracy": float(majority),
+        "gain_over_majority": float(np.mean(scores) - majority),
+    }
+
+
+def _strip_single_json_fence(raw: str) -> tuple[str, bool]:
+    text = str(raw).strip()
+    if not text.startswith("```json"):
+        return text, False
+    text = text[len("```json") :].lstrip()
+    if text.endswith("```"):
+        text = text[:-3].rstrip()
+    return text, True
+
+
 def _mean(values: Iterable[Any]) -> float:
     items = [float(value) for value in values]
     return sum(items) / len(items) if items else 0.0
@@ -792,7 +948,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument(
         "command",
-        choices=("benchmark", "evaluate"),
+        choices=("benchmark", "evaluate", "diagnose"),
     )
     parser.add_argument(
         "--frozen-manifest",
@@ -812,8 +968,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             output_dir=args.out_dir,
             environments_dir=args.environments_dir,
         )
-    else:
+    elif args.command == "evaluate":
         result = run_evaluation(
+            frozen_manifest_path=args.frozen_manifest,
+            output_dir=args.out_dir,
+        )
+    else:
+        result = run_posthoc_diagnostics(
             frozen_manifest_path=args.frozen_manifest,
             output_dir=args.out_dir,
         )
