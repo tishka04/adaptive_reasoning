@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import asdict, dataclass
+import os
+from dataclasses import asdict, dataclass, field, replace
 from pathlib import Path
-from typing import Any, Mapping, Sequence, Tuple
+from typing import Any, Iterable, Mapping, Sequence, Tuple
 
 from .scene_graph import (
     GroundedEntity,
@@ -40,6 +41,8 @@ class ProposalPilotTrace:
     game_over: bool
     productive: bool
     repeat_index: int
+    relation_shuffle_graph: Mapping[str, Any] = field(default_factory=dict)
+    trace_digest: str = ""
     format_version: str = TRACE_FORMAT_VERSION
 
     def __post_init__(self) -> None:
@@ -54,20 +57,23 @@ class ProposalPilotTrace:
             raise ValueError("proposal trace requires legal action names")
         if self.selected_action_name not in self.available_action_names:
             raise ValueError("executed action must have been legal")
+        if not self.trace_digest:
+            object.__setattr__(
+                self,
+                "trace_digest",
+                _pre_action_digest(self),
+            )
 
     @property
     def digest(self) -> str:
-        return hashlib.sha256(
-            json.dumps(
-                self.to_dict(),
-                sort_keys=True,
-                separators=(",", ":"),
-            ).encode("utf-8")
-        ).hexdigest()
+        return self.trace_digest
 
     def to_dict(self) -> dict[str, Any]:
         payload = asdict(self)
         payload["scene_graph"] = _json_safe(self.scene_graph)
+        payload["relation_shuffle_graph"] = _json_safe(
+            self.relation_shuffle_graph
+        )
         payload["selected_action_data"] = _json_safe(
             self.selected_action_data
         )
@@ -82,6 +88,9 @@ class ProposalPilotTrace:
             reset_index=int(payload["reset_index"]),
             step_index=int(payload["step_index"]),
             scene_graph=dict(payload["scene_graph"]),
+            relation_shuffle_graph=dict(
+                payload.get("relation_shuffle_graph", {})
+            ),
             available_action_names=tuple(payload["available_action_names"]),
             selected_action_name=str(payload["selected_action_name"]),
             selected_action_data=dict(
@@ -95,6 +104,7 @@ class ProposalPilotTrace:
             game_over=bool(payload["game_over"]),
             productive=bool(payload["productive"]),
             repeat_index=int(payload["repeat_index"]),
+            trace_digest=str(payload.get("trace_digest", "")),
             format_version=str(payload["format_version"]),
         )
 
@@ -154,6 +164,262 @@ def graph_from_mapping(payload: Mapping[str, Any]) -> SceneGraph:
     )
 
 
+def compact_trace_views(
+    trace: ProposalPilotTrace,
+    *,
+    maximum_entities: int,
+    maximum_relations: int,
+) -> ProposalPilotTrace:
+    """Materialize bounded original/shuffled views without using outcomes."""
+    graph = graph_from_mapping(trace.scene_graph)
+    compact = _compact_graph(
+        graph,
+        maximum_entities=maximum_entities,
+        maximum_relations=maximum_relations,
+    )
+    shuffled = _relation_shuffle_graph(
+        compact,
+        salt=trace.digest,
+        maximum_relations=maximum_relations,
+    )
+    return replace(
+        trace,
+        scene_graph=graph_to_mapping(compact),
+        relation_shuffle_graph=graph_to_mapping(shuffled),
+    )
+
+
+def compact_existing_collection(
+    *,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+    frozen_manifest_path: str | Path = DEFAULT_FROZEN_MANIFEST_PATH,
+) -> dict[str, Any]:
+    """Rewrite the collected full graphs to exact bounded prompt views."""
+    destination = Path(output_dir)
+    frozen = load_frozen_manifest(frozen_manifest_path)
+    collection_path = destination / "collection_manifest.json"
+    collection = json.loads(collection_path.read_text(encoding="utf-8"))
+    original_shards = {
+        str(item["game_id"]): str(item["sha256"])
+        for item in collection["shards"]
+    }
+    limits = frozen["model"]["prompt_limits"]
+    metadata = []
+    for game, quota in frozen["game_quotas"].items():
+        path = destination / "shards" / f"{game}.jsonl"
+        records = read_trace_shard(path)
+        compacted = tuple(
+            compact_trace_views(
+                record,
+                maximum_entities=int(limits["maximum_entities"]),
+                maximum_relations=int(limits["maximum_relations"]),
+            )
+            for record in records
+        )
+        temporary = path.with_suffix(path.suffix + ".compact.tmp")
+        with temporary.open("w", encoding="utf-8", newline="\n") as handle:
+            for record in compacted:
+                handle.write(
+                    json.dumps(
+                        record.to_dict(),
+                        sort_keys=True,
+                        separators=(",", ":"),
+                    )
+                    + "\n"
+                )
+        os.replace(temporary, path)
+        metadata.append(
+            shard_metadata(
+                path,
+                expected_game=str(game),
+                expected_rows=int(quota),
+            )
+        )
+    combined = hashlib.sha256(
+        "".join(item["sha256"] for item in metadata).encode("ascii")
+    ).hexdigest()
+    collection.update(
+        {
+            "shards": metadata,
+            "combined_shard_checksum": combined,
+            "projection_amendment": {
+                "outcome_fields_used": False,
+                "maximum_entities": int(limits["maximum_entities"]),
+                "maximum_relations": int(limits["maximum_relations"]),
+                "sampling_digest": "pre_action_only_v1",
+                "original_shard_sha256": original_shards,
+            },
+        }
+    )
+    temporary_manifest = collection_path.with_suffix(".json.tmp")
+    temporary_manifest.write_text(
+        json.dumps(collection, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    os.replace(temporary_manifest, collection_path)
+    return collection
+
+
+def _compact_graph(
+    graph: SceneGraph,
+    *,
+    maximum_entities: int,
+    maximum_relations: int,
+) -> SceneGraph:
+    entities = tuple(
+        sorted(graph.entities, key=_entity_priority)[
+            : max(1, int(maximum_entities))
+        ]
+    )
+    entity_ids = {entity.entity_id for entity in entities}
+    candidates = [
+        relation
+        for relation in graph.relations
+        if relation.subject_id in entity_ids
+        and relation.object_id in entity_ids
+    ]
+    relations = _stratified_relations(candidates, maximum_relations)
+    state = {
+        predicate
+        for predicate in graph.state_predicates
+        if predicate.split("|", 1)[0]
+        not in {relation.kind for relation in graph.relations}
+        and (
+            predicate.split("|")[1] in entity_ids
+            if len(predicate.split("|")) > 1
+            and predicate.split("|")[1] not in {"", "-"}
+            else True
+        )
+    }
+    state.update(relation.key for relation in relations)
+    return SceneGraph(
+        entities=entities,
+        relations=relations,
+        state_predicates=frozenset(state),
+        signature=_graph_signature(entities, state),
+    )
+
+
+def _relation_shuffle_graph(
+    graph: SceneGraph,
+    *,
+    salt: str,
+    maximum_relations: int,
+) -> SceneGraph:
+    entity_ids = sorted(entity.entity_id for entity in graph.entities)
+    if len(entity_ids) < 2:
+        return graph
+    shift = int(salt[:8], 16) % (len(entity_ids) - 1) + 1
+    mapped = {
+        entity_id: entity_ids[(index + shift) % len(entity_ids)]
+        for index, entity_id in enumerate(entity_ids)
+    }
+    candidates = [
+        GroundedRelation(
+            kind=relation.kind,
+            subject_id=mapped[relation.subject_id],
+            object_id=mapped[relation.object_id],
+        )
+        for relation in graph.relations
+    ]
+    relations = _stratified_relations(candidates, maximum_relations)
+    state = {
+        predicate
+        for predicate in graph.state_predicates
+        if predicate.split("|", 1)[0]
+        not in {relation.kind for relation in graph.relations}
+    }
+    state.update(relation.key for relation in relations)
+    return SceneGraph(
+        entities=graph.entities,
+        relations=relations,
+        state_predicates=frozenset(state),
+        signature=_graph_signature(graph.entities, state),
+    )
+
+
+def _entity_priority(entity: GroundedEntity) -> tuple[int, str]:
+    priorities = {
+        "player": 0,
+        "hazardous": 1,
+        "collectible": 2,
+        "movable": 3,
+        "clickable": 4,
+        "target": 5,
+        "object": 6,
+    }
+    best = min(
+        (priorities.get(role, 7) for role in entity.roles),
+        default=7,
+    )
+    return best, entity.entity_id
+
+
+def _stratified_relations(
+    candidates: Sequence[GroundedRelation],
+    maximum: int,
+) -> Tuple[GroundedRelation, ...]:
+    by_kind: dict[str, list[GroundedRelation]] = {}
+    for relation in sorted(candidates, key=lambda item: item.key):
+        by_kind.setdefault(relation.kind, []).append(relation)
+    selected = []
+    kinds = sorted(by_kind)
+    while kinds and len(selected) < max(1, int(maximum)):
+        remaining = []
+        for kind in kinds:
+            bucket = by_kind[kind]
+            if bucket and len(selected) < int(maximum):
+                selected.append(bucket.pop(0))
+            if bucket:
+                remaining.append(kind)
+        kinds = remaining
+    return tuple(selected)
+
+
+def _graph_signature(
+    entities: Sequence[GroundedEntity],
+    state: Iterable[str],
+) -> str:
+    return hashlib.sha256(
+        json.dumps(
+            {
+                "entities": [
+                    {
+                        "id": entity.entity_id,
+                        "roles": entity.roles,
+                        "area": entity.area_bucket,
+                        "aspect": entity.aspect_bucket,
+                    }
+                    for entity in entities
+                ],
+                "relations": sorted(state),
+            },
+            sort_keys=True,
+        ).encode("utf-8")
+    ).hexdigest()[:16]
+
+
+def _pre_action_digest(trace: ProposalPilotTrace) -> str:
+    payload = {
+        "game_id": trace.game_id,
+        "source_split": trace.source_split,
+        "policy_seed": trace.policy_seed,
+        "reset_index": trace.reset_index,
+        "step_index": trace.step_index,
+        "scene_signature": str(trace.scene_graph.get("signature", "")),
+        "available_action_names": list(trace.available_action_names),
+        "selected_action_name": trace.selected_action_name,
+        "selected_action_data": _json_safe(trace.selected_action_data),
+    }
+    return hashlib.sha256(
+        json.dumps(
+            payload,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+    ).hexdigest()
+
+
 def load_frozen_manifest(
     path: str | Path = DEFAULT_FROZEN_MANIFEST_PATH,
 ) -> dict[str, Any]:
@@ -164,6 +430,10 @@ def load_frozen_manifest(
     if payload.get("status") not in {
         "FROZEN_BEFORE_OUTCOMES",
         "AMENDED_BEFORE_OUTCOMES_AFTER_INFEASIBLE_PREFLIGHT",
+        (
+            "AMENDED_AFTER_PARTIAL_INVALID_OUTPUTS_FOR_STORAGE_"
+            "AND_SAMPLING_CORRECTION"
+        ),
     }:
         raise ValueError("SAGE12 proposal pilot was not frozen")
     expected = str(payload.get("manifest_checksum", ""))
@@ -268,6 +538,8 @@ __all__ = [
     "PILOT_FORMAT_VERSION",
     "ProposalPilotTrace",
     "TRACE_FORMAT_VERSION",
+    "compact_existing_collection",
+    "compact_trace_views",
     "graph_from_mapping",
     "graph_to_mapping",
     "load_frozen_manifest",

@@ -15,6 +15,7 @@ from theory.sage12 import (
 from theory.sage12.proposal_pilot_collection import _balanced_action
 from theory.sage12.proposal_pilot_data import (
     ProposalPilotTrace,
+    compact_trace_views,
     graph_from_mapping,
     graph_to_mapping,
     load_frozen_manifest,
@@ -186,6 +187,38 @@ def test_representative_sampling_is_outcome_independent_and_bounded() -> None:
         trace.digest for trace in second
     ]
     assert len(first) == 8 * len(manifest["game_quotas"])
+
+
+def test_trace_digest_uses_pre_action_fields_only() -> None:
+    original = _trace("bp35", 1)
+    changed_outcome = ProposalPilotTrace.from_dict(
+        {
+            **original.to_dict(),
+            "observed_effects": ["game_over|-|-|"],
+            "changed": False,
+            "noop": True,
+            "player_moved": False,
+            "game_over": True,
+            "productive": False,
+            "trace_digest": "",
+        }
+    )
+
+    assert changed_outcome.digest == original.digest
+
+
+def test_compact_trace_materializes_both_bounded_views() -> None:
+    trace = _trace("bp35", 1)
+    compacted = compact_trace_views(
+        trace,
+        maximum_entities=1,
+        maximum_relations=2,
+    )
+
+    assert len(compacted.scene_graph["entities"]) == 1
+    assert len(compacted.scene_graph["relations"]) <= 2
+    assert compacted.relation_shuffle_graph
+    assert compacted.digest == trace.digest
 
 
 def test_relation_shuffle_preserves_entities_but_changes_bindings() -> None:

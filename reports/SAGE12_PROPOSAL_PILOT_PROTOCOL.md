@@ -1,13 +1,14 @@
 # SAGE12 grounded-proposal pilot protocol
 
-Status: amended and re-frozen before any completed model generation,
-collection, or outcome evaluation.
+Status: amended after a partial invalid-output checkpoint to correct storage
+complexity and an outcome-contaminated sampling digest; re-frozen before the
+clean evaluation rerun.
 
 Frozen manifest:
 `training/sage12/proposal_pilot_v1/frozen_manifest.json`
 
 Manifest checksum:
-`03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287`
+`dfc53d015734c96eacdb003836713d15f4dac4c56c398e363e54e3ddfffadcce`
 
 ## Feasibility amendment before outcomes
 
@@ -24,6 +25,24 @@ identifier; relations are selected round-robin across relation kinds. An
 four benchmark games, decoding, 2,104-row collection, representative sample,
 baselines, shuffles, gates, and firewalls are unchanged. This is a feasibility
 amendment, not post-outcome tuning.
+
+The first checkpointed evaluation segment then exposed two implementation
+defects. Full quadratic relation graphs were still archived even though only
+the bounded view reached Qwen, producing about 2.0 GB of redundant storage
+and severe preprocessing latency. Separately, the representative-row digest
+included post-action fields despite the protocol's outcome-independent
+selection requirement. Seven generations completed before interruption; all
+seven were strict-JSON failures. That already makes the 0.99 JSON gate
+mathematically impossible, and neither the JSON contract, model, decoding nor
+threshold is changed.
+
+The existing 2,104 executed transitions are now projected
+outcome-independently to explicit 24-entity/96-relation original and shuffled
+views. Sampling and shuffle salts use only game/split, policy seed,
+reset/step, pre-action scene signature, legal actions, and the preselected
+action/arguments. The seven preliminary outputs are excluded and the full
+evaluation restarts from zero. This amendment corrects storage and removes
+outcome leakage; it does not attempt to rescue the already-failed JSON gate.
 
 ## Scope and firewall
 
@@ -61,7 +80,8 @@ relation-kind-stratified relations, and 8,192 input tokens.
 ## Representative evaluation
 
 Eight rows per game are selected by the lowest SHA-256 values under the frozen
-salt `sage12-proposal-pilot-sample-v1`; selection does not inspect outcomes.
+salt `sage12-proposal-pilot-sample-v1` applied to a pre-action-only trace
+digest; selection cannot inspect outcomes.
 The resulting 112 scenes receive:
 
 1. the original relation graph;

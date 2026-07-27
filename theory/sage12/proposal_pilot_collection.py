@@ -30,6 +30,7 @@ from .proposal_pilot_data import (
     DEFAULT_FROZEN_MANIFEST_PATH,
     DEFAULT_OUTPUT_DIR,
     ProposalPilotTrace,
+    compact_trace_views,
     graph_to_mapping,
     load_frozen_manifest,
     shard_metadata,
@@ -149,6 +150,7 @@ def _collect_game(
     action_budget = int(frozen["collection"]["action_budget_per_reset"])
     maximum_resets = int(frozen["collection"]["maximum_resets_per_game"])
     repeat_cap = int(frozen["collection"]["state_action_repeat_cap"])
+    prompt_limits = frozen["model"]["prompt_limits"]
     records: list[ProposalPilotTrace] = []
     repeats: Counter[str] = Counter()
     action_counts: Counter[str] = Counter()
@@ -222,7 +224,8 @@ def _collect_game(
             action_counts[selected.name] += 1
             if repeat_index < repeat_cap:
                 records.append(
-                    ProposalPilotTrace(
+                    compact_trace_views(
+                        ProposalPilotTrace(
                         game_id=game,
                         source_split=split,
                         policy_seed=seed,
@@ -245,6 +248,13 @@ def _collect_game(
                             or transition.diff.level_complete
                         ),
                         repeat_index=repeat_index,
+                        ),
+                        maximum_entities=int(
+                            prompt_limits["maximum_entities"]
+                        ),
+                        maximum_relations=int(
+                            prompt_limits["maximum_relations"]
+                        ),
                     )
                 )
             frame = frame_after

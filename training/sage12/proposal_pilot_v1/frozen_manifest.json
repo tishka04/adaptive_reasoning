@@ -7,6 +7,7 @@
       0,
       1
     ],
+    "stored_scene_views": "compact_original_and_relation_shuffle",
     "state_action_repeat_cap": 4
   },
   "feasibility_amendment": {
@@ -14,8 +15,11 @@
     "failed_preflight_completed_generations": 0,
     "failed_preflight_observed_input_tokens": 1681642,
     "failed_preflight_timeout_seconds": 902.1,
+    "partial_evaluation_outputs_before_projection_fix": 7,
+    "partial_outputs_strict_json_valid": 0,
     "reason": "unbounded_scene_serialization_exceeded_model_context",
-    "scope": "deterministic_prompt_compaction_and_hard_input_cap_only"
+    "sampling_digest_amendment": "pre_action_fields_only_v1",
+    "scope": "deterministic_prompt_compaction_hard_input_cap_compact_storage_and_pre_action_sampling_digest"
   },
   "device_benchmark": {
     "games": [
@@ -32,6 +36,7 @@
     "game_identity_probe": "source_train_logistic_regression_3fold",
     "relation_shuffle": "deterministic_entity_permutation_v1",
     "representative_rows_per_game": 8,
+    "sample_digest": "pre_action_fields_only_v1",
     "sample_salt": "sage12-proposal-pilot-sample-v1",
     "subgoal": "level_complete",
     "template_baseline": "sage12_deterministic_template_v1"
@@ -85,7 +90,7 @@
     "minimum_support_zero_rate": 0.95,
     "require_every_validation_game_nonnegative": true
   },
-  "manifest_checksum": "03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287",
+  "manifest_checksum": "dfc53d015734c96eacdb003836713d15f4dac4c56c398e363e54e3ddfffadcce",
   "model": {
     "decoding": {
       "do_sample": false,
@@ -122,7 +127,7 @@
     "ls20",
     "sc25"
   ],
-  "status": "AMENDED_BEFORE_OUTCOMES_AFTER_INFEASIBLE_PREFLIGHT",
+  "status": "AMENDED_AFTER_PARTIAL_INVALID_OUTPUTS_FOR_STORAGE_AND_SAMPLING_CORRECTION",
   "target_transitions": 2104,
   "world_model_fit_authorized": false
 }

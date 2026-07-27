@@ -398,7 +398,7 @@ def _run_or_resume_model_outputs(
                 candidate_graph = (
                     graph
                     if variant == "original"
-                    else _shuffle_relations(graph, trace.digest)
+                    else graph_from_mapping(trace.relation_shuffle_graph)
                 )
                 started = time.perf_counter()
                 generated = generator.generate(
@@ -511,7 +511,7 @@ def _score(
             candidate_graph = (
                 graph
                 if variant == "original"
-                else _shuffle_relations(graph, trace.digest)
+                else graph_from_mapping(trace.relation_shuffle_graph)
             )
             compilation = compiler.compile(
                 hypotheses,
