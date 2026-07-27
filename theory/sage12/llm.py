@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping, Protocol, Sequence, Tuple
+from typing import Any, Protocol
 
 from .hypotheses import (
     ALLOWED_PREDICATES,
@@ -68,10 +69,15 @@ class TransformersJSONModel:
             },
             {"role": "user", "content": prompt},
         ]
-        inputs = tokenizer.apply_chat_template(
+        encoded = tokenizer.apply_chat_template(
             messages,
             add_generation_prompt=True,
             return_tensors="pt",
+        )
+        inputs = (
+            encoded["input_ids"]
+            if isinstance(encoded, Mapping) or hasattr(encoded, "keys")
+            else encoded
         )
         if inputs.shape[-1] > int(self.config.maximum_input_tokens):
             raise RuntimeError(
@@ -140,7 +146,7 @@ class TransformersJSONModel:
 
 @dataclass(frozen=True)
 class HypothesisGenerationResult:
-    hypotheses: Tuple[SemanticHypothesis, ...]
+    hypotheses: tuple[SemanticHypothesis, ...]
     parse_error: str = ""
     raw_response: str = ""
 

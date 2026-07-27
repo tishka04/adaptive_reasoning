@@ -576,7 +576,7 @@ def _fit_platt(probabilities: np.ndarray, targets: np.ndarray) -> dict[str, floa
         return {"slope": 1.0, "intercept": 0.0}
     model = LogisticRegression(
         C=1.0,
-        penalty="l2",
+        l1_ratio=0.0,
         solver="lbfgs",
         max_iter=1000,
         class_weight=None,
@@ -835,10 +835,15 @@ def _chat_token_count(tokenizer: Any, window: MechanicWindowRecord) -> int:
         },
         {"role": "user", "content": compact_qwen_prompt(window)},
     ]
-    inputs = tokenizer.apply_chat_template(
+    encoded = tokenizer.apply_chat_template(
         messages,
         add_generation_prompt=True,
         return_tensors="pt",
+    )
+    inputs = (
+        encoded["input_ids"]
+        if isinstance(encoded, Mapping) or hasattr(encoded, "keys")
+        else encoded
     )
     return int(inputs.shape[-1])
 

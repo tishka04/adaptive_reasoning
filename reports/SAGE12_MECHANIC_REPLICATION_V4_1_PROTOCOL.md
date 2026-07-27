@@ -178,3 +178,12 @@ Publication is three immutable checkpoints on `main`:
 No threshold, seed, rule, calibrator, prompt, schema, gate, or code path may
 change after its corresponding outcome boundary is opened. Every pass or
 failure is published.
+
+## Source-preflight compatibility amendment
+
+The first source-only preflight attempt reached Qwen tokenization but stopped
+before producing a preflight result because `transformers` 5 returns a
+mapping containing `input_ids` where the existing adapter expected the tensor
+directly. The adapter now unwraps `input_ids` for both token counting and
+generation. This changes no prompt, schema, weights, decoding, data, metric,
+threshold, or gate. No V4.1 prospective trace or outcome had been opened.

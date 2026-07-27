@@ -13,6 +13,7 @@ from theory.sage12.mechanic_replication import (
     CausalRoleTracker,
     MechanicWindowRecord,
     SemanticTransitionEvent,
+    _chat_token_count,
     _select_threshold,
     apply_calibration,
     build_mechanic_windows,
@@ -295,6 +296,17 @@ def test_compact_qwen_schema_is_closed_and_bounded():
         schema["properties"]["h"]["items"]["properties"]["z"]["const"]
         == 0
     )
+
+
+def test_token_counter_accepts_transformers_batch_encoding():
+    class FakeTensor:
+        shape = (1, 321)
+
+    class FakeTokenizer:
+        def apply_chat_template(self, *_args, **_kwargs):
+            return {"input_ids": FakeTensor()}
+
+    assert _chat_token_count(FakeTokenizer(), _window()) == 321
 
 
 def test_frozen_v4_1_manifest_checksum_is_valid():
