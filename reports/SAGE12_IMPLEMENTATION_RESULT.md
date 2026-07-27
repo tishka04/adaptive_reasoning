@@ -343,3 +343,10 @@ The frozen manifest checksum is
 Focused V4.3 and V4.2/V4.2.1 regression validation passed 37 tests in 26.21
 seconds. At this checkpoint no V4.3 corpus or outcome has been opened. The
 world model, EBM, and controller remain untrained and unauthorized.
+
+The first source-collection invocation wrote no shard and stopped before its
+first branch because `bp35` exposes duplicate byte-identical legal candidates.
+The pre-outcome replay resolver now deterministically accepts the first
+identical candidate; exact replay-state verification remains authoritative.
+A regression test covers this representation detail. No schema, feature,
+seed, quota, outcome rule, metric, or gate changed.

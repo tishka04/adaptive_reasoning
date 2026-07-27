@@ -254,6 +254,25 @@ def test_replay_mismatch_fails_closed_before_execution() -> None:
         )
 
 
+def test_replay_accepts_duplicate_byte_identical_legal_candidates() -> None:
+    from theory.sage12 import bound_mechanic_pilot as pilot
+
+    duplicate = _Action("ACTION6", {"x": 1, "y": 1})
+
+    class _Environment:
+        pass
+
+    original = pilot._legal_actions
+    pilot._legal_actions = lambda _env: (duplicate, duplicate)
+    try:
+        assert (
+            pilot._find_action(_Environment(), ActionSpec("ACTION6", {"x": 1, "y": 1}))
+            is duplicate
+        )
+    finally:
+        pilot._legal_actions = original
+
+
 @dataclass(frozen=True)
 class _Action:
     name: str

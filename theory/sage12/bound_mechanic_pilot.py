@@ -644,10 +644,11 @@ def _find_action(env: Any, spec: ActionSpec) -> Any:
         for action in _legal_actions(env)
         if ActionSpec.from_action(action).key == spec.key
     ]
-    if len(matches) != 1:
-        raise RuntimeError(
-            f"replay action resolution failed for {spec.name}: {len(matches)}"
-        )
+    if not matches:
+        raise RuntimeError(f"replay action resolution failed for {spec.name}: no match")
+    # ARC may expose duplicate legal candidates with byte-identical name and
+    # arguments. They denote the same intervention; selecting the first is
+    # deterministic, and the replayed pre-state hash remains the authority.
     return matches[0]
 
 
