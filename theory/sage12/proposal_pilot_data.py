@@ -204,37 +204,54 @@ def compact_existing_collection(
         for item in collection["shards"]
     }
     limits = frozen["model"]["prompt_limits"]
-    metadata = []
-    for game, quota in frozen["game_quotas"].items():
+    metadata_by_game = {}
+    game_items = sorted(
+        frozen["game_quotas"].items(),
+        key=lambda item: (
+            destination / "shards" / f"{item[0]}.jsonl"
+        ).stat().st_size,
+    )
+    for game, quota in game_items:
         path = destination / "shards" / f"{game}.jsonl"
-        records = read_trace_shard(path)
-        compacted = tuple(
-            compact_trace_views(
-                record,
-                maximum_entities=int(limits["maximum_entities"]),
-                maximum_relations=int(limits["maximum_relations"]),
-            )
-            for record in records
-        )
-        temporary = path.with_suffix(path.suffix + ".compact.tmp")
-        with temporary.open("w", encoding="utf-8", newline="\n") as handle:
-            for record in compacted:
-                handle.write(
-                    json.dumps(
-                        record.to_dict(),
-                        sort_keys=True,
-                        separators=(",", ":"),
+        if not _shard_is_compact(path):
+            temporary = path.with_suffix(path.suffix + ".compact.tmp")
+            written = 0
+            with (
+                path.open("r", encoding="utf-8") as source,
+                temporary.open("w", encoding="utf-8", newline="\n") as target,
+            ):
+                for line in source:
+                    if not line.strip():
+                        continue
+                    record = ProposalPilotTrace.from_dict(json.loads(line))
+                    compacted = compact_trace_views(
+                        record,
+                        maximum_entities=int(limits["maximum_entities"]),
+                        maximum_relations=int(limits["maximum_relations"]),
                     )
-                    + "\n"
+                    target.write(
+                        json.dumps(
+                            compacted.to_dict(),
+                            sort_keys=True,
+                            separators=(",", ":"),
+                        )
+                        + "\n"
+                    )
+                    written += 1
+            if written != int(quota):
+                raise ValueError(
+                    f"{game} projection row mismatch: {written} != {quota}"
                 )
-        os.replace(temporary, path)
-        metadata.append(
-            shard_metadata(
-                path,
-                expected_game=str(game),
-                expected_rows=int(quota),
-            )
+            os.replace(temporary, path)
+        metadata_by_game[str(game)] = shard_metadata(
+            path,
+            expected_game=str(game),
+            expected_rows=int(quota),
         )
+    metadata = [
+        metadata_by_game[str(game)]
+        for game in frozen["game_quotas"]
+    ]
     combined = hashlib.sha256(
         "".join(item["sha256"] for item in metadata).encode("ascii")
     ).hexdigest()
@@ -258,6 +275,18 @@ def compact_existing_collection(
     )
     os.replace(temporary_manifest, collection_path)
     return collection
+
+
+def _shard_is_compact(path: Path) -> bool:
+    with path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                payload = json.loads(line)
+                return bool(
+                    payload.get("trace_digest")
+                    and payload.get("relation_shuffle_graph")
+                )
+    return False
 
 
 def _compact_graph(
