@@ -293,3 +293,6 @@ python -m theory.sage12.target_mechanic_replication evaluate
 
 The frozen design is
 `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PROTOCOL.md`.
+
+The source preflight passed all 11 gates without opening validation outcomes.
+See `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PREFLIGHT.md`.

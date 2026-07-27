@@ -227,3 +227,10 @@ full repository suite: 1752 passed, 1 warning in 196.39s (0:03:16)
 ```
 
 The warning remains Joblib's harmless physical-core query fallback.
+
+The subsequent V4.2 source preflight passed all 11 frozen gates on 1,911
+windows. Identity gain was +0.0387, calibrated Brier skill +0.1821,
+macro-F1 gain +0.0749, context skill +0.4328, macro-ECE 0.0365, and the
+complete Qwen prompt range 295–317 tokens. Preflight checksum:
+`68747717f45289775cd543aaa027eb24164200b255b42b57368e4c6fba0816ff`.
+Only the frozen prospective collection is authorized by this checkpoint.

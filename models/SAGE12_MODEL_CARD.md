@@ -25,6 +25,10 @@ The old actor signal remains an audit-only count. A V4.2 pass may authorize
 only a separately frozen V5 protocol for target creation, removal, and
 movement; it does not authorize model fitting directly.
 
+V4.2 passed all 11 source-preflight gates. The result authorizes only its
+frozen fresh collection; prospective transfer, Qwen authority, V5, the world
+model, EBM, and controller remain unvalidated and unauthorized.
+
 The separately frozen V4 pilot now evaluates sequence-conditioned mechanic
 induction from eight observed transitions. Its primary model is a bounded
 structured Beta rule inducer; Qwen is a non-authoritative ablation. This

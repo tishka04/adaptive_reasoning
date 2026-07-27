@@ -34,6 +34,12 @@ If authorized, it is exactly 768 new transitions on `re86`, `ls20`, and
 `sc25`, using seeds 479, 523, 569, and 617. Manifest checksum:
 `fba242f31cbc492f44333bcae8c5f9228baee0b79c15f0c68009dce7a76a6210`.
 
+The V4.2 source preflight passed all gates under checksum
+`68747717f45289775cd543aaa027eb24164200b255b42b57368e4c6fba0816ff`.
+Its source windows, priors, calibration, and token audit are frozen.
+Collection of the exact preregistered 768 transitions is therefore
+authorized; no other game, seed, row count, or adaptive policy is permitted.
+
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows
 from the immutable V3 training traces, excludes the already inspected V3

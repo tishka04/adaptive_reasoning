@@ -130,3 +130,14 @@ Publish four direct checkpoints on `main`:
 
 No code, threshold, seed, prompt, effect, calibrator, or gate may change after
 its outcome boundary is opened. Every pass or failure is published.
+
+## Executed source preflight
+
+The frozen preflight completed `PASS_SOURCE_TRAIN_PREFLIGHT` with all 11
+gates passing, checksum
+`68747717f45289775cd543aaa027eb24164200b255b42b57368e4c6fba0816ff`.
+It derived 1,911 windows; static identity gain was +0.0387, calibrated Brier
+skill +0.1821, macro-F1 gain +0.0749, context skill +0.4328, macro-ECE
+0.0365, and Qwen prompts 295–317 tokens. Prospective collection is now
+authorized under the unchanged manifest. Full ledger:
+`reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PREFLIGHT.md`.
