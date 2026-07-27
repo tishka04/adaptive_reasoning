@@ -42,6 +42,31 @@ neither its V1 full-graph view nor its V2 one-bit projection authorizes
 semantic world-model labels or fitting. A future action-target-grounded format
 must be separately versioned and collected under a new frozen manifest.
 
+## Action-target Stage A V3
+
+The required new format is frozen as `sage12-action-target-trace-v3` in
+`training/sage12/action_target_pilot_v3/frozen_manifest.json`, checksum
+`8aff373b2896b13dfafe88a8a8d37d9399088f881386a19c81cb63acb3f487bf`.
+It collects 4,000 fresh executed transitions: 3,040 source-training and 960
+source-validation. V1/V2 rows are not relabelled or mixed into this corpus.
+
+V3 retains raw frames and exact coordinates only as checksummed audit
+provenance. Model projections may contain the action, requested direction,
+anchor kind, coarse actor-target relation, occupancy, path status, and the
+first source-training-approved coarse target descriptors. They may never
+contain absolute coordinates, colour/value, IDs, game signatures, raw grids,
+policy metadata, or outcomes.
+
+Training collection has a 2,587-row balanced base and a preregistered 453-row
+event-deficit top-up. Validation is fixed at 320 rows per source-validation
+game and is never outcome-adaptive. Exact pre-frame/action/argument duplicates
+are forbidden.
+
+V3 makes the structured action-target classifier primary and Qwen a secondary
+ablation. A structured pass can authorize a separately frozen small semantic
+world-model protocol even when Qwen fails. Until every V3 gate passes, no
+world model or EBM may be fit.
+
 ## Purpose
 
 SAGE12 data teaches and evaluates three separable questions:

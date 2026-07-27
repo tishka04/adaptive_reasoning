@@ -1,5 +1,21 @@
 # SAGE12 preregistered validation protocol
 
+## Stage A V3 action-target amendment
+
+The V1 and constrained V2 proposal gates are closed negative results. The next
+authorized Stage A experiment is the separately frozen action-target V3
+protocol in `reports/SAGE12_ACTION_TARGET_PILOT_V3_PROTOCOL.md`.
+
+V3 replaces neither result retroactively. It requires fresh source-only
+execution, exact action/destination or click-target anchoring, conservative
+component labels, a source-training leakage ladder, action-only and
+deterministic baselines, binding/action/label controls, per-game transfer, and
+calibration. Qwen2.5 0.5B is diagnostic rather than promotion-critical.
+
+Only a full V3 structured-model pass may authorize a new world-model protocol.
+No V3 outcome directly authorizes an EBM, shadow mode, bounded probes, or
+controller authority.
+
 Status: Stage A executed and failed closed; Stages B-E are unauthorized and
 have not run.
 

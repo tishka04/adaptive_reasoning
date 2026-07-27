@@ -1,0 +1,131 @@
+{
+  "baselines": [
+    "selected_action_only_logistic",
+    "deterministic_action_target_template",
+    "structured_logistic",
+    "structured_shallow_gradient_boosting"
+  ],
+  "collection": {
+    "action_budget_per_reset": 160,
+    "adaptive_exploration_fraction": 0.2,
+    "exact_state_action_argument_repeat_cap": 1,
+    "maximum_adaptive_rows_per_game": 64,
+    "maximum_resets_per_game": 40,
+    "policy_seeds": [
+      12,
+      29,
+      43,
+      71,
+      101
+    ],
+    "source_train_adaptive_rows": 453,
+    "source_train_base_quotas": {
+      "bp35": 256,
+      "cd82": 256,
+      "dc22": 256,
+      "g50t": 256,
+      "ka59": 256,
+      "lf52": 256,
+      "lp85": 27,
+      "sp80": 256,
+      "su15": 256,
+      "tr87": 256,
+      "tu93": 256
+    },
+    "source_train_rows": 3040,
+    "source_validation_rows": 960,
+    "source_validation_rows_per_game": 320,
+    "total_rows": 4000,
+    "validation_collection_is_outcome_adaptive": false
+  },
+  "effect_labels": [
+    "actor_displaced",
+    "target_created",
+    "target_removed",
+    "target_moved"
+  ],
+  "evaluation": {
+    "bootstrap_samples": 1000,
+    "qwen_is_promotion_gate": false,
+    "validation_tuning": false
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "split_by_game": true
+  },
+  "format_version": "sage12-action-target-pilot-v3",
+  "frozen_at": "2026-07-27",
+  "gates": {
+    "maximum_identity_gain_over_selected_action": 0.1,
+    "maximum_macro_ece": 0.1,
+    "minimum_global_non_ambiguous_rate": 0.95,
+    "minimum_grounded_hypothesis_rate": 0.99,
+    "minimum_per_game_non_ambiguous_rate": 0.9,
+    "minimum_primary_macro_f1_gain": 0.1,
+    "minimum_source_train_negatives_per_label": 100,
+    "minimum_source_train_positives_per_label": 100,
+    "minimum_source_validation_negatives_per_label": 20,
+    "minimum_source_validation_positives_per_label": 20,
+    "minimum_strict_json_validity": 1.0,
+    "minimum_support_zero_rate": 1.0,
+    "minimum_target_shuffle_degradation": 0.05,
+    "minimum_validation_games_with_positive_per_label": 2,
+    "require_bootstrap_lower_bound_positive": true,
+    "require_every_validation_game_nonnegative": true
+  },
+  "manifest_checksum": "8aff373b2896b13dfafe88a8a8d37d9399088f881386a19c81cb63acb3f487bf",
+  "projection_coarsening_ladder": [
+    "full",
+    "no_shape",
+    "coarse",
+    "leakage_fail"
+  ],
+  "qwen_ablation": {
+    "batch_size": 32,
+    "device": "cuda:0",
+    "frozen_encoder": true,
+    "maximum_input_tokens": 256,
+    "name": "Qwen2.5-0.5B-Instruct",
+    "path": "models/qwen2_5_0.5b_instruct",
+    "weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_COLLECTION",
+  "training": {
+    "decision_threshold": 0.5,
+    "gradient_boosting": {
+      "l2_regularization": 1.0,
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "max_iter": 100
+    },
+    "logistic": {
+      "class_weight": "balanced",
+      "maximum_iterations": 1000,
+      "regularization_c": 1.0,
+      "solver": "liblinear"
+    },
+    "model_selection": "source_train_leave_one_game_out_macro_f1",
+    "random_state": 12
+  },
+  "world_model_fit_authorized": false
+}
