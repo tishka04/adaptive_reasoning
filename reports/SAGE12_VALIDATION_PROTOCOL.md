@@ -17,9 +17,10 @@ No V3 outcome directly authorizes an EBM, shadow mode, bounded probes, or
 controller authority.
 
 Status: Stage A V1-V4 executed and failed closed. V4 found strong temporal
-signal but did not pass every gate. V4.1 is frozen as a source-only calibrated
-replication with causal role states and separate Qwen authority. Stages B-E
-remain unauthorized.
+signal but did not pass every gate. V4.1 also failed closed at its source-only
+preflight: the role, calibration, prompt-budget, and firewall gates passed,
+but effect capacity and game-signature leakage did not. Stages B-E remain
+unauthorized.
 
 V4.1 must stop before prospective collection if its source preflight fails.
 If structured V4.1 passes, it authorizes only a separately frozen deterministic
@@ -27,6 +28,13 @@ V5 world-model protocol and only for effects admitted by the per-effect
 ledger. Qwen must independently pass JSON, grounding, recall, shuffle, and
 per-game gates before LLM-generated rules can enter V5. Neither branch
 authorizes an EBM or controller.
+
+V4.1 produced 1,911 source windows but no prospective data. Its global role
+resolution was 0.9984, calibrated source macro ECE was 0.0360, and Qwen
+prompts fit at 322–345 tokens. `actor_displaced` had only 35 positives versus
+the required 75, while static identity gained 0.1293 accuracy over action
+alone versus the allowed 0.10. Complete result:
+`reports/SAGE12_MECHANIC_REPLICATION_V4_1_RESULT.md`.
 
 SAGE12 V4 is a new Stage A temporal amendment. It tests whether eight observed
 transitions can induce a game-local typed rule that predicts the next effect.

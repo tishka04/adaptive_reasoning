@@ -1,8 +1,8 @@
 # SAGE12 semantic-trajectory data policy
 
-Status: Stage A V1-V4 are complete. V4.1 is frozen as a clean replication of
-the positive V4 temporal result. World-model and EBM fitting remain
-unauthorized.
+Status: Stage A V1-V4 are complete. V4.1 failed its frozen source-only
+preflight and stopped before prospective collection. World-model and EBM
+fitting remain unauthorized.
 
 V4.1 derives new versioned windows from the immutable V3 source-training
 traces. It may write source priors, leave-one-game-out calibration,
@@ -15,6 +15,14 @@ transitions: 256 per `re86`, `ls20`, and `sc25`, using seeds 307, 347, 389,
 and 433. The collection remains balanced, non-adaptive to outcomes, reset
 bounded, and retains chronological repeats. Its frozen manifest checksum is
 `86b3d3b38ba41d0f860169928f6cc5afd6765ccdbf83078e3a09d60da0e07abc`.
+
+That collection was not opened. V4.1 froze 1,911 derived source windows,
+source priors, calibration parameters, and its failed machine-readable
+preflight under checksum
+`cffa41e2ae980f64dfc76cbe40076809b301da4e8f98dffbc02122eb2bfa147c`.
+The source-validation shard does not exist by design. Any successor requires
+a new versioned manifest and source preflight; V4.1's unused prospective
+manifest cannot be treated as approval to collect.
 
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows

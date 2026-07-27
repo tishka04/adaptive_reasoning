@@ -1,15 +1,21 @@
 # SAGE12 semantic planner — model card
 
 Status: software implementation complete; free-generation V1, constrained V2,
-action-target V3, and temporal mechanic V4 pilots failed closed. V4.1 is
-frozen as a clean replication of the positive V4 temporal signal. The world
-model and EBM remain untrained and unauthorized.
+action-target V3, temporal mechanic V4, and clean replication V4.1 failed
+closed. V4.1 stopped at its source-only preflight, before prospective
+collection. The world model and EBM remain untrained and unauthorized.
 
 V4.1 repairs causal role resolution, adds leave-one-source-game-out Platt
 calibration and thresholds, and compacts the Qwen contract below a verified
 token budget. Structured and Qwen authority are separate: a structured pass
 may authorize only a deterministic V5 protocol, while Qwen must pass its own
 gates before LLM proposals can enter V5.
+
+Those repairs passed their direct audits: role resolution was 0.9984,
+calibrated source macro ECE was 0.0360, and compact Qwen prompts were 322–345
+tokens. V4.1 nevertheless failed because `actor_displaced` had only 35
+positives against the required 75 and static identity leakage was +0.1293
+against a maximum +0.10. No Qwen generation or prospective evaluation ran.
 
 The separately frozen V4 pilot now evaluates sequence-conditioned mechanic
 induction from eight observed transitions. Its primary model is a bounded

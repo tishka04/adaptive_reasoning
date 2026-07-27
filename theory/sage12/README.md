@@ -270,3 +270,9 @@ python -m theory.sage12.mechanic_replication evaluate
 The source preflight must be published before the fresh 768-transition
 collection. The frozen protocol is
 `reports/SAGE12_MECHANIC_REPLICATION_V4_1_PROTOCOL.md`.
+
+V4.1 stopped at `FAIL_SOURCE_TRAIN_PREFLIGHT`. Causal role resolution,
+source-only calibration, and the compact Qwen token budget passed, but
+`actor_displaced` source capacity and the static game-identity probe failed.
+No prospective trace or Qwen output was generated. See
+`reports/SAGE12_MECHANIC_REPLICATION_V4_1_RESULT.md`.

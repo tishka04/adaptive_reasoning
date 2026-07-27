@@ -177,3 +177,28 @@ separate Qwen authority, and a per-effect V5 eligibility ledger.
 
 The implementation, tests, protocol, and manifest are frozen before the
 source preflight. No world model, EBM, or controller is fit at this checkpoint.
+
+The published source preflight then derived all 1,911 source windows and
+finished `FAIL_SOURCE_TRAIN_PREFLIGHT`. Role resolution reached 0.9984;
+calibration improved macro Brier from 0.0483 to 0.0430 and macro ECE to
+0.0360; all Qwen prompts fit at 322–345 tokens. The run stopped because
+`actor_displaced` had 35 positives against a minimum 75 and the static
+identity gain was 0.1293 against a maximum 0.10. The prospective collector,
+Qwen generator, semantic world model, EBM, and controller were not run.
+Result checksum:
+`cffa41e2ae980f64dfc76cbe40076809b301da4e8f98dffbc02122eb2bfa147c`.
+See `reports/SAGE12_MECHANIC_REPLICATION_V4_1_RESULT.md`.
+
+Post-V4.1 validation:
+
+```text
+targeted SAGE12 tests: 71 passed in 9.93s
+targeted Ruff checks: All checks passed!
+full repository suite: 1738 passed, 1 warning in 320.20s (0:05:20)
+```
+
+The full suite uses the repository's bundled Python 3.12 environment because
+its ARC dependencies contain Python 3.12 native extensions. Running it from
+the host Python 3.11 process incorrectly mixes those extensions and fails
+during collection. The sole successful-run warning remains Joblib's harmless
+physical-core query fallback.

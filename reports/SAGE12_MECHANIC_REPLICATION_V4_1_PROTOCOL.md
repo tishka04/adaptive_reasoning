@@ -187,3 +187,20 @@ mapping containing `input_ids` where the existing adapter expected the tensor
 directly. The adapter now unwraps `input_ids` for both token counting and
 generation. This changes no prompt, schema, weights, decoding, data, metric,
 threshold, or gate. No V4.1 prospective trace or outcome had been opened.
+
+## Executed source-preflight result
+
+The amended source-only preflight derived 1,911 unique windows and finished
+`FAIL_SOURCE_TRAIN_PREFLIGHT`, checksum
+`cffa41e2ae980f64dfc76cbe40076809b301da4e8f98dffbc02122eb2bfa147c`.
+The causal role gate passed at 0.9984 globally and at least 0.9870 per game.
+Calibration improved structured macro Brier from 0.0483 to 0.0430 and
+reduced macro ECE to 0.0360. All compact Qwen prompts fit the token audit at
+322–345 tokens.
+
+Two frozen gates failed: `actor_displaced` supplied only 35 positive examples
+against the required 75, and static action/family/anchor identity improved
+source-game classification by 0.1293 over action alone against a maximum
+0.10. Prospective collection was therefore cancelled without opening a
+validation outcome. The complete ledger is in
+`reports/SAGE12_MECHANIC_REPLICATION_V4_1_RESULT.md`.
