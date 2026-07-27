@@ -180,3 +180,25 @@ the same class-balanced binary estimator in an explicit one-vs-rest
 classifier. Features, folds, solver, regularization, labels, selection
 threshold, and leakage limit are unchanged. Source validation was still
 unopened when this compatibility amendment was made.
+
+## Source-training freeze result
+
+The completed 3,040-row source-training collection has manifest checksum
+`1ba0b41b2595a1c9f18f613696e97b4397066194fe700117104d1eaa930d3331`.
+It contains no exact duplicate and produced 721 actor-displacement, 160
+target-creation, 369 target-removal, and 147 target-movement positives.
+
+The source-training-only preflight checksum is
+`1ea27b59159bb138cfa7321fbf40d2a5abf6d20e3302c02a05b1ba4c14fccc5a`.
+The full projection leaked +0.3793 game-identity accuracy beyond action and
+`no_shape` leaked +0.1289. The frozen `coarse` projection passes at +0.0987.
+Leave-one-game-out macro-F1 selected shallow gradient boosting at 0.2012 over
+logistic at 0.1903. Projection-freeze checksum:
+`7e1a93970b5502873bce6c3659ba46f671752adce81a8b2da829a6485b36ce9c`.
+
+The preflight also reports a known quality risk without changing a gate:
+actor identification is unavailable on 540 rows, reducing the global
+non-ambiguous rate to 0.8224, mostly in `cd82` and `sp80`. This is already
+below the frozen 0.95 promotion gate. The protocol nevertheless proceeds to
+the once-only source-validation evaluation so transfer, controls, and the
+complete negative or positive result can be published.

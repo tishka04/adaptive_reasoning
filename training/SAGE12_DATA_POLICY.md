@@ -67,6 +67,14 @@ ablation. A structured pass can authorize a separately frozen small semantic
 world-model protocol even when Qwen fails. Until every V3 gate passes, no
 world model or EBM may be fit.
 
+The source-training collection completed at 3,040 unique rows, manifest
+checksum
+`1ba0b41b2595a1c9f18f613696e97b4397066194fe700117104d1eaa930d3331`.
+The source-only preflight selected the `coarse` projection and shallow
+gradient boosting; projection-freeze checksum
+`7e1a93970b5502873bce6c3659ba46f671752adce81a8b2da829a6485b36ce9c`.
+No source-validation metric was seen before this freeze.
+
 ## Purpose
 
 SAGE12 data teaches and evaluates three separable questions:

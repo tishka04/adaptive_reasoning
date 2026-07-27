@@ -1,0 +1,365 @@
+{
+  "adaptive_allocations": {
+    "bp35": 45,
+    "cd82": 45,
+    "dc22": 46,
+    "g50t": 46,
+    "ka59": 45,
+    "lf52": 45,
+    "sp80": 57,
+    "su15": 34,
+    "tr87": 45,
+    "tu93": 45
+  },
+  "ar25_opened": false,
+  "combined_shard_checksum": "dc99623ba4b6ebe65bdbad7d61041674c2f35ad896c4a55bf00682491801e1d0",
+  "format_version": "sage12-action-target-collection-v3",
+  "frozen_manifest_checksum": "8aff373b2896b13dfafe88a8a8d37d9399088f881386a19c81cb63acb3f487bf",
+  "game_reports": {
+    "sp80": {
+      "action_counts": {
+        "ACTION1": 49,
+        "ACTION2": 49,
+        "ACTION3": 50,
+        "ACTION4": 53,
+        "ACTION5": 63,
+        "ACTION6": 49
+      },
+      "game_id": "sp80",
+      "new_raw_steps": 15,
+      "new_resets": 1,
+      "rejected_exact_duplicates": 4,
+      "rows": 313,
+      "shortfall": 0,
+      "source_split": "source_train",
+      "stratum_counts": {
+        "ACTION1|move_destination|adjacent|open|none": 2,
+        "ACTION1|move_destination|adjacent|unknown|none": 11,
+        "ACTION1|move_destination|unknown|unknown|none": 36,
+        "ACTION2|move_destination|adjacent|open|none": 12,
+        "ACTION2|move_destination|adjacent|unknown|none": 1,
+        "ACTION2|move_destination|unknown|unknown|none": 36,
+        "ACTION3|move_destination|adjacent|blocked|clickable": 1,
+        "ACTION3|move_destination|adjacent|blocked|unknown": 11,
+        "ACTION3|move_destination|adjacent|unknown|none": 3,
+        "ACTION3|move_destination|unknown|unknown|none": 35,
+        "ACTION4|move_destination|adjacent|blocked|clickable": 4,
+        "ACTION4|move_destination|adjacent|blocked|unknown": 17,
+        "ACTION4|move_destination|unknown|unknown|none": 32,
+        "ACTION5|targetless|unknown|unknown|none": 63,
+        "ACTION6|clicked_object|far|blocked|unknown": 12,
+        "ACTION6|clicked_object|unknown|blocked|unknown": 37
+      },
+      "target_rows": 313
+    },
+    "su15": {
+      "action_counts": {
+        "ACTION6": 290
+      },
+      "game_id": "su15",
+      "new_raw_steps": 1280,
+      "new_resets": 40,
+      "rejected_exact_duplicates": 1246,
+      "rows": 290,
+      "shortfall": 11,
+      "source_split": "source_train",
+      "stratum_counts": {
+        "ACTION6|clicked_empty|adjacent|open|none": 4,
+        "ACTION6|clicked_empty|far|open|none": 55,
+        "ACTION6|clicked_empty|near|open|none": 54,
+        "ACTION6|clicked_object|adjacent|blocked|movable": 1,
+        "ACTION6|clicked_object|far|blocked|movable": 66,
+        "ACTION6|clicked_object|far|blocked|unknown": 55,
+        "ACTION6|clicked_object|near|blocked|movable": 1,
+        "ACTION6|clicked_object|near|blocked|unknown": 54
+      },
+      "target_rows": 301
+    },
+    "tr87": {
+      "action_counts": {
+        "ACTION1": 68,
+        "ACTION2": 94,
+        "ACTION3": 70,
+        "ACTION4": 69
+      },
+      "game_id": "tr87",
+      "new_raw_steps": 46,
+      "new_resets": 1,
+      "rejected_exact_duplicates": 1,
+      "rows": 301,
+      "shortfall": 0,
+      "source_split": "source_train",
+      "stratum_counts": {
+        "ACTION1|move_destination|adjacent|blocked|movable": 61,
+        "ACTION1|move_destination|adjacent|blocked|none": 7,
+        "ACTION2|move_destination|adjacent|blocked|movable": 86,
+        "ACTION2|move_destination|adjacent|unknown|none": 8,
+        "ACTION3|move_destination|adjacent|blocked|clickable": 3,
+        "ACTION3|move_destination|adjacent|blocked|movable": 56,
+        "ACTION3|move_destination|adjacent|blocked|unknown": 9,
+        "ACTION3|move_destination|adjacent|unknown|none": 2,
+        "ACTION4|move_destination|adjacent|blocked|clickable": 3,
+        "ACTION4|move_destination|adjacent|blocked|movable": 59,
+        "ACTION4|move_destination|adjacent|blocked|unknown": 5,
+        "ACTION4|move_destination|adjacent|unknown|none": 2
+      },
+      "target_rows": 301
+    },
+    "tu93": {
+      "action_counts": {
+        "ACTION1": 76,
+        "ACTION2": 85,
+        "ACTION3": 70,
+        "ACTION4": 70
+      },
+      "game_id": "tu93",
+      "new_raw_steps": 59,
+      "new_resets": 2,
+      "rejected_exact_duplicates": 14,
+      "rows": 301,
+      "shortfall": 0,
+      "source_split": "source_train",
+      "stratum_counts": {
+        "ACTION1|move_destination|adjacent|blocked|movable": 67,
+        "ACTION1|move_destination|adjacent|open|none": 9,
+        "ACTION2|move_destination|adjacent|blocked|movable": 80,
+        "ACTION2|move_destination|adjacent|open|none": 5,
+        "ACTION3|move_destination|adjacent|blocked|movable": 62,
+        "ACTION3|move_destination|adjacent|open|none": 8,
+        "ACTION4|move_destination|adjacent|blocked|movable": 62,
+        "ACTION4|move_destination|adjacent|open|none": 8
+      },
+      "target_rows": 301
+    }
+  },
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "historical_opened": false,
+  "holdout_opened": false,
+  "report_checksum": "1ba0b41b2595a1c9f18f613696e97b4397066194fe700117104d1eaa930d3331",
+  "shards": [
+    {
+      "applicable_counts": {
+        "actor_displaced": 301,
+        "target_created": 301,
+        "target_moved": 106,
+        "target_removed": 106
+      },
+      "game_id": "bp35",
+      "path": "training/sage12/action_target_pilot_v3/shards/bp35.jsonl",
+      "positive_counts": {
+        "actor_displaced": 183,
+        "target_created": 9,
+        "target_moved": 0,
+        "target_removed": 106
+      },
+      "rows": 301,
+      "sha256": "ad2c1f3e2aa5a4cf55cefaf3a9cbda71c92d921d61984b4d9fc36181ff41a0a0",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 12,
+        "target_created": 56,
+        "target_moved": 53,
+        "target_removed": 53
+      },
+      "game_id": "cd82",
+      "path": "training/sage12/action_target_pilot_v3/shards/cd82.jsonl",
+      "positive_counts": {
+        "actor_displaced": 4,
+        "target_created": 0,
+        "target_moved": 0,
+        "target_removed": 0
+      },
+      "rows": 301,
+      "sha256": "3c64d16d19f47335544123ce42eeb8fcac7df467858e1ccad610fe1a9c223bc6",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 302,
+        "target_created": 302,
+        "target_moved": 302,
+        "target_removed": 302
+      },
+      "game_id": "dc22",
+      "path": "training/sage12/action_target_pilot_v3/shards/dc22.jsonl",
+      "positive_counts": {
+        "actor_displaced": 0,
+        "target_created": 0,
+        "target_moved": 0,
+        "target_removed": 0
+      },
+      "rows": 302,
+      "sha256": "6a8fd5c66f72a22a32e2f7945bda24bbb7bd53c863a35de59fcaa0e9026da10f",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 302,
+        "target_created": 248,
+        "target_moved": 247,
+        "target_removed": 247
+      },
+      "game_id": "g50t",
+      "path": "training/sage12/action_target_pilot_v3/shards/g50t.jsonl",
+      "positive_counts": {
+        "actor_displaced": 153,
+        "target_created": 6,
+        "target_moved": 0,
+        "target_removed": 124
+      },
+      "rows": 302,
+      "sha256": "fa835dba4b5dc3aac275c148d44d8432fd109e048971dd960f5fbca4ecb2778c",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 301,
+        "target_created": 301,
+        "target_moved": 301,
+        "target_removed": 301
+      },
+      "game_id": "ka59",
+      "path": "training/sage12/action_target_pilot_v3/shards/ka59.jsonl",
+      "positive_counts": {
+        "actor_displaced": 96,
+        "target_created": 0,
+        "target_moved": 84,
+        "target_removed": 0
+      },
+      "rows": 301,
+      "sha256": "d9e37c9c86ee5fb201e1b3a22b3f532ae9a27f9d74d7b1d46119da6e94e175ba",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 301,
+        "target_created": 292,
+        "target_moved": 107,
+        "target_removed": 107
+      },
+      "game_id": "lf52",
+      "path": "training/sage12/action_target_pilot_v3/shards/lf52.jsonl",
+      "positive_counts": {
+        "actor_displaced": 39,
+        "target_created": 0,
+        "target_moved": 6,
+        "target_removed": 0
+      },
+      "rows": 301,
+      "sha256": "26b97ac591f99e70b81530b173e0dbcc1068950816260ec24c0b9224a915837a",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 27,
+        "target_created": 27,
+        "target_moved": 27,
+        "target_removed": 27
+      },
+      "game_id": "lp85",
+      "path": "training/sage12/action_target_pilot_v3/shards/lp85.jsonl",
+      "positive_counts": {
+        "actor_displaced": 1,
+        "target_created": 0,
+        "target_moved": 0,
+        "target_removed": 1
+      },
+      "rows": 27,
+      "sha256": "bcc5179d065b910005daa41e8f416f5ba1d9f3f50bf2cf1747f237a9be9a93ba",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 62,
+        "target_created": 96,
+        "target_moved": 82,
+        "target_removed": 82
+      },
+      "game_id": "sp80",
+      "path": "training/sage12/action_target_pilot_v3/shards/sp80.jsonl",
+      "positive_counts": {
+        "actor_displaced": 44,
+        "target_created": 0,
+        "target_moved": 33,
+        "target_removed": 0
+      },
+      "rows": 313,
+      "sha256": "e0d23582ffe60690b1af37f38d167505a562f284541b77c0438599c60d7021ec",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 290,
+        "target_created": 290,
+        "target_moved": 177,
+        "target_removed": 177
+      },
+      "game_id": "su15",
+      "path": "training/sage12/action_target_pilot_v3/shards/su15.jsonl",
+      "positive_counts": {
+        "actor_displaced": 25,
+        "target_created": 7,
+        "target_moved": 15,
+        "target_removed": 0
+      },
+      "rows": 290,
+      "sha256": "569b5a504762129d084f5b635d7ee3a2acb85f3ae103471c028ef91a3ecb3955",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 301,
+        "target_created": 289,
+        "target_moved": 282,
+        "target_removed": 282
+      },
+      "game_id": "tr87",
+      "path": "training/sage12/action_target_pilot_v3/shards/tr87.jsonl",
+      "positive_counts": {
+        "actor_displaced": 17,
+        "target_created": 0,
+        "target_moved": 9,
+        "target_removed": 0
+      },
+      "rows": 301,
+      "sha256": "99a6fd083f4e709d7558012e555c32d0eb23491e8b59a2edb71a6b4404e6ecf5",
+      "source_split": "source_train"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 301,
+        "target_created": 301,
+        "target_moved": 271,
+        "target_removed": 271
+      },
+      "game_id": "tu93",
+      "path": "training/sage12/action_target_pilot_v3/shards/tu93.jsonl",
+      "positive_counts": {
+        "actor_displaced": 159,
+        "target_created": 138,
+        "target_moved": 0,
+        "target_removed": 138
+      },
+      "rows": 301,
+      "sha256": "77e209d0330d9e4cc6893d922283daafa9444fd4c81da3fb7c541dde086eb464",
+      "source_split": "source_train"
+    }
+  ],
+  "split": "source_train",
+  "split_rows": 3040,
+  "status": "SOURCE_TRAIN_COMPLETE"
+}
