@@ -61,6 +61,16 @@ python -m pytest -q
 The focused semantic-planning and proposal-pilot suites pass 25 tests
 together, and targeted Ruff validation remains clean.
 
+Post-V2 regression:
+
+```text
+python -m pytest -q
+1698 passed, 1 environment warning in 192.04s
+```
+
+The three focused SAGE12 suites pass 31 tests together. The warning remains
+the same harmless Joblib physical-core query fallback.
+
 ## GPU decision
 
 The subsequent Stage A proposal pilot compared identical Qwen2.5 0.5B
@@ -79,3 +89,10 @@ The integrated default remains `off`; bounded and active downgrade to shadow
 without all prerequisite gates. See
 `reports/SAGE12_PROPOSAL_PILOT_RESULT.md` for the complete result and artifact
 checksums.
+
+The separately preregistered constrained V2 repair passed JSON, support-zero,
+grounding, and both reduced-leakage gates. It still failed predictive gates:
+Qwen primary macro-F1 0.484 versus action-only 0.549, shuffle degradation
+-0.098, and `re86` gain -0.237. V2 result checksum:
+`7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
+No world-model fitting followed.

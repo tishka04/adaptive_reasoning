@@ -703,6 +703,147 @@ def run_evaluation(
     return payload
 
 
+def run_posthoc_diagnostics(
+    *,
+    frozen_manifest_path: str | Path = DEFAULT_FROZEN_MANIFEST_PATH,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+) -> dict[str, Any]:
+    """Explain V2 signal transfer after scoring without changing a gate."""
+    frozen = _load_frozen_manifest(Path(frozen_manifest_path))
+    destination = Path(output_dir)
+    result = _read_json(destination / "pilot_result.json")
+    if result.get("status") not in {"PASS", "FAIL_CLOSED"}:
+        raise ValueError("posthoc diagnostics require a completed V2 result")
+    input_path = Path(frozen["source_corpus"]["path"])
+    collection = _read_json(input_path / "collection_manifest.json")
+    traces = _load_traces(collection, input_dir=input_path)
+    by_digest = {trace.digest: trace for trace in traces}
+    prediction_rows = [
+        json.loads(line)
+        for line in (
+            destination / "predictions.jsonl"
+        ).read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    train = [
+        trace for trace in traces if trace.source_split == "source_train"
+    ]
+    validation = [
+        trace
+        for trace in traces
+        if trace.source_split == "source_validation"
+    ]
+    groups = {
+        "source_train_all": _trace_group_diagnostics(train),
+        **{
+            f"source_validation_{game}": _trace_group_diagnostics(
+                [trace for trace in validation if trace.game_id == game]
+            )
+            for game in frozen["source_validation_games"]
+        },
+    }
+    prediction_groups: dict[str, Any] = {}
+    for game in frozen["source_validation_games"]:
+        game_rows = [
+            item for item in prediction_rows if item["game_id"] == game
+        ]
+        by_motif = {}
+        for value in (0, 1):
+            selected = [
+                item
+                for item in game_rows
+                if invariant_motif(by_digest[item["trace_digest"]])[
+                    "actor_interaction"
+                ]
+                == value
+            ]
+            by_motif[str(value)] = {
+                "rows": len(selected),
+                "target_player_moved_rate": _mean(
+                    item["target"]["player_moved"] for item in selected
+                ),
+                "mean_player_moved_probability": _mean(
+                    item["probabilities"]["player_moved"]
+                    for item in selected
+                ),
+                "predicted_player_moved_rate": _mean(
+                    item["probabilities"]["player_moved"] >= 0.5
+                    for item in selected
+                ),
+            }
+        prediction_groups[game] = by_motif
+    payload = {
+        "format_version": "sage12-constrained-posthoc-v2",
+        "status": "POSTHOC_NO_GATE_EFFECT",
+        "pilot_result_checksum": result["result_checksum"],
+        "unique_train_prompts": len(
+            {invariant_prompt(trace) for trace in train}
+        ),
+        "unique_validation_prompts": len(
+            {invariant_prompt(trace) for trace in validation}
+        ),
+        "trace_groups": groups,
+        "qwen_player_moved_by_original_motif": prediction_groups,
+        "changes_primary_result": False,
+        "world_model_fit_started": False,
+    }
+    payload["result_checksum"] = _payload_checksum(payload)
+    _write_json_atomic(destination / "posthoc_diagnostics.json", payload)
+    return payload
+
+
+def _trace_group_diagnostics(
+    traces: Sequence[ProposalPilotTrace],
+) -> dict[str, Any]:
+    by_motif = {}
+    for value in (0, 1):
+        selected = [
+            trace
+            for trace in traces
+            if invariant_motif(trace)["actor_interaction"] == value
+        ]
+        by_motif[str(value)] = {
+            "rows": len(selected),
+            "changed_rate": _mean(trace.changed for trace in selected),
+            "player_moved_rate": _mean(
+                trace.player_moved for trace in selected
+            ),
+            "game_over_rate": _mean(
+                trace.game_over for trace in selected
+            ),
+            "action_counts": dict(
+                sorted(
+                    Counter(
+                        trace.selected_action_name for trace in selected
+                    ).items()
+                )
+            ),
+        }
+    return {
+        "rows": len(traces),
+        "actor_interaction_rate": _mean(
+            invariant_motif(trace)["actor_interaction"]
+            for trace in traces
+        ),
+        "shuffle_actor_interaction_rate": _mean(
+            invariant_motif(
+                trace,
+                variant="relation_shuffle",
+            )["actor_interaction"]
+            for trace in traces
+        ),
+        "shuffle_flip_rate": _mean(
+            invariant_motif(trace)["actor_interaction"]
+            != invariant_motif(
+                trace,
+                variant="relation_shuffle",
+            )["actor_interaction"]
+            for trace in traces
+        ),
+        "by_original_motif": by_motif,
+    }
+
+
 def _evaluation_metrics(
     frozen: Mapping[str, Any],
     *,
@@ -1087,6 +1228,11 @@ def _file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _mean(values: Iterable[Any]) -> float:
+    items = [float(value) for value in values]
+    return sum(items) / len(items) if items else 0.0
+
+
 def _write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
@@ -1122,7 +1268,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument(
         "command",
-        choices=("preflight", "evaluate"),
+        choices=("preflight", "evaluate", "diagnose"),
     )
     parser.add_argument(
         "--input-dir",
@@ -1145,8 +1291,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             input_dir=args.input_dir,
             output_dir=args.out_dir,
         )
-    else:
+    elif args.command == "evaluate":
         result = run_evaluation(
+            frozen_manifest_path=args.frozen_manifest,
+            output_dir=args.out_dir,
+        )
+    else:
+        result = run_posthoc_diagnostics(
             frozen_manifest_path=args.frozen_manifest,
             output_dir=args.out_dir,
         )
@@ -1169,5 +1320,6 @@ __all__ = [
     "invariant_prompt",
     "render_hypotheses_json",
     "run_evaluation",
+    "run_posthoc_diagnostics",
     "run_source_train_preflight",
 ]

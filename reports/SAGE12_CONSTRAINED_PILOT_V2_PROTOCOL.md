@@ -8,6 +8,11 @@ Frozen manifest:
 Manifest checksum:
 `033274922c2f25d3cb7918bc2f308fffdc03d4811f034e9db171147d4aec25aa`.
 
+Post-run annotation: V2 completed `FAIL_CLOSED` without changing a frozen
+gate. The result is published in
+`reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`, checksum
+`7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
+
 ## Execution amendment before metrics
 
 The first evaluation launch completed the frozen GPU embedding passes, then
@@ -167,6 +172,7 @@ and must be documented without changing a threshold.
 ```powershell
 python -m theory.sage12.constrained_pilot preflight
 python -m theory.sage12.constrained_pilot evaluate
+python -m theory.sage12.constrained_pilot diagnose
 ```
 
 The first command is source-training-only design evidence. The second command

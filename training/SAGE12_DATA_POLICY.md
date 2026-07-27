@@ -35,6 +35,13 @@ rejected using source-training leakage only; both the rejected and retained
 preflights must remain published. V2 still cannot authorize world-model
 fitting unless every new frozen gate passes.
 
+V2 completed `FAIL_CLOSED`, checksum
+`7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
+The immutable corpus may remain published as negative-result evidence, but
+neither its V1 full-graph view nor its V2 one-bit projection authorizes
+semantic world-model labels or fitting. A future action-target-grounded format
+must be separately versioned and collected under a new frozen manifest.
+
 ## Purpose
 
 SAGE12 data teaches and evaluates three separable questions:

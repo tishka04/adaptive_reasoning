@@ -59,7 +59,7 @@ de policy en support scientifique.
 | SAGE.11b - Pilot + compact world model | Relational pilot no-go; track world-model arrete sans training | `theory/sage11/relational_features.py`, `theory/sage11/relational_effect_pilot.py`, `training/sage11/relational_pilot_v1/manifest.json`, `diagnostics/sage/sage11_relational_effect_pilot.json`, `reports/SAGE11_RELATIONAL_PILOT_RESULT.md` | Collecte 10,027 verifiee manifest `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`. Fit LOGO: changed delta -0.0059, shuffle +0.0048, apport relations -0.1202, 6/11 folds, pire -0.4888; signatures relationnelles jeu 64.20% (contre 99.17% anciennes); checksum `272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`; aucun training GPU/shadow/historique/holdout |
 | SAGE.11c/11d - Typed bridge + shadow | Implemente logiciellement - shadow live en attente | `theory/sage11/atoms.py`, `theory/sage11/bridge.py`, `theory/sage11/authority.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage11_authority.py` | Atomes partages FrameDiff/schema, hypotheses support=0; off ne lance pas le predicteur; shadow action-identique et log top-k/pre-emption/cout; bounded inaccessible sans gates |
 | SAGE.11e/11f - Bounded/active + adaptation | Implemente logiciellement - promotion non revendiquee | `theory/sage11/authority.py`, `theory/sage11/adaptation.py`, `theory/sage11/evaluation.py`, `reports/SAGE11_VALIDATION_PROTOCOL.md`, `diagnostics/sage/sage11_implementation_audit.json` | Veto danger symbolique dur, competence protegee, info-gain positif, 1 probe branche/contexte, demotion 2 echecs, re-arm explicite; encodeur gele, replay 2048, update/32 <=4 gradients, reset jeu/seed; bootstrap holdout 5x5 implemente mais non execute |
-| SAGE.12 - Planification de trajectoires semantiques | Stage A FAIL_CLOSED - world model non fit, autorite off | `theory/sage12/`, `training/sage12/proposal_pilot_v1/`, `tests/test_sage12_proposal_pilot.py`, `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`, `training/SAGE12_DATA_POLICY.md`, `models/SAGE12_MODEL_CARD.md`, `reports/SAGE12_VALIDATION_PROTOCOL.md` | 2,104 transitions source-only; GPU 3.808x plus rapide; 224 generations Qwen2.5 0.5B; JSON strict/grounding/recall LLM=0, baseline action-only=0.895, shuffle delta=0, gains val negatifs 3/3, identite jeu=99.94% contre 9.85%; checksum resultat `fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`; aucun fit world-model/EBM, holdout/historique/ar25 fermes |
+| SAGE.12 - Planification de trajectoires semantiques | Stage A V1 et V2 FAIL_CLOSED - world model non fit, autorite off | `theory/sage12/`, `training/sage12/proposal_pilot_v1/`, `training/sage12/constrained_pilot_v2/`, `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`, `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`, `models/SAGE12_MODEL_CARD.md` | V1: JSON/grounding/recall=0, identite jeu 99.94%, checksum `fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`. V2 contraint: JSON/support/grounding=1 et fuites passees, mais Qwen macro-F1 0.484 contre action 0.549, shuffle ameliore a 0.582, re86 -0.237; checksum `7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`; aucun fit world-model/EBM, holdout/historique/ar25 fermes |
 | SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
 
 ## SAGE.0 - Known-game closed-loop scaffold
@@ -8914,6 +8914,17 @@ Validation logicielle :
   `fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a`.
   Aucun fit world-model/EBM, episode shadow, probe bounded, holdout,
   historique ou `ar25` n'a ete execute.
+- Le repair V2 remplace la generation libre par Qwen gele + tetes logistiques
+  et rendu JSON type. Le motif six bits est rejete sur source-train
+  (identite +32.08 points au-dela de l'action); le motif final est un seul bit
+  `actor_interaction` (+8.99 points) et passe les deux gates de fuite.
+- V2 passe JSON=1, support-zero=1 et grounding=1, mais reste sous action-only :
+  macro-F1 0.4842 contre 0.5487, gain -0.0645. Le shuffle ameliore a 0.5819
+  (degradation -0.0977) et `re86` perd -0.2371. Checksum
+  `7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
+- Le diagnostic montre un renversement de signal : interaction implique plus
+  de mouvements sur source-train, aucun sur la majorite de `sc25`, et ne
+  distingue rien sur `re86`. Aucun fit world-model/EBM n'est autorise.
 
 Protocoles :
 
@@ -8927,10 +8938,15 @@ Protocoles :
 - `reports/SAGE12_IMPLEMENTATION_RESULT.md` enregistre le resultat logiciel et
   `reports/SAGE12_PROPOSAL_PILOT_RESULT.md` publie le no-go empirique complet,
   ses amendements, controles, checksums et diagnostics.
+- `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md` publie le repair de syntaxe
+  et fuite, puis son no-go predictif.
 
 Lecture finale : l'idee observation -> hypotheses LLM -> trajectoires world
 model -> energie -> controller hierarchique est maintenant executable et
 auditable. Le premier proposal pilot a cependant rejete le couple representation
-compacte + generation texte non contrainte. Elle reste `off`; le world model
-ne doit pas etre fit sur cette version. Seule une transition observee peut
-creer evidence/support.
+compacte + generation texte non contrainte. V2 montre ensuite que contraindre
+la sortie et reduire la fuite ne suffit pas : un motif global trop pauvre ne
+transfere pas. La suite doit ancrer la representation sur la cible exacte de
+l'action et des evenements objet stables. SAGE12 reste `off`; le world model
+ne doit pas etre fit. Seule une transition observee peut creer
+evidence/support.

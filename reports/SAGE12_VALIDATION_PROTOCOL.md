@@ -152,5 +152,11 @@ occurred. The live default remains `off`.
 
 A separately versioned Stage A repair is now frozen in
 `reports/SAGE12_CONSTRAINED_PILOT_V2_PROTOCOL.md`. It uses constrained typed
-outputs and a one-bit actor-interaction representation. It does not reopen
-Stage B unless every V2 gate passes.
+outputs and a one-bit actor-interaction representation.
+
+V2 also failed closed. Output validity, grounding, and reduced-leakage gates
+passed, but Qwen primary macro-F1 was 0.484 versus 0.549 for action-only,
+relation shuffling improved the score, and `re86` transferred negatively.
+Result checksum:
+`7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
+Stage B therefore remains unauthorized.

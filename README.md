@@ -189,7 +189,14 @@ CPU. It failed closed: strict JSON and grounded recall were zero, the
 action-only baseline reached 0.895 recall, relation-shuffle degradation was
 zero, and the compact scene signature identified source-training games at
 99.94% accuracy. No semantic world model or EBM was fit, and no performance
-promotion is claimed. See:
+promotion is claimed.
+
+The constrained V2 repair then passed strict JSON, support-zero, grounding,
+and both reduced-leakage gates. It still failed closed: Qwen-head primary
+macro-F1 was 0.484 versus 0.549 for action-only, relation shuffling improved
+rather than degraded the score, and `re86` transferred at -0.237. This
+isolates the remaining problem as missing action-target causal information,
+not output syntax. See:
 
 - `theory/sage12/README.md`
 - `training/SAGE12_DATA_POLICY.md`
@@ -197,12 +204,14 @@ promotion is claimed. See:
 - `reports/SAGE12_VALIDATION_PROTOCOL.md`
 - `reports/SAGE12_IMPLEMENTATION_RESULT.md`
 - `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`
+- `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`
 
 Focused software validation:
 
 ```bash
 python -m pytest -q tests/test_sage12_semantic_planning.py
 python -m pytest -q tests/test_sage12_proposal_pilot.py
+python -m pytest -q tests/test_sage12_constrained_pilot.py
 ```
 
 The long-budget performance track skips ablation overhead and writes compact

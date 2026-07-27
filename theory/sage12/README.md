@@ -169,11 +169,19 @@ sets, and scene signatures are excluded.
 The first six-bit source-training design still leaked +32.08 game-identity
 points beyond selected action and was rejected without reading V2 validation.
 The retained one-bit view leaks +8.99 points beyond selected action and is
-frozen before validation in
-`reports/SAGE12_CONSTRAINED_PILOT_V2_PROTOCOL.md`. It reuses the exact V1
-source corpus and keeps the semantic world-model gate closed.
+frozen in `reports/SAGE12_CONSTRAINED_PILOT_V2_PROTOCOL.md`. It reuses the
+exact V1 source corpus.
+
+V2 finished `FAIL_CLOSED`, checksum
+`7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
+JSON, support-zero, grounding, and both leakage controls passed. Predictive
+transfer did not: Qwen macro-F1 was 0.484 versus 0.549 for action-only, the
+relation shuffle improved macro-F1 to 0.582, and `re86` lost 0.237. The full
+result is in `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`. The semantic
+world-model gate remains closed.
 
 ```powershell
 python -m theory.sage12.constrained_pilot preflight
 python -m theory.sage12.constrained_pilot evaluate
+python -m theory.sage12.constrained_pilot diagnose
 ```

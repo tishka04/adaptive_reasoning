@@ -1,7 +1,8 @@
 # SAGE12 semantic planner — model card
 
-Status: software implementation complete; Stage A proposal pilot failed
-closed; world model and EBM remain untrained and unauthorized.
+Status: software implementation complete; free-generation V1 and constrained
+V2 Stage A pilots failed closed; world model and EBM remain untrained and
+unauthorized.
 
 ## Components
 
@@ -68,6 +69,13 @@ checkpoint or pairwise EBM checkpoint exists because Stage A failed and
 authorized no later fitting. The pairwise EBM unit test still verifies
 optimization mechanics only.
 
+Constrained V2 reused the same source corpus with a frozen Qwen encoder, a
+one-bit actor-interaction prompt, independent linear effect heads, and
+code-rendered typed hypotheses. JSON, support-zero, grounding, and reduced
+game-signature gates passed. Primary macro-F1 was 0.484 versus 0.549 for
+action-only, relation shuffling improved it to 0.582, and `re86` transferred
+at -0.237. V2 therefore also authorized no world-model fit.
+
 ## Safety and epistemic boundaries
 
 - every generated hypothesis must enter with zero support;
@@ -90,11 +98,16 @@ generator is only a baseline. In Stage A, every Qwen response was Markdown
 fenced, fewer than half were JSON after removing only the fence, and none
 matched the typed schema. More importantly, the supposedly structural entity,
 relation, and action views all carried strong game signatures. Constrained
-output alone therefore would not repair the transfer problem. The heuristic
+V2 repaired syntax and reduced leakage, but its single global interaction bit
+reversed or collapsed its movement association across validation games.
+Output constraints and invariance are therefore necessary but not sufficient;
+the missing representation is likely anchored to the exact action target,
+requested direction, and stable before/after object event. The heuristic
 energy is hand-weighted. No claim of cross-game generalization, improved game
 score, calibration, or safe live authority is made.
 
 See `theory/sage12/README.md`,
 `training/SAGE12_DATA_POLICY.md`, and
 `reports/SAGE12_VALIDATION_PROTOCOL.md`. The full negative result is in
-`reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.
+`reports/SAGE12_PROPOSAL_PILOT_RESULT.md`; the constrained repair result is in
+`reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`.

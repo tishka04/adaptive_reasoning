@@ -1,0 +1,187 @@
+{
+  "changes_primary_result": false,
+  "format_version": "sage12-constrained-posthoc-v2",
+  "pilot_result_checksum": "7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a",
+  "qwen_player_moved_by_original_motif": {
+    "ls20": {
+      "0": {
+        "mean_player_moved_probability": 0.0,
+        "predicted_player_moved_rate": 0.0,
+        "rows": 0,
+        "target_player_moved_rate": 0.0
+      },
+      "1": {
+        "mean_player_moved_probability": 0.5043291999594086,
+        "predicted_player_moved_rate": 0.75,
+        "rows": 160,
+        "target_player_moved_rate": 0.0625
+      }
+    },
+    "re86": {
+      "0": {
+        "mean_player_moved_probability": 0.48472275608357757,
+        "predicted_player_moved_rate": 0.0,
+        "rows": 107,
+        "target_player_moved_rate": 1.0
+      },
+      "1": {
+        "mean_player_moved_probability": 0.5046993142029279,
+        "predicted_player_moved_rate": 0.8113207547169812,
+        "rows": 53,
+        "target_player_moved_rate": 1.0
+      }
+    },
+    "sc25": {
+      "0": {
+        "mean_player_moved_probability": 0.4842682048900688,
+        "predicted_player_moved_rate": 0.0,
+        "rows": 27,
+        "target_player_moved_rate": 0.14814814814814814
+      },
+      "1": {
+        "mean_player_moved_probability": 0.5033138848023077,
+        "predicted_player_moved_rate": 0.6015037593984962,
+        "rows": 133,
+        "target_player_moved_rate": 0.0
+      }
+    }
+  },
+  "result_checksum": "a5effa1c401e2ecc65f3d5d972ec715b087c329a66578813955786ea49ebb019",
+  "status": "POSTHOC_NO_GATE_EFFECT",
+  "trace_groups": {
+    "source_train_all": {
+      "actor_interaction_rate": 0.7536945812807881,
+      "by_original_motif": {
+        "0": {
+          "action_counts": {
+            "ACTION1": 75,
+            "ACTION2": 70,
+            "ACTION3": 67,
+            "ACTION4": 69,
+            "ACTION5": 52,
+            "ACTION6": 67
+          },
+          "changed_rate": 0.94,
+          "game_over_rate": 0.0275,
+          "player_moved_rate": 0.0975,
+          "rows": 400
+        },
+        "1": {
+          "action_counts": {
+            "ACTION1": 187,
+            "ACTION2": 192,
+            "ACTION3": 248,
+            "ACTION4": 246,
+            "ACTION5": 33,
+            "ACTION6": 318
+          },
+          "changed_rate": 0.9591503267973857,
+          "game_over_rate": 0.013071895424836602,
+          "player_moved_rate": 0.2949346405228758,
+          "rows": 1224
+        }
+      },
+      "rows": 1624,
+      "shuffle_actor_interaction_rate": 0.5437192118226601,
+      "shuffle_flip_rate": 0.3208128078817734
+    },
+    "source_validation_ls20": {
+      "actor_interaction_rate": 1.0,
+      "by_original_motif": {
+        "0": {
+          "action_counts": {},
+          "changed_rate": 0.0,
+          "game_over_rate": 0.0,
+          "player_moved_rate": 0.0,
+          "rows": 0
+        },
+        "1": {
+          "action_counts": {
+            "ACTION1": 40,
+            "ACTION2": 40,
+            "ACTION3": 40,
+            "ACTION4": 40
+          },
+          "changed_rate": 1.0,
+          "game_over_rate": 0.00625,
+          "player_moved_rate": 0.0625,
+          "rows": 160
+        }
+      },
+      "rows": 160,
+      "shuffle_actor_interaction_rate": 0.65625,
+      "shuffle_flip_rate": 0.34375
+    },
+    "source_validation_re86": {
+      "actor_interaction_rate": 0.33125,
+      "by_original_motif": {
+        "0": {
+          "action_counts": {
+            "ACTION1": 22,
+            "ACTION2": 20,
+            "ACTION3": 20,
+            "ACTION4": 23,
+            "ACTION5": 22
+          },
+          "changed_rate": 1.0,
+          "game_over_rate": 0.009345794392523364,
+          "player_moved_rate": 1.0,
+          "rows": 107
+        },
+        "1": {
+          "action_counts": {
+            "ACTION1": 10,
+            "ACTION2": 12,
+            "ACTION3": 12,
+            "ACTION4": 9,
+            "ACTION5": 10
+          },
+          "changed_rate": 1.0,
+          "game_over_rate": 0.0,
+          "player_moved_rate": 1.0,
+          "rows": 53
+        }
+      },
+      "rows": 160,
+      "shuffle_actor_interaction_rate": 0.7,
+      "shuffle_flip_rate": 0.56875
+    },
+    "source_validation_sc25": {
+      "actor_interaction_rate": 0.83125,
+      "by_original_motif": {
+        "0": {
+          "action_counts": {
+            "ACTION1": 5,
+            "ACTION2": 6,
+            "ACTION3": 8,
+            "ACTION4": 2,
+            "ACTION6": 6
+          },
+          "changed_rate": 0.8518518518518519,
+          "game_over_rate": 0.037037037037037035,
+          "player_moved_rate": 0.14814814814814814,
+          "rows": 27
+        },
+        "1": {
+          "action_counts": {
+            "ACTION1": 26,
+            "ACTION2": 26,
+            "ACTION3": 24,
+            "ACTION4": 30,
+            "ACTION6": 27
+          },
+          "changed_rate": 1.0,
+          "game_over_rate": 0.015037593984962405,
+          "player_moved_rate": 0.0,
+          "rows": 133
+        }
+      },
+      "rows": 160,
+      "shuffle_actor_interaction_rate": 0.65625,
+      "shuffle_flip_rate": 0.475
+    }
+  },
+  "unique_train_prompts": 12,
+  "unique_validation_prompts": 12,
+  "world_model_fit_started": false
+}
