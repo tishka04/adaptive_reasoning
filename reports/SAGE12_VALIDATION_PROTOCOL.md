@@ -17,8 +17,16 @@ No V3 outcome directly authorizes an EBM, shadow mode, bounded probes, or
 controller authority.
 
 Status: Stage A V1-V4 executed and failed closed. V4 found strong temporal
-signal but did not pass every gate. Stages B-E are unauthorized and have not
-run.
+signal but did not pass every gate. V4.1 is frozen as a source-only calibrated
+replication with causal role states and separate Qwen authority. Stages B-E
+remain unauthorized.
+
+V4.1 must stop before prospective collection if its source preflight fails.
+If structured V4.1 passes, it authorizes only a separately frozen deterministic
+V5 world-model protocol and only for effects admitted by the per-effect
+ledger. Qwen must independently pass JSON, grounding, recall, shuffle, and
+per-game gates before LLM-generated rules can enter V5. Neither branch
+authorizes an EBM or controller.
 
 SAGE12 V4 is a new Stage A temporal amendment. It tests whether eight observed
 transitions can induce a game-local typed rule that predicts the next effect.

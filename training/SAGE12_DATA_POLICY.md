@@ -1,8 +1,20 @@
 # SAGE12 semantic-trajectory data policy
 
-Status: Stage A V1-V4 are complete. V4 produced positive temporal predictive
-evidence but failed its conjunctive promotion gate. World-model and EBM
-fitting remain unauthorized.
+Status: Stage A V1-V4 are complete. V4.1 is frozen as a clean replication of
+the positive V4 temporal result. World-model and EBM fitting remain
+unauthorized.
+
+V4.1 derives new versioned windows from the immutable V3 source-training
+traces. It may write source priors, leave-one-game-out calibration,
+source-only thresholds, and prompt-token audits before prospective
+collection. Those artifacts must be committed before any new validation
+transition is opened.
+
+Only after a fully passing source preflight may V4.1 collect 768 new
+transitions: 256 per `re86`, `ls20`, and `sc25`, using seeds 307, 347, 389,
+and 433. The collection remains balanced, non-adaptive to outcomes, reset
+bounded, and retains chronological repeats. Its frozen manifest checksum is
+`86b3d3b38ba41d0f860169928f6cc5afd6765ccdbf83078e3a09d60da0e07abc`.
 
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows

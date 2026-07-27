@@ -166,3 +166,14 @@ action-only baseline, but source actor-role quality and calibration failed the
 frozen conjunctive protocol. Result checksum:
 `5987eb9531f568dc814dad46eb9e78d13a3813a9c30db3d6cb1fa8a319e16927`.
 No world model, EBM, or controller evaluation followed.
+
+## Clean temporal replication V4.1
+
+V4.1 is implemented as a separate version so V4 remains reproducible. It adds
+an online `translational` / `non_translational` / `ambiguous` role contract,
+source leave-one-game-out Platt calibration, source-only decision thresholds,
+raw-versus-calibrated replication metrics, a compact Qwen JSON compiler,
+separate Qwen authority, and a per-effect V5 eligibility ledger.
+
+The implementation, tests, protocol, and manifest are frozen before the
+source preflight. No world model, EBM, or controller is fit at this checkpoint.

@@ -1,0 +1,114 @@
+{
+  "calibration": {
+    "class_weight": null,
+    "input_clip": 1e-06,
+    "maximum_iterations": 1000,
+    "method": "per_label_platt_on_source_logo",
+    "regularization_c": 1.0,
+    "solver": "lbfgs",
+    "threshold_tie_break": "closest_to_0.5_then_highest"
+  },
+  "collection": {
+    "action_budget_per_reset": 32,
+    "maximum_resets_per_game": 24,
+    "outcome_adaptive": false,
+    "policy_seeds": [
+      307,
+      347,
+      389,
+      433
+    ],
+    "prospective_rows": 768,
+    "prospective_rows_per_game": 256,
+    "retain_chronological_repeats": true
+  },
+  "evaluation": {
+    "bootstrap_samples": 2000,
+    "random_seed": 307,
+    "validation_tuning": false
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "prospective_games_are_known_source_validation": true,
+    "v3_source_validation_is_gating": false
+  },
+  "format_version": "sage12-mechanic-induction-v4.1",
+  "frozen_at": "2026-07-27",
+  "gates": {
+    "maximum_macro_ece": 0.1,
+    "maximum_source_oof_brier_degradation": 0.005,
+    "maximum_source_oof_macro_ece": 0.1,
+    "maximum_static_identity_gain_over_action": 0.1,
+    "minimum_context_brier_skill_gain": 0.05,
+    "minimum_global_actor_role_resolution": 0.95,
+    "minimum_macro_brier_skill": 0.1,
+    "minimum_macro_f1_gain": 0.05,
+    "minimum_outcome_shuffle_skill_drop": 0.05,
+    "minimum_per_game_actor_role_resolution": 0.9,
+    "minimum_prospective_windows": 500,
+    "minimum_source_train_negatives_per_label": 75,
+    "minimum_source_train_positives_per_label": 75,
+    "minimum_source_train_windows": 1500,
+    "minimum_validation_negatives_per_label": 30,
+    "minimum_validation_positives_per_label": 30,
+    "require_bootstrap_lower_bound_positive": true,
+    "require_every_game_nonnegative": true
+  },
+  "manifest_checksum": "86b3d3b38ba41d0f860169928f6cc5afd6765ccdbf83078e3a09d60da0e07abc",
+  "model": {
+    "maximum_hypotheses": 8,
+    "minimum_local_evidence": 2,
+    "primary": "calibrated_structured_beta_mechanic_inducer",
+    "prior_strength": 2.0,
+    "qwen_authority_separate": true
+  },
+  "qwen": {
+    "contexts": 128,
+    "device": "cuda:0",
+    "maximum_input_tokens": 512,
+    "maximum_output_tokens": 256,
+    "name": "Qwen2.5-0.5B-Instruct",
+    "path": "models/qwen2_5_0.5b_instruct",
+    "preflight_maximum_input_tokens": 384,
+    "temperature": 0.0,
+    "weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
+  },
+  "qwen_gates": {
+    "minimum_grounded_hypothesis_rate": 0.95,
+    "minimum_outcome_shuffle_skill_drop": 0.05,
+    "minimum_productive_effect_recall_at_8": 0.7,
+    "minimum_strict_json_validity": 0.95,
+    "require_every_game_nonnegative": true,
+    "require_support_zero": true
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_SOURCE_PREFLIGHT",
+  "window": {
+    "context_length": 8,
+    "cross_game_windows": false,
+    "cross_reset_windows": false,
+    "deduplicate_scored_windows": true,
+    "query_horizon": 1,
+    "require_exact_frame_continuity": true
+  },
+  "world_model_fit_authorized": false
+}

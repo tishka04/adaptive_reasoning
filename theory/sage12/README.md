@@ -253,3 +253,20 @@ games. Source actor tracking and prospective calibration failed their frozen
 thresholds, so no world model was fit. Qwen generated nothing because the
 frozen 512-token cap rejected every 879-token prompt. See
 `reports/SAGE12_MECHANIC_INDUCTION_V4_RESULT.md`.
+
+## Clean temporal replication V4.1
+
+V4.1 preserves the V4 rule inducer and adds causal role states, source-only
+leave-one-game-out Platt calibration, frozen per-label thresholds, a compact
+Qwen rule compiler, separate structured/Qwen authority, and a per-effect V5
+capability ledger.
+
+```powershell
+python -m theory.sage12.mechanic_replication preflight
+python -m theory.sage12.mechanic_replication_collection
+python -m theory.sage12.mechanic_replication evaluate
+```
+
+The source preflight must be published before the fresh 768-transition
+collection. The frozen protocol is
+`reports/SAGE12_MECHANIC_REPLICATION_V4_1_PROTOCOL.md`.
