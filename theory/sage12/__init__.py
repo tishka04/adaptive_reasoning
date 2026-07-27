@@ -32,14 +32,6 @@ from .llm import (
     TransformersJSONModel,
     TransformersModelConfig,
 )
-from .mechanic_induction import (
-    MechanicEvidence,
-    MechanicQuery,
-    MechanicRule,
-    MechanicWindowRecord,
-    PersistentRoleTracker,
-    SemanticTransitionEvent,
-)
 from .scene_graph import SceneGraph, SemanticMemory, build_scene_graph
 from .world_model import SemanticTrajectory, SemanticWorldModel
 
@@ -53,12 +45,7 @@ __all__ = [
     "HierarchicalSubgoal",
     "HypothesisCompiler",
     "LocalHypothesisGenerator",
-    "MechanicEvidence",
-    "MechanicQuery",
-    "MechanicRule",
-    "MechanicWindowRecord",
     "PairwiseTrajectoryEBM",
-    "PersistentRoleTracker",
     "Sage12Arbitration",
     "Sage12Config",
     "Sage12Mode",
@@ -69,7 +56,6 @@ __all__ = [
     "SemanticMemory",
     "SemanticPlanningController",
     "SemanticPredicate",
-    "SemanticTransitionEvent",
     "SemanticTraceWriter",
     "SemanticTrajectory",
     "SemanticTrajectoryRecord",

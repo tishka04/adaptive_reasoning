@@ -1,0 +1,103 @@
+{
+  "format_version": "sage12-mechanic-preflight-v4",
+  "frozen_manifest_checksum": "24fc301460c015fbfa9d4647bf13733caa2ca373e07782c8c6d2bda11fdad901",
+  "gates": {
+    "minimum_global_actor_known_rate": false,
+    "minimum_per_game_actor_known_rate": false,
+    "minimum_source_train_windows": true,
+    "model_view_firewall": true,
+    "source_train_label_capacity": true,
+    "static_identity_leakage": true
+  },
+  "identity_probe": {
+    "action_only": {
+      "accuracy": 0.1878597592883307,
+      "majority_accuracy": 0.1423338566195709
+    },
+    "gain": 0.08163265306122452,
+    "static": {
+      "accuracy": 0.26949241234955523,
+      "majority_accuracy": 0.1423338566195709
+    }
+  },
+  "preflight_checksum": "5ae964387078c0b0f0ef529fc8d5bb96f05daed697540e1034ab8f5600fff44b",
+  "priors_checksum": "7f9d62dddd392387d90c31409c203e0b0d23f5e7432e218f7d011d8ddc08042a",
+  "quality": {
+    "actor_role_known_rate": 0.8309785452642595,
+    "per_game": {
+      "bp35": {
+        "actor_role_known_rate": 1.0,
+        "windows": 197
+      },
+      "cd82": {
+        "actor_role_known_rate": 0.04897959183673469,
+        "windows": 245
+      },
+      "dc22": {
+        "actor_role_known_rate": 1.0,
+        "windows": 236
+      },
+      "g50t": {
+        "actor_role_known_rate": 1.0,
+        "windows": 190
+      },
+      "ka59": {
+        "actor_role_known_rate": 1.0,
+        "windows": 217
+      },
+      "lf52": {
+        "actor_role_known_rate": 1.0,
+        "windows": 230
+      },
+      "lp85": {
+        "actor_role_known_rate": 1.0,
+        "windows": 5
+      },
+      "sp80": {
+        "actor_role_known_rate": 0.24369747899159663,
+        "windows": 119
+      },
+      "su15": {
+        "actor_role_known_rate": 1.0,
+        "windows": 68
+      },
+      "tr87": {
+        "actor_role_known_rate": 1.0,
+        "windows": 272
+      },
+      "tu93": {
+        "actor_role_known_rate": 1.0,
+        "windows": 132
+      }
+    },
+    "per_label": {
+      "actor_displaced": {
+        "applicable": 1588,
+        "negatives": 1134,
+        "positives": 454
+      },
+      "target_created": {
+        "applicable": 1577,
+        "negatives": 1490,
+        "positives": 87
+      },
+      "target_moved": {
+        "applicable": 1280,
+        "negatives": 1190,
+        "positives": 90
+      },
+      "target_removed": {
+        "applicable": 1280,
+        "negatives": 1054,
+        "positives": 226
+      }
+    },
+    "unique_window_digests": 1911,
+    "windows": 1911
+  },
+  "rows": 3040,
+  "source_validation_opened": false,
+  "status": "FAIL_SOURCE_TRAIN_PREFLIGHT",
+  "windows": 1911,
+  "world_model_fit_authorized": false
+}

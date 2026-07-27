@@ -115,3 +115,23 @@ committed before preflight or collection. The source-only priors and preflight
 are committed before prospective collection. Final shards, predictions,
 controls, positive or negative result, and all documentation are published
 without changing a gate.
+
+## Source-training preflight result
+
+The frozen source-only run produced 1,911 unique length-eight windows from all
+11 source-training games. All four labels exceed the frozen 75-positive and
+75-negative capacity. Static query identity accuracy gained +0.0816 over
+action-only, inside the +0.10 limit, and the model-view firewall passed.
+
+Persistent actor-role coverage remained 0.831 globally, with `cd82` at 0.049
+and `sp80` at 0.244. It therefore failed the frozen 0.95 global and 0.90
+per-game gates. Preflight checksum:
+`5ae964387078c0b0f0ef529fc8d5bb96f05daed697540e1034ab8f5600fff44b`.
+Priors checksum:
+`7f9d62dddd392387d90c31409c203e0b0d23f5e7432e218f7d011d8ddc08042a`.
+
+This is already sufficient to prevent promotion, but it does not change the
+publication order. The fixed prospective collection and predictive controls
+will still run so the representation receives a complete positive or negative
+transfer audit. No tracker, prior, threshold, gate, or feature is changed
+after this preflight.
