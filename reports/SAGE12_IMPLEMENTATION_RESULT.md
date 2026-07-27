@@ -319,3 +319,27 @@ authority followed.
 Final validation re-derived the structured and result checksums, confirmed
 the expected 576/576/128/128 artifact row counts, passed all 26 targeted
 V4.2/V4.2.1 tests in 31.33 seconds, and passed focused Ruff checks.
+
+## V4.3 implementation freeze
+
+The V4.3 implementation adds:
+
+- the independent `sage12-bound-trajectory-v4.3` pair/tree schema;
+- deterministic prefix replay with exact pre-state verification;
+- outcome-blind same-action/different-argument branch selection;
+- three identity-free binding projections and a source-only LOGO selector;
+- calibrated Beta `BoundMechanicRule` prediction with support/evidence
+  separation;
+- action/history, action-only, binding-only, and deterministic baselines;
+- executed binding swap, outcome shuffle, discordant-pair bootstrap,
+  per-game transfer, calibration, and game-signature diagnostics;
+- the gated `BoundSemanticWorldModel` with explicit occupancy updates,
+  applicability constraints, horizon three, and beam width eight;
+- fail-closed commands for source collection, preflight, validation
+  collection, binding evaluation, and conditional world-model evaluation.
+
+The frozen manifest checksum is
+`2376ddd8c9c1c10083dc42ae92b9633ffc55272cf675770908b9467642370cea`.
+Focused V4.3 and V4.2/V4.2.1 regression validation passed 37 tests in 26.21
+seconds. At this checkpoint no V4.3 corpus or outcome has been opened. The
+world model, EBM, and controller remain untrained and unauthorized.

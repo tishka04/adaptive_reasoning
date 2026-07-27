@@ -267,3 +267,37 @@ That frozen evaluation is now complete and failed closed. The 768 traces,
 immutable negative-promotion audit data. They may be used only by a separately
 labelled post-hoc diagnostic or a newly frozen successor protocol; they do
 not authorize fitting or tuning a semantic world model, EBM, or controller.
+
+## V4.3 replayed counterfactual-tree corpus
+
+V4.3 is an independent prospective dataset with format
+`sage12-bound-trajectory-v4.3`. It must not reuse, copy, or relabel V4.2 or
+V4.2.1 prospective shards.
+
+One row is a pair of executed interventions from an identical pre-state. The
+collector restores the state by replaying the reset-local action prefix,
+verifies the grid/state/level hash, clones it for the left and right arms, and
+keeps both outcomes. Pairs are organized into binary trees of maximum depth
+three. Root selection, action selection, and branch selection may use only
+pre-action legal actions and semantic binding strata; effect-adaptive sampling
+or post-outcome deletion is forbidden.
+
+The authorized source-training cap is 32 roots per game across the 11 frozen
+source games: at most 2,464 pairs or 4,928 executed branch transitions. The
+authorized source-validation cap is 64 roots per game across `re86`, `ls20`,
+and `sc25`: at most 1,344 pairs or 2,688 branch transitions. Seeds are
+857/907/953/1009 for source and 1061/1103/1151/1201 for validation.
+
+Raw frames, state hashes, absolute coordinates, action arguments, object IDs,
+game IDs, seeds, reset indices, root IDs, paths, and observed outcomes are
+audit fields. Model inputs contain only action name/family, the frozen
+identity-free binding projection, and the preceding eight semantic events.
+Validation collection is forbidden until the source-only projection,
+calibration, thresholds, baseline choice, and identity diagnostic are frozen
+and published.
+
+Every raw shard and manifest is published before its corresponding evaluation.
+A failed binding result remains immutable negative-result audit data and
+forbids world-model fitting. A passing binding result authorizes only the
+frozen structured world-model evaluation; even a world-model pass does not
+authorize an EBM, controller, holdout, historical set, or `ar25`.

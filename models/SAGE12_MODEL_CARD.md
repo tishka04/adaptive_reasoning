@@ -227,3 +227,24 @@ Qwen failed all separate gates: every response was Markdown-fenced, strict
 validity and productive recall were zero, outcome-shuffle loss was zero, and
 Brier skill was -0.295586. The result does not authorize V5, world-model or
 EBM fitting, or controller use.
+
+## Causal binding pilot V4.3
+
+V4.3 is a separately versioned causal-binding test motivated by the sole
+V4.2.1 gate failure. It does not reinterpret the positive temporal evidence
+or weaken the old threshold. Instead, it executes two interventions from a
+replay-verified identical pre-state and learns three factorized target effects
+from action, semantic binding, and eight observed events.
+
+The model sees no game identity, grid, state hash, absolute coordinate, raw
+argument, object ID, seed, reset, or tree path. A source-only projection ladder
+controls signature leakage. The explicit binding swap exchanges the two
+executed bindings within each pair, making the negative control causally
+meaningful rather than relying on near-constant within-game rotations.
+
+The conditional world model is a small structured beam search with an
+identity-free occupancy state and hard creation/removal/movement applicability
+constraints. It can be fit only after every binding gate passes. Qwen, GNNs,
+EBM training, and controller authority remain excluded. At the freeze
+checkpoint no V4.3 data or result exists, so no new performance or
+generalization claim is made.

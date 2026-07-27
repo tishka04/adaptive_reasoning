@@ -1,0 +1,134 @@
+{
+  "binding_gates": {
+    "maximum_identity_gain_over_action": 0.05,
+    "maximum_macro_ece": 0.1,
+    "minimum_binding_swap_skill_drop": 0.05,
+    "minimum_discordant_pair_accuracy_gain": 0.1,
+    "minimum_macro_brier_skill": 0.1,
+    "minimum_macro_f1_gain": 0.05,
+    "minimum_source_negatives_per_effect": 75,
+    "minimum_source_pairs": 2000,
+    "minimum_source_positives_per_effect": 75,
+    "minimum_validation_negatives_per_effect": 30,
+    "minimum_validation_pairs": 1000,
+    "minimum_validation_positives_per_effect": 30,
+    "require_discordant_bootstrap_lower_positive": true,
+    "require_every_game_nonnegative": true,
+    "require_same_action_different_target_sc25_positive": true,
+    "require_support_zero": true
+  },
+  "collection": {
+    "action_budget_is_per_reset": true,
+    "chronological_repeats_retained": true,
+    "outcome_adaptive": false,
+    "source_seeds": [
+      857,
+      907,
+      953,
+      1009
+    ],
+    "source_train": {
+      "action_budget_per_reset": 32,
+      "maximum_pairs": 2464,
+      "maximum_resets_per_game": 64,
+      "maximum_transitions": 4928,
+      "roots_per_game": 32
+    },
+    "source_validation": {
+      "action_budget_per_reset": 32,
+      "maximum_pairs": 1344,
+      "maximum_resets_per_game": 96,
+      "maximum_transitions": 2688,
+      "roots_per_game": 64
+    },
+    "tree_depth": 3,
+    "validation_seeds": [
+      1061,
+      1103,
+      1151,
+      1201
+    ]
+  },
+  "effects": [
+    "target_created",
+    "target_removed",
+    "target_moved"
+  ],
+  "evaluation": {
+    "bootstrap_samples": 2000,
+    "random_seed": 857,
+    "validation_tuning": false
+  },
+  "firewall": {
+    "absolute_coordinates_in_model_view": false,
+    "ar25_opened": false,
+    "game_identity_in_model_view": false,
+    "gnn_authorized": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "qwen_authorized": false,
+    "v4_2_1_shards_reused": false,
+    "validation_collection_requires_projection_freeze": true
+  },
+  "format_version": "sage12-bound-mechanic-pilot-v4.3",
+  "frozen_at": "2026-07-27",
+  "manifest_checksum": "2376ddd8c9c1c10083dc42ae92b9633ffc55272cf675770908b9467642370cea",
+  "model": {
+    "binding_rules": [
+      "exact_action_x_projected_binding",
+      "family_x_projected_binding",
+      "exact_action_x_minimal_binding",
+      "family_x_minimal_binding",
+      "exact_action_x_any_binding",
+      "family_x_any_binding"
+    ],
+    "context_length": 8,
+    "minimum_local_evidence": 2,
+    "prior_strength": 2.0,
+    "support_and_evidence_separate": true
+  },
+  "projection": {
+    "ladder": [
+      "minimal",
+      "relational",
+      "typed"
+    ],
+    "selection": "best_source_LOGO_brier_skill",
+    "simplicity_tie_margin": 0.005
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_SOURCE_COLLECTION",
+  "world_model": {
+    "applicability_constraints": true,
+    "beam_width": 8,
+    "explicit_abstract_state": true,
+    "horizon": 3,
+    "name": "BoundSemanticWorldModel",
+    "state_updates": true
+  },
+  "world_model_gates": {
+    "maximum_macro_ece": 0.1,
+    "minimum_binding_swap_recall_drop": 0.1,
+    "minimum_horizon3_brier_skill": 0.05,
+    "minimum_productive_recall_at_8": 0.7,
+    "minimum_recall_gain": 0.1,
+    "require_every_game_nonnegative": true
+  }
+}

@@ -348,3 +348,38 @@ against the +0.020000 minimum. Qwen separately failed all six gates after
 emitting only Markdown-fenced responses. See
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_RESULT.md`. No V5, world
 model, EBM, or controller authority exists.
+
+## Causal binding and conditional world model V4.3
+
+V4.3 replaces the weak binding permutation with executed counterfactual
+pairs. From one deterministic replay-verified pre-state, it runs two legal
+action bindings, retains both outcomes, and recursively constructs a binary
+tree to depth three. Its independent
+`sage12-bound-trajectory-v4.3` audit record keeps raw frames, arguments,
+coordinates, IDs, hashes, seeds, and paths outside the model view.
+
+The source-only projection ladder freezes `minimal`, `relational`, or `typed`
+binding semantics before validation collection. The primary
+`BoundMechanicRule` combines action, binding, and an eight-event history while
+keeping rule `support=0` and observed evidence separate. It is compared with
+action-plus-history, action-only, binding-only, and deterministic-template
+baselines. Binding swaps exchange the two actually executed target
+descriptions while preserving action and label.
+
+Only a complete binding-gate pass permits the structured
+`BoundSemanticWorldModel`: an identity-free occupancy state, factorized target
+effects, applicability constraints, horizon three, and beam width eight. Qwen,
+GNNs, EBM training, and controller execution are excluded.
+
+```powershell
+python -m theory.sage12.bound_mechanic_pilot collect-source
+python -m theory.sage12.bound_mechanic_pilot preflight
+python -m theory.sage12.bound_mechanic_pilot collect-validation
+python -m theory.sage12.bound_mechanic_pilot evaluate-binding
+python -m theory.sage12.bound_mechanic_pilot evaluate-world-model
+```
+
+The frozen design and publication sequence are in
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_PROTOCOL.md`. At this checkpoint,
+only the implementation, tests, protocol, and manifest exist; no V4.3 outcome
+has been observed and all downstream authority remains closed.

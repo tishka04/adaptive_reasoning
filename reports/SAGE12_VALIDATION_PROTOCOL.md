@@ -261,3 +261,22 @@ gates but achieved only +0.017061 binding-shuffle loss against the required
 +0.020000. Qwen failed all six separate gates. Therefore Stage B and every
 later stage remain unauthorized. Full result:
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_RESULT.md`.
+
+## V4.3 causal-binding amendment
+
+V4.2.1's single failed binding-shuffle gate does not authorize a world model.
+The separately frozen V4.3 protocol replaces that weak observational control
+with replayed executed pairs. It is governed by
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_PROTOCOL.md` and the checksummed
+manifest in `training/sage12/bound_mechanic_pilot_v4_3`.
+
+V4.3 must publish its source corpus before source preflight, freeze its
+identity-safe projection and all calibration before validation collection,
+publish validation shards before scoring, and pass every binding gate before
+fitting its structured semantic world model. A binding failure requires an
+explicit skipped fail-closed world-model artifact.
+
+Neither a binding pass nor a world-model pass directly authorizes Stage C.
+A world-model pass permits only preparation of a new frozen energy/safety
+protocol. Qwen, GNN, EBM, controller, holdout, historical, and `ar25` access
+remain closed during V4.3.
