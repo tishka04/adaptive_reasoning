@@ -236,3 +236,22 @@ V3 result checksum:
 `10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4`.
 See `reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`. Stage B remains
 unauthorized; no world model or EBM was fit.
+
+## V4.2.1 runtime-safe replication amendment
+
+V4.2.1 is the only authorized successor to the V4.2 runtime failure. It is a
+new protocol and dataset version; V4.2 code, artifacts, and opened shards
+remain frozen. The scientific model and every V4.2 gate are unchanged.
+
+The added precondition is a source-only full-pipeline rehearsal over all 1,911
+source windows. Every generated public rule must round-trip, both exact and
+family generic `any` rules must occur, and the full source prediction writer
+must successfully serialize selected `any` evidence. Only then may the
+ordinary source preflight run.
+
+A passing preflight may collect 768 fresh transitions under seeds 661, 709,
+757, and 809. Prospective evaluation must persist predictions and a
+structured verdict before Qwen. Qwen retains its V4.2 concrete-anchor
+contract and separate authority. An automatic runtime failure artifact
+revokes all downstream authority. See
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PROTOCOL.md`.

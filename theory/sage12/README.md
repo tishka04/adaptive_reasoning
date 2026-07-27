@@ -305,3 +305,24 @@ Evaluation finished `FAIL_RUNTIME_CLOSED`: the frozen public serializer did
 not handle the structured engine's generic `any` anchor. No metric verdict or
 downstream authority exists. See
 `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_RESULT.md`.
+
+## Runtime-safe target replication V4.2.1
+
+V4.2.1 is a clean recovery run. It adds `any` only to the public structured
+rule vocabulary; state/query anchors and the Qwen contract remain
+`occupied`, `free`, or `none`. A source rehearsal must round-trip every rule
+and serialize all 1,911 source predictions before the ordinary preflight can
+authorize a new collection.
+
+```powershell
+python -m theory.sage12.target_mechanic_recovery rehearsal
+python -m theory.sage12.target_mechanic_recovery preflight
+python -m theory.sage12.target_mechanic_recovery_collection
+python -m theory.sage12.target_mechanic_recovery evaluate
+```
+
+Any authorized collection uses 768 fresh rows under seeds 661, 709, 757, and
+809; V4.2 shards cannot be reused. The evaluator commits its structured
+predictions and verdict before Qwen and writes an automatic runtime-failure
+artifact on an uncaught error. The frozen design is
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PROTOCOL.md`.

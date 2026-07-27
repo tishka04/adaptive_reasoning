@@ -248,3 +248,33 @@ Because outcomes were already opened, V4.2 was not patched or rerun and
 finished `FAIL_RUNTIME_CLOSED`. Failure checksum:
 `17934d7b576ac11c36abcac6235e7bc259247f225f49edf5e05126971390be6a`.
 No structured, Qwen, V5, world-model, EBM, or controller authority followed.
+
+## Runtime-safe target replication V4.2.1 freeze
+
+V4.2.1 adds a separate recovery implementation without changing V4.2. Its
+public rule serializer and inverse loader now represent the internal generic
+`any` anchor, while observed states and Qwen remain restricted to the same
+three concrete anchors. A mandatory source rehearsal enumerates and
+round-trips all rules, executes the full prediction writer on 1,911 source
+windows, and gates the existing source preflight.
+
+The prospective evaluator now persists all structured predictions and a
+checksummed intermediate structured verdict before invoking Qwen. Its
+top-level fail-closed wrapper always records the failed stage, exception, and
+available artifact hashes. The fresh collector requires both source gates,
+uses seeds 661, 709, 757, and 809, and rejects reuse of V4.2 artifacts through
+its versioned manifest and destination.
+
+At this checkpoint only the implementation, tests, protocol, and manifest are
+frozen. No V4.2.1 prospective outcome has been opened, and no V5, world-model,
+EBM, or controller authority has been granted.
+
+Pre-rehearsal validation:
+
+```text
+V4.2/V4.2.1 targeted tests: 26 passed in 29.04s
+targeted Ruff checks: All checks passed!
+full repository suite: 1764 passed, 1 warning in 284.35s (0:04:44)
+```
+
+The warning is the unchanged harmless Joblib physical-core query fallback.

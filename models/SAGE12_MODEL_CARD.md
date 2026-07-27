@@ -183,3 +183,23 @@ See `theory/sage12/README.md`,
 `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`; the constrained repair result is in
 `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`; the action-target result is
 in `reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`.
+
+## Runtime-safe target replication V4.2.1
+
+V4.2.1 is frozen as a separate clean replication; it does not amend or rerun
+V4.2. The observed state vocabulary remains `occupied`, `free`, and `none`.
+Only the public structured-rule vocabulary adds the generic `any` anchor
+already used by the internal rule engine. Qwen's concrete-anchor prompt and
+schema are unchanged.
+
+Before any prospective collection, the complete structured pipeline must
+serialize all 1,911 source predictions and round-trip every exact, family,
+concrete, and generic rule. V4.2 shards are forbidden; any authorized
+V4.2.1 collection uses 768 fresh transitions under seeds 661, 709, 757, and
+809. Predictions and a structured verdict are committed before Qwen starts,
+and an automatic failure artifact closes every downstream authority on an
+uncaught error.
+
+No V4.2.1 result exists at this freeze checkpoint. The world model, EBM, and
+controller remain untrained and unauthorized. See
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PROTOCOL.md`.

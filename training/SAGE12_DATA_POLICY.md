@@ -236,3 +236,21 @@ Data collection alone grants no controller authority. Proposal, world-model,
 energy, shadow, and final holdout gates in
 `reports/SAGE12_VALIDATION_PROTOCOL.md` must pass in order. Any failed stage
 stops later evaluation and leaves SAGE12 off or shadow-only.
+
+## V4.2.1 clean recovery corpus
+
+SAGE12 V4.2.1 uses the immutable V3 source-training traces only for its
+source rehearsal, priors, and calibration. Its source rehearsal prediction
+artifact is derived data and must cover all 1,911 source windows before any
+prospective row is collected.
+
+The V4.2 prospective shards are opened and must not be reused, copied, or
+relabelled. After both source gates pass, V4.2.1 may collect exactly 768 fresh
+transitions, 256 per source-validation game, under unused seeds 661, 709,
+757, and 809. Collection remains chronological and outcome-independent;
+repeated transitions are retained as mechanic evidence and reported.
+
+Raw prospective shards must be published before evaluation. Predictions and
+the structured intermediate verdict must then be written before Qwen
+generation. All artifacts remain audit data unless every frozen gate passes.
+They cannot directly authorize world-model, EBM, or controller fitting.
