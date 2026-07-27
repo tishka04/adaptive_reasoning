@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import random
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -574,7 +575,7 @@ def _write_jsonl_atomic(path: Path, records: Sequence[ActionTargetTrace]) -> Non
                 )
                 + "\n"
             )
-    os.replace(temporary, path)
+    _replace_with_retry(temporary, path)
 
 
 def _write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
@@ -583,7 +584,21 @@ def _write_json_atomic(path: Path, payload: Mapping[str, Any]) -> None:
         json.dumps(payload, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    os.replace(temporary, path)
+    _replace_with_retry(temporary, path)
+
+
+def _replace_with_retry(source: Path, destination: Path) -> None:
+    """Survive short Windows/OneDrive locks without changing file contents."""
+    last_error: PermissionError | None = None
+    for attempt in range(12):
+        try:
+            os.replace(source, destination)
+            return
+        except PermissionError as exc:
+            last_error = exc
+            time.sleep(min(0.1 * (2**attempt), 2.0))
+    if last_error is not None:
+        raise last_error
 
 
 def _payload_checksum(payload: Mapping[str, Any]) -> str:

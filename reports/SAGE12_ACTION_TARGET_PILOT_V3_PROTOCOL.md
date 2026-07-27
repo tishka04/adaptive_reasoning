@@ -149,3 +149,17 @@ The protocol, code, tests, and collection manifest are committed before the
 first command. The training preflight and projection freeze are committed
 before the third command. The final collection, predictions, result, and
 positive or negative report are then published without changing a gate.
+
+## Source-training collection execution amendment
+
+The first source-training launch completed all 11 base shards, then stopped
+before writing the first adaptive top-up because Windows/OneDrive temporarily
+locked the existing `bp35.jsonl` destination during `os.replace`. No
+source-validation game was opened and no preflight, model fit, metric, or gate
+was computed.
+
+Atomic shard and manifest replacement now retries the identical byte-for-byte
+operation after transient `PermissionError` failures. Quotas, seeds, action
+selection, adaptive allocation, records, labels, projections, models, and
+gates are unchanged. The source-training collection resumes from the
+checksummed base shards after this amendment is committed.

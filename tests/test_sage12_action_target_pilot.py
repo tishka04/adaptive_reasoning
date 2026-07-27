@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import replace
 
 import numpy as np
@@ -8,6 +9,7 @@ import numpy as np
 from theory.live_transition_loop import build_observation
 from theory.sage11.splits import SOURCE_TRAIN
 from theory.sage12.action_target_collection import (
+    _replace_with_retry,
     allocate_adaptive_game_quotas,
 )
 from theory.sage12.action_target_data import (
@@ -249,3 +251,29 @@ def test_frozen_label_set_is_component_wise():
         "target_removed",
         "target_moved",
     )
+
+
+def test_atomic_replace_retries_transient_windows_lock(tmp_path, monkeypatch):
+    source = tmp_path / "source.tmp"
+    destination = tmp_path / "destination.json"
+    source.write_text("new", encoding="utf-8")
+    destination.write_text("old", encoding="utf-8")
+    real_replace = os.replace
+    calls = {"count": 0}
+
+    def flaky_replace(left, right):
+        calls["count"] += 1
+        if calls["count"] < 3:
+            raise PermissionError("transient lock")
+        return real_replace(left, right)
+
+    monkeypatch.setattr(os, "replace", flaky_replace)
+    monkeypatch.setattr(
+        "theory.sage12.action_target_collection.time.sleep",
+        lambda _seconds: None,
+    )
+
+    _replace_with_retry(source, destination)
+
+    assert calls["count"] == 3
+    assert destination.read_text(encoding="utf-8") == "new"
