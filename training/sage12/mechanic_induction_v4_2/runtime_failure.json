@@ -1,0 +1,40 @@
+{
+  "amendment_permitted": false,
+  "artifacts": {
+    "pilot_result_written": false,
+    "predictions_written": false,
+    "qwen_outcome_shuffle_outputs": {
+      "rows": 128,
+      "sha256": "02b9f950fa39a74bcaf43d86c1946df88b164fb2d7dfe6ae2a285014f6823c8d"
+    },
+    "qwen_outputs": {
+      "rows": 128,
+      "sha256": "4c96b2f6a56719583d977ab07bef4e00dc374b24d8a7ac24e63118eafa5c493c"
+    },
+    "validation_windows": {
+      "rows": 576,
+      "sha256": "07cddf4a90e7cdd84e9f118cc57dd01efef67c471d0b2bbd7a2008b23c9ef588"
+    }
+  },
+  "collection_report_checksum": "6bdec774c744061e3e5014ced8d3d0191d1cdc13243130817ea9ec84fd50dce7",
+  "ebm_fit_authorized": false,
+  "error": {
+    "exception_type": "KeyError",
+    "message": "'any'",
+    "operation": "_public_rule(item.rule)",
+    "root_cause": "The frozen public-rule serializer mapped the three concrete internal anchor encodings but omitted the structured engine's generic any anchor.",
+    "stage": "prediction_serialization"
+  },
+  "format_version": "sage12-target-mechanic-runtime-failure-v4.2",
+  "frozen_code_commit": "d6f0fd6",
+  "frozen_manifest_checksum": "fba242f31cbc492f44333bcae8c5f9228baee0b79c15f0c68009dce7a76a6210",
+  "preflight_checksum": "68747717f45289775cd543aaa027eb24164200b255b42b57368e4c6fba0816ff",
+  "prospective_outcomes_opened": true,
+  "qwen_authority": false,
+  "qwen_verdict_available": false,
+  "result_checksum": "17934d7b576ac11c36abcac6235e7bc259247f225f49edf5e05126971390be6a",
+  "status": "FAIL_RUNTIME_CLOSED",
+  "structured_verdict_available": false,
+  "v5_protocol_authorized": false,
+  "world_model_fit_authorized": false
+}

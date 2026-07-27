@@ -20,8 +20,8 @@ Status: Stage A V1-V4 executed and failed closed. V4 found strong temporal
 signal but did not pass every gate. V4.1 also failed closed at its source-only
 preflight: the role, calibration, prompt-budget, and firewall gates passed,
 but effect capacity and game-signature leakage did not. Stages B-E remain
-unauthorized. V4.2 is frozen as a target-only invariant-anchor replication;
-it must pass a new source preflight before any prospective collection.
+unauthorized. V4.2 passed its target-only source preflight and collection but
+failed closed at runtime before a prospective verdict.
 
 V4.1 must stop before prospective collection if its source preflight fails.
 If structured V4.1 passes, it authorizes only a separately frozen deterministic
@@ -43,6 +43,12 @@ and `target_moved`, maps anchors to `occupied` / `free` / `none`, tightens
 the identity limit to +0.05, and adds source utility plus prospective
 anchor-shuffle gates. Its protocol is
 `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PROTOCOL.md`.
+
+V4.2 passed source preflight and completed collection, then failed closed
+before producing prospective metrics because the frozen serializer omitted
+the generic `any` rule anchor. Its opened shards cannot be reused for a clean
+replication. Stages B-E remain unauthorized. See
+`reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_RESULT.md`.
 
 SAGE12 V4 is a new Stage A temporal amendment. It tests whether eight observed
 transitions can induce a game-local typed rule that predicts the next effect.

@@ -2,8 +2,8 @@
 
 Status: Stage A V1-V4 are complete. V4.1 failed its frozen source-only
 preflight and stopped before prospective collection. World-model and EBM
-fitting remain unauthorized. V4.2 is frozen but has not opened its source
-preflight or prospective outcomes.
+fitting remain unauthorized. V4.2 opened its frozen prospective corpus and
+failed closed before producing a metric verdict.
 
 V4.1 derives new versioned windows from the immutable V3 source-training
 traces. It may write source priors, leave-one-game-out calibration,
@@ -44,6 +44,12 @@ That collection completed at exactly 768 rows under report checksum
 `6bdec774c744061e3e5014ced8d3d0191d1cdc13243130817ea9ec84fd50dce7`.
 Its three raw shards and combined checksum are frozen before prospective
 evaluation. Chronological repeats remain part of the audit corpus.
+
+The frozen evaluator opened those outcomes and stopped at
+`FAIL_RUNTIME_CLOSED` before producing predictions or a pilot result. The 576
+validation windows and two 128-row Qwen streams remain non-authoritative
+audit data. The V4.2 shards are now opened and must not serve as the clean
+gating set of a successor.
 
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows

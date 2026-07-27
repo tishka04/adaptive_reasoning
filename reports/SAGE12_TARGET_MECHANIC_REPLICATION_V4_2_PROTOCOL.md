@@ -152,3 +152,14 @@ was outcome-independent, and 91 chronological exact repeats were retained.
 No prospective metric or Qwen output was computed before publishing the raw
 shards. Collection ledger:
 `reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_COLLECTION.md`.
+
+## Executed evaluation result
+
+The frozen evaluator stopped at `FAIL_RUNTIME_CLOSED` while serializing a
+generic rule with internal anchor `any`. The public compatibility map covered
+only the three concrete anchors, causing `KeyError('any')` after outcomes
+were opened. The protocol therefore forbade a patch or rerun. No structured
+or Qwen verdict is available and no authority was granted. Failure checksum:
+`17934d7b576ac11c36abcac6235e7bc259247f225f49edf5e05126971390be6a`.
+Full result:
+`reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_RESULT.md`.

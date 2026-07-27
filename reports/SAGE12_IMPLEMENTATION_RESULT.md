@@ -240,3 +240,11 @@ with balanced legal-action coverage, eight resets per game, no outcome
 adaptation, and 91 chronological repeats retained. Collection report checksum:
 `6bdec774c744061e3e5014ced8d3d0191d1cdc13243130817ea9ec84fd50dce7`.
 The raw shards were frozen before any prospective metric or Qwen generation.
+
+The frozen evaluator subsequently wrote 576 validation windows and both
+128-row Qwen streams, then raised `KeyError('any')` while serializing a
+generic structured rule. It wrote neither predictions nor a pilot result.
+Because outcomes were already opened, V4.2 was not patched or rerun and
+finished `FAIL_RUNTIME_CLOSED`. Failure checksum:
+`17934d7b576ac11c36abcac6235e7bc259247f225f49edf5e05126971390be6a`.
+No structured, Qwen, V5, world-model, EBM, or controller authority followed.

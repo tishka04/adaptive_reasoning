@@ -3,8 +3,8 @@
 Status: software implementation complete; free-generation V1, constrained V2,
 action-target V3, temporal mechanic V4, and clean replication V4.1 failed
 closed. V4.1 stopped at its source-only preflight, before prospective
-collection. V4.2 is frozen to test only the three sufficiently supported
-target effects with invariant anchors. The world model and EBM remain
+collection. V4.2 passed source preflight and collection but failed closed at
+runtime before producing prospective metrics. The world model and EBM remain
 untrained and unauthorized.
 
 V4.1 repairs causal role resolution, adds leave-one-source-game-out Platt
@@ -28,6 +28,12 @@ movement; it does not authorize model fitting directly.
 V4.2 passed all 11 source-preflight gates. The result authorizes only its
 frozen fresh collection; prospective transfer, Qwen authority, V5, the world
 model, EBM, and controller remain unvalidated and unauthorized.
+
+The frozen prospective evaluator later stopped at `FAIL_RUNTIME_CLOSED`
+because its public rule serializer did not map the structured engine's
+generic `any` anchor. No structured or Qwen verdict exists. The partial
+validation and Qwen artifacts are audit-only, and all downstream authority
+remains closed.
 
 The separately frozen V4 pilot now evaluates sequence-conditioned mechanic
 induction from eight observed transitions. Its primary model is a bounded
