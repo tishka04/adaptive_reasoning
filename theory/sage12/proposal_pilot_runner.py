@@ -151,9 +151,15 @@ def run_evaluation(
             encoding="utf-8"
         )
     )
-    if (
-        benchmark.get("frozen_manifest_checksum")
-        != frozen["manifest_checksum"]
+    compatible_benchmark_manifests = {
+        frozen["manifest_checksum"],
+        *frozen.get(
+            "compatible_device_benchmark_manifest_checksums",
+            (),
+        ),
+    }
+    if benchmark.get("frozen_manifest_checksum") not in (
+        compatible_benchmark_manifests
     ):
         raise ValueError("device benchmark does not match frozen pilot")
     traces = _load_collection(frozen, destination)

@@ -257,6 +257,7 @@ def compact_existing_collection(
     ).hexdigest()
     collection.update(
         {
+            "frozen_manifest_checksum": frozen["manifest_checksum"],
             "shards": metadata,
             "combined_shard_checksum": combined,
             "projection_amendment": {

@@ -10,6 +10,9 @@
     "stored_scene_views": "compact_original_and_relation_shuffle",
     "state_action_repeat_cap": 4
   },
+  "compatible_device_benchmark_manifest_checksums": [
+    "03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287"
+  ],
   "feasibility_amendment": {
     "changed_after_quality_outcomes": false,
     "failed_preflight_completed_generations": 0,
@@ -17,6 +20,7 @@
     "failed_preflight_timeout_seconds": 902.1,
     "partial_evaluation_outputs_before_projection_fix": 7,
     "partial_outputs_strict_json_valid": 0,
+    "preserved_device_benchmark_result_checksum": "e6874d94708611e870415a6decd32314f15e117b2fdd24dd1c20d9d33a66ecdb",
     "reason": "unbounded_scene_serialization_exceeded_model_context",
     "sampling_digest_amendment": "pre_action_fields_only_v1",
     "scope": "deterministic_prompt_compaction_hard_input_cap_compact_storage_and_pre_action_sampling_digest"
@@ -90,7 +94,7 @@
     "minimum_support_zero_rate": 0.95,
     "require_every_validation_game_nonnegative": true
   },
-  "manifest_checksum": "dfc53d015734c96eacdb003836713d15f4dac4c56c398e363e54e3ddfffadcce",
+  "manifest_checksum": "0dfdff9a61e45e02b16601a47d987454c991a2d5f99c8964a5486c17ed17aceb",
   "model": {
     "decoding": {
       "do_sample": false,

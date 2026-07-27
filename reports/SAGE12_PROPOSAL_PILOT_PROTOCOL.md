@@ -8,7 +8,7 @@ Frozen manifest:
 `training/sage12/proposal_pilot_v1/frozen_manifest.json`
 
 Manifest checksum:
-`dfc53d015734c96eacdb003836713d15f4dac4c56c398e363e54e3ddfffadcce`
+`0dfdff9a61e45e02b16601a47d987454c991a2d5f99c8964a5486c17ed17aceb`
 
 ## Feasibility amendment before outcomes
 
@@ -43,6 +43,14 @@ reset/step, pre-action scene signature, legal actions, and the preselected
 action/arguments. The seven preliminary outputs are excluded and the full
 evaluation restarts from zero. This amendment corrects storage and removes
 outcome leakage; it does not attempt to rescue the already-failed JSON gate.
+
+The completed device benchmark remains valid under the final manifest because
+the subsequent amendments do not alter its four scene prompts, model weights,
+decoding, devices, or speed-selection rule. The final manifest explicitly
+binds its predecessor checksum
+`03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287`
+and benchmark result checksum
+`e6874d94708611e870415a6decd32314f15e117b2fdd24dd1c20d9d33a66ecdb`.
 
 ## Scope and firewall
 
