@@ -356,3 +356,20 @@ The successful source run then completed 352/352 roots, 2,396 pairs, and
 removal, and 8 movement positives. The collection is documented in
 `reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_COLLECTION.md` and published before
 source preflight.
+
+The source preflight then failed before validation collection. The fail-closed
+binding command now writes an explicit `SKIPPED_SOURCE_PREFLIGHT` artifact
+instead of raising without a closure record; the world-model command consumes
+that record and writes its own skipped artifact. This persistence-only change
+does not fit a model or alter the frozen scientific verdict.
+
+The final V4.3 status is `FAIL_CLOSED` at source preflight. Minimal,
+relational, and typed projections had Brier skills of -0.1620, -0.1548, and
+-0.0712, with identity gains of +0.2089, +0.2550, and +0.5624. Target movement
+had only 8 positives. No validation game was opened, and no binding or world
+model was fit. Full ledger:
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_RESULT.md`.
+
+Final validation passed 39 focused V4.3/V4.2/V4.2.1 tests in 31.35 seconds,
+passed focused Ruff checks, reloaded every closure artifact, and confirmed
+that no source-validation shard directory exists.

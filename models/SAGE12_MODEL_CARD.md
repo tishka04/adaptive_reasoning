@@ -248,3 +248,11 @@ constraints. It can be fit only after every binding gate passes. Qwen, GNNs,
 EBM training, and controller authority remain excluded. At the freeze
 checkpoint no V4.3 data or result exists, so no new performance or
 generalization claim is made.
+
+V4.3 later failed its source preflight. The replayed pair corpus was sound,
+but target movement supplied only 8 positives. Minimal, relational, and typed
+bindings all transferred worse than their stronger source LOGO baselines;
+their game-identity gains were +0.2089, +0.2550, and +0.5624 respectively.
+No representation was selected and no validation data or world model was
+opened. The result rejects the current binding vocabulary and local Beta
+learner, not an unexecuted world-model/EBM/controller stack.

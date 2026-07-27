@@ -309,3 +309,9 @@ It contains every observed arm, including terminally truncated trees, and had
 zero replay failures. These source shards may be read only by the already
 frozen V4.3 source preflight. They do not authorize validation collection or
 any downstream model by themselves.
+
+The frozen source preflight failed, so the source shards are now immutable
+negative-result audit data. `projection_freeze.json` selects no projection.
+The V4.3 validation collector remains blocked and no validation shard may be
+created under this version. The binding and world-model closure records grant
+no downstream authority.

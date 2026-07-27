@@ -390,3 +390,11 @@ meet their frozen class-capacity minima, but target movement has only 8 source
 positives versus the required 75. The raw corpus is published before the
 official source preflight and no validation game is open. See
 `reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_COLLECTION.md`.
+
+The source preflight subsequently returned `FAIL_CLOSED`. Target movement had
+8 positives versus the required 75. All three projections also had negative
+LOGO Brier skill and macro-F1 gain, while game-identity gain ranged from
++0.2089 to +0.5624 against the +0.05 maximum. No projection was frozen, no
+validation game was opened, and both binding and world-model stages wrote
+explicit skipped artifacts. See
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_RESULT.md`.

@@ -280,3 +280,10 @@ Neither a binding pass nor a world-model pass directly authorizes Stage C.
 A world-model pass permits only preparation of a new frozen energy/safety
 protocol. Qwen, GNN, EBM, controller, holdout, historical, and `ar25` access
 remain closed during V4.3.
+
+V4.3 has now stopped at `FAIL_CLOSED` source preflight. Movement capacity,
+source LOGO utility, and identity leakage all failed. No projection was
+selected, the validation collector stayed blocked, and the binding/world-model
+commands wrote skipped closure artifacts. Stages B-E remain unauthorized.
+Complete result:
+`reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_RESULT.md`.

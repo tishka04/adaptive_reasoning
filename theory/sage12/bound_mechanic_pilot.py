@@ -2019,7 +2019,23 @@ def run_binding_evaluation(
         (destination / "source_train_preflight.json").read_text(encoding="utf-8")
     )
     if preflight.get("status") != "PASS":
-        raise RuntimeError("binding evaluation blocked by source preflight")
+        payload: dict[str, Any] = {
+            "format_version": BINDING_RESULT_FORMAT_VERSION,
+            "status": "SKIPPED_SOURCE_PREFLIGHT",
+            "reason": "source_preflight_did_not_pass_all_frozen_gates",
+            "frozen_manifest_checksum": frozen["manifest_checksum"],
+            "preflight_checksum": preflight.get("preflight_checksum"),
+            "validation_opened": False,
+            "binding_model_fitted": False,
+            "world_model_fit_authorized": False,
+            "qwen_fit_authorized": False,
+            "gnn_fit_authorized": False,
+            "ebm_fit_authorized": False,
+            "controller_authorized": False,
+        }
+        payload["result_checksum"] = _checksum(payload)
+        _write_json(destination / "binding_result.json", payload)
+        return payload
     projection = str(preflight["selected_projection"])
     bundle = CalibrationBundle.from_dict(
         json.loads((destination / "calibration.json").read_text(encoding="utf-8"))

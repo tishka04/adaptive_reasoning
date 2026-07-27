@@ -1,0 +1,677 @@
+{
+  "ar25_opened": false,
+  "capacity": {
+    "pairs": 2396,
+    "per_game": {
+      "bp35": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "cd82": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "dc22": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "g50t": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "ka59": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "lf52": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "lp85": {
+        "pairs": 164,
+        "windows": 328
+      },
+      "sp80": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "su15": {
+        "pairs": 216,
+        "windows": 432
+      },
+      "tr87": {
+        "pairs": 224,
+        "windows": 448
+      },
+      "tu93": {
+        "pairs": 224,
+        "windows": 448
+      }
+    },
+    "per_label": {
+      "target_created": {
+        "applicable": 3893,
+        "negatives": 3705,
+        "positives": 188
+      },
+      "target_moved": {
+        "applicable": 2638,
+        "negatives": 2630,
+        "positives": 8
+      },
+      "target_removed": {
+        "applicable": 2638,
+        "negatives": 2019,
+        "positives": 619
+      }
+    },
+    "windows": 4792
+  },
+  "capacity_gates": {
+    "compiler_grounding": true,
+    "minimum_source_pairs": true,
+    "replay_integrity": true,
+    "source_label_capacity": false,
+    "strict_json_validity": true
+  },
+  "format_version": "sage12-bound-preflight-v4.3",
+  "frozen_manifest_checksum": "2376ddd8c9c1c10083dc42ae92b9633ffc55272cf675770908b9467642370cea",
+  "historical_opened": false,
+  "holdout_opened": false,
+  "preflight_checksum": "2acbe04b34fb0d22456154e39c326c2e5da2cc13f271cfcc7818ff65601a63a2",
+  "projection_results": {
+    "minimal": {
+      "brier_skill": -0.16200789489221407,
+      "gates": {
+        "maximum_identity_gain": false,
+        "maximum_source_macro_ece": true,
+        "minimum_source_macro_brier_skill": false,
+        "minimum_source_macro_f1_gain": false
+      },
+      "identity": {
+        "action_binding": {
+          "accuracy": 0.4338480801335559,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "action_only": {
+          "accuracy": 0.22495826377295491,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "gain": 0.208889816360601
+      },
+      "macro_f1_gain": -0.04000860696793601,
+      "metrics": {
+        "action_only": {
+          "macro_brier": 0.07170714167098031,
+          "macro_ece": 0.022827160197141854,
+          "macro_f1": 0.34563945809275826,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.045225548900573925,
+              "ece": 0.002020997455465189,
+              "f1": 0.3493150684931507,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.07021099031532692
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.0029291010603564654,
+              "ece": 3.6511753856169685e-06,
+              "f1": 0.18181818181818182,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.06604495445005419
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.16696677505201055,
+              "ece": 0.06645683196057475,
+              "f1": 0.5057851239669422,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.20866475554678807
+            }
+          }
+        },
+        "binding_only": {
+          "macro_brier": 0.054949325858886344,
+          "macro_ece": 0.05462022714287574,
+          "macro_f1": 0.44256151948728517,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.03722609212532672,
+              "ece": 0.018307712394977766,
+              "f1": 0.49047619047619045,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.17952648475548846
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.0029753567269737353,
+              "ece": 7.003761704840522e-05,
+              "f1": 0.0736196319018405,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.022762380450705798
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.12464652872435857,
+              "ece": 0.14548293141660104,
+              "f1": 0.7635887360838245,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.27230093370759456
+            }
+          }
+        },
+        "no_binding": {
+          "macro_brier": 0.06510810174090136,
+          "macro_ece": 0.020785660321037413,
+          "macro_f1": 0.3686027131663063,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.04588241061283731,
+              "ece": 3.3987658569767376e-05,
+              "f1": 0.3886255924170616,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.05470585857169365
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.002953338185373835,
+              "ece": 8.852404077607607e-05,
+              "f1": 0.12903225806451613,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.04749974517482888
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.14648855642449296,
+              "ece": 0.0622344692637664,
+              "f1": 0.588150289017341,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.34836689678276384
+            }
+          }
+        },
+        "structured": {
+          "macro_brier": 0.06385155046703082,
+          "macro_ece": 0.03137233813663718,
+          "macro_f1": 0.40255291251934916,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.0421127567912257,
+              "ece": 0.031794021105369066,
+              "f1": 0.49047619047619045,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.10710899096852922
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.002953338185373835,
+              "ece": 8.852404077607607e-05,
+              "f1": 0.12903225806451613,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.04749974517482888
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.14648855642449296,
+              "ece": 0.0622344692637664,
+              "f1": 0.588150289017341,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.34836689678276384
+            }
+          }
+        },
+        "template": {
+          "macro_brier": 0.0685215193902642,
+          "macro_ece": 0.0001371879201628645,
+          "macro_f1": 0.20086512753532823,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.045903379594477225,
+              "ece": 8.46176813722177e-07,
+              "f1": 0.09634551495016612,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.07009657570457811
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.003023403896006896,
+              "ece": 1.0326462416715334e-05,
+              "f1": 0.006046863189720333,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.0030222739924733533
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.15663777468030846,
+              "ece": 0.000400391121258156,
+              "f1": 0.5002030044660982,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.33378603338507085
+            }
+          }
+        }
+      },
+      "projection": "minimal",
+      "status": "FAIL_CLOSED",
+      "stronger_baseline": "binding_only"
+    },
+    "relational": {
+      "brier_skill": -0.15483899148770328,
+      "gates": {
+        "maximum_identity_gain": false,
+        "maximum_source_macro_ece": true,
+        "minimum_source_macro_brier_skill": false,
+        "minimum_source_macro_f1_gain": false
+      },
+      "identity": {
+        "action_binding": {
+          "accuracy": 0.47996661101836396,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "action_only": {
+          "accuracy": 0.22495826377295491,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "gain": 0.25500834724540905
+      },
+      "macro_f1_gain": -0.022194994625278852,
+      "metrics": {
+        "action_only": {
+          "macro_brier": 0.07170714167098031,
+          "macro_ece": 0.022827160197141854,
+          "macro_f1": 0.34563945809275826,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.045225548900573925,
+              "ece": 0.002020997455465189,
+              "f1": 0.3493150684931507,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.07021099031532692
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.0029291010603564654,
+              "ece": 3.6511753856169685e-06,
+              "f1": 0.18181818181818182,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.06604495445005419
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.16696677505201055,
+              "ece": 0.06645683196057475,
+              "f1": 0.5057851239669422,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.20866475554678807
+            }
+          }
+        },
+        "binding_only": {
+          "macro_brier": 0.05636217127440698,
+          "macro_ece": 0.03854954657491919,
+          "macro_f1": 0.4154225103192313,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.039524816882120124,
+              "ece": 0.0187636620353255,
+              "f1": 0.4605809128630705,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.14062337760041269
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.002999964659527899,
+              "ece": 5.820086428432033e-05,
+              "f1": 0.11428571428571428,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.0184649146526423
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.12656173228157291,
+              "ece": 0.09682677682514777,
+              "f1": 0.6714009038089089,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.295627530965446
+            }
+          }
+        },
+        "no_binding": {
+          "macro_brier": 0.06510810174090136,
+          "macro_ece": 0.020785660321037413,
+          "macro_f1": 0.3686027131663063,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.04588241061283731,
+              "ece": 3.3987658569767376e-05,
+              "f1": 0.3886255924170616,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.05470585857169365
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.002953338185373835,
+              "ece": 8.852404077607607e-05,
+              "f1": 0.12903225806451613,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.04749974517482888
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.14648855642449296,
+              "ece": 0.0622344692637664,
+              "f1": 0.588150289017341,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.34836689678276384
+            }
+          }
+        },
+        "structured": {
+          "macro_brier": 0.06508923303259335,
+          "macro_ece": 0.039757189870274844,
+          "macro_f1": 0.3932275156939524,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.0422469395804554,
+              "ece": 0.032901820354042474,
+              "f1": 0.4625,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.10178960876604216
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.0029889476323451385,
+              "ece": 9.50958399648402e-05,
+              "f1": 0.12903225806451613,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.02490011794093971
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.15003181188497955,
+              "ece": 0.08627465341681721,
+              "f1": 0.588150289017341,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.32782579983345567
+            }
+          }
+        },
+        "template": {
+          "macro_brier": 0.0685215193902642,
+          "macro_ece": 0.0001371879201628645,
+          "macro_f1": 0.20086512753532823,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.045903379594477225,
+              "ece": 8.46176813722177e-07,
+              "f1": 0.09634551495016612,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.07009657570457811
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.003023403896006896,
+              "ece": 1.0326462416715334e-05,
+              "f1": 0.006046863189720333,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.0030222739924733533
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.15663777468030846,
+              "ece": 0.000400391121258156,
+              "f1": 0.5002030044660982,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.33378603338507085
+            }
+          }
+        }
+      },
+      "projection": "relational",
+      "status": "FAIL_CLOSED",
+      "stronger_baseline": "binding_only"
+    },
+    "typed": {
+      "brier_skill": -0.07115974672109837,
+      "gates": {
+        "maximum_identity_gain": false,
+        "maximum_source_macro_ece": true,
+        "minimum_source_macro_brier_skill": false,
+        "minimum_source_macro_f1_gain": false
+      },
+      "identity": {
+        "action_binding": {
+          "accuracy": 0.7873539232053423,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "action_only": {
+          "accuracy": 0.22495826377295491,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "gain": 0.5623956594323873
+      },
+      "macro_f1_gain": -0.008254351473780619,
+      "metrics": {
+        "action_only": {
+          "macro_brier": 0.07170714167098031,
+          "macro_ece": 0.022827160197141854,
+          "macro_f1": 0.34563945809275826,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.045225548900573925,
+              "ece": 0.002020997455465189,
+              "f1": 0.3493150684931507,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.07021099031532692
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.0029291010603564654,
+              "ece": 3.6511753856169685e-06,
+              "f1": 0.18181818181818182,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.06604495445005419
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.16696677505201055,
+              "ece": 0.06645683196057475,
+              "f1": 0.5057851239669422,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.20866475554678807
+            }
+          }
+        },
+        "binding_only": {
+          "macro_brier": 0.06613643231649823,
+          "macro_ece": 0.05391775076249308,
+          "macro_f1": 0.3621155679029311,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.04263099976864378,
+              "ece": 0.023968782576098076,
+              "f1": 0.4095744680851064,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.12475585028755136
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.0029962601265112565,
+              "ece": 6.197087949280124e-06,
+              "f1": 0.08450704225352113,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.01238683521831877
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.15278203705433965,
+              "ece": 0.1377782726234319,
+              "f1": 0.5922651933701657,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.24782376718630256
+            }
+          }
+        },
+        "no_binding": {
+          "macro_brier": 0.06510810174090136,
+          "macro_ece": 0.020785660321037413,
+          "macro_f1": 0.3686027131663063,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.04588241061283731,
+              "ece": 3.3987658569767376e-05,
+              "f1": 0.3886255924170616,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.05470585857169365
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.002953338185373835,
+              "ece": 8.852404077607607e-05,
+              "f1": 0.12903225806451613,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.04749974517482888
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.14648855642449296,
+              "ece": 0.0622344692637664,
+              "f1": 0.588150289017341,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.34836689678276384
+            }
+          }
+        },
+        "structured": {
+          "macro_brier": 0.0697411777702754,
+          "macro_ece": 0.031239318403510092,
+          "macro_f1": 0.36034836169252565,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.04453429160775114,
+              "ece": 0.005001471523427175,
+              "f1": 0.3989769820971867,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.08484950025449452
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.003006943663518643,
+              "ece": 8.704847359562728e-06,
+              "f1": 0.12903225806451613,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.01275307062085781
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.16168229803955642,
+              "ece": 0.08870777883974354,
+              "f1": 0.5530358449158742,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.3022175317989888
+            }
+          }
+        },
+        "template": {
+          "macro_brier": 0.0685215193902642,
+          "macro_ece": 0.0001371879201628645,
+          "macro_f1": 0.20086512753532823,
+          "per_label": {
+            "target_created": {
+              "applicable": 3893,
+              "brier": 0.045903379594477225,
+              "ece": 8.46176813722177e-07,
+              "f1": 0.09634551495016612,
+              "negatives": 3705,
+              "positives": 188,
+              "threshold": 0.07009657570457811
+            },
+            "target_moved": {
+              "applicable": 2638,
+              "brier": 0.003023403896006896,
+              "ece": 1.0326462416715334e-05,
+              "f1": 0.006046863189720333,
+              "negatives": 2630,
+              "positives": 8,
+              "threshold": 0.0030222739924733533
+            },
+            "target_removed": {
+              "applicable": 2638,
+              "brier": 0.15663777468030846,
+              "ece": 0.000400391121258156,
+              "f1": 0.5002030044660982,
+              "negatives": 2019,
+              "positives": 619,
+              "threshold": 0.33378603338507085
+            }
+          }
+        }
+      },
+      "projection": "typed",
+      "status": "FAIL_CLOSED",
+      "stronger_baseline": "no_binding"
+    }
+  },
+  "selected_projection": null,
+  "selection_rule": "best_source_LOGO_brier_skill; within 0.005 choose simpler",
+  "source_only": true,
+  "status": "FAIL_CLOSED",
+  "validation_opened": false
+}

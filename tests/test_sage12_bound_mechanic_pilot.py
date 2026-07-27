@@ -29,6 +29,7 @@ from theory.sage12.bound_mechanic_pilot import (
     load_frozen_manifest,
     pair_windows,
     replay_prefix,
+    run_binding_evaluation,
     run_world_model_evaluation,
     score_window,
     select_branch_actions,
@@ -401,6 +402,25 @@ def test_world_model_refuses_failed_binding_result(tmp_path: Path) -> None:
     )
     assert result["status"] == "SKIPPED_FAIL_CLOSED"
     assert result["world_model_fitted"] is False
+
+
+def test_binding_evaluation_records_source_preflight_stop(tmp_path: Path) -> None:
+    (tmp_path / "source_train_preflight.json").write_text(
+        json.dumps(
+            {
+                "status": "FAIL_CLOSED",
+                "preflight_checksum": "source-failure",
+            }
+        ),
+        encoding="utf-8",
+    )
+    result = run_binding_evaluation(
+        frozen_manifest_path=DEFAULT_FROZEN_MANIFEST_PATH,
+        output_dir=tmp_path,
+    )
+    assert result["status"] == "SKIPPED_SOURCE_PREFLIGHT"
+    assert result["validation_opened"] is False
+    assert result["world_model_fit_authorized"] is False
 
 
 def test_v4_2_1_result_is_unchanged() -> None:
