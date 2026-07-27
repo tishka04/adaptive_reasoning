@@ -163,3 +163,12 @@ operation after transient `PermissionError` failures. Quotas, seeds, action
 selection, adaptive allocation, records, labels, projections, models, and
 gates are unchanged. The source-training collection resumes from the
 checksummed base shards after this amendment is committed.
+
+The resumed run then established that `su15` could supply 290 unique rows but
+saturated before its provisional adaptive allocation of 301. The frozen
+policy already defines the 453 rows as a global event-deficit top-up with only
+a maximum, not a required per-game top-up. The collector now preserves every
+unique `su15` row and deterministically reallocates its shortfall to the
+highest-yield non-saturated source-training game below the same +64 cap.
+The global 3,040/960 budgets, exact-duplicate rule, event targets, firewall,
+models, and gates remain unchanged.

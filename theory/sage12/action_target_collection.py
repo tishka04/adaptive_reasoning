@@ -122,6 +122,7 @@ def _collect_source_train(
             frozen["collection"]["maximum_adaptive_rows_per_game"]
         ),
     )
+    saturated: set[str] = set()
     for game in SOURCE_TRAIN:
         target = base_quotas[game] + allocations.get(game, 0)
         path = shard_dir / f"{game}.jsonl"
@@ -135,13 +136,61 @@ def _collect_source_train(
                 environment_root=environment_root,
                 frozen=frozen,
                 phase="adaptive",
+                allow_shortfall=True,
             )
             _write_jsonl_atomic(path, existing)
             reports[game] = game_report
+            if len(existing) < target:
+                saturated.add(game)
         all_records[game] = existing
 
     total = sum(len(rows) for rows in all_records.values())
     expected = int(frozen["collection"]["source_train_rows"])
+    while total < expected:
+        remaining = expected - total
+        candidates = [
+            game
+            for game in SOURCE_TRAIN
+            if game != "lp85"
+            and game not in saturated
+            and len(all_records[game])
+            < base_quotas[game]
+            + int(frozen["collection"]["maximum_adaptive_rows_per_game"])
+        ]
+        if not candidates:
+            raise RuntimeError(
+                "V3 adaptive collection exhausted unique per-game capacity "
+                f"with {total}/{expected} rows"
+            )
+        game = select_adaptive_topup_game(all_records, candidates)
+        maximum = (
+            base_quotas[game]
+            + int(frozen["collection"]["maximum_adaptive_rows_per_game"])
+        )
+        target = min(maximum, len(all_records[game]) + remaining)
+        previous = len(all_records[game])
+        records, game_report = _collect_game(
+            game=game,
+            split="source_train",
+            target_rows=target,
+            existing=all_records[game],
+            environment_root=environment_root,
+            frozen=frozen,
+            phase="adaptive_reallocated",
+            allow_shortfall=True,
+        )
+        if len(records) == previous or len(records) < target:
+            saturated.add(game)
+        if len(records) > previous:
+            _write_jsonl_atomic(shard_dir / f"{game}.jsonl", records)
+            all_records[game] = records
+            reports[game] = game_report
+        total = sum(len(rows) for rows in all_records.values())
+    allocations = {
+        game: len(all_records[game]) - base_quotas[game]
+        for game in SOURCE_TRAIN
+        if len(all_records[game]) > base_quotas[game]
+    }
     if total != expected:
         raise RuntimeError(f"V3 source-training row mismatch: {total} != {expected}")
     return _collection_report(
@@ -276,6 +325,38 @@ def allocate_adaptive_game_quotas(
     return allocations
 
 
+def select_adaptive_topup_game(
+    records_by_game: Mapping[str, Sequence[ActionTargetTrace]],
+    candidates: Sequence[str],
+) -> str:
+    """Choose the next non-saturated game from current event deficits."""
+    targets = {
+        "actor_displaced": 200,
+        "target_created": 100,
+        "target_removed": 100,
+        "target_moved": 100,
+    }
+    global_positive = Counter()
+    for rows in records_by_game.values():
+        for row in rows:
+            for label in EFFECT_LABELS:
+                if row.effects.applicable[label] and row.effects.labels[label]:
+                    global_positive[label] += 1
+
+    def score(game: str) -> tuple[float, str]:
+        rows = records_by_game[game]
+        value = 0.0
+        for label in EFFECT_LABELS:
+            eligible = [row for row in rows if row.effects.applicable[label]]
+            positive = sum(row.effects.labels[label] for row in eligible)
+            rate = (positive + 1.0) / (len(eligible) + 2.0)
+            value += max(0, targets[label] - global_positive[label]) * rate
+        tie = hashlib.sha256(f"v3-reallocate:{game}".encode()).hexdigest()
+        return value, tie
+
+    return max(candidates, key=score)
+
+
 def _collect_game(
     *,
     game: str,
@@ -285,6 +366,7 @@ def _collect_game(
     environment_root: Path,
     frozen: Mapping[str, Any],
     phase: str,
+    allow_shortfall: bool = False,
 ) -> tuple[list[ActionTargetTrace], dict[str, Any]]:
     records = list(existing)
     repeat_keys = {row.exact_repeat_key() for row in records}
@@ -391,7 +473,7 @@ def _collect_game(
             if len(records) >= target_rows or _is_terminal(after.game_state):
                 break
         resets_used += 1
-    if len(records) != target_rows:
+    if len(records) != target_rows and not allow_shortfall:
         raise RuntimeError(
             f"SAGE12 V3 collection incomplete for {game}: "
             f"{len(records)}/{target_rows} after {raw_steps} actions"
@@ -404,6 +486,7 @@ def _collect_game(
         "new_raw_steps": raw_steps,
         "new_resets": resets_used,
         "rejected_exact_duplicates": rejected_duplicates,
+        "shortfall": max(0, target_rows - len(records)),
         "action_counts": dict(sorted(action_counts.items())),
         "stratum_counts": dict(sorted(stratum_counts.items())),
     }
@@ -651,5 +734,6 @@ __all__ = [
     "allocate_adaptive_game_quotas",
     "load_frozen_manifest",
     "run_collection",
+    "select_adaptive_topup_game",
     "select_collection_action",
 ]

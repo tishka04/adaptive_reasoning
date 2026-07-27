@@ -11,6 +11,7 @@ from theory.sage11.splits import SOURCE_TRAIN
 from theory.sage12.action_target_collection import (
     _replace_with_retry,
     allocate_adaptive_game_quotas,
+    select_adaptive_topup_game,
 )
 from theory.sage12.action_target_data import (
     EFFECT_LABELS,
@@ -242,6 +243,20 @@ def test_adaptive_allocation_is_exact_deterministic_and_capped():
     assert sum(first.values()) == 453
     assert max(first.values()) <= 64
     assert "lp85" not in first
+
+
+def test_adaptive_reallocation_choice_is_deterministic():
+    template = _trace()
+    records = {
+        "bp35": [replace(template, game_id="bp35") for _ in range(8)],
+        "cd82": [replace(template, game_id="cd82") for _ in range(8)],
+    }
+
+    first = select_adaptive_topup_game(records, ("bp35", "cd82"))
+    second = select_adaptive_topup_game(records, ("bp35", "cd82"))
+
+    assert first == second
+    assert first in records
 
 
 def test_frozen_label_set_is_component_wise():
