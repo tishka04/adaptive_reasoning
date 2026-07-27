@@ -248,6 +248,9 @@ def _measure_device(
             frozen["model"]["decoding"]["temperature"]
         ),
         local_files_only=True,
+        maximum_input_tokens=int(
+            frozen["model"]["prompt_limits"]["maximum_input_tokens"]
+        ),
     )
     started = time.perf_counter()
     backend = TransformersJSONModel(model_config)
@@ -258,6 +261,12 @@ def _measure_device(
         maximum_hypotheses=int(frozen["model"]["maximum_hypotheses"]),
         maximum_tokens=int(
             frozen["model"]["decoding"]["maximum_new_tokens"]
+        ),
+        maximum_entities=int(
+            frozen["model"]["prompt_limits"]["maximum_entities"]
+        ),
+        maximum_relations=int(
+            frozen["model"]["prompt_limits"]["maximum_relations"]
         ),
     )
     timings = []
@@ -360,6 +369,9 @@ def _run_or_resume_model_outputs(
                 frozen["model"]["decoding"]["temperature"]
             ),
             local_files_only=True,
+            maximum_input_tokens=int(
+                frozen["model"]["prompt_limits"]["maximum_input_tokens"]
+            ),
         )
     )
     generator = LocalHypothesisGenerator(
@@ -367,6 +379,12 @@ def _run_or_resume_model_outputs(
         maximum_hypotheses=int(frozen["model"]["maximum_hypotheses"]),
         maximum_tokens=int(
             frozen["model"]["decoding"]["maximum_new_tokens"]
+        ),
+        maximum_entities=int(
+            frozen["model"]["prompt_limits"]["maximum_entities"]
+        ),
+        maximum_relations=int(
+            frozen["model"]["prompt_limits"]["maximum_relations"]
         ),
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)

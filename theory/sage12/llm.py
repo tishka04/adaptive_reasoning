@@ -36,6 +36,7 @@ class TransformersModelConfig:
     device: str = "auto"
     temperature: float = 0.0
     local_files_only: bool = True
+    maximum_input_tokens: int = 8_192
 
 
 class TransformersJSONModel:
@@ -71,7 +72,13 @@ class TransformersJSONModel:
             messages,
             add_generation_prompt=True,
             return_tensors="pt",
-        ).to(model.device)
+        )
+        if inputs.shape[-1] > int(self.config.maximum_input_tokens):
+            raise RuntimeError(
+                "local SAGE12 prompt exceeds frozen input-token cap: "
+                f"{inputs.shape[-1]} > {self.config.maximum_input_tokens}"
+            )
+        inputs = inputs.to(model.device)
         attention_mask = (
             (inputs != tokenizer.pad_token_id).long()
             if tokenizer.pad_token_id is not None
@@ -147,10 +154,14 @@ class LocalHypothesisGenerator:
         *,
         maximum_hypotheses: int = 8,
         maximum_tokens: int = 1_024,
+        maximum_entities: int = 24,
+        maximum_relations: int = 96,
     ) -> None:
         self.model = model
         self.maximum_hypotheses = max(1, int(maximum_hypotheses))
         self.maximum_tokens = max(128, int(maximum_tokens))
+        self.maximum_entities = max(1, int(maximum_entities))
+        self.maximum_relations = max(1, int(maximum_relations))
 
     def generate(
         self,
@@ -159,7 +170,13 @@ class LocalHypothesisGenerator:
         available_actions: Sequence[str],
         subgoal: str,
     ) -> HypothesisGenerationResult:
-        prompt = _proposal_prompt(graph, available_actions, subgoal)
+        prompt = _proposal_prompt(
+            graph,
+            available_actions,
+            subgoal,
+            maximum_entities=self.maximum_entities,
+            maximum_relations=self.maximum_relations,
+        )
         raw = self.model.generate_json(
             prompt=prompt,
             schema=HYPOTHESIS_RESPONSE_SCHEMA,
@@ -295,7 +312,15 @@ def _proposal_prompt(
     graph: SceneGraph,
     available_actions: Sequence[str],
     subgoal: str,
+    *,
+    maximum_entities: int = 24,
+    maximum_relations: int = 96,
 ) -> str:
+    entities, relations = _compact_scene(
+        graph,
+        maximum_entities=maximum_entities,
+        maximum_relations=maximum_relations,
+    )
     scene = {
         "entities": [
             {
@@ -304,9 +329,9 @@ def _proposal_prompt(
                 "area": entity.area_bucket,
                 "aspect": entity.aspect_bucket,
             }
-            for entity in graph.entities
+            for entity in entities
         ],
-        "relations": [relation.key for relation in graph.relations],
+        "relations": [relation.key for relation in relations],
         "available_actions": list(available_actions),
         "subgoal": subgoal,
     }
@@ -319,6 +344,57 @@ def _proposal_prompt(
         "hidden rules, success, or safety as fact.\n"
         + json.dumps(scene, sort_keys=True)
     )
+
+
+def _compact_scene(
+    graph: SceneGraph,
+    *,
+    maximum_entities: int,
+    maximum_relations: int,
+) -> tuple[tuple[Any, ...], tuple[Any, ...]]:
+    """Bound prompt size without consulting outcomes or game identity."""
+    role_priority = {
+        "player": 0,
+        "hazardous": 1,
+        "collectible": 2,
+        "movable": 3,
+        "clickable": 4,
+        "target": 5,
+        "object": 6,
+    }
+
+    def priority(entity: Any) -> tuple[int, str]:
+        best = min(
+            (role_priority.get(role, 7) for role in entity.roles),
+            default=7,
+        )
+        return best, entity.entity_id
+
+    entities = tuple(
+        sorted(graph.entities, key=priority)[: max(1, int(maximum_entities))]
+    )
+    entity_ids = {entity.entity_id for entity in entities}
+    candidates = [
+        relation
+        for relation in graph.relations
+        if relation.subject_id in entity_ids
+        and relation.object_id in entity_ids
+    ]
+    by_kind: dict[str, list[Any]] = {}
+    for relation in sorted(candidates, key=lambda item: item.key):
+        by_kind.setdefault(relation.kind, []).append(relation)
+    relations = []
+    kinds = sorted(by_kind)
+    while kinds and len(relations) < max(1, int(maximum_relations)):
+        remaining = []
+        for kind in kinds:
+            bucket = by_kind[kind]
+            if bucket and len(relations) < int(maximum_relations):
+                relations.append(bucket.pop(0))
+            if bucket:
+                remaining.append(kind)
+        kinds = remaining
+    return entities, tuple(relations)
 
 
 __all__ = [

@@ -161,7 +161,10 @@ def load_frozen_manifest(
     payload = json.loads(manifest_path.read_text(encoding="utf-8"))
     if payload.get("format_version") != PILOT_FORMAT_VERSION:
         raise ValueError("unsupported SAGE12 proposal-pilot manifest")
-    if payload.get("status") != "FROZEN_BEFORE_OUTCOMES":
+    if payload.get("status") not in {
+        "FROZEN_BEFORE_OUTCOMES",
+        "AMENDED_BEFORE_OUTCOMES_AFTER_INFEASIBLE_PREFLIGHT",
+    }:
         raise ValueError("SAGE12 proposal pilot was not frozen")
     expected = str(payload.get("manifest_checksum", ""))
     actual = manifest_checksum(payload)

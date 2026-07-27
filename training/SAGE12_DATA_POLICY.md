@@ -7,7 +7,7 @@ Format: `sage12-semantic-trajectory-v1`.
 The first concrete collection is preregistered as
 `sage12-proposal-pilot-v1` in
 `training/sage12/proposal_pilot_v1/frozen_manifest.json`, checksum
-`0260eb15fd9a0cecb21644160888bde9b6e5be03b4428f1afd989401686c148b`.
+`03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287`.
 It is a 2,104-row source-only proposal pilot and cannot authorize world-model
 fitting unless every frozen Stage A gate passes.
 

@@ -24,6 +24,12 @@ from theory.sage12.proposal_pilot_runner import (
     _representative_sample,
     _shuffle_relations,
 )
+from theory.sage12.llm import _compact_scene
+from theory.sage12.scene_graph import (
+    GroundedEntity,
+    GroundedRelation,
+    SceneGraph,
+)
 from v3.schemas import GameObservation, ObjectInfo, PlayerHypothesis
 
 
@@ -204,3 +210,45 @@ def test_mechanism_labels_exclude_generic_change_and_progress() -> None:
     )
 
     assert labels == {"moved", "level_complete"}
+
+
+def test_prompt_scene_compaction_is_deterministic_and_bounded() -> None:
+    entities = tuple(
+        GroundedEntity(
+            entity_id=f"e{index:03d}",
+            roles=("player",) if index == 99 else ("object", "target"),
+            center=(0.0, 0.0),
+            area_bucket="one",
+            aspect_bucket="square",
+            value_token="excluded",
+        )
+        for index in range(100)
+    )
+    relations = tuple(
+        GroundedRelation(
+            kind=("near" if index % 2 else "aligned"),
+            subject_id=f"e{index % 100:03d}",
+            object_id=f"e{(index + 1) % 100:03d}",
+        )
+        for index in range(500)
+    )
+    graph = SceneGraph(
+        entities=entities,
+        relations=relations,
+        state_predicates=frozenset(item.key for item in relations),
+        signature="large",
+    )
+
+    selected_entities, selected_relations = _compact_scene(
+        graph,
+        maximum_entities=24,
+        maximum_relations=96,
+    )
+
+    assert len(selected_entities) == 24
+    assert len(selected_relations) <= 96
+    assert selected_entities[0].entity_id == "e099"
+    assert {item.kind for item in selected_relations} == {
+        "aligned",
+        "near",
+    }

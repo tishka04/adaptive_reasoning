@@ -1,13 +1,29 @@
 # SAGE12 grounded-proposal pilot protocol
 
-Status: frozen before device timing, collection, model generation, or outcome
-evaluation.
+Status: amended and re-frozen before any completed model generation,
+collection, or outcome evaluation.
 
 Frozen manifest:
 `training/sage12/proposal_pilot_v1/frozen_manifest.json`
 
 Manifest checksum:
-`0260eb15fd9a0cecb21644160888bde9b6e5be03b4428f1afd989401686c148b`
+`03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287`
+
+## Feasibility amendment before outcomes
+
+The first device preflight exposed an unbounded serialization defect: the
+initial scene prompt tokenized to 1,681,642 tokens, above Qwen's 131,072-token
+model limit. The process timed out after 902.1 seconds with zero completed
+generations, no parsed proposal, no quality metric, no collection, and no
+device selection.
+
+Before rerunning, the prompt view was deterministically capped at 24 entities
+and 96 relations. Entities are selected by fixed semantic-role priority then
+identifier; relations are selected round-robin across relation kinds. An
+8,192-token hard limit now fails closed before inference. The model, weights,
+four benchmark games, decoding, 2,104-row collection, representative sample,
+baselines, shuffles, gates, and firewalls are unchanged. This is a feasibility
+amendment, not post-outcome tuning.
 
 ## Scope and firewall
 
@@ -34,12 +50,13 @@ raw grids, raw colors, game ID, and state hashes from model-facing fields.
 Model: the existing local Qwen2.5 0.5B Instruct weights, SHA-256
 `fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe`.
 
-The CPU and RTX 4050 paths receive identical prompts, schema, weights,
+The CPU and RTX 4050 paths receive identical compact prompts, schema, weights,
 temperature 0, sampling disabled, and maximum 256 new tokens. Four initial
 source-only scenes (`bp35`, `cd82`, `re86`, `ls20`) are timed. GPU is selected
 only when median generation is at least 1.10× faster. No task-quality outcome
 is used for device selection. Exact CPU/GPU response equality is reported but
-is not a selection gate.
+is not a selection gate. Every prompt is capped at 24 entities, 96
+relation-kind-stratified relations, and 8,192 input tokens.
 
 ## Representative evaluation
 

@@ -136,3 +136,9 @@ python -m theory.sage12.proposal_pilot_runner evaluate
 The protocol must be committed before the first command. Any failed JSON,
 grounding, recall, relation-sensitivity, per-game, or identity-leakage gate
 stops the experiment before semantic world-model fitting.
+
+The first hardware preflight found that the unbounded scene serializer could
+produce a 1.68-million-token prompt. Before any completed generation or
+outcome, the protocol was amended to a deterministic 24-entity/96-relation
+proposal view with an 8,192-token hard cap. All task, data, decoding, baseline,
+and pass-gate choices remain unchanged.

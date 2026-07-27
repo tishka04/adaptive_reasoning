@@ -9,6 +9,14 @@
     ],
     "state_action_repeat_cap": 4
   },
+  "feasibility_amendment": {
+    "changed_after_quality_outcomes": false,
+    "failed_preflight_completed_generations": 0,
+    "failed_preflight_observed_input_tokens": 1681642,
+    "failed_preflight_timeout_seconds": 902.1,
+    "reason": "unbounded_scene_serialization_exceeded_model_context",
+    "scope": "deterministic_prompt_compaction_and_hard_input_cap_only"
+  },
   "device_benchmark": {
     "games": [
       "bp35",
@@ -77,7 +85,7 @@
     "minimum_support_zero_rate": 0.95,
     "require_every_validation_game_nonnegative": true
   },
-  "manifest_checksum": "0260eb15fd9a0cecb21644160888bde9b6e5be03b4428f1afd989401686c148b",
+  "manifest_checksum": "03fe976b8a96b15c51dbf93ac527bb363ab5e4145ea398de80b1609bab9c4287",
   "model": {
     "decoding": {
       "do_sample": false,
@@ -87,6 +95,12 @@
     "maximum_hypotheses": 8,
     "name": "Qwen2.5-0.5B-Instruct",
     "path": "models/qwen2_5_0.5b_instruct",
+    "prompt_limits": {
+      "maximum_entities": 24,
+      "maximum_input_tokens": 8192,
+      "maximum_relations": 96,
+      "selection": "role_priority_then_identifier_with_relation_kind_round_robin"
+    },
     "weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
   },
   "sage11_split_registry_checksum": "22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d",
@@ -108,7 +122,7 @@
     "ls20",
     "sc25"
   ],
-  "status": "FROZEN_BEFORE_OUTCOMES",
+  "status": "AMENDED_BEFORE_OUTCOMES_AFTER_INFEASIBLE_PREFLIGHT",
   "target_transitions": 2104,
   "world_model_fit_authorized": false
 }
