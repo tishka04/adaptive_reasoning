@@ -134,3 +134,14 @@ Publish direct checkpoints on `main` before crossing each boundary:
 Once fresh prospective outcomes are opened, no code, prompt, seed, threshold,
 calibrator, baseline, control, or gate may change. Every pass or failure is
 published. World-model and EBM fitting remain forbidden throughout V4.2.1.
+
+## Executed source rehearsal
+
+The frozen rehearsal completed `PASS_SOURCE_REHEARSAL`. It serialized all
+1,911 source predictions, round-tripped all 168 enumerated rules, covered 42
+exact and 42 family `any` rules, and serialized 2,120 selected generic-rule
+evidence entries. All seven checks passed without opening source validation.
+Rehearsal checksum:
+`cd2164ecdfab094d99364cfdec213767987e974e9fd5b4dc01f98db423873b92`.
+The source preflight is now authorized; no prospective collection is yet
+authorized.

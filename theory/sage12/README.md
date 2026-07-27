@@ -326,3 +326,8 @@ Any authorized collection uses 768 fresh rows under seeds 661, 709, 757, and
 predictions and verdict before Qwen and writes an automatic runtime-failure
 artifact on an uncaught error. The frozen design is
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PROTOCOL.md`.
+
+The source rehearsal passed all seven checks and serialized every one of the
+1,911 source predictions, including generic `any` evidence. See
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_REHEARSAL.md`. Only the source
+preflight is authorized at this checkpoint.

@@ -278,3 +278,9 @@ full repository suite: 1764 passed, 1 warning in 284.35s (0:04:44)
 ```
 
 The warning is the unchanged harmless Joblib physical-core query fallback.
+
+The subsequent frozen source rehearsal passed all seven checks. It wrote
+1,911/1,911 source prediction rows, round-tripped 168/168 rules, and
+serialized 2,120 selected generic-`any` evidence entries. Rehearsal checksum:
+`cd2164ecdfab094d99364cfdec213767987e974e9fd5b4dc01f98db423873b92`.
+This authorizes only the source preflight.
