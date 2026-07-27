@@ -19,6 +19,22 @@ Stage A subsequently failed all seven gates, so this data remains an audited
 negative-result corpus and cannot be used to fit the semantic world model
 under this protocol. See `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.
 
+## Constrained Stage A V2
+
+The same immutable 2,104 rows may be reused by the separately versioned
+constrained pilot in
+`training/sage12/constrained_pilot_v2/frozen_manifest.json`, checksum
+`033274922c2f25d3cb7918bc2f308fffdc03d4811f034e9db171147d4aec25aa`.
+This is evaluation reuse, not a new collection or silent relabelling.
+
+V2 fits a linear multi-label head on source training only. Its Qwen prompt
+contains the selected action and one binary actor-interaction motif. It may
+read source validation exactly once after its implementation, tests, gates,
+preflights, protocol, and manifest are committed. The first six-bit motif was
+rejected using source-training leakage only; both the rejected and retained
+preflights must remain published. V2 still cannot authorize world-model
+fitting unless every new frozen gate passes.
+
 ## Purpose
 
 SAGE12 data teaches and evaluates three separable questions:

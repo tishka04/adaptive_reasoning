@@ -1,0 +1,116 @@
+{
+  "baselines": [
+    "selected_action_only_logistic",
+    "selected_action_plus_motif_logistic",
+    "sage12_deterministic_template"
+  ],
+  "effect_labels": [
+    "changed",
+    "player_moved",
+    "level_complete",
+    "game_over"
+  ],
+  "firewall": {
+    "ar25_opened": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "split_by_game": true
+  },
+  "format_version": "sage12-constrained-effect-pilot-v2",
+  "frozen_at": "2026-07-27",
+  "gates": {
+    "maximum_identity_gain_over_selected_action": 0.1,
+    "maximum_motif_identity_gain_over_majority": 0.1,
+    "minimum_grounded_hypothesis_rate": 0.99,
+    "minimum_primary_macro_f1_gain": 0.05,
+    "minimum_relation_shuffle_degradation": 0.05,
+    "minimum_strict_json_validity": 1.0,
+    "minimum_support_zero_rate": 1.0,
+    "require_every_validation_game_nonnegative": true
+  },
+  "manifest_checksum": "033274922c2f25d3cb7918bc2f308fffdc03d4811f034e9db171147d4aec25aa",
+  "model": {
+    "batch_size": 32,
+    "device": "cuda:0",
+    "embedding_normalization": "l2",
+    "frozen_encoder": true,
+    "maximum_input_tokens": 256,
+    "name": "Qwen2.5-0.5B-Instruct",
+    "path": "models/qwen2_5_0.5b_instruct",
+    "pooling": "last_nonpadding_hidden_state",
+    "weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe"
+  },
+  "preregistration": {
+    "initial_source_train_preflight_checksum": "f2d9978d62e1441b578ad409c57cd2772775f1198a8d0c5035980c48d1079d54",
+    "prior_v1_result_known": true,
+    "prior_v1_result_checksum": "fbb86c17fee57ff46199dd94594936694bf2b0e63b05ece2c9e323813422d35a",
+    "source_train_only_design": true,
+    "source_train_preflight_checksum": "1f55a1a5f4316bf0a1e75fb15ceb17d32de094b950624557a9bd8ab894e0b3ab",
+    "v2_source_validation_metrics_seen_before_freeze": false
+  },
+  "primary_effect_labels": [
+    "changed",
+    "player_moved"
+  ],
+  "relation_control": "existing_deterministic_entity_binding_permutation_v1",
+  "representation": {
+    "action_input": "selected_legal_action_name",
+    "actor_role": "player",
+    "excluded": [
+      "available_action_set",
+      "entity_count",
+      "entity_id",
+      "game_id",
+      "grid_hash",
+      "object_roles_other_than_player",
+      "raw_color",
+      "raw_coordinate",
+      "relation_count",
+      "scene_signature",
+      "shape_and_aspect",
+      "state_or_policy_digest"
+    ],
+    "motif": "actor_interaction",
+    "motif_definition": "binary presence of near, contact, or adjacent between a player-role entity and any non-player entity",
+    "motif_values": [
+      0,
+      1
+    ]
+  },
+  "source_corpus": {
+    "collection_manifest_checksum": "69182fef9d397768aace54a301dc5046bd801589524ae14b7d6e8ad728ad0e05",
+    "combined_shard_checksum": "ce5cfe1217f9add9ab250f60315ed66d154ae8ed903e51bb572b69a4b3",
+    "path": "training/sage12/proposal_pilot_v1",
+    "source_train_rows": 1624,
+    "source_validation_rows": 480
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_VALIDATION",
+  "training": {
+    "class_weight": "balanced",
+    "decision_threshold": 0.5,
+    "head": "independent_liblinear_logistic_per_effect",
+    "maximum_iterations": 1000,
+    "random_state": 12,
+    "regularization_c": 1.0,
+    "validation_tuning": false
+  },
+  "world_model_fit_authorized": false
+}

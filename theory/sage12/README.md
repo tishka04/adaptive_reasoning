@@ -157,3 +157,23 @@ Run the non-gating explanatory diagnostics with:
 ```powershell
 python -m theory.sage12.proposal_pilot_runner diagnose
 ```
+
+## Constrained effect pilot V2
+
+V2 replaces free-form generation with a frozen Qwen encoder, independent
+class-balanced linear heads, and deterministic typed-JSON rendering. Its
+state input is one binary `actor_interaction` bit plus the selected action;
+entity inventories, identities, counts, shapes, directions, available-action
+sets, and scene signatures are excluded.
+
+The first six-bit source-training design still leaked +32.08 game-identity
+points beyond selected action and was rejected without reading V2 validation.
+The retained one-bit view leaks +8.99 points beyond selected action and is
+frozen before validation in
+`reports/SAGE12_CONSTRAINED_PILOT_V2_PROTOCOL.md`. It reuses the exact V1
+source corpus and keeps the semantic world-model gate closed.
+
+```powershell
+python -m theory.sage12.constrained_pilot preflight
+python -m theory.sage12.constrained_pilot evaluate
+```

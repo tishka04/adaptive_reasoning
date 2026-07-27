@@ -149,3 +149,8 @@ The complete audit is in `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`.
 Failure stopped Stage B before semantic world-model fitting. No learned EBM,
 shadow episode, bounded probe, holdout, historical, or `ar25` evaluation
 occurred. The live default remains `off`.
+
+A separately versioned Stage A repair is now frozen in
+`reports/SAGE12_CONSTRAINED_PILOT_V2_PROTOCOL.md`. It uses constrained typed
+outputs and a one-bit actor-interaction representation. It does not reopen
+Stage B unless every V2 gate passes.

@@ -1,0 +1,226 @@
+{
+  "ar25_opened": false,
+  "format_version": "sage12-invariant-motif-preflight-v2",
+  "historical_opened": false,
+  "holdout_opened": false,
+  "identity_probe": {
+    "motif_gain_over_action": 0.08989548305834263,
+    "motif_only": {
+      "accuracy": 0.19642909922629725,
+      "fold_accuracies": [
+        0.19557195571955718,
+        0.1977818853974122,
+        0.19593345656192238
+      ],
+      "gain_over_majority": 0.09790693173861252,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "selected_action_only": {
+      "accuracy": 0.222903920351588,
+      "fold_accuracies": [
+        0.22693726937269373,
+        0.21811460258780038,
+        0.22365988909426987
+      ],
+      "gain_over_majority": 0.12438175286390325,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "selected_action_plus_motif": {
+      "accuracy": 0.3127994034099306,
+      "fold_accuracies": [
+        0.32656826568265684,
+        0.2957486136783734,
+        0.31608133086876156
+      ],
+      "gain_over_majority": 0.2142772359222459,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "source_train_design_candidates": {
+      "actor_present_only": {
+        "gain_over_selected_action": 0.09421303085489266,
+        "selected_action_plus_state": {
+          "accuracy": 0.31711695120648065,
+          "fold_accuracies": [
+            0.3191881918819188,
+            0.31053604436229204,
+            0.32162661737523107
+          ],
+          "gain_over_majority": 0.21859478371879593,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.19211950899545963,
+          "fold_accuracies": [
+            0.1900369003690037,
+            0.19038817005545286,
+            0.19593345656192238
+          ],
+          "gain_over_majority": 0.09359734150777489,
+          "majority_accuracy": 0.09852216748768473
+        }
+      },
+      "alignment_only": {
+        "gain_over_selected_action": 0.0862043093628718,
+        "selected_action_plus_state": {
+          "accuracy": 0.3091082297144598,
+          "fold_accuracies": [
+            0.3173431734317343,
+            0.29944547134935307,
+            0.31053604436229204
+          ],
+          "gain_over_majority": 0.21058606222677506,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.1964279624311955,
+          "fold_accuracies": [
+            0.1974169741697417,
+            0.19593345656192238,
+            0.19593345656192238
+          ],
+          "gain_over_majority": 0.09790579494351077,
+          "majority_accuracy": 0.09852216748768473
+        }
+      },
+      "axis_any": {
+        "gain_over_selected_action": 0.07881855158662496,
+        "selected_action_plus_state": {
+          "accuracy": 0.30172247193821294,
+          "fold_accuracies": [
+            0.3044280442804428,
+            0.3031423290203327,
+            0.2975970425138632
+          ],
+          "gain_over_majority": 0.20320030445052822,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.19211950899545963,
+          "fold_accuracies": [
+            0.1900369003690037,
+            0.19038817005545286,
+            0.19593345656192238
+          ],
+          "gain_over_majority": 0.09359734150777489,
+          "majority_accuracy": 0.09852216748768473
+        }
+      },
+      "interaction_and_alignment": {
+        "gain_over_selected_action": 0.1878110555597238,
+        "selected_action_plus_state": {
+          "accuracy": 0.4107149759113118,
+          "fold_accuracies": [
+            0.4095940959409594,
+            0.39926062846580407,
+            0.4232902033271719
+          ],
+          "gain_over_majority": 0.31219280842362707,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.3091116400997651,
+          "fold_accuracies": [
+            0.3118081180811808,
+            0.3031423290203327,
+            0.3123844731977819
+          ],
+          "gain_over_majority": 0.2105894726120804,
+          "majority_accuracy": 0.09852216748768473
+        }
+      },
+      "interaction_any": {
+        "gain_over_selected_action": 0.08989548305834263,
+        "selected_action_plus_state": {
+          "accuracy": 0.3127994034099306,
+          "fold_accuracies": [
+            0.32656826568265684,
+            0.2957486136783734,
+            0.31608133086876156
+          ],
+          "gain_over_majority": 0.2142772359222459,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.19642909922629725,
+          "fold_accuracies": [
+            0.19557195571955718,
+            0.1977818853974122,
+            0.19593345656192238
+          ],
+          "gain_over_majority": 0.09790693173861252,
+          "majority_accuracy": 0.09852216748768473
+        }
+      },
+      "near_only": {
+        "gain_over_selected_action": 0.04926074214531426,
+        "selected_action_plus_state": {
+          "accuracy": 0.27216466249690224,
+          "fold_accuracies": [
+            0.2767527675276753,
+            0.266173752310536,
+            0.2735674676524954
+          ],
+          "gain_over_majority": 0.17364249500921752,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.19704410537635875,
+          "fold_accuracies": [
+            0.1974169741697417,
+            0.1977818853974122,
+            0.19593345656192238
+          ],
+          "gain_over_majority": 0.09852193788867401,
+          "majority_accuracy": 0.09852216748768473
+        }
+      },
+      "touch_only": {
+        "gain_over_selected_action": 0.11144911818803957,
+        "selected_action_plus_state": {
+          "accuracy": 0.33435303853962756,
+          "fold_accuracies": [
+            0.34501845018450183,
+            0.32532347504621073,
+            0.33271719038817005
+          ],
+          "gain_over_majority": 0.23583087105194284,
+          "majority_accuracy": 0.09852216748768473
+        },
+        "state_only": {
+          "accuracy": 0.19581295628113396,
+          "fold_accuracies": [
+            0.19557195571955718,
+            0.19593345656192238,
+            0.19593345656192238
+          ],
+          "gain_over_majority": 0.09729078879344923,
+          "majority_accuracy": 0.09852216748768473
+        }
+      }
+    }
+  },
+  "label_positive_counts": {
+    "changed": 1550,
+    "game_over": 27,
+    "level_complete": 1,
+    "player_moved": 400
+  },
+  "result_checksum": "1f55a1a5f4316bf0a1e75fb15ceb17d32de094b950624557a9bd8ab894e0b3ab",
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_train_rows": 1624,
+  "source_validation_opened": false,
+  "status": "SOURCE_TRAIN_ONLY",
+  "unique_motifs": 2
+}

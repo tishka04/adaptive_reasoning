@@ -1,0 +1,63 @@
+{
+  "ar25_opened": false,
+  "format_version": "sage12-invariant-motif-preflight-v2",
+  "historical_opened": false,
+  "holdout_opened": false,
+  "identity_probe": {
+    "motif_gain_over_action": 0.3208240400333764,
+    "motif_only": {
+      "accuracy": 0.4612091407420544,
+      "fold_accuracies": [
+        0.4575645756457565,
+        0.4602587800369686,
+        0.4658040665434381
+      ],
+      "gain_over_majority": 0.36268697325436966,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "selected_action_only": {
+      "accuracy": 0.222903920351588,
+      "fold_accuracies": [
+        0.22693726937269373,
+        0.21811460258780038,
+        0.22365988909426987
+      ],
+      "gain_over_majority": 0.12438175286390325,
+      "majority_accuracy": 0.09852216748768473
+    },
+    "selected_action_plus_motif": {
+      "accuracy": 0.5437279603849644,
+      "fold_accuracies": [
+        0.5295202952029521,
+        0.5452865064695009,
+        0.55637707948244
+      ],
+      "gain_over_majority": 0.4452057928972797,
+      "majority_accuracy": 0.09852216748768473
+    }
+  },
+  "label_positive_counts": {
+    "changed": 1550,
+    "game_over": 27,
+    "level_complete": 1,
+    "player_moved": 400
+  },
+  "result_checksum": "f2d9978d62e1441b578ad409c57cd2772775f1198a8d0c5035980c48d1079d54",
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_train_rows": 1624,
+  "source_validation_opened": false,
+  "status": "SOURCE_TRAIN_ONLY",
+  "unique_motifs": 18
+}
