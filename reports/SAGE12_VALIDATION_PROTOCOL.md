@@ -255,3 +255,9 @@ structured verdict before Qwen. Qwen retains its V4.2 concrete-anchor
 contract and separate authority. An automatic runtime failure artifact
 revokes all downstream authority. See
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PROTOCOL.md`.
+
+V4.2.1 has now completed `FAIL_CLOSED`. The structured branch passed 18/19
+gates but achieved only +0.017061 binding-shuffle loss against the required
++0.020000. Qwen failed all six separate gates. Therefore Stage B and every
+later stage remain unauthorized. Full result:
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_RESULT.md`.

@@ -1,0 +1,792 @@
+{
+  "binding_shuffle": {
+    "metrics": {
+      "macro_brier": 0.03410139380815083,
+      "macro_ece": 0.07579904980793409,
+      "macro_f1": 0.9406751827186457,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.022727858167570576,
+          "ece": 0.04365381783725159,
+          "f1": 0.9382716049382716,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.3613315810843041
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.048364127060484416,
+          "ece": 0.13193921980053716,
+          "f1": 0.9337539432176656,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.13015055858801458
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.031212196196397497,
+          "ece": 0.051804111786013504,
+          "f1": 0.95,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.2190817560329606
+        }
+      }
+    },
+    "skill": 0.6867266046861468,
+    "skill_drop": 0.01706109334999184
+  },
+  "bootstrap_skill": {
+    "lower_95": 0.6164736931683497,
+    "mean": 0.701838795535099,
+    "samples": 2000,
+    "upper_95": 0.7538107833654154
+  },
+  "calibrated_macro_brier_skill": 0.7037876980361386,
+  "calibrated_macro_f1_gain": 0.30752910850913084,
+  "calibrated_metrics": {
+    "context_ablation": {
+      "macro_brier": 0.13531312746314905,
+      "macro_ece": 0.14330409197110983,
+      "macro_f1": 0.3243925776041912,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.05947098231228772,
+          "ece": 0.08135337422609985,
+          "f1": 0.9620253164556962,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.10048059023128185
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.2640263297419325,
+          "ece": 0.24802929735823645,
+          "f1": 0.0,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.2338859355853951
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.08244207033522691,
+          "ece": 0.10052960432899322,
+          "f1": 0.011152416356877323,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.1764562573716546
+        }
+      }
+    },
+    "global_action": {
+      "macro_brier": 0.12765688231348868,
+      "macro_ece": 0.1704527355842189,
+      "macro_f1": 0.12603648424543948,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.060147180871793327,
+          "ece": 0.08042761535030513,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.13500663132010693
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.25669821844248364,
+          "ece": 0.2339427112760305,
+          "f1": 0.0,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.06886567330248716
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.06612524762618907,
+          "ece": 0.19698788012632099,
+          "f1": 0.3781094527363184,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.16514200695733203
+        }
+      }
+    },
+    "local_action": {
+      "macro_brier": 0.108855058610982,
+      "macro_ece": 0.12389358465408383,
+      "macro_f1": 0.629930743751882,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.030134870363689423,
+          "ece": 0.06818914415274976,
+          "f1": 0.9629629629629629,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.2866873950732233
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.2648930699293862,
+          "ece": 0.22001562130881577,
+          "f1": 0.0,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.09229178481710928
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.03153723553987039,
+          "ece": 0.08347598850068594,
+          "f1": 0.926829268292683,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.31695002869097466
+        }
+      }
+    },
+    "structured": {
+      "macro_brier": 0.03224420749157003,
+      "macro_ece": 0.07194978718212704,
+      "macro_f1": 0.9374598522610128,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.02134447733376157,
+          "ece": 0.04330125049164784,
+          "f1": 0.9629629629629629,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.3613315810843041
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.043730682856602546,
+          "ece": 0.12213005366837622,
+          "f1": 0.9337539432176656,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.13015055858801458
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.03165746228434598,
+          "ece": 0.05041805738635708,
+          "f1": 0.9156626506024096,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.2190817560329606
+        }
+      }
+    },
+    "template": {
+      "macro_brier": 0.14129977943731178,
+      "macro_ece": 0.15946997005500238,
+      "macro_f1": 0.20414275205005297,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.0711110778933967,
+          "ece": 0.018669919218201457,
+          "f1": 0.1423611111111111,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.057965594800490135
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.23956008782263924,
+          "ece": 0.2027574063894627,
+          "f1": 0.45891472868217054,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.07712554504932638
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.11322817259589947,
+          "ece": 0.256982584557343,
+          "f1": 0.011152416356877323,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.2066114230432209
+        }
+      }
+    }
+  },
+  "context_brier_skill_gain": 0.761706730927852,
+  "ebm_fit_authorized": false,
+  "effect_authority": {
+    "actor_displaced": {
+      "eligible_for_v5": false,
+      "method": "excluded",
+      "reason": "outside V4.2 authoritative effect vocabulary"
+    },
+    "target_created": {
+      "brier": 0.02134447733376157,
+      "eligible_for_v5": true,
+      "f1": 0.9629629629629629,
+      "method": "structured",
+      "negatives": 494,
+      "positives": 41
+    },
+    "target_moved": {
+      "brier": 0.043730682856602546,
+      "eligible_for_v5": true,
+      "f1": 0.9337539432176656,
+      "method": "structured",
+      "negatives": 387,
+      "positives": 148
+    },
+    "target_removed": {
+      "brier": 0.03153723553987039,
+      "eligible_for_v5": true,
+      "f1": 0.926829268292683,
+      "method": "local_action",
+      "negatives": 494,
+      "positives": 41
+    }
+  },
+  "format_version": "sage12-target-mechanic-structured-v4.2.1",
+  "frozen_manifest_checksum": "81f14c655dc6b824970b2ecd8638ca62360abedcc7f4dcf3abed2b86cdd3a3c8",
+  "gates": {
+    "actor_effect_excluded": true,
+    "bootstrap_lower_bound_positive": true,
+    "effect_authority": true,
+    "every_game_nonnegative": true,
+    "grounded_hypothesis_rate": true,
+    "maximum_macro_ece": true,
+    "maximum_prospective_identity_gain": true,
+    "minimum_binding_shuffle_drop": false,
+    "minimum_calibrated_brier_skill": true,
+    "minimum_context_gain": true,
+    "minimum_macro_f1_gain": true,
+    "minimum_outcome_shuffle_drop": true,
+    "minimum_prospective_windows": true,
+    "minimum_raw_brier_skill": true,
+    "prospective_label_capacity": true,
+    "source_preflight_passed": true,
+    "source_rehearsal_passed": true,
+    "strict_json_validity": true,
+    "support_zero_rate": true
+  },
+  "identity_probe": {
+    "action_only": {
+      "accuracy": 0.4600694444444444,
+      "majority_accuracy": 0.3333333333333333
+    },
+    "gain": 0.010416666666666685,
+    "static": {
+      "accuracy": 0.4704861111111111,
+      "majority_accuracy": 0.3333333333333333
+    }
+  },
+  "outcome_shuffle": {
+    "metrics": {
+      "macro_brier": 0.0825931973814528,
+      "macro_ece": 0.12689047782151416,
+      "macro_f1": 0.31725616291532693,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.10270369361573795,
+          "ece": 0.13666433734074224,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.3613315810843041
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.04829947512023979,
+          "ece": 0.13101984178819873,
+          "f1": 0.9517684887459807,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.13015055858801458
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.09677642340838064,
+          "ece": 0.11298725433560154,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.2190817560329606
+        }
+      }
+    },
+    "skill_drop": 0.46253238510316896
+  },
+  "output_contract": {
+    "actor_effect_emitted": false,
+    "emitted_hypotheses": 1728,
+    "grounded_hypothesis_rate": 1.0,
+    "strict_json_validity": 1.0,
+    "support_zero_rate": 1.0
+  },
+  "per_game": {
+    "ls20": {
+      "baseline": {
+        "macro_brier": 0.0028426371041614476,
+        "macro_ece": 0.04829708480841453,
+        "macro_f1": 0.0,
+        "per_label": {
+          "target_created": {
+            "applicable": 192,
+            "brier": 0.0012600575568163794,
+            "ece": 0.029580135965531534,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.2866873950732233
+          },
+          "target_moved": {
+            "applicable": 192,
+            "brier": 0.004701927372997148,
+            "ece": 0.06790412695194438,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.09229178481710928
+          },
+          "target_removed": {
+            "applicable": 192,
+            "brier": 0.0025659263826708152,
+            "ece": 0.04740699150776767,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.31695002869097466
+          }
+        }
+      },
+      "brier_skill": 0.5408175550015117,
+      "stronger_baseline": "local_action",
+      "structured": {
+        "macro_brier": 0.001305289055732276,
+        "macro_ece": 0.0263006159251175,
+        "macro_f1": 0.0,
+        "per_label": {
+          "target_created": {
+            "applicable": 192,
+            "brier": 0.0006396812542430043,
+            "ece": 0.01735100669807371,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.3613315810843041
+          },
+          "target_moved": {
+            "applicable": 192,
+            "brier": 0.0026964767753198822,
+            "ece": 0.04124978572993196,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.13015055858801458
+          },
+          "target_removed": {
+            "applicable": 192,
+            "brier": 0.0005797091376339419,
+            "ece": 0.020301055347346834,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.2190817560329606
+          }
+        }
+      },
+      "windows": 192
+    },
+    "re86": {
+      "baseline": {
+        "macro_brier": 0.30338823222980144,
+        "macro_ece": 0.3759496079292541,
+        "macro_f1": 0.35596287770200813,
+        "per_label": {
+          "target_created": {
+            "applicable": 151,
+            "brier": 0.02092429118187964,
+            "ece": 0.038098045131615965,
+            "f1": 0.03896103896103896,
+            "negatives": 148,
+            "positives": 3,
+            "threshold": 0.057965594800490135
+          },
+          "target_moved": {
+            "applicable": 151,
+            "brier": 0.8348943011256417,
+            "ece": 0.9030069052817995,
+            "f1": 0.9899665551839465,
+            "negatives": 3,
+            "positives": 148,
+            "threshold": 0.07712554504932638
+          },
+          "target_removed": {
+            "applicable": 151,
+            "brier": 0.054346104381883045,
+            "ece": 0.18674387337434678,
+            "f1": 0.03896103896103896,
+            "negatives": 148,
+            "positives": 3,
+            "threshold": 0.2066114230432209
+          }
+        }
+      },
+      "brier_skill": 0.7925935438780485,
+      "stronger_baseline": "template",
+      "structured": {
+        "macro_brier": 0.06292467807588675,
+        "macro_ece": 0.12255206569268522,
+        "macro_f1": 0.46332218506131556,
+        "per_label": {
+          "target_created": {
+            "applicable": 151,
+            "brier": 0.018707831251096627,
+            "ece": 0.009485256004879889,
+            "f1": 0.4,
+            "negatives": 148,
+            "positives": 3,
+            "threshold": 0.3613315810843041
+          },
+          "target_moved": {
+            "applicable": 151,
+            "brier": 0.1477247393849101,
+            "ece": 0.3417939223084346,
+            "f1": 0.9899665551839465,
+            "negatives": 3,
+            "positives": 148,
+            "threshold": 0.13015055858801458
+          },
+          "target_removed": {
+            "applicable": 151,
+            "brier": 0.02234146359165352,
+            "ece": 0.01637701876474116,
+            "f1": 0.0,
+            "negatives": 148,
+            "positives": 3,
+            "threshold": 0.2190817560329606
+          }
+        }
+      },
+      "windows": 192
+    },
+    "sc25": {
+      "baseline": {
+        "macro_brier": 0.04527391590960639,
+        "macro_ece": 0.12306833729147885,
+        "macro_f1": 0.6666666666666666,
+        "per_label": {
+          "target_created": {
+            "applicable": 192,
+            "brier": 0.06825686822701447,
+            "ece": 0.1424861688140509,
+            "f1": 1.0,
+            "negatives": 154,
+            "positives": 38,
+            "threshold": 0.2866873950732233
+          },
+          "target_moved": {
+            "applicable": 192,
+            "brier": 0.004764060058398924,
+            "ece": 0.0680189557416755,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.09229178481710928
+          },
+          "target_removed": {
+            "applicable": 192,
+            "brier": 0.06280081944340576,
+            "ece": 0.15869988731871015,
+            "f1": 1.0,
+            "negatives": 154,
+            "positives": 38,
+            "threshold": 0.31695002869097466
+          }
+        }
+      },
+      "brier_skill": 0.13737936334557166,
+      "stronger_baseline": "local_action",
+      "structured": {
+        "macro_brier": 0.03905421416578372,
+        "macro_ece": 0.08943854222576553,
+        "macro_f1": 0.6666666666666666,
+        "per_label": {
+          "target_created": {
+            "applicable": 192,
+            "brier": 0.044122885697042674,
+            "ece": 0.10135707153199514,
+            "f1": 1.0,
+            "negatives": 154,
+            "positives": 38,
+            "threshold": 0.3613315810843041
+          },
+          "target_moved": {
+            "applicable": 192,
+            "brier": 0.0029778965640600203,
+            "ece": 0.04081230897118692,
+            "f1": 0.0,
+            "negatives": 192,
+            "positives": 0,
+            "threshold": 0.13015055858801458
+          },
+          "target_removed": {
+            "applicable": 192,
+            "brier": 0.07006186023624845,
+            "ece": 0.12614624617411455,
+            "f1": 1.0,
+            "negatives": 154,
+            "positives": 38,
+            "threshold": 0.2190817560329606
+          }
+        }
+      },
+      "windows": 192
+    }
+  },
+  "prediction_artifact": {
+    "any_rules": 228,
+    "rows": 576,
+    "sha256": "c44bd5d89b451802d060509b2c2f297461598616ea2a972cdaf44d4e0a230e37"
+  },
+  "preflight_checksum": "4ce44b0a0eacaa041106813649d6782be44c21790385c31fda03dbe605abecdb",
+  "quality": {
+    "excluded_effect_audit": {
+      "applicable": 516,
+      "authority": false,
+      "effect": "actor_displaced",
+      "positives": 151
+    },
+    "per_game": {
+      "ls20": {
+        "actor_role_resolved_rate": 1.0,
+        "actor_role_states": {
+          "translational": 192
+        },
+        "windows": 192
+      },
+      "re86": {
+        "actor_role_resolved_rate": 1.0,
+        "actor_role_states": {
+          "non_translational": 3,
+          "translational": 189
+        },
+        "windows": 192
+      },
+      "sc25": {
+        "actor_role_resolved_rate": 1.0,
+        "actor_role_states": {
+          "non_translational": 19,
+          "translational": 173
+        },
+        "windows": 192
+      }
+    },
+    "per_label": {
+      "target_created": {
+        "applicable": 535,
+        "negatives": 494,
+        "positives": 41
+      },
+      "target_moved": {
+        "applicable": 535,
+        "negatives": 387,
+        "positives": 148
+      },
+      "target_removed": {
+        "applicable": 535,
+        "negatives": 494,
+        "positives": 41
+      }
+    },
+    "unique_window_digests": 576,
+    "windows": 576
+  },
+  "raw_macro_brier_skill": 0.4425262379177106,
+  "raw_metrics": {
+    "context_ablation": {
+      "macro_brier": 0.14363719103040862,
+      "macro_ece": 0.15702599579919405,
+      "macro_f1": 0.0,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.0789383232528891,
+          "ece": 0.012274479703190386,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.2392623626216849,
+          "ece": 0.20168300019515992,
+          "f1": 0.0,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.5
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.1127108872166518,
+          "ece": 0.2571205074992318,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        }
+      }
+    },
+    "global_action": {
+      "macro_brier": 0.14436834229580142,
+      "macro_ece": 0.18816394874817657,
+      "macro_f1": 0.0,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.08108797715953411,
+          "ece": 0.10675359671049983,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.23888845144584642,
+          "ece": 0.20048135216780252,
+          "f1": 0.0,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.5
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.1131285982820237,
+          "ece": 0.25725689736622737,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        }
+      }
+    },
+    "local_action": {
+      "macro_brier": 0.06437224914607942,
+      "macro_ece": 0.1385300547573962,
+      "macro_f1": 0.2063653292703572,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.036991391651724985,
+          "ece": 0.08483805473618439,
+          "f1": 0.13636363636363635,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.10585069721413885,
+          "ece": 0.17369922850400055,
+          "f1": 0.3463687150837989,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.5
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.050274658572374405,
+          "ece": 0.1570528810320036,
+          "f1": 0.13636363636363635,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        }
+      }
+    },
+    "structured": {
+      "macro_brier": 0.035885839905163336,
+      "macro_ece": 0.08993255658324067,
+      "macro_f1": 0.4186307519640853,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.035973119440813335,
+          "ece": 0.06769450593046301,
+          "f1": 0.13636363636363635,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.03102285892132461,
+          "ece": 0.09761826652739752,
+          "f1": 0.9831649831649831,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.5
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.04066154135335206,
+          "ece": 0.10448489729186149,
+          "f1": 0.13636363636363635,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        }
+      }
+    },
+    "template": {
+      "macro_brier": 0.24485981308411217,
+      "macro_ece": 0.24485981308411217,
+      "macro_f1": 0.4736466817126222,
+      "per_label": {
+        "target_created": {
+          "applicable": 535,
+          "brier": 0.07663551401869159,
+          "ece": 0.07663551401869159,
+          "f1": 0.0,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        },
+        "target_moved": {
+          "applicable": 535,
+          "brier": 0.6523364485981309,
+          "ece": 0.6523364485981309,
+          "f1": 0.45891472868217054,
+          "negatives": 387,
+          "positives": 148,
+          "threshold": 0.5
+        },
+        "target_removed": {
+          "applicable": 535,
+          "brier": 0.005607476635514018,
+          "ece": 0.005607476635514018,
+          "f1": 0.9620253164556962,
+          "negatives": 494,
+          "positives": 41,
+          "threshold": 0.5
+        }
+      }
+    }
+  },
+  "rows": {
+    "prospective_transitions": 768,
+    "prospective_windows": 576
+  },
+  "status": "FAIL_CLOSED",
+  "stronger_baseline": "local_action",
+  "structured_checksum": "b6cb09906e5709b129f44772a0ffd429b3a42aa732bc09f3aca71f91ffef2b72",
+  "v5_protocol_authorized": false,
+  "world_model_fit_authorized": false
+}

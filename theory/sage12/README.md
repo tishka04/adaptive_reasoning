@@ -341,3 +341,10 @@ The fresh collection subsequently completed at 768 rows with balanced legal
 actions, 24 total resets, and 79 retained chronological repeats. See
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_COLLECTION.md`. Its raw shards
 must be published before the single frozen evaluation is run.
+
+The evaluation completed `FAIL_CLOSED`. Structured mechanics passed 18/19
+gates and strongly beat action-only, but binding-shuffle loss was +0.017061
+against the +0.020000 minimum. Qwen separately failed all six gates after
+emitting only Markdown-fenced responses. See
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_RESULT.md`. No V5, world
+model, EBM, or controller authority exists.

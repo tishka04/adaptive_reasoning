@@ -164,3 +164,19 @@ selection was outcome-independent, and 79 chronological exact repeats were
 retained. V4.2 shards were not reused. Collection report checksum:
 `8fc7989a30ec4a42e2c1d9d8f49592dc37371d17d1c9f0f406770c62e3fb8785`.
 The raw shards were published before any prospective metric or Qwen output.
+
+## Executed evaluation
+
+The complete evaluator finished `FAIL_CLOSED`, result checksum
+`27861c650c1cd51f5ee96c03e3ae297497a4d04e39f49391b1631840b43757ff`.
+The structured branch passed 18 of 19 gates. It achieved +0.703788 calibrated
+Brier skill, +0.307529 macro-F1 gain, +0.761707 context skill, +0.462532
+outcome-shuffle loss, positive transfer in all games, and 0.071950 macro-ECE.
+Binding-shuffle loss was +0.017061 against the frozen +0.020000 minimum, so
+the conjunctive verdict failed.
+
+The separate Qwen branch failed all six gates: all 256 responses were
+Markdown-fenced and strict parsing emitted no hypothesis, recall@8 and
+shuffle loss were zero, and Brier skill was -0.295586. No downstream authority
+was granted. Full interpretation and operational audit:
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_RESULT.md`.

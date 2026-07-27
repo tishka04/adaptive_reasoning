@@ -215,3 +215,15 @@ rows, 256 per validation game, with balanced legal-action coverage and no
 outcome adaptation. No prospective metric existed before publication of the
 raw shards. All downstream authority remains closed pending the single frozen
 evaluation.
+
+V4.2.1 subsequently finished `FAIL_CLOSED`. The structured inducer showed
+strong prospective transfer: calibrated Brier skill +0.703788, macro-F1
+0.937460, outcome-shuffle loss +0.462532, macro-ECE 0.071950, and positive
+skill in every game. It failed only the binding-shuffle requirement:
++0.017061 versus the frozen +0.020000 minimum. This narrow miss still blocks
+grounded counterfactual world-model authority.
+
+Qwen failed all separate gates: every response was Markdown-fenced, strict
+validity and productive recall were zero, outcome-shuffle loss was zero, and
+Brier skill was -0.295586. The result does not authorize V5, world-model or
+EBM fitting, or controller use.

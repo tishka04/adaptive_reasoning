@@ -261,3 +261,9 @@ checksum
 It contains 256 rows per validation game and retains 79 chronological exact
 repeats. These shards are now opened, immutable prospective audit data and
 may be evaluated only by the already frozen V4.2.1 code.
+
+That frozen evaluation is now complete and failed closed. The 768 traces,
+576 windows, predictions, structured intermediate, and Qwen streams are
+immutable negative-promotion audit data. They may be used only by a separately
+labelled post-hoc diagnostic or a newly frozen successor protocol; they do
+not authorize fitting or tuning a semantic world model, EBM, or controller.

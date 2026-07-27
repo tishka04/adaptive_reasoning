@@ -299,3 +299,23 @@ balanced within one, selection was outcome-independent, and 79 chronological
 repeats were retained. Collection report checksum:
 `8fc7989a30ec4a42e2c1d9d8f49592dc37371d17d1c9f0f406770c62e3fb8785`.
 The raw shards were published before prospective evaluation.
+
+The frozen prospective evaluator then completed `FAIL_CLOSED`, checksum
+`27861c650c1cd51f5ee96c03e3ae297497a4d04e39f49391b1631840b43757ff`.
+Its transactional path wrote 576 predictions and the structured intermediate
+before Qwen. The structured branch passed 18/19 gates, with +0.703788
+calibrated Brier skill, +0.307529 macro-F1 gain, +0.462532 outcome-shuffle
+loss, 0.071950 macro-ECE, and positive transfer in every game. The sole
+failure was binding-shuffle loss +0.017061 versus the +0.020000 minimum.
+
+The initial invocation was externally stopped at six minutes during Qwen,
+after the structured artifact was safe. One identical retry with a longer
+orchestration timeout reproduced its checksum exactly and completed the
+Qwen branch. Qwen failed all six separate gates: every response was
+Markdown-fenced, strict validity and recall@8 were zero, shuffle loss was
+zero, and Brier skill was -0.295586. No downstream fitting or controller
+authority followed.
+
+Final validation re-derived the structured and result checksums, confirmed
+the expected 576/576/128/128 artifact row counts, passed all 26 targeted
+V4.2/V4.2.1 tests in 31.33 seconds, and passed focused Ruff checks.
