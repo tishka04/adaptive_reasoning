@@ -22,6 +22,7 @@ from theory.sage12.action_target_data import (
     resolve_action_target,
     validate_model_projection,
 )
+from theory.sage12.action_target_pilot import _identity_probe
 from v3.schemas import ObjectInfo
 
 
@@ -292,3 +293,16 @@ def test_atomic_replace_retries_transient_windows_lock(tmp_path, monkeypatch):
 
     assert calls["count"] == 3
     assert destination.read_text(encoding="utf-8") == "new"
+
+
+def test_identity_probe_supports_more_than_two_games():
+    rows = [
+        {f"action:{index % 2}": 1, f"state:{index % 3}": 1}
+        for index in range(30)
+    ]
+    labels = ["g1"] * 10 + ["g2"] * 10 + ["g3"] * 10
+
+    result = _identity_probe(rows, labels)
+
+    assert 0.0 <= result["accuracy"] <= 1.0
+    assert result["majority_accuracy"] == 1 / 3

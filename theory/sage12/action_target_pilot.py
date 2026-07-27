@@ -611,16 +611,19 @@ def _identity_probe(
     from sklearn.feature_extraction import DictVectorizer
     from sklearn.linear_model import LogisticRegression
     from sklearn.model_selection import StratifiedKFold, cross_val_score
+    from sklearn.multiclass import OneVsRestClassifier
 
     matrix = DictVectorizer(sparse=True).fit_transform(rows)
     label_array = np.asarray(labels)
     splitter = StratifiedKFold(n_splits=5, shuffle=True, random_state=12)
-    model = LogisticRegression(
-        C=1.0,
-        class_weight="balanced",
-        max_iter=1000,
-        random_state=12,
-        solver="liblinear",
+    model = OneVsRestClassifier(
+        LogisticRegression(
+            C=1.0,
+            class_weight="balanced",
+            max_iter=1000,
+            random_state=12,
+            solver="liblinear",
+        )
     )
     scores = cross_val_score(model, matrix, label_array, cv=splitter)
     majority = max(Counter(labels).values()) / len(labels)

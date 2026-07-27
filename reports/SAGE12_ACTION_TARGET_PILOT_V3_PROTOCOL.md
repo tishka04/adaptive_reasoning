@@ -172,3 +172,11 @@ unique `su15` row and deterministically reallocates its shortfall to the
 highest-yield non-saturated source-training game below the same +64 cap.
 The global 3,040/960 budgets, exact-duplicate rule, event targets, firewall,
 models, and gates remain unchanged.
+
+The first source-training preflight invocation then stopped before producing
+an accuracy or model-selection result because scikit-learn 1.9 rejects direct
+multiclass use of the frozen `liblinear` solver. The identity probe now wraps
+the same class-balanced binary estimator in an explicit one-vs-rest
+classifier. Features, folds, solver, regularization, labels, selection
+threshold, and leakage limit are unchanged. Source validation was still
+unopened when this compatibility amendment was made.
