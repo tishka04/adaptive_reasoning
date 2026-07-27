@@ -209,3 +209,9 @@ check. Source calibrated Brier skill is +0.182060, macro-F1 gain +0.074908,
 context skill +0.432771, macro-ECE 0.036452, and identity gain +0.038723.
 This evidence authorizes only a fresh 768-transition V4.2.1 collection; it is
 not a prospective transfer result and grants no model or controller authority.
+
+The authorized collector has now produced and frozen 768 new prospective
+rows, 256 per validation game, with balanced legal-action coverage and no
+outcome adaptation. No prospective metric existed before publication of the
+raw shards. All downstream authority remains closed pending the single frozen
+evaluation.

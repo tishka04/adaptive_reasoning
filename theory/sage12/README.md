@@ -336,3 +336,8 @@ The unchanged source preflight subsequently passed all 14 conjunctive gates
 without opening validation outcomes. See
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PREFLIGHT.md`. The frozen
 768-transition collection, and nothing downstream, is now authorized.
+
+The fresh collection subsequently completed at 768 rows with balanced legal
+actions, 24 total resets, and 79 retained chronological repeats. See
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_COLLECTION.md`. Its raw shards
+must be published before the single frozen evaluation is run.

@@ -254,3 +254,10 @@ Raw prospective shards must be published before evaluation. Predictions and
 the structured intermediate verdict must then be written before Qwen
 generation. All artifacts remain audit data unless every frozen gate passes.
 They cannot directly authorize world-model, EBM, or controller fitting.
+
+The V4.2.1 collection completed with 768 fresh rows and combined shard
+checksum
+`9cbc1dcb450a71f1a670e515b5adcd7d72af7d9c9fd21549a9b1514917d65a4c`.
+It contains 256 rows per validation game and retains 79 chronological exact
+repeats. These shards are now opened, immutable prospective audit data and
+may be evaluated only by the already frozen V4.2.1 code.

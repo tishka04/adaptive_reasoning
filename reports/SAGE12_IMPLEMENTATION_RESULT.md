@@ -292,3 +292,10 @@ macro-F1 gained +0.074908, context skill was +0.432771, macro-ECE was
 tokens. Preflight checksum:
 `4ce44b0a0eacaa041106813649d6782be44c21790385c31fda03dbe605abecdb`.
 This authorizes only the fresh 768-transition collection.
+
+The collector then produced exactly 768 fresh rows, 256 per validation game,
+under the four new seeds. All games used eight resets, action counts were
+balanced within one, selection was outcome-independent, and 79 chronological
+repeats were retained. Collection report checksum:
+`8fc7989a30ec4a42e2c1d9d8f49592dc37371d17d1c9f0f406770c62e3fb8785`.
+The raw shards were published before prospective evaluation.

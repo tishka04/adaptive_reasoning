@@ -1,0 +1,125 @@
+{
+  "ar25_opened": false,
+  "chronological_repeats_retained": true,
+  "combined_shard_checksum": "9cbc1dcb450a71f1a670e515b5adcd7d72af7d9c9fd21549a9b1514917d65a4c",
+  "format_version": "sage12-target-mechanic-collection-v4.2.1",
+  "frozen_manifest_checksum": "81f14c655dc6b824970b2ecd8638ca62360abedcc7f4dcf3abed2b86cdd3a3c8",
+  "game_reports": {
+    "ls20": {
+      "action_counts": {
+        "ACTION1": 64,
+        "ACTION2": 64,
+        "ACTION3": 64,
+        "ACTION4": 64
+      },
+      "chronological_exact_repeats_retained": 58,
+      "game_id": "ls20",
+      "new_raw_steps": 256,
+      "new_resets": 8,
+      "rows": 256,
+      "stratum_counts": {
+        "ACTION1|move|move_destination|blocked": 64,
+        "ACTION2|move|move_destination|blocked": 64,
+        "ACTION3|move|move_destination|blocked": 64,
+        "ACTION4|move|move_destination|blocked": 64
+      },
+      "target_rows": 256
+    },
+    "re86": {
+      "action_counts": {
+        "ACTION1": 51,
+        "ACTION2": 52,
+        "ACTION3": 51,
+        "ACTION4": 51,
+        "ACTION5": 51
+      },
+      "chronological_exact_repeats_retained": 5,
+      "game_id": "re86",
+      "new_raw_steps": 256,
+      "new_resets": 8,
+      "rows": 256,
+      "stratum_counts": {
+        "ACTION1|move|move_destination|blocked": 51,
+        "ACTION2|move|move_destination|blocked": 52,
+        "ACTION3|move|move_destination|blocked": 51,
+        "ACTION4|move|move_destination|blocked": 51,
+        "ACTION5|other|targetless|unknown": 51
+      },
+      "target_rows": 256
+    },
+    "sc25": {
+      "action_counts": {
+        "ACTION1": 52,
+        "ACTION2": 51,
+        "ACTION3": 51,
+        "ACTION4": 51,
+        "ACTION6": 51
+      },
+      "chronological_exact_repeats_retained": 16,
+      "game_id": "sc25",
+      "new_raw_steps": 256,
+      "new_resets": 8,
+      "rows": 256,
+      "stratum_counts": {
+        "ACTION1|move|move_destination|blocked": 48,
+        "ACTION1|move|move_destination|unknown": 4,
+        "ACTION2|move|move_destination|blocked": 51,
+        "ACTION3|move|move_destination|blocked": 48,
+        "ACTION3|move|move_destination|open": 3,
+        "ACTION4|move|move_destination|blocked": 51,
+        "ACTION6|click|clicked_object|blocked": 51
+      },
+      "target_rows": 256
+    }
+  },
+  "games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "historical_opened": false,
+  "holdout_opened": false,
+  "outcome_adaptive": false,
+  "report_checksum": "8fc7989a30ec4a42e2c1d9d8f49592dc37371d17d1c9f0f406770c62e3fb8785",
+  "rows": 768,
+  "shards": [
+    {
+      "chronological_repeat_rows": 5,
+      "game_id": "re86",
+      "path": "training/sage12/mechanic_induction_v4_2_1/shards/re86.jsonl",
+      "positive_counts": {
+        "target_created": 3,
+        "target_moved": 202,
+        "target_removed": 3
+      },
+      "rows": 256,
+      "sha256": "960300e67e134d130f3a7fa5e9116dd1350946e0bd54ba2b563207e52338d5e3"
+    },
+    {
+      "chronological_repeat_rows": 58,
+      "game_id": "ls20",
+      "path": "training/sage12/mechanic_induction_v4_2_1/shards/ls20.jsonl",
+      "positive_counts": {
+        "target_created": 0,
+        "target_moved": 3,
+        "target_removed": 0
+      },
+      "rows": 256,
+      "sha256": "c3f5fc299e3236857009d6d9d7c7a5b3c7e7ccc0ff30226971924844fe9b3471"
+    },
+    {
+      "chronological_repeat_rows": 16,
+      "game_id": "sc25",
+      "path": "training/sage12/mechanic_induction_v4_2_1/shards/sc25.jsonl",
+      "positive_counts": {
+        "target_created": 49,
+        "target_moved": 4,
+        "target_removed": 49
+      },
+      "rows": 256,
+      "sha256": "4a476c06d080bc86e0aaa0e55b0afc248ad04c20998a747d08d3a80a68b00386"
+    }
+  ],
+  "split": "prospective_source_validation",
+  "status": "COMPLETE"
+}
