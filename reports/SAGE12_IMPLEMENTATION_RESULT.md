@@ -96,3 +96,47 @@ Qwen primary macro-F1 0.484 versus action-only 0.549, shuffle degradation
 -0.098, and `re86` gain -0.237. V2 result checksum:
 `7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
 No world-model fitting followed.
+
+## Action-target V3 implementation and result
+
+V3 adds a separate `sage12-action-target-trace-v3` schema, deterministic
+action-anchor resolution, conservative one-to-one before/after object
+matching, four masked component labels, balanced/adaptive source-only
+collection, source-training leakage selection, independent structured heads,
+frozen Qwen embedding ablation, deterministic and action-only baselines,
+shuffle/permutation controls, calibration, bootstrap intervals, and complete
+artifact checksums.
+
+Collection produced exactly 3,040 source-training and 960 source-validation
+rows with no exact duplicates. The source-only preflight selected the coarse
+projection and shallow gradient boosting. The once-only validation evaluation
+failed closed: structured macro-F1 0.232 versus 0.371 for the stronger
+template, primary gain -0.140, target-shuffle degradation 0.0005, and macro
+ECE 0.397. JSON, support-zero, and grounding were all 1.00. Result checksum:
+`10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4`.
+
+The explanatory diagnostic found only 26 unique training signatures in the
+selected model view and a target shuffle that changed 12 of 960 validation
+rows. This leaves the software and audit corpus available for research but
+keeps all later authority closed. See
+`reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`.
+
+Post-V3 focused validation:
+
+```text
+python -m pytest -q tests/test_sage12_action_target_pilot.py
+tests/test_sage12_semantic_planning.py tests/test_sage12_proposal_pilot.py
+tests/test_sage12_constrained_pilot.py
+48 passed
+```
+
+Post-V3 full repository regression:
+
+```text
+python -m pytest -q
+1715 passed, 1 environment warning in 242.33s
+```
+
+Targeted Ruff validation of the V3 schema, collector, pilot, and tests also
+passes. The warning remains the same harmless Joblib physical-core query
+fallback.

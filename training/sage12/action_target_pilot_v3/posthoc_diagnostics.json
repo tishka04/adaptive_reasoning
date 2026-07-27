@@ -1,0 +1,145 @@
+{
+  "actor_ambiguity_by_game": {
+    "bp35": 0,
+    "cd82": 289,
+    "dc22": 0,
+    "g50t": 0,
+    "ka59": 0,
+    "lf52": 0,
+    "lp85": 0,
+    "sp80": 251,
+    "su15": 0,
+    "tr87": 0,
+    "tu93": 0
+  },
+  "diagnostic_checksum": "ba8a2b51d1dbf10efddc73247fb690fdd773fb0ea62c35b6f7eb8b1d5bc4dd02",
+  "diagnostic_only": true,
+  "feature_capacity": {
+    "target_shuffle_changed_fraction": 0.0125,
+    "target_shuffle_changed_rows": 12,
+    "unique_source_train_signatures": 26,
+    "unique_source_validation_signatures": 8,
+    "validation_rows_with_unseen_signature": 0
+  },
+  "format_version": "sage12-action-target-posthoc-v3",
+  "gates_changed": false,
+  "per_game_effect_rates": {
+    "ls20": {
+      "actor_displaced": {
+        "applicable": 320,
+        "positives": 19,
+        "rate": 0.059375
+      },
+      "target_created": {
+        "applicable": 320,
+        "positives": 0,
+        "rate": 0.0
+      },
+      "target_moved": {
+        "applicable": 320,
+        "positives": 6,
+        "rate": 0.01875
+      },
+      "target_removed": {
+        "applicable": 320,
+        "positives": 0,
+        "rate": 0.0
+      }
+    },
+    "re86": {
+      "actor_displaced": {
+        "applicable": 320,
+        "positives": 320,
+        "rate": 1.0
+      },
+      "target_created": {
+        "applicable": 256,
+        "positives": 0,
+        "rate": 0.0
+      },
+      "target_moved": {
+        "applicable": 256,
+        "positives": 256,
+        "rate": 1.0
+      },
+      "target_removed": {
+        "applicable": 256,
+        "positives": 0,
+        "rate": 0.0
+      }
+    },
+    "sc25": {
+      "actor_displaced": {
+        "applicable": 320,
+        "positives": 6,
+        "rate": 0.01875
+      },
+      "target_created": {
+        "applicable": 317,
+        "positives": 62,
+        "rate": 0.19558359621451105
+      },
+      "target_moved": {
+        "applicable": 314,
+        "positives": 2,
+        "rate": 0.006369426751592357
+      },
+      "target_removed": {
+        "applicable": 314,
+        "positives": 62,
+        "rate": 0.19745222929936307
+      }
+    }
+  },
+  "projection": "coarse",
+  "result_checksum": "10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4",
+  "rows": {
+    "source_train": 3040,
+    "source_validation": 960
+  },
+  "shared_signature_instability": {
+    "actor_displaced": {
+      "compared_signatures": 6,
+      "mean_absolute_rate_shift": 0.06083097847900153,
+      "validation_rows_compared": 954
+    },
+    "target_created": {
+      "compared_signatures": 5,
+      "mean_absolute_rate_shift": 0.15603671131966493,
+      "validation_rows_compared": 890
+    },
+    "target_moved": {
+      "compared_signatures": 5,
+      "mean_absolute_rate_shift": 0.22350948308056268,
+      "validation_rows_compared": 890
+    },
+    "target_removed": {
+      "compared_signatures": 5,
+      "mean_absolute_rate_shift": 0.28861710378857425,
+      "validation_rows_compared": 890
+    }
+  },
+  "source_train_effect_rates": {
+    "actor_displaced": {
+      "applicable": 2500,
+      "positives": 721,
+      "rate": 0.2884
+    },
+    "target_created": {
+      "applicable": 2503,
+      "positives": 160,
+      "rate": 0.06392329204954054
+    },
+    "target_moved": {
+      "applicable": 1955,
+      "positives": 147,
+      "rate": 0.07519181585677749
+    },
+    "target_removed": {
+      "applicable": 1955,
+      "positives": 369,
+      "rate": 0.1887468030690537
+    }
+  },
+  "world_model_fit_authorized": false
+}

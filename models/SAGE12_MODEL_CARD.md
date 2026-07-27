@@ -1,8 +1,8 @@
 # SAGE12 semantic planner — model card
 
-Status: software implementation complete; free-generation V1 and constrained
-V2 Stage A pilots failed closed; world model and EBM remain untrained and
-unauthorized.
+Status: software implementation complete; free-generation V1, constrained V2,
+and action-target V3 Stage A pilots failed closed. The world model and EBM
+remain untrained and unauthorized.
 
 ## Components
 
@@ -76,6 +76,16 @@ game-signature gates passed. Primary macro-F1 was 0.484 versus 0.549 for
 action-only, relation shuffling improved it to 0.582, and `re86` transferred
 at -0.237. V2 therefore also authorized no world-model fit.
 
+Action-target V3 collected 4,000 fresh source-only transitions and scored four
+independent observed effects anchored to the exact movement destination or
+click target. Source-only preflight selected a coarse game-identity-controlled
+projection and shallow gradient boosting. Validation macro-F1 was 0.232,
+below action-only at 0.237 and the deterministic template at 0.371. The
+primary gain was -0.140, target-shuffle degradation 0.0005, and macro ECE
+0.397. JSON, support-zero, grounding, duplicate, training capacity, and
+identity-leakage checks passed; eight data-quality or predictive gates failed.
+V3 authorized no world-model fit.
+
 ## Safety and epistemic boundaries
 
 - every generated hypothesis must enter with zero support;
@@ -106,8 +116,18 @@ requested direction, and stable before/after object event. The heuristic
 energy is hand-weighted. No claim of cross-game generalization, improved game
 score, calibration, or safe live authority is made.
 
+V3 added that anchoring but its selected coarse model view still collapsed to
+only 26 unique source-training signatures. Its conditioned target shuffle
+changed only 1.25% of validation rows, and shared signatures carried
+substantially different effect rates between games. Stable actor matching also
+failed on 540 training rows. The next credible repair therefore needs
+persistent object identity and short transition histories from which to infer
+a game mechanic; simply collecting more rows for the same global one-step
+projection is not supported.
+
 See `theory/sage12/README.md`,
 `training/SAGE12_DATA_POLICY.md`, and
 `reports/SAGE12_VALIDATION_PROTOCOL.md`. The full negative result is in
 `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`; the constrained repair result is in
-`reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`.
+`reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`; the action-target result is
+in `reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`.

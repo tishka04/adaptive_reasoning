@@ -414,6 +414,78 @@ def run_evaluation(
     return result
 
 
+def run_posthoc_diagnostics(
+    *,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+) -> dict[str, Any]:
+    """Explain the frozen V3 result without changing a gate or prediction."""
+    destination = Path(output_dir)
+    result = _read_json(destination / "pilot_result.json")
+    projection = str(result["selected_projection"])
+    train = _load_traces(destination, "source_train")
+    validation = _load_traces(destination, "source_validation")
+    train_maps = [row.model_features(projection) for row in train]
+    validation_maps = [row.model_features(projection) for row in validation]
+    shuffled_maps = _shuffle_target_feature_maps(validation, projection)
+    train_signatures = [_feature_signature(item) for item in train_maps]
+    validation_signatures = [_feature_signature(item) for item in validation_maps]
+    train_signature_set = set(train_signatures)
+    shuffle_changed = sum(
+        left != right
+        for left, right in zip(validation_maps, shuffled_maps)
+    )
+    shared_instability = _shared_signature_instability(
+        train,
+        validation,
+        train_signatures,
+        validation_signatures,
+    )
+    payload: dict[str, Any] = {
+        "format_version": "sage12-action-target-posthoc-v3",
+        "result_checksum": result["result_checksum"],
+        "projection": projection,
+        "rows": {
+            "source_train": len(train),
+            "source_validation": len(validation),
+        },
+        "feature_capacity": {
+            "unique_source_train_signatures": len(set(train_signatures)),
+            "unique_source_validation_signatures": len(
+                set(validation_signatures)
+            ),
+            "validation_rows_with_unseen_signature": sum(
+                signature not in train_signature_set
+                for signature in validation_signatures
+            ),
+            "target_shuffle_changed_rows": shuffle_changed,
+            "target_shuffle_changed_fraction": shuffle_changed
+            / len(validation),
+        },
+        "per_game_effect_rates": {
+            game: _effect_rate_summary(
+                [row for row in validation if row.game_id == game]
+            )
+            for game in SOURCE_VALIDATION
+        },
+        "source_train_effect_rates": _effect_rate_summary(train),
+        "shared_signature_instability": shared_instability,
+        "actor_ambiguity_by_game": {
+            game: sum(
+                "actor_not_stably_identified" in row.effects.ambiguity_reasons
+                for row in train
+                if row.game_id == game
+            )
+            for game in SOURCE_TRAIN
+        },
+        "diagnostic_only": True,
+        "gates_changed": False,
+        "world_model_fit_authorized": False,
+    }
+    payload["diagnostic_checksum"] = _payload_checksum(payload)
+    _write_json_atomic(destination / "posthoc_diagnostics.json", payload)
+    return payload
+
+
 def _evaluate_qwen(
     *,
     frozen: Mapping[str, Any],
@@ -495,6 +567,81 @@ def _semantic_prompt(features: Mapping[str, Any]) -> str:
         lines.append(f"{key}={value}")
     lines.append("effects=" + ",".join(EFFECT_LABELS))
     return "\n".join(lines)
+
+
+def _feature_signature(features: Mapping[str, Any]) -> str:
+    return json.dumps(features, sort_keys=True, separators=(",", ":"))
+
+
+def _effect_rate_summary(
+    traces: Sequence[ActionTargetTrace],
+) -> dict[str, Any]:
+    result = {}
+    for label in EFFECT_LABELS:
+        eligible = [row for row in traces if row.effects.applicable[label]]
+        positives = sum(row.effects.labels[label] for row in eligible)
+        result[label] = {
+            "applicable": len(eligible),
+            "positives": int(positives),
+            "rate": positives / len(eligible) if eligible else 0.0,
+        }
+    return result
+
+
+def _shared_signature_instability(
+    train: Sequence[ActionTargetTrace],
+    validation: Sequence[ActionTargetTrace],
+    train_signatures: Sequence[str],
+    validation_signatures: Sequence[str],
+) -> dict[str, Any]:
+    train_groups: dict[str, list[int]] = defaultdict(list)
+    validation_groups: dict[str, list[int]] = defaultdict(list)
+    for index, signature in enumerate(train_signatures):
+        train_groups[signature].append(index)
+    for index, signature in enumerate(validation_signatures):
+        validation_groups[signature].append(index)
+    per_label = {}
+    for label in EFFECT_LABELS:
+        weighted_differences = []
+        compared_rows = 0
+        compared_signatures = 0
+        for signature in sorted(set(train_groups) & set(validation_groups)):
+            left = [
+                row_index
+                for row_index in train_groups[signature]
+                if train[row_index].effects.applicable[label]
+            ]
+            right = [
+                row_index
+                for row_index in validation_groups[signature]
+                if validation[row_index].effects.applicable[label]
+            ]
+            if len(left) < 5 or len(right) < 5:
+                continue
+            left_rate = statistics.fmean(
+                int(train[row_index].effects.labels[label])
+                for row_index in left
+            )
+            right_rate = statistics.fmean(
+                int(validation[row_index].effects.labels[label])
+                for row_index in right
+            )
+            weight = len(right)
+            weighted_differences.append((abs(left_rate - right_rate), weight))
+            compared_rows += weight
+            compared_signatures += 1
+        total_weight = sum(weight for _, weight in weighted_differences)
+        per_label[label] = {
+            "compared_signatures": compared_signatures,
+            "validation_rows_compared": compared_rows,
+            "mean_absolute_rate_shift": (
+                sum(value * weight for value, weight in weighted_differences)
+                / total_weight
+                if total_weight
+                else 0.0
+            ),
+        }
+    return per_label
 
 
 def _fit_models(
@@ -1294,7 +1441,9 @@ def _write_jsonl_atomic(
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("preflight", "evaluate"))
+    parser.add_argument(
+        "command", choices=("preflight", "evaluate", "diagnose")
+    )
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
     parser.add_argument(
         "--frozen-manifest",
@@ -1307,11 +1456,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             output_dir=args.output_dir,
             frozen_manifest_path=args.frozen_manifest,
         )
-    else:
+    elif args.command == "evaluate":
         payload = run_evaluation(
             output_dir=args.output_dir,
             frozen_manifest_path=args.frozen_manifest,
         )
+    else:
+        payload = run_posthoc_diagnostics(output_dir=args.output_dir)
     print(json.dumps(payload, indent=2, sort_keys=True))
     print(f"wall_seconds={time.perf_counter() - started:.3f}")
     return 0
@@ -1326,5 +1477,6 @@ __all__ = [
     "PROJECTION_FREEZE_FORMAT_VERSION",
     "RESULT_FORMAT_VERSION",
     "run_evaluation",
+    "run_posthoc_diagnostics",
     "run_source_train_preflight",
 ]

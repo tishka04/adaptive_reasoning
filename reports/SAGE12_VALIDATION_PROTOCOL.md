@@ -16,8 +16,8 @@ Only a full V3 structured-model pass may authorize a new world-model protocol.
 No V3 outcome directly authorizes an EBM, shadow mode, bounded probes, or
 controller authority.
 
-Status: Stage A executed and failed closed; Stages B-E are unauthorized and
-have not run.
+Status: Stage A V1, V2, and action-target V3 executed and failed closed.
+Stages B-E are unauthorized and have not run.
 
 ## Research question
 
@@ -176,3 +176,18 @@ relation shuffling improved the score, and `re86` transferred negatively.
 Result checksum:
 `7440cbf5a15edd4ca2c7c70fbebdcb2ced1bdf88817bdf1f7c0f417a6db81e3a`.
 Stage B therefore remains unauthorized.
+
+Action-target V3 then collected 4,000 fresh source-only transitions and
+selected its coarse projection using source training before opening
+validation. Typed output and grounding reached 1.00, and the projection passed
+the frozen identity-leakage gate. Predictive transfer failed: the structured
+model reached 0.232 macro-F1 versus 0.371 for the stronger deterministic
+template, a -0.140 gain with bootstrap 95% interval [-0.155, -0.125].
+Target-shuffle degradation was 0.0005, macro ECE was 0.397, and `re86` plus
+`sc25` transferred negatively. Validation label capacity and source-training
+ambiguity gates also failed.
+
+V3 result checksum:
+`10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4`.
+See `reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`. Stage B remains
+unauthorized; no world model or EBM was fit.

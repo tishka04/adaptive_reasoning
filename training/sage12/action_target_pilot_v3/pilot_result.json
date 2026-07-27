@@ -1,0 +1,1044 @@
+{
+  "all_gates_passed": false,
+  "bootstrap_gain": {
+    "lower_95": -0.15532052059227924,
+    "mean": -0.13969449541467294,
+    "samples": 1000,
+    "upper_95": -0.12483538686827891
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "source_only": true,
+    "validation_tuning": false
+  },
+  "format_version": "sage12-action-target-result-v3",
+  "frozen_manifest_checksum": "8aff373b2896b13dfafe88a8a8d37d9399088f881386a19c81cb63acb3f487bf",
+  "gates": {
+    "bootstrap_lower_bound_positive": false,
+    "calibration_ece": false,
+    "every_validation_game_nonnegative": false,
+    "game_identity_leakage": true,
+    "grounded_hypothesis_rate": true,
+    "minimum_global_non_ambiguous_rate": false,
+    "minimum_per_game_non_ambiguous_rate": false,
+    "no_exact_duplicate_rows": true,
+    "primary_macro_f1_gain": false,
+    "source_train_label_capacity": true,
+    "source_validation_label_capacity": false,
+    "strict_json_validity": true,
+    "support_zero_rate": true,
+    "target_shuffle_degradation": false
+  },
+  "metrics": {
+    "action_only": {
+      "macro_average_precision": 0.24798393516482883,
+      "macro_ece": 0.3957569403154165,
+      "macro_f1": 0.23722827995243745,
+      "macro_recall": 0.3759469696969697,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.5305849312677549,
+          "ece": 0.22100913405664976,
+          "f1": 0.5560032232070911,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.38504464285714285,
+          "recall": 1.0
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.5760921938026164,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.3222589966658662,
+          "ece": 0.19100396269535908,
+          "f1": 0.3929098966026588,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.3220338983050847,
+          "recall": 0.5037878787878788
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.0696629213483146,
+          "ece": 0.5949224707070407,
+          "f1": 0.0,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    },
+    "action_shuffle": {
+      "macro_average_precision": 0.2551270302690737,
+      "macro_ece": 0.37332803572672113,
+      "macro_f1": 0.2591562067295388,
+      "macro_recall": 0.5183207424879935,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.5741375396492047,
+          "ece": 0.20816400506495122,
+          "f1": 0.5782178217821782,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.43909774436090226,
+          "recall": 0.8463768115942029
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.5982004245260928,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.30860783536050185,
+          "ece": 0.20269879004891786,
+          "f1": 0.34579439252336447,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.29365079365079366,
+          "recall": 0.42045454545454547
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.06833385468920856,
+          "ece": 0.48424892326692265,
+          "f1": 0.11261261261261261,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.06053268765133172,
+          "recall": 0.8064516129032258
+        }
+      }
+    },
+    "deterministic_template": {
+      "macro_average_precision": 0.43068428358758104,
+      "macro_ece": 0.26484668913647974,
+      "macro_f1": 0.3714430082905249,
+      "macro_recall": 0.5021739130434782,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.36494565217391306,
+          "ece": 0.35624999999999996,
+          "f1": 0.017241379310344827,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 1.0,
+          "recall": 0.008695652173913044
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.06942889137737962,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.3196125907990315,
+          "ece": 0.6314606741573033,
+          "f1": 0.48440366972477067,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.3196125907990315,
+          "recall": 1.0
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.96875,
+          "ece": 0.0022471910112359553,
+          "f1": 0.9841269841269841,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.96875,
+          "recall": 1.0
+        }
+      }
+    },
+    "label_permutation": {
+      "macro_average_precision": 0.2239332215010333,
+      "macro_ece": 0.30319438501439494,
+      "macro_f1": 0.21234604105571847,
+      "macro_recall": 0.2728260869565218,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.39067521751010936,
+          "ece": 0.1490716771998371,
+          "f1": 0.49454545454545457,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.425,
+          "recall": 0.591304347826087
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.0696629213483146,
+          "ece": 0.43795387337199154,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.30541571150629626,
+          "ece": 0.19416769910669537,
+          "f1": 0.3548387096774194,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.275,
+          "recall": 0.5
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.129979035639413,
+          "ece": 0.43158429037905566,
+          "f1": 0.0,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    },
+    "qwen_ablation": {
+      "macro_average_precision": 0.20241075072029036,
+      "macro_ece": 0.3778362604578013,
+      "macro_f1": 0.23722827995243745,
+      "macro_recall": 0.3759469696969697,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.3483107660080125,
+          "ece": 0.17207315999011458,
+          "f1": 0.5560032232070911,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.38504464285714285,
+          "recall": 1.0
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.5647635912451583,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.3222404241474547,
+          "ece": 0.21165006501496397,
+          "f1": 0.3929098966026588,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.3220338983050847,
+          "recall": 0.5037878787878788
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.0696629213483146,
+          "ece": 0.5628582255809683,
+          "f1": 0.0,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    },
+    "qwen_target_shuffle": {
+      "macro_average_precision": 0.2006486372110645,
+      "macro_ece": 0.3778767784536857,
+      "macro_f1": 0.23679492344883157,
+      "macro_recall": 0.3759469696969697,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.341262311971109,
+          "ece": 0.17207315999011458,
+          "f1": 0.5560032232070911,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.38504464285714285,
+          "recall": 1.0
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.56480515975325,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.3222404241474547,
+          "ece": 0.2116881835993149,
+          "f1": 0.3911764705882353,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.31971153846153844,
+          "recall": 0.5037878787878788
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.0696629213483146,
+          "ece": 0.5629406104720635,
+          "f1": 0.0,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    },
+    "structured": {
+      "macro_average_precision": 0.24839321141555254,
+      "macro_ece": 0.3969922024579678,
+      "macro_f1": 0.2319147328379234,
+      "macro_recall": 0.3266716073781291,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.5378808223522125,
+          "ece": 0.20070515377014983,
+          "f1": 0.5347490347490348,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.40086830680173663,
+          "recall": 0.8028985507246377
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.5921578702959607,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.3166002105843035,
+          "ece": 0.19948633183231956,
+          "f1": 0.3929098966026588,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.3220338983050847,
+          "recall": 0.5037878787878788
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.0696629213483146,
+          "ece": 0.5956194539334412,
+          "f1": 0.0,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    },
+    "target_shuffle": {
+      "macro_average_precision": 0.24582453430795662,
+      "macro_ece": 0.3954113044387834,
+      "macro_f1": 0.2314321073552979,
+      "macro_recall": 0.3259469696969697,
+      "per_label": {
+        "actor_displaced": {
+          "applicable": 960,
+          "average_precision": 0.5276061139218288,
+          "ece": 0.19445515377014982,
+          "f1": 0.5328185328185329,
+          "negatives": 615,
+          "positives": 345,
+          "precision": 0.3994211287988423,
+          "recall": 0.8
+        },
+        "target_created": {
+          "applicable": 893,
+          "average_precision": 0.06942889137737962,
+          "ece": 0.592084278219223,
+          "f1": 0.0,
+          "negatives": 831,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        },
+        "target_moved": {
+          "applicable": 890,
+          "average_precision": 0.3166002105843035,
+          "ece": 0.19948633183231956,
+          "f1": 0.3929098966026588,
+          "negatives": 626,
+          "positives": 264,
+          "precision": 0.3220338983050847,
+          "recall": 0.5037878787878788
+        },
+        "target_removed": {
+          "applicable": 890,
+          "average_precision": 0.0696629213483146,
+          "ece": 0.5956194539334412,
+          "f1": 0.0,
+          "negatives": 828,
+          "positives": 62,
+          "precision": 0.0,
+          "recall": 0.0
+        }
+      }
+    }
+  },
+  "output_contract": {
+    "emitted_hypotheses": 2419,
+    "grounded_hypothesis_rate": 1.0,
+    "strict_json_validity": 1.0,
+    "support_zero_rate": 1.0
+  },
+  "per_game": {
+    "ls20": {
+      "action_only": {
+        "macro_average_precision": 0.022464364035087718,
+        "macro_ece": 0.5272269259523172,
+        "macro_f1": 0.04308383978391442,
+        "macro_recall": 0.45833333333333337,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 0.05756578947368421,
+            "ece": 0.5008608480720902,
+            "f1": 0.11209439528023599,
+            "negatives": 301,
+            "positives": 19,
+            "precision": 0.059375,
+            "recall": 1.0
+          },
+          "target_created": {
+            "applicable": 320,
+            "average_precision": 0.0,
+            "ece": 0.5575297700904156,
+            "f1": 0.0,
+            "negatives": 320,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 320,
+            "average_precision": 0.03229166666666666,
+            "ece": 0.4822142346667,
+            "f1": 0.060240963855421686,
+            "negatives": 314,
+            "positives": 6,
+            "precision": 0.03125,
+            "recall": 0.8333333333333334
+          },
+          "target_removed": {
+            "applicable": 320,
+            "average_precision": 0.0,
+            "ece": 0.568302850980063,
+            "f1": 0.0,
+            "negatives": 320,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      },
+      "deterministic_template": {
+        "macro_average_precision": 0.01953125,
+        "macro_ece": 0.26015625,
+        "macro_f1": 0.009202453987730062,
+        "macro_recall": 0.25,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 0.059375,
+            "ece": 0.059375,
+            "f1": 0.0,
+            "negatives": 301,
+            "positives": 19,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_created": {
+            "applicable": 320,
+            "average_precision": 0.0,
+            "ece": 0.0,
+            "f1": 0.0,
+            "negatives": 320,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 320,
+            "average_precision": 0.01875,
+            "ece": 0.98125,
+            "f1": 0.03680981595092025,
+            "negatives": 314,
+            "positives": 6,
+            "precision": 0.01875,
+            "recall": 1.0
+          },
+          "target_removed": {
+            "applicable": 320,
+            "average_precision": 0.0,
+            "ece": 0.0,
+            "f1": 0.0,
+            "negatives": 320,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      },
+      "gain": 0.0009339301374699654,
+      "rows": 320,
+      "stronger_baseline": "action_only",
+      "structured": {
+        "macro_average_precision": 0.022464364035087718,
+        "macro_ece": 0.5246792496051172,
+        "macro_f1": 0.044017769921384384,
+        "macro_recall": 0.4057017543859649,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 0.05756578947368421,
+            "ece": 0.4804445646785911,
+            "f1": 0.11583011583011583,
+            "negatives": 301,
+            "positives": 19,
+            "precision": 0.0625,
+            "recall": 0.7894736842105263
+          },
+          "target_created": {
+            "applicable": 320,
+            "average_precision": 0.0,
+            "ece": 0.5645076449270069,
+            "f1": 0.0,
+            "negatives": 320,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 320,
+            "average_precision": 0.03229166666666666,
+            "ece": 0.4843019019291941,
+            "f1": 0.060240963855421686,
+            "negatives": 314,
+            "positives": 6,
+            "precision": 0.03125,
+            "recall": 0.8333333333333334
+          },
+          "target_removed": {
+            "applicable": 320,
+            "average_precision": 0.0,
+            "ece": 0.569462886885677,
+            "f1": 0.0,
+            "negatives": 320,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      }
+    },
+    "re86": {
+      "action_only": {
+        "macro_average_precision": 0.5,
+        "macro_ece": 0.5055082040673224,
+        "macro_f1": 0.41666666666666663,
+        "macro_recall": 0.375,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 1.0,
+            "ece": 0.39716442986551137,
+            "f1": 1.0,
+            "negatives": 0,
+            "positives": 320,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "target_created": {
+            "applicable": 256,
+            "average_precision": 0.0,
+            "ece": 0.5575297700904156,
+            "f1": 0.0,
+            "negatives": 256,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 256,
+            "average_precision": 1.0,
+            "ece": 0.49903576533329996,
+            "f1": 0.6666666666666666,
+            "negatives": 0,
+            "positives": 256,
+            "precision": 1.0,
+            "recall": 0.5
+          },
+          "target_removed": {
+            "applicable": 256,
+            "average_precision": 0.0,
+            "ece": 0.5683028509800631,
+            "f1": 0.0,
+            "negatives": 256,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      },
+      "deterministic_template": {
+        "macro_average_precision": 0.5,
+        "macro_ece": 0.25,
+        "macro_f1": 0.25,
+        "macro_recall": 0.25,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 1.0,
+            "ece": 1.0,
+            "f1": 0.0,
+            "negatives": 0,
+            "positives": 320,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_created": {
+            "applicable": 256,
+            "average_precision": 0.0,
+            "ece": 0.0,
+            "f1": 0.0,
+            "negatives": 256,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 256,
+            "average_precision": 1.0,
+            "ece": 0.0,
+            "f1": 1.0,
+            "negatives": 0,
+            "positives": 256,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "target_removed": {
+            "applicable": 256,
+            "average_precision": 0.0,
+            "ece": 0.0,
+            "f1": 0.0,
+            "negatives": 256,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      },
+      "gain": -0.02777777777777779,
+      "rows": 320,
+      "stronger_baseline": "action_only",
+      "structured": {
+        "macro_average_precision": 0.5,
+        "macro_ece": 0.510577292706402,
+        "macro_f1": 0.38888888888888884,
+        "macro_recall": 0.325,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 1.0,
+            "ece": 0.4113905409421182,
+            "f1": 0.8888888888888888,
+            "negatives": 0,
+            "positives": 320,
+            "precision": 1.0,
+            "recall": 0.8
+          },
+          "target_created": {
+            "applicable": 256,
+            "average_precision": 0.0,
+            "ece": 0.5645076449270069,
+            "f1": 0.0,
+            "negatives": 256,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 256,
+            "average_precision": 1.0,
+            "ece": 0.496948098070806,
+            "f1": 0.6666666666666666,
+            "negatives": 0,
+            "positives": 256,
+            "precision": 1.0,
+            "recall": 0.5
+          },
+          "target_removed": {
+            "applicable": 256,
+            "average_precision": 0.0,
+            "ece": 0.5694628868856769,
+            "f1": 0.0,
+            "negatives": 256,
+            "positives": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      }
+    },
+    "sc25": {
+      "action_only": {
+        "macro_average_precision": 0.10698084791286007,
+        "macro_ece": 0.5447520545711526,
+        "macro_f1": 0.011450381679389313,
+        "macro_recall": 0.25,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 0.024305555555555556,
+            "ece": 0.4686247673170036,
+            "f1": 0.04580152671755725,
+            "negatives": 314,
+            "positives": 6,
+            "precision": 0.0234375,
+            "recall": 1.0
+          },
+          "target_created": {
+            "applicable": 317,
+            "average_precision": 0.19558359621451105,
+            "ece": 0.6098207618096436,
+            "f1": 0.0,
+            "negatives": 255,
+            "positives": 62,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 314,
+            "average_precision": 0.010582010582010581,
+            "ece": 0.45680932366512855,
+            "f1": 0.0,
+            "negatives": 312,
+            "positives": 2,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_removed": {
+            "applicable": 314,
+            "average_precision": 0.19745222929936307,
+            "ece": 0.6437533654928345,
+            "f1": 0.0,
+            "negatives": 252,
+            "positives": 62,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      },
+      "deterministic_template": {
+        "macro_average_precision": 0.42042714905362777,
+        "macro_ece": 0.2502842350408889,
+        "macro_f1": 0.41666666666666663,
+        "macro_recall": 0.625,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 0.509375,
+            "ece": 0.009375,
+            "f1": 0.6666666666666666,
+            "negatives": 314,
+            "positives": 6,
+            "precision": 1.0,
+            "recall": 0.5
+          },
+          "target_created": {
+            "applicable": 317,
+            "average_precision": 0.19558359621451105,
+            "ece": 0.19558359621451105,
+            "f1": 0.0,
+            "negatives": 255,
+            "positives": 62,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 314,
+            "average_precision": 0.008,
+            "ece": 0.7898089171974523,
+            "f1": 0.015873015873015872,
+            "negatives": 312,
+            "positives": 2,
+            "precision": 0.008,
+            "recall": 1.0
+          },
+          "target_removed": {
+            "applicable": 314,
+            "average_precision": 0.96875,
+            "ece": 0.006369426751592357,
+            "f1": 0.9841269841269841,
+            "negatives": 252,
+            "positives": 62,
+            "precision": 0.96875,
+            "recall": 1.0
+          }
+        }
+      },
+      "gain": -0.4017412935323383,
+      "rows": 320,
+      "stronger_baseline": "deterministic_template",
+      "structured": {
+        "macro_average_precision": 0.2562463393658515,
+        "macro_ece": 0.5523978425117547,
+        "macro_f1": 0.014925373134328358,
+        "macro_recall": 0.25,
+        "per_label": {
+          "actor_displaced": {
+            "applicable": 320,
+            "average_precision": 0.6213675213675214,
+            "ece": 0.44656905220399434,
+            "f1": 0.05970149253731343,
+            "negatives": 314,
+            "positives": 6,
+            "precision": 0.03076923076923077,
+            "recall": 1.0
+          },
+          "target_created": {
+            "applicable": 317,
+            "average_precision": 0.19558359621451105,
+            "ece": 0.6423992892628925,
+            "f1": 0.0,
+            "negatives": 255,
+            "positives": 62,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_moved": {
+            "applicable": 314,
+            "average_precision": 0.010582010582010581,
+            "ece": 0.4770221013361421,
+            "f1": 0.0,
+            "negatives": 312,
+            "positives": 2,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "target_removed": {
+            "applicable": 314,
+            "average_precision": 0.19745222929936307,
+            "ece": 0.6436009272439899,
+            "f1": 0.0,
+            "negatives": 252,
+            "positives": 62,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        }
+      }
+    }
+  },
+  "primary_macro_f1_gain": -0.1395282754526015,
+  "projection_freeze_checksum": "7e1a93970b5502873bce6c3659ba46f671752adce81a8b2da829a6485b36ce9c",
+  "qwen": {
+    "embedding": {
+      "batch_size": 32,
+      "batches": 1,
+      "device": "cuda:0",
+      "inference_seconds": 0.6886375000467524,
+      "maximum_input_tokens": 84,
+      "mean_input_tokens": 83.23076923076923,
+      "median_batch_seconds": 0.6886375000467524,
+      "rows": 26
+    },
+    "embedding_checksum": "33c58adce975fccebdc71bb3c0ddc1d25879232dc51e3502b2660b43fb6b84a8",
+    "model_name": "Qwen2.5-0.5B-Instruct",
+    "model_weights_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+    "prompt_checksum": "f6d95cf27c2f5366a350f60e2934e6bf576a5add2f1f4aa3f4385d9746fc5db0",
+    "unique_prompts": 26
+  },
+  "qwen_required_for_promotion": false,
+  "result_checksum": "10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4",
+  "rows": {
+    "source_train": 3040,
+    "source_validation": 960
+  },
+  "runtime": {
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "executable": "C:\\Users\\coudr\\OneDrive\\projects\\adaptive_reasoning\\ARC-AGI-3-Agents\\.venv\\Scripts\\python.exe",
+    "numpy": "2.4.3",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "torch": "2.5.1+cu121"
+  },
+  "selected_projection": "coarse",
+  "selected_structured_model": "gradient_boosting",
+  "status": "FAIL_CLOSED",
+  "stronger_baseline": "deterministic_template",
+  "target_shuffle_degradation": 0.0004826254826255094,
+  "train_quality": {
+    "ambiguity_reason_counts": {
+      "actor_not_stably_identified": 540
+    },
+    "duplicate_rows": 0,
+    "exact_repeat_keys": 3040,
+    "non_ambiguous_rate": 0.8223684210526316,
+    "per_game": {
+      "bp35": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 301
+      },
+      "cd82": {
+        "non_ambiguous_rate": 0.03986710963455149,
+        "rows": 301
+      },
+      "dc22": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 302
+      },
+      "g50t": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 302
+      },
+      "ka59": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 301
+      },
+      "lf52": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 301
+      },
+      "lp85": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 27
+      },
+      "sp80": {
+        "non_ambiguous_rate": 0.19808306709265175,
+        "rows": 313
+      },
+      "su15": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 290
+      },
+      "tr87": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 301
+      },
+      "tu93": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 301
+      }
+    },
+    "per_label": {
+      "actor_displaced": {
+        "applicable": 2500,
+        "games_with_positive": 10,
+        "negatives": 1779,
+        "positives": 721
+      },
+      "target_created": {
+        "applicable": 2503,
+        "games_with_positive": 4,
+        "negatives": 2343,
+        "positives": 160
+      },
+      "target_moved": {
+        "applicable": 1955,
+        "games_with_positive": 5,
+        "negatives": 1808,
+        "positives": 147
+      },
+      "target_removed": {
+        "applicable": 1955,
+        "games_with_positive": 4,
+        "negatives": 1586,
+        "positives": 369
+      }
+    },
+    "rows": 3040
+  },
+  "validation_quality": {
+    "ambiguity_reason_counts": {},
+    "duplicate_rows": 0,
+    "exact_repeat_keys": 960,
+    "non_ambiguous_rate": 1.0,
+    "per_game": {
+      "ls20": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 320
+      },
+      "re86": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 320
+      },
+      "sc25": {
+        "non_ambiguous_rate": 1.0,
+        "rows": 320
+      }
+    },
+    "per_label": {
+      "actor_displaced": {
+        "applicable": 960,
+        "games_with_positive": 3,
+        "negatives": 615,
+        "positives": 345
+      },
+      "target_created": {
+        "applicable": 893,
+        "games_with_positive": 1,
+        "negatives": 831,
+        "positives": 62
+      },
+      "target_moved": {
+        "applicable": 890,
+        "games_with_positive": 3,
+        "negatives": 626,
+        "positives": 264
+      },
+      "target_removed": {
+        "applicable": 890,
+        "games_with_positive": 1,
+        "negatives": 828,
+        "positives": 62
+      }
+    },
+    "rows": 960
+  },
+  "world_model_fit_authorized": false
+}

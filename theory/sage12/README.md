@@ -185,3 +185,39 @@ python -m theory.sage12.constrained_pilot preflight
 python -m theory.sage12.constrained_pilot evaluate
 python -m theory.sage12.constrained_pilot diagnose
 ```
+
+## Action-target effect pilot V3
+
+V3 uses 4,000 fresh executed source-only transitions and grounds each action
+to its exact movement destination, clicked object, clicked empty cell, or
+targetless anchor. It replaces the joint-tuple target with four independently
+scored observed effects and masks ambiguous before/after matches. Absolute
+coordinates, values, IDs, game signatures, raw grids, and outcomes remain
+outside model inputs.
+
+The source-training leakage ladder selected the `coarse` projection at +0.0987
+game-identity accuracy beyond action-only. Leave-one-game-out training selected
+shallow gradient boosting. On the frozen validation games, that model reached
+0.232 macro-F1 versus 0.237 for action-only and 0.371 for the deterministic
+template. The -0.140 primary gain, 0.0005 target-shuffle degradation, negative
+transfer on two games, and 0.397 macro ECE produced `FAIL_CLOSED`.
+
+The fixed typed output contract nevertheless passed JSON, support-zero, and
+grounding at 1.00. A diagnostic showed that the selected projection contained
+only 26 unique training signatures and that the target shuffle changed only
+1.25% of validation rows. V3 therefore rejects this coarse global one-step
+effect representation, not the complete high-semantic planning architecture.
+No world model or EBM was fit.
+
+```powershell
+python -m theory.sage12.action_target_collection source_train
+python -m theory.sage12.action_target_pilot preflight
+python -m theory.sage12.action_target_collection source_validation
+python -m theory.sage12.action_target_pilot evaluate
+python -m theory.sage12.action_target_pilot diagnose
+```
+
+The protocol is in
+`reports/SAGE12_ACTION_TARGET_PILOT_V3_PROTOCOL.md`; the complete gate ledger,
+checksums, and interpretation are in
+`reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`.

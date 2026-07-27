@@ -1,7 +1,7 @@
 # SAGE12 semantic-trajectory data policy
 
-Status: Stage A collection complete; proposal pilot failed closed and later
-training stages are unauthorized.
+Status: Stage A V1, V2, and action-target V3 are complete negative results.
+World-model and EBM fitting remain unauthorized.
 
 Format: `sage12-semantic-trajectory-v1`.
 
@@ -74,6 +74,23 @@ The source-only preflight selected the `coarse` projection and shallow
 gradient boosting; projection-freeze checksum
 `7e1a93970b5502873bce6c3659ba46f671752adce81a8b2da829a6485b36ce9c`.
 No source-validation metric was seen before this freeze.
+
+V3 subsequently completed `FAIL_CLOSED`, result checksum
+`10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4`.
+The primary structured model reached 0.232 macro-F1 versus 0.237 for
+action-only and 0.371 for the deterministic template. Its gain against the
+stronger baseline was -0.140, target-shuffle degradation was 0.0005, and
+macro ECE was 0.397. Validation creation/removal positives also occurred in
+only one game, while actor ambiguity reduced source-training non-ambiguity to
+0.822.
+
+The complete result is in
+`reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`. These 4,000 rows remain an
+audited negative-result corpus. They may support explicitly labelled
+post-hoc diagnostics, but they do not authorize fitting, tuning, or promoting
+a semantic world model, EBM, or live controller. A sequence-conditioned
+mechanic-induction repair must use a separately frozen protocol and must not
+silently redefine V3 labels or gates.
 
 ## Purpose
 

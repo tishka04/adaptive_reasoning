@@ -1,0 +1,160 @@
+{
+  "adaptive_allocations": {},
+  "ar25_opened": false,
+  "combined_shard_checksum": "71f18d8d30cc6b500e0c5fafa0e2edf17e0b8ba1edb9b433882421fef3d4c5af",
+  "format_version": "sage12-action-target-collection-v3",
+  "frozen_manifest_checksum": "8aff373b2896b13dfafe88a8a8d37d9399088f881386a19c81cb63acb3f487bf",
+  "game_reports": {
+    "ls20": {
+      "action_counts": {
+        "ACTION1": 80,
+        "ACTION2": 80,
+        "ACTION3": 80,
+        "ACTION4": 80
+      },
+      "game_id": "ls20",
+      "new_raw_steps": 329,
+      "new_resets": 3,
+      "rejected_exact_duplicates": 9,
+      "rows": 320,
+      "shortfall": 0,
+      "source_split": "source_validation",
+      "stratum_counts": {
+        "ACTION1|move_destination|adjacent|blocked|clickable": 80,
+        "ACTION2|move_destination|adjacent|blocked|clickable": 77,
+        "ACTION2|move_destination|adjacent|blocked|unknown": 3,
+        "ACTION3|move_destination|adjacent|blocked|clickable": 77,
+        "ACTION3|move_destination|adjacent|blocked|unknown": 3,
+        "ACTION4|move_destination|adjacent|blocked|clickable": 77,
+        "ACTION4|move_destination|adjacent|blocked|unknown": 3
+      },
+      "target_rows": 320
+    },
+    "re86": {
+      "action_counts": {
+        "ACTION1": 64,
+        "ACTION2": 64,
+        "ACTION3": 64,
+        "ACTION4": 64,
+        "ACTION5": 64
+      },
+      "game_id": "re86",
+      "new_raw_steps": 321,
+      "new_resets": 4,
+      "rejected_exact_duplicates": 1,
+      "rows": 320,
+      "shortfall": 0,
+      "source_split": "source_validation",
+      "stratum_counts": {
+        "ACTION1|move_destination|adjacent|blocked|unknown": 64,
+        "ACTION2|move_destination|adjacent|blocked|unknown": 64,
+        "ACTION3|move_destination|adjacent|blocked|unknown": 64,
+        "ACTION4|move_destination|adjacent|blocked|unknown": 64,
+        "ACTION5|targetless|unknown|unknown|none": 64
+      },
+      "target_rows": 320
+    },
+    "sc25": {
+      "action_counts": {
+        "ACTION1": 64,
+        "ACTION2": 64,
+        "ACTION3": 64,
+        "ACTION4": 64,
+        "ACTION6": 64
+      },
+      "game_id": "sc25",
+      "new_raw_steps": 330,
+      "new_resets": 7,
+      "rejected_exact_duplicates": 10,
+      "rows": 320,
+      "shortfall": 0,
+      "source_split": "source_validation",
+      "stratum_counts": {
+        "ACTION1|move_destination|adjacent|blocked|movable": 61,
+        "ACTION1|move_destination|adjacent|unknown|none": 3,
+        "ACTION2|move_destination|adjacent|blocked|movable": 3,
+        "ACTION2|move_destination|adjacent|blocked|unknown": 61,
+        "ACTION3|move_destination|adjacent|blocked|movable": 61,
+        "ACTION3|move_destination|adjacent|open|none": 3,
+        "ACTION4|move_destination|adjacent|blocked|movable": 3,
+        "ACTION4|move_destination|adjacent|blocked|unknown": 61,
+        "ACTION6|clicked_object|far|blocked|movable": 64
+      },
+      "target_rows": 320
+    }
+  },
+  "games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "historical_opened": false,
+  "holdout_opened": false,
+  "report_checksum": "3a5eb3bb97f1ad8505456eca7652a37ac61428808ef171036ddbc253bcde25a3",
+  "shards": [
+    {
+      "applicable_counts": {
+        "actor_displaced": 320,
+        "target_created": 256,
+        "target_moved": 256,
+        "target_removed": 256
+      },
+      "game_id": "re86",
+      "path": "training/sage12/action_target_pilot_v3/shards/re86.jsonl",
+      "positive_counts": {
+        "actor_displaced": 320,
+        "target_created": 0,
+        "target_moved": 256,
+        "target_removed": 0
+      },
+      "rows": 320,
+      "sha256": "abd83c3b29e95b5465d612bcaa3ae962dabd091426fb5cea197580e1543b0b1d",
+      "source_split": "source_validation"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 320,
+        "target_created": 320,
+        "target_moved": 320,
+        "target_removed": 320
+      },
+      "game_id": "ls20",
+      "path": "training/sage12/action_target_pilot_v3/shards/ls20.jsonl",
+      "positive_counts": {
+        "actor_displaced": 19,
+        "target_created": 0,
+        "target_moved": 6,
+        "target_removed": 0
+      },
+      "rows": 320,
+      "sha256": "055fb5adace9f5470c15021ba981b20af4bc161f8a6f67f582b3985b0e70f280",
+      "source_split": "source_validation"
+    },
+    {
+      "applicable_counts": {
+        "actor_displaced": 320,
+        "target_created": 317,
+        "target_moved": 314,
+        "target_removed": 314
+      },
+      "game_id": "sc25",
+      "path": "training/sage12/action_target_pilot_v3/shards/sc25.jsonl",
+      "positive_counts": {
+        "actor_displaced": 6,
+        "target_created": 62,
+        "target_moved": 2,
+        "target_removed": 62
+      },
+      "rows": 320,
+      "sha256": "ba53f38a118a88ad2e0ddb042105833474b6777df1cad86921f3eb02ab28e268",
+      "source_split": "source_validation"
+    }
+  ],
+  "source_train_manifest_checksum": "1ba0b41b2595a1c9f18f613696e97b4397066194fe700117104d1eaa930d3331",
+  "source_train_rows": 3040,
+  "source_validation_rows": 960,
+  "split": "source_validation",
+  "split_rows": 960,
+  "status": "COMPLETE",
+  "total_transitions": 4000
+}

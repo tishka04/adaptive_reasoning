@@ -1,6 +1,7 @@
 # SAGE12 action-target effect pilot V3 protocol
 
-Status: frozen before collecting a V3 transition.
+Status: frozen before collecting a V3 transition; execution is now complete
+and failed closed.
 
 Frozen manifest:
 `training/sage12/action_target_pilot_v3/frozen_manifest.json`.
@@ -213,3 +214,20 @@ mapping once, sends that same mapping to Qwen, and separately encodes it for
 the structured classifier. The permutation, grouping, selected projection,
 models, labels, thresholds, gates, and validation rows are unchanged. This
 amendment is committed before the first validation metric.
+
+## Final execution result
+
+The 960-row validation collection completed at exactly 320 unique rows per
+game. The primary structured model reached 0.2319 macro-F1 versus 0.3714 for
+the stronger deterministic template, a -0.1395 gain. Its bootstrap 95% lower
+bound was -0.1553, target-shuffle degradation was 0.0005, and macro ECE was
+0.3970. `re86` and `sc25` had negative per-game gain. Validation creation and
+removal positives occurred in only one game, and the already reported
+source-training ambiguity also failed both non-ambiguity gates.
+
+Typed JSON validity, `support=0`, grounding, exact-duplicate, source-training
+capacity, and frozen projection identity-leakage checks passed. The
+conjunctive result is `FAIL_CLOSED`, checksum
+`10b1d84b6ff675c3fd05f73ad853d0618658b79045824ad4c2f9e79e6466fdb4`.
+No world model or EBM was fit. The full ledger and post-hoc interpretation are
+in `reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`.

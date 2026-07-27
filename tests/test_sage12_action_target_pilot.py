@@ -23,7 +23,9 @@ from theory.sage12.action_target_data import (
     validate_model_projection,
 )
 from theory.sage12.action_target_pilot import (
+    _effect_rate_summary,
     _identity_probe,
+    _shared_signature_instability,
     _shuffle_target_feature_maps,
 )
 from v3.schemas import ObjectInfo
@@ -325,3 +327,26 @@ def test_qwen_target_shuffle_keeps_the_same_semantic_prompt_schema():
     assert all(
         row["selected_action_name"] == "ACTION4" for row in shuffled
     )
+
+
+def test_posthoc_effect_rates_and_shared_signature_instability():
+    moved = [_trace() for _ in range(5)]
+    stationary = [
+        _trace(after=_grid(player=(2, 2)))
+        for _ in range(5)
+    ]
+
+    rates = _effect_rate_summary(moved)
+    instability = _shared_signature_instability(
+        moved,
+        stationary,
+        ["shared"] * 5,
+        ["shared"] * 5,
+    )
+
+    assert rates["actor_displaced"]["rate"] == 1.0
+    assert instability["actor_displaced"] == {
+        "compared_signatures": 1,
+        "validation_rows_compared": 5,
+        "mean_absolute_rate_shift": 1.0,
+    }
