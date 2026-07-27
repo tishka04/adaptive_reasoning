@@ -145,3 +145,13 @@ Rehearsal checksum:
 `cd2164ecdfab094d99364cfdec213767987e974e9fd5b4dc01f98db423873b92`.
 The source preflight is now authorized; no prospective collection is yet
 authorized.
+
+## Executed source preflight
+
+The source preflight completed `PASS_SOURCE_TRAIN_PREFLIGHT` with all 14
+conjunctive gates passing. It retained 1,911 source windows; identity gain was
++0.038723, calibrated Brier skill +0.182060, macro-F1 gain +0.074908,
+context skill +0.432771, macro-ECE 0.036452, and Qwen prompts 295-317 tokens.
+Preflight checksum:
+`4ce44b0a0eacaa041106813649d6782be44c21790385c31fda03dbe605abecdb`.
+Only the frozen fresh collection is now authorized.

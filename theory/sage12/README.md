@@ -331,3 +331,8 @@ The source rehearsal passed all seven checks and serialized every one of the
 1,911 source predictions, including generic `any` evidence. See
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_REHEARSAL.md`. Only the source
 preflight is authorized at this checkpoint.
+
+The unchanged source preflight subsequently passed all 14 conjunctive gates
+without opening validation outcomes. See
+`reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PREFLIGHT.md`. The frozen
+768-transition collection, and nothing downstream, is now authorized.

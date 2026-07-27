@@ -203,3 +203,9 @@ uncaught error.
 No V4.2.1 result exists at this freeze checkpoint. The world model, EBM, and
 controller remain untrained and unauthorized. See
 `reports/SAGE12_TARGET_MECHANIC_RECOVERY_V4_2_1_PROTOCOL.md`.
+
+The executed source rehearsal and preflight have since passed every frozen
+check. Source calibrated Brier skill is +0.182060, macro-F1 gain +0.074908,
+context skill +0.432771, macro-ECE 0.036452, and identity gain +0.038723.
+This evidence authorizes only a fresh 768-transition V4.2.1 collection; it is
+not a prospective transfer result and grants no model or controller authority.

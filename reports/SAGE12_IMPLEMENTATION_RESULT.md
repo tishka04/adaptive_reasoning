@@ -284,3 +284,11 @@ The subsequent frozen source rehearsal passed all seven checks. It wrote
 serialized 2,120 selected generic-`any` evidence entries. Rehearsal checksum:
 `cd2164ecdfab094d99364cfdec213767987e974e9fd5b4dc01f98db423873b92`.
 This authorizes only the source preflight.
+
+The source preflight then passed all 14 conjunctive gates. Structured
+source-only macro Brier was 0.047919 versus 0.058585 for local action,
+macro-F1 gained +0.074908, context skill was +0.432771, macro-ECE was
+0.036452, identity gain was +0.038723, and all Qwen prompts fit at 295-317
+tokens. Preflight checksum:
+`4ce44b0a0eacaa041106813649d6782be44c21790385c31fda03dbe605abecdb`.
+This authorizes only the fresh 768-transition collection.
