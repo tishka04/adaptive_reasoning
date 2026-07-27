@@ -173,6 +173,33 @@ The current world-model track stops without GPU training or shadow
 evaluation. See `reports/SAGE11_RELATIONAL_COLLECTION_RESULT.md` and
 `reports/SAGE11_RELATIONAL_PILOT_RESULT.md`.
 
+SAGE12 implements the higher-semantic replacement path without reopening the
+failed SAGE11 gate. A local open-weight LLM proposes strict typed hypotheses;
+a deterministic compiler grounds structural roles and legal actions; a small
+semantic world model rolls out bounded trajectories; an auditable energy
+function ranks them; and a hierarchical controller can execute only the first
+action before replanning. LLM proposals always have `support=0`, observed
+transitions are the only evidence, and symbolic danger/protected competence
+remain hard vetoes.
+
+The implementation is integrated but defaults to `off`. Bounded and active
+modes automatically fall back to shadow until independent proposal,
+world-model, and energy gates pass. No SAGE12 corpus has been collected, no
+empirical model has been trained, and no performance promotion is claimed.
+See:
+
+- `theory/sage12/README.md`
+- `training/SAGE12_DATA_POLICY.md`
+- `models/SAGE12_MODEL_CARD.md`
+- `reports/SAGE12_VALIDATION_PROTOCOL.md`
+- `reports/SAGE12_IMPLEMENTATION_RESULT.md`
+
+Focused software validation:
+
+```bash
+python -m pytest -q tests/test_sage12_semantic_planning.py
+```
+
 The long-budget performance track skips ablation overhead and writes compact
 level/WIN/action-efficiency history:
 

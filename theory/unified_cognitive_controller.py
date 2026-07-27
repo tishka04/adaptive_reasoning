@@ -102,6 +102,11 @@ from .sage11.authority import (
     NeuralAuthorityMode,
     NeuroSymbolicRanker,
 )
+from .sage12.controller import (
+    Sage12Config,
+    Sage12Mode,
+    SemanticPlanningController,
+)
 
 
 @dataclass(frozen=True)
@@ -263,6 +268,14 @@ class UnifiedCognitiveConfig:
     neural_minimum_information_gain: float = 0.0
     neural_nonproductive_demotion_threshold: int = 2
     neural_max_inference_ms: float = 10.0
+    sage12_authority_mode: str = "off"
+    sage12_proposal_gate_passed: bool = False
+    sage12_world_model_gate_passed: bool = False
+    sage12_energy_gate_passed: bool = False
+    sage12_active_gate_passed: bool = False
+    sage12_maximum_depth: int = 3
+    sage12_beam_width: int = 8
+    sage12_maximum_advisory_risk: float = 0.10
 
 
 @dataclass(frozen=True)
@@ -842,6 +855,7 @@ class UnifiedCognitiveController:
         ) = None,
         neural_ranker: NeuroSymbolicRanker | None = None,
         neuro_transition_collector: Any | None = None,
+        semantic_controller: SemanticPlanningController | None = None,
     ) -> None:
         self.game_id = str(game_id)
         self.config = config or UnifiedCognitiveConfig()
@@ -1294,6 +1308,36 @@ class UnifiedCognitiveController:
             )
         )
         self.neuro_transition_collector = neuro_transition_collector
+        self.semantic_controller = (
+            semantic_controller
+            or SemanticPlanningController(
+                game_id=self.game_id,
+                config=Sage12Config(
+                    mode=Sage12Mode(
+                        self.config.sage12_authority_mode
+                    ),
+                    proposal_gate_passed=(
+                        self.config.sage12_proposal_gate_passed
+                    ),
+                    world_model_gate_passed=(
+                        self.config.sage12_world_model_gate_passed
+                    ),
+                    energy_gate_passed=(
+                        self.config.sage12_energy_gate_passed
+                    ),
+                    active_gate_passed=(
+                        self.config.sage12_active_gate_passed
+                    ),
+                    maximum_depth=(
+                        self.config.sage12_maximum_depth
+                    ),
+                    beam_width=self.config.sage12_beam_width,
+                    maximum_advisory_risk=(
+                        self.config.sage12_maximum_advisory_risk
+                    ),
+                ),
+            )
+        )
 
         self._step = 0
         self._experiment_decisions = 0
@@ -1930,6 +1974,8 @@ class UnifiedCognitiveController:
                 }
             ),
         )
+        if self.semantic_controller is not None:
+            self.semantic_controller.observe_transition(update.record)
         self._pending_decision = None
         self._pending_action_candidates = ()
         return update
@@ -2196,6 +2242,56 @@ class UnifiedCognitiveController:
                     reason=neural_arbitration.reason,
                     confidence=neural_arbitration.confidence,
                 )
+        semantic_mode = getattr(
+            getattr(self.semantic_controller, "configured_mode", "off"),
+            "value",
+            getattr(self.semantic_controller, "configured_mode", "off"),
+        )
+        if (
+            self.semantic_controller is not None
+            and str(semantic_mode) != "off"
+        ):
+            prior_decision = decision
+            semantic_arbitration = self.semantic_controller.arbitrate(
+                symbolic_action_name=decision.action_name,
+                symbolic_action_data=decision.action_data,
+                symbolic_source=decision.source,
+                observation=observation,
+                candidates=_neural_action_candidates(
+                    safe_actions,
+                    available_action_candidates,
+                    observation=observation,
+                    default_action_data=(
+                        self._neural_candidate_action_data
+                    ),
+                ),
+                protected_competence_available=(
+                    protected_competence_available
+                ),
+                danger_veto=lambda action_name, action_data: (
+                    self._neural_danger_veto(
+                        observation.grid_hash,
+                        action_name,
+                        action_data,
+                    )
+                ),
+            )
+            if semantic_arbitration.applied:
+                if (
+                    prior_decision.action_name
+                    != semantic_arbitration.action_name
+                    or dict(prior_decision.action_data)
+                    != dict(semantic_arbitration.action_data)
+                ):
+                    self.neural_ranker.rearm(reason="sage12_override")
+                self._cancel_unexecuted_symbolic_decision(prior_decision)
+                decision = CognitiveDecision(
+                    action_name=semantic_arbitration.action_name,
+                    action_data=dict(semantic_arbitration.action_data),
+                    source=semantic_arbitration.source,
+                    reason=semantic_arbitration.reason,
+                    confidence=semantic_arbitration.confidence,
+                )
         decision = self._annotate_terminal_frontier_suffix(
             decision,
             observation,
@@ -2221,6 +2317,8 @@ class UnifiedCognitiveController:
         self.causal_schema_exporter.start_branch()
         self.causal_schema_transfer.start_branch()
         self.neural_ranker.start_branch()
+        if self.semantic_controller is not None:
+            self.semantic_controller.start_branch()
         if self.neuro_transition_collector is not None:
             self.neuro_transition_collector.on_reset()
         discarded_frontier_eligibilities = (
@@ -2335,6 +2433,14 @@ class UnifiedCognitiveController:
                 self.causal_schema_transfer.summary()
             ),
             "sage11_neural_authority": self.neural_ranker.summary(),
+            "sage12_semantic_planning": (
+                self.semantic_controller.summary()
+                if self.semantic_controller is not None
+                else {
+                    "configured_mode": "off",
+                    "effective_mode": "off",
+                }
+            ),
             "terminal_multiform_relational_induction": (
                 self.multiform_relations.summary()
             ),

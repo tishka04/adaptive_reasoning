@@ -1,6 +1,6 @@
 # SAGE milestones - closed-loop integration
 
-Derniere mise a jour : 2026-07-26
+Derniere mise a jour : 2026-07-27
 
 SAGE orchestre les briques M1/M2/M3/P1 dans une boucle agentique. SAGE ne
 confirme pas une mecanique, ne refute rien, et ne transforme jamais un resultat
@@ -59,6 +59,7 @@ de policy en support scientifique.
 | SAGE.11b - Pilot + compact world model | Relational pilot no-go; track world-model arrete sans training | `theory/sage11/relational_features.py`, `theory/sage11/relational_effect_pilot.py`, `training/sage11/relational_pilot_v1/manifest.json`, `diagnostics/sage/sage11_relational_effect_pilot.json`, `reports/SAGE11_RELATIONAL_PILOT_RESULT.md` | Collecte 10,027 verifiee manifest `11a734063ac4be4b8cece50a4d6e7ee40bb25ccfacbc8cd703a1565845f39f2c`. Fit LOGO: changed delta -0.0059, shuffle +0.0048, apport relations -0.1202, 6/11 folds, pire -0.4888; signatures relationnelles jeu 64.20% (contre 99.17% anciennes); checksum `272a327ab523a4f81f887e69d381d66c33b31d014bac515347f39e197b31177b`; aucun training GPU/shadow/historique/holdout |
 | SAGE.11c/11d - Typed bridge + shadow | Implemente logiciellement - shadow live en attente | `theory/sage11/atoms.py`, `theory/sage11/bridge.py`, `theory/sage11/authority.py`, `theory/unified_cognitive_controller.py`, `tests/test_sage11_authority.py` | Atomes partages FrameDiff/schema, hypotheses support=0; off ne lance pas le predicteur; shadow action-identique et log top-k/pre-emption/cout; bounded inaccessible sans gates |
 | SAGE.11e/11f - Bounded/active + adaptation | Implemente logiciellement - promotion non revendiquee | `theory/sage11/authority.py`, `theory/sage11/adaptation.py`, `theory/sage11/evaluation.py`, `reports/SAGE11_VALIDATION_PROTOCOL.md`, `diagnostics/sage/sage11_implementation_audit.json` | Veto danger symbolique dur, competence protegee, info-gain positif, 1 probe branche/contexte, demotion 2 echecs, re-arm explicite; encodeur gele, replay 2048, update/32 <=4 gradients, reset jeu/seed; bootstrap holdout 5x5 implemente mais non execute |
+| SAGE.12 - Planification de trajectoires semantiques | Implemente logiciellement - gates empiriques non executes, autorite off | `theory/sage12/`, `theory/unified_cognitive_controller.py`, `tests/test_sage12_semantic_planning.py`, `training/SAGE12_DATA_POLICY.md`, `models/SAGE12_MODEL_CARD.md`, `reports/SAGE12_VALIDATION_PROTOCOL.md`, `reports/SAGE12_IMPLEMENTATION_RESULT.md` | Graphe de scene relationnel sans feature explicite d'identite jeu; LLM local open-weight proposal-only avec DSL `support=0`; compilation grounding/action exacte; world model semantique; energie heuristique + EBM pairwise optionnel; sous-buts hierarchiques et execution receding-horizon d'une action; veto danger/competence protegee; 14 tests focuses passes; aucun corpus/training/promotion revendique |
 | SAGE.9z-bis - Replication and completion-efficiency track | Fait - rerun repare + protocole 14 resets complet | `theory/arc_multigame_replication_benchmark.py`, `theory/benchmark_score_runner.py`, `tests/test_arc_multigame_replication_benchmark.py`, `tests/test_benchmark_score_runner.py`, `diagnostics/sage/sage9z_bis_arc_multigame_replication_benchmark.json`, `diagnostics/perf/phase0_budget_saturation.json`, `diagnostics/perf/sage10b_plus_budget_saturation.json`, `diagnostics/perf/sage10b_plus_two_seed_two_reset_pilot.json`, `diagnostics/perf/sage10e_authority_repair_budget_saturation.json`, `diagnostics/perf/score_history.json` | Rerun scientifique : 20 conditions, actif=11 niveaux/1 WIN/max6 contre ablation=4/0/max1; gate de revision naturelle toujours false. Performance 5 jeux x 2 seeds x 3 budgets x 14 resets : 159 niveaux, 12 WIN, max6, score 0.93561615, 0 erreur et 0 pre-emption; tout le progres vient de ft09, quatre jeux restent a zero; aucune revendication cross-game |
 
 ## SAGE.0 - Known-game closed-loop scaffold
@@ -8852,3 +8853,67 @@ L'interface v2 partagee et le GNN factorise sont maintenant implementes.
 L'audit anti-shortcut source-train doit passer avant tout training GPU; sinon
 la suite est une petite recollecte relationnelle. SAGE.11 ne formule toujours
 aucune revendication de generalisation ou promotion.
+
+## SAGE.12 - planification de trajectoires semantiques
+
+SAGE.12 implemente le pivot vers des hypotheses de mecanismes et des
+trajectoires semantiques, sans contourner le no-go SAGE.11.
+
+Architecture implementee :
+
+- `scene_graph.py` transforme l'observation structuree en entites ancrees et
+  relations de contact, alignement, proximite et direction. L'identite du jeu
+  et le hash brut ne sont pas des features.
+- `hypotheses.py` fige un DSL JSON type et borne. Le LLM ne peut proposer que
+  des predicates/effects allowlistes; toute proposition avec `support != 0`
+  est rejetee.
+- `llm.py` fournit un adaptateur strict, un backend Transformers local cache
+  pour le modele open-weight 0.5B present dans le depot et un baseline template
+  deterministe. `device=auto` autorise CUDA sans download ni changement de
+  decoding.
+- `compiler.py` lie les roles aux entites courantes, verifie les
+  preconditions et exige une correspondance exacte avec action et arguments
+  legaux.
+- `world_model.py` apprend des probabilites Beta-lissees seulement apres une
+  transition reelle executee et produit des rollouts semantiques bornes
+  depth=3/beam=8.
+- `energy.py` classe les trajectoires par distance au sous-but, danger,
+  incertitude, invraisemblance, cout et contradiction. Un petit EBM PyTorch
+  pairwise est optionnel et sans autorite implicite.
+- `controller.py` choisit un sous-but hierarchique, classe les trajectoires et
+  n'execute que leur premiere action avant replanification. Les modes
+  off/shadow/bounded/active, les trois gates independants, le veto danger et
+  la competence protegee sont appliques.
+- `dataset.py` separe propositions, rollouts, ranking, action executee et
+  outcome observe dans `sage12-semantic-trajectory-v1`.
+- `UnifiedCognitiveController` appelle le planner apres la decision
+  symbolique/SAGE.11, transmet la transition observee, reset sa branche et
+  publie son resume. Le default reste `off`.
+
+Validation logicielle :
+
+- 14 tests focuses passent : grounding, support zero, rejets
+  illegal/unbound, JSON strict, identite shadow, downgrade de gates, choix
+  receding-horizon, veto danger/competence, evidence post-observation,
+  integration controller, baseline template et mecanique EBM.
+- Le test EBM est seulement un smoke-test d'optimisation, pas un resultat
+  scientifique.
+- Aucun corpus SAGE.12, benchmark LLM, fit world-model, checkpoint EBM,
+  episode shadow, probe bounded, holdout ou training GPU n'a ete execute.
+
+Protocoles :
+
+- `training/SAGE12_DATA_POLICY.md` preserve les splits/firewalls SAGE.11,
+  impose split par jeu et controls action/relation/signature.
+- `reports/SAGE12_VALIDATION_PROTOCOL.md` preregistre cinq etapes sequentielles
+  : proposition grounded, world-model, energie, shadow, puis bounded/holdout.
+  Un echec stoppe les etapes suivantes.
+- `models/SAGE12_MODEL_CARD.md` documente intended/prohibited use, inputs,
+  limites et autorite.
+- `reports/SAGE12_IMPLEMENTATION_RESULT.md` enregistre le resultat logiciel et
+  l'absence volontaire de revendication empirique.
+
+Lecture finale : l'idee observation -> hypotheses LLM -> trajectoires world
+model -> energie -> controller hierarchique est maintenant executable et
+auditable. Elle reste candidate-only et `off` tant que ses gates empiriques ne
+sont pas passes. Seule une transition observee peut creer evidence/support.
