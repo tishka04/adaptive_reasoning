@@ -2,7 +2,8 @@
 
 Status: Stage A V1-V4 are complete. V4.1 failed its frozen source-only
 preflight and stopped before prospective collection. World-model and EBM
-fitting remain unauthorized.
+fitting remain unauthorized. V4.2 is frozen but has not opened its source
+preflight or prospective outcomes.
 
 V4.1 derives new versioned windows from the immutable V3 source-training
 traces. It may write source priors, leave-one-game-out calibration,
@@ -23,6 +24,15 @@ preflight under checksum
 The source-validation shard does not exist by design. Any successor requires
 a new versioned manifest and source preflight; V4.1's unused prospective
 manifest cannot be treated as approval to collect.
+
+V4.2 re-derives source windows from the same immutable V3 source-training
+traces under a new format and checksum. Its authoritative dataset contains
+only target creation, removal, and movement; actor displacement is retained
+only as an audit count. Coarse anchors are `occupied`, `free`, and `none`.
+Prospective collection is forbidden until the V4.2 source preflight passes.
+If authorized, it is exactly 768 new transitions on `re86`, `ls20`, and
+`sc25`, using seeds 479, 523, 569, and 617. Manifest checksum:
+`fba242f31cbc492f44333bcae8c5f9228baee0b79c15f0c68009dce7a76a6210`.
 
 The next authorized experiment is the offline SAGE12 V4 temporal
 mechanic-induction pilot. It derives eight-transition source-training windows

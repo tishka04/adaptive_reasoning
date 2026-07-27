@@ -8,7 +8,7 @@ import json
 import os
 import time
 from collections import Counter, defaultdict
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -44,8 +44,13 @@ def run_collection(
     frozen_manifest_path: str | Path = DEFAULT_FROZEN_MANIFEST_PATH,
     output_dir: str | Path = DEFAULT_OUTPUT_DIR,
     environments_dir: str | Path | None = None,
+    manifest_loader: Callable[[str | Path], dict[str, Any]] = load_frozen_manifest,
+    collection_format_version: str = COLLECTION_FORMAT_VERSION,
+    collection_phase: str = "v4_1_prospective_fixed",
+    salt_prefix: str = "v4.1",
+    effect_labels: Sequence[str] = EFFECT_LABELS,
 ) -> dict[str, Any]:
-    frozen = load_frozen_manifest(frozen_manifest_path)
+    frozen = manifest_loader(frozen_manifest_path)
     destination = Path(output_dir)
     shard_dir = destination / "shards"
     shard_dir.mkdir(parents=True, exist_ok=True)
@@ -64,6 +69,9 @@ def run_collection(
                 existing=existing,
                 environment_root=environment_root,
                 frozen=frozen,
+                collection_phase=collection_phase,
+                salt_prefix=salt_prefix,
+                effect_labels=effect_labels,
             )
             _write_jsonl_atomic(path, records)
             reports[game] = report
@@ -71,6 +79,8 @@ def run_collection(
         frozen=frozen,
         shard_dir=shard_dir,
         reports=reports,
+        collection_format_version=collection_format_version,
+        effect_labels=effect_labels,
     )
     _write_json_atomic(destination / "collection_manifest.json", payload)
     return payload
@@ -83,6 +93,9 @@ def _collect_game(
     existing: Sequence[ActionTargetTrace],
     environment_root: Path,
     frozen: Mapping[str, Any],
+    collection_phase: str,
+    salt_prefix: str,
+    effect_labels: Sequence[str],
 ) -> tuple[list[ActionTargetTrace], dict[str, Any]]:
     records = list(existing)
     action_counts = Counter(row.selected_action_name for row in records)
@@ -134,7 +147,7 @@ def _collect_game(
                 records=records,
                 adaptive=False,
                 exploration_fraction=1.0,
-                salt=f"v4.1:{game}:{seed}:{reset_index}:{step_index}",
+                salt=f"{salt_prefix}:{game}:{seed}:{reset_index}:{step_index}",
             )
             after_frame = _step_env_action(env, selected)
             after = snapshot_frame(
@@ -147,7 +160,7 @@ def _collect_game(
                 policy_seed=seed,
                 reset_index=reset_index,
                 step_index=step_index,
-                collection_phase="v4_1_prospective_fixed",
+                collection_phase=collection_phase,
                 available_action_names=available,
                 selected_action_name=selected.name,
                 selected_action_data=dict(selected.action_args),
@@ -165,7 +178,7 @@ def _collect_game(
             records.append(trace)
             action_counts[trace.selected_action_name] += 1
             stratum_counts[_stratum(trace)] += 1
-            for label in EFFECT_LABELS:
+            for label in effect_labels:
                 if trace.effects.applicable[label]:
                     trial_counts[_stratum(trace)] += 1
                     if trace.effects.labels[label]:
@@ -203,6 +216,8 @@ def _collection_report(
     frozen: Mapping[str, Any],
     shard_dir: Path,
     reports: Mapping[str, Any],
+    collection_format_version: str,
+    effect_labels: Sequence[str],
 ) -> dict[str, Any]:
     shards = []
     for game in SOURCE_VALIDATION:
@@ -222,7 +237,7 @@ def _collection_report(
                         * int(row.effects.labels[label])
                         for row in rows
                     )
-                    for label in EFFECT_LABELS
+                    for label in effect_labels
                 },
             }
         )
@@ -230,7 +245,7 @@ def _collection_report(
         "".join(item["sha256"] for item in shards).encode("utf-8")
     ).hexdigest()
     payload: dict[str, Any] = {
-        "format_version": COLLECTION_FORMAT_VERSION,
+        "format_version": collection_format_version,
         "status": "COMPLETE",
         "frozen_manifest_checksum": frozen["manifest_checksum"],
         "split": "prospective_source_validation",

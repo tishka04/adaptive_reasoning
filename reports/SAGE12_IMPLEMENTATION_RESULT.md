@@ -202,3 +202,28 @@ its ARC dependencies contain Python 3.12 native extensions. Running it from
 the host Python 3.11 process incorrectly mixes those extensions and fails
 during collection. The sole successful-run warning remains Joblib's harmless
 physical-core query fallback.
+
+## Invariant target-mechanic replication V4.2
+
+V4.2 is implemented as a separate public contract over the unchanged V4.1
+engine. Its compatibility adapter makes the actor effect inapplicable before
+rule induction, while public windows, prompts, calibration, metrics, and
+authority contain only target creation/removal/movement. Anchors are reduced
+to `occupied`, `free`, and `none`.
+
+The implementation includes source-only calibration and utility gates,
+identity probes, outcome and anchor-binding shuffles, per-effect authority,
+a separate three-effect Qwen compiler, fresh-seed prospective collection,
+checksum firewalls, and fail-closed CLIs. The protocol and manifest are
+frozen before the V4.2 source preflight; no prospective outcome is open at
+this checkpoint.
+
+Pre-preflight validation:
+
+```text
+targeted SAGE12 tests: 85 passed in 12.87s
+targeted Ruff checks: All checks passed!
+full repository suite: 1752 passed, 1 warning in 196.39s (0:03:16)
+```
+
+The warning remains Joblib's harmless physical-core query fallback.

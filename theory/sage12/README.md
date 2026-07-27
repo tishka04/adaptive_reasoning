@@ -276,3 +276,20 @@ source-only calibration, and the compact Qwen token budget passed, but
 `actor_displaced` source capacity and the static game-identity probe failed.
 No prospective trace or Qwen output was generated. See
 `reports/SAGE12_MECHANIC_REPLICATION_V4_1_RESULT.md`.
+
+## Invariant target-mechanic replication V4.2
+
+V4.2 is a separately versioned target-only test. It maps anchors to
+`occupied`, `free`, or `none`, models only target creation/removal/movement,
+and keeps actor displacement audit-only. Source calibration, structured
+mechanics, deterministic controls, Qwen diagnostics, and all prospective
+authority remain fail-closed.
+
+```powershell
+python -m theory.sage12.target_mechanic_replication preflight
+python -m theory.sage12.target_mechanic_replication_collection
+python -m theory.sage12.target_mechanic_replication evaluate
+```
+
+The frozen design is
+`reports/SAGE12_TARGET_MECHANIC_REPLICATION_V4_2_PROTOCOL.md`.

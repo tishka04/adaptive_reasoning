@@ -3,7 +3,9 @@
 Status: software implementation complete; free-generation V1, constrained V2,
 action-target V3, temporal mechanic V4, and clean replication V4.1 failed
 closed. V4.1 stopped at its source-only preflight, before prospective
-collection. The world model and EBM remain untrained and unauthorized.
+collection. V4.2 is frozen to test only the three sufficiently supported
+target effects with invariant anchors. The world model and EBM remain
+untrained and unauthorized.
 
 V4.1 repairs causal role resolution, adds leave-one-source-game-out Platt
 calibration and thresholds, and compacts the Qwen contract below a verified
@@ -16,6 +18,12 @@ calibrated source macro ECE was 0.0360, and compact Qwen prompts were 322–345
 tokens. V4.1 nevertheless failed because `actor_displaced` had only 35
 positives against the required 75 and static identity leakage was +0.1293
 against a maximum +0.10. No Qwen generation or prospective evaluation ran.
+
+V4.2 maps anchors to `occupied`, `free`, or `none` and excludes
+`actor_displaced` from every model-facing and authority-bearing interface.
+The old actor signal remains an audit-only count. A V4.2 pass may authorize
+only a separately frozen V5 protocol for target creation, removal, and
+movement; it does not authorize model fitting directly.
 
 The separately frozen V4 pilot now evaluates sequence-conditioned mechanic
 induction from eight observed transitions. Its primary model is a bounded
