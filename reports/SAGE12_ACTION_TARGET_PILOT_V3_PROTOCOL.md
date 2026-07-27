@@ -202,3 +202,14 @@ non-ambiguous rate to 0.8224, mostly in `cd82` and `sp80`. This is already
 below the frozen 0.95 promotion gate. The protocol nevertheless proceeds to
 the once-only source-validation evaluation so transfer, controls, and the
 complete negative or positive result can be published.
+
+The fixed 960-row validation collection then completed before any validation
+model score was computed. A code review at that boundary found that the Qwen
+target-shuffle prompt was receiving the vectorizer's encoded column names,
+whereas its unshuffled prompt received the structured semantic mapping. The
+structured model control was correct, but that mismatch would have confounded
+the secondary Qwen diagnostic. The control now permutes the raw semantic
+mapping once, sends that same mapping to Qwen, and separately encodes it for
+the structured classifier. The permutation, grouping, selected projection,
+models, labels, thresholds, gates, and validation rows are unchanged. This
+amendment is committed before the first validation metric.

@@ -224,7 +224,12 @@ def run_evaluation(
     template_predictions = _template_predictions(validation)
     template_probabilities = template_predictions.astype(np.float64)
 
-    shuffled_rows = _shuffle_target_rows(validation, projection)
+    shuffled_feature_maps = _shuffle_target_feature_maps(
+        validation, projection
+    )
+    shuffled_rows = [
+        _encode_raw_feature_row(item) for item in shuffled_feature_maps
+    ]
     shuffle_probabilities = _predict_models(
         structured_models,
         structured_vectorizer,
@@ -342,7 +347,7 @@ def run_evaluation(
         train_masks=train_masks,
         validation_targets=validation_targets,
         validation_masks=validation_masks,
-        shuffled_rows=shuffled_rows,
+        shuffled_feature_maps=shuffled_feature_maps,
     )
     metrics["qwen_ablation"] = qwen["metrics"]
     metrics["qwen_target_shuffle"] = qwen["shuffle_metrics"]
@@ -419,13 +424,15 @@ def _evaluate_qwen(
     train_masks: np.ndarray,
     validation_targets: np.ndarray,
     validation_masks: np.ndarray,
-    shuffled_rows: Sequence[Mapping[str, Any]],
+    shuffled_feature_maps: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
     train_prompts = [_semantic_prompt(row.model_features(projection)) for row in train]
     validation_prompts = [
         _semantic_prompt(row.model_features(projection)) for row in validation
     ]
-    shuffled_prompts = [_semantic_prompt(row) for row in shuffled_rows]
+    shuffled_prompts = [
+        _semantic_prompt(row) for row in shuffled_feature_maps
+    ]
     all_prompts = list(dict.fromkeys(train_prompts + validation_prompts + shuffled_prompts))
     model = frozen["qwen_ablation"]
     embedder = FrozenQwenEmbedder(
@@ -766,6 +773,15 @@ def _template_predictions(
 def _shuffle_target_rows(
     traces: Sequence[ActionTargetTrace], projection: str
 ) -> list[dict[str, Any]]:
+    return [
+        _encode_raw_feature_row(item)
+        for item in _shuffle_target_feature_maps(traces, projection)
+    ]
+
+
+def _shuffle_target_feature_maps(
+    traces: Sequence[ActionTargetTrace], projection: str
+) -> list[dict[str, Any]]:
     raw = [row.model_features(projection) for row in traces]
     groups: dict[tuple[str, str, str], list[int]] = defaultdict(list)
     for index, trace in enumerate(traces):
@@ -793,7 +809,7 @@ def _shuffle_target_rows(
             for feature_key, value in raw[source_index].items():
                 if feature_key not in action_keys:
                     shuffled[target_index][feature_key] = value
-    return [_encode_raw_feature_row(item) for item in shuffled]
+    return shuffled
 
 
 def _shuffle_action_rows(

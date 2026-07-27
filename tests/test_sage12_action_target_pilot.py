@@ -22,7 +22,10 @@ from theory.sage12.action_target_data import (
     resolve_action_target,
     validate_model_projection,
 )
-from theory.sage12.action_target_pilot import _identity_probe
+from theory.sage12.action_target_pilot import (
+    _identity_probe,
+    _shuffle_target_feature_maps,
+)
 from v3.schemas import ObjectInfo
 
 
@@ -306,3 +309,19 @@ def test_identity_probe_supports_more_than_two_games():
 
     assert 0.0 <= result["accuracy"] <= 1.0
     assert result["majority_accuracy"] == 1 / 3
+
+
+def test_qwen_target_shuffle_keeps_the_same_semantic_prompt_schema():
+    first = _trace(game="bp35")
+    second = replace(
+        _trace(game="bp35", before=_grid(target=(2, 3)), after=_grid()),
+        trace_digest="2" * 64,
+    )
+
+    shuffled = _shuffle_target_feature_maps((first, second), "coarse")
+
+    expected_keys = set(first.model_features("coarse"))
+    assert all(set(row) == expected_keys for row in shuffled)
+    assert all(
+        row["selected_action_name"] == "ACTION4" for row in shuffled
+    )
