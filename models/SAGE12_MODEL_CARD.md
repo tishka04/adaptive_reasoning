@@ -4,6 +4,11 @@ Status: software implementation complete; free-generation V1, constrained V2,
 and action-target V3 Stage A pilots failed closed. The world model and EBM
 remain untrained and unauthorized.
 
+The separately frozen V4 pilot now evaluates sequence-conditioned mechanic
+induction from eight observed transitions. Its primary model is a bounded
+structured Beta rule inducer; Qwen is a non-authoritative ablation. This
+changes no current model or controller authority.
+
 ## Components
 
 SAGE12 is a composite planner, not one monolithic neural network:

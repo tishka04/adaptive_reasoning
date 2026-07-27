@@ -221,3 +221,27 @@ The protocol is in
 `reports/SAGE12_ACTION_TARGET_PILOT_V3_PROTOCOL.md`; the complete gate ledger,
 checksums, and interpretation are in
 `reports/SAGE12_ACTION_TARGET_PILOT_V3_RESULT.md`.
+
+## Temporal mechanic-induction pilot V4
+
+V4 tests a different unit of learning: eight observed semantic transitions
+induce typed game-local rules, which predict the next transition. A
+reset-local tracker emits only roles and action-anchor conditions; raw frames,
+coordinates, values, track IDs, game identity, and the query outcome remain
+outside the model view. Proposed rules always enter with `support=0`, while a
+separate Beta evidence record stores observed support and refutation.
+
+The structured rule inducer is primary. Qwen2.5 0.5B generates the same finite
+rule vocabulary on a frozen diagnostic subset. The old V3 validation outcomes
+are non-gating; V4 uses 768 fresh prospective transitions after its
+source-training preflight is frozen.
+
+```powershell
+python -m theory.sage12.mechanic_induction preflight
+python -m theory.sage12.mechanic_collection
+python -m theory.sage12.mechanic_induction evaluate
+```
+
+The frozen design is documented in
+`reports/SAGE12_MECHANIC_INDUCTION_V4_PROTOCOL.md`. V4 remains offline and
+cannot fit a world model or EBM unless every structured gate passes.

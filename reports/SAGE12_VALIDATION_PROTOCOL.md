@@ -19,6 +19,12 @@ controller authority.
 Status: Stage A V1, V2, and action-target V3 executed and failed closed.
 Stages B-E are unauthorized and have not run.
 
+SAGE12 V4 is a new Stage A temporal amendment. It tests whether eight observed
+transitions can induce a game-local typed rule that predicts the next effect.
+Its structured rule inducer is primary and Qwen is secondary. Only a full V4
+pass can authorize a separately frozen deterministic-hypothesis world-model
+pilot; it grants no EBM or controller authority.
+
 ## Research question
 
 Can grounded high-level hypotheses and semantic trajectory scoring add useful

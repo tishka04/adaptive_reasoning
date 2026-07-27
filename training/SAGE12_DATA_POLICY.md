@@ -3,6 +3,15 @@
 Status: Stage A V1, V2, and action-target V3 are complete negative results.
 World-model and EBM fitting remain unauthorized.
 
+The next authorized experiment is the offline SAGE12 V4 temporal
+mechanic-induction pilot. It derives eight-transition source-training windows
+from the immutable V3 training traces, excludes the already inspected V3
+validation outcomes from gating, and collects 768 fresh prospective
+transitions under a separately checksummed manifest. V4 retains chronological
+repeats because they are evidence about a mechanic; scored window digests,
+frame continuity, reset boundaries, and all raw/model-view separation remain
+audited.
+
 Format: `sage12-semantic-trajectory-v1`.
 
 The first concrete collection is preregistered as
