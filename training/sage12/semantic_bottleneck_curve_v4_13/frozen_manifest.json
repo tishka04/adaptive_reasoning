@@ -1,0 +1,163 @@
+{
+  "authority_promoted": false,
+  "corruption": {
+    "applied_to_training_and_held_game_slots": true,
+    "deterministic_hash": "sha256(seed|slot_id|effect)",
+    "effects": [
+      "changed",
+      "moved",
+      "target_created",
+      "target_removed",
+      "target_moved",
+      "level_complete",
+      "game_over",
+      "local_change",
+      "contact_lost",
+      "productive",
+      "risk"
+    ],
+    "probabilities_after_flip": [
+      0.0,
+      1.0
+    ],
+    "seed": 5130,
+    "strict_logo_world_fitting": true,
+    "world_and_ebm_seeds_shared_across_oracle_curve": true
+  },
+  "diagnostic_decisions": {
+    "completion_selected_minimum_when_available": 1,
+    "corruption_spearman_minimum": 0.8,
+    "learned_over_primary_ci_lower_strictly_positive": true,
+    "nonnegative_games_minimum": 6,
+    "oracle_semantics_over_primary_ci_lower_strictly_positive": true,
+    "oracle_semantics_over_structured_mean_strictly_positive": true,
+    "true_world_over_primary_ci_lower_strictly_positive": true
+  },
+  "evaluation": {
+    "all_conditions_run_unconditionally": true,
+    "bootstrap_samples": 1000,
+    "future_tree_topology_is_non_deployable": true,
+    "live_win_rate_claimed": false,
+    "outer_split": "leave_one_source_train_game_out",
+    "reuse_v4_3_candidate_complete_trees": true,
+    "reuse_v4_7_world_and_ebm_hyperparameters": true,
+    "seed": 5130,
+    "trajectory_depth": 3
+  },
+  "format_version": "sage12-semantic-bottleneck-manifest-v4.13",
+  "heuristic_weights": {
+    "contradiction": -0.5,
+    "entropy": -0.1,
+    "failure": -4.0,
+    "predicted_return": 1.0,
+    "productive": 0.05,
+    "success": 3.0,
+    "uncertainty": -0.1
+  },
+  "historical_opened": false,
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "9f9f75e1443a0af17abd01a224b5b5f7fbdc552192ff60053c49ce843202ca2e",
+  "semantic_conditions": {
+    "learned_relation_shuffle_stress": {
+      "fit_world_model": false,
+      "kind": "predict_with_v4_12_relation_shuffle"
+    },
+    "learned_root_only_stress": {
+      "fit_world_model": false,
+      "kind": "predict_with_v4_12_root_anchor"
+    },
+    "learned_root_reuse_stress": {
+      "fit_world_model": false,
+      "kind": "depth_three_reuses_current_root_slots"
+    },
+    "learned_v4_12": {
+      "fit_world_model": true,
+      "kind": "held_game_v4_12_probabilities"
+    },
+    "oracle_100": {
+      "fit_world_model": true,
+      "flip_probability": 0.0,
+      "kind": "deterministically_flipped_oracle_bits"
+    },
+    "oracle_50": {
+      "fit_world_model": true,
+      "flip_probability": 0.5,
+      "kind": "deterministically_flipped_oracle_bits"
+    },
+    "oracle_75": {
+      "fit_world_model": true,
+      "flip_probability": 0.25,
+      "kind": "deterministically_flipped_oracle_bits"
+    },
+    "oracle_90": {
+      "fit_world_model": true,
+      "flip_probability": 0.1,
+      "kind": "deterministically_flipped_oracle_bits"
+    },
+    "oracle_energy": {
+      "fit_world_model": false,
+      "kind": "maximum_executed_leaf_return"
+    },
+    "oracle_root_reuse_stress": {
+      "fit_world_model": false,
+      "kind": "depth_three_reuses_current_root_slots"
+    },
+    "structured_no_teacher": {
+      "fit_world_model": true,
+      "kind": "no_teacher_semantics"
+    },
+    "true_world_oracle": {
+      "fit_world_model": false,
+      "kind": "executed_effects_and_utility"
+    }
+  },
+  "source_fingerprints": {
+    "training/sage12/bound_mechanic_pilot_v4_3/frozen_manifest.json": {
+      "bytes": 3488,
+      "sha256": "3e398a13383389660c6177bb958c99130f4d6dcd4bd0314a47db352babcb8f37"
+    },
+    "training/sage12/bound_mechanic_pilot_v4_3/source_train_collection_manifest.json": {
+      "bytes": 7533,
+      "sha256": "38578e6267d521dcb0685ce2775d9672b165dbfcffecfa70ec4b36e694861f4a"
+    },
+    "training/sage12/descriptive_semantic_integration_v4_12/frozen_manifest.json": {
+      "bytes": 4639,
+      "sha256": "a0da0fb42f24d5e4a04e7c04d092c82d317ef7aaea9e137ab071996c1eee8ae7"
+    },
+    "training/sage12/descriptive_semantic_integration_v4_12/integration_result.json": {
+      "bytes": 656,
+      "sha256": "c8094f28718fac7c5f7ac953753260e4f7293cdace439f528cda1755a3ed3a55"
+    },
+    "training/sage12/descriptive_semantic_integration_v4_12/logo_predictions.jsonl": {
+      "bytes": 36425702,
+      "sha256": "56a4226f5667b357a33ee2c3c812ac78def74bfe8993a7b3aaf88f3d36e70168"
+    },
+    "training/sage12/descriptive_semantic_integration_v4_12/semantic_result.json": {
+      "bytes": 42016,
+      "sha256": "87a199e235eb5b9b2c302fce0e1d5b2011d3dfac52dd5826d9684df726b7f977"
+    },
+    "training/sage12/descriptive_semantic_integration_v4_12/v4_7_slot_semantics.jsonl": {
+      "bytes": 18442934,
+      "sha256": "13b4bbaf3880994e2fa7787b977d8ecb88ec6d7d8b4109cbb22a996dfa3f88fa"
+    },
+    "training/sage12/integration_pilot_v4_7/frozen_manifest.json": {
+      "bytes": 79376,
+      "sha256": "e11246959f43d398fc798c45430efb8b0dffd850cde4a5ed937f6efeb5da6594"
+    }
+  },
+  "source_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_opened": false
+}

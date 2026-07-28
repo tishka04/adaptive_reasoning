@@ -719,3 +719,29 @@ relation shuffling improved both pair loss and Brier. The frozen conditional
 gate therefore emitted `SKIPPED_SEMANTIC_GATE_FAILED` without fitting a world
 model or EBM. See
 `reports/SAGE12_DESCRIPTIVE_SEMANTIC_INTEGRATION_V4_12_RESULT.md`.
+
+## Unconditional semantic-bottleneck curve (V4.13)
+
+V4.13 stops using semantic quality as a reason to skip the global
+architecture. It fits and evaluates the complete V4.7 world-model,
+depth-three trajectory, EBM and controller chain for the failed learned V4.12
+semantics, no-teacher structure, perfect oracle semantics and deterministic
+90%, 75% and 50% oracle-bit conditions. True-world and exact-energy oracles
+separate world-model error from EBM/controller error.
+
+The curve uses common seeds and nested bit corruptions, reports utility,
+completion, per-game transfer and the minimum useful semantic accuracy, and
+adds root-only, relation-shuffle and root-reuse stress tests. All conditions
+run unconditionally.
+
+```powershell
+python -m theory.sage12.semantic_bottleneck_curve_v4_13 freeze
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.semantic_bottleneck_curve_v4_13 evaluate
+```
+
+V4.13 deliberately does not claim a live win rate: V4.7 consumes true future
+V4.3 slot topology. The root-reuse stress removes that topology but is not a
+deployable learned rollout. This boundary and the component-level diagnostic
+verdicts are frozen in
+`reports/SAGE12_SEMANTIC_BOTTLENECK_CURVE_V4_13_PROTOCOL.md`. At this
+checkpoint no V4.13 result has been observed.
