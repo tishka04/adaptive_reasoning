@@ -597,3 +597,22 @@ exposed game identity at 90.64%, and retrieved 0/5 completions at rank eight.
 The valid teacher remains useful, but these probabilities must not train the
 semantic world model or EBM. See
 `reports/SAGE12_OBJECT_RELATIVE_TEACHER_STUDENT_V4_9_RESULT.md`.
+
+## Action-aligned invariant semantics (V4.10)
+
+V4.10 is the narrow follow-up to the V4.9 diagnosis. It adds a fresh
+source-only offline collector targeting underrepresented functional effects,
+replaces compass relations with intervention-relative axes and contact
+topology, balances every training step across games, aligns latent/output
+distributions, and applies a game-balanced prevalence calibration rule.
+
+```powershell
+python -m theory.sage12.action_aligned_semantics_v4_10 freeze
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.functional_intervention_collection_v4_10
+python -m theory.sage12.action_aligned_semantics_v4_10 compile
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.action_aligned_semantics_v4_10 evaluate --device cuda:0
+```
+
+The source-only quotas, leakage boundary and decisions are frozen in
+`reports/SAGE12_ACTION_ALIGNED_INVARIANT_SEMANTICS_V4_10_PROTOCOL.md`. At this
+checkpoint no V4.10 collection or model result has been observed.

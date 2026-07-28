@@ -1,0 +1,129 @@
+{
+  "collection": {
+    "action_budget_per_reset": 96,
+    "exact_repeat_cap_across_v49_and_v410": 1,
+    "exploration_fraction": 0.3,
+    "maximum_resets_per_game": 40,
+    "minimum_rows_ratio_per_game": 0.9,
+    "policy_seeds": [
+      211,
+      307,
+      401,
+      503,
+      601
+    ],
+    "rows_per_game": {
+      "bp35": 160,
+      "cd82": 160,
+      "dc22": 160,
+      "g50t": 160,
+      "ka59": 160,
+      "lf52": 160,
+      "lp85": 64,
+      "sp80": 160,
+      "su15": 160,
+      "tr87": 160,
+      "tu93": 160
+    },
+    "source_only": true,
+    "target_effects": [
+      "local_change",
+      "path_opened",
+      "path_closed",
+      "actor_approached_root",
+      "contact_gained",
+      "reachable_area_increased",
+      "reachable_area_decreased",
+      "target_created",
+      "target_removed",
+      "target_moved",
+      "productive",
+      "risk"
+    ],
+    "target_rows": 1664
+  },
+  "evaluation": {
+    "can_promote_live_authority": false,
+    "confirmatory": false,
+    "decision_thresholds": {
+      "collection_minimum_rows_ratio_per_game": 0.9,
+      "completion_recall_at_8_minimum": 0.2,
+      "identity_accuracy_reduction_from_v49_minimum": 0.15,
+      "macro_brier_gain_over_action_only_strictly_positive": true,
+      "macro_brier_gain_over_root_only_strictly_positive": true,
+      "macro_brier_gain_over_v49_strictly_positive": true,
+      "neighbor_permutation_max_probability_delta": 1e-06,
+      "nonnegative_games_over_action_only_minimum": 6,
+      "productive_pair_accuracy_gain_over_root_only_strictly_positive": true,
+      "relation_shuffle_brier_degradation_strictly_positive": true,
+      "semantic_output_identity_accuracy_maximum": 0.6
+    },
+    "outer_split": "leave_one_source_train_game_out"
+  },
+  "format_version": "sage12-action-aligned-manifest-v4.10",
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "0c1fa71390784cfa49710283047a542a12b5f5cce2df4e1f446690079b3f36db",
+  "representation": {
+    "absolute_coordinates_excluded": true,
+    "axis_relations": [
+      "ahead",
+      "behind",
+      "lateral_left",
+      "lateral_right",
+      "overlap",
+      "radial"
+    ],
+    "compass_relations_excluded": true,
+    "kind": "action_aligned_contact_topology",
+    "maximum_neighbors": 16,
+    "raw_values_and_colors_excluded": true
+  },
+  "source_fingerprints": {
+    "same_prestate_pairs.jsonl": {
+      "bytes": 855372,
+      "path": "training/sage12/object_relative_teacher_v4_9/same_prestate_pairs.jsonl",
+      "sha256": "53fa00b17581f22c28fa58f79d97308f1150da935154c0f163c4025cc318c751"
+    },
+    "teacher_corpus.jsonl": {
+      "bytes": 33825392,
+      "path": "training/sage12/object_relative_teacher_v4_9/teacher_corpus.jsonl",
+      "sha256": "30cd76d33d05ed309e58b44b6569b5079a1ac967e18ae9e7ea9eaa78a981c956"
+    },
+    "teacher_qa.json": {
+      "bytes": 7321,
+      "path": "training/sage12/object_relative_teacher_v4_9/teacher_qa.json",
+      "sha256": "c24c4c76cbb2936acbaa2d4570491cc0fcc1f1cdfc51f036fd4a642d92043dec"
+    }
+  },
+  "source_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_opened": false,
+  "training": {
+    "calibration": "game_balanced_prevalence_logit_shift",
+    "embedding_width": 32,
+    "epochs": 40,
+    "hash_buckets": 2048,
+    "hidden_width": 96,
+    "identity_adversary_weight": 0.2,
+    "latent_alignment_weight": 0.05,
+    "learning_rate": 0.0015,
+    "output_alignment_weight": 0.1,
+    "pairwise_ranking_weight": 0.15,
+    "samples_per_game_per_epoch": 512,
+    "samples_per_game_per_step": 32,
+    "seed": 5010,
+    "weight_decay": 0.0001
+  }
+}
