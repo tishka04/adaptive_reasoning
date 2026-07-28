@@ -670,3 +670,13 @@ Every game reached 96 panels with zero replay failure and no exact
 pre-state/action repeat against V4.3–V4.10. Source validation, holdout,
 historical, and live data remained closed. See
 `reports/SAGE12_COUNTERFACTUAL_SEMANTIC_PANELS_V4_11_COLLECTION.md`.
+
+The deterministic teacher then returned
+`COMPARATIVE_CAUSAL_TEACHER_CAPACITY_FAILED` before model fitting. It compiled
+5,529 comparisons and eight immediate effects met their eligibility rule, but
+only 7/11 games supplied the frozen minimum of 20 progress-discordant panels;
+eight completion-positive arms appeared in only two games. The Siamese and
+distillation implementations therefore remain tested but unfitted, and no GPU,
+world model, EBM, or controller authority followed. See
+`reports/SAGE12_COUNTERFACTUAL_TEACHER_V4_11_QA.md` and
+`reports/SAGE12_COUNTERFACTUAL_SEMANTIC_PANELS_V4_11_RESULT.md`.

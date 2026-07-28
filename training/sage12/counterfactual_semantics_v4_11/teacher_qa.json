@@ -1,0 +1,340 @@
+{
+  "all_graphs_action_aligned": true,
+  "arms": 3914,
+  "artifact_sha256": {
+    "teacher_panels": "0642073627de0f61a52c3adc55f984210e9304af56bf1bd1606e69ea2b74adf8"
+  },
+  "checks": {
+    "action_aligned_firewall": true,
+    "collection_ready": true,
+    "minimum_panels_each_game": true,
+    "progress_capacity": false
+  },
+  "collection_checksum": "6d85ce2f20b635f8a15432aa47505a6cd9a65d64c796f533fa78dbd0bf99d5dc",
+  "comparisons": 5529,
+  "effect_discordant_comparisons": {
+    "actor_approached_root": {
+      "per_game": {
+        "bp35": 0,
+        "cd82": 1,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 12,
+        "lp85": 0,
+        "sp80": 6,
+        "su15": 18,
+        "tr87": 1,
+        "tu93": 0
+      },
+      "total": 38
+    },
+    "changed": {
+      "per_game": {
+        "bp35": 0,
+        "cd82": 126,
+        "dc22": 128,
+        "g50t": 158,
+        "ka59": 98,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 510
+    },
+    "contact_gained": {
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 3,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 3,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 6
+    },
+    "contact_lost": {
+      "per_game": {
+        "bp35": 360,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 162,
+        "ka59": 158,
+        "lf52": 76,
+        "lp85": 0,
+        "sp80": 14,
+        "su15": 3,
+        "tr87": 0,
+        "tu93": 189
+      },
+      "total": 962
+    },
+    "game_over": {
+      "per_game": {
+        "bp35": 64,
+        "cd82": 0,
+        "dc22": 1,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 15,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 80
+    },
+    "level_complete": {
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 1,
+        "sp80": 21,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 22
+    },
+    "local_change": {
+      "per_game": {
+        "bp35": 342,
+        "cd82": 1,
+        "dc22": 16,
+        "g50t": 156,
+        "ka59": 128,
+        "lf52": 94,
+        "lp85": 254,
+        "sp80": 21,
+        "su15": 107,
+        "tr87": 2,
+        "tu93": 189
+      },
+      "total": 1310
+    },
+    "moved": {
+      "per_game": {
+        "bp35": 360,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 267,
+        "ka59": 158,
+        "lf52": 100,
+        "lp85": 1,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 189
+      },
+      "total": 1075
+    },
+    "path_closed": {
+      "per_game": {
+        "bp35": 204,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 100,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 304
+    },
+    "path_opened": {
+      "per_game": {
+        "bp35": 31,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 1,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 32
+    },
+    "productive": {
+      "per_game": {
+        "bp35": 203,
+        "cd82": 1,
+        "dc22": 0,
+        "g50t": 263,
+        "ka59": 107,
+        "lf52": 10,
+        "lp85": 1,
+        "sp80": 76,
+        "su15": 3,
+        "tr87": 11,
+        "tu93": 175
+      },
+      "total": 850
+    },
+    "reachable_area_decreased": {
+      "per_game": {
+        "bp35": 164,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 3,
+        "tr87": 0,
+        "tu93": 73
+      },
+      "total": 240
+    },
+    "reachable_area_increased": {
+      "per_game": {
+        "bp35": 16,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 64
+      },
+      "total": 80
+    },
+    "risk": {
+      "per_game": {
+        "bp35": 275,
+        "cd82": 0,
+        "dc22": 1,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 15,
+        "su15": 93,
+        "tr87": 0,
+        "tu93": 64
+      },
+      "total": 448
+    },
+    "target_created": {
+      "per_game": {
+        "bp35": 18,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 100,
+        "tr87": 0,
+        "tu93": 172
+      },
+      "total": 290
+    },
+    "target_moved": {
+      "per_game": {
+        "bp35": 0,
+        "cd82": 1,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 107,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 10,
+        "su15": 2,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "total": 120
+    },
+    "target_removed": {
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 156,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 1,
+        "sp80": 3,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 124
+      },
+      "total": 284
+    }
+  },
+  "eligible_effects": [
+    "changed",
+    "moved",
+    "target_removed",
+    "target_moved",
+    "local_change",
+    "contact_lost",
+    "productive",
+    "risk"
+  ],
+  "format_version": "sage12-counterfactual-teacher-qa-v4.11",
+  "games_with_progress_capacity": 7,
+  "historical_opened": false,
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "ebeaac9905bcea932f791122902da53ed1dabb72e821cb870e04a4ccaa6d9018",
+  "panels": 1056,
+  "panels_per_game": {
+    "bp35": 96,
+    "cd82": 96,
+    "dc22": 96,
+    "g50t": 96,
+    "ka59": 96,
+    "lf52": 96,
+    "lp85": 96,
+    "sp80": 96,
+    "su15": 96,
+    "tr87": 96,
+    "tu93": 96
+  },
+  "progress_discordant_panels_per_game": {
+    "bp35": 96,
+    "cd82": 4,
+    "dc22": 3,
+    "g50t": 95,
+    "ka59": 77,
+    "lf52": 51,
+    "lp85": 3,
+    "sp80": 49,
+    "su15": 42,
+    "tr87": 7,
+    "tu93": 90
+  },
+  "qa_checksum": "4fcfca50eb6699f8cbbad6e11bf42a2770ba4e715c833458cae128a1d6f3da63",
+  "source_validation_opened": false,
+  "teacher_ready": false,
+  "terminal_capacity": {
+    "eligible": false,
+    "games": 2,
+    "positive_arms": 8
+  }
+}

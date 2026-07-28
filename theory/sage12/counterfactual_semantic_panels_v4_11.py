@@ -1328,7 +1328,7 @@ def _bootstrap_panel_difference(
         draws.append(float(np.mean(values)))
     return {
         "mean": float(
-            np.mean([value for game in games for value in by_game[game]])
+            np.mean([float(np.mean(by_game[game])) for game in games])
         ),
         "ci_lower": float(np.quantile(draws, 0.025)),
         "ci_upper": float(np.quantile(draws, 0.975)),
@@ -1520,6 +1520,8 @@ def evaluate_student(
             "verdict": "COMPARATIVE_CAUSAL_TEACHER_CAPACITY_FAILED",
             "teacher_ready": False,
             "authority_promoted": False,
+            "world_model_fitted": False,
+            "ebm_fitted": False,
             "source_validation_opened": False,
             "holdout_opened": False,
             "historical_opened": False,

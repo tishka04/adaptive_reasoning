@@ -23,8 +23,10 @@ from theory.sage12.counterfactual_semantic_panels_v4_11 import (
     _centered_residual,
     _horizon_return,
     _sigmoid,
+    evaluate_student,
     freeze_manifest,
 )
+from theory.sage12.semantic_teacher_v4_9 import _write_json
 
 
 def _trace(
@@ -223,3 +225,21 @@ def test_bootstrap_uses_equal_game_blocks() -> None:
     )
 
     assert result["ci_lower"] > 0.0
+
+
+def test_capacity_failure_stops_before_model_or_downstream_fit(tmp_path) -> None:
+    manifest = freeze_manifest(output_dir=tmp_path)
+    _write_json(
+        tmp_path / "teacher_qa.json",
+        {
+            "manifest_checksum": manifest["manifest_checksum"],
+            "qa_checksum": "qa-unit",
+            "teacher_ready": False,
+        },
+    )
+
+    result = evaluate_student(output_dir=tmp_path, device="cpu")
+
+    assert result["verdict"] == "COMPARATIVE_CAUSAL_TEACHER_CAPACITY_FAILED"
+    assert not result["world_model_fitted"]
+    assert not result["ebm_fitted"]
