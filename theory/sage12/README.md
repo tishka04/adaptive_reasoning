@@ -663,3 +663,10 @@ python -m theory.sage12.counterfactual_semantic_panels_v4_11 compile
 The source-only collection, capacity rules, LOGO controls, confidence
 intervals, and decisions were frozen before collection in
 `reports/SAGE12_COUNTERFACTUAL_SEMANTIC_PANELS_V4_11_PROTOCOL.md`.
+
+The collector subsequently retained the complete quota: 1,056 panels, 3,914
+unique immediate arms, and 15,124 deterministic continuation transitions.
+Every game reached 96 panels with zero replay failure and no exact
+pre-state/action repeat against V4.3–V4.10. Source validation, holdout,
+historical, and live data remained closed. See
+`reports/SAGE12_COUNTERFACTUAL_SEMANTIC_PANELS_V4_11_COLLECTION.md`.

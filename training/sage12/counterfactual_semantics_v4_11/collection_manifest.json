@@ -1,0 +1,258 @@
+{
+  "arms": 3914,
+  "checks": {
+    "all_source_train": true,
+    "minimum_panels_each_game": true,
+    "no_v49_v410_exact_repeats": true,
+    "replay_verified": true,
+    "unique_immediate_repeat_keys": true,
+    "unique_panel_ids": true
+  },
+  "collection_checksum": "6d85ce2f20b635f8a15432aa47505a6cd9a65d64c796f533fa78dbd0bf99d5dc",
+  "collection_ready": true,
+  "format_version": "sage12-counterfactual-panel-collection-v4.11",
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "historical_opened": false,
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "ebeaac9905bcea932f791122902da53ed1dabb72e821cb870e04a4ccaa6d9018",
+  "offline_environment_opened": true,
+  "panels": 1056,
+  "reports": {
+    "bp35": {
+      "arms": 384,
+      "base_steps": 97,
+      "candidate_shortfalls": 1,
+      "continuation_steps": 1352,
+      "duplicate_rejections": 0,
+      "game_id": "bp35",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 2,
+      "target_panels": 96
+    },
+    "cd82": {
+      "arms": 346,
+      "base_steps": 135,
+      "candidate_shortfalls": 39,
+      "continuation_steps": 1376,
+      "duplicate_rejections": 0,
+      "game_id": "cd82",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 2,
+      "target_panels": 96
+    },
+    "dc22": {
+      "arms": 353,
+      "base_steps": 99,
+      "candidate_shortfalls": 3,
+      "continuation_steps": 1403,
+      "duplicate_rejections": 0,
+      "game_id": "dc22",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 2,
+      "target_panels": 96
+    },
+    "g50t": {
+      "arms": 349,
+      "base_steps": 165,
+      "candidate_shortfalls": 69,
+      "continuation_steps": 1396,
+      "duplicate_rejections": 0,
+      "game_id": "g50t",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 2,
+      "target_panels": 96
+    },
+    "ka59": {
+      "arms": 356,
+      "base_steps": 97,
+      "candidate_shortfalls": 1,
+      "continuation_steps": 1424,
+      "duplicate_rejections": 0,
+      "game_id": "ka59",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 1,
+      "target_panels": 96
+    },
+    "lf52": {
+      "arms": 382,
+      "base_steps": 97,
+      "candidate_shortfalls": 1,
+      "continuation_steps": 1504,
+      "duplicate_rejections": 0,
+      "game_id": "lf52",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 2,
+      "target_panels": 96
+    },
+    "lp85": {
+      "arms": 342,
+      "base_steps": 236,
+      "candidate_shortfalls": 140,
+      "continuation_steps": 1328,
+      "duplicate_rejections": 0,
+      "game_id": "lp85",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 13,
+      "target_panels": 96
+    },
+    "sp80": {
+      "arms": 356,
+      "base_steps": 113,
+      "candidate_shortfalls": 17,
+      "continuation_steps": 1323,
+      "duplicate_rejections": 0,
+      "game_id": "sp80",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 4,
+      "target_panels": 96
+    },
+    "su15": {
+      "arms": 384,
+      "base_steps": 96,
+      "candidate_shortfalls": 0,
+      "continuation_steps": 1464,
+      "duplicate_rejections": 0,
+      "game_id": "su15",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 3,
+      "target_panels": 96
+    },
+    "tr87": {
+      "arms": 377,
+      "base_steps": 97,
+      "candidate_shortfalls": 1,
+      "continuation_steps": 1508,
+      "duplicate_rejections": 0,
+      "game_id": "tr87",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 1,
+      "target_panels": 96
+    },
+    "tu93": {
+      "arms": 285,
+      "base_steps": 334,
+      "candidate_shortfalls": 238,
+      "continuation_steps": 1046,
+      "duplicate_rejections": 0,
+      "game_id": "tu93",
+      "minimum_panels": 80,
+      "panels": 96,
+      "replay_failures": 0,
+      "resets_used": 7,
+      "target_panels": 96
+    }
+  },
+  "shards": [
+    {
+      "arms": 384,
+      "game_id": "bp35",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/bp35.jsonl",
+      "sha256": "f8f0c075bc07ce377eb3c7d6a4fc851dfc138355c8e293edfe18b064ef773716"
+    },
+    {
+      "arms": 346,
+      "game_id": "cd82",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/cd82.jsonl",
+      "sha256": "00674ff70e8c3bc8ee6d38ccbe4216d3b8a4fb58fd07b77d01d67651e7060fe3"
+    },
+    {
+      "arms": 353,
+      "game_id": "dc22",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/dc22.jsonl",
+      "sha256": "236ad0be9defb336013b80cad0603bea4c21243379bf02f617eb50716a113b46"
+    },
+    {
+      "arms": 349,
+      "game_id": "g50t",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/g50t.jsonl",
+      "sha256": "437719efa1026396324d18adff52d3a4c79abf14bec462d72aaa7498381c6c20"
+    },
+    {
+      "arms": 356,
+      "game_id": "ka59",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/ka59.jsonl",
+      "sha256": "c277e731823fdd92a39ff20bf8b0b9bd02f4201650efd259604fdc2f16315ace"
+    },
+    {
+      "arms": 382,
+      "game_id": "lf52",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/lf52.jsonl",
+      "sha256": "a5fd112d735fcd7251863ee39f0a93bb12de785db22b4acb69087959b21c8ced"
+    },
+    {
+      "arms": 342,
+      "game_id": "lp85",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/lp85.jsonl",
+      "sha256": "36cad9ef5e37b6f1ad3affd9add5ee7d50c044e0d11f0c7f962602f2831845f8"
+    },
+    {
+      "arms": 356,
+      "game_id": "sp80",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/sp80.jsonl",
+      "sha256": "a064143e485eb27a3c3627976fa40292399179d1f64f7597f64bc8139f5238c7"
+    },
+    {
+      "arms": 384,
+      "game_id": "su15",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/su15.jsonl",
+      "sha256": "0d58b745d066f516893bc97b01d704b7f1b95ec2a331d72dc839f92b90268ea4"
+    },
+    {
+      "arms": 377,
+      "game_id": "tr87",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/tr87.jsonl",
+      "sha256": "7ffacb5e0a4b796d4f02038948adc0785959cf2b0112c753b3804209c9567ae4"
+    },
+    {
+      "arms": 285,
+      "game_id": "tu93",
+      "panels": 96,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/tu93.jsonl",
+      "sha256": "734fba54e7ddb8bc077cff74fa895f3cede1aa90ea273e53097cd7280c47604a"
+    }
+  ],
+  "source_validation_opened": false
+}
