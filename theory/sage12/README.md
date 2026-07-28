@@ -469,5 +469,13 @@ python -m theory.sage12.object_causal_pilot evaluate
 The frozen design is in
 `reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_PROTOCOL.md`; its manifest checksum is
 `cfae89ac0de9f263af52dbb042e352869324f301a633012d44ad7b85ec028741`.
-No V4.5 outcome exists at this checkpoint and every downstream authority
-remains closed.
+The protocol checkpoint preceded the source-only audit.
+
+V4.5 subsequently returned `FAIL_CLOSED`. Correspondence confidence was high
+at 0.9840, but root grounding was only 0.8130 and exclusive-event localization
+0.8370. All 11 promoted events were local or collateral; none was a direct
+target event. The structured model had -0.0757 Brier skill, +0.0039 accuracy
+gain, +0.2287 identity gain, and 0.1087 ECE. Root swapping and relation
+shuffling improved accuracy, while exact complete-arm inversion passed.
+Fresh source and validation collection remained closed. See
+`reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_RESULT.md`.

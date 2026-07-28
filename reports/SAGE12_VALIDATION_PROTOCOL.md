@@ -329,3 +329,12 @@ pass authorizes preparation of a separate world-model protocol, never model
 fitting or control. Qwen, GNN, EBM, controller, holdout, historical, and
 `ar25` authority remain closed. Protocol:
 `reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_PROTOCOL.md`.
+
+V4.5 has now stopped at source-only `FAIL_CLOSED`. Root grounding and
+exclusive-event localization failed; no direct target event survived event
+discovery. Predictive Brier skill was negative, accuracy gain negligible,
+identity leakage high, calibration over threshold, per-game transfer
+negative in two games, and both root/relation controls moved in the wrong
+direction. The fresh-source and validation commands wrote closure artifacts
+and created no shard. Stages B-E remain unauthorized. Full result:
+`reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_RESULT.md`.

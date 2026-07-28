@@ -422,4 +422,22 @@ is `cfae89ac0de9f263af52dbb042e352869324f301a633012d44ad7b85ec028741`.
 Focused V4.5 tests cover translation, recolouring, splits, ambiguity, common
 dynamics, vocabulary backoff, the model firewall, temporal buckets,
 antisymmetry, and fail-closed collection. No V4.5 outcome or validation data
-exists at this checkpoint.
+existed at that checkpoint.
+
+The official audit then completed `FAIL_CLOSED`, checksum
+`1e19f7df0cdb315dc473e9a430c29e0cd29feda562e69d7a873d4d289b4099e6`.
+It compiled all 2,396 V4.3 source pairs and 425,857 component assignments.
+Correspondence confidence passed at 0.9840, but target grounding was 0.8130
+and exclusive-event localization 0.8370. Eleven events passed capacity, all
+local or collateral.
+
+The structured model reached 0.7306 macro accuracy and 0.1448 Brier against
+0.7267 and 0.1346 for the stronger root-without-history baseline: -0.0757
+Brier skill and +0.0039 accuracy gain. Root-swap and relation-shuffle drops
+were -0.0039 and -0.0222, identity gain was +0.2287, ECE was 0.1087, and the
+bootstrap lower bound was -0.0120. Exact antisymmetry passed at `1.54e-16`.
+
+All conditional collection/evaluation commands wrote explicit closure
+artifacts. No fresh source or validation shard, model bundle, Qwen model, GNN,
+world model, EBM, or controller was created. Full ledger:
+`reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_RESULT.md`.

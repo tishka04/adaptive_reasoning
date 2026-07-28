@@ -1,0 +1,873 @@
+{
+  "compiler_gates": {
+    "identical_pre_states": true,
+    "maximum_ambiguity_rate": true,
+    "minimum_correspondence_confident_rate": true,
+    "minimum_exclusive_localization": false,
+    "minimum_promoted_events": true,
+    "minimum_root_grounding_rate": false,
+    "source_checksum_matches": true,
+    "strict_json_validity": true
+  },
+  "compiler_quality": {
+    "ambiguity_rate": 0.016014765519881086,
+    "ambiguous_assignments": 6820,
+    "arms": 4792,
+    "component_assignments": 425857,
+    "correspondence_confident_rate": 0.9839852344801189,
+    "exclusive_localization": 0.8369750546108977,
+    "identical_pre_state_rate": 1.0,
+    "pairs": 2396,
+    "root_grounding_rate": 0.8130217028380634
+  },
+  "controller_authorized": false,
+  "ebm_authorized": false,
+  "feasibility_checksum": "1e19f7df0cdb315dc473e9a430c29e0cd29feda562e69d7a873d4d289b4099e6",
+  "feasibility_delta_path": "training/sage12/object_causal_pilot_v4_5/feasibility_deltas.jsonl",
+  "feasibility_delta_sha256": "db2d2ed284dd11650af65fa2ad57d6c3f790a8c13e1bb6299ab347c16ba0cc17",
+  "format_version": "sage12-object-causal-feasibility-v4.5",
+  "fresh_source_collection_authorized": false,
+  "frozen_manifest_checksum": "cfae89ac0de9f263af52dbb042e352869324f301a633012d44ad7b85ec028741",
+  "gnn_authorized": false,
+  "predictive": {
+    "arm_swap_maximum_error": 1.5352302762394743e-16,
+    "bootstrap_accuracy_gain": {
+      "lower_95": -0.011982062483452476,
+      "mean": -0.0010934273232724384,
+      "upper_95": 0.010325655281969817
+    },
+    "events": [
+      "collateral|appeared|none|large",
+      "collateral|appeared|none|medium",
+      "collateral|disappeared|none|any",
+      "collateral|disappeared|none|large",
+      "collateral|displaced|any|any",
+      "collateral|displaced|east|any",
+      "collateral|displaced|east|long",
+      "collateral|displaced|west|any",
+      "collateral|displaced|west|long",
+      "local|displaced|east|long",
+      "local|displaced|west|long"
+    ],
+    "gates": {
+      "bootstrap_lower_positive": false,
+      "every_scoreable_game_nonnegative": false,
+      "exact_arm_swap_inversion": true,
+      "maximum_identity_gain": false,
+      "maximum_macro_ece": false,
+      "minimum_macro_accuracy_gain": false,
+      "minimum_macro_brier_skill": false,
+      "minimum_relation_shuffle_accuracy_drop": false,
+      "minimum_root_swap_accuracy_drop": false
+    },
+    "identity": {
+      "action_difference": {
+        "accuracy": 0.21911519198664442,
+        "majority_accuracy": 0.09348914858096828
+      },
+      "gain": 0.22871452420701166,
+      "structured_difference": {
+        "accuracy": 0.4478297161936561,
+        "majority_accuracy": 0.09348914858096828
+      }
+    },
+    "macro_accuracy_gain": 0.0038825428194141365,
+    "macro_brier_skill": -0.07565307724540997,
+    "metrics": {
+      "action_only": {
+        "macro_accuracy": 0.7244011978432771,
+        "macro_brier": 0.13816813861687907,
+        "macro_ece": 0.0873589906481589,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.3723849372384937,
+            "brier": 0.2621515707011709,
+            "discordant_pairs": 239,
+            "ece": 0.1732808515493991
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.5196850393700787,
+            "brier": 0.24854873380165735,
+            "discordant_pairs": 381,
+            "ece": 0.1505964270412935
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.3641025641025641,
+            "brier": 0.25,
+            "discordant_pairs": 195,
+            "ece": 0.13589743589743591
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.4318181818181818,
+            "brier": 0.2524032820900668,
+            "discordant_pairs": 264,
+            "ece": 0.10377039739261629
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.8213058419243986,
+            "brier": 0.06544785660137166,
+            "discordant_pairs": 291,
+            "ece": 0.12083390417841498
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.8607594936708861,
+            "brier": 0.11254274355221902,
+            "discordant_pairs": 237,
+            "ece": 0.034952363282398584
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.9108527131782945,
+            "brier": 0.0986877826733227,
+            "discordant_pairs": 258,
+            "ece": 0.13530003607961003
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.9319148936170213,
+            "brier": 0.05263717165163979,
+            "discordant_pairs": 235,
+            "ece": 0.044924859566141465
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.8100558659217877,
+            "brier": 0.1271868503525151,
+            "discordant_pairs": 179,
+            "ece": 0.012676487105929965
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.9595687331536388,
+            "brier": 0.019541778975741258,
+            "discordant_pairs": 371,
+            "ece": 0.0013477101503217553
+          },
+          "local|displaced|west|long": {
+            "accuracy": 0.9859649122807017,
+            "brier": 0.03070175438596518,
+            "discordant_pairs": 285,
+            "ece": 0.04736842488618629
+          }
+        }
+      },
+      "history_no_root": {
+        "macro_accuracy": 0.7096980647173867,
+        "macro_brier": 0.1465732528523153,
+        "macro_ece": 0.10371783205069342,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.37656903765690375,
+            "brier": 0.26581898406214394,
+            "discordant_pairs": 239,
+            "ece": 0.17827436184020495
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.49606299212598426,
+            "brier": 0.2525910026842514,
+            "discordant_pairs": 381,
+            "ece": 0.16530713268596892
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.3641025641025641,
+            "brier": 0.25,
+            "discordant_pairs": 195,
+            "ece": 0.13589743589743591
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.45454545454545453,
+            "brier": 0.2509360387586808,
+            "discordant_pairs": 264,
+            "ece": 0.08489194434110062
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.8213058419243986,
+            "brier": 0.0664657198383746,
+            "discordant_pairs": 291,
+            "ece": 0.12129401407979983
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.7510548523206751,
+            "brier": 0.15652854122993068,
+            "discordant_pairs": 237,
+            "ece": 0.16869805473955335
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.9108527131782945,
+            "brier": 0.09592091220302244,
+            "discordant_pairs": 258,
+            "ece": 0.13477671493851792
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.8765957446808511,
+            "brier": 0.08473996256613306,
+            "discordant_pairs": 235,
+            "ece": 0.036504194626880634
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.8100558659217877,
+            "brier": 0.13906108667122294,
+            "discordant_pairs": 179,
+            "ece": 0.06653615981480265
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.9595687331536388,
+            "brier": 0.019541778975741303,
+            "discordant_pairs": 371,
+            "ece": 0.0013477106435387444
+          },
+          "local|displaced|west|long": {
+            "accuracy": 0.9859649122807017,
+            "brier": 0.03070175438596718,
+            "discordant_pairs": 285,
+            "ece": 0.04736842894982407
+          }
+        }
+      },
+      "root_no_history": {
+        "macro_accuracy": 0.7266869721073482,
+        "macro_brier": 0.13461875783956162,
+        "macro_ece": 0.08708433072920606,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.497907949790795,
+            "brier": 0.258170458334938,
+            "discordant_pairs": 239,
+            "ece": 0.13413156603404977
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.3779527559055118,
+            "brier": 0.2502914198377447,
+            "discordant_pairs": 381,
+            "ece": 0.15707440804894535
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.3641025641025641,
+            "brier": 0.25027777561480313,
+            "discordant_pairs": 195,
+            "ece": 0.14138251936951945
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.4166666666666667,
+            "brier": 0.25328257031636775,
+            "discordant_pairs": 264,
+            "ece": 0.13867067795368615
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.9725085910652921,
+            "brier": 0.030289528812955206,
+            "discordant_pairs": 291,
+            "ece": 0.034534997716081844
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.8649789029535865,
+            "brier": 0.11262000865672248,
+            "discordant_pairs": 237,
+            "ece": 0.04106428038235356
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.9147286821705426,
+            "brier": 0.09328396401498147,
+            "discordant_pairs": 258,
+            "ece": 0.10814583414011371
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.9319148936170213,
+            "brier": 0.056037377597595514,
+            "discordant_pairs": 235,
+            "ece": 0.048606121646122304
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.8268156424581006,
+            "brier": 0.12388247641624543,
+            "discordant_pairs": 179,
+            "ece": 0.061546465073848665
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.9487870619946092,
+            "brier": 0.02009844711382832,
+            "discordant_pairs": 371,
+            "ece": 0.01890228088836298
+          },
+          "local|displaced|west|long": {
+            "accuracy": 0.8771929824561403,
+            "brier": 0.03257230951899582,
+            "discordant_pairs": 285,
+            "ece": 0.07386848676818288
+          }
+        }
+      },
+      "structured": {
+        "macro_accuracy": 0.7305695149267624,
+        "macro_brier": 0.14480308112507911,
+        "macro_ece": 0.10866045079075995,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.41841004184100417,
+            "brier": 0.2632595975421366,
+            "discordant_pairs": 239,
+            "ece": 0.1348823391022325
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.6850393700787402,
+            "brier": 0.24602407467181744,
+            "discordant_pairs": 381,
+            "ece": 0.2142276907059375
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.38461538461538464,
+            "brier": 0.24983732387446525,
+            "discordant_pairs": 195,
+            "ece": 0.1373549414048611
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.44696969696969696,
+            "brier": 0.2522585346728749,
+            "discordant_pairs": 264,
+            "ece": 0.10957622145526316
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.9553264604810997,
+            "brier": 0.046634170191643134,
+            "discordant_pairs": 291,
+            "ece": 0.06712568152245568
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.7721518987341772,
+            "brier": 0.15561373634294218,
+            "discordant_pairs": 237,
+            "ece": 0.15359459799795763
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.9108527131782945,
+            "brier": 0.09208064470422136,
+            "discordant_pairs": 258,
+            "ece": 0.09993337128680112
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.8212765957446808,
+            "brier": 0.10278819318184095,
+            "discordant_pairs": 235,
+            "ece": 0.09928820634093949
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.8156424581005587,
+            "brier": 0.1321322188294692,
+            "discordant_pairs": 179,
+            "ece": 0.0908526412906849
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.9487870619946092,
+            "brier": 0.019963179572329993,
+            "discordant_pairs": 371,
+            "ece": 0.01787442917443451
+          },
+          "local|displaced|west|long": {
+            "accuracy": 0.8771929824561403,
+            "brier": 0.03224221879212921,
+            "discordant_pairs": 285,
+            "ece": 0.07055483841679173
+          }
+        }
+      },
+      "template": {
+        "macro_accuracy": 0.47585199162133324,
+        "macro_brier": 0.23490874401751147,
+        "macro_ece": 0.10515937220816247,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.39748953974895396,
+            "brier": 0.2519971181015838,
+            "discordant_pairs": 239,
+            "ece": 0.10447083848101835
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.7559055118110236,
+            "brier": 0.1107258682758523,
+            "discordant_pairs": 381,
+            "ece": 0.041492759231085696
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.358974358974359,
+            "brier": 0.250231672294248,
+            "discordant_pairs": 195,
+            "ece": 0.1414421258359674
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.4128787878787879,
+            "brier": 0.25021695964830837,
+            "discordant_pairs": 264,
+            "ece": 0.08733418048346821
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.45017182130584193,
+            "brier": 0.25,
+            "discordant_pairs": 291,
+            "ece": 0.049828178694158065
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.45147679324894513,
+            "brier": 0.25,
+            "discordant_pairs": 237,
+            "ece": 0.04852320675105487
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.29457364341085274,
+            "brier": 0.2591871067741175,
+            "discordant_pairs": 258,
+            "ece": 0.22247626214128877
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.5234042553191489,
+            "brier": 0.25024672261063247,
+            "discordant_pairs": 235,
+            "ece": 0.027420324903678295
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.37988826815642457,
+            "brier": 0.2556648446857325,
+            "discordant_pairs": 179,
+            "ece": 0.1262890041163887
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.4797843665768194,
+            "brier": 0.2502919290428383,
+            "discordant_pairs": 371,
+            "ece": 0.2147041504744785
+          },
+          "local|displaced|west|long": {
+            "accuracy": 0.7298245614035088,
+            "brier": 0.20543396275931267,
+            "discordant_pairs": 285,
+            "ece": 0.09277206317720048
+          }
+        }
+      }
+    },
+    "per_game": {
+      "bp35": {
+        "accuracy_gain": 0.12023809523809524,
+        "scoreable_events": 840,
+        "status": "SCORED"
+      },
+      "cd82": {
+        "accuracy_gain": 0.0034965034965034965,
+        "scoreable_events": 286,
+        "status": "SCORED"
+      },
+      "dc22": {
+        "accuracy_gain": -0.019867549668874173,
+        "scoreable_events": 302,
+        "status": "SCORED"
+      },
+      "g50t": {
+        "accuracy_gain": 0.026785714285714284,
+        "scoreable_events": 112,
+        "status": "SCORED"
+      },
+      "ka59": {
+        "scoreable_events": 0,
+        "status": "NOT_SCOREABLE"
+      },
+      "lf52": {
+        "accuracy_gain": 0.0,
+        "scoreable_events": 438,
+        "status": "SCORED"
+      },
+      "lp85": {
+        "accuracy_gain": 0.0,
+        "scoreable_events": 11,
+        "status": "SCORED"
+      },
+      "sp80": {
+        "accuracy_gain": -0.138328530259366,
+        "scoreable_events": 347,
+        "status": "SCORED"
+      },
+      "su15": {
+        "accuracy_gain": 0.1111111111111111,
+        "scoreable_events": 27,
+        "status": "SCORED"
+      },
+      "tr87": {
+        "accuracy_gain": 0.0,
+        "scoreable_events": 496,
+        "status": "SCORED"
+      },
+      "tu93": {
+        "accuracy_gain": 0.0,
+        "scoreable_events": 76,
+        "status": "SCORED"
+      }
+    },
+    "relation_shuffle": {
+      "accuracy_drop": -0.022194791260974345,
+      "metrics": {
+        "macro_accuracy": 0.7527643061877367,
+        "macro_brier": 0.14364443125512522,
+        "macro_ece": 0.10613830894281602,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.4225941422594142,
+            "brier": 0.26285887774065936,
+            "discordant_pairs": 239,
+            "ece": 0.13052770782544212
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.7506561679790026,
+            "brier": 0.21436662138144075,
+            "discordant_pairs": 381,
+            "ece": 0.18321742058346835
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.5435897435897435,
+            "brier": 0.2465861301212515,
+            "discordant_pairs": 195,
+            "ece": 0.13657532434154881
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.5568181818181818,
+            "brier": 0.25086183942023066,
+            "discordant_pairs": 264,
+            "ece": 0.08528540486612493
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.8316151202749141,
+            "brier": 0.07525976145709307,
+            "discordant_pairs": 291,
+            "ece": 0.08615917471641436
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.7721518987341772,
+            "brier": 0.15561373634294218,
+            "discordant_pairs": 237,
+            "ece": 0.15359459799795763
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.9224806201550387,
+            "brier": 0.08905368601398787,
+            "discordant_pairs": 258,
+            "ece": 0.1038493462377275
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.8425531914893617,
+            "brier": 0.10161822651192859,
+            "discordant_pairs": 235,
+            "ece": 0.10827927511701067
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.7877094972067039,
+            "brier": 0.1324200365719836,
+            "discordant_pairs": 179,
+            "ece": 0.09388930798534656
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.9730458221024259,
+            "brier": 0.019295433134521502,
+            "discordant_pairs": 371,
+            "ece": 0.01639880604830857
+          },
+          "local|displaced|west|long": {
+            "accuracy": 0.8771929824561403,
+            "brier": 0.032154395110338144,
+            "discordant_pairs": 285,
+            "ece": 0.06974503265162671
+          }
+        }
+      }
+    },
+    "root_swap": {
+      "accuracy_drop": -0.003910709936750578,
+      "metrics": {
+        "macro_accuracy": 0.7344802248635129,
+        "macro_brier": 0.15105912308845101,
+        "macro_ece": 0.10721486183994743,
+        "per_event": {
+          "collateral|appeared|none|large": {
+            "accuracy": 0.4560669456066946,
+            "brier": 0.2659461045184059,
+            "discordant_pairs": 239,
+            "ece": 0.13290708934133275
+          },
+          "collateral|appeared|none|medium": {
+            "accuracy": 0.5590551181102362,
+            "brier": 0.24256672092300488,
+            "discordant_pairs": 381,
+            "ece": 0.13661496116641167
+          },
+          "collateral|disappeared|none|any": {
+            "accuracy": 0.5641025641025641,
+            "brier": 0.25057303825693233,
+            "discordant_pairs": 195,
+            "ece": 0.1344399303900109
+          },
+          "collateral|disappeared|none|large": {
+            "accuracy": 0.5037878787878788,
+            "brier": 0.25196123640075335,
+            "discordant_pairs": 264,
+            "ece": 0.08605397282629706
+          },
+          "collateral|displaced|any|any": {
+            "accuracy": 0.8109965635738832,
+            "brier": 0.12593824763999484,
+            "discordant_pairs": 291,
+            "ece": 0.14642974374463624
+          },
+          "collateral|displaced|east|any": {
+            "accuracy": 0.759493670886076,
+            "brier": 0.15756699304697697,
+            "discordant_pairs": 237,
+            "ece": 0.16393398176102383
+          },
+          "collateral|displaced|east|long": {
+            "accuracy": 0.8410852713178295,
+            "brier": 0.0889772333909948,
+            "discordant_pairs": 258,
+            "ece": 0.09549182010690768
+          },
+          "collateral|displaced|west|any": {
+            "accuracy": 0.8127659574468085,
+            "brier": 0.10184377266877,
+            "discordant_pairs": 235,
+            "ece": 0.10558121266790084
+          },
+          "collateral|displaced|west|long": {
+            "accuracy": 0.7988826815642458,
+            "brier": 0.12747678683207808,
+            "discordant_pairs": 179,
+            "ece": 0.09109343211432291
+          },
+          "local|displaced|east|long": {
+            "accuracy": 0.9730458221024259,
+            "brier": 0.019245529231285148,
+            "discordant_pairs": 371,
+            "ece": 0.01655318788993807
+          },
+          "local|displaced|west|long": {
+            "accuracy": 1.0,
+            "brier": 0.029554691063764457,
+            "discordant_pairs": 285,
+            "ece": 0.07026414823063969
+          }
+        }
+      }
+    },
+    "status": "FAIL_CLOSED",
+    "stronger_baseline": "root_no_history"
+  },
+  "qwen_authorized": false,
+  "source_corpus_report_checksum": "a842c0bdd99a1e10ad48c03ded447e231a6767e6af7410192b2f21c4b2948722",
+  "source_only_design_audit": true,
+  "status": "FAIL_CLOSED",
+  "validation_collection_authorized": false,
+  "validation_opened": false,
+  "vocabulary": [
+    {
+      "discordant_pairs": 239,
+      "games_with_at_least_10": 4,
+      "per_game": {
+        "bp35": 24,
+        "cd82": 143,
+        "dc22": 0,
+        "g50t": 4,
+        "ka59": 0,
+        "lf52": 42,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 26,
+        "tu93": 0
+      },
+      "projection": "fine",
+      "token": "collateral|appeared|none|large"
+    },
+    {
+      "discordant_pairs": 381,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 224,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 42,
+        "lp85": 3,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 112,
+        "tu93": 0
+      },
+      "projection": "fine",
+      "token": "collateral|appeared|none|medium"
+    },
+    {
+      "discordant_pairs": 195,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 92,
+        "lp85": 2,
+        "sp80": 0,
+        "su15": 10,
+        "tr87": 91,
+        "tu93": 0
+      },
+      "projection": "no_magnitude",
+      "token": "collateral|disappeared|none|any"
+    },
+    {
+      "discordant_pairs": 264,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 0,
+        "cd82": 143,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 92,
+        "lp85": 3,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 26,
+        "tu93": 0
+      },
+      "projection": "fine",
+      "token": "collateral|disappeared|none|large"
+    },
+    {
+      "discordant_pairs": 291,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 127,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 42,
+        "lp85": 0,
+        "sp80": 122,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "projection": "base",
+      "token": "collateral|displaced|any|any"
+    },
+    {
+      "discordant_pairs": 237,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 89,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 3,
+        "sp80": 112,
+        "su15": 0,
+        "tr87": 33,
+        "tu93": 0
+      },
+      "projection": "no_magnitude",
+      "token": "collateral|displaced|east|any"
+    },
+    {
+      "discordant_pairs": 258,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 128,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 35,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 95,
+        "tu93": 0
+      },
+      "projection": "fine",
+      "token": "collateral|displaced|east|long"
+    },
+    {
+      "discordant_pairs": 235,
+      "games_with_at_least_10": 4,
+      "per_game": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 86,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 113,
+        "su15": 17,
+        "tr87": 19,
+        "tu93": 0
+      },
+      "projection": "no_magnitude",
+      "token": "collateral|displaced|west|any"
+    },
+    {
+      "discordant_pairs": 179,
+      "games_with_at_least_10": 3,
+      "per_game": {
+        "bp35": 56,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 29,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 94,
+        "tu93": 0
+      },
+      "projection": "fine",
+      "token": "collateral|displaced|west|long"
+    },
+    {
+      "discordant_pairs": 371,
+      "games_with_at_least_10": 4,
+      "per_game": {
+        "bp35": 224,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 78,
+        "ka59": 0,
+        "lf52": 29,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 40
+      },
+      "projection": "fine",
+      "token": "local|displaced|east|long"
+    },
+    {
+      "discordant_pairs": 285,
+      "games_with_at_least_10": 4,
+      "per_game": {
+        "bp35": 184,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 30,
+        "ka59": 0,
+        "lf52": 35,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 36
+      },
+      "projection": "fine",
+      "token": "local|displaced|west|long"
+    }
+  ],
+  "vocabulary_checksum": "fb52747ce17b074bd82b67eeeeb311358ce51570fb03c99a08a162caf8ac93e8",
+  "world_model_protocol_authorized": false
+}
