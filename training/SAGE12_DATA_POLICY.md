@@ -336,3 +336,9 @@ An authorized validation collection must use fresh seeds 1451, 1499, 1553,
 and 1601 and publish raw shards before evaluation. Even a validation pass
 authorizes only a separately frozen absolute world-model protocol; it does not
 authorize fitting that model, an EBM, or a controller.
+
+The V4.4 source preflight failed every predictive projection. Its
+`projection_freeze.json` selects no representation. The validation collection
+manifest records `SKIPPED_SOURCE_PREFLIGHT`, and no validation shard directory
+exists. V4.4 derived artifacts are immutable negative-result audit data and
+grant no downstream authority.

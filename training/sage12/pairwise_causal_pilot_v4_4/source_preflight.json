@@ -1,0 +1,807 @@
+{
+  "capacity": {
+    "effects": {
+      "target_created": {
+        "authority": true,
+        "discordant_pairs": 172,
+        "games_with_at_least_10": 2,
+        "per_game": {
+          "bp35": 0,
+          "cd82": 0,
+          "dc22": 0,
+          "g50t": 1,
+          "ka59": 0,
+          "lf52": 0,
+          "lp85": 0,
+          "sp80": 0,
+          "su15": 27,
+          "tr87": 0,
+          "tu93": 144
+        }
+      },
+      "target_moved": {
+        "authority": false,
+        "discordant_pairs": 0,
+        "games_with_at_least_10": 0,
+        "per_game": {
+          "bp35": 0,
+          "cd82": 0,
+          "dc22": 0,
+          "g50t": 0,
+          "ka59": 0,
+          "lf52": 0,
+          "lp85": 0,
+          "sp80": 0,
+          "su15": 0,
+          "tr87": 0,
+          "tu93": 0
+        }
+      },
+      "target_removed": {
+        "authority": true,
+        "discordant_pairs": 189,
+        "games_with_at_least_10": 2,
+        "per_game": {
+          "bp35": 0,
+          "cd82": 0,
+          "dc22": 0,
+          "g50t": 146,
+          "ka59": 0,
+          "lf52": 0,
+          "lp85": 3,
+          "sp80": 0,
+          "su15": 0,
+          "tr87": 0,
+          "tu93": 40
+        }
+      }
+    },
+    "pairs": 2396
+  },
+  "capacity_gates": {
+    "minimum_discordant_pairs": true,
+    "minimum_games_with_capacity": true,
+    "movement_remains_diagnostic": true,
+    "source_v43_checksum_matches": true,
+    "strict_json_validity": true,
+    "support_zero": true
+  },
+  "controller_authorized": false,
+  "ebm_fit_authorized": false,
+  "format_version": "sage12-paired-causal-preflight-v4.4",
+  "frozen_manifest_checksum": "598cdbca8ef50b05d3c9743cbbf4245c0e4c0495b81fd5fc3fd06e67bc623f5d",
+  "movement_authority": false,
+  "preflight_checksum": "d58cc5825ab0932629496a1206b478ce310be88136e21e4b8799cc902dc18935",
+  "projection_results": {
+    "minimal": {
+      "arm_swap_maximum_error": 1.6653345369377348e-16,
+      "binding_swap": {
+        "accuracy_drop": -0.2645348837209302,
+        "metrics": {
+          "macro_accuracy": 0.6067583364094992,
+          "macro_brier": 0.24182926175690048,
+          "macro_ece": 0.12067591222593775,
+          "micro_accuracy": 0.6011080332409973,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.7267441860465116,
+              "brier": 0.23404512027419508,
+              "discordant_pairs": 172,
+              "ece": 0.2054454608887339,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.48677248677248675,
+              "brier": 0.24961340323960587,
+              "discordant_pairs": 189,
+              "ece": 0.03590636356314162,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        }
+      },
+      "bootstrap_accuracy_gain": {
+        "lower_95": -0.15625,
+        "mean": -0.11881796875,
+        "upper_95": -0.08277343750000021
+      },
+      "gates": {
+        "bootstrap_lower_positive": false,
+        "every_scoreable_game_nonnegative": false,
+        "exact_arm_swap_inversion": true,
+        "maximum_identity_gain": false,
+        "maximum_macro_ece": false,
+        "minimum_binding_swap_accuracy_drop": false,
+        "minimum_macro_accuracy_gain": false,
+        "minimum_macro_brier_skill": false
+      },
+      "identity": {
+        "action_difference": {
+          "accuracy": 0.2182804674457429,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "gain": 0.07554257095158598,
+        "structured_difference": {
+          "accuracy": 0.2938230383973289,
+          "majority_accuracy": 0.09348914858096828
+        }
+      },
+      "macro_accuracy_gain": -0.10491263688938107,
+      "macro_brier_skill": -0.04324390918520502,
+      "metrics": {
+        "action_only": {
+          "macro_accuracy": 0.39154977236372585,
+          "macro_brier": 0.2543986760769042,
+          "macro_ece": 0.2060235871992825,
+          "micro_accuracy": 0.3878116343490305,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.47093023255813954,
+              "brier": 0.25028476059216975,
+              "discordant_pairs": 172,
+              "ece": 0.20366552423581724,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.31216931216931215,
+              "brier": 0.25851259156163864,
+              "discordant_pairs": 189,
+              "ece": 0.20838165016274773,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "binding_only": {
+          "macro_accuracy": 0.3504214347237603,
+          "macro_brier": 0.26429136905358536,
+          "macro_ece": 0.16323618743088253,
+          "micro_accuracy": 0.3573407202216066,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.20348837209302326,
+              "brier": 0.2785827381071707,
+              "discordant_pairs": 172,
+              "ece": 0.3238268722162624,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.4973544973544973,
+              "brier": 0.25,
+              "discordant_pairs": 189,
+              "ece": 0.002645502645502673,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "history_no_binding": {
+          "macro_accuracy": 0.44713608957795004,
+          "macro_brier": 0.24746076158998914,
+          "macro_ece": 0.18208634123360243,
+          "micro_accuracy": 0.4487534626038781,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.4127906976744186,
+              "brier": 0.24994072120766947,
+              "discordant_pairs": 172,
+              "ece": 0.20079923786779844,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.48148148148148145,
+              "brier": 0.24498080197230884,
+              "discordant_pairs": 189,
+              "ece": 0.16337344459940642,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "structured": {
+          "macro_accuracy": 0.34222345268856896,
+          "macro_brier": 0.2581619322910883,
+          "macro_ece": 0.17935211352403752,
+          "micro_accuracy": 0.3490304709141274,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.19767441860465115,
+              "brier": 0.26671046134257076,
+              "discordant_pairs": 172,
+              "ece": 0.3227978634849334,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.48677248677248675,
+              "brier": 0.24961340323960587,
+              "discordant_pairs": 189,
+              "ece": 0.03590636356314162,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "template": {
+          "macro_accuracy": 0.35332841146794636,
+          "macro_brier": 0.2656792488036044,
+          "macro_ece": 0.1618825470140599,
+          "micro_accuracy": 0.3601108033240997,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.20930232558139536,
+              "brier": 0.28135849760720877,
+              "discordant_pairs": 172,
+              "ece": 0.32111959138261714,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.4973544973544973,
+              "brier": 0.25,
+              "discordant_pairs": 189,
+              "ece": 0.002645502645502673,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        }
+      },
+      "per_game": {
+        "bp35": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "cd82": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "dc22": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "g50t": {
+          "accuracy_gain": 0.006802721088435374,
+          "baseline_accuracy": 0.46258503401360546,
+          "scoreable_pairs": 147,
+          "status": "SCORED",
+          "structured_accuracy": 0.46938775510204084
+        },
+        "ka59": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "lf52": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "lp85": {
+          "accuracy_gain": 0.0,
+          "baseline_accuracy": 0.0,
+          "scoreable_pairs": 3,
+          "status": "SCORED",
+          "structured_accuracy": 0.0
+        },
+        "sp80": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "su15": {
+          "accuracy_gain": 0.0,
+          "baseline_accuracy": 0.4074074074074074,
+          "scoreable_pairs": 27,
+          "status": "SCORED",
+          "structured_accuracy": 0.4074074074074074
+        },
+        "tr87": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "tu93": {
+          "accuracy_gain": -0.20108695652173914,
+          "baseline_accuracy": 0.45108695652173914,
+          "scoreable_pairs": 184,
+          "status": "SCORED",
+          "structured_accuracy": 0.25
+        }
+      },
+      "projection": "minimal",
+      "status": "FAIL_CLOSED",
+      "stronger_baseline": "history_no_binding"
+    },
+    "relational": {
+      "arm_swap_maximum_error": 1.3877787807814457e-16,
+      "binding_swap": {
+        "accuracy_drop": -0.11598683401008986,
+        "metrics": {
+          "macro_accuracy": 0.5773963332102867,
+          "macro_brier": 0.246025626029296,
+          "macro_ece": 0.14389451760236516,
+          "micro_accuracy": 0.5706371191135734,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.7209302325581395,
+              "brier": 0.23801339954857678,
+              "discordant_pairs": 172,
+              "ece": 0.20246665996674584,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.43386243386243384,
+              "brier": 0.25403785251001526,
+              "discordant_pairs": 189,
+              "ece": 0.08532237523798446,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        }
+      },
+      "bootstrap_accuracy_gain": {
+        "lower_95": -0.0546875,
+        "mean": -0.011571874999999999,
+        "upper_95": 0.0296875
+      },
+      "gates": {
+        "bootstrap_lower_positive": false,
+        "every_scoreable_game_nonnegative": false,
+        "exact_arm_swap_inversion": true,
+        "maximum_identity_gain": false,
+        "maximum_macro_ece": false,
+        "minimum_binding_swap_accuracy_drop": false,
+        "minimum_macro_accuracy_gain": false,
+        "minimum_macro_brier_skill": false
+      },
+      "identity": {
+        "action_difference": {
+          "accuracy": 0.2182804674457429,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "gain": 0.09056761268781302,
+        "structured_difference": {
+          "accuracy": 0.3088480801335559,
+          "majority_accuracy": 0.09348914858096828
+        }
+      },
+      "macro_accuracy_gain": 0.014273409622246824,
+      "macro_brier_skill": -0.03372787174052504,
+      "metrics": {
+        "action_only": {
+          "macro_accuracy": 0.39154977236372585,
+          "macro_brier": 0.2543986760769042,
+          "macro_ece": 0.2060235871992825,
+          "micro_accuracy": 0.3878116343490305,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.47093023255813954,
+              "brier": 0.25028476059216975,
+              "discordant_pairs": 172,
+              "ece": 0.20366552423581724,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.31216931216931215,
+              "brier": 0.25851259156163864,
+              "discordant_pairs": 189,
+              "ece": 0.20838165016274773,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "binding_only": {
+          "macro_accuracy": 0.28611418727697796,
+          "macro_brier": 0.26914098426231814,
+          "macro_ece": 0.2416202621954233,
+          "micro_accuracy": 0.2880886426592798,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.2441860465116279,
+              "brier": 0.27962525291177104,
+              "discordant_pairs": 172,
+              "ece": 0.2902888260709533,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.328042328042328,
+              "brier": 0.2586567156128653,
+              "discordant_pairs": 189,
+              "ece": 0.19295169831989328,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "history_no_binding": {
+          "macro_accuracy": 0.44713608957795004,
+          "macro_brier": 0.24746076158998914,
+          "macro_ece": 0.18208634123360243,
+          "micro_accuracy": 0.4487534626038781,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.4127906976744186,
+              "brier": 0.24994072120766947,
+              "discordant_pairs": 172,
+              "ece": 0.20079923786779844,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.48148148148148145,
+              "brier": 0.24498080197230884,
+              "discordant_pairs": 189,
+              "ece": 0.16337344459940642,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "structured": {
+          "macro_accuracy": 0.46140949920019686,
+          "macro_brier": 0.25580708641770894,
+          "macro_ece": 0.12457029149184917,
+          "micro_accuracy": 0.4626038781163435,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.436046511627907,
+              "brier": 0.2612680229660715,
+              "discordant_pairs": 172,
+              "ece": 0.21263149579062368,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.48677248677248675,
+              "brier": 0.2503461498693464,
+              "discordant_pairs": 189,
+              "ece": 0.03650908719307465,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "template": {
+          "macro_accuracy": 0.35332841146794636,
+          "macro_brier": 0.2656792488036044,
+          "macro_ece": 0.1618825470140599,
+          "micro_accuracy": 0.3601108033240997,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.20930232558139536,
+              "brier": 0.28135849760720877,
+              "discordant_pairs": 172,
+              "ece": 0.32111959138261714,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.4973544973544973,
+              "brier": 0.25,
+              "discordant_pairs": 189,
+              "ece": 0.002645502645502673,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        }
+      },
+      "per_game": {
+        "bp35": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "cd82": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "dc22": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "g50t": {
+          "accuracy_gain": -0.02040816326530612,
+          "baseline_accuracy": 0.46258503401360546,
+          "scoreable_pairs": 147,
+          "status": "SCORED",
+          "structured_accuracy": 0.4421768707482993
+        },
+        "ka59": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "lf52": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "lp85": {
+          "accuracy_gain": 1.0,
+          "baseline_accuracy": 0.0,
+          "scoreable_pairs": 3,
+          "status": "SCORED",
+          "structured_accuracy": 1.0
+        },
+        "sp80": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "su15": {
+          "accuracy_gain": 0.18518518518518517,
+          "baseline_accuracy": 0.4074074074074074,
+          "scoreable_pairs": 27,
+          "status": "SCORED",
+          "structured_accuracy": 0.5925925925925926
+        },
+        "tr87": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "tu93": {
+          "accuracy_gain": 0.0,
+          "baseline_accuracy": 0.45108695652173914,
+          "scoreable_pairs": 184,
+          "status": "SCORED",
+          "structured_accuracy": 0.45108695652173914
+        }
+      },
+      "projection": "relational",
+      "status": "FAIL_CLOSED",
+      "stronger_baseline": "history_no_binding"
+    },
+    "typed": {
+      "arm_swap_maximum_error": 1.5265566588595902e-16,
+      "binding_swap": {
+        "accuracy_drop": -0.1746493170911776,
+        "metrics": {
+          "macro_accuracy": 0.6006521471637751,
+          "macro_brier": 0.24517351083660865,
+          "macro_ece": 0.17014477917255377,
+          "micro_accuracy": 0.592797783933518,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.7674418604651163,
+              "brier": 0.23386479714362146,
+              "discordant_pairs": 172,
+              "ece": 0.2455352681084075,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.43386243386243384,
+              "brier": 0.25648222452959585,
+              "discordant_pairs": 189,
+              "ece": 0.09475429023670001,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        }
+      },
+      "bootstrap_accuracy_gain": {
+        "lower_95": -0.0984375,
+        "mean": -0.048965625000000006,
+        "upper_95": -0.0015625
+      },
+      "gates": {
+        "bootstrap_lower_positive": false,
+        "every_scoreable_game_nonnegative": false,
+        "exact_arm_swap_inversion": true,
+        "maximum_identity_gain": false,
+        "maximum_macro_ece": false,
+        "minimum_binding_swap_accuracy_drop": false,
+        "minimum_macro_accuracy_gain": false,
+        "minimum_macro_brier_skill": false
+      },
+      "identity": {
+        "action_difference": {
+          "accuracy": 0.2182804674457429,
+          "majority_accuracy": 0.09348914858096828
+        },
+        "gain": 0.15651085141903173,
+        "structured_difference": {
+          "accuracy": 0.3747913188647746,
+          "majority_accuracy": 0.09348914858096828
+        }
+      },
+      "macro_accuracy_gain": -0.021133259505352497,
+      "macro_brier_skill": -0.039721014328815425,
+      "metrics": {
+        "action_only": {
+          "macro_accuracy": 0.39154977236372585,
+          "macro_brier": 0.2543986760769042,
+          "macro_ece": 0.2060235871992825,
+          "micro_accuracy": 0.3878116343490305,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.47093023255813954,
+              "brier": 0.25028476059216975,
+              "discordant_pairs": 172,
+              "ece": 0.20366552423581724,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.31216931216931215,
+              "brier": 0.25851259156163864,
+              "discordant_pairs": 189,
+              "ece": 0.20838165016274773,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "binding_only": {
+          "macro_accuracy": 0.28611418727697796,
+          "macro_brier": 0.2733384919871612,
+          "macro_ece": 0.2454018956099864,
+          "micro_accuracy": 0.2880886426592798,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.2441860465116279,
+              "brier": 0.28802026836145717,
+              "discordant_pairs": 172,
+              "ece": 0.2978520929000795,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.328042328042328,
+              "brier": 0.2586567156128653,
+              "discordant_pairs": 189,
+              "ece": 0.19295169831989328,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "history_no_binding": {
+          "macro_accuracy": 0.44713608957795004,
+          "macro_brier": 0.24746076158998914,
+          "macro_ece": 0.18208634123360243,
+          "micro_accuracy": 0.4487534626038781,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.4127906976744186,
+              "brier": 0.24994072120766947,
+              "discordant_pairs": 172,
+              "ece": 0.20079923786779844,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.48148148148148145,
+              "brier": 0.24498080197230884,
+              "discordant_pairs": 189,
+              "ece": 0.16337344459940642,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "structured": {
+          "macro_accuracy": 0.42600283007259754,
+          "macro_brier": 0.2572901540469247,
+          "macro_ece": 0.12495816153695638,
+          "micro_accuracy": 0.4293628808864266,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.3546511627906977,
+              "brier": 0.2657558933408307,
+              "discordant_pairs": 172,
+              "ece": 0.21563813153794847,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.4973544973544973,
+              "brier": 0.2488244147530187,
+              "discordant_pairs": 189,
+              "ece": 0.03427819153596429,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        },
+        "template": {
+          "macro_accuracy": 0.35332841146794636,
+          "macro_brier": 0.2656792488036044,
+          "macro_ece": 0.1618825470140599,
+          "micro_accuracy": 0.3601108033240997,
+          "per_effect": {
+            "target_created": {
+              "accuracy": 0.20930232558139536,
+              "brier": 0.28135849760720877,
+              "discordant_pairs": 172,
+              "ece": 0.32111959138261714,
+              "left_positive": 51,
+              "right_positive": 121
+            },
+            "target_removed": {
+              "accuracy": 0.4973544973544973,
+              "brier": 0.25,
+              "discordant_pairs": 189,
+              "ece": 0.002645502645502673,
+              "left_positive": 94,
+              "right_positive": 95
+            }
+          }
+        }
+      },
+      "per_game": {
+        "bp35": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "cd82": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "dc22": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "g50t": {
+          "accuracy_gain": -0.006802721088435374,
+          "baseline_accuracy": 0.46258503401360546,
+          "scoreable_pairs": 147,
+          "status": "SCORED",
+          "structured_accuracy": 0.4557823129251701
+        },
+        "ka59": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "lf52": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "lp85": {
+          "accuracy_gain": 1.0,
+          "baseline_accuracy": 0.0,
+          "scoreable_pairs": 3,
+          "status": "SCORED",
+          "structured_accuracy": 1.0
+        },
+        "sp80": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "su15": {
+          "accuracy_gain": 0.18518518518518517,
+          "baseline_accuracy": 0.4074074074074074,
+          "scoreable_pairs": 27,
+          "status": "SCORED",
+          "structured_accuracy": 0.5925925925925926
+        },
+        "tr87": {
+          "scoreable_pairs": 0,
+          "status": "NOT_SCOREABLE"
+        },
+        "tu93": {
+          "accuracy_gain": -0.07608695652173914,
+          "baseline_accuracy": 0.45108695652173914,
+          "scoreable_pairs": 184,
+          "status": "SCORED",
+          "structured_accuracy": 0.375
+        }
+      },
+      "projection": "typed",
+      "status": "FAIL_CLOSED",
+      "stronger_baseline": "history_no_binding"
+    }
+  },
+  "selected_projection": null,
+  "source_corpus_report_checksum": "a842c0bdd99a1e10ad48c03ded447e231a6767e6af7410192b2f21c4b2948722",
+  "source_only": true,
+  "status": "FAIL_CLOSED",
+  "validation_collection_authorized": false,
+  "validation_opened": false,
+  "world_model_fit_authorized": false
+}

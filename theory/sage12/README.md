@@ -429,3 +429,12 @@ The frozen protocol is
 `reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_PROTOCOL.md`. At this checkpoint no
 V4.4 predictive result exists, no validation game is open, and no world model
 or downstream authority is granted.
+
+V4.4 subsequently returned `FAIL_CLOSED` at source preflight. The relational
+projection was least negative but reached only +0.0143 directional-accuracy
+gain, -0.0337 Brier skill, 0.1246 ECE, and +0.0906 identity gain. Swapping
+bindings improved rather than degraded accuracy for every projection. Exact
+complete-arm inversion passed, confirming that the negative result comes from
+the binding signal rather than the antisymmetric implementation. No
+validation shard was created. See
+`reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_RESULT.md`.

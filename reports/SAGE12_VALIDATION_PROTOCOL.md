@@ -301,3 +301,10 @@ Only a full source pass may open a new validation collection. A validation
 pass may authorize preparation of a separate absolute world-model protocol,
 but it does not authorize fitting or control. Protocol:
 `reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_PROTOCOL.md`.
+
+V4.4 has now stopped at source `FAIL_CLOSED`. Capacity and exact
+antisymmetry passed, but utility, binding sensitivity, identity, calibration,
+per-game transfer, and bootstrap gates failed for every projection. The
+validation collection and final result are explicit skipped artifacts; no
+validation game was opened. Stages B-E remain unauthorized. Full result:
+`reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_RESULT.md`.

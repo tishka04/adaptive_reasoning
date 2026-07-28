@@ -269,3 +269,9 @@ would establish relative causal binding sensitivity, not absolute transition
 probabilities. It could therefore authorize only a new world-model protocol,
 never direct rollout fitting or control. No V4.4 result exists at this freeze
 checkpoint.
+
+V4.4 later failed source preflight. Exact arm-swap antisymmetry passed, but all
+projections had negative Brier skill, excessive identity gain, failed
+calibration, negative bootstrap lower bounds, and binding swaps that improved
+accuracy. The result rejects the current `BindingSignature` as a transferable
+relative causal discriminator. No validation data or world model was opened.

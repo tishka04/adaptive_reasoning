@@ -390,3 +390,19 @@ and is diagnostic-only. The frozen manifest checksum is
 Pre-preflight validation passed 48 focused V4.4/V4.3/V4.2 tests in 29.08
 seconds and focused Ruff checks. No V4.4 metric or validation outcome exists
 at this checkpoint.
+
+The frozen V4.4 source preflight then completed `FAIL_CLOSED`, checksum
+`d58cc5825ab0932629496a1206b478ce310be88136e21e4b8799cc902dc18935`.
+All projections had negative Brier skill. Relational was least negative at
+-0.0337 skill and +0.0143 accuracy gain, but identity gain was +0.0906 and
+ECE 0.1246. Binding swaps improved accuracy for every projection. Exact
+complete-arm inversion passed at numerical error below `1.7e-16`.
+
+The validation collector wrote only a `SKIPPED_SOURCE_PREFLIGHT` closure and
+created no shard. The final result similarly records no validation opening or
+downstream authority. Full ledger:
+`reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_RESULT.md`.
+
+Final validation passed 48 focused V4.4/V4.3/V4.2 tests in 24.44 seconds,
+passed focused Ruff checks, and verified the absence of both a source model
+and validation shards.
