@@ -503,18 +503,30 @@ def render_pair_prompt(
     if representation not in REPRESENTATIONS:
         raise ValueError(f"unknown representation {representation}")
     left_key, right_key = ("right", "left") if swapped else ("left", "right")
+    left = dict(pair[left_key])
+    right = dict(pair[right_key])
+    slot_fields = sorted(set(left) | set(right))
+    context = pair.get("context", {})
+    compact_context = []
+    if representation == "invariant_context":
+        context_names = {
+            "state_atoms": "state",
+            "role_aspect_counts": "roles",
+            "recent_action_family_counts": "families",
+            "recent_effect_counts": "effects",
+            "recent_relation_counts": "relations",
+        }
+        for name, value in sorted(context.items()):
+            if not value:
+                continue
+            if isinstance(value, Mapping):
+                value = [[key, item] for key, item in sorted(value.items())]
+            compact_context.append([context_names.get(name, name), value])
     payload = {
-        "task": (
-            "compare two legal interventions from the same pre-state; "
-            "encode which effects are caused by left and right"
-        ),
-        "common": (
-            pair.get("context", {})
-            if representation == "invariant_context"
-            else {}
-        ),
-        "left": pair[left_key],
-        "right": pair[right_key],
+        "context": compact_context,
+        "slot_fields": slot_fields,
+        "left": [left.get(name, "unknown") for name in slot_fields],
+        "right": [right.get(name, "unknown") for name in slot_fields],
     }
     prompt = _canonical(payload)
     lowered = prompt.lower()
@@ -708,10 +720,7 @@ class FrozenQwenPairEncoder:
                     [
                         {
                             "role": "system",
-                            "content": (
-                                "Represent this causal action comparison "
-                                "without guessing a game identity."
-                            ),
+                            "content": "Compare.",
                         },
                         {"role": "user", "content": prompt},
                     ],
@@ -1048,6 +1057,7 @@ def _direct_metrics(
 ) -> dict[str, Any]:
     left, right = _arm_probabilities(probabilities)
     effects = {}
+    available_effects = []
     for effect_index, effect in enumerate(TRAIN_EFFECTS):
         targets = []
         predicted = []
@@ -1068,6 +1078,16 @@ def _direct_metrics(
             class_correct.append(
                 int(np.argmax(probabilities[row_index, effect_index]) == target_class)
             )
+        if not targets:
+            effects[effect] = {
+                "arms": 0,
+                "positives": 0,
+                "brier": None,
+                "recall_at_0_5": None,
+                "pair_class_accuracy": None,
+            }
+            continue
+        available_effects.append(effect)
         target = np.asarray(targets, dtype=np.float64)
         predicted_array = np.asarray(predicted, dtype=np.float64)
         positive = target == 1
@@ -1082,11 +1102,24 @@ def _direct_metrics(
             ),
             "pair_class_accuracy": float(np.mean(class_correct)),
         }
+    slot_effects = [
+        effect for effect in available_effects if effect in SLOT_EFFECTS
+    ]
     return {
         "effects": effects,
-        "macro_brier": float(np.mean([row["brier"] for row in effects.values()])),
+        "macro_brier": float(
+            np.mean([effects[effect]["brier"] for effect in available_effects])
+        ),
+        "macro_slot_brier": float(
+            np.mean([effects[effect]["brier"] for effect in slot_effects])
+        ),
         "macro_pair_class_accuracy": float(
-            np.mean([row["pair_class_accuracy"] for row in effects.values()])
+            np.mean(
+                [
+                    effects[effect]["pair_class_accuracy"]
+                    for effect in available_effects
+                ]
+            )
         ),
     }
 
@@ -1364,7 +1397,7 @@ def run_semantic_adaptation(
         "v43_logo_direct_metrics": direct,
         "v43_action_only_direct_metrics": direct_action,
         "v43_macro_brier_gain_over_action_only": (
-            direct_action["macro_brier"] - direct["macro_brier"]
+            direct_action["macro_slot_brier"] - direct["macro_slot_brier"]
         ),
         "semantic_output_identity": semantic_identity,
         "fold_training": fold_runtime,

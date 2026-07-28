@@ -59,7 +59,12 @@ def test_v43_pair_prompts_exclude_identity_coordinates_and_labels() -> None:
         assert "label_mask" not in prompt
         assert "action_data" not in prompt
         assert '"x"' not in prompt and '"y"' not in prompt
-        assert set(payload) == {"task", "common", "left", "right"}
+        assert set(payload) == {
+            "context",
+            "slot_fields",
+            "left",
+            "right",
+        }
 
 
 def test_pair_prompt_swap_only_exchanges_interventions() -> None:
@@ -74,7 +79,8 @@ def test_pair_prompt_swap_only_exchanges_interventions() -> None:
     )
     assert original["left"] == swapped["right"]
     assert original["right"] == swapped["left"]
-    assert original["common"] == swapped["common"]
+    assert original["context"] == swapped["context"]
+    assert original["slot_fields"] == swapped["slot_fields"]
 
 
 def test_source_registry_remains_the_eleven_training_games() -> None:

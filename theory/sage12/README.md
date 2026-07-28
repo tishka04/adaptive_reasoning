@@ -537,3 +537,12 @@ python -m theory.sage12.semantic_adapter_v4_8 evaluate
 
 The frozen design is
 `reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_PROTOCOL.md`.
+
+The semantic checkpoint selected the invariant-context view but returned
+`DIRECT_SEMANTIC_ADAPTATION_NEGATIVE`: seven-effect LOGO Brier was 0.093676
+versus 0.067048 for action-only, semantic outputs still predicted game
+identity at 91.43%, and explicit completion recall was zero. The checkpoint is
+published before world-model fitting in
+`reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_SEMANTIC_RESULT.md`. Per the
+frozen exploratory protocol, this negative intermediate result does not stop
+the full architecture evaluation.
