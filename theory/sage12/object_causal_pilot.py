@@ -62,6 +62,7 @@ BASELINE_MODES = (
 )
 SOURCE_SEEDS = (1663, 1721, 1783, 1847)
 VALIDATION_SEEDS = (1901, 1951, 2011, 2063)
+_OBSERVATION_CACHE: dict[tuple[str, tuple[str, ...], str, int], Any] = {}
 
 _DIRECTION_SHUFFLE = {
     "north": "south",
@@ -124,6 +125,31 @@ def _file_sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def _cached_observation(
+    frame: Any,
+    *,
+    available_actions: Sequence[str],
+    game_state: str = "NOT_FINISHED",
+    levels_completed: int = 0,
+) -> Any:
+    key = (
+        grid_sha256(frame),
+        tuple(available_actions),
+        str(game_state),
+        int(levels_completed),
+    )
+    observation = _OBSERVATION_CACHE.get(key)
+    if observation is None:
+        observation = build_observation(
+            frame,
+            available_actions=available_actions,
+            game_state=game_state,
+            levels_completed=levels_completed,
+        )
+        _OBSERVATION_CACHE[key] = observation
+    return observation
 
 
 def _normalized_cells(cells: Sequence[tuple[int, int]]) -> frozenset[tuple[int, int]]:
@@ -409,13 +435,13 @@ def _event_locus(
 
 
 def compile_arm_events(trace: ActionTargetTrace) -> tuple[ObjectCorrespondence, tuple[ObjectEvent, ...]]:
-    before = build_observation(
+    before = _cached_observation(
         trace.frame_before,
         available_actions=trace.available_action_names,
         game_state=trace.game_state_before,
         levels_completed=trace.levels_completed_before,
     )
-    after = build_observation(
+    after = _cached_observation(
         trace.frame_after,
         available_actions=trace.available_action_names,
         game_state=trace.game_state_after,
@@ -747,7 +773,7 @@ def build_rooted_target_graph(
     *,
     track: ObjectTrackState | None = None,
 ) -> RootedTargetGraph:
-    observation = build_observation(
+    observation = _cached_observation(
         trace.frame_before,
         available_actions=trace.available_action_names,
         game_state=trace.game_state_before,
@@ -1561,20 +1587,31 @@ def _compiler_quality(
 ) -> dict[str, Any]:
     total_components = 0
     ambiguous = 0
-    for pair, delta in zip(pairs, deltas):
-        for trace, correspondence in (
-            (pair.left.trace, delta.left_correspondence),
-            (pair.right.trace, delta.right_correspondence),
+    for delta in deltas:
+        for correspondence in (
+            delta.left_correspondence,
+            delta.right_correspondence,
         ):
-            before = build_observation(
-                trace.frame_before,
-                available_actions=trace.available_action_names,
+            matched = len(correspondence.matched)
+            split_before = len(correspondence.splits)
+            split_after = sum(len(row[1]) for row in correspondence.splits)
+            merge_before = sum(len(row[0]) for row in correspondence.merges)
+            merge_after = len(correspondence.merges)
+            before_count = (
+                matched
+                + len(correspondence.disappeared)
+                + split_before
+                + merge_before
+                + len(correspondence.ambiguous_before)
             )
-            after = build_observation(
-                trace.frame_after,
-                available_actions=trace.available_action_names,
+            after_count = (
+                matched
+                + len(correspondence.appeared)
+                + split_after
+                + merge_after
+                + len(correspondence.ambiguous_after)
             )
-            total_components += len(before.objects) + len(after.objects)
+            total_components += before_count + after_count
             ambiguous += correspondence.ambiguity_count
     ambiguity_rate = ambiguous / max(1, total_components)
     grounded = sum(
@@ -1605,6 +1642,7 @@ def run_feasibility(
     output_dir: str | Path = DEFAULT_OUTPUT_DIR,
 ) -> dict[str, Any]:
     frozen = load_frozen_manifest(frozen_manifest_path)
+    _OBSERVATION_CACHE.clear()
     source_manifest = json.loads(
         (V43_OUTPUT_DIR / "source_train_collection_manifest.json").read_text(
             encoding="utf-8"
