@@ -11,6 +11,7 @@ from theory.sage12.semantic_bottleneck_curve_v4_13 import (
     CORRUPTED_EFFECTS,
     NOISE_LEVELS,
     _corrupt_oracle,
+    _semantic_fidelity,
     _spearman,
     freeze_manifest,
 )
@@ -156,3 +157,29 @@ def test_oracle_corruption_is_deterministic_and_nested() -> None:
 def test_spearman_reports_direction_of_semantic_curve() -> None:
     assert _spearman([1.0, 0.9, 0.75, 0.5], [8.0, 7.0, 6.0, 5.0]) == 1.0
     assert _spearman([1.0, 0.9, 0.75, 0.5], [5.0, 6.0, 7.0, 8.0]) == -1.0
+
+
+def test_semantic_fidelity_uses_same_eleven_effect_channel() -> None:
+    examples = tuple(_oracle_example(index)[0] for index in range(4))
+    annotations = {
+        example.slot.slot_id: _oracle_example(index)[1]
+        for index, example in enumerate(examples)
+    }
+    flipped, flipped_annotations, _summary = _corrupt_oracle(
+        examples,
+        annotations,
+        flip_probability=1.0,
+        seed=1,
+        source="flipped",
+    )
+
+    exact = _semantic_fidelity(examples, annotations, examples, annotations)
+    inverse = _semantic_fidelity(
+        flipped, flipped_annotations, examples, annotations
+    )
+
+    assert exact["bits"] == len(examples) * len(CORRUPTED_EFFECTS)
+    assert exact["accuracy_at_0_5"] == 1.0
+    assert exact["brier"] == 0.0
+    assert inverse["accuracy_at_0_5"] == 0.0
+    assert inverse["brier"] == 1.0

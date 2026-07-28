@@ -745,3 +745,18 @@ deployable learned rollout. This boundary and the component-level diagnostic
 verdicts are frozen in
 `reports/SAGE12_SEMANTIC_BOTTLENECK_CURVE_V4_13_PROTOCOL.md`. At this
 checkpoint no V4.13 result has been observed.
+
+The unconditional evaluation subsequently returned
+`SEMANTIC_PREDICTOR_BOTTLENECK`. True-world outcomes plus the learned EBM
+gained `+0.42972` over the primary baseline; perfect semantic inputs gained
+`+0.35215`; and symmetric 90% and 75% semantic-bit conditions retained
+positive confidence intervals and all 3/3 completion opportunities. The 50%
+condition failed. Utility was perfectly monotonic with semantic accuracy.
+
+The learned V4.12 channel improved the structure-only chain by `+0.23190` but
+remained `−0.17871` below the action-sequence baseline and captured 0/3
+completion opportunities. Its apparent 86.15% raw bit accuracy concealed only
+48.19% macro balanced accuracy. Perfect semantics also failed the root-reuse
+deployment stress, confirming that a learned next-state rollout is still
+required before live win-rate claims. See
+`reports/SAGE12_SEMANTIC_BOTTLENECK_CURVE_V4_13_RESULT.md`.

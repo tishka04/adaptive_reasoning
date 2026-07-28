@@ -324,6 +324,73 @@ def _spearman(left: Sequence[float], right: Sequence[float]) -> float:
     return float(np.corrcoef(left_rank, right_rank)[0, 1])
 
 
+def _semantic_fidelity(
+    learned: Sequence[SlotExample],
+    learned_annotations: Mapping[str, SlotAnnotation],
+    oracle: Sequence[SlotExample],
+    oracle_annotations: Mapping[str, SlotAnnotation],
+) -> dict[str, Any]:
+    oracle_by_slot = {item.slot.slot_id: item for item in oracle}
+    per_effect = {}
+    all_targets = []
+    all_probabilities = []
+    balanced = []
+    for effect in CORRUPTED_EFFECTS:
+        targets = []
+        probabilities = []
+        for item in learned:
+            slot_id = item.slot.slot_id
+            oracle_item = oracle_by_slot[slot_id]
+            target = _oracle_effect(
+                oracle_item, oracle_annotations[slot_id], effect
+            )
+            probability = (
+                float(item.slot.semantic_signature[f"v412.effect.{effect}"])
+                if effect in ACTIVE_EFFECTS
+                else float(
+                    learned_annotations[slot_id].effect_probabilities[effect]
+                )
+            )
+            targets.append(target)
+            probabilities.append(probability)
+        target_array = np.asarray(targets, dtype=np.float64)
+        probability_array = np.asarray(probabilities, dtype=np.float64)
+        binary = probability_array >= 0.5
+        positives = target_array == 1.0
+        negatives = ~positives
+        recall_positive = (
+            float(np.mean(binary[positives])) if positives.any() else None
+        )
+        recall_negative = (
+            float(np.mean(~binary[negatives])) if negatives.any() else None
+        )
+        balanced_accuracy = (
+            0.5 * (recall_positive + recall_negative)
+            if recall_positive is not None and recall_negative is not None
+            else None
+        )
+        if balanced_accuracy is not None:
+            balanced.append(balanced_accuracy)
+        per_effect[effect] = {
+            "rows": len(target_array),
+            "prevalence": float(np.mean(target_array)),
+            "accuracy_at_0_5": float(np.mean(binary == positives)),
+            "balanced_accuracy_at_0_5": balanced_accuracy,
+            "brier": float(np.mean((probability_array - target_array) ** 2)),
+        }
+        all_targets.extend(targets)
+        all_probabilities.extend(probabilities)
+    targets = np.asarray(all_targets, dtype=np.float64)
+    probabilities = np.asarray(all_probabilities, dtype=np.float64)
+    return {
+        "bits": len(targets),
+        "accuracy_at_0_5": float(np.mean((probabilities >= 0.5) == (targets == 1.0))),
+        "macro_balanced_accuracy_at_0_5": float(np.mean(balanced)),
+        "brier": float(np.mean((probabilities - targets) ** 2)),
+        "per_effect": per_effect,
+    }
+
+
 def evaluate(
     *,
     output_dir: str | Path = DEFAULT_OUTPUT_DIR,
@@ -847,6 +914,12 @@ def evaluate(
         "metrics": metrics,
         "comparisons": comparisons,
         "semantic_corruption": corruption,
+        "learned_semantic_fidelity": _semantic_fidelity(
+            learned,
+            learned_annotations,
+            oracle,
+            oracle_annotations,
+        ),
         "semantic_accuracy_curve": {
             "rows": curve,
             "utility_spearman": curve_spearman,
@@ -888,6 +961,38 @@ def evaluate(
     return result
 
 
+def attach_semantic_fidelity(
+    *,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+    v412_dir: str | Path = DEFAULT_V412_DIR,
+    v411_dir: str | Path = DEFAULT_V411_DIR,
+    v43_dir: str | Path = DEFAULT_V43_DIR,
+) -> dict[str, Any]:
+    """Attach the descriptive learned-vs-oracle fidelity to an existing run."""
+
+    destination = Path(output_dir)
+    load_manifest(destination)
+    roots = load_complete_roots(v43_dir)
+    original = load_slot_examples(roots)
+    learned, learned_annotations = _load_slot_inputs(
+        Path(v412_dir), original, variant="descriptive_distilled"
+    )
+    oracle, oracle_annotations = _oracle_inputs(
+        original, roots, v411_dir=v411_dir
+    )
+    result = _read_json(destination / "result.json")
+    result.pop("result_checksum", None)
+    result["learned_semantic_fidelity"] = _semantic_fidelity(
+        learned,
+        learned_annotations,
+        oracle,
+        oracle_annotations,
+    )
+    result["result_checksum"] = _checksum(result)
+    _write_json(destination / "result.json", result)
+    return result
+
+
 def run(
     *,
     output_dir: str | Path = DEFAULT_OUTPUT_DIR,
@@ -907,6 +1012,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     evaluate_parser.add_argument(
         "--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR
     )
+    attach_parser = subparsers.add_parser("attach-fidelity")
+    attach_parser.add_argument(
+        "--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR
+    )
     run_parser = subparsers.add_parser("run")
     run_parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     args = parser.parse_args(argv)
@@ -914,6 +1023,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         payload = freeze_manifest(output_dir=args.output_dir)
     elif args.command == "evaluate":
         payload = evaluate(output_dir=args.output_dir)
+    elif args.command == "attach-fidelity":
+        payload = attach_semantic_fidelity(output_dir=args.output_dir)
     else:
         payload = run(output_dir=args.output_dir)
     print(json.dumps(payload, indent=2, sort_keys=True))
@@ -927,6 +1038,7 @@ if __name__ == "__main__":
 __all__ = [
     "CORRUPTED_EFFECTS",
     "NOISE_LEVELS",
+    "attach_semantic_fidelity",
     "evaluate",
     "freeze_manifest",
     "load_manifest",
