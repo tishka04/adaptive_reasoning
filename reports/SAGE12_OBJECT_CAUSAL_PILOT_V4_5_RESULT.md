@@ -17,6 +17,11 @@ No fresh source trace or validation shard was created. No source-validation
 game was opened. Qwen, GNN, world-model, EBM, and controller authority remain
 closed.
 
+The official audit ran on CPU in about two minutes. The workload is
+deterministic connected-component matching followed by small scikit-learn
+linear fits; it has no effective CUDA path, so using the laptop GPU would not
+have accelerated this iteration.
+
 ## Outcome
 
 V4.5 found abundant source event capacity but did not find a sufficiently
@@ -120,3 +125,7 @@ before another predictive gate is attempted.
 
 The frozen design is in
 `reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_PROTOCOL.md`.
+
+Final validation passed 47 focused V4.5/V4.4/V4.3/V3 tests, focused Ruff
+checks, the JSON/checksum artifact contract, and absence checks for source and
+validation shard directories plus `feasibility_model.json`.

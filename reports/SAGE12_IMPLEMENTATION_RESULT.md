@@ -441,3 +441,9 @@ All conditional collection/evaluation commands wrote explicit closure
 artifacts. No fresh source or validation shard, model bundle, Qwen model, GNN,
 world model, EBM, or controller was created. Full ledger:
 `reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_RESULT.md`.
+
+The source audit ran on CPU in about two minutes. Its component matcher and
+small scikit-learn linear models have no effective CUDA execution path, so the
+laptop GPU was not used. Final validation passed 47 focused tests, focused
+Ruff checks, the persisted artifact contract, and explicit absence checks for
+fresh shards and a feasibility model.
