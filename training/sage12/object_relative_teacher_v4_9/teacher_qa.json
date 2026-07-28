@@ -1,0 +1,341 @@
+{
+  "all_games_source_train": true,
+  "artifact_sha256": {
+    "same_prestate_pairs": "53fa00b17581f22c28fa58f79d97308f1150da935154c0f163c4025cc318c751",
+    "teacher_corpus": "30cd76d33d05ed309e58b44b6569b5079a1ac967e18ae9e7ea9eaa78a981c956"
+  },
+  "checks": {
+    "all_games_source_train": true,
+    "forbidden_model_fields_absent": true,
+    "pair_links_resolved": true,
+    "root_grounding_minimum": true,
+    "strict_json_roundtrip": true
+  },
+  "completion_labels_synthesized": false,
+  "completion_positives": 5,
+  "forbidden_model_fields_absent": true,
+  "format_version": "sage12-semantic-teacher-qa-v4.9",
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "holdout_opened": false,
+  "label_capacity": {
+    "actor_approached_root": {
+      "applicable": 6030,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 36,
+        "lp85": 0,
+        "sp80": 7,
+        "su15": 8,
+        "tr87": 3,
+        "tu93": 0
+      },
+      "positive": 54
+    },
+    "changed": {
+      "applicable": 7541,
+      "per_game_positive": {
+        "bp35": 749,
+        "cd82": 609,
+        "dc22": 723,
+        "g50t": 527,
+        "ka59": 553,
+        "lf52": 711,
+        "lp85": 323,
+        "sp80": 757,
+        "su15": 721,
+        "tr87": 743,
+        "tu93": 685
+      },
+      "positive": 7101
+    },
+    "contact_gained": {
+      "applicable": 6030,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 34,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 2,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 36
+    },
+    "contact_lost": {
+      "applicable": 6030,
+      "per_game_positive": {
+        "bp35": 591,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 345,
+        "ka59": 96,
+        "lf52": 99,
+        "lp85": 0,
+        "sp80": 18,
+        "su15": 6,
+        "tr87": 18,
+        "tu93": 311
+      },
+      "positive": 1484
+    },
+    "game_over": {
+      "applicable": 7541,
+      "per_game_positive": {
+        "bp35": 11,
+        "cd82": 2,
+        "dc22": 2,
+        "g50t": 2,
+        "ka59": 2,
+        "lf52": 4,
+        "lp85": 93,
+        "sp80": 14,
+        "su15": 13,
+        "tr87": 2,
+        "tu93": 6
+      },
+      "positive": 151
+    },
+    "level_complete": {
+      "applicable": 7541,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 4,
+        "sp80": 1,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 5
+    },
+    "local_change": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 657,
+        "cd82": 2,
+        "dc22": 3,
+        "g50t": 348,
+        "ka59": 299,
+        "lf52": 269,
+        "lp85": 4,
+        "sp80": 23,
+        "su15": 58,
+        "tr87": 14,
+        "tu93": 311
+      },
+      "positive": 1988
+    },
+    "moved": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 591,
+        "cd82": 4,
+        "dc22": 0,
+        "g50t": 376,
+        "ka59": 96,
+        "lf52": 259,
+        "lp85": 4,
+        "sp80": 44,
+        "su15": 61,
+        "tr87": 29,
+        "tu93": 311
+      },
+      "positive": 1775
+    },
+    "path_closed": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 81,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 38,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 119
+    },
+    "path_opened": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 399,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 4,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 403
+    },
+    "productive": {
+      "applicable": 7541,
+      "per_game_positive": {
+        "bp35": 500,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 346,
+        "ka59": 84,
+        "lf52": 10,
+        "lp85": 4,
+        "sp80": 34,
+        "su15": 30,
+        "tr87": 15,
+        "tu93": 310
+      },
+      "positive": 1333
+    },
+    "reachable_area_decreased": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 62,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 1,
+        "ka59": 0,
+        "lf52": 9,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 13,
+        "tr87": 0,
+        "tu93": 92
+      },
+      "positive": 177
+    },
+    "reachable_area_increased": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 36,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 1,
+        "ka59": 0,
+        "lf52": 5,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 14,
+        "tr87": 0,
+        "tu93": 94
+      },
+      "positive": 150
+    },
+    "risk": {
+      "applicable": 7541,
+      "per_game_positive": {
+        "bp35": 122,
+        "cd82": 2,
+        "dc22": 2,
+        "g50t": 3,
+        "ka59": 2,
+        "lf52": 9,
+        "lp85": 93,
+        "sp80": 14,
+        "su15": 48,
+        "tr87": 2,
+        "tu93": 97
+      },
+      "positive": 394
+    },
+    "target_created": {
+      "applicable": 6129,
+      "per_game_positive": {
+        "bp35": 9,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 7,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 36,
+        "tr87": 0,
+        "tu93": 280
+      },
+      "positive": 332
+    },
+    "target_moved": {
+      "applicable": 4407,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 84,
+        "lf52": 6,
+        "lp85": 0,
+        "sp80": 33,
+        "su15": 17,
+        "tr87": 15,
+        "tu93": 0
+      },
+      "positive": 155
+    },
+    "target_removed": {
+      "applicable": 4407,
+      "per_game_positive": {
+        "bp35": 330,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 347,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 4,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 280
+      },
+      "positive": 961
+    }
+  },
+  "live_environment_opened": false,
+  "manifest_checksum": "311f7a1ac4fee1cb265e12cfb8cd92ab5654eb135ce7bbdbcc44117279f35710",
+  "pair_links_resolved": true,
+  "qa_checksum": "d3424198a670479fc31874e282dbee8b5e39aadd554bbe09b58a964dfb47335e",
+  "records": 7541,
+  "root_grounding_rate": 1.0,
+  "source_metadata": {
+    "duplicates": {
+      "v43": 291
+    },
+    "pair_links": 2396,
+    "unique_traces": 7541,
+    "v3_rows": 3040,
+    "v43_arms": 4792
+  },
+  "source_validation_opened": false,
+  "strict_json_roundtrip": true,
+  "teacher_ready": true
+}

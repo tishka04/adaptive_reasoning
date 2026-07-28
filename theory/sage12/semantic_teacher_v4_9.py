@@ -404,7 +404,9 @@ def build_object_relative_graph(
         root_kind = "actor"
         center = tuple(float(value) for value in player.position)
     else:
-        root_kind = "targetless"
+        # A targetless legal action still has a deployable semantic root: the
+        # intervention itself. This is distinct from an ungrounded target.
+        root_kind = "action_root"
         center = (
             (observation.raw_grid.shape[0] - 1) / 2.0,
             (observation.raw_grid.shape[1] - 1) / 2.0,
@@ -957,7 +959,9 @@ def compile_teacher_corpus(
                 for game in SOURCE_TRAIN
             },
         }
-    grounded = sum(record.graph.root["root_kind"] != "targetless" for record in records)
+    grounded = sum(
+        record.graph.root["root_kind"] != "ungrounded" for record in records
+    )
     json_roundtrip = all(
         SemanticTeacherRecord.from_dict(record.to_dict()).to_dict() == record.to_dict()
         for record in records

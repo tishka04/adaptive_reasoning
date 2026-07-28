@@ -582,3 +582,9 @@ python -m theory.sage12.semantic_teacher_v4_9 compile
 The design and decision thresholds are frozen in
 `reports/SAGE12_OBJECT_RELATIVE_TEACHER_STUDENT_V4_9_PROTOCOL.md`. At this
 checkpoint no V4.9 result has been observed and no live authority exists.
+
+The teacher corpus subsequently passed QA with 7,541 unique source-only
+transitions, 2,396 same-prestate pairs, 100% valid semantic roots, and all
+identity/firewall checks passing. It contains exactly five non-synthetic
+completion events. The corpus is published before student training; see
+`reports/SAGE12_OBJECT_RELATIVE_TEACHER_V4_9_QA.md`.
