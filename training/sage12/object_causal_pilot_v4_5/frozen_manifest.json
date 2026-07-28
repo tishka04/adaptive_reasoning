@@ -1,0 +1,111 @@
+{
+  "correspondence": {
+    "ambiguity_margin": 0.1,
+    "minimum_score": 0.65,
+    "split_merge_minimum_area_ratio": 0.75,
+    "split_merge_minimum_iou": 0.7
+  },
+  "evaluation": {
+    "bootstrap_samples": 2000,
+    "random_seed": 451
+  },
+  "firewall": {
+    "absolute_coordinates_in_model_view": false,
+    "ar25_opened": false,
+    "controller_authorized": false,
+    "ebm_authorized": false,
+    "global_scene_signature_in_model_view": false,
+    "gnn_authorized": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "object_ids_in_model_view": false,
+    "qwen_authorized": false,
+    "raw_values_in_model_view": false,
+    "source_validation_opened": false,
+    "world_model_authorized": false
+  },
+  "format_version": "sage12-object-causal-pilot-v4.5",
+  "fresh_collection": {
+    "context_full_traces": 8,
+    "format_version": "sage12-object-causal-tree-v4.5",
+    "source_train": {
+      "action_budget_per_reset": 32,
+      "maximum_resets_per_game": 64,
+      "minimum_pairs": 2000,
+      "roots_per_game": 32,
+      "seeds": [
+        1663,
+        1721,
+        1783,
+        1847
+      ]
+    },
+    "source_validation": {
+      "action_budget_per_reset": 32,
+      "maximum_resets_per_game": 96,
+      "minimum_discordant_pairs_per_event": 30,
+      "minimum_pairs": 1000,
+      "roots_per_game": 64,
+      "seeds": [
+        1901,
+        1951,
+        2011,
+        2063
+      ]
+    },
+    "tree_depth": 3
+  },
+  "frozen_at": "2026-07-28",
+  "gates": {
+    "maximum_ambiguity_rate": 0.1,
+    "maximum_arm_swap_error": 1e-12,
+    "maximum_identity_gain_over_action": 0.05,
+    "maximum_macro_ece": 0.1,
+    "minimum_correspondence_confident_rate": 0.9,
+    "minimum_exclusive_localization": 0.9,
+    "minimum_macro_accuracy_gain": 0.1,
+    "minimum_macro_brier_skill": 0.1,
+    "minimum_relation_shuffle_accuracy_drop": 0.1,
+    "minimum_root_grounding_rate": 0.9,
+    "minimum_root_swap_accuracy_drop": 0.1,
+    "require_bootstrap_lower_positive": true,
+    "require_every_scoreable_game_nonnegative": true
+  },
+  "manifest_checksum": "cfae89ac0de9f263af52dbb042e352869324f301a633012d44ad7b85ec028741",
+  "source_corpus": {
+    "collection_report_checksum": "a842c0bdd99a1e10ad48c03ded447e231a6767e6af7410192b2f21c4b2948722",
+    "design_only": true,
+    "pairs": 2396,
+    "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards"
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_FEASIBILITY",
+  "vocabulary": {
+    "frozen_after_feasibility": true,
+    "minimum_discordant_pairs": 75,
+    "minimum_games_with_10": 3,
+    "minimum_promoted_events": 2,
+    "projections": [
+      "fine",
+      "no_magnitude",
+      "base"
+    ]
+  }
+}

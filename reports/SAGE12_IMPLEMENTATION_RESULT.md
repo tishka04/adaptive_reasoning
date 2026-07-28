@@ -406,3 +406,20 @@ downstream authority. Full ledger:
 Final validation passed 48 focused V4.4/V4.3/V4.2 tests in 24.44 seconds,
 passed focused Ruff checks, and verified the absence of both a source model
 and validation shards.
+
+## V4.5 implementation freeze
+
+V4.5 adds deterministic tri-view object correspondence with explicit
+ambiguity, split/merge hypotheses, intervention-exclusive event compilation,
+fine-to-coarse source vocabulary discovery, identity-free rooted two-hop
+graphs, temporal track buckets, action/history/root/template baselines,
+antisymmetric source LOGO scoring, root-swap and relation-shuffle controls,
+identity and calibration diagnostics, per-game transfer, paired bootstrap,
+and mechanically closed downstream commands.
+
+The protocol and code were frozen before feasibility. The manifest checksum
+is `cfae89ac0de9f263af52dbb042e352869324f301a633012d44ad7b85ec028741`.
+Focused V4.5 tests cover translation, recolouring, splits, ambiguity, common
+dynamics, vocabulary backoff, the model firewall, temporal buckets,
+antisymmetry, and fail-closed collection. No V4.5 outcome or validation data
+exists at this checkpoint.

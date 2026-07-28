@@ -438,3 +438,36 @@ complete-arm inversion passed, confirming that the negative result comes from
 the binding signal rather than the antisymmetric implementation. No
 validation shard was created. See
 `reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_RESULT.md`.
+
+## Rooted intervention events V4.5
+
+V4.5 replaces the rejected binding buckets with a tri-view compiler over the
+common pre-state and both executed post-states. It matches objects with
+translation-normalized shape, overlap, relative size, distance, and tolerant
+value evidence; handles splits and merges; cancels common dynamics; and emits
+direct, local, or collateral intervention-exclusive events.
+
+The event vocabulary is discovered from V4.3 source data with a deterministic
+fine-to-coarse capacity rule, then frozen. `RootedTargetGraph` represents only
+the action, its occupied/virtual/actor root, two-hop relative relations, roles,
+and identity-free temporal buckets. It excludes coordinates, IDs, raw values,
+shape signatures, global signatures, and game identity.
+
+The feasibility audit is design-only. It must pass compiler quality, source
+LOGO utility, root-swap and relation-shuffle sensitivity, identity,
+calibration, per-game, bootstrap, and exact-antisymmetry gates before fresh
+source collection is possible.
+
+```powershell
+python -m theory.sage12.object_causal_pilot feasibility
+python -m theory.sage12.object_causal_pilot collect-source
+python -m theory.sage12.object_causal_pilot preflight
+python -m theory.sage12.object_causal_pilot collect-validation
+python -m theory.sage12.object_causal_pilot evaluate
+```
+
+The frozen design is in
+`reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_PROTOCOL.md`; its manifest checksum is
+`cfae89ac0de9f263af52dbb042e352869324f301a633012d44ad7b85ec028741`.
+No V4.5 outcome exists at this checkpoint and every downstream authority
+remains closed.

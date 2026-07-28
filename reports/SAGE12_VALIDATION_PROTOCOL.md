@@ -308,3 +308,24 @@ per-game transfer, and bootstrap gates failed for every projection. The
 validation collection and final result are explicit skipped artifacts; no
 validation game was opened. Stages B-E remain unauthorized. Full result:
 `reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_RESULT.md`.
+
+## V4.5 rooted-event feasibility amendment
+
+V4.5 is a design-only successor over the immutable V4.3 source pairs. It
+replaces `BindingSignature` supervision with tri-view object correspondence,
+common-dynamics cancellation, source-discovered intervention events, and a
+target-rooted local graph.
+
+The existing source corpus may be used only for feasibility. Fresh source
+collection is blocked unless correspondence confidence, ambiguity, grounding,
+event localization and event capacity all pass together with source LOGO
+utility, root/relation sensitivity, identity, calibration, per-game,
+bootstrap, and exact-antisymmetry gates.
+
+A feasibility pass would trigger an independently seeded source replication
+that retains eight full context traces for persistent tracking. Only its
+complete pass may open the unchanged SAGE11 source-validation games. A final
+pass authorizes preparation of a separate world-model protocol, never model
+fitting or control. Qwen, GNN, EBM, controller, holdout, historical, and
+`ar25` authority remain closed. Protocol:
+`reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_PROTOCOL.md`.
