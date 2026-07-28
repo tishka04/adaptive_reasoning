@@ -1,0 +1,134 @@
+{
+  "active_effects": [
+    "changed",
+    "moved",
+    "target_removed",
+    "target_moved",
+    "local_change",
+    "contact_lost",
+    "productive",
+    "risk"
+  ],
+  "authority_promoted": false,
+  "format_version": "sage12-descriptive-semantic-manifest-v4.12",
+  "historical_opened": false,
+  "holdout_opened": false,
+  "integration_gate": {
+    "bootstrap_samples": 1000,
+    "completion_selected_minimum_when_available": 1,
+    "descriptive_over_primary_ci_lower_strictly_positive": true,
+    "descriptive_over_root_semantics_mean_strictly_positive": true,
+    "descriptive_over_structured_mean_strictly_positive": true,
+    "heuristic_weights": {
+      "contradiction": -0.5,
+      "entropy": -0.1,
+      "failure": -4.0,
+      "predicted_return": 1.0,
+      "productive": 0.05,
+      "success": 3.0,
+      "uncertainty": -0.1
+    },
+    "nonnegative_games_minimum": 6,
+    "relation_shuffle_degradation_mean_strictly_positive": true,
+    "reuses_v4_7_world_and_ebm_hyperparameters": true,
+    "runs_only_if_semantic_gate_passes": true,
+    "trajectory_depth": 3
+  },
+  "live_environment_opened": false,
+  "manifest_checksum": "1071eecaa67753a887dadb783a0ce5287b4f6fa233e7c1e07b77040184d49835",
+  "semantic_gate": {
+    "active_macro_brier_gain_over_root_ci_lower_strictly_positive": true,
+    "arm_swap_max_complement_error": 1e-06,
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 51200,
+    "ece_not_worse_than_root_only": true,
+    "effect_pair_gain_over_action_ci_lower_strictly_positive": true,
+    "effect_pair_gain_over_root_ci_lower_strictly_positive": true,
+    "identity_increment_ci_upper_maximum": 0.02,
+    "neighbor_permutation_max_probability_delta": 1e-06,
+    "nonnegative_games_minimum": 6,
+    "primary_rows": "fresh_v4_11_panel_arms_only",
+    "relation_shuffle_brier_degradation_ci_lower_strictly_positive": true,
+    "relation_shuffle_pair_degradation_ci_lower_strictly_positive": true
+  },
+  "source_fingerprints": {
+    "training/sage12/bound_mechanic_pilot_v4_3/frozen_manifest.json": {
+      "bytes": 3488,
+      "sha256": "3e398a13383389660c6177bb958c99130f4d6dcd4bd0314a47db352babcb8f37"
+    },
+    "training/sage12/bound_mechanic_pilot_v4_3/source_train_collection_manifest.json": {
+      "bytes": 7533,
+      "sha256": "38578e6267d521dcb0685ce2775d9672b165dbfcffecfa70ec4b36e694861f4a"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json": {
+      "bytes": 3892,
+      "sha256": "5dfc6100549ba9ab7047dcea2a0463025a26926ef6ba20a701cc48b57a95b967"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/student_result.json": {
+      "bytes": 659,
+      "sha256": "fe6473a483b62767e0c29cefe5cac707fbfcce007b112cead2f9ea01daca3d93"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/teacher_panels.jsonl": {
+      "bytes": 14774023,
+      "sha256": "0642073627de0f61a52c3adc55f984210e9304af56bf1bd1606e69ea2b74adf8"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/teacher_qa.json": {
+      "bytes": 6895,
+      "sha256": "7b0cffbe272b176a28558de0df8521316fc140fdd739b6a905a02d096c656132"
+    },
+    "training/sage12/integration_pilot_v4_7/frozen_manifest.json": {
+      "bytes": 79376,
+      "sha256": "e11246959f43d398fc798c45430efb8b0dffd850cde4a5ed937f6efeb5da6594"
+    },
+    "training/sage12/integration_pilot_v4_7/result.json": {
+      "bytes": 59041,
+      "sha256": "666a92a4362fd2721e467d8761dbc63b08f51f6857631651211e8c6912bd2445"
+    }
+  },
+  "source_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_opened": false,
+  "teacher_contract": {
+    "expected_fresh_comparisons": 5529,
+    "expected_immediate_arms": 3914,
+    "expected_panels": 1056,
+    "ignores_v4_11_progress_capacity": true,
+    "requires_v4_11_collection_and_firewall_checks": true,
+    "reuses_v4_11_panels": true,
+    "scalar_progress_target_used": false
+  },
+  "training": {
+    "alpha_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "calibration": "inner_game_balanced_logit_shift",
+    "effect_pair_weight": 0.5,
+    "embedding_width": 32,
+    "epochs": 30,
+    "hash_buckets": 2048,
+    "hidden_width": 96,
+    "learning_rate": 0.0015,
+    "maximum_pairs_per_epoch": 4096,
+    "outer_split": "leave_one_source_train_game_out",
+    "progress_pair_weight": 0.0,
+    "samples_per_game_per_epoch": 256,
+    "seed": 5120,
+    "tie_consistency_weight": 0.0,
+    "weight_decay": 0.0001
+  }
+}

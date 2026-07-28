@@ -680,3 +680,31 @@ distillation implementations therefore remain tested but unfitted, and no GPU,
 world model, EBM, or controller authority followed. See
 `reports/SAGE12_COUNTERFACTUAL_TEACHER_V4_11_QA.md` and
 `reports/SAGE12_COUNTERFACTUAL_SEMANTIC_PANELS_V4_11_RESULT.md`.
+
+## Descriptive semantics and conditional integration (V4.12)
+
+V4.12 reuses all 1,056 V4.11 panels without collecting new data and removes
+the failed scalar progress target. It trains the same identity-free,
+object-relative comparator on the eight immediate effects that already met
+V4.11's capacity rule, preserving partial credit per effect. A panel-centred
+relation residual is distilled onto a root-only probability anchor under
+strict leave-one-game-out evaluation.
+
+The protocol freezes a two-stage decision. The semantic model must beat both
+root-only and action-only controls, react correctly to relation shuffling,
+improve absolute calibration across games and avoid incremental game-signature
+leakage. Only a complete semantic pass opens the unchanged source-only V4.7
+chain: world model, depth-three trajectories, EBM and controller. That second
+stage compares action-only, action-sequence, structured, root-semantic,
+fixed-heuristic, relation-shuffle and oracle ladders, including utility and
+completion capture.
+
+```powershell
+python -m theory.sage12.descriptive_semantic_integration_v4_12 freeze
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.descriptive_semantic_integration_v4_12 run --device cuda:0
+```
+
+The complete frozen design, thresholds and interpretation boundary are in
+`reports/SAGE12_DESCRIPTIVE_SEMANTIC_INTEGRATION_V4_12_PROTOCOL.md`. At this
+checkpoint no V4.12 model result has been observed and no authority is
+promoted.

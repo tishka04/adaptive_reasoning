@@ -878,9 +878,19 @@ def _fit_model(
     parameters: Mapping[str, Any],
     device: str,
     seed: int,
+    active_pair_effects: Sequence[str] = SEMANTIC_EFFECTS,
 ) -> tuple[Any, dict[str, Any]]:
     import torch
 
+    active_pair_effects = tuple(str(effect) for effect in active_pair_effects)
+    unknown = sorted(set(active_pair_effects) - set(SEMANTIC_EFFECTS))
+    if unknown:
+        raise ValueError(f"unknown pairwise effects: {unknown}")
+    if not active_pair_effects:
+        raise ValueError("at least one pairwise effect is required")
+    active_pair_indices = tuple(
+        SEMANTIC_EFFECTS.index(effect) for effect in active_pair_effects
+    )
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -949,7 +959,7 @@ def _fit_model(
             reduction="none",
         )
         per_effect_pair = []
-        for effect_index in range(pair_raw.shape[1]):
+        for effect_index in active_pair_indices:
             effect_mask = pair_mask[:, effect_index]
             per_effect_pair.append(
                 (pair_raw[:, effect_index] * effect_mask).sum()
@@ -1011,6 +1021,7 @@ def _fit_model(
         "runtime_seconds": time.perf_counter() - started,
         "train_rows": len(train_indices),
         "train_comparisons": len(usable),
+        "active_pair_effects": list(active_pair_effects),
         "final_losses": final_losses,
     }
 
