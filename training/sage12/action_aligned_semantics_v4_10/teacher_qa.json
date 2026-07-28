@@ -1,0 +1,342 @@
+{
+  "all_graphs_action_aligned": true,
+  "artifact_sha256": {
+    "same_prestate_pairs": "53fa00b17581f22c28fa58f79d97308f1150da935154c0f163c4025cc318c751",
+    "teacher_corpus": "78d2e51cf86d979006d7752955040c7b6775989624014653497aa990523c994a"
+  },
+  "base_records": 7541,
+  "capacity_amendment_checksum": "cef75fd72e8fd2f7b89673b330870301d59e718ef9b64dfaa2ddf9104106f0e9",
+  "collection_checksum": "51fbdfbb7f379730c4797f0188d06db648acaeb7a61b5cebdb192db2a2e1b534",
+  "duplicates_against_v49": 0,
+  "format_version": "sage12-action-aligned-teacher-qa-v4.10",
+  "fresh_per_game": {
+    "bp35": 160,
+    "cd82": 160,
+    "dc22": 160,
+    "g50t": 160,
+    "ka59": 160,
+    "lf52": 160,
+    "lp85": 64,
+    "sp80": 160,
+    "su15": 83,
+    "tr87": 160,
+    "tu93": 160
+  },
+  "fresh_records": 1587,
+  "holdout_opened": false,
+  "label_capacity": {
+    "actor_approached_root": {
+      "applicable": 7244,
+      "games_with_positive": 5,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 37,
+        "lp85": 1,
+        "sp80": 13,
+        "su15": 8,
+        "tr87": 3,
+        "tu93": 0
+      },
+      "positive": 62
+    },
+    "changed": {
+      "applicable": 9128,
+      "games_with_positive": 11,
+      "per_game_positive": {
+        "bp35": 909,
+        "cd82": 737,
+        "dc22": 880,
+        "g50t": 607,
+        "ka59": 705,
+        "lf52": 871,
+        "lp85": 387,
+        "sp80": 917,
+        "su15": 804,
+        "tr87": 903,
+        "tu93": 845
+      },
+      "positive": 8565
+    },
+    "contact_gained": {
+      "applicable": 7244,
+      "games_with_positive": 2,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 34,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 2,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 36
+    },
+    "contact_lost": {
+      "applicable": 7244,
+      "games_with_positive": 8,
+      "per_game_positive": {
+        "bp35": 602,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 370,
+        "ka59": 97,
+        "lf52": 120,
+        "lp85": 0,
+        "sp80": 20,
+        "su15": 6,
+        "tr87": 21,
+        "tu93": 362
+      },
+      "positive": 1598
+    },
+    "game_over": {
+      "applicable": 9128,
+      "games_with_positive": 11,
+      "per_game_positive": {
+        "bp35": 13,
+        "cd82": 2,
+        "dc22": 4,
+        "g50t": 2,
+        "ka59": 2,
+        "lf52": 6,
+        "lp85": 94,
+        "sp80": 28,
+        "su15": 17,
+        "tr87": 2,
+        "tu93": 9
+      },
+      "positive": 179
+    },
+    "level_complete": {
+      "applicable": 9128,
+      "games_with_positive": 2,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 5,
+        "sp80": 1,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 6
+    },
+    "local_change": {
+      "applicable": 7431,
+      "games_with_positive": 11,
+      "per_game_positive": {
+        "bp35": 686,
+        "cd82": 2,
+        "dc22": 6,
+        "g50t": 374,
+        "ka59": 300,
+        "lf52": 292,
+        "lp85": 11,
+        "sp80": 30,
+        "su15": 61,
+        "tr87": 20,
+        "tu93": 362
+      },
+      "positive": 2144
+    },
+    "moved": {
+      "applicable": 7417,
+      "games_with_positive": 10,
+      "per_game_positive": {
+        "bp35": 602,
+        "cd82": 5,
+        "dc22": 0,
+        "g50t": 414,
+        "ka59": 97,
+        "lf52": 303,
+        "lp85": 6,
+        "sp80": 59,
+        "su15": 62,
+        "tr87": 34,
+        "tu93": 362
+      },
+      "positive": 1944
+    },
+    "path_closed": {
+      "applicable": 7431,
+      "games_with_positive": 2,
+      "per_game_positive": {
+        "bp35": 92,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 38,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 130
+    },
+    "path_opened": {
+      "applicable": 7431,
+      "games_with_positive": 2,
+      "per_game_positive": {
+        "bp35": 399,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 0,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 5,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 0
+      },
+      "positive": 404
+    },
+    "productive": {
+      "applicable": 9128,
+      "games_with_positive": 9,
+      "per_game_positive": {
+        "bp35": 501,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 372,
+        "ka59": 85,
+        "lf52": 19,
+        "lp85": 5,
+        "sp80": 44,
+        "su15": 34,
+        "tr87": 21,
+        "tu93": 359
+      },
+      "positive": 1440
+    },
+    "reachable_area_decreased": {
+      "applicable": 7417,
+      "games_with_positive": 6,
+      "per_game_positive": {
+        "bp35": 70,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 2,
+        "ka59": 0,
+        "lf52": 11,
+        "lp85": 1,
+        "sp80": 0,
+        "su15": 13,
+        "tr87": 0,
+        "tu93": 112
+      },
+      "positive": 209
+    },
+    "reachable_area_increased": {
+      "applicable": 7417,
+      "games_with_positive": 5,
+      "per_game_positive": {
+        "bp35": 39,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 2,
+        "ka59": 0,
+        "lf52": 9,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 15,
+        "tr87": 0,
+        "tu93": 114
+      },
+      "positive": 179
+    },
+    "risk": {
+      "applicable": 9128,
+      "games_with_positive": 11,
+      "per_game_positive": {
+        "bp35": 142,
+        "cd82": 2,
+        "dc22": 4,
+        "g50t": 4,
+        "ka59": 2,
+        "lf52": 11,
+        "lp85": 95,
+        "sp80": 28,
+        "su15": 52,
+        "tr87": 2,
+        "tu93": 119
+      },
+      "positive": 461
+    },
+    "target_created": {
+      "applicable": 7431,
+      "games_with_positive": 4,
+      "per_game_positive": {
+        "bp35": 9,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 13,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 0,
+        "sp80": 0,
+        "su15": 36,
+        "tr87": 0,
+        "tu93": 316
+      },
+      "positive": 374
+    },
+    "target_moved": {
+      "applicable": 5340,
+      "games_with_positive": 6,
+      "per_game_positive": {
+        "bp35": 0,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 1,
+        "ka59": 85,
+        "lf52": 13,
+        "lp85": 0,
+        "sp80": 43,
+        "su15": 20,
+        "tr87": 21,
+        "tu93": 0
+      },
+      "positive": 183
+    },
+    "target_removed": {
+      "applicable": 5340,
+      "games_with_positive": 4,
+      "per_game_positive": {
+        "bp35": 330,
+        "cd82": 0,
+        "dc22": 0,
+        "g50t": 372,
+        "ka59": 0,
+        "lf52": 0,
+        "lp85": 5,
+        "sp80": 0,
+        "su15": 0,
+        "tr87": 0,
+        "tu93": 316
+      },
+      "positive": 1023
+    }
+  },
+  "live_environment_opened": false,
+  "manifest_checksum": "0c1fa71390784cfa49710283047a542a12b5f5cce2df4e1f446690079b3f36db",
+  "pair_links": 2396,
+  "qa_checksum": "37a63f2a45ca53a703c2b17f61aaad88570a403a270e6ce36e7fe9b0aba35bc0",
+  "records": 9128,
+  "source_validation_opened": false,
+  "teacher_ready": true
+}

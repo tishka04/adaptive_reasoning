@@ -622,3 +622,8 @@ their original quotas; `su15` saturated at 83 rows after 40 resets and 1,197
 exact-repeat rejections. A pre-model capacity amendment lowers only its minimum
 to 80, leaving every model and evaluation decision unchanged. See
 `reports/SAGE12_ACTION_ALIGNED_SEMANTICS_V4_10_COLLECTION.md`.
+
+The augmented teacher corpus subsequently passed QA with 9,128 records and
+100% action-aligned, compass-free model graphs. It contains six genuine
+completion events and preserves all 2,396 same-prestate pairs. See
+`reports/SAGE12_ACTION_ALIGNED_TEACHER_V4_10_QA.md`.
