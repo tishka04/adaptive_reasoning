@@ -470,3 +470,33 @@ It selects 44 outcome-blind roots and two prompt variants, for 88 CUDA
 generations. V4.6 is exploratory, cannot promote authority, and does not
 change any V4.3–V4.5 verdict. Full protocol:
 `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`.
+
+## V4.6 result
+
+The full integration pilot completed
+`GLOBAL_CHAIN_NEGATIVE_PROPOSAL_OR_GROUNDING_BOTTLENECK`, checksum
+`dc40f20ba3818eff6fa73fb5f86ef46828d399330ba7fc856dd3fe40f9dfe351`.
+The oracle pipeline retained 1.00 best-action accuracy on all 340 roots and
+gained +0.6657 utility over the stronger simple baseline, with paired interval
+`[+0.4308, +0.9400]`. The myopic oracle scored 0.3120 below the depth-three
+oracle, confirming hierarchical headroom.
+
+Qwen ran all 88 original/shuffled prompts on the RTX 4050 in 847.7 model
+seconds at 11.257 seconds median. Strict validity was zero; conservative
+normalization retained 18/88 responses and 11/44 original roots. Qwen with
+learned-world coverage but oracle energy was -0.2839 below the stronger
+same-root baseline. The full chain was -0.3859 with interval
+`[-0.9072, +0.0381]`. Learned depth three equalled depth one, relation
+shuffling improved utility by 0.0944, and game-identity accuracy was 1.00.
+
+The first CUDA launcher failed before loading Qwen because its Windows Store
+virtual-environment shim was invalid; another existing Python 3.11 CUDA
+environment loaded the identical local packages. Three evaluation attempts
+then expired before result serialization due repeated graph construction,
+full relation-state copying, repeated changed-cell counts, and thread-pool
+overhead. The final implementation caches prebuilt graphs and deterministic
+utilities, projects rollout state to consulted predicates, and uses one CPU
+thread for the 16-unit EBM. These are exact runtime optimizations; frozen
+inputs, scores, training pairs, and decision rules did not change. Final
+focused validation passed 19 tests. Full result:
+`reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`.

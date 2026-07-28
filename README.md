@@ -207,6 +207,28 @@ on 44 outcome-blind roots with original and relation-shuffled prompts; all
 work is source-only and offline, and the pilot cannot grant live authority.
 See `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`.
 
+The completed V4.6 result is negative for the current learned chain but does
+not refute the global architecture under its frozen rule. The oracle pipeline
+preserved 100% of best actions and gained +0.666 utility over the stronger
+simple baseline, while the myopic oracle left 0.312 utility on the table. The
+first collapse was Qwen proposal/grounding: only 11/44 original roots yielded
+a normalized grounded option, and even oracle ranking of those options scored
+-0.284 below the stronger same-root baseline. The full chain scored -0.386,
+relation shuffling improved it by 0.094, and game identity remained perfectly
+decodable. No authority was promoted. See
+`reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`.
+
+The completed V4.6 result is negative for the current learned chain but does
+not refute the global architecture under its frozen rule. The oracle pipeline
+preserved 100% of best actions and gained +0.666 utility over the stronger
+simple baseline, while the myopic oracle left 0.312 utility on the table. The
+first collapse was Qwen proposal/grounding: only 11/44 original roots yielded
+a normalized grounded option, and even oracle ranking of those options scored
+-0.284 below the stronger same-root baseline. The full chain scored -0.386,
+relation shuffling improved it by 0.094, and game identity remained perfectly
+decodable. No authority was promoted. See
+`reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`.
+
 - `theory/sage12/README.md`
 - `training/SAGE12_DATA_POLICY.md`
 - `models/SAGE12_MODEL_CARD.md`
@@ -215,6 +237,8 @@ See `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`.
 - `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`
 - `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`
 - `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`
+- `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`
+- `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`
 
 Focused software validation:
 

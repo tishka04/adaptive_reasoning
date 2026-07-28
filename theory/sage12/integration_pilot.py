@@ -88,6 +88,8 @@ QWEN_ROOTS_PER_GAME = 4
 QWEN_VARIANTS = ("original", "relation_shuffle")
 BOOTSTRAP_SAMPLES = 1_000
 SEED = 4_606
+_STEP_UTILITY_CACHE: dict[str, float] = {}
+_BRANCH_VALUE_CACHE: dict[tuple[str, str], float] = {}
 
 
 def _json_safe(value: Any) -> Any:
@@ -193,6 +195,9 @@ class ExecutedRoot:
         return None
 
     def branch_value(self, first: str) -> float:
+        cache_key = (self.root_key, first)
+        if cache_key in _BRANCH_VALUE_CACHE:
+            return _BRANCH_VALUE_CACHE[cache_key]
         values = []
         for suffix in itertools.product("LR", repeat=2):
             path = first + "".join(suffix)
@@ -205,7 +210,9 @@ class ExecutedRoot:
                 )
                 prefix += marker
             values.append(total)
-        return max(values)
+        result = max(values)
+        _BRANCH_VALUE_CACHE[cache_key] = result
+        return result
 
     def immediate_value(self, side: str) -> float:
         return step_utility(self.arm("", side).trace)
@@ -213,6 +220,8 @@ class ExecutedRoot:
 
 def step_utility(trace: ActionTargetTrace) -> float:
     """Frozen hierarchical utility for one actually executed transition."""
+    if trace.trace_digest in _STEP_UTILITY_CACHE:
+        return _STEP_UTILITY_CACHE[trace.trace_digest]
     effects = trace.effects
     labels = effects.labels
     before = np.asarray(trace.frame_before)
@@ -232,7 +241,7 @@ def step_utility(trace: ActionTargetTrace) -> float:
         int(bool(labels[name]))
         for name in ("target_created", "target_removed", "target_moved")
     )
-    return (
+    result = (
         float(UTILITY_WEIGHTS["level_complete"]) * int(complete)
         + float(UTILITY_WEIGHTS["game_over"]) * int(game_over)
         + float(UTILITY_WEIGHTS["productive"]) * int(not effects.noop)
@@ -241,6 +250,8 @@ def step_utility(trace: ActionTargetTrace) -> float:
         + float(UTILITY_WEIGHTS["target_effect"]) * target_effects
         + changed_credit
     )
+    _STEP_UTILITY_CACHE[trace.trace_digest] = result
+    return result
 
 
 def load_complete_roots(
@@ -781,6 +792,24 @@ def _compile(
     return result.options
 
 
+def _compact_rollout_state(
+    graph: SceneGraph,
+    options: Sequence[CompiledSemanticOption],
+) -> frozenset[str]:
+    """Keep exactly the initial predicates consulted by rollout or energy."""
+    state = {
+        predicate
+        for option in options
+        for predicate in option.preconditions
+    }
+    state.update(
+        predicate
+        for predicate in graph.state_predicates
+        if predicate.startswith(("level_complete|", "game_over|"))
+    )
+    return frozenset(state)
+
+
 def _best_features_by_action(
     *,
     model: SemanticWorldModel,
@@ -790,7 +819,7 @@ def _best_features_by_action(
     beam_width: int = 16,
 ) -> dict[str, tuple[float, ...]]:
     trajectories = model.rollout(
-        initial_state=graph.state_predicates,
+        initial_state=_compact_rollout_state(graph, options),
         options=options,
         maximum_depth=maximum_depth,
         beam_width=beam_width,
@@ -816,6 +845,11 @@ def train_ebm(
     graph_cache: Mapping[str, SceneGraph],
     seed: int,
 ) -> PairwiseTrajectoryEBM:
+    import torch
+
+    # This network has only 16 hidden units. Thread-pool dispatch dominates
+    # its arithmetic on the laptop CPU, so one thread is materially faster.
+    torch.set_num_threads(1)
     preferred = []
     rejected = []
     template = TemplateHypothesisGenerator()
@@ -875,6 +909,7 @@ def _controller_choice(
     root: ExecutedRoot,
     *,
     observation: Any,
+    graph: SceneGraph,
     generation: HypothesisGenerationResult,
     world_model: SemanticWorldModel,
     learned_energy: PairwiseTrajectoryEBM | None,
@@ -922,6 +957,11 @@ def _controller_choice(
                 depth=1,
             ),
         ),
+        prebuilt_scene_graph=graph,
+        rollout_initial_state=_compact_rollout_state(
+            graph,
+            _compile(generation, graph=graph, candidates=root.candidates),
+        ),
     )
     if not result.selected_option_id:
         return None
@@ -954,7 +994,7 @@ def _world_covered_keys(
     maximum_depth: int = 3,
 ) -> frozenset[str]:
     trajectories = model.rollout(
-        initial_state=graph.state_predicates,
+        initial_state=_compact_rollout_state(graph, options),
         options=options,
         maximum_depth=maximum_depth,
         beam_width=16,
@@ -1309,6 +1349,7 @@ def evaluate(
                         selected_key=_controller_choice(
                             root,
                             observation=observation,
+                            graph=graph,
                             generation=template_generation,
                             world_model=world,
                             learned_energy=None,
@@ -1321,6 +1362,7 @@ def evaluate(
                         selected_key=_controller_choice(
                             root,
                             observation=observation,
+                            graph=graph,
                             generation=template_generation,
                             world_model=world,
                             learned_energy=ebm,
@@ -1333,6 +1375,7 @@ def evaluate(
                         selected_key=_controller_choice(
                             root,
                             observation=observation,
+                            graph=graph,
                             generation=template_generation,
                             world_model=world,
                             learned_energy=ebm,
@@ -1399,6 +1442,7 @@ def evaluate(
                             selected_key=_controller_choice(
                                 root,
                                 observation=observation,
+                                graph=graph,
                                 generation=repaired_generation,
                                 world_model=world,
                                 learned_energy=None,
@@ -1411,6 +1455,7 @@ def evaluate(
                             selected_key=_controller_choice(
                                 root,
                                 observation=observation,
+                                graph=graph,
                                 generation=repaired_generation,
                                 world_model=world,
                                 learned_energy=ebm,
@@ -1423,6 +1468,7 @@ def evaluate(
                             selected_key=_controller_choice(
                                 root,
                                 observation=observation,
+                                graph=graph,
                                 generation=repaired_generation,
                                 world_model=world,
                                 learned_energy=ebm,

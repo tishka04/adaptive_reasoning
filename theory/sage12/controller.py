@@ -155,6 +155,8 @@ class SemanticPlanningController:
         protected_competence_available: bool,
         danger_veto: Callable[[str, Mapping[str, Any]], bool],
         subgoals: Sequence[HierarchicalSubgoal] | None = None,
+        prebuilt_scene_graph: Any | None = None,
+        rollout_initial_state: frozenset[str] | None = None,
     ) -> Sage12Arbitration:
         configured = self.configured_mode
         effective = self.effective_mode
@@ -174,7 +176,11 @@ class SemanticPlanningController:
             self._gate_downgrades += 1
         self._step_index += 1
         self._evaluations += 1
-        graph = build_scene_graph(observation)
+        graph = (
+            prebuilt_scene_graph
+            if prebuilt_scene_graph is not None
+            else build_scene_graph(observation)
+        )
         goal = _select_subgoal(subgoals)
         legal_candidates = _normalize_candidates(
             candidates,
@@ -211,7 +217,11 @@ class SemanticPlanningController:
         )
         self._rejected += len(compilation.rejected)
         trajectories = self.world_model.rollout(
-            initial_state=graph.state_predicates,
+            initial_state=(
+                graph.state_predicates
+                if rollout_initial_state is None
+                else rollout_initial_state
+            ),
             options=compilation.options,
             maximum_depth=self.config.maximum_depth,
             beam_width=self.config.beam_width,

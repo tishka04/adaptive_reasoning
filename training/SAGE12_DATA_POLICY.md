@@ -342,3 +342,26 @@ The V4.4 source preflight failed every predictive projection. Its
 manifest records `SKIPPED_SOURCE_PREFLIGHT`, and no validation shard directory
 exists. V4.4 derived artifacts are immutable negative-result audit data and
 grant no downstream authority.
+
+## V4.6 exploratory global-integration view
+
+V4.6 may read, but never rewrite or relabel, the 340 complete binary trees in
+the immutable V4.3 source-training shards. This is a separately frozen
+architecture experiment, not a continuation of V4.3 authority. It may fit an
+experimental leave-one-game-out semantic world model and pairwise EBM solely
+to measure the complete offline chain. That permission does not override the
+V4.3 fail-closed promotion verdict and cannot authorize source validation,
+holdout access, live execution, or controller authority.
+
+No new transition is collected. The only new model input is the existing
+pre-action scene graph at a frozen V4.3 root. Future frames and effects are
+used only to train other-game folds, create pairwise preferences, and score
+the already executed branches. Each held-out source game is excluded from its
+world-model, action-only, and EBM training.
+
+Qwen generation is restricted to the 44 outcome-blind root keys frozen in
+`integration_pilot_v4_6/frozen_manifest.json`, once with original relations
+and once with the frozen relation shuffle. Raw responses, deterministic
+normalization, folds, per-root decisions, and the final result are immutable
+audit artifacts. The completed negative result grants no downstream
+authority and may be superseded only by a new versioned protocol.

@@ -14,6 +14,26 @@ ladder and continuous endpoint utility instead of reusing component promotion
 thresholds. Its offline training is experimental only: no result can promote
 live authority, and all earlier fail-closed verdicts remain unchanged.
 
+V4.6 completed with
+`GLOBAL_CHAIN_NEGATIVE_PROPOSAL_OR_GROUNDING_BOTTLENECK`. The oracle
+pipeline achieved 1.00 best-action accuracy and +0.666 utility headroom, so
+the frozen rule does not call this a global architecture refutation. The
+current learned implementation is nevertheless negative: original Qwen
+grounded coverage was 0.25, Qwen plus oracle world/energy was -0.284 below
+the stronger same-root baseline, and the full learned chain was -0.386.
+Relation shuffling improved the full chain and the scene view decoded game
+identity at 1.00 accuracy. Neural and controller authority remain off.
+
+V4.6 completed with
+`GLOBAL_CHAIN_NEGATIVE_PROPOSAL_OR_GROUNDING_BOTTLENECK`. The oracle
+pipeline achieved 1.00 best-action accuracy and +0.666 utility headroom, so
+the frozen rule does not call this a global architecture refutation. The
+current learned implementation is nevertheless negative: original Qwen
+grounded coverage was 0.25, Qwen plus oracle world/energy was -0.284 below
+the stronger same-root baseline, and the full learned chain was -0.386.
+Relation shuffling improved the full chain and the scene view decoded game
+identity at 1.00 accuracy. Neural and controller authority remain off.
+
 V4.1 repairs causal role resolution, adds leave-one-source-game-out Platt
 calibration and thresholds, and compacts the Qwen contract below a verified
 token budget. Structured and Qwen authority are separate: a structured pass
