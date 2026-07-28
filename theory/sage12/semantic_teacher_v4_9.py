@@ -751,12 +751,12 @@ def _load_source_traces(
                 raise ValueError(f"V4.3 source firewall violation: {path}")
             left = ActionTargetTrace.from_dict(payload["left"]["trace"])
             right = ActionTargetTrace.from_dict(payload["right"]["trace"])
-            pre_state = str(payload["replay_pre_state_sha256"])
+            pre_state = grid_sha256(left.frame_before)
             if (
-                grid_sha256(left.frame_before) != pre_state
+                not np.array_equal(left.frame_before, right.frame_before)
                 or grid_sha256(right.frame_before) != pre_state
             ):
-                raise ValueError("V4.3 pair does not share its declared pre-state")
+                raise ValueError("V4.3 pair arms do not share the same frame")
             pair_links.append(
                 PairLink(
                     pair_id=str(payload["pair_digest"]),
