@@ -1,0 +1,214 @@
+{
+  "ablations": [
+    "deterministic_left",
+    "action_only",
+    "template_oracle",
+    "template_world_heuristic",
+    "template_world_learned_ebm",
+    "qwen_strict",
+    "qwen_relation_shuffle",
+    "no_hierarchy_depth_1",
+    "no_learned_ebm"
+  ],
+  "authority_promotion_allowed": false,
+  "bootstrap_samples": 1000,
+  "complete_roots": 340,
+  "created_for": "sage12-global-integration-v4.6",
+  "cross_game_evaluation": "leave_one_game_out",
+  "ebm": {
+    "device": "cpu",
+    "epochs": 100,
+    "hidden_width": 16,
+    "implementation": "PairwiseTrajectoryEBM",
+    "learning_rate": 0.003
+  },
+  "format_version": "sage12-global-integration-manifest-v4.6",
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "holdout_opened": false,
+  "interpretation": {
+    "architecture_refuted_in_scope_if": "oracle_pipeline has no headroom over deterministic/action-only controls or cannot preserve >=0.95 oracle action accuracy",
+    "confirmatory_gate": false,
+    "exploratory_support_if": "full Qwen learned chain has positive point-estimate utility gain over the stronger same-root action/template baseline and non-negative gain on at least 6 games",
+    "otherwise": "localize the earliest oracle-ladder collapse; do not claim global architectural refutation"
+  },
+  "live_environment_opened": false,
+  "manifest_checksum": "04c89af7426586169b603a373163da9eb03e60ede655ff95ce61125bb10e16c8",
+  "oracle_ladder": [
+    "oracle_pipeline",
+    "qwen_repaired_oracle_world_oracle_energy",
+    "qwen_repaired_learned_world_oracle_energy",
+    "qwen_repaired_learned_world_learned_ebm"
+  ],
+  "qwen": {
+    "decoding_changed_from_v1": false,
+    "device_preference": "cuda:0",
+    "maximum_entities": 24,
+    "maximum_hypotheses": 8,
+    "maximum_new_tokens": 256,
+    "maximum_relations": 96,
+    "model_path": "models/qwen2_5_0.5b_instruct",
+    "model_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+    "post_decode_adapter": "strict parser plus separately reported deterministic fence/schema normalization",
+    "sampling": false,
+    "temperature": 0.0
+  },
+  "qwen_sample": {
+    "root_keys": [
+      "bp35:907:1:17",
+      "bp35:857:0:5",
+      "bp35:907:1:18",
+      "bp35:857:0:7",
+      "cd82:857:0:3",
+      "cd82:907:1:18",
+      "cd82:907:1:10",
+      "cd82:857:0:8",
+      "dc22:907:1:15",
+      "dc22:857:0:2",
+      "dc22:857:0:11",
+      "dc22:953:2:30",
+      "g50t:953:2:31",
+      "g50t:857:0:4",
+      "g50t:907:1:12",
+      "g50t:857:0:5",
+      "ka59:857:0:5",
+      "ka59:953:2:24",
+      "ka59:857:0:6",
+      "ka59:857:0:1",
+      "lf52:857:0:4",
+      "lf52:857:0:11",
+      "lf52:857:0:0",
+      "lf52:907:1:12",
+      "lp85:857:4:12",
+      "lp85:857:8:25",
+      "lp85:1009:3:10",
+      "lp85:1009:7:21",
+      "sp80:907:5:20",
+      "sp80:953:2:9",
+      "sp80:953:2:10",
+      "sp80:1009:7:26",
+      "su15:857:0:9",
+      "su15:857:0:8",
+      "su15:907:1:20",
+      "su15:907:1:15",
+      "tr87:907:1:15",
+      "tr87:857:0:10",
+      "tr87:857:0:11",
+      "tr87:953:2:31",
+      "tu93:953:2:30",
+      "tu93:857:0:5",
+      "tu93:907:1:20",
+      "tu93:907:1:15"
+    ],
+    "roots_per_game": 4,
+    "seed": 4606,
+    "variants": [
+      "original",
+      "relation_shuffle"
+    ]
+  },
+  "roots_per_game": {
+    "bp35": 32,
+    "cd82": 32,
+    "dc22": 32,
+    "g50t": 32,
+    "ka59": 32,
+    "lf52": 32,
+    "lp85": 22,
+    "sp80": 32,
+    "su15": 30,
+    "tr87": 32,
+    "tu93": 32
+  },
+  "seed": 4606,
+  "source_fingerprint": {
+    "combined_sha256": "603a5c603617d1e630fb6a455ceaf54c9e1807134b4f4398b339d2d14a6d7bd2",
+    "shards": [
+      {
+        "bytes": 11007262,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/bp35.jsonl",
+        "sha256": "2c2d97fe934543f6fc19250c8f73f314120074c0dfbbe442e1704db7bed6c04b"
+      },
+      {
+        "bytes": 9287403,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/cd82.jsonl",
+        "sha256": "eee5871f51cfc58d9e0441784083453629cdb65df2824f2f2013582ba23410ea"
+      },
+      {
+        "bytes": 9182617,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/dc22.jsonl",
+        "sha256": "7e94dfaf7609c45f9d81e8016ed8d246668094e751cc17112651687213af23d6"
+      },
+      {
+        "bytes": 9163221,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/g50t.jsonl",
+        "sha256": "314cceaae603ecc82b339ed99934cc8d6bce4886768939132cdcebbb6fd8acff"
+      },
+      {
+        "bytes": 9304895,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/ka59.jsonl",
+        "sha256": "879fa2c9aa67b317b88ba15e95bd0066b4a9f3b5feff0eede19de126275d0f5d"
+      },
+      {
+        "bytes": 11513657,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/lf52.jsonl",
+        "sha256": "0e1b171ac09f23734f8f8cb8686c176cc0f6ff02b2dfbd4891e8079f9fd24aa9"
+      },
+      {
+        "bytes": 6839819,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/lp85.jsonl",
+        "sha256": "7dee5fa89bace32af5f744c02489a22d4703b96e4dea3fef6d6971c9e1f7461c"
+      },
+      {
+        "bytes": 12505247,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/sp80.jsonl",
+        "sha256": "aab95e73dae8957b70ba32380ac17b9e45e4c70c7786628d3c1b4d73fcdc6db4"
+      },
+      {
+        "bytes": 8821883,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/su15.jsonl",
+        "sha256": "d089568302893ba8e409694919d9c744400d53565d3e6f90ddbd5f1012753224"
+      },
+      {
+        "bytes": 9518098,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/tr87.jsonl",
+        "sha256": "53229b7b0d3584960a86cafbc2e89426e54eaa4c559a5762b383d9da26f5cdfa"
+      },
+      {
+        "bytes": 9160896,
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/tu93.jsonl",
+        "sha256": "0b0d9fede128c1cddb93a0ec95725b5cc29f6fda7512f0e0c5613170185eae49"
+      }
+    ],
+    "v43_manifest_sha256": "3e398a13383389660c6177bb958c99130f4d6dcd4bd0314a47db352babcb8f37"
+  },
+  "source_only": true,
+  "utility": {
+    "actor_displaced": 1.0,
+    "changed_cells_cap": 1.0,
+    "changed_cells_log_divisor": 8.0,
+    "discount": 0.9,
+    "game_over": -20.0,
+    "level_complete": 20.0,
+    "productive": 2.0,
+    "target_effect": 1.0
+  },
+  "v43_manifest_checksum": "2376ddd8c9c1c10083dc42ae92b9633ffc55272cf675770908b9467642370cea",
+  "world_model": {
+    "action_key_mode": "name",
+    "beam_width": 16,
+    "implementation": "SemanticWorldModel",
+    "maximum_depth": 3
+  }
+}

@@ -7,6 +7,13 @@ collection. V4.2 passed source preflight and collection but failed closed at
 runtime before producing prospective metrics. The world model and EBM remain
 untrained and unauthorized.
 
+V4.6 is a separate exploratory global-integration probe. It composes the
+existing Qwen proposal path, compiler, semantic world model, pairwise EBM, and
+hierarchical controller over source-only replay trees. It uses an oracle
+ladder and continuous endpoint utility instead of reusing component promotion
+thresholds. Its offline training is experimental only: no result can promote
+live authority, and all earlier fail-closed verdicts remain unchanged.
+
 V4.1 repairs causal role resolution, adds leave-one-source-game-out Platt
 calibration and thresholds, and compacts the Qwen contract below a verified
 token budget. Structured and Qwen authority are separate: a structured pass

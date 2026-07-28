@@ -447,3 +447,26 @@ small scikit-learn linear models have no effective CUDA execution path, so the
 laptop GPU was not used. Final validation passed 47 focused tests, focused
 Ruff checks, the persisted artifact contract, and explicit absence checks for
 fresh shards and a feasibility model.
+
+## V4.6 global integration freeze
+
+V4.6 adds the first end-to-end architecture harness. It loads all 340 complete
+V4.3 replay trees, freezes a hierarchical endpoint utility, executes an
+oracle ladder, trains the existing semantic world model and pairwise EBM with
+leave-one-game-out firewalls, and routes their trajectories through the
+existing receding-horizon controller. Deterministic left, action-only,
+template, heuristic-energy, no-hierarchy, strict-Qwen, and relation-shuffle
+ablations are included.
+
+`SemanticWorldModel` now has an optional `action_key_mode="name"` for
+cross-layout transfer; the original grounded-key behavior remains the
+default. Qwen keeps the V1 weights and decoding. A separately reported
+deterministic adapter can normalize emitted fenced legacy action/effect JSON,
+but cannot invent a legal action or semantic predicate.
+
+The source-only manifest was frozen before Qwen generation with checksum
+`04c89af7426586169b603a373163da9eb03e60ede655ff95ce61125bb10e16c8`.
+It selects 44 outcome-blind roots and two prompt variants, for 88 CUDA
+generations. V4.6 is exploratory, cannot promote authority, and does not
+change any V4.3–V4.5 verdict. Full protocol:
+`reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`.

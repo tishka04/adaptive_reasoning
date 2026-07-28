@@ -198,6 +198,15 @@ rather than degraded the score, and `re86` transferred at -0.237. This
 isolates the remaining problem as missing action-target causal information,
 not output syntax. See:
 
+V4.6 now tests the global architecture instead of applying another
+component-promotion gate. It composes the real hypothesis compiler, a
+cross-game semantic world model, heuristic and learned trajectory energy, and
+the receding-horizon controller over 340 replay-verified V4.3 action trees.
+An explicit oracle ladder localizes the first loss of utility. Qwen is frozen
+on 44 outcome-blind roots with original and relation-shuffled prompts; all
+work is source-only and offline, and the pilot cannot grant live authority.
+See `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`.
+
 - `theory/sage12/README.md`
 - `training/SAGE12_DATA_POLICY.md`
 - `models/SAGE12_MODEL_CARD.md`
@@ -205,6 +214,7 @@ not output syntax. See:
 - `reports/SAGE12_IMPLEMENTATION_RESULT.md`
 - `reports/SAGE12_PROPOSAL_PILOT_RESULT.md`
 - `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`
+- `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`
 
 Focused software validation:
 
@@ -212,6 +222,7 @@ Focused software validation:
 python -m pytest -q tests/test_sage12_semantic_planning.py
 python -m pytest -q tests/test_sage12_proposal_pilot.py
 python -m pytest -q tests/test_sage12_constrained_pilot.py
+python -m pytest -q tests/test_sage12_integration_pilot.py
 ```
 
 The long-budget performance track skips ablation overhead and writes compact

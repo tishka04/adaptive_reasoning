@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import math
 from collections import Counter
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
-from typing import Iterable, Sequence, Tuple
 
 from v3.schemas import TransitionRecord
 
@@ -24,7 +24,7 @@ class SemanticTrajectoryStep:
 
 @dataclass(frozen=True)
 class SemanticTrajectory:
-    steps: Tuple[SemanticTrajectoryStep, ...]
+    steps: tuple[SemanticTrajectoryStep, ...]
     final_state: frozenset[str]
     probability: float
     uncertainty: float
@@ -43,32 +43,45 @@ class SemanticTrajectory:
 class SemanticWorldModel:
     """Beta-smoothed effect model over grounded semantic options."""
 
-    def __init__(self) -> None:
+    def __init__(self, *, action_key_mode: str = "grounded") -> None:
+        if action_key_mode not in {"grounded", "name"}:
+            raise ValueError("action_key_mode must be either 'grounded' or 'name'")
+        self.action_key_mode = action_key_mode
         self._support: Counter[tuple[str, str]] = Counter()
         self._refutations: Counter[tuple[str, str]] = Counter()
         self.observations = 0
+
+    def _effect_key(
+        self,
+        option: CompiledSemanticOption,
+        effect: str,
+    ) -> tuple[str, str]:
+        action = (
+            option.action_key
+            if self.action_key_mode == "grounded"
+            else option.action_name.strip().upper()
+        )
+        return action, effect
 
     def effect_probability(
         self,
         option: CompiledSemanticOption,
         effect: str,
     ) -> float:
-        key = (option.action_key, effect)
+        key = self._effect_key(option, effect)
         support = self._support[key]
         refutations = self._refutations[key]
         prior_weight = 2.0
-        return (
-            support
-            + 1.0
-            + prior_weight * float(option.confidence)
-        ) / (support + refutations + 2.0 + prior_weight)
+        return (support + 1.0 + prior_weight * float(option.confidence)) / (
+            support + refutations + 2.0 + prior_weight
+        )
 
     def effect_uncertainty(
         self,
         option: CompiledSemanticOption,
         effect: str,
     ) -> float:
-        key = (option.action_key, effect)
+        key = self._effect_key(option, effect)
         evidence = self._support[key] + self._refutations[key]
         return 1.0 / math.sqrt(evidence + 1.0)
 
@@ -79,7 +92,7 @@ class SemanticWorldModel:
     ) -> None:
         observed = set(observed_effects)
         for effect in option.asserted_effects:
-            key = (option.action_key, effect)
+            key = self._effect_key(option, effect)
             if effect in observed:
                 self._support[key] += 1
             else:
@@ -93,7 +106,7 @@ class SemanticWorldModel:
         options: Sequence[CompiledSemanticOption],
         maximum_depth: int = 3,
         beam_width: int = 8,
-    ) -> Tuple[SemanticTrajectory, ...]:
+    ) -> tuple[SemanticTrajectory, ...]:
         """Beam-search abstract trajectories; no environment is stepped."""
         initial = frozenset(initial_state)
         beam = (
@@ -109,9 +122,7 @@ class SemanticWorldModel:
             expanded = []
             for trajectory in beam:
                 for option in options:
-                    if not set(option.preconditions).issubset(
-                        trajectory.final_state
-                    ):
+                    if not set(option.preconditions).issubset(trajectory.final_state):
                         continue
                     probabilities = [
                         self.effect_probability(option, effect)
@@ -150,8 +161,7 @@ class SemanticWorldModel:
                                 * max(1e-6, transition_probability)
                             ),
                             uncertainty=(
-                                trajectory.uncertainty
-                                + transition_uncertainty
+                                trajectory.uncertainty + transition_uncertainty
                             )
                             / (trajectory.length + 1),
                         )
@@ -160,9 +170,7 @@ class SemanticWorldModel:
                 break
             expanded.sort(
                 key=lambda item: (
-                    item.probability
-                    - 0.1 * item.uncertainty
-                    - 0.01 * item.length
+                    item.probability - 0.1 * item.uncertainty - 0.01 * item.length
                 ),
                 reverse=True,
             )
@@ -170,8 +178,9 @@ class SemanticWorldModel:
             completed.extend(beam)
         return tuple(completed)
 
-    def summary(self) -> dict[str, int]:
+    def summary(self) -> dict[str, int | str]:
         return {
+            "action_key_mode": self.action_key_mode,
             "observations": self.observations,
             "supported_effects": sum(self._support.values()),
             "refuted_effects": sum(self._refutations.values()),
