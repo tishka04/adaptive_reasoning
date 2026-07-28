@@ -708,3 +708,14 @@ The complete frozen design, thresholds and interpretation boundary are in
 `reports/SAGE12_DESCRIPTIVE_SEMANTIC_INTEGRATION_V4_12_PROTOCOL.md`. At this
 checkpoint no V4.12 model result has been observed and no authority is
 promoted.
+
+The completed GPU evaluation returned
+`DESCRIPTIVE_SEMANTICS_NOT_SUPPORTED`. The comparator beat action-only
+effect-pair loss with a positive confidence interval and improved ECE and
+identity leakage relative to root-only. However, its pair-loss gain over
+root-only was indistinguishable from zero, its active macro-Brier was worse
+than both root-only and action-only, only 4/11 games were nonnegative, and
+relation shuffling improved both pair loss and Brier. The frozen conditional
+gate therefore emitted `SKIPPED_SEMANTIC_GATE_FAILED` without fitting a world
+model or EBM. See
+`reports/SAGE12_DESCRIPTIVE_SEMANTIC_INTEGRATION_V4_12_RESULT.md`.

@@ -1127,30 +1127,71 @@ def _select_alpha_and_shifts(
     residual: np.ndarray,
     *,
     alpha_grid: Sequence[float],
+    active_effects: Sequence[str] = SEMANTIC_EFFECTS,
 ) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
     games = sorted({records[int(index)].game_id for index in indices})
+    active_effects = tuple(str(effect) for effect in active_effects)
+    unknown = sorted(set(active_effects) - set(SEMANTIC_EFFECTS))
+    if unknown:
+        raise ValueError(f"unknown alpha-selection effects: {unknown}")
     alphas = np.zeros(len(SEMANTIC_EFFECTS), dtype=np.float64)
     scores: dict[str, Any] = {}
-    for effect_index, effect in enumerate(SEMANTIC_EFFECTS):
-        candidates = []
-        for alpha in alpha_grid:
-            logits = root_logits + float(alpha) * residual
-            held_scores = []
-            for held in games:
-                shift = _game_balanced_shifts(
-                    records,
-                    indices,
-                    logits,
-                    excluded_game=held,
-                )[effect_index]
-                selected = [
+    for effect in active_effects:
+        effect_index = SEMANTIC_EFFECTS.index(effect)
+        local_by_game = {
+            game: np.asarray(
+                [
                     local
                     for local, global_index in enumerate(indices)
-                    if records[int(global_index)].game_id == held
+                    if records[int(global_index)].game_id == game
                     and records[int(global_index)].applicable[effect]
-                ]
-                if not selected:
+                ],
+                dtype=np.int64,
+            )
+            for game in games
+        }
+        target_by_game = {
+            game: float(
+                np.mean(
+                    [
+                        records[int(indices[local])].labels[effect]
+                        for local in selected
+                    ]
+                )
+            )
+            for game, selected in local_by_game.items()
+            if len(selected)
+        }
+        candidates = []
+        for alpha in alpha_grid:
+            effect_logits = (
+                root_logits[:, effect_index]
+                + float(alpha) * residual[:, effect_index]
+            )
+            predicted_by_game = {
+                game: float(np.mean(_sigmoid(effect_logits[selected])))
+                for game, selected in local_by_game.items()
+                if len(selected)
+            }
+            held_scores = []
+            for held in games:
+                selected = local_by_game[held]
+                if not len(selected):
                     continue
+                calibration_games = [
+                    game
+                    for game in games
+                    if game != held and game in target_by_game
+                ]
+                target = float(
+                    np.mean([target_by_game[game] for game in calibration_games])
+                )
+                predicted = float(
+                    np.mean(
+                        [predicted_by_game[game] for game in calibration_games]
+                    )
+                )
+                shift = _logit(target) - _logit(predicted)
                 targets = np.asarray(
                     [
                         records[int(indices[local])].labels[effect]
@@ -1159,7 +1200,7 @@ def _select_alpha_and_shifts(
                     dtype=np.float64,
                 )
                 probabilities = _sigmoid(
-                    logits[selected, effect_index] + shift
+                    effect_logits[selected] + shift
                 )
                 held_scores.append(float(np.mean((probabilities - targets) ** 2)))
             candidates.append((float(np.mean(held_scores)), float(alpha)))

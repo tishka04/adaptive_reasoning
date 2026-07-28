@@ -1,0 +1,1485 @@
+{
+  "absolute_metrics": {
+    "action_only": {
+      "macro_brier": 0.12077154153926146,
+      "per_effect": {
+        "changed": {
+          "applicable": 3914,
+          "brier": 0.06509424991725792,
+          "positives": 3652
+        },
+        "contact_lost": {
+          "applicable": 3171,
+          "brier": 0.15432190643262342,
+          "positives": 594
+        },
+        "local_change": {
+          "applicable": 3292,
+          "brier": 0.217817475767398,
+          "positives": 893
+        },
+        "moved": {
+          "applicable": 3295,
+          "brier": 0.18118391291486308,
+          "positives": 765
+        },
+        "productive": {
+          "applicable": 3914,
+          "brier": 0.1076872106048626,
+          "positives": 476
+        },
+        "risk": {
+          "applicable": 3914,
+          "brier": 0.0638622723832269,
+          "positives": 253
+        },
+        "target_moved": {
+          "applicable": 2513,
+          "brier": 0.04740836728220266,
+          "positives": 120
+        },
+        "target_removed": {
+          "applicable": 2513,
+          "brier": 0.12879693701165715,
+          "positives": 339
+        }
+      }
+    },
+    "descriptive": {
+      "macro_brier": 0.14113525202084984,
+      "per_effect": {
+        "changed": {
+          "applicable": 3914,
+          "brier": 0.06494580939282056,
+          "positives": 3652
+        },
+        "contact_lost": {
+          "applicable": 3171,
+          "brier": 0.17474192399908292,
+          "positives": 594
+        },
+        "local_change": {
+          "applicable": 3292,
+          "brier": 0.23622586939888848,
+          "positives": 893
+        },
+        "moved": {
+          "applicable": 3295,
+          "brier": 0.21483667591974637,
+          "positives": 765
+        },
+        "productive": {
+          "applicable": 3914,
+          "brier": 0.13389393742706304,
+          "positives": 476
+        },
+        "risk": {
+          "applicable": 3914,
+          "brier": 0.0720475063156391,
+          "positives": 253
+        },
+        "target_moved": {
+          "applicable": 2513,
+          "brier": 0.06590539070256114,
+          "positives": 120
+        },
+        "target_removed": {
+          "applicable": 2513,
+          "brier": 0.1664849030109972,
+          "positives": 339
+        }
+      }
+    },
+    "relation_shuffle": {
+      "macro_brier": 0.1387006138370389,
+      "per_effect": {
+        "changed": {
+          "applicable": 3914,
+          "brier": 0.0649238163550473,
+          "positives": 3652
+        },
+        "contact_lost": {
+          "applicable": 3171,
+          "brier": 0.17456216808537156,
+          "positives": 594
+        },
+        "local_change": {
+          "applicable": 3292,
+          "brier": 0.23359654700179186,
+          "positives": 893
+        },
+        "moved": {
+          "applicable": 3295,
+          "brier": 0.21341060285015756,
+          "positives": 765
+        },
+        "productive": {
+          "applicable": 3914,
+          "brier": 0.13168010396507496,
+          "positives": 476
+        },
+        "risk": {
+          "applicable": 3914,
+          "brier": 0.06815270264380201,
+          "positives": 253
+        },
+        "target_moved": {
+          "applicable": 2513,
+          "brier": 0.06584268430336901,
+          "positives": 120
+        },
+        "target_removed": {
+          "applicable": 2513,
+          "brier": 0.157436285491697,
+          "positives": 339
+        }
+      }
+    },
+    "root_only": {
+      "macro_brier": 0.1384442788658345,
+      "per_effect": {
+        "changed": {
+          "applicable": 3914,
+          "brier": 0.06471739091554127,
+          "positives": 3652
+        },
+        "contact_lost": {
+          "applicable": 3171,
+          "brier": 0.16853775758832606,
+          "positives": 594
+        },
+        "local_change": {
+          "applicable": 3292,
+          "brier": 0.2442013809736898,
+          "positives": 893
+        },
+        "moved": {
+          "applicable": 3295,
+          "brier": 0.21315034164960195,
+          "positives": 765
+        },
+        "productive": {
+          "applicable": 3914,
+          "brier": 0.12899321470020114,
+          "positives": 476
+        },
+        "risk": {
+          "applicable": 3914,
+          "brier": 0.07305615871795385,
+          "positives": 253
+        },
+        "target_moved": {
+          "applicable": 2513,
+          "brier": 0.06559479982011754,
+          "positives": 120
+        },
+        "target_removed": {
+          "applicable": 2513,
+          "brier": 0.14930318656124453,
+          "positives": 339
+        }
+      }
+    }
+  },
+  "active_effects": [
+    "changed",
+    "moved",
+    "target_removed",
+    "target_moved",
+    "local_change",
+    "contact_lost",
+    "productive",
+    "risk"
+  ],
+  "active_macro_brier_gain_over_root": {
+    "ci_lower": -0.002839379180211731,
+    "ci_upper": -0.0012276637094196141,
+    "mean": -0.0020342306111213013
+  },
+  "arm_swap_max_complement_error": 2.220446049250313e-16,
+  "artifact_sha256": {
+    "logo_predictions": "56a4226f5667b357a33ee2c3c812ac78def74bfe8993a7b3aaf88f3d36e70168",
+    "v4_11_teacher_panels": "0642073627de0f61a52c3adc55f984210e9304af56bf1bd1606e69ea2b74adf8"
+  },
+  "authority_promoted": false,
+  "checks": {
+    "absolute_nonnegative_games": false,
+    "active_macro_brier_gain_over_root_ci": false,
+    "arm_swap_antisymmetry": true,
+    "ece_not_worse_than_root_only": true,
+    "effect_pair_gain_over_action_ci": true,
+    "effect_pair_gain_over_root_ci": false,
+    "identity_increment": true,
+    "neighbor_permutation_invariance": true,
+    "pair_nonnegative_games": false,
+    "relation_shuffle_brier_degradation_ci": false,
+    "relation_shuffle_pair_degradation_ci": false,
+    "v4_11_collection_and_firewall_ready": true
+  },
+  "device": "cuda:0",
+  "ebm_fitted": false,
+  "ece": {
+    "descriptive": 0.11401227773325096,
+    "root_only": 0.12528370731921554
+  },
+  "effect_pair_gain_over_action": {
+    "ci_lower": 0.008551754765325584,
+    "ci_upper": 0.06717359676015032,
+    "mean": 0.03787916376479237
+  },
+  "effect_pair_gain_over_root": {
+    "ci_lower": -0.027378680780123087,
+    "ci_upper": 0.027278576599299,
+    "mean": 0.00015151876329411773
+  },
+  "effect_pair_metrics": {
+    "action_only": {
+      "effect_pairs": 5559,
+      "log_loss": 0.7639597882168244,
+      "per_game": {
+        "bp35": {
+          "effect_pairs": 1540,
+          "log_loss": 0.6049549664219127
+        },
+        "cd82": {
+          "effect_pairs": 129,
+          "log_loss": 0.7511039529515854
+        },
+        "dc22": {
+          "effect_pairs": 145,
+          "log_loss": 0.6614233348045773
+        },
+        "g50t": {
+          "effect_pairs": 1162,
+          "log_loss": 0.627778954907653
+        },
+        "ka59": {
+          "effect_pairs": 756,
+          "log_loss": 0.8275315423999573
+        },
+        "lf52": {
+          "effect_pairs": 280,
+          "log_loss": 1.9451931997128944
+        },
+        "lp85": {
+          "effect_pairs": 257,
+          "log_loss": 0.6931471805599453
+        },
+        "sp80": {
+          "effect_pairs": 139,
+          "log_loss": 1.0475180921291074
+        },
+        "su15": {
+          "effect_pairs": 208,
+          "log_loss": 0.6931471805599453
+        },
+        "tr87": {
+          "effect_pairs": 13,
+          "log_loss": 0.6044268317277766
+        },
+        "tu93": {
+          "effect_pairs": 930,
+          "log_loss": 0.8031182051340972
+        }
+      }
+    },
+    "descriptive": {
+      "effect_pairs": 5559,
+      "log_loss": 0.8186287212955667,
+      "per_game": {
+        "bp35": {
+          "effect_pairs": 1540,
+          "log_loss": 0.9482256029288767
+        },
+        "cd82": {
+          "effect_pairs": 129,
+          "log_loss": 0.7017505516589031
+        },
+        "dc22": {
+          "effect_pairs": 145,
+          "log_loss": 0.8903349339966207
+        },
+        "g50t": {
+          "effect_pairs": 1162,
+          "log_loss": 0.6720953673627296
+        },
+        "ka59": {
+          "effect_pairs": 756,
+          "log_loss": 0.5412210874890008
+        },
+        "lf52": {
+          "effect_pairs": 280,
+          "log_loss": 1.9645020654597334
+        },
+        "lp85": {
+          "effect_pairs": 257,
+          "log_loss": 0.5887303885783783
+        },
+        "sp80": {
+          "effect_pairs": 139,
+          "log_loss": 0.6286814872666577
+        },
+        "su15": {
+          "effect_pairs": 208,
+          "log_loss": 0.9158305585865644
+        },
+        "tr87": {
+          "effect_pairs": 13,
+          "log_loss": 0.2403773591689868
+        },
+        "tu93": {
+          "effect_pairs": 930,
+          "log_loss": 0.7509232374002843
+        }
+      }
+    },
+    "relation_shuffle": {
+      "effect_pairs": 5559,
+      "log_loss": 0.8146403080816037,
+      "per_game": {
+        "bp35": {
+          "effect_pairs": 1540,
+          "log_loss": 0.9585913670827365
+        },
+        "cd82": {
+          "effect_pairs": 129,
+          "log_loss": 0.6955407809127716
+        },
+        "dc22": {
+          "effect_pairs": 145,
+          "log_loss": 0.8534082440160681
+        },
+        "g50t": {
+          "effect_pairs": 1162,
+          "log_loss": 0.6931316749509404
+        },
+        "ka59": {
+          "effect_pairs": 756,
+          "log_loss": 0.572543563185662
+        },
+        "lf52": {
+          "effect_pairs": 280,
+          "log_loss": 1.881940320137721
+        },
+        "lp85": {
+          "effect_pairs": 257,
+          "log_loss": 0.5305183369809668
+        },
+        "sp80": {
+          "effect_pairs": 139,
+          "log_loss": 0.4067468630225255
+        },
+        "su15": {
+          "effect_pairs": 208,
+          "log_loss": 0.680312949883108
+        },
+        "tr87": {
+          "effect_pairs": 13,
+          "log_loss": 0.3727109449630126
+        },
+        "tu93": {
+          "effect_pairs": 930,
+          "log_loss": 0.7897303430900892
+        }
+      }
+    },
+    "root_only": {
+      "effect_pairs": 5559,
+      "log_loss": 0.7640309154185326,
+      "per_game": {
+        "bp35": {
+          "effect_pairs": 1540,
+          "log_loss": 0.7420254361654711
+        },
+        "cd82": {
+          "effect_pairs": 129,
+          "log_loss": 0.6899737211789262
+        },
+        "dc22": {
+          "effect_pairs": 145,
+          "log_loss": 0.6137316517324436
+        },
+        "g50t": {
+          "effect_pairs": 1162,
+          "log_loss": 0.6634889910582876
+        },
+        "ka59": {
+          "effect_pairs": 756,
+          "log_loss": 0.5941388724906584
+        },
+        "lf52": {
+          "effect_pairs": 280,
+          "log_loss": 2.483047819811818
+        },
+        "lp85": {
+          "effect_pairs": 257,
+          "log_loss": 0.6045976446220763
+        },
+        "sp80": {
+          "effect_pairs": 139,
+          "log_loss": 0.4573531483387169
+        },
+        "su15": {
+          "effect_pairs": 208,
+          "log_loss": 0.519446478258978
+        },
+        "tr87": {
+          "effect_pairs": 13,
+          "log_loss": 0.751409202608934
+        },
+        "tu93": {
+          "effect_pairs": 930,
+          "log_loss": 0.7251263800266613
+        }
+      }
+    }
+  },
+  "folds": [
+    {
+      "active_alphas": {
+        "changed": 0.25,
+        "contact_lost": 1.0,
+        "local_change": 1.0,
+        "moved": 1.0,
+        "productive": 1.0,
+        "risk": 1.0,
+        "target_moved": 0.0,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.06315983233840874
+        },
+        "contact_lost": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.10175382262979212
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.15644678438370177
+        },
+        "moved": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.17494915214330023
+        },
+        "productive": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.06085347945693437
+        },
+        "risk": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.04013932276094438
+        },
+        "target_moved": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.05526874934588953
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.07603152883938867
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.1592014878988266,
+          "effect_pair": 0.39214199781417847,
+          "progress_pair": 0.6521446704864502,
+          "tie_consistency": 0.14385001361370087,
+          "total": 0.35527247190475464
+        },
+        "runtime_seconds": 1.6761214000871405,
+        "train_comparisons": 7125,
+        "train_rows": 11749
+      },
+      "held_out_game": "bp35",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.17668427526950836,
+          "effect_pair": 0.4909403324127197,
+          "progress_pair": 0.7574779987335205,
+          "tie_consistency": 0.203069269657135,
+          "total": 0.42215442657470703
+        },
+        "runtime_seconds": 1.5348503000568599,
+        "train_comparisons": 7125,
+        "train_rows": 11749
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.0,
+        "contact_lost": 0.75,
+        "local_change": 1.0,
+        "moved": 0.75,
+        "productive": 0.75,
+        "risk": 0.75,
+        "target_moved": 1.0,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.04573000344445596
+        },
+        "contact_lost": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.11382885422028488
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.16316842501292372
+        },
+        "moved": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.15363598675125337
+        },
+        "productive": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.07876885280969449
+        },
+        "risk": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.06085159592380651
+        },
+        "target_moved": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.05092058292182432
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.10860009765127784
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.18951991200447083,
+          "effect_pair": 0.3987206816673279,
+          "progress_pair": 0.7518049478530884,
+          "tie_consistency": 0.10597240179777145,
+          "total": 0.38888025283813477
+        },
+        "runtime_seconds": 1.7412377001019195,
+        "train_comparisons": 7223,
+        "train_rows": 11807
+      },
+      "held_out_game": "cd82",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.19290724396705627,
+          "effect_pair": 0.4377462565898895,
+          "progress_pair": 0.6860944628715515,
+          "tie_consistency": 0.1337658017873764,
+          "total": 0.41178035736083984
+        },
+        "runtime_seconds": 1.4902431999798864,
+        "train_comparisons": 7223,
+        "train_rows": 11807
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.75,
+        "contact_lost": 0.5,
+        "local_change": 0.75,
+        "moved": 0.5,
+        "productive": 0.75,
+        "risk": 1.0,
+        "target_moved": 0.75,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.057560408706857344
+        },
+        "contact_lost": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.12446222506287133
+        },
+        "local_change": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.1674121032186444
+        },
+        "moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.16729223993285397
+        },
+        "productive": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.07909649583534471
+        },
+        "risk": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.06007092688627432
+        },
+        "target_moved": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.05594215531996154
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.11441435116365543
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.19551371037960052,
+          "effect_pair": 0.36096444725990295,
+          "progress_pair": 0.7264710664749146,
+          "tie_consistency": 0.0731620267033577,
+          "total": 0.375995934009552
+        },
+        "runtime_seconds": 1.6449227000121027,
+        "train_comparisons": 7204,
+        "train_rows": 11786
+      },
+      "held_out_game": "dc22",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.21877522766590118,
+          "effect_pair": 0.44656479358673096,
+          "progress_pair": 0.7223440408706665,
+          "tie_consistency": 0.31682682037353516,
+          "total": 0.44205760955810547
+        },
+        "runtime_seconds": 1.4854632000206038,
+        "train_comparisons": 7204,
+        "train_rows": 11786
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.0,
+        "contact_lost": 0.75,
+        "local_change": 1.0,
+        "moved": 0.75,
+        "productive": 0.75,
+        "risk": 0.5,
+        "target_moved": 0.25,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.03702483264042065
+        },
+        "contact_lost": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.10807308679538905
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.14523773899056833
+        },
+        "moved": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.1752309700676615
+        },
+        "productive": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.07462097552653556
+        },
+        "risk": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.059835388736011616
+        },
+        "target_moved": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.05394805284982448
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.11456993499891015
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.17245301604270935,
+          "effect_pair": 0.33220985531806946,
+          "progress_pair": 0.7076482772827148,
+          "tie_consistency": 0.04199426621198654,
+          "total": 0.3385579586029053
+        },
+        "runtime_seconds": 1.7864105999469757,
+        "train_comparisons": 7221,
+        "train_rows": 11804
+      },
+      "held_out_game": "g50t",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.19697657227516174,
+          "effect_pair": 0.39392074942588806,
+          "progress_pair": 0.696855902671814,
+          "tie_consistency": 0.07870680093765259,
+          "total": 0.3939369320869446
+        },
+        "runtime_seconds": 1.5901254999917,
+        "train_comparisons": 7221,
+        "train_rows": 11804
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.5,
+        "contact_lost": 0.25,
+        "local_change": 0.75,
+        "moved": 0.25,
+        "productive": 0.25,
+        "risk": 0.0,
+        "target_moved": 1.0,
+        "target_removed": 0.75
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.05549865915575937
+        },
+        "contact_lost": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.12540403007826817
+        },
+        "local_change": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.15095638924704663
+        },
+        "moved": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.193576879507174
+        },
+        "productive": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.091521126975084
+        },
+        "risk": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.05648672982317815
+        },
+        "target_moved": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.025374515355736836
+        },
+        "target_removed": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.14269209649193793
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.18968498706817627,
+          "effect_pair": 0.40936437249183655,
+          "progress_pair": 0.6592620015144348,
+          "tie_consistency": 0.10603860765695572,
+          "total": 0.39436715841293335
+        },
+        "runtime_seconds": 1.7701697000302374,
+        "train_comparisons": 7195,
+        "train_rows": 11875
+      },
+      "held_out_game": "ka59",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.1996581107378006,
+          "effect_pair": 0.41831517219543457,
+          "progress_pair": 0.7833755612373352,
+          "tie_consistency": 0.11489999294281006,
+          "total": 0.4088156819343567
+        },
+        "runtime_seconds": 1.6102679999312386,
+        "train_comparisons": 7195,
+        "train_rows": 11875
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.25,
+        "contact_lost": 0.5,
+        "local_change": 1.0,
+        "moved": 0.5,
+        "productive": 0.75,
+        "risk": 1.0,
+        "target_moved": 0.75,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.06515213981340004
+        },
+        "contact_lost": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.10988974368413462
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.14633123658644068
+        },
+        "moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.14993029859577037
+        },
+        "productive": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.08117374176434126
+        },
+        "risk": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.061410124684622446
+        },
+        "target_moved": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.04955374787764123
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.10576838702474142
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.1756902039051056,
+          "effect_pair": 0.36140209436416626,
+          "progress_pair": 0.6681642532348633,
+          "tie_consistency": 0.07267733663320541,
+          "total": 0.3563912510871887
+        },
+        "runtime_seconds": 1.655502300010994,
+        "train_comparisons": 7131,
+        "train_rows": 11789
+      },
+      "held_out_game": "lf52",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.19441519677639008,
+          "effect_pair": 0.39218080043792725,
+          "progress_pair": 0.7206119298934937,
+          "tie_consistency": 0.07608967274427414,
+          "total": 0.3905056118965149
+        },
+        "runtime_seconds": 1.8473249999806285,
+        "train_comparisons": 7131,
+        "train_rows": 11789
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.5,
+        "contact_lost": 0.5,
+        "local_change": 1.0,
+        "moved": 0.5,
+        "productive": 0.5,
+        "risk": 1.0,
+        "target_moved": 0.0,
+        "target_removed": 0.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.06562145199652812
+        },
+        "contact_lost": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.13730534285554824
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.17140623667236712
+        },
+        "moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.19738995016013763
+        },
+        "productive": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.09219396544191219
+        },
+        "risk": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.04676215297881934
+        },
+        "target_moved": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.057284997831931014
+        },
+        "target_removed": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.14525111606184535
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.20624728500843048,
+          "effect_pair": 0.4259599447250366,
+          "progress_pair": 0.6939581036567688,
+          "tie_consistency": 0.06845148652791977,
+          "total": 0.4192272424697876
+        },
+        "runtime_seconds": 1.6948558000149205,
+        "train_comparisons": 7290,
+        "train_rows": 12313
+      },
+      "held_out_game": "lp85",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.21929921209812164,
+          "effect_pair": 0.4377029538154602,
+          "progress_pair": 0.6695169806480408,
+          "tie_consistency": 0.06630898267030716,
+          "total": 0.43815070390701294
+        },
+        "runtime_seconds": 1.5946403000270948,
+        "train_comparisons": 7290,
+        "train_rows": 12313
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.75,
+        "contact_lost": 1.0,
+        "local_change": 1.0,
+        "moved": 0.75,
+        "productive": 1.0,
+        "risk": 0.75,
+        "target_moved": 0.25,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.06580852376456751
+        },
+        "contact_lost": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.11577062109334244
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.15725395334539405
+        },
+        "moved": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.14851807713129156
+        },
+        "productive": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.08278071958045694
+        },
+        "risk": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.05596847335967816
+        },
+        "target_moved": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.027276546131541853
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.12274620984406444
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.18057523667812347,
+          "effect_pair": 0.3589165508747101,
+          "progress_pair": 0.7278419733047485,
+          "tie_consistency": 0.07699985802173615,
+          "total": 0.3600335121154785
+        },
+        "runtime_seconds": 1.7650113999843597,
+        "train_comparisons": 7200,
+        "train_rows": 11769
+      },
+      "held_out_game": "sp80",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.2056683599948883,
+          "effect_pair": 0.44204044342041016,
+          "progress_pair": 0.7236665487289429,
+          "tie_consistency": 0.039937786757946014,
+          "total": 0.4266885817050934
+        },
+        "runtime_seconds": 1.6668832999421284,
+        "train_comparisons": 7200,
+        "train_rows": 11769
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.75,
+        "contact_lost": 0.5,
+        "local_change": 0.75,
+        "moved": 0.5,
+        "productive": 1.0,
+        "risk": 0.75,
+        "target_moved": 0.5,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.06466997000745872
+        },
+        "contact_lost": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.13606408676687726
+        },
+        "local_change": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.17555320754312043
+        },
+        "moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.19072205280116844
+        },
+        "productive": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.09181111705923511
+        },
+        "risk": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.05443250362350893
+        },
+        "target_moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.05096196427550324
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.14624641614470243
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.18714529275894165,
+          "effect_pair": 0.40490391850471497,
+          "progress_pair": 0.7902124524116516,
+          "tie_consistency": 0.15936492383480072,
+          "total": 0.38959723711013794
+        },
+        "runtime_seconds": 2.0318949000211433,
+        "train_comparisons": 7133,
+        "train_rows": 11854
+      },
+      "held_out_game": "su15",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.2154044806957245,
+          "effect_pair": 0.47306957840919495,
+          "progress_pair": 0.6649814248085022,
+          "tie_consistency": 0.1299600601196289,
+          "total": 0.45193928480148315
+        },
+        "runtime_seconds": 1.795765099930577,
+        "train_comparisons": 7133,
+        "train_rows": 11854
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.0,
+        "contact_lost": 0.25,
+        "local_change": 1.0,
+        "moved": 0.5,
+        "productive": 0.75,
+        "risk": 1.0,
+        "target_moved": 1.0,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.0,
+          "inner_game_balanced_brier": 0.0647623632655144
+        },
+        "contact_lost": {
+          "alpha": 0.25,
+          "inner_game_balanced_brier": 0.1219375319210475
+        },
+        "local_change": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.15122289674024028
+        },
+        "moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.18006388981880167
+        },
+        "productive": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.0838711363679591
+        },
+        "risk": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.06025918923606557
+        },
+        "target_moved": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.05382759722945134
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.13022442968491796
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.19789834320545197,
+          "effect_pair": 0.4100835621356964,
+          "progress_pair": 0.7014488577842712,
+          "tie_consistency": 0.03618805110454559,
+          "total": 0.40294012427330017
+        },
+        "runtime_seconds": 1.7733998999465257,
+        "train_comparisons": 7143,
+        "train_rows": 11762
+      },
+      "held_out_game": "tr87",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.21562398970127106,
+          "effect_pair": 0.4333270788192749,
+          "progress_pair": 0.7752671837806702,
+          "tie_consistency": 0.10021546483039856,
+          "total": 0.4322875142097473
+        },
+        "runtime_seconds": 1.7285763999680057,
+        "train_comparisons": 7143,
+        "train_rows": 11762
+      }
+    },
+    {
+      "active_alphas": {
+        "changed": 0.5,
+        "contact_lost": 0.75,
+        "local_change": 0.75,
+        "moved": 0.5,
+        "productive": 0.5,
+        "risk": 1.0,
+        "target_moved": 1.0,
+        "target_removed": 1.0
+      },
+      "alpha_selection": {
+        "changed": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.062457004759043255
+        },
+        "contact_lost": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.11409575656743383
+        },
+        "local_change": {
+          "alpha": 0.75,
+          "inner_game_balanced_brier": 0.15883607995605115
+        },
+        "moved": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.16146716070799835
+        },
+        "productive": {
+          "alpha": 0.5,
+          "inner_game_balanced_brier": 0.07237720755224719
+        },
+        "risk": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.047735073875312804
+        },
+        "target_moved": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.05801558318332872
+        },
+        "target_removed": {
+          "alpha": 1.0,
+          "inner_game_balanced_brier": 0.11799671580559612
+        }
+      },
+      "full": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.15925243496894836,
+          "effect_pair": 0.39207953214645386,
+          "progress_pair": 0.6794649958610535,
+          "tie_consistency": 0.0777256041765213,
+          "total": 0.3552922010421753
+        },
+        "runtime_seconds": 1.6847526000346988,
+        "train_comparisons": 7385,
+        "train_rows": 11912
+      },
+      "held_out_game": "tu93",
+      "root_only": {
+        "active_pair_effects": [
+          "changed",
+          "moved",
+          "target_removed",
+          "target_moved",
+          "local_change",
+          "contact_lost",
+          "productive",
+          "risk"
+        ],
+        "final_losses": {
+          "absolute": 0.18837229907512665,
+          "effect_pair": 0.41630440950393677,
+          "progress_pair": 0.6715238094329834,
+          "tie_consistency": 0.04054109379649162,
+          "total": 0.39652448892593384
+        },
+        "runtime_seconds": 1.5790276000043377,
+        "train_comparisons": 7385,
+        "train_rows": 11912
+      }
+    }
+  ],
+  "format_version": "sage12-descriptive-semantic-result-v4.12",
+  "fresh_effect_pairs": 5559,
+  "fresh_panel_arms": 3914,
+  "historical_opened": false,
+  "holdout_opened": false,
+  "identity_probe": {
+    "descriptive": {
+      "accuracy": 0.7404190086867655,
+      "gain_over_majority": 0.6423096576392437,
+      "majority_accuracy": 0.09810935104752172
+    },
+    "increment_bootstrap": {
+      "ci_lower": -0.03225477963154369,
+      "ci_upper": -0.008555333972221975,
+      "mean": -0.020279047798778385
+    },
+    "root_only": {
+      "accuracy": 0.7603474706182933,
+      "gain_over_majority": 0.6622381195707716,
+      "majority_accuracy": 0.09810935104752172
+    }
+  },
+  "live_environment_opened": false,
+  "manifest_checksum": "1071eecaa67753a887dadb783a0ce5287b4f6fa233e7c1e07b77040184d49835",
+  "neighbor_permutation_max_probability_delta": 1.78809648199163e-07,
+  "nonnegative_games": {
+    "absolute_brier": 4,
+    "effect_pair": 4
+  },
+  "records": 13042,
+  "relation_shuffle_brier_degradation": {
+    "ci_lower": -0.0029679646690593856,
+    "ci_upper": -0.000716450663658549,
+    "mean": -0.0018452814960431237
+  },
+  "relation_shuffle_pair_degradation": {
+    "ci_lower": -0.0518624024089746,
+    "ci_upper": -0.02210100761903527,
+    "mean": -0.03704520469737583
+  },
+  "result_checksum": "ee4e98dcafdf45b9e19ecc36ae662348d7df48c0c3141eb3de76f9c9d5db5c7a",
+  "semantic_gate_passed": false,
+  "source_validation_opened": false,
+  "verdict": "DESCRIPTIVE_SEMANTICS_NOT_SUPPORTED",
+  "world_model_fitted": false
+}

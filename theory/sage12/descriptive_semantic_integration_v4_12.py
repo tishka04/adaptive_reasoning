@@ -523,6 +523,7 @@ def evaluate_semantics(
             train_root,
             train_residual,
             alpha_grid=parameters["alpha_grid"],
+            active_effects=ACTIVE_EFFECTS,
         )
         inactive = [
             index
