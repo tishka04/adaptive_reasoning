@@ -256,3 +256,16 @@ their game-identity gains were +0.2089, +0.2550, and +0.5624 respectively.
 No representation was selected and no validation data or world model was
 opened. The result rejects the current binding vocabulary and local Beta
 learner, not an unexecuted world-model/EBM/controller stack.
+
+## Paired causal model V4.4
+
+V4.4 tests whether the valid V4.3 interventions become transferable when
+represented as within-state differences. The learned model is an
+intercept-free logistic comparator with exact arm-swap antisymmetry. It scores
+creation and removal only; movement is explicitly non-authoritative.
+
+The representation ladder and identity gate remain strict. A pairwise pass
+would establish relative causal binding sensitivity, not absolute transition
+probabilities. It could therefore authorize only a new world-model protocol,
+never direct rollout fitting or control. No V4.4 result exists at this freeze
+checkpoint.

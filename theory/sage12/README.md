@@ -398,3 +398,34 @@ LOGO Brier skill and macro-F1 gain, while game-identity gain ranged from
 validation game was opened, and both binding and world-model stages wrote
 explicit skipped artifacts. See
 `reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_RESULT.md`.
+
+## Paired causal contrast V4.4
+
+V4.4 reuses only the published V4.3 source pairs and changes the learning
+question from absolute arm prediction to direct causal comparison: given two
+interventions executed from an identical pre-state, which arm produces the
+effect?
+
+Each model view is `left_features - right_features`. Logistic models have no
+intercept and train on both `(x, y)` and `(-x, 1-y)`, so a complete arm swap
+exactly inverts the prediction. The primary model combines action, a frozen
+binding projection, and arm-conditioned evidence from the shared eight-event
+context. Baselines use history without binding, action only, binding only, or
+the deterministic occupied/free template.
+
+The source-only audit admits creation and removal, with 172 and 189 discordant
+pairs. Movement has zero discordant pairs and remains diagnostic-only. A
+source LOGO preflight must pass utility, binding-swap, identity, calibration,
+per-game, bootstrap, and exact-antisymmetry gates before any fresh validation
+tree can be collected.
+
+```powershell
+python -m theory.sage12.pairwise_causal_pilot preflight
+python -m theory.sage12.pairwise_causal_pilot collect-validation
+python -m theory.sage12.pairwise_causal_pilot evaluate
+```
+
+The frozen protocol is
+`reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_PROTOCOL.md`. At this checkpoint no
+V4.4 predictive result exists, no validation game is open, and no world model
+or downstream authority is granted.

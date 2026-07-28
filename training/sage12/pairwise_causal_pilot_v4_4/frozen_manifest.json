@@ -1,0 +1,113 @@
+{
+  "authoritative_effects": [
+    "target_created",
+    "target_removed"
+  ],
+  "diagnostic_effects": [
+    "target_moved"
+  ],
+  "evaluation": {
+    "bootstrap_samples": 2000,
+    "random_seed": 144,
+    "validation_tuning": false
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "game_identity_in_model_view": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "source_validation_opened": false,
+    "v4_3_source_only_reused": true,
+    "v4_3_validation_opened": false
+  },
+  "format_version": "sage12-paired-causal-pilot-v4.4",
+  "frozen_at": "2026-07-28",
+  "gates": {
+    "maximum_arm_swap_error": 1e-12,
+    "maximum_identity_gain_over_action": 0.05,
+    "maximum_macro_ece": 0.1,
+    "minimum_binding_swap_accuracy_drop": 0.1,
+    "minimum_macro_accuracy_gain": 0.1,
+    "minimum_macro_brier_skill": 0.1,
+    "minimum_source_discordant_pairs_per_effect": 75,
+    "minimum_source_games_with_10_discordant": 2,
+    "require_bootstrap_lower_positive": true,
+    "require_every_scoreable_game_nonnegative": true
+  },
+  "manifest_checksum": "598cdbca8ef50b05d3c9743cbbf4245c0e4c0495b81fd5fc3fd06e67bc623f5d",
+  "model": {
+    "arm_swap_augmentation": true,
+    "class_weight": "balanced",
+    "fit_intercept": false,
+    "maximum_iterations": 1000,
+    "regularization_c": 1.0,
+    "solver": "liblinear",
+    "temperature_grid": {
+      "maximum": 5.0,
+      "minimum": 0.1,
+      "points": 197
+    }
+  },
+  "projection": {
+    "ladder": [
+      "minimal",
+      "relational",
+      "typed"
+    ],
+    "selection": "best_source_LOGO_macro_brier_skill",
+    "simplicity_tie_margin": 0.005
+  },
+  "source_corpus": {
+    "collection_report_checksum": "a842c0bdd99a1e10ad48c03ded447e231a6767e6af7410192b2f21c4b2948722",
+    "format_version": "sage12-bound-trajectory-v4.3",
+    "pairs": 2396,
+    "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards",
+    "source_only_design_audit": {
+      "target_created_discordant_pairs": 172,
+      "target_created_games_with_at_least_10": 2,
+      "target_moved_discordant_pairs": 0,
+      "target_removed_discordant_pairs": 189,
+      "target_removed_games_with_at_least_10": 2
+    }
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_SOURCE_PREFLIGHT",
+  "validation_collection": {
+    "action_budget_per_reset": 32,
+    "maximum_resets_per_game": 96,
+    "roots_per_game": 64,
+    "seeds": [
+      1451,
+      1499,
+      1553,
+      1601
+    ],
+    "tree_depth": 3
+  },
+  "validation_gates": {
+    "maximum_macro_ece": 0.1,
+    "minimum_binding_swap_accuracy_drop": 0.1,
+    "minimum_discordant_pairs_per_effect": 30,
+    "minimum_macro_accuracy_gain": 0.1,
+    "minimum_macro_brier_skill": 0.1,
+    "require_every_scoreable_game_nonnegative": true
+  },
+  "world_model_fit_authorized": false
+}

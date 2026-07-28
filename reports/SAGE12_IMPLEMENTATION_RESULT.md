@@ -373,3 +373,20 @@ model was fit. Full ledger:
 Final validation passed 39 focused V4.3/V4.2/V4.2.1 tests in 31.35 seconds,
 passed focused Ruff checks, reloaded every closure artifact, and confirmed
 that no source-validation shard directory exists.
+
+## V4.4 implementation freeze
+
+V4.4 adds an identity-free `PairEffectExample`, left-minus-right action and
+binding projections, arm-conditioned temporal evidence, intercept-free
+antisymmetric logistic models, slope-only calibration, four baselines,
+source LOGO scoring, binding and complete-arm swaps, pair-difference identity
+probes, per-game transfer, paired bootstrap gates, checksummed JSON model
+serialization, and fail-closed validation collection/evaluation commands.
+
+The source-only design audit admits 172 creation and 189 removal discordant
+pairs across two substantial games per effect. Movement has no discordant pair
+and is diagnostic-only. The frozen manifest checksum is
+`598cdbca8ef50b05d3c9743cbbf4245c0e4c0495b81fd5fc3fd06e67bc623f5d`.
+Pre-preflight validation passed 48 focused V4.4/V4.3/V4.2 tests in 29.08
+seconds and focused Ruff checks. No V4.4 metric or validation outcome exists
+at this checkpoint.

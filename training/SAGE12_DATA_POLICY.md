@@ -315,3 +315,24 @@ negative-result audit data. `projection_freeze.json` selects no projection.
 The V4.3 validation collector remains blocked and no validation shard may be
 created under this version. The binding and world-model closure records grant
 no downstream authority.
+
+## V4.4 derived paired-causal view
+
+V4.4 may read the immutable V4.3 source-training shards without copying or
+rewriting them. Its derived unit is a directional pair for creation or
+removal: both outcomes must be applicable and exactly one arm must be
+positive. Same-outcome pairs remain audit data but are not directional labels.
+Movement remains diagnostic because the source corpus contains no discordant
+movement pair.
+
+Model inputs are left-minus-right action, binding, and arm-conditioned
+eight-event history features. Game and pair IDs, frames, hashes, coordinates,
+arguments, object IDs, seeds, resets, paths, and outcomes are forbidden.
+Source LOGO predictions alone select the projection, temperatures, model,
+baseline, and thresholds.
+
+No validation data may be created unless every frozen V4.4 source gate passes.
+An authorized validation collection must use fresh seeds 1451, 1499, 1553,
+and 1601 and publish raw shards before evaluation. Even a validation pass
+authorizes only a separately frozen absolute world-model protocol; it does not
+authorize fitting that model, an EBM, or a controller.

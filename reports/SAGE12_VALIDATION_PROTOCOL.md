@@ -287,3 +287,17 @@ selected, the validation collector stayed blocked, and the binding/world-model
 commands wrote skipped closure artifacts. Stages B-E remain unauthorized.
 Complete result:
 `reports/SAGE12_BOUND_MECHANIC_PILOT_V4_3_RESULT.md`.
+
+## V4.4 paired-causal amendment
+
+V4.4 is a source-only derived repair over the immutable V4.3 pairs. It tests
+creation and removal as antisymmetric arm comparisons and keeps movement
+diagnostic. The frozen source gates require discordant capacity across at
+least two games, positive LOGO utility, binding-swap sensitivity, low identity
+gain, calibration, exact arm-swap inversion, non-negative scoreable games,
+and a positive bootstrap lower bound.
+
+Only a full source pass may open a new validation collection. A validation
+pass may authorize preparation of a separate absolute world-model protocol,
+but it does not authorize fitting or control. Protocol:
+`reports/SAGE12_PAIRWISE_CAUSAL_PILOT_V4_4_PROTOCOL.md`.
