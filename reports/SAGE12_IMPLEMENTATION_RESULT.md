@@ -523,3 +523,31 @@ will be appended and published after the frozen CUDA generation and complete
 factorial evaluation, whether positive or negative. The pre-result manifest
 checksum is
 `ad08752af3f8b87afd07efd4aa49d9cf1c4f3a81a06d9cb175b11beea4b10ecc`.
+
+## V4.7 result
+
+The pilot completed `CURRENT_STACK_NEGATIVE_QWEN_SEMANTICS_BOTTLENECK`,
+result checksum
+`c81cca6d92b40eed9b880fbb20d57e0f624de02e245641ac1ab7afd5a4cb8c42`.
+All 2,720 Qwen bitstreams were valid and all 4,760 legal slots survived the
+compiler. CUDA inference took 205.6 seconds, with a 470-token maximum.
+
+The full stack scored 7.1787 utility against the fold-selected
+action-sequence baseline's 7.6160. Its paired gain was -0.4373 with interval
+[-0.7285, -0.1922], and it was non-negative on 4/11 games. Qwen added -0.0159
+over structured-only features; depth three added -0.1011 over depth one; and
+the relation-shuffled control improved utility by 0.0552.
+
+Replacing only Qwen annotations with actual effects recovered +0.3978 over
+baseline, interval [+0.2917, +0.5012]. True world outputs let the learned EBM
+match oracle energy at 1.00 action and leaf accuracy. The result localizes the
+first bottleneck to zero-shot Qwen semantics while preserving evidence that
+the downstream composition can work with correct semantics. Structured game
+identity remained almost perfectly decodable at 0.9998.
+
+The first full aggregation exposed a Windows scikit-learn incompatibility in
+the descriptive identity probe. Sparse indices were normalized to 32 bit and
+the unsupported multiclass `liblinear` solver was replaced by `lbfgs`; the
+corrected full run took 502.4 seconds. No learned prediction, decision, gate,
+or verdict rule changed. Full report:
+`reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_RESULT.md`.

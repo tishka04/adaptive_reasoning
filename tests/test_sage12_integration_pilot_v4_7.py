@@ -15,6 +15,7 @@ from theory.sage12.controller import Sage12Config, SemanticPlanningController
 from theory.sage12.energy import PairwiseTrajectoryEBM
 from theory.sage12.integration_pilot import load_complete_roots
 from theory.sage12.integration_pilot_v4_7 import (
+    _identity_probe,
     _masked_binary_probabilities,
     _nodes,
     freeze_manifest,
@@ -201,3 +202,20 @@ def test_slot_effect_arrays_are_stable() -> None:
         "game_over",
     )
     assert np.asarray(list(_probabilities().values()), dtype=float).sum() == 0.0
+
+
+def test_multiclass_identity_probe_uses_supported_sparse_solver() -> None:
+    examples = load_slot_examples(load_complete_roots())
+    games = sorted({item.game_id for item in examples})[:3]
+    subset = tuple(
+        item
+        for game in games
+        for item in [row for row in examples if row.game_id == game][:5]
+    )
+    annotations = {
+        item.slot.slot_id: item.annotation(source="test") for item in subset
+    }
+    result = _identity_probe(subset, annotations)
+    assert result["majority_accuracy"] == pytest.approx(1.0 / 3.0)
+    assert 0.0 <= result["structured_accuracy"] <= 1.0
+    assert 0.0 <= result["structured_plus_qwen_accuracy"] <= 1.0

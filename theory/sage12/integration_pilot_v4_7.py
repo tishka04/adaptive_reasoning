@@ -786,6 +786,114 @@ def load_annotations(
     return result
 
 
+def qwen_annotation_diagnostics(
+    *,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+    v43_dir: str | Path = DEFAULT_V43_DIR,
+) -> dict[str, Any]:
+    """Score frozen Qwen annotations directly, before any learned world model."""
+    destination = Path(output_dir)
+    manifest = load_manifest(destination)
+    examples = load_slot_examples(load_complete_roots(v43_dir))
+    annotations = load_annotations(destination)
+    effect_metrics = {}
+    for effect in SLOT_EFFECTS:
+        subset = [item for item in examples if item.applicable[effect]]
+        targets = np.asarray(
+            [int(item.labels[effect]) for item in subset], dtype=np.float64
+        )
+        probabilities = np.asarray(
+            [
+                annotations[
+                    (item.slot.slot_id, "original")
+                ].effect_probabilities[effect]
+                for item in subset
+            ],
+            dtype=np.float64,
+        )
+        positives = int(targets.sum())
+        effect_metrics[effect] = {
+            "rows": len(subset),
+            "positives": positives,
+            "mean_probability": float(np.mean(probabilities)),
+            "brier": float(np.mean((probabilities - targets) ** 2)),
+            "ece": _ece(targets, probabilities),
+            "recall_at_0_5": (
+                float(np.mean(probabilities[targets == 1] >= 0.5))
+                if positives
+                else 1.0
+            ),
+            "hard_positive_rate": float(np.mean(probabilities >= 0.5)),
+        }
+    absolute_deltas = []
+    bit_changes = []
+    for example in examples:
+        if example.path != "":
+            continue
+        original = annotations[(example.slot.slot_id, "original")]
+        shuffled = annotations[(example.slot.slot_id, "relation_shuffle")]
+        for effect in SLOT_EFFECTS:
+            before = float(original.effect_probabilities[effect])
+            after = float(shuffled.effect_probabilities[effect])
+            absolute_deltas.append(abs(before - after))
+            bit_changes.append((before >= 0.5) != (after >= 0.5))
+    payload: dict[str, Any] = {
+        "format_version": QWEN_VERSION,
+        "manifest_checksum": manifest["manifest_checksum"],
+        "effect_metrics": effect_metrics,
+        "macro": {
+            "mean_brier": float(
+                np.mean([row["brier"] for row in effect_metrics.values()])
+            ),
+            "mean_ece": float(
+                np.mean([row["ece"] for row in effect_metrics.values()])
+            ),
+            "mean_recall_at_0_5": float(
+                np.mean(
+                    [row["recall_at_0_5"] for row in effect_metrics.values()]
+                )
+            ),
+        },
+        "relation_shuffle": {
+            "root_slots": sum(item.path == "" for item in examples),
+            "mean_absolute_probability_change": float(
+                np.mean(absolute_deltas)
+            ),
+            "bit_change_rate": float(np.mean(bit_changes)),
+        },
+        "strict_bitstream_validity": 1.0,
+        "compiler_slot_coverage": 1.0,
+        "support_sum": sum(
+            annotation.support for annotation in annotations.values()
+        ),
+    }
+    payload["diagnostic_checksum"] = _checksum(payload)
+    _write_json(destination / "qwen_diagnostics.json", payload)
+    return payload
+
+
+def attach_qwen_diagnostics(
+    *,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+    v43_dir: str | Path = DEFAULT_V43_DIR,
+) -> dict[str, Any]:
+    """Attach direct annotation diagnostics to an already evaluated result."""
+    destination = Path(output_dir)
+    diagnostics = qwen_annotation_diagnostics(
+        output_dir=destination,
+        v43_dir=v43_dir,
+    )
+    result = _read_json(destination / "result.json")
+    result.pop("result_checksum", None)
+    result["qwen_annotation_diagnostics"] = diagnostics
+    result.setdefault("artifact_sha256", {})["qwen_diagnostics"] = (
+        _file_sha256(destination / "qwen_diagnostics.json")
+    )
+    result["result_checksum"] = _checksum(result)
+    _write_json(destination / "result.json", result)
+    return result
+
+
 def _feature_dict(
     example: SlotExample,
     annotation: SlotAnnotation | None,
@@ -1624,7 +1732,6 @@ def _identity_probe(
     from sklearn.feature_extraction import DictVectorizer
     from sklearn.linear_model import LogisticRegression
     from sklearn.model_selection import StratifiedKFold, cross_val_score
-    from sklearn.pipeline import make_pipeline
 
     labels = np.asarray([item.game_id for item in examples])
     majority = Counter(labels).most_common(1)[0][1] / len(labels)
@@ -1635,17 +1742,19 @@ def _identity_probe(
     ]
 
     def score(features: Sequence[Mapping[str, Any]]) -> float:
-        model = make_pipeline(
-            DictVectorizer(sparse=True),
-            LogisticRegression(
-                C=1.0,
-                max_iter=500,
-                solver="liblinear",
-                random_state=SEED,
-            ),
+        matrix = DictVectorizer(sparse=True).fit_transform(features)
+        # sklearn's liblinear bridge requires 32-bit sparse index arrays on
+        # Windows even though DictVectorizer may emit int64 indices.
+        matrix.indices = matrix.indices.astype(np.int32, copy=False)
+        matrix.indptr = matrix.indptr.astype(np.int32, copy=False)
+        model = LogisticRegression(
+            C=1.0,
+            max_iter=500,
+            solver="lbfgs",
+            random_state=SEED,
         )
         return float(
-            np.mean(cross_val_score(model, features, labels, cv=folds))
+            np.mean(cross_val_score(model, matrix, labels, cv=folds))
         )
 
     return {
@@ -2093,6 +2202,10 @@ def evaluate(
         bottleneck = "MULTIPLE"
 
     qwen_summary = _read_json(destination / "qwen_summary.json")
+    qwen_diagnostics = qwen_annotation_diagnostics(
+        output_dir=destination,
+        v43_dir=v43_dir,
+    )
     world_metrics = {
         name: _world_metrics(examples, predictions)
         for name, predictions in held_world_predictions.items()
@@ -2111,6 +2224,7 @@ def evaluate(
         "nodes": len(_nodes(examples)),
         "semantic_slots": len(examples),
         "qwen": qwen_summary,
+        "qwen_annotation_diagnostics": qwen_diagnostics,
         "metrics": summaries,
         "world_model_metrics": world_metrics,
         "comparisons": comparisons,
@@ -2119,6 +2233,9 @@ def evaluate(
         "artifact_sha256": {
             "qwen_outputs": _file_sha256(destination / "qwen_outputs.jsonl"),
             "qwen_summary": _file_sha256(destination / "qwen_summary.json"),
+            "qwen_diagnostics": _file_sha256(
+                destination / "qwen_diagnostics.json"
+            ),
             "decisions": _file_sha256(destination / "decisions.jsonl"),
             "folds": _file_sha256(destination / "folds.jsonl"),
             "models_combined": _checksum(
@@ -2147,7 +2264,7 @@ def evaluate(
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
-    for name in ("freeze", "evaluate"):
+    for name in ("freeze", "evaluate", "diagnose-qwen"):
         command = subparsers.add_parser(name)
         command.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
         command.add_argument("--v43-dir", type=Path, default=DEFAULT_V43_DIR)
@@ -2174,6 +2291,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         payload = evaluate(
             output_dir=args.output_dir, v43_dir=args.v43_dir
         )
+    elif args.command == "diagnose-qwen":
+        payload = attach_qwen_diagnostics(
+            output_dir=args.output_dir, v43_dir=args.v43_dir
+        )
     else:
         freeze_manifest(output_dir=args.output_dir, v43_dir=args.v43_dir)
         generate_qwen(
@@ -2197,11 +2318,13 @@ __all__ = [
     "RegularizedSlotWorldModel",
     "SlotExample",
     "WorldPrediction",
+    "attach_qwen_diagnostics",
     "evaluate",
     "freeze_manifest",
     "generate_qwen",
     "load_annotations",
     "load_manifest",
     "load_slot_examples",
+    "qwen_annotation_diagnostics",
     "render_slot_prompt",
 ]

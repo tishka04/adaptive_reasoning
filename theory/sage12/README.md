@@ -504,3 +504,10 @@ python -m theory.sage12.integration_pilot_v4_7 evaluate
 The frozen contract is documented in
 `reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_PROTOCOL.md`. No V4.7
 outcome can grant live authority or open held-out data.
+
+V4.7 returned `CURRENT_STACK_NEGATIVE_QWEN_SEMANTICS_BOTTLENECK`. Candidate
+coverage and syntax reached 1.00, but the full stack lost 0.4373 utility to the
+fold-selected baseline and Qwen did not improve structured-only features.
+True effect annotations instead gained 0.3978, and true world outputs let the
+learned EBM match the oracle exactly. See
+`reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_RESULT.md`.

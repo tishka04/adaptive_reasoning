@@ -1,0 +1,83 @@
+{
+  "compiler_slot_coverage": 1.0,
+  "diagnostic_checksum": "2df5376b0e0fedf535efb69aac94a1edf29e2539554d45fa4ea5967803f40cf5",
+  "effect_metrics": {
+    "changed": {
+      "brier": 0.42503296042690725,
+      "ece": 0.5889578275820787,
+      "hard_positive_rate": 0.26449579831932774,
+      "mean_probability": 0.3433951135943918,
+      "positives": 4438,
+      "recall_at_0_5": 0.27287066246056785,
+      "rows": 4760
+    },
+    "game_over": {
+      "brier": 0.23533856347281173,
+      "ece": 0.38369812923287894,
+      "hard_positive_rate": 0.5764705882352941,
+      "mean_probability": 0.4019754401572487,
+      "positives": 87,
+      "recall_at_0_5": 0.4942528735632184,
+      "rows": 4760
+    },
+    "level_complete": {
+      "brier": 0.22557477455761035,
+      "ece": 0.406755382973239,
+      "hard_positive_rate": 0.3983193277310924,
+      "mean_probability": 0.4073856350740794,
+      "positives": 3,
+      "recall_at_0_5": 0.6666666666666666,
+      "rows": 4760
+    },
+    "moved": {
+      "brier": 0.21327153824502554,
+      "ece": 0.184341162345333,
+      "hard_positive_rate": 0.15231092436974789,
+      "mean_probability": 0.37082815839979455,
+      "positives": 1077,
+      "recall_at_0_5": 0.22191272051996286,
+      "rows": 4760
+    },
+    "target_created": {
+      "brier": 0.23860309093770724,
+      "ece": 0.4071706860400765,
+      "hard_positive_rate": 0.6412846412846412,
+      "mean_probability": 0.4555372413777527,
+      "positives": 188,
+      "recall_at_0_5": 0.6648936170212766,
+      "rows": 3861
+    },
+    "target_moved": {
+      "brier": 0.22100126157077957,
+      "ece": 0.42862102982283323,
+      "hard_positive_rate": 0.41044323011536127,
+      "mean_probability": 0.43104968798919635,
+      "positives": 8,
+      "recall_at_0_5": 0.25,
+      "rows": 3294
+    },
+    "target_removed": {
+      "brier": 0.29824016615203497,
+      "ece": 0.3658967422998302,
+      "hard_positive_rate": 0.6317547055251973,
+      "mean_probability": 0.46055266043085336,
+      "positives": 619,
+      "recall_at_0_5": 0.3990306946688207,
+      "rows": 3294
+    }
+  },
+  "format_version": "sage12-candidate-complete-slots-qwen-v4.7",
+  "macro": {
+    "mean_brier": 0.2652946221946967,
+    "mean_ece": 0.3950629943280385,
+    "mean_recall_at_0_5": 0.42423246212864474
+  },
+  "manifest_checksum": "ad08752af3f8b87afd07efd4aa49d9cf1c4f3a81a06d9cb175b11beea4b10ecc",
+  "relation_shuffle": {
+    "bit_change_rate": 0.14831932773109244,
+    "mean_absolute_probability_change": 0.06944415456920612,
+    "root_slots": 680
+  },
+  "strict_bitstream_validity": 1.0,
+  "support_sum": 0
+}
