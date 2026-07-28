@@ -13,6 +13,7 @@ from theory.sage12.semantic_adapter_v4_8 import (
     SWAP_CLASS_INDEX,
     _arm_probabilities,
     _build_v43_pairs,
+    _completion_capture,
     _pair_class,
     _relative_click_descriptors,
     render_pair_prompt,
@@ -86,3 +87,32 @@ def test_pair_prompt_swap_only_exchanges_interventions() -> None:
 def test_source_registry_remains_the_eleven_training_games() -> None:
     assert len(SOURCE_TRAIN) == 11
     assert {"re86", "ls20", "sc25"}.isdisjoint(SOURCE_TRAIN)
+
+
+def test_completion_capture_checks_the_whole_three_step_path() -> None:
+    roots = load_complete_roots()
+    completion_roots = {
+        "lp85:1009:3:9",
+        "lp85:907:1:3",
+        "lp85:907:5:16",
+    }
+    decisions = []
+    for root_key in completion_roots:
+        decisions.extend(
+            (
+                {
+                    "root_key": root_key,
+                    "method": "selects_completion",
+                    "selected_path": "RRR",
+                },
+                {
+                    "root_key": root_key,
+                    "method": "misses_completion",
+                    "selected_path": "LLL",
+                },
+            )
+        )
+    result = _completion_capture(roots, decisions)
+    assert result["opportunities"] == 3
+    assert result["selected_by_method"]["selects_completion"] == 3
+    assert result["selected_by_method"]["misses_completion"] == 0

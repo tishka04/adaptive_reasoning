@@ -546,3 +546,14 @@ published before world-model fitting in
 `reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_SEMANTIC_RESULT.md`. Per the
 frozen exploratory protocol, this negative intermediate result does not stop
 the full architecture evaluation.
+
+The full V4.8 evaluation subsequently returned
+`EXPLORATORY_ARCHITECTURE_NOT_SUPPORTED`. Adapted semantics improved the
+unchanged structured stack by +0.2068 utility with an entirely positive
+bootstrap interval and improved V4.7 zero-shot utility by +0.1938. They still
+lost 0.2435 to the strong action-sequence baseline, were non-negative on only
+5/11 games, selected 0/3 completion trajectories, and exposed game identity
+at 85.61%. True annotations again gained +0.3978 over the baseline. The result
+rejects this frozen-Qwen external-adapter route, not the conditional global
+architecture. See
+`reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_RESULT.md`.

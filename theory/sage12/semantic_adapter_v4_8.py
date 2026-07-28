@@ -1472,24 +1472,34 @@ def _completion_capture(
     roots: Sequence[ExecutedRoot],
     decisions: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
-    opportunities = {}
-    for root in roots:
-        completing = []
-        for side in "LR":
-            trace = root.arm("", side).trace
+    def trajectory_completes(root: ExecutedRoot, path: str) -> bool:
+        prefix = ""
+        for side in path:
+            trace = root.arm(prefix, side).trace
             if (
                 trace.effects.level_complete
                 or trace.levels_completed_after > trace.levels_completed_before
                 or str(trace.game_state_after).upper() == "WIN"
             ):
-                completing.append(side)
-        if completing:
-            opportunities[root.root_key] = set(completing)
+                return True
+            prefix += side
+        return False
+
+    opportunities = set()
+    for root in roots:
+        if any(
+            trajectory_completes(root, "".join(bits))
+            for bits in itertools.product("LR", repeat=3)
+        ):
+            opportunities.add(root.root_key)
+    by_root = {root.root_key: root for root in roots}
     by_method: dict[str, int] = Counter()
     for row in decisions:
         if row["root_key"] in opportunities:
             by_method[row["method"]] += int(
-                row["selected_side"] in opportunities[row["root_key"]]
+                trajectory_completes(
+                    by_root[row["root_key"]], str(row["selected_path"])
+                )
             )
     return {
         "opportunities": len(opportunities),

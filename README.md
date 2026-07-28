@@ -207,16 +207,21 @@ on 44 outcome-blind roots with original and relation-shuffled prompts; all
 work is source-only and offline, and the pilot cannot grant live authority.
 See `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`.
 
-The completed V4.6 result is negative for the current learned chain but does
-not refute the global architecture under its frozen rule. The oracle pipeline
-preserved 100% of best actions and gained +0.666 utility over the stronger
-simple baseline, while the myopic oracle left 0.312 utility on the table. The
-first collapse was Qwen proposal/grounding: only 11/44 original roots yielded
-a normalized grounded option, and even oracle ranking of those options scored
--0.284 below the stronger same-root baseline. The full chain scored -0.386,
-relation shuffling improved it by 0.094, and game identity remained perfectly
-decodable. No authority was promoted. See
-`reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`.
+V4.7 repaired candidate coverage and localized the remaining bottleneck:
+zero-shot Qwen semantics lost 0.4373 utility to the fold-selected baseline,
+while true semantic annotations gained 0.3978 and true world outputs let the
+learned EBM exactly match the oracle.
+
+V4.8 then trained a source-only, same-prestate paired semantic adapter over a
+frozen Qwen representation and ran it through the unchanged V4.7 world model,
+EBM, and controller. It improved structured-only by +0.2068 and improved V4.7
+zero-shot by +0.1938, proving the adapter carries some useful signal. It still
+lost 0.2435 to action-sequence-only, was non-negative on 5/11 games, selected
+0/3 completion trajectories, and leaked game identity at 85.61%. True
+annotations remained +0.3978 above baseline. This rejects the present
+frozen-Qwen external-adapter route without refuting the conditional global
+architecture. See
+`reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_RESULT.md`.
 
 The completed V4.6 result is negative for the current learned chain but does
 not refute the global architecture under its frozen rule. The oracle pipeline
@@ -238,7 +243,10 @@ decodable. No authority was promoted. See
 - `reports/SAGE12_CONSTRAINED_PILOT_V2_RESULT.md`
 - `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_PROTOCOL.md`
 - `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`
-- `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`
+- `reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_RESULT.md`
+- `reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_PROTOCOL.md`
+- `reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_SEMANTIC_RESULT.md`
+- `reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_RESULT.md`
 
 Focused software validation:
 
@@ -247,6 +255,7 @@ python -m pytest -q tests/test_sage12_semantic_planning.py
 python -m pytest -q tests/test_sage12_proposal_pilot.py
 python -m pytest -q tests/test_sage12_constrained_pilot.py
 python -m pytest -q tests/test_sage12_integration_pilot.py
+python -m pytest -q tests/test_sage12_semantic_adapter_v4_8.py
 ```
 
 The long-budget performance track skips ablation overhead and writes compact
