@@ -588,3 +588,12 @@ transitions, 2,396 same-prestate pairs, 100% valid semantic roots, and all
 identity/firewall checks passing. It contains exactly five non-synthetic
 completion events. The corpus is published before student training; see
 `reports/SAGE12_OBJECT_RELATIVE_TEACHER_V4_9_QA.md`.
+
+The LOGO student subsequently returned
+`OBJECT_RELATIVE_TEACHER_IMITATION_NOT_YET_SUPPORTED`. It slightly beat the
+root-only model and improved productive-pair ranking over action-only, but lost
+0.0031 macro-Brier to action-only, improved when relations were shuffled,
+exposed game identity at 90.64%, and retrieved 0/5 completions at rank eight.
+The valid teacher remains useful, but these probabilities must not train the
+semantic world model or EBM. See
+`reports/SAGE12_OBJECT_RELATIVE_TEACHER_STUDENT_V4_9_RESULT.md`.

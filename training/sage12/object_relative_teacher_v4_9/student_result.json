@@ -1,0 +1,1243 @@
+{
+  "artifact_sha256": {
+    "logo_predictions": "79a25306463675b8269b1201cecab2466da46c732041758b86ba4ac04ae675a7",
+    "teacher_corpus": "30cd76d33d05ed309e58b44b6569b5079a1ac967e18ae9e7ea9eaa78a981c956"
+  },
+  "authority_promoted": false,
+  "checks": {
+    "completion_recall_at_8_minimum": false,
+    "full_macro_brier_gain_over_action_only_strictly_positive": false,
+    "full_macro_brier_gain_over_root_only_strictly_positive": true,
+    "neighbor_permutation_invariance": true,
+    "productive_pair_accuracy_gain_over_action_only_strictly_positive": true,
+    "relation_shuffle_brier_degradation_strictly_positive": false,
+    "semantic_output_identity_accuracy_maximum": false,
+    "teacher_ready": true
+  },
+  "completion_recall_at_8": {
+    "captured": 0,
+    "per_game": {
+      "lp85": {
+        "captured": 0,
+        "positives": 4
+      },
+      "sp80": {
+        "captured": 0,
+        "positives": 1
+      }
+    },
+    "positives": 5,
+    "recall_at_8": 0.0
+  },
+  "confirmatory": false,
+  "device": "cuda:0",
+  "folds": [
+    {
+      "held_out_game": "bp35",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.35728513697783154,
+          "pairwise_ranking": 0.30516138672828674,
+          "semantic": 0.12703209246198335
+        },
+        "ranking_pairs": 479,
+        "runtime_seconds": 9.512903700000606,
+        "train_games": [
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6792
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.17692233208152983,
+          "pairwise_ranking": 0.5419979691505432,
+          "semantic": 0.19122310976187387
+        },
+        "ranking_pairs": 479,
+        "runtime_seconds": 8.372773200040683,
+        "train_games": [
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6792
+      },
+      "training_rows": 6792,
+      "validation_rows": 749
+    },
+    {
+      "held_out_game": "cd82",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.4250447584523095,
+          "pairwise_ranking": 0.276748850941658,
+          "semantic": 0.1559473623832067
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 8.480953800026327,
+        "train_games": [
+          "bp35",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6812
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.2989335548546579,
+          "pairwise_ranking": 0.42830315232276917,
+          "semantic": 0.21505936731894812
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 10.693782599992119,
+        "train_games": [
+          "bp35",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6812
+      },
+      "training_rows": 6812,
+      "validation_rows": 729
+    },
+    {
+      "held_out_game": "dc22",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.4685199558734894,
+          "pairwise_ranking": 0.31366580724716187,
+          "semantic": 0.1754115414288309
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 8.539177799946629,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6798
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.2488236071334945,
+          "pairwise_ranking": 0.5166303515434265,
+          "semantic": 0.239777615500821
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 9.429637099965475,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6798
+      },
+      "training_rows": 6798,
+      "validation_rows": 743
+    },
+    {
+      "held_out_game": "g50t",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.4014035264650981,
+          "pairwise_ranking": 0.19042124599218369,
+          "semantic": 0.12582900582088363
+        },
+        "ranking_pairs": 557,
+        "runtime_seconds": 10.161930300062522,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6812
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.3832361002763112,
+          "pairwise_ranking": 0.3759661316871643,
+          "semantic": 0.19781863109933007
+        },
+        "ranking_pairs": 557,
+        "runtime_seconds": 8.98332370002754,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6812
+      },
+      "training_rows": 6812,
+      "validation_rows": 729
+    },
+    {
+      "held_out_game": "ka59",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.4697289566198985,
+          "pairwise_ranking": 0.2716657817363739,
+          "semantic": 0.14553260720438427
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 8.82545019988902,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6890
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.2810479576388995,
+          "pairwise_ranking": 0.47916413843631744,
+          "semantic": 0.21518349564737743
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 8.873224599985406,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6890
+      },
+      "training_rows": 6890,
+      "validation_rows": 651
+    },
+    {
+      "held_out_game": "lf52",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.5074775649441613,
+          "pairwise_ranking": 0.3256160318851471,
+          "semantic": 0.16670713656478459
+        },
+        "ranking_pairs": 565,
+        "runtime_seconds": 9.313987600035034,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6830
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.680512774321768,
+          "pairwise_ranking": 0.3524947911500931,
+          "semantic": 0.20725485185782114
+        },
+        "ranking_pairs": 565,
+        "runtime_seconds": 9.32136070006527,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6830
+      },
+      "training_rows": 6830,
+      "validation_rows": 711
+    },
+    {
+      "held_out_game": "lp85",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.40394705533981323,
+          "pairwise_ranking": 0.2483418881893158,
+          "semantic": 0.1526096533787878
+        },
+        "ranking_pairs": 700,
+        "runtime_seconds": 10.117384200100787,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 7218
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.22407197952270508,
+          "pairwise_ranking": 0.47556670010089874,
+          "semantic": 0.22085011632818924
+        },
+        "ranking_pairs": 700,
+        "runtime_seconds": 8.64810269989539,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 7218
+      },
+      "training_rows": 7218,
+      "validation_rows": 323
+    },
+    {
+      "held_out_game": "sp80",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.4076044278012382,
+          "pairwise_ranking": 0.2982323616743088,
+          "semantic": 0.15753863586319816
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 7.942002699943259,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6784
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.27591464337375426,
+          "pairwise_ranking": 0.47391290962696075,
+          "semantic": 0.2172524854540825
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 9.528998700086959,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6784
+      },
+      "training_rows": 6784,
+      "validation_rows": 757
+    },
+    {
+      "held_out_game": "su15",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.5430570758051343,
+          "pairwise_ranking": 0.2904224097728729,
+          "semantic": 0.16410455852746964
+        },
+        "ranking_pairs": 671,
+        "runtime_seconds": 8.097800599993207,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6820
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.33836134605937535,
+          "pairwise_ranking": 0.40251976251602173,
+          "semantic": 0.22343133141597113
+        },
+        "ranking_pairs": 671,
+        "runtime_seconds": 8.688236700021662,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 6820
+      },
+      "training_rows": 6820,
+      "validation_rows": 721
+    },
+    {
+      "held_out_game": "tr87",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.43442939387427437,
+          "pairwise_ranking": 0.24967504292726517,
+          "semantic": 0.15309291664097044
+        },
+        "ranking_pairs": 697,
+        "runtime_seconds": 9.096068799961358,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tu93"
+        ],
+        "train_rows": 6798
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.2672378395994504,
+          "pairwise_ranking": 0.4342138171195984,
+          "semantic": 0.22547507368856007
+        },
+        "ranking_pairs": 697,
+        "runtime_seconds": 8.134141600108705,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tu93"
+        ],
+        "train_rows": 6798
+      },
+      "training_rows": 6798,
+      "validation_rows": 743
+    },
+    {
+      "held_out_game": "tu93",
+      "object_relative": {
+        "final_losses": {
+          "identity_confusion": 0.5168643974595599,
+          "pairwise_ranking": 0.33988378942012787,
+          "semantic": 0.1629443508055475
+        },
+        "ranking_pairs": 549,
+        "runtime_seconds": 9.565732099930756,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87"
+        ],
+        "train_rows": 6856
+      },
+      "root_only": {
+        "final_losses": {
+          "identity_confusion": 0.2093177561958631,
+          "pairwise_ranking": 0.47039535641670227,
+          "semantic": 0.1997544831699795
+        },
+        "ranking_pairs": 549,
+        "runtime_seconds": 9.296196200069971,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87"
+        ],
+        "train_rows": 6856
+      },
+      "training_rows": 6856,
+      "validation_rows": 685
+    }
+  ],
+  "format_version": "sage12-object-relative-student-result-v4.9",
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "holdout_opened": false,
+  "interpretation": {
+    "absolute_coordinates_enter_student": false,
+    "colors_or_raw_values_enter_student": false,
+    "completion_capacity_is_observed_not_synthetic": true,
+    "slot_export_is_compatible_with_v4_7_base_effects": true,
+    "student_predictions_are_logo": true,
+    "student_uses_pre_action_state_only": true,
+    "teacher_uses_post_transition_state": true
+  },
+  "live_environment_opened": false,
+  "macro_brier_gain": {
+    "over_action_only": -0.0030767751361157197,
+    "over_root_only": 0.0002525507844839958,
+    "relation_shuffle_degradation": -0.005421825935449404
+  },
+  "manifest_checksum": "311f7a1ac4fee1cb265e12cfb8cd92ab5654eb135ce7bbdbcc44117279f35710",
+  "metrics": {
+    "action_only": {
+      "base_macro_brier": 0.08715665314034711,
+      "functional_macro_brier": 0.08417939689090528,
+      "macro_brier": 0.0854053259347931,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 6030,
+          "brier": 0.008982332080401221,
+          "positive": 54,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 7541,
+          "brier": 0.05843139250358945,
+          "positive": 7101,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 6030,
+          "brier": 0.006073101112229838,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 6030,
+          "brier": 0.20274674264678946,
+          "positive": 1484,
+          "recall_at_0_5": 0.0033692722371967657
+        },
+        "game_over": {
+          "applicable": 7541,
+          "brier": 0.020569451003051756,
+          "positive": 151,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 7541,
+          "brier": 0.0006675626071776051,
+          "positive": 5,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 6129,
+          "brier": 0.26661987270136284,
+          "positive": 1988,
+          "recall_at_0_5": 0.001006036217303823
+        },
+        "moved": {
+          "applicable": 6129,
+          "brier": 0.2398883137632433,
+          "positive": 1775,
+          "recall_at_0_5": 0.023098591549295774
+        },
+        "path_closed": {
+          "applicable": 6129,
+          "brier": 0.019705293131776692,
+          "positive": 119,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 6129,
+          "brier": 0.07626465250089565,
+          "positive": 403,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 7541,
+          "brier": 0.1530959430912695,
+          "positive": 1333,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_decreased": {
+          "applicable": 6129,
+          "brier": 0.03014837648889314,
+          "positive": 177,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 6129,
+          "brier": 0.02556960287931565,
+          "positive": 150,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 7541,
+          "brier": 0.05258805227611881,
+          "positive": 394,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 6129,
+          "brier": 0.05817006882125593,
+          "positive": 332,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 4407,
+          "brier": 0.03549577114432444,
+          "positive": 155,
+          "recall_at_0_5": 0.0
+        },
+        "target_removed": {
+          "applicable": 4407,
+          "brier": 0.1968740121397873,
+          "positive": 961,
+          "recall_at_0_5": 0.0
+        }
+      }
+    },
+    "object_relative": {
+      "base_macro_brier": 0.09095856505470958,
+      "functional_macro_brier": 0.08674857628224827,
+      "macro_brier": 0.08848210107090881,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 6030,
+          "brier": 0.009107694940784415,
+          "positive": 54,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 7541,
+          "brier": 0.05687582896769274,
+          "positive": 7101,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 6030,
+          "brier": 0.006055208430230503,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 6030,
+          "brier": 0.22274472497530912,
+          "positive": 1484,
+          "recall_at_0_5": 0.11118598382749326
+        },
+        "game_over": {
+          "applicable": 7541,
+          "brier": 0.020597792996812126,
+          "positive": 151,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 7541,
+          "brier": 0.000811873589072225,
+          "positive": 5,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 6129,
+          "brier": 0.26930772613627296,
+          "positive": 1988,
+          "recall_at_0_5": 0.04778672032193159
+        },
+        "moved": {
+          "applicable": 6129,
+          "brier": 0.2552005434997651,
+          "positive": 1775,
+          "recall_at_0_5": 0.09464788732394366
+        },
+        "path_closed": {
+          "applicable": 6129,
+          "brier": 0.019846956625882466,
+          "positive": 119,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 6129,
+          "brier": 0.076386384681373,
+          "positive": 403,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 7541,
+          "brier": 0.15886167984176175,
+          "positive": 1333,
+          "recall_at_0_5": 0.06976744186046512
+        },
+        "reachable_area_decreased": {
+          "applicable": 6129,
+          "brier": 0.029062126594266418,
+          "positive": 177,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 6129,
+          "brier": 0.02467505455346705,
+          "positive": 150,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 7541,
+          "brier": 0.051438206043135114,
+          "positive": 394,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 6129,
+          "brier": 0.05420081962871521,
+          "positive": 332,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 4407,
+          "brier": 0.037359112366884745,
+          "positive": 155,
+          "recall_at_0_5": 0.0
+        },
+        "target_removed": {
+          "applicable": 4407,
+          "brier": 0.21166398433402497,
+          "positive": 961,
+          "recall_at_0_5": 0.09261186264308012
+        }
+      }
+    },
+    "relation_shuffle": {
+      "base_macro_brier": 0.08497808486001883,
+      "functional_macro_brier": 0.08171780832826783,
+      "macro_brier": 0.08306027513545941,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 6030,
+          "brier": 0.008963288336714684,
+          "positive": 54,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 7541,
+          "brier": 0.05741007743718663,
+          "positive": 7101,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 6030,
+          "brier": 0.005959882566449204,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 6030,
+          "brier": 0.20262521580362658,
+          "positive": 1484,
+          "recall_at_0_5": 0.1334231805929919
+        },
+        "game_over": {
+          "applicable": 7541,
+          "brier": 0.020353219965573658,
+          "positive": 151,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 7541,
+          "brier": 0.0007483860176758894,
+          "positive": 5,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 6129,
+          "brier": 0.25506534922024837,
+          "positive": 1988,
+          "recall_at_0_5": 0.079476861167002
+        },
+        "moved": {
+          "applicable": 6129,
+          "brier": 0.23260056641654858,
+          "positive": 1775,
+          "recall_at_0_5": 0.12225352112676056
+        },
+        "path_closed": {
+          "applicable": 6129,
+          "brier": 0.01973186491417747,
+          "positive": 119,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 6129,
+          "brier": 0.07381314283865499,
+          "positive": 403,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 7541,
+          "brier": 0.14770299466258505,
+          "positive": 1333,
+          "recall_at_0_5": 0.0555138784696174
+        },
+        "reachable_area_decreased": {
+          "applicable": 6129,
+          "brier": 0.028594114750263903,
+          "positive": 177,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 6129,
+          "brier": 0.02430362175836576,
+          "positive": 150,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 7541,
+          "brier": 0.050418608431592335,
+          "positive": 394,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 6129,
+          "brier": 0.05384208607439548,
+          "positive": 332,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 4407,
+          "brier": 0.037594121539374685,
+          "positive": 155,
+          "recall_at_0_5": 0.0
+        },
+        "target_removed": {
+          "applicable": 4407,
+          "brier": 0.19229813656937686,
+          "positive": 961,
+          "recall_at_0_5": 0.16129032258064516
+        }
+      }
+    },
+    "root_only": {
+      "base_macro_brier": 0.09077538578707092,
+      "functional_macro_brier": 0.08730613810321815,
+      "macro_brier": 0.08873465185539281,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 6030,
+          "brier": 0.009040172560992127,
+          "positive": 54,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 7541,
+          "brier": 0.058612700095379174,
+          "positive": 7101,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 6030,
+          "brier": 0.006050804771169087,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 6030,
+          "brier": 0.21859588817650605,
+          "positive": 1484,
+          "recall_at_0_5": 0.0006738544474393531
+        },
+        "game_over": {
+          "applicable": 7541,
+          "brier": 0.020281701100414332,
+          "positive": 151,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 7541,
+          "brier": 0.0006952127382783405,
+          "positive": 5,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 6129,
+          "brier": 0.27033304784559076,
+          "positive": 1988,
+          "recall_at_0_5": 0.0
+        },
+        "moved": {
+          "applicable": 6129,
+          "brier": 0.24740476233690212,
+          "positive": 1775,
+          "recall_at_0_5": 0.0005633802816901409
+        },
+        "path_closed": {
+          "applicable": 6129,
+          "brier": 0.019614060897013792,
+          "positive": 119,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 6129,
+          "brier": 0.07004474194383366,
+          "positive": 403,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 7541,
+          "brier": 0.17379973776283214,
+          "positive": 1333,
+          "recall_at_0_5": 0.00450112528132033
+        },
+        "reachable_area_decreased": {
+          "applicable": 6129,
+          "brier": 0.029203757121433912,
+          "positive": 177,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 6129,
+          "brier": 0.024788670323332627,
+          "positive": 150,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 7541,
+          "brier": 0.05159049962947737,
+          "positive": 394,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 6129,
+          "brier": 0.05648524389511232,
+          "positive": 332,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 4407,
+          "brier": 0.03296328724255373,
+          "positive": 155,
+          "recall_at_0_5": 0.05806451612903226
+        },
+        "target_removed": {
+          "applicable": 4407,
+          "brier": 0.21898479310085642,
+          "positive": 961,
+          "recall_at_0_5": 0.0
+        }
+      }
+    }
+  },
+  "neighbor_permutation_max_probability_delta": 2.384185791015625e-07,
+  "per_game_transfer": {
+    "bp35": {
+      "macro_brier": 0.2746218382587661,
+      "rows": 749
+    },
+    "cd82": {
+      "macro_brier": 0.050356123942783985,
+      "rows": 729
+    },
+    "dc22": {
+      "macro_brier": 0.03274881434302976,
+      "rows": 743
+    },
+    "g50t": {
+      "macro_brier": 0.1480417793081175,
+      "rows": 729
+    },
+    "ka59": {
+      "macro_brier": 0.06179838432476609,
+      "rows": 651
+    },
+    "lf52": {
+      "macro_brier": 0.059488722428122184,
+      "rows": 711
+    },
+    "lp85": {
+      "macro_brier": 0.05325389441812017,
+      "rows": 323
+    },
+    "sp80": {
+      "macro_brier": 0.0924878915608901,
+      "rows": 757
+    },
+    "su15": {
+      "macro_brier": 0.03530019215111787,
+      "rows": 721
+    },
+    "tr87": {
+      "macro_brier": 0.010796363768119075,
+      "rows": 743
+    },
+    "tu93": {
+      "macro_brier": 0.12978795097965742,
+      "rows": 685
+    }
+  },
+  "productive_pair_ranking": {
+    "action_only": {
+      "accuracy": 0.3712660028449502,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 0.42857142857142855,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.6095890410958904,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.0,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.0,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 1.0,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.45454545454545453,
+          "pairs": 154
+        }
+      },
+      "ties": 173
+    },
+    "object_relative": {
+      "accuracy": 0.4295874822190612,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 0.25,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.4931506849315068,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.15942028985507245,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.625,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 0.6666666666666666,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.8311688311688312,
+          "pairs": 154
+        }
+      },
+      "ties": 0
+    },
+    "relation_shuffle": {
+      "accuracy": 0.3840682788051209,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 0.0,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.5616438356164384,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.2463768115942029,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 1.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.46875,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 0.0,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.8831168831168831,
+          "pairs": 154
+        }
+      },
+      "ties": 0
+    },
+    "root_only": {
+      "accuracy": 0.5334281650071123,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 1.0,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.5616438356164384,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.18115942028985507,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.53125,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 1.0,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.13636363636363635,
+          "pairs": 154
+        }
+      },
+      "ties": 0
+    }
+  },
+  "records": 7541,
+  "result_checksum": "6bc0bb39ac7c2e9fe673b4078251755ed5adc4f05aa3b4cb896703b17c37d9af",
+  "semantic_output_game_identity_probe": {
+    "accuracy": 0.9063794949138064,
+    "gain_over_majority": 0.8059949305324247,
+    "majority_accuracy": 0.10038456438138178
+  },
+  "source_validation_opened": false,
+  "teacher_qa_checksum": "d3424198a670479fc31874e282dbee8b5e39aadd554bbe09b58a964dfb47335e",
+  "verdict": "OBJECT_RELATIVE_TEACHER_IMITATION_NOT_YET_SUPPORTED"
+}
