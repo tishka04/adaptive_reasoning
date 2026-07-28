@@ -638,3 +638,28 @@ macro-Brier, only 4/11 games beat action-only, semantic outputs exposed game
 identity at 85.51%, and completion recall@8 was 0/6. The probabilities remain
 audit-only and do not authorize semantic world-model or EBM fitting. See
 `reports/SAGE12_ACTION_ALIGNED_INVARIANT_SEMANTICS_V4_10_RESULT.md`.
+
+## Counterfactual semantic panels (V4.11)
+
+V4.11 makes the strongest V4.10 signal—same-state productive ordering—the
+primary learning problem. It executes two to four legal actions from one
+replay-verified source state, compiles immediate semantic deltas and
+deterministic horizon-three progress, and trains an exactly antisymmetric
+Siamese comparator.
+
+The absolute export is anchored to the stronger root-only model. Only a
+panel-centered relational residual may modify that anchor, with its weight
+selected inside the outer training games. Comparative success and absolute
+distillation have separate frozen decisions; neither world-model nor EBM
+fitting is permitted in V4.11.
+
+```powershell
+python -m theory.sage12.counterfactual_semantic_panels_v4_11 freeze
+python -m theory.sage12.counterfactual_panel_collection_v4_11
+python -m theory.sage12.counterfactual_semantic_panels_v4_11 compile
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.counterfactual_semantic_panels_v4_11 evaluate --device cuda:0
+```
+
+The source-only collection, capacity rules, LOGO controls, confidence
+intervals, and decisions were frozen before collection in
+`reports/SAGE12_COUNTERFACTUAL_SEMANTIC_PANELS_V4_11_PROTOCOL.md`.

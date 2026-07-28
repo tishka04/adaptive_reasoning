@@ -1,0 +1,118 @@
+{
+  "collection": {
+    "action_budget_per_reset": 128,
+    "continuation_rollouts": 2,
+    "maximum_arms_per_panel": 4,
+    "maximum_resets_per_game": 60,
+    "minimum_arms_per_panel": 2,
+    "minimum_panels_per_game": 80,
+    "outcome_adaptive": false,
+    "policy_seeds": [
+      6011,
+      6029,
+      6053,
+      6079,
+      6101
+    ],
+    "progress_deadband": 0.25,
+    "progress_gamma": 0.8,
+    "progress_horizon": 3,
+    "reject_v43_v410_exact_repeats": true,
+    "source_only": true,
+    "target_panels_per_game": 96
+  },
+  "evaluation": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 51100,
+    "can_fit_ebm_in_this_iteration": false,
+    "can_fit_world_model_in_this_iteration": false,
+    "can_promote_live_authority": false,
+    "confirmatory": false,
+    "decision_thresholds": {
+      "absolute_brier_gain_ci_lower_strictly_positive": true,
+      "absolute_ece_not_worse_than_root_only": true,
+      "arm_swap_max_complement_error": 1e-06,
+      "identity_increment_ci_upper_maximum": 0.02,
+      "neighbor_permutation_max_probability_delta": 1e-06,
+      "nonnegative_games_minimum": 6,
+      "preference_gain_ci_lower_strictly_positive": true,
+      "relation_shuffle_brier_degradation_strictly_positive": true,
+      "relation_shuffle_pair_degradation_ci_lower_strictly_positive": true,
+      "terminal_recall_at_8_minimum_when_eligible": 0.2,
+      "top1_regret_reduction_ci_lower_strictly_positive": true
+    },
+    "outer_split": "leave_one_source_train_game_out",
+    "primary_test_rows": "fresh_counterfactual_panels_only"
+  },
+  "format_version": "sage12-counterfactual-semantics-manifest-v4.11",
+  "historical_opened": false,
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "ebeaac9905bcea932f791122902da53ed1dabb72e821cb870e04a4ccaa6d9018",
+  "source_fingerprints": {
+    "frozen_manifest.json": {
+      "bytes": 3836,
+      "path": "training/sage12/action_aligned_semantics_v4_10/frozen_manifest.json",
+      "sha256": "cd3403d9c7bcfd2185edc69b7f24a897a4452447a6d90f670cc05f1fa9fb2ccf"
+    },
+    "same_prestate_pairs.jsonl": {
+      "bytes": 855372,
+      "path": "training/sage12/action_aligned_semantics_v4_10/same_prestate_pairs.jsonl",
+      "sha256": "53fa00b17581f22c28fa58f79d97308f1150da935154c0f163c4025cc318c751"
+    },
+    "student_result.json": {
+      "bytes": 55091,
+      "path": "training/sage12/action_aligned_semantics_v4_10/student_result.json",
+      "sha256": "f432301ca01d853326fb501019d3afb54817005698b38e404d43e7f9d6ec5463"
+    },
+    "teacher_corpus.jsonl": {
+      "bytes": 37765424,
+      "path": "training/sage12/action_aligned_semantics_v4_10/teacher_corpus.jsonl",
+      "sha256": "78d2e51cf86d979006d7752955040c7b6775989624014653497aa990523c994a"
+    }
+  },
+  "source_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_opened": false,
+  "teacher_capacity": {
+    "effect_eligibility_minimum_discordant_comparisons": 100,
+    "effect_eligibility_minimum_games": 4,
+    "minimum_games_with_progress_capacity": 8,
+    "minimum_progress_discordant_panels_per_game": 20,
+    "terminal_minimum_games": 4,
+    "terminal_minimum_positive_arms": 20
+  },
+  "training": {
+    "alpha_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "calibration": "inner_game_balanced_logit_shift",
+    "effect_pair_weight": 0.5,
+    "embedding_width": 32,
+    "epochs": 30,
+    "hash_buckets": 2048,
+    "hidden_width": 96,
+    "learning_rate": 0.0015,
+    "maximum_pairs_per_epoch": 4096,
+    "progress_pair_weight": 0.5,
+    "samples_per_game_per_epoch": 256,
+    "seed": 5110,
+    "tie_consistency_weight": 0.05,
+    "weight_decay": 0.0001
+  }
+}
