@@ -1,0 +1,1736 @@
+{
+  "action_only_per_game": {
+    "bp35": {
+      "macro_brier": 0.1915002580104995,
+      "rows": 909
+    },
+    "cd82": {
+      "macro_brier": 0.03471967581088403,
+      "rows": 889
+    },
+    "dc22": {
+      "macro_brier": 0.03231171301555203,
+      "rows": 903
+    },
+    "g50t": {
+      "macro_brier": 0.1134475521069004,
+      "rows": 889
+    },
+    "ka59": {
+      "macro_brier": 0.05033927326944814,
+      "rows": 811
+    },
+    "lf52": {
+      "macro_brier": 0.06673572403174774,
+      "rows": 871
+    },
+    "lp85": {
+      "macro_brier": 0.03865125289294429,
+      "rows": 387
+    },
+    "sp80": {
+      "macro_brier": 0.08305951823903582,
+      "rows": 917
+    },
+    "su15": {
+      "macro_brier": 0.03272869102509711,
+      "rows": 804
+    },
+    "tr87": {
+      "macro_brier": 0.04261446573679693,
+      "rows": 903
+    },
+    "tu93": {
+      "macro_brier": 0.1403596352273761,
+      "rows": 845
+    }
+  },
+  "artifact_sha256": {
+    "logo_predictions": "2179b14a8540fcc5392602dc3ab595d98ed321a4f3af3fac5a177bfaa0e52021",
+    "teacher_corpus": "78d2e51cf86d979006d7752955040c7b6775989624014653497aa990523c994a"
+  },
+  "authority_promoted": false,
+  "checks": {
+    "completion_recall_at_8_minimum": false,
+    "identity_accuracy_reduction_from_v49_minimum": false,
+    "macro_brier_gain_over_action_only_strictly_positive": true,
+    "macro_brier_gain_over_root_only_strictly_positive": false,
+    "macro_brier_gain_over_v49_strictly_positive": true,
+    "neighbor_permutation_invariance": true,
+    "nonnegative_games_over_action_only_minimum": false,
+    "productive_pair_accuracy_gain_over_root_only_strictly_positive": false,
+    "relation_shuffle_brier_degradation_strictly_positive": false,
+    "semantic_output_identity_accuracy_maximum": false,
+    "teacher_ready": true
+  },
+  "completion_recall_at_8": {
+    "captured": 0,
+    "per_game": {
+      "lp85": {
+        "captured": 0,
+        "positives": 5
+      },
+      "sp80": {
+        "captured": 0,
+        "positives": 1
+      }
+    },
+    "positives": 6,
+    "recall_at_8": 0.0
+  },
+  "confirmatory": false,
+  "device": "cuda:0",
+  "folds": [
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.43423965698154365,
+          "changed": 0.44317885458044914,
+          "contact_gained": -1.4934638125065383,
+          "contact_lost": -0.3880693709585026,
+          "game_over": -0.2943837383622858,
+          "level_complete": -2.1829917128973806,
+          "local_change": -0.29719831023541166,
+          "moved": -0.003058501061550478,
+          "path_closed": -1.2473045759926338,
+          "path_opened": -2.1900019786138927,
+          "productive": -0.009138734186262543,
+          "reachable_area_decreased": -0.9372246647029274,
+          "reachable_area_increased": -1.069148766940629,
+          "risk": -0.2935857441120202,
+          "target_created": -0.6109622689784748,
+          "target_moved": -0.26222383936340554,
+          "target_removed": -0.6187654078492189
+        },
+        "final_losses": {
+          "identity_confusion": 0.055876055266708136,
+          "latent_alignment": 0.012933018122566864,
+          "output_alignment": 0.0016551129992876668,
+          "pairwise_ranking": 0.5031810998916626,
+          "semantic": 0.16805768851190805
+        },
+        "ranking_pairs": 479,
+        "runtime_seconds": 80.22720419999678,
+        "train_games": [
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8219
+      },
+      "held_out_game": "bp35",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.08159377262371947,
+          "changed": -0.08378779309090856,
+          "contact_gained": -0.12825121792406158,
+          "contact_lost": -0.07978571417991454,
+          "game_over": 0.042316496510400814,
+          "level_complete": -0.18799660678563157,
+          "local_change": 0.07873929377353317,
+          "moved": 0.02484161832728793,
+          "path_closed": -0.07795513086384975,
+          "path_opened": -0.2365847165675623,
+          "productive": 0.1895071338470955,
+          "reachable_area_decreased": 0.013473612594006035,
+          "reachable_area_increased": 0.07355791003214929,
+          "risk": 0.04782910605922197,
+          "target_created": 0.10886273138367386,
+          "target_moved": -0.043886318205847985,
+          "target_removed": 0.08733367864260311
+        },
+        "final_losses": {
+          "identity_confusion": 0.029695601318962872,
+          "latent_alignment": 0.005672318860888481,
+          "output_alignment": 0.0010269304420944536,
+          "pairwise_ranking": 0.562116265296936,
+          "semantic": 0.17851351667195559
+        },
+        "ranking_pairs": 479,
+        "runtime_seconds": 77.67392380000092,
+        "train_games": [
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8219
+      },
+      "training_rows": 8219,
+      "validation_rows": 909
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.33434837929091543,
+          "changed": 0.15113250816268797,
+          "contact_gained": -0.6442912589974821,
+          "contact_lost": -0.03846318162587781,
+          "game_over": 0.15522244058674328,
+          "level_complete": -1.7209749351946355,
+          "local_change": -0.05390277163160018,
+          "moved": 0.060331061026146715,
+          "path_closed": -0.09709078198359133,
+          "path_opened": -0.18979284893585113,
+          "productive": -0.3115781078893798,
+          "reachable_area_decreased": 0.004645344396737361,
+          "reachable_area_increased": -0.044530181757656884,
+          "risk": 0.08134089137111555,
+          "target_created": 0.11571669007445262,
+          "target_moved": -0.07039296655329386,
+          "target_removed": -0.0888178956804977
+        },
+        "final_losses": {
+          "identity_confusion": 0.09997195098549128,
+          "latent_alignment": 0.016703439119737595,
+          "output_alignment": 0.0032507595242350362,
+          "pairwise_ranking": 0.32827531298001605,
+          "semantic": 0.20912879891693592
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 80.07327789999545,
+        "train_games": [
+          "bp35",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8239
+      },
+      "held_out_game": "cd82",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.9161304660747525,
+          "changed": 0.2815789462194278,
+          "contact_gained": -1.5687948172286448,
+          "contact_lost": -0.2998792467420853,
+          "game_over": -0.5093651796058825,
+          "level_complete": -3.152050046608539,
+          "local_change": -0.245171395514184,
+          "moved": -0.15698209641121053,
+          "path_closed": -0.4507792605660583,
+          "path_opened": -0.5079632524190743,
+          "productive": -0.3689685076682878,
+          "reachable_area_decreased": -0.5286921959849744,
+          "reachable_area_increased": -0.29003223981174564,
+          "risk": -0.21393327746564417,
+          "target_created": -0.2160525193634486,
+          "target_moved": -0.5271222024863182,
+          "target_removed": -0.4256618874665714
+        },
+        "final_losses": {
+          "identity_confusion": 0.0797658865340054,
+          "latent_alignment": 0.010386602312792093,
+          "output_alignment": 0.001607820697245188,
+          "pairwise_ranking": 0.5305688579877218,
+          "semantic": 0.22217200603336096
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 89.12211169989314,
+        "train_games": [
+          "bp35",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8239
+      },
+      "training_rows": 8239,
+      "validation_rows": 889
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.29242062484020304,
+          "changed": -0.003645384007934016,
+          "contact_gained": -0.7431456693605885,
+          "contact_lost": -0.1701461749122437,
+          "game_over": -0.04574167340939539,
+          "level_complete": -1.819425243806327,
+          "local_change": -0.08650751790888334,
+          "moved": -0.16277788427466555,
+          "path_closed": 0.03429306927844156,
+          "path_opened": -0.5001095551852384,
+          "productive": -0.5086758205822859,
+          "reachable_area_decreased": 0.10414285163905523,
+          "reachable_area_increased": 0.22115730761434893,
+          "risk": 0.19036046776324644,
+          "target_created": 0.3790290778475973,
+          "target_moved": -0.16206979025142898,
+          "target_removed": -0.3545561243736104
+        },
+        "final_losses": {
+          "identity_confusion": 0.10800838563591242,
+          "latent_alignment": 0.005073905427707359,
+          "output_alignment": 0.0019147036509821191,
+          "pairwise_ranking": 0.41516464948654175,
+          "semantic": 0.21508122235536575
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 89.1834635999985,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8225
+      },
+      "held_out_game": "dc22",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.51668105931686,
+          "changed": -0.027765316265907725,
+          "contact_gained": -1.2538269610173094,
+          "contact_lost": -0.1213572321166434,
+          "game_over": 0.058095958787580226,
+          "level_complete": -1.466450565595241,
+          "local_change": -0.0919783972145094,
+          "moved": 0.03724850098273769,
+          "path_closed": -0.13463525207850502,
+          "path_opened": -0.13537206324177564,
+          "productive": -0.02246242405491161,
+          "reachable_area_decreased": -0.07922645367811887,
+          "reachable_area_increased": -0.1348852488135801,
+          "risk": 0.07884243677670932,
+          "target_created": 0.08937964749058747,
+          "target_moved": -0.21018703407630746,
+          "target_removed": -0.07167157127092816
+        },
+        "final_losses": {
+          "identity_confusion": 0.08517631283029914,
+          "latent_alignment": 0.015508428099565208,
+          "output_alignment": 0.0023210688450490125,
+          "pairwise_ranking": 0.4843374888102214,
+          "semantic": 0.21462314017117023
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 76.11094049992971,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8225
+      },
+      "training_rows": 8225,
+      "validation_rows": 903
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.8009120225391668,
+          "changed": 0.226813920682281,
+          "contact_gained": -1.1819262776722956,
+          "contact_lost": -0.5155014738275647,
+          "game_over": -0.3213208861060739,
+          "level_complete": -2.2519765549147888,
+          "local_change": -0.5514030288240882,
+          "moved": -0.20663180668573855,
+          "path_closed": -0.6758232658172001,
+          "path_opened": -0.5634367377182579,
+          "productive": -0.8297850446801167,
+          "reachable_area_decreased": -0.6553711509529507,
+          "reachable_area_increased": -0.35901926569965203,
+          "risk": -0.4241399974190827,
+          "target_created": -0.617140438273049,
+          "target_moved": -0.11776738876813608,
+          "target_removed": -0.9134271310552338
+        },
+        "final_losses": {
+          "identity_confusion": 0.08147271140478551,
+          "latent_alignment": 0.003763894346775487,
+          "output_alignment": 0.0009261512186640175,
+          "pairwise_ranking": 0.47148796916007996,
+          "semantic": 0.19367876276373863
+        },
+        "ranking_pairs": 557,
+        "runtime_seconds": 73.03255769994576,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8239
+      },
+      "held_out_game": "g50t",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.5582769886681986,
+          "changed": -0.2365776421088559,
+          "contact_gained": -0.19509809334039563,
+          "contact_lost": 0.1513062226301416,
+          "game_over": 0.16953207017123395,
+          "level_complete": -1.4014915126091214,
+          "local_change": 0.16403268541679772,
+          "moved": -0.4701681348062967,
+          "path_closed": 0.014014367937705607,
+          "path_opened": 0.3669541520451505,
+          "productive": 0.11201170737549737,
+          "reachable_area_decreased": 0.18292561174472333,
+          "reachable_area_increased": 0.0013062584703757985,
+          "risk": -0.12486886242832584,
+          "target_created": 0.2647206177203567,
+          "target_moved": -0.12976551768292754,
+          "target_removed": 0.36863215282102146
+        },
+        "final_losses": {
+          "identity_confusion": 0.1302988927345723,
+          "latent_alignment": 0.010115975339431316,
+          "output_alignment": 0.002540490277169738,
+          "pairwise_ranking": 0.3957538455724716,
+          "semantic": 0.19253883603960276
+        },
+        "ranking_pairs": 557,
+        "runtime_seconds": 71.11951700004283,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8239
+      },
+      "training_rows": 8239,
+      "validation_rows": 889
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": 0.07517716039078515,
+          "changed": -0.33240016324997246,
+          "contact_gained": -0.637279626032413,
+          "contact_lost": 0.3581585075240936,
+          "game_over": 0.22502458411670023,
+          "level_complete": -1.746509096430385,
+          "local_change": 0.35659365759830575,
+          "moved": 0.29373953151472343,
+          "path_closed": 0.35289286110023177,
+          "path_opened": 0.2617861930506957,
+          "productive": 0.047917606526260315,
+          "reachable_area_decreased": 0.323723409785154,
+          "reachable_area_increased": 0.3976411387739862,
+          "risk": 0.28753008315621287,
+          "target_created": 0.22649434874811103,
+          "target_moved": 0.038910587246217876,
+          "target_removed": 0.2479239935637234
+        },
+        "final_losses": {
+          "identity_confusion": 0.08644261676818132,
+          "latent_alignment": 0.0050245830352650955,
+          "output_alignment": 0.0018524697225075215,
+          "pairwise_ranking": 0.46321792403856915,
+          "semantic": 0.21414920408278704
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 73.18166050000582,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8317
+      },
+      "held_out_game": "ka59",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.489999812155959,
+          "changed": -0.06188110288237647,
+          "contact_gained": -0.3174196809073031,
+          "contact_lost": -0.19140919939145995,
+          "game_over": 0.3946467472815294,
+          "level_complete": -0.1450827986352845,
+          "local_change": 0.04728892196296419,
+          "moved": 0.002870797667627767,
+          "path_closed": 0.04502334210315073,
+          "path_opened": 0.04438979078874494,
+          "productive": 0.1301401344885933,
+          "reachable_area_decreased": 0.17329951177646707,
+          "reachable_area_increased": 0.15114766319484207,
+          "risk": 0.27202909674944387,
+          "target_created": 0.35003421980562965,
+          "target_moved": -0.019837942931142383,
+          "target_removed": 0.004225944705040563
+        },
+        "final_losses": {
+          "identity_confusion": 0.08670600689947605,
+          "latent_alignment": 0.01443511591060087,
+          "output_alignment": 0.0020163871049589943,
+          "pairwise_ranking": 0.4865219096342723,
+          "semantic": 0.2077032094821334
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 70.43755469995085,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8317
+      },
+      "training_rows": 8317,
+      "validation_rows": 811
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": 0.3967422358072503,
+          "changed": -0.292253511957838,
+          "contact_gained": -3.103138234859885,
+          "contact_lost": -0.2844409797245173,
+          "game_over": 0.12837952172374267,
+          "level_complete": -1.4220058550539942,
+          "local_change": -0.23699405587420552,
+          "moved": -0.1664137495714898,
+          "path_closed": -0.1364757023282932,
+          "path_opened": -0.309858076472175,
+          "productive": -0.3895183002957998,
+          "reachable_area_decreased": 0.07310215392354902,
+          "reachable_area_increased": -0.038179433372297567,
+          "risk": 0.38193899810545107,
+          "target_created": 0.11538595597791446,
+          "target_moved": 0.5248786285285965,
+          "target_removed": -0.5877813818083757
+        },
+        "final_losses": {
+          "identity_confusion": 0.11881487164646387,
+          "latent_alignment": 0.00839402957353741,
+          "output_alignment": 0.0018642968352651224,
+          "pairwise_ranking": 0.3920833468437195,
+          "semantic": 0.2147725848481059
+        },
+        "ranking_pairs": 565,
+        "runtime_seconds": 67.59148870001081,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8257
+      },
+      "held_out_game": "lf52",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.5833618693815348,
+          "changed": -0.219396453863967,
+          "contact_gained": -2.6347095754147345,
+          "contact_lost": -0.11505067059926066,
+          "game_over": 0.14792052393187705,
+          "level_complete": -1.2034052386803324,
+          "local_change": 0.2447283055015359,
+          "moved": -0.10377037968985214,
+          "path_closed": 0.07361087702245772,
+          "path_opened": 0.07060606756557908,
+          "productive": -0.3792166910804313,
+          "reachable_area_decreased": -0.02472456208320528,
+          "reachable_area_increased": -0.09349348762928589,
+          "risk": 0.08634842498673834,
+          "target_created": 0.044198547421521184,
+          "target_moved": -0.1587056919997223,
+          "target_removed": 0.12544948453009885
+        },
+        "final_losses": {
+          "identity_confusion": 0.06262215576134622,
+          "latent_alignment": 0.003465220404905267,
+          "output_alignment": 0.0007895948801888153,
+          "pairwise_ranking": 0.6256967484951019,
+          "semantic": 0.22396090533584356
+        },
+        "ranking_pairs": 565,
+        "runtime_seconds": 69.16313589992933,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8257
+      },
+      "training_rows": 8257,
+      "validation_rows": 871
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.987799640714325,
+          "changed": 0.053857957846268345,
+          "contact_gained": -0.758840928892333,
+          "contact_lost": -0.21279930693259708,
+          "game_over": -0.31974221271400616,
+          "level_complete": -4.090044831987354,
+          "local_change": -0.11035870808535042,
+          "moved": -0.19812487416652347,
+          "path_closed": -0.0012635849371385177,
+          "path_opened": -0.4321749319607595,
+          "productive": -0.74167904970729,
+          "reachable_area_decreased": -0.3876473928755746,
+          "reachable_area_increased": -0.37124490192911175,
+          "risk": -0.009756883676803607,
+          "target_created": -0.025616733693061278,
+          "target_moved": -0.16489083393672255,
+          "target_removed": -0.17592405859177895
+        },
+        "final_losses": {
+          "identity_confusion": 0.10517018241807818,
+          "latent_alignment": 0.010612441779812798,
+          "output_alignment": 0.003248769076890312,
+          "pairwise_ranking": 0.30391014615694684,
+          "semantic": 0.19267462007701397
+        },
+        "ranking_pairs": 700,
+        "runtime_seconds": 74.40448929998092,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8741
+      },
+      "held_out_game": "lp85",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.24557882925488572,
+          "changed": -0.249782203485986,
+          "contact_gained": -0.8152986709292396,
+          "contact_lost": 0.002690727765906953,
+          "game_over": -0.1604404193046518,
+          "level_complete": -3.940166293763771,
+          "local_change": 0.1875519596533637,
+          "moved": 0.20182516220981417,
+          "path_closed": 0.04147551289071405,
+          "path_opened": 0.23467827829137944,
+          "productive": -0.07003153594486355,
+          "reachable_area_decreased": -0.21908752994417968,
+          "reachable_area_increased": -0.13345745470123527,
+          "risk": 0.1268426112182981,
+          "target_created": -0.03334885378050512,
+          "target_moved": 0.28666044713658323,
+          "target_removed": 0.1774883794691855
+        },
+        "final_losses": {
+          "identity_confusion": 0.0872032386250794,
+          "latent_alignment": 0.005838638520799577,
+          "output_alignment": 0.0023129512992454693,
+          "pairwise_ranking": 0.4388630986213684,
+          "semantic": 0.21225792542099953
+        },
+        "ranking_pairs": 700,
+        "runtime_seconds": 70.21349300001748,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "sp80",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8741
+      },
+      "training_rows": 8741,
+      "validation_rows": 387
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.8466745711266404,
+          "changed": 0.09929655324029252,
+          "contact_gained": -1.2547915598100028,
+          "contact_lost": -0.12145093863502976,
+          "game_over": 0.34970644766497205,
+          "level_complete": -1.856701728849096,
+          "local_change": -0.020109771662939924,
+          "moved": -0.054460494685066196,
+          "path_closed": -0.6123827529061181,
+          "path_opened": -0.35844109803930424,
+          "productive": -0.3509951316256723,
+          "reachable_area_decreased": 0.11578053634978325,
+          "reachable_area_increased": -0.10167521317565953,
+          "risk": 0.3561665946139909,
+          "target_created": 0.11975597341407562,
+          "target_moved": 0.23056763958000737,
+          "target_removed": -0.17002523448578089
+        },
+        "final_losses": {
+          "identity_confusion": 0.09357956610620022,
+          "latent_alignment": 0.011023918428691104,
+          "output_alignment": 0.001796566226403229,
+          "pairwise_ranking": 0.4061553180217743,
+          "semantic": 0.1973614040762186
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 69.26263160002418,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8211
+      },
+      "held_out_game": "sp80",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.4887514622635081,
+          "changed": -0.11443862477051248,
+          "contact_gained": -0.7485850619836487,
+          "contact_lost": -0.011396427170018653,
+          "game_over": 0.3043778105432531,
+          "level_complete": -1.9278892042760347,
+          "local_change": 0.11570986829211938,
+          "moved": 0.23055644977675138,
+          "path_closed": 0.098804541816925,
+          "path_opened": 0.11590614219078832,
+          "productive": -0.24996550928724837,
+          "reachable_area_decreased": 0.00615398063425987,
+          "reachable_area_increased": -0.09582406406342825,
+          "risk": 0.10840860229946614,
+          "target_created": 0.1338092550364114,
+          "target_moved": 0.17285644398989852,
+          "target_removed": 0.050824156512659924
+        },
+        "final_losses": {
+          "identity_confusion": 0.0824518424924463,
+          "latent_alignment": 0.00485013984143734,
+          "output_alignment": 0.0006026491264492506,
+          "pairwise_ranking": 0.5045172174771627,
+          "semantic": 0.2207715604454279
+        },
+        "ranking_pairs": 703,
+        "runtime_seconds": 68.39504089998081,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "su15",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8211
+      },
+      "training_rows": 8211,
+      "validation_rows": 917
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": 0.8206170602012643,
+          "changed": -0.4018159952735898,
+          "contact_gained": -0.17021211302821904,
+          "contact_lost": 0.3165907515828077,
+          "game_over": 0.7003514812355043,
+          "level_complete": -1.0815674100990504,
+          "local_change": 0.5862501605990764,
+          "moved": 0.6291666808976338,
+          "path_closed": 0.4090653695168065,
+          "path_opened": 0.6943356405671608,
+          "productive": 0.5589534759001631,
+          "reachable_area_decreased": 0.25939357452892153,
+          "reachable_area_increased": 0.29566901165740056,
+          "risk": 0.6698969314216616,
+          "target_created": 0.5271042040596869,
+          "target_moved": 0.8087411651502667,
+          "target_removed": 0.7583096174090718
+        },
+        "final_losses": {
+          "identity_confusion": 0.08250755188055336,
+          "latent_alignment": 0.0067925732873845845,
+          "output_alignment": 0.0009605004343029577,
+          "pairwise_ranking": 0.41936537623405457,
+          "semantic": 0.22435152623802423
+        },
+        "ranking_pairs": 671,
+        "runtime_seconds": 68.06957890000194,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8324
+      },
+      "held_out_game": "su15",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.6090677916143106,
+          "changed": -0.17973817729713426,
+          "contact_gained": -0.40456970992412256,
+          "contact_lost": 0.006205910902573608,
+          "game_over": -0.1711366824844074,
+          "level_complete": -0.8623538777973714,
+          "local_change": 0.11433521448127615,
+          "moved": 0.11449685014247668,
+          "path_closed": -0.011769225515672055,
+          "path_opened": -0.13506565891139566,
+          "productive": -0.10902045017317152,
+          "reachable_area_decreased": -0.050460383823873745,
+          "reachable_area_increased": -0.13310429029657556,
+          "risk": 0.09605506196348523,
+          "target_created": -0.0965888614056607,
+          "target_moved": 0.014155918477217089,
+          "target_removed": -0.0061650029656028504
+        },
+        "final_losses": {
+          "identity_confusion": 0.12047021323814988,
+          "latent_alignment": 0.009043661848409101,
+          "output_alignment": 0.002719110132602509,
+          "pairwise_ranking": 0.4363434712092082,
+          "semantic": 0.2026564385741949
+        },
+        "ranking_pairs": 671,
+        "runtime_seconds": 70.2559815000277,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "tr87",
+          "tu93"
+        ],
+        "train_rows": 8324
+      },
+      "training_rows": 8324,
+      "validation_rows": 804
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.041823019887667456,
+          "changed": -0.3440594038460376,
+          "contact_gained": -0.2837186503658593,
+          "contact_lost": -0.052432386104523276,
+          "game_over": 0.19845415040280656,
+          "level_complete": -1.4446800186993372,
+          "local_change": -0.022246580623876744,
+          "moved": -0.18286870953288437,
+          "path_closed": -0.16908204176956954,
+          "path_opened": 0.07242653000869126,
+          "productive": -0.24558413241640098,
+          "reachable_area_decreased": 0.20219707600939918,
+          "reachable_area_increased": 0.2376174126974977,
+          "risk": 0.2865918226306077,
+          "target_created": 0.5270541534477386,
+          "target_moved": 0.4015565588666812,
+          "target_removed": -0.29635523782234174
+        },
+        "final_losses": {
+          "identity_confusion": 0.15402648551389575,
+          "latent_alignment": 0.021463136188685894,
+          "output_alignment": 0.005713801627280191,
+          "pairwise_ranking": 0.35489969452222186,
+          "semantic": 0.1988944113254547
+        },
+        "ranking_pairs": 697,
+        "runtime_seconds": 67.40016419999301,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tu93"
+        ],
+        "train_rows": 8225
+      },
+      "held_out_game": "tr87",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.9256150338874591,
+          "changed": 0.2676694606785519,
+          "contact_gained": -1.0929591501961875,
+          "contact_lost": -0.20495755167185625,
+          "game_over": -0.3214027616431627,
+          "level_complete": -1.7522420054957113,
+          "local_change": -0.00449151411839499,
+          "moved": -0.11807781634953107,
+          "path_closed": -0.5527601806329168,
+          "path_opened": -0.17522491092711068,
+          "productive": 0.06135893157036887,
+          "reachable_area_decreased": -0.4281583821445132,
+          "reachable_area_increased": -0.3646065039278219,
+          "risk": -0.2733572473374055,
+          "target_created": -0.2997861762191869,
+          "target_moved": -0.48465293115663854,
+          "target_removed": 0.036332814317116435
+        },
+        "final_losses": {
+          "identity_confusion": 0.043711502803489566,
+          "latent_alignment": 0.012212510802783072,
+          "output_alignment": 0.0014647876014350913,
+          "pairwise_ranking": 0.5453811883926392,
+          "semantic": 0.2276899255812168
+        },
+        "ranking_pairs": 697,
+        "runtime_seconds": 65.91310939996038,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tu93"
+        ],
+        "train_rows": 8225
+      },
+      "training_rows": 8225,
+      "validation_rows": 903
+    },
+    {
+      "action_aligned": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.8953019455516524,
+          "changed": 0.27978857360357257,
+          "contact_gained": -0.46867938926131014,
+          "contact_lost": -0.9499809536204585,
+          "game_over": -0.4203981467716402,
+          "level_complete": -1.2565398964145018,
+          "local_change": -0.7046422196136417,
+          "moved": -0.6705574015881293,
+          "path_closed": -0.38365066507089995,
+          "path_opened": -1.2602894406059952,
+          "productive": -1.227636137197789,
+          "reachable_area_decreased": -0.88105623463905,
+          "reachable_area_increased": -0.3596961787644126,
+          "risk": -0.47285247128913044,
+          "target_created": -0.5140159194740344,
+          "target_moved": -0.1276793916022858,
+          "target_removed": -1.0824434785106751
+        },
+        "final_losses": {
+          "identity_confusion": 0.10713599063456059,
+          "latent_alignment": 0.0071031694242265075,
+          "output_alignment": 0.002149249856302049,
+          "pairwise_ranking": 0.5018166899681091,
+          "semantic": 0.18526030890643597
+        },
+        "ranking_pairs": 549,
+        "runtime_seconds": 70.26357549999375,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87"
+        ],
+        "train_rows": 8283
+      },
+      "held_out_game": "tu93",
+      "root_only": {
+        "calibration_shifts": {
+          "actor_approached_root": -0.23331357384746054,
+          "changed": -0.2975603582483006,
+          "contact_gained": -0.18584986462226016,
+          "contact_lost": -0.07583477425367557,
+          "game_over": 0.29948064441019273,
+          "level_complete": 0.37503929957269744,
+          "local_change": 0.5380326049834852,
+          "moved": -0.21416372225795255,
+          "path_closed": 0.2115941620685451,
+          "path_opened": 0.3430192353977759,
+          "productive": 1.9699510659894384,
+          "reachable_area_decreased": 0.11771717555022487,
+          "reachable_area_increased": 0.11809530040339311,
+          "risk": 0.21089560346741854,
+          "target_created": 0.380981004449116,
+          "target_moved": 0.5467735377164065,
+          "target_removed": 0.07803788960171576
+        },
+        "final_losses": {
+          "identity_confusion": 0.15967120206914842,
+          "latent_alignment": 0.0078921144886408,
+          "output_alignment": 0.0012129281303714379,
+          "pairwise_ranking": 0.47155672311782837,
+          "semantic": 0.20510214380919933
+        },
+        "ranking_pairs": 549,
+        "runtime_seconds": 68.70465289999265,
+        "train_games": [
+          "bp35",
+          "cd82",
+          "dc22",
+          "g50t",
+          "ka59",
+          "lf52",
+          "lp85",
+          "sp80",
+          "su15",
+          "tr87"
+        ],
+        "train_rows": 8283
+      },
+      "training_rows": 8283,
+      "validation_rows": 845
+    }
+  ],
+  "format_version": "sage12-action-aligned-student-result-v4.10",
+  "fresh_records": 1587,
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "macro_brier_gain": {
+    "over_action_only": 0.00041633212933304964,
+    "over_root_only": -0.005207134632690957,
+    "over_v49": 0.010287201239529933,
+    "relation_shuffle_degradation": -0.0006753676218303473
+  },
+  "manifest_checksum": "0c1fa71390784cfa49710283047a542a12b5f5cce2df4e1f446690079b3f36db",
+  "metrics": {
+    "action_aligned": {
+      "base_macro_brier": 0.08106380311865989,
+      "functional_macro_brier": 0.07618666753028216,
+      "macro_brier": 0.07819489983137888,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 7244,
+          "brier": 0.008726738230536447,
+          "positive": 62,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 9128,
+          "brier": 0.06041522650685466,
+          "positive": 8565,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 7244,
+          "brier": 0.004978314553825219,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 7244,
+          "brier": 0.19416048141817985,
+          "positive": 1598,
+          "recall_at_0_5": 0.0
+        },
+        "game_over": {
+          "applicable": 9128,
+          "brier": 0.01993457551696508,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 9128,
+          "brier": 0.0006589019060575082,
+          "positive": 6,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 7431,
+          "brier": 0.2283124465806112,
+          "positive": 2144,
+          "recall_at_0_5": 0.0
+        },
+        "moved": {
+          "applicable": 7417,
+          "brier": 0.21259224663483034,
+          "positive": 1944,
+          "recall_at_0_5": 0.0
+        },
+        "path_closed": {
+          "applicable": 7431,
+          "brier": 0.017464223966076248,
+          "positive": 130,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 7431,
+          "brier": 0.05632891043922601,
+          "positive": 404,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 9128,
+          "brier": 0.15072704206414092,
+          "positive": 1440,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_decreased": {
+          "applicable": 7417,
+          "brier": 0.028015518889951234,
+          "positive": 209,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 7417,
+          "brier": 0.024055947800339608,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 9128,
+          "brier": 0.049097051359934946,
+          "positive": 461,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 7431,
+          "brier": 0.05121289072123354,
+          "positive": 374,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 5340,
+          "brier": 0.03361414956567759,
+          "positive": 183,
+          "recall_at_0_5": 0.0
+        },
+        "target_removed": {
+          "applicable": 5340,
+          "brier": 0.18901863097900048,
+          "positive": 1023,
+          "recall_at_0_5": 0.0
+        }
+      }
+    },
+    "action_only": {
+      "base_macro_brier": 0.08177215757490024,
+      "functional_macro_brier": 0.07639858403078012,
+      "macro_brier": 0.07861123196071193,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 7244,
+          "brier": 0.008558932564169904,
+          "positive": 62,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 9128,
+          "brier": 0.06175867704816675,
+          "positive": 8565,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 7244,
+          "brier": 0.0050368649739443135,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 7244,
+          "brier": 0.18621163745766675,
+          "positive": 1598,
+          "recall_at_0_5": 0.0
+        },
+        "game_over": {
+          "applicable": 9128,
+          "brier": 0.020028849297904532,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 9128,
+          "brier": 0.0006603615523357052,
+          "positive": 6,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 7431,
+          "brier": 0.24135173933725573,
+          "positive": 2144,
+          "recall_at_0_5": 0.0
+        },
+        "moved": {
+          "applicable": 7417,
+          "brier": 0.2257842784604405,
+          "positive": 1944,
+          "recall_at_0_5": 0.021604938271604937
+        },
+        "path_closed": {
+          "applicable": 7431,
+          "brier": 0.0177675563103825,
+          "positive": 130,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 7431,
+          "brier": 0.06185502810809866,
+          "positive": 404,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 9128,
+          "brier": 0.137955454538126,
+          "positive": 1440,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_decreased": {
+          "applicable": 7417,
+          "brier": 0.029298402513307266,
+          "positive": 209,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 7417,
+          "brier": 0.02502601585772362,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 9128,
+          "brier": 0.05092420864712645,
+          "positive": 461,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 7431,
+          "brier": 0.05346163641493397,
+          "positive": 374,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 5340,
+          "brier": 0.034135910011112325,
+          "positive": 183,
+          "recall_at_0_5": 0.0
+        },
+        "target_removed": {
+          "applicable": 5340,
+          "brier": 0.176575390239408,
+          "positive": 1023,
+          "recall_at_0_5": 0.0
+        }
+      }
+    },
+    "relation_shuffle": {
+      "base_macro_brier": 0.08000758342471694,
+      "functional_macro_brier": 0.07577789635893065,
+      "macro_brier": 0.07751953220954853,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 7244,
+          "brier": 0.008650492777418039,
+          "positive": 62,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 9128,
+          "brier": 0.06109038276869938,
+          "positive": 8565,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 7244,
+          "brier": 0.004976844877272764,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 7244,
+          "brier": 0.19311473639149054,
+          "positive": 1598,
+          "recall_at_0_5": 0.0
+        },
+        "game_over": {
+          "applicable": 9128,
+          "brier": 0.01982198633501201,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 9128,
+          "brier": 0.0006584436754222598,
+          "positive": 6,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 7431,
+          "brier": 0.23066647442354485,
+          "positive": 2144,
+          "recall_at_0_5": 0.0
+        },
+        "moved": {
+          "applicable": 7417,
+          "brier": 0.210898792573089,
+          "positive": 1944,
+          "recall_at_0_5": 0.0
+        },
+        "path_closed": {
+          "applicable": 7431,
+          "brier": 0.01744692107105458,
+          "positive": 130,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 7431,
+          "brier": 0.05586852503058765,
+          "positive": 404,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 9128,
+          "brier": 0.1460274047666261,
+          "positive": 1440,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_decreased": {
+          "applicable": 7417,
+          "brier": 0.02790938320204584,
+          "positive": 209,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 7417,
+          "brier": 0.024045234492978934,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 9128,
+          "brier": 0.04907294655628716,
+          "positive": 461,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 7431,
+          "brier": 0.051042404799122164,
+          "positive": 374,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 5340,
+          "brier": 0.0339017329683819,
+          "positive": 183,
+          "recall_at_0_5": 0.0
+        },
+        "target_removed": {
+          "applicable": 5340,
+          "brier": 0.18263934085329195,
+          "positive": 1023,
+          "recall_at_0_5": 0.0
+        }
+      }
+    },
+    "root_only": {
+      "base_macro_brier": 0.0778819666431114,
+      "functional_macro_brier": 0.06956182418759148,
+      "macro_brier": 0.07298776519868792,
+      "per_effect": {
+        "actor_approached_root": {
+          "applicable": 7244,
+          "brier": 0.008786321281313953,
+          "positive": 62,
+          "recall_at_0_5": 0.0
+        },
+        "changed": {
+          "applicable": 9128,
+          "brier": 0.06013577960703844,
+          "positive": 8565,
+          "recall_at_0_5": 1.0
+        },
+        "contact_gained": {
+          "applicable": 7244,
+          "brier": 0.0049835839888196795,
+          "positive": 36,
+          "recall_at_0_5": 0.0
+        },
+        "contact_lost": {
+          "applicable": 7244,
+          "brier": 0.1728064661195565,
+          "positive": 1598,
+          "recall_at_0_5": 0.0
+        },
+        "game_over": {
+          "applicable": 9128,
+          "brier": 0.02016675212431784,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "level_complete": {
+          "applicable": 9128,
+          "brier": 0.0006601199488588926,
+          "positive": 6,
+          "recall_at_0_5": 0.0
+        },
+        "local_change": {
+          "applicable": 7431,
+          "brier": 0.20786648053567733,
+          "positive": 2144,
+          "recall_at_0_5": 0.0
+        },
+        "moved": {
+          "applicable": 7417,
+          "brier": 0.1884108879598755,
+          "positive": 1944,
+          "recall_at_0_5": 0.13991769547325103
+        },
+        "path_closed": {
+          "applicable": 7431,
+          "brier": 0.017499189773293684,
+          "positive": 130,
+          "recall_at_0_5": 0.0
+        },
+        "path_opened": {
+          "applicable": 7431,
+          "brier": 0.05614095684822418,
+          "positive": 404,
+          "recall_at_0_5": 0.0
+        },
+        "productive": {
+          "applicable": 9128,
+          "brier": 0.1261398099831313,
+          "positive": 1440,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_decreased": {
+          "applicable": 7417,
+          "brier": 0.027889720518639423,
+          "positive": 209,
+          "recall_at_0_5": 0.0
+        },
+        "reachable_area_increased": {
+          "applicable": 7417,
+          "brier": 0.024016036109663054,
+          "positive": 179,
+          "recall_at_0_5": 0.0
+        },
+        "risk": {
+          "applicable": 9128,
+          "brier": 0.049489676717595764,
+          "positive": 461,
+          "recall_at_0_5": 0.0
+        },
+        "target_created": {
+          "applicable": 7431,
+          "brier": 0.05096782257540591,
+          "positive": 374,
+          "recall_at_0_5": 0.0
+        },
+        "target_moved": {
+          "applicable": 5340,
+          "brier": 0.04154857435814035,
+          "positive": 183,
+          "recall_at_0_5": 0.08743169398907104
+        },
+        "target_removed": {
+          "applicable": 5340,
+          "brier": 0.18328382992814285,
+          "positive": 1023,
+          "recall_at_0_5": 0.0
+        }
+      }
+    }
+  },
+  "neighbor_permutation_max_probability_delta": 2.0678032736087815e-07,
+  "nonnegative_games_over_action_only": 4,
+  "per_game_transfer": {
+    "bp35": {
+      "macro_brier": 0.2122316459781937,
+      "rows": 909
+    },
+    "cd82": {
+      "macro_brier": 0.03996006639342796,
+      "rows": 889
+    },
+    "dc22": {
+      "macro_brier": 0.030927033278754998,
+      "rows": 903
+    },
+    "g50t": {
+      "macro_brier": 0.12090952645216069,
+      "rows": 889
+    },
+    "ka59": {
+      "macro_brier": 0.054770622694429755,
+      "rows": 811
+    },
+    "lf52": {
+      "macro_brier": 0.0579456497304797,
+      "rows": 871
+    },
+    "lp85": {
+      "macro_brier": 0.0534223316233447,
+      "rows": 387
+    },
+    "sp80": {
+      "macro_brier": 0.08950389032869531,
+      "rows": 917
+    },
+    "su15": {
+      "macro_brier": 0.03994053053844476,
+      "rows": 804
+    },
+    "tr87": {
+      "macro_brier": 0.014745235539765974,
+      "rows": 903
+    },
+    "tu93": {
+      "macro_brier": 0.14027164006757412,
+      "rows": 845
+    }
+  },
+  "productive_pair_ranking": {
+    "action_aligned": {
+      "accuracy": 0.7681365576102418,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 0.8214285714285714,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.6917808219178082,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.7608695652173914,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.3125,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 0.6666666666666666,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.8831168831168831,
+          "pairs": 154
+        }
+      },
+      "ties": 0
+    },
+    "action_only": {
+      "accuracy": 0.3712660028449502,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 0.42857142857142855,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.6095890410958904,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.0,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.0,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 1.0,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.45454545454545453,
+          "pairs": 154
+        }
+      },
+      "ties": 173
+    },
+    "relation_shuffle": {
+      "accuracy": 0.4295874822190612,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 0.0,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.6917808219178082,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.7971014492753623,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.25,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 0.0,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.538961038961039,
+          "pairs": 154
+        }
+      },
+      "ties": 0
+    },
+    "root_only": {
+      "accuracy": 0.7738264580369844,
+      "discordant_pairs": 703,
+      "per_game": {
+        "bp35": {
+          "accuracy": 1.0,
+          "pairs": 224
+        },
+        "g50t": {
+          "accuracy": 0.6095890410958904,
+          "pairs": 146
+        },
+        "lf52": {
+          "accuracy": 0.6739130434782609,
+          "pairs": 138
+        },
+        "lp85": {
+          "accuracy": 0.0,
+          "pairs": 3
+        },
+        "su15": {
+          "accuracy": 0.46875,
+          "pairs": 32
+        },
+        "tr87": {
+          "accuracy": 1.0,
+          "pairs": 6
+        },
+        "tu93": {
+          "accuracy": 0.7597402597402597,
+          "pairs": 154
+        }
+      },
+      "ties": 9
+    }
+  },
+  "records": 9128,
+  "result_checksum": "338613e30178125b7143f32bc25c8f18c66af153e7969e61f15cfe8d2d8cefe5",
+  "semantic_output_game_identity_probe": {
+    "accuracy": 0.8550608711308497,
+    "gain_over_majority": 0.7546007484314632,
+    "majority_accuracy": 0.1004601226993865
+  },
+  "source_validation_opened": false,
+  "teacher_qa_checksum": "37a63f2a45ca53a703c2b17f61aaad88570a403a270e6ce36e7fe9b0aba35bc0",
+  "v49_identity_accuracy": 0.9063794949138064,
+  "verdict": "ACTION_ALIGNED_INVARIANT_SEMANTICS_NOT_YET_SUPPORTED"
+}

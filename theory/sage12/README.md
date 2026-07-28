@@ -627,3 +627,14 @@ The augmented teacher corpus subsequently passed QA with 9,128 records and
 100% action-aligned, compass-free model graphs. It contains six genuine
 completion events and preserves all 2,396 same-prestate pairs. See
 `reports/SAGE12_ACTION_ALIGNED_TEACHER_V4_10_QA.md`.
+
+The strict LOGO evaluation subsequently returned
+`ACTION_ALIGNED_INVARIANT_SEMANTICS_NOT_YET_SUPPORTED`. V4.10 improved
+macro-Brier by 0.01029 over V4.9 and narrowly beat action-only by 0.00042.
+Productive-pair accuracy rose to 0.7681 versus 0.3713 for action-only.
+However, root-only remained better for both macro-Brier (0.07299 versus
+0.07819) and pair ranking (0.7738 versus 0.7681), relation shuffling improved
+macro-Brier, only 4/11 games beat action-only, semantic outputs exposed game
+identity at 85.51%, and completion recall@8 was 0/6. The probabilities remain
+audit-only and do not authorize semantic world-model or EBM fitting. See
+`reports/SAGE12_ACTION_ALIGNED_INVARIANT_SEMANTICS_V4_10_RESULT.md`.
