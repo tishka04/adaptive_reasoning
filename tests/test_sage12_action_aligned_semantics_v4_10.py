@@ -5,16 +5,21 @@ from dataclasses import replace
 import numpy as np
 import pytest
 
+from theory.sage11.splits import SOURCE_TRAIN
 from theory.sage12.action_aligned_semantics_v4_10 import (
     _balanced_epoch_indices,
     _game_balanced_calibration_shifts,
     action_aligned_graph,
+    freeze_manifest,
     validate_action_aligned_graph,
+    write_capacity_amendment,
 )
 from theory.sage12.semantic_teacher_v4_9 import (
     SEMANTIC_EFFECTS,
     ObjectRelativeGraph,
     SemanticTeacherRecord,
+    _checksum,
+    _write_json,
 )
 
 
@@ -151,3 +156,38 @@ def test_calibration_shift_matches_game_balanced_direction() -> None:
     )
 
     assert shifts[SEMANTIC_EFFECTS.index("changed")] > 0.0
+
+
+def test_capacity_amendment_is_limited_to_exhausted_su15(tmp_path) -> None:
+    manifest = freeze_manifest(output_dir=tmp_path)
+    reports = {}
+    shards = []
+    for game in SOURCE_TRAIN:
+        target = int(manifest["collection"]["rows_per_game"][game])
+        rows = 83 if game == "su15" else target
+        reports[game] = {
+            "game_id": game,
+            "rows": rows,
+            "target_rows": target,
+            "raw_steps": 3_840 if game == "su15" else target,
+            "resets_used": 40 if game == "su15" else 1,
+            "duplicate_rejections": 1_197 if game == "su15" else 0,
+        }
+        shards.append({"game_id": game, "rows": rows})
+    collection = {
+        "manifest_checksum": manifest["manifest_checksum"],
+        "collection_checksum": "collection-unit",
+        "collection_ready": False,
+        "reports": reports,
+        "shards": shards,
+    }
+    _write_json(tmp_path / "collection_manifest.json", collection)
+
+    amendment = write_capacity_amendment(output_dir=tmp_path)
+
+    assert amendment["collection_ready_under_amendment"]
+    assert amendment["authorized_minimum_rows_per_game"]["su15"] == 80
+    assert amendment["authorized_total_rows_minimum"] == 1_584
+    check = dict(amendment)
+    expected = check.pop("amendment_checksum")
+    assert _checksum(check) == expected

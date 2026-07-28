@@ -1,0 +1,431 @@
+{
+  "checks": {
+    "all_games_source_train": true,
+    "minimum_rows_ratio_per_game": false
+  },
+  "collection_checksum": "51fbdfbb7f379730c4797f0188d06db648acaeb7a61b5cebdb192db2a2e1b534",
+  "collection_ready": false,
+  "format_version": "sage12-functional-intervention-collection-v4.10",
+  "games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "0c1fa71390784cfa49710283047a542a12b5f5cce2df4e1f446690079b3f36db",
+  "minimum_row_ratio": 0.51875,
+  "offline_environment_opened": true,
+  "reports": {
+    "bp35": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION3": 319,
+        "ACTION4": 406,
+        "ACTION6": 190
+      },
+      "duplicate_rejections": 6,
+      "game_id": "bp35",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 0,
+        "contact_gained": 0,
+        "local_change": 692,
+        "path_closed": 96,
+        "path_opened": 399,
+        "productive": 501,
+        "reachable_area_decreased": 72,
+        "reachable_area_increased": 39,
+        "risk": 148,
+        "target_created": 9,
+        "target_moved": 0,
+        "target_removed": 330
+      },
+      "raw_steps": 166,
+      "resets_used": 3,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "cd82": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 185,
+        "ACTION2": 185,
+        "ACTION3": 187,
+        "ACTION4": 186,
+        "ACTION5": 86,
+        "ACTION6": 87
+      },
+      "duplicate_rejections": 27,
+      "game_id": "cd82",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 0,
+        "contact_gained": 0,
+        "local_change": 2,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 0,
+        "reachable_area_decreased": 0,
+        "reachable_area_increased": 0,
+        "risk": 2,
+        "target_created": 0,
+        "target_moved": 0,
+        "target_removed": 0
+      },
+      "raw_steps": 187,
+      "resets_used": 2,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "dc22": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 180,
+        "ACTION2": 179,
+        "ACTION3": 180,
+        "ACTION4": 179,
+        "ACTION6": 231
+      },
+      "duplicate_rejections": 46,
+      "game_id": "dc22",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 0,
+        "contact_gained": 0,
+        "local_change": 6,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 0,
+        "reachable_area_decreased": 0,
+        "reachable_area_increased": 0,
+        "risk": 4,
+        "target_created": 0,
+        "target_moved": 0,
+        "target_removed": 0
+      },
+      "raw_steps": 206,
+      "resets_used": 3,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "g50t": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 260,
+        "ACTION2": 194,
+        "ACTION3": 216,
+        "ACTION4": 193,
+        "ACTION5": 192
+      },
+      "duplicate_rejections": 166,
+      "game_id": "g50t",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 0,
+        "contact_gained": 0,
+        "local_change": 391,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 389,
+        "reachable_area_decreased": 2,
+        "reachable_area_increased": 2,
+        "risk": 4,
+        "target_created": 13,
+        "target_moved": 1,
+        "target_removed": 389
+      },
+      "raw_steps": 326,
+      "resets_used": 4,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "ka59": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 106,
+        "ACTION2": 107,
+        "ACTION3": 98,
+        "ACTION4": 98,
+        "ACTION6": 405
+      },
+      "duplicate_rejections": 3,
+      "game_id": "ka59",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 0,
+        "contact_gained": 0,
+        "local_change": 301,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 86,
+        "reachable_area_decreased": 0,
+        "reachable_area_increased": 0,
+        "risk": 2,
+        "target_created": 0,
+        "target_moved": 86,
+        "target_removed": 0
+      },
+      "raw_steps": 163,
+      "resets_used": 2,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "lf52": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 106,
+        "ACTION2": 85,
+        "ACTION3": 92,
+        "ACTION4": 86,
+        "ACTION6": 570
+      },
+      "duplicate_rejections": 68,
+      "game_id": "lf52",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 37,
+        "contact_gained": 34,
+        "local_change": 311,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 25,
+        "reachable_area_decreased": 16,
+        "reachable_area_increased": 12,
+        "risk": 16,
+        "target_created": 0,
+        "target_moved": 17,
+        "target_removed": 0
+      },
+      "raw_steps": 228,
+      "resets_used": 4,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "lp85": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION6": 395
+      },
+      "duplicate_rejections": 8,
+      "game_id": "lp85",
+      "new_completion_events": 1,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 1,
+        "contact_gained": 0,
+        "local_change": 12,
+        "path_closed": 0,
+        "path_opened": 6,
+        "productive": 6,
+        "reachable_area_decreased": 1,
+        "reachable_area_increased": 0,
+        "risk": 95,
+        "target_created": 0,
+        "target_moved": 0,
+        "target_removed": 6
+      },
+      "raw_steps": 72,
+      "resets_used": 2,
+      "row_ratio": 1.0,
+      "rows": 64,
+      "target_rows": 64
+    },
+    "sp80": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 179,
+        "ACTION2": 182,
+        "ACTION3": 217,
+        "ACTION4": 196,
+        "ACTION5": 179,
+        "ACTION6": 179
+      },
+      "duplicate_rejections": 215,
+      "game_id": "sp80",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 31,
+        "contact_gained": 0,
+        "local_change": 71,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 96,
+        "reachable_area_decreased": 0,
+        "reachable_area_increased": 0,
+        "risk": 37,
+        "target_created": 0,
+        "target_moved": 95,
+        "target_removed": 0
+      },
+      "raw_steps": 375,
+      "resets_used": 24,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "su15": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION6": 2001
+      },
+      "duplicate_rejections": 1197,
+      "game_id": "su15",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 23,
+        "contact_gained": 8,
+        "local_change": 107,
+        "path_closed": 61,
+        "path_opened": 0,
+        "productive": 70,
+        "reachable_area_decreased": 33,
+        "reachable_area_increased": 34,
+        "risk": 97,
+        "target_created": 56,
+        "target_moved": 43,
+        "target_removed": 0
+      },
+      "raw_steps": 1280,
+      "resets_used": 40,
+      "row_ratio": 0.51875,
+      "rows": 83,
+      "target_rows": 160
+    },
+    "tr87": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 226,
+        "ACTION2": 225,
+        "ACTION3": 231,
+        "ACTION4": 226
+      },
+      "duplicate_rejections": 5,
+      "game_id": "tr87",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 3,
+        "contact_gained": 0,
+        "local_change": 20,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 21,
+        "reachable_area_decreased": 0,
+        "reachable_area_increased": 0,
+        "risk": 2,
+        "target_created": 0,
+        "target_moved": 21,
+        "target_removed": 0
+      },
+      "raw_steps": 165,
+      "resets_used": 2,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    },
+    "tu93": {
+      "action_counts_after_historical_and_fresh": {
+        "ACTION1": 250,
+        "ACTION2": 249,
+        "ACTION3": 249,
+        "ACTION4": 251
+      },
+      "duplicate_rejections": 154,
+      "game_id": "tu93",
+      "new_completion_events": 0,
+      "positive_counts_after_historical_and_fresh": {
+        "actor_approached_root": 0,
+        "contact_gained": 0,
+        "local_change": 400,
+        "path_closed": 0,
+        "path_opened": 0,
+        "productive": 396,
+        "reachable_area_decreased": 127,
+        "reachable_area_increased": 133,
+        "risk": 136,
+        "target_created": 343,
+        "target_moved": 0,
+        "target_removed": 343
+      },
+      "raw_steps": 314,
+      "resets_used": 7,
+      "row_ratio": 1.0,
+      "rows": 160,
+      "target_rows": 160
+    }
+  },
+  "rows": 1587,
+  "shards": [
+    {
+      "game_id": "bp35",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/bp35.jsonl",
+      "rows": 160,
+      "sha256": "7a3477e6285bbd820fbb7f30f48f1c9cf0a632a8ab5f3c68cfcd0765273e0bbb"
+    },
+    {
+      "game_id": "cd82",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/cd82.jsonl",
+      "rows": 160,
+      "sha256": "2536f51c4a042902a4c7fe37bec83ae8627dbe71bf8eefc6c5f51a2a0e235f1d"
+    },
+    {
+      "game_id": "dc22",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/dc22.jsonl",
+      "rows": 160,
+      "sha256": "d6e22e8927d53548eb154ab22f59e737b548b982cc851f69bbcb886add00f020"
+    },
+    {
+      "game_id": "g50t",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/g50t.jsonl",
+      "rows": 160,
+      "sha256": "9e0b1c6fbf62a3dc8b48613a51e559730a3943c6cefa44539ed37df24627c6ec"
+    },
+    {
+      "game_id": "ka59",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/ka59.jsonl",
+      "rows": 160,
+      "sha256": "ca669fad4d203b5f65d0dec78b6142da065e0b466f99179cd5bcdccb5a83383d"
+    },
+    {
+      "game_id": "lf52",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/lf52.jsonl",
+      "rows": 160,
+      "sha256": "d0f193b30a04ddbba44869b15b870963e9723f08f7091f55cf8da9659e51ea96"
+    },
+    {
+      "game_id": "lp85",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/lp85.jsonl",
+      "rows": 64,
+      "sha256": "a31bb686b6cfdde3d073d6c86f2fc42fbabb07c731bf58eeade5d074894f5aec"
+    },
+    {
+      "game_id": "sp80",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/sp80.jsonl",
+      "rows": 160,
+      "sha256": "847c8f37b63d739c0d61b2fad5313b1190b7db05469b740f981f1a2ed9f4d494"
+    },
+    {
+      "game_id": "su15",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/su15.jsonl",
+      "rows": 83,
+      "sha256": "a70f3d59ab185c2437bc8112c818c070eb179843cad405c77f3bd3e62ff67c0d"
+    },
+    {
+      "game_id": "tr87",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/tr87.jsonl",
+      "rows": 160,
+      "sha256": "2333555ef1d0c561da4060d44720d31dd79d1bbaacaa4afbb2a0c1b7748274ea"
+    },
+    {
+      "game_id": "tu93",
+      "path": "training/sage12/action_aligned_semantics_v4_10/source_train_shards/tu93.jsonl",
+      "rows": 160,
+      "sha256": "13890a912183710d65de2a5c9d7288006a5041c8d722d8dc9dda08ced4b60a85"
+    }
+  ],
+  "source_validation_opened": false,
+  "target_rows": 1664
+}

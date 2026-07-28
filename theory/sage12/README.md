@@ -616,3 +616,9 @@ python -m theory.sage12.action_aligned_semantics_v4_10 compile
 The source-only quotas, leakage boundary and decisions are frozen in
 `reports/SAGE12_ACTION_ALIGNED_INVARIANT_SEMANTICS_V4_10_PROTOCOL.md`. At this
 checkpoint no V4.10 collection or model result has been observed.
+
+The collector subsequently retained 1,587 fresh unique rows. Ten games met
+their original quotas; `su15` saturated at 83 rows after 40 resets and 1,197
+exact-repeat rejections. A pre-model capacity amendment lowers only its minimum
+to 80, leaving every model and evaluation decision unchanged. See
+`reports/SAGE12_ACTION_ALIGNED_SEMANTICS_V4_10_COLLECTION.md`.

@@ -69,6 +69,7 @@ MANIFEST_VERSION = "sage12-action-aligned-manifest-v4.10"
 RESULT_VERSION = "sage12-action-aligned-student-result-v4.10"
 PREDICTION_VERSION = "sage12-action-aligned-logo-prediction-v4.10"
 SLOT_EXPORT_VERSION = "sage12-action-aligned-slot-annotations-v4.10"
+CAPACITY_AMENDMENT_VERSION = "sage12-action-aligned-capacity-amendment-v4.10"
 
 DEFAULT_OUTPUT_DIR = Path("training") / "sage12" / "action_aligned_semantics_v4_10"
 DEFAULT_V49_DIR = Path("training") / "sage12" / "object_relative_teacher_v4_9"
@@ -370,6 +371,103 @@ def load_manifest(output_dir: str | Path = DEFAULT_OUTPUT_DIR) -> dict[str, Any]
     return manifest
 
 
+def write_capacity_amendment(
+    *,
+    output_dir: str | Path = DEFAULT_OUTPUT_DIR,
+) -> dict[str, Any]:
+    """Authorize only the empirically exhausted su15 source shortfall.
+
+    This amendment can be written after collection capacity is known but before
+    teacher compilation or model fitting. It cannot change representation,
+    training, evaluation, or validation access.
+    """
+
+    destination = Path(output_dir)
+    manifest = load_manifest(destination)
+    collection = _read_json(destination / "collection_manifest.json")
+    if collection.get("manifest_checksum") != manifest["manifest_checksum"]:
+        raise ValueError("V4.10 collection/manifest checksum mismatch")
+    reports = dict(collection["reports"])
+    original = {
+        game: int(manifest["collection"]["rows_per_game"][game])
+        for game in SOURCE_TRAIN
+    }
+    for game in SOURCE_TRAIN:
+        if game == "su15":
+            continue
+        if int(reports[game]["rows"]) < original[game]:
+            raise RuntimeError(
+                f"capacity amendment cannot cover non-su15 shortfall: {game}"
+            )
+    su15 = dict(reports["su15"])
+    expected_resets = int(manifest["collection"]["maximum_resets_per_game"])
+    if int(su15.get("resets_used", 0)) < expected_resets:
+        raise RuntimeError("su15 capacity was not exhausted through the frozen resets")
+    if int(su15.get("duplicate_rejections", 0)) < 1_000:
+        raise RuntimeError("su15 shortfall lacks duplicate-saturation evidence")
+    minimums = dict(original)
+    minimums["su15"] = 80
+    amendment: dict[str, Any] = {
+        "format_version": CAPACITY_AMENDMENT_VERSION,
+        "manifest_checksum": manifest["manifest_checksum"],
+        "collection_checksum": collection["collection_checksum"],
+        "reason": (
+            "su15 exposed only ACTION6 and saturated unique capacity at "
+            f"{su15['rows']} rows after {su15['raw_steps']} steps with "
+            f"{su15['duplicate_rejections']} exact-repeat rejections"
+        ),
+        "authorized_minimum_rows_per_game": minimums,
+        "authorized_total_rows_minimum": sum(minimums.values()),
+        "observed_rows_per_game": {
+            row["game_id"]: int(row["rows"]) for row in collection["shards"]
+        },
+        "representation_changed": False,
+        "training_changed": False,
+        "evaluation_thresholds_changed": False,
+        "source_validation_opened": False,
+        "holdout_opened": False,
+        "model_result_observed": False,
+    }
+    amendment["checks"] = {
+        "su15_exhausted_frozen_budget": True,
+        "su15_duplicate_saturation": True,
+        "all_other_games_complete": True,
+        "amended_minimums_met": all(
+            amendment["observed_rows_per_game"][game] >= minimums[game]
+            for game in SOURCE_TRAIN
+        ),
+    }
+    amendment["collection_ready_under_amendment"] = all(amendment["checks"].values())
+    amendment["amendment_checksum"] = _checksum(amendment)
+    _write_json(destination / "capacity_amendment.json", amendment)
+    return amendment
+
+
+def _collection_authority(
+    destination: Path,
+    manifest: Mapping[str, Any],
+) -> tuple[dict[str, Any], dict[str, Any] | None]:
+    collection = _read_json(destination / "collection_manifest.json")
+    if collection.get("manifest_checksum") != manifest["manifest_checksum"]:
+        raise ValueError("V4.10 collection/manifest checksum mismatch")
+    if collection.get("collection_ready"):
+        return collection, None
+    amendment = _read_json(destination / "capacity_amendment.json")
+    expected = str(amendment["amendment_checksum"])
+    check = dict(amendment)
+    check.pop("amendment_checksum")
+    if _checksum(check) != expected:
+        raise ValueError("V4.10 capacity amendment checksum mismatch")
+    if (
+        amendment.get("format_version") != CAPACITY_AMENDMENT_VERSION
+        or amendment.get("manifest_checksum") != manifest["manifest_checksum"]
+        or amendment.get("collection_checksum") != collection["collection_checksum"]
+        or not amendment.get("collection_ready_under_amendment")
+    ):
+        raise RuntimeError("V4.10 capacity amendment is not authoritative")
+    return collection, amendment
+
+
 def _fresh_trace_paths(output_dir: Path) -> list[Path]:
     shard_dir = output_dir / "source_train_shards"
     if not shard_dir.exists():
@@ -384,11 +482,7 @@ def compile_teacher_corpus(
 ) -> dict[str, Any]:
     destination = Path(output_dir)
     manifest = load_manifest(destination)
-    collection = _read_json(destination / "collection_manifest.json")
-    if not collection.get("collection_ready"):
-        raise RuntimeError("V4.10 source collection is not ready")
-    if collection.get("manifest_checksum") != manifest["manifest_checksum"]:
-        raise ValueError("V4.10 collection/manifest checksum mismatch")
+    collection, amendment = _collection_authority(destination, manifest)
     base_records = list(load_v49_records(v49_dir))
     by_digest = {record.trace_digest: record for record in base_records}
     repeat_keys = {record.exact_repeat_key for record in base_records}
@@ -471,6 +565,9 @@ def compile_teacher_corpus(
         "format_version": "sage12-action-aligned-teacher-qa-v4.10",
         "manifest_checksum": manifest["manifest_checksum"],
         "collection_checksum": collection["collection_checksum"],
+        "capacity_amendment_checksum": (
+            amendment["amendment_checksum"] if amendment is not None else None
+        ),
         "base_records": len(base_records),
         "fresh_records": sum(fresh_counts.values()),
         "fresh_per_game": fresh_counts,
@@ -1265,9 +1362,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     evaluate = subparsers.add_parser("evaluate")
     evaluate.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     evaluate.add_argument("--device", default="cuda:0")
+    amend = subparsers.add_parser("amend-capacity")
+    amend.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     args = parser.parse_args(argv)
     if args.command == "freeze":
         payload = freeze_manifest(output_dir=args.output_dir)
+    elif args.command == "amend-capacity":
+        payload = write_capacity_amendment(output_dir=args.output_dir)
     elif args.command == "compile":
         payload = compile_teacher_corpus(output_dir=args.output_dir)
     else:
@@ -1293,4 +1394,5 @@ __all__ = [
     "load_pair_links",
     "load_teacher_records",
     "validate_action_aligned_graph",
+    "write_capacity_amendment",
 ]

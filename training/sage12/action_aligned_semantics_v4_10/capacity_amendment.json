@@ -1,0 +1,47 @@
+{
+  "amendment_checksum": "cef75fd72e8fd2f7b89673b330870301d59e718ef9b64dfaa2ddf9104106f0e9",
+  "authorized_minimum_rows_per_game": {
+    "bp35": 160,
+    "cd82": 160,
+    "dc22": 160,
+    "g50t": 160,
+    "ka59": 160,
+    "lf52": 160,
+    "lp85": 64,
+    "sp80": 160,
+    "su15": 80,
+    "tr87": 160,
+    "tu93": 160
+  },
+  "authorized_total_rows_minimum": 1584,
+  "checks": {
+    "all_other_games_complete": true,
+    "amended_minimums_met": true,
+    "su15_duplicate_saturation": true,
+    "su15_exhausted_frozen_budget": true
+  },
+  "collection_checksum": "51fbdfbb7f379730c4797f0188d06db648acaeb7a61b5cebdb192db2a2e1b534",
+  "collection_ready_under_amendment": true,
+  "evaluation_thresholds_changed": false,
+  "format_version": "sage12-action-aligned-capacity-amendment-v4.10",
+  "holdout_opened": false,
+  "manifest_checksum": "0c1fa71390784cfa49710283047a542a12b5f5cce2df4e1f446690079b3f36db",
+  "model_result_observed": false,
+  "observed_rows_per_game": {
+    "bp35": 160,
+    "cd82": 160,
+    "dc22": 160,
+    "g50t": 160,
+    "ka59": 160,
+    "lf52": 160,
+    "lp85": 64,
+    "sp80": 160,
+    "su15": 83,
+    "tr87": 160,
+    "tu93": 160
+  },
+  "reason": "su15 exposed only ACTION6 and saturated unique capacity at 83 rows after 1280 steps with 1197 exact-repeat rejections",
+  "representation_changed": false,
+  "source_validation_opened": false,
+  "training_changed": false
+}

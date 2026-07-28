@@ -115,3 +115,16 @@ combination and still blocks the semantic world model and EBM.
 3. Compile and publish the augmented teacher corpus and QA.
 4. Train on GPU, evaluate LOGO, export V4.7-compatible base effects, and
    publish the result whether positive or negative.
+
+## Capacity amendment before model fitting
+
+The source collector subsequently filled every frozen quota except `su15`.
+That game exposes only `ACTION6` and produced 83 new unique rows after all 40
+resets (1,280 executed steps), while rejecting 1,197 exact repeats already in
+V4.9/V4.10. No model result had been opened.
+
+The narrowly scoped amendment authorizes a minimum of 80 rows for `su15`;
+every other per-game quota remains unchanged. The total minimum becomes 1,584,
+and the observed 1,587 rows pass it. Representation, training, evaluation
+thresholds and data-access policy are unchanged. See
+`reports/SAGE12_ACTION_ALIGNED_SEMANTICS_V4_10_COLLECTION.md`.
