@@ -511,3 +511,29 @@ fold-selected baseline and Qwen did not improve structured-only features.
 True effect annotations instead gained 0.3978, and true world outputs let the
 learned EBM match the oracle exactly. See
 `reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_RESULT.md`.
+
+## Paired semantic adaptation (V4.8)
+
+V4.8 targets the localized semantic bottleneck without changing the V4.7
+world model, EBM, controller, candidate trees, or baseline selection. It
+combines deterministic same-prestate pairs from the published SAGE11
+source-train corpus with all replay-verified V4.3 pairs. Raw coordinates and
+identity fields are excluded.
+
+The local Qwen2.5 0.5B model remains frozen and supplies paired prompt
+embeddings. A rank-16 external low-rank residual adapter predicts
+left/right/both/neither for the seven slot effects plus auxiliary progress.
+Representation selection and every published slot annotation are
+leave-one-game-out. The experiment proceeds through the full architecture even
+if direct semantic diagnostics are weak; its thresholds are exploratory and
+cannot promote live authority.
+
+```powershell
+python -m theory.sage12.semantic_adapter_v4_8 freeze
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.semantic_adapter_v4_8 embed --device cuda:0
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.semantic_adapter_v4_8 adapt --device cuda:0
+python -m theory.sage12.semantic_adapter_v4_8 evaluate
+```
+
+The frozen design is
+`reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_PROTOCOL.md`.

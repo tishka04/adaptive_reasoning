@@ -1,0 +1,396 @@
+{
+  "adapter": {
+    "base_qwen_weights_trainable": false,
+    "batch_size": 512,
+    "effects": [
+      "changed",
+      "moved",
+      "target_created",
+      "target_removed",
+      "target_moved",
+      "level_complete",
+      "game_over",
+      "progress"
+    ],
+    "epochs": 24,
+    "every_prediction_leave_one_game_out": true,
+    "kind": "external_low_rank_residual_adapter",
+    "learning_rate": 0.002,
+    "pair_classes": [
+      "neither",
+      "left",
+      "right",
+      "both"
+    ],
+    "rank": 16
+  },
+  "authority_promotion_allowed": false,
+  "confirmatory_gate": false,
+  "created_for": "sage12-paired-semantic-adapter-v4.8",
+  "decision_thresholds": {
+    "adapted_over_primary_baseline_mean_gain_strictly_positive": true,
+    "adapted_over_structured_mean_gain_strictly_positive": true,
+    "adapter_brier_better_than_action_only": true,
+    "completion_events_selected_minimum": 2,
+    "confirmatory_ci_required": false,
+    "nonnegative_games_minimum": 6,
+    "original_over_relation_shuffle_mean_gain_strictly_positive": true,
+    "semantic_output_identity_accuracy_maximum": 0.6
+  },
+  "downstream_freeze": {
+    "baseline_selection": "training games only in each outer fold",
+    "controller": "V4.7 depth-three first-action selection unchanged",
+    "ebm_epochs": 150,
+    "ebm_hidden_width": 32,
+    "ebm_input_width": 8,
+    "ebm_learning_rate": 0.003,
+    "world_model": "V4.7 RegularizedSlotWorldModel unchanged"
+  },
+  "evaluation_population": {
+    "complete_nodes": 2380,
+    "complete_roots": 340,
+    "semantic_slots": 4760
+  },
+  "format_version": "sage12-paired-semantic-adapter-manifest-v4.8",
+  "holdout_opened": false,
+  "live_environment_opened": false,
+  "manifest_checksum": "143fe10e1b35f7fa2dc1dc1078f86beb21042d6a647b6235c1c1ca23bccbce67",
+  "pair_corpus": {
+    "by_origin": {
+      "sage11_same_prestate": 2748,
+      "v43_replay_verified": 2380
+    },
+    "contrasts_by_effect": {
+      "changed": 1153,
+      "game_over": 351,
+      "level_complete": 22,
+      "moved": 1461,
+      "progress": 1172,
+      "target_created": 172,
+      "target_moved": 8,
+      "target_removed": 517
+    },
+    "rows": 5128,
+    "sampling_caps_per_game": {
+      "changed": 100,
+      "game_over": 100,
+      "level_complete": 10000,
+      "moved": 100,
+      "neutral": 40,
+      "progress": 150
+    },
+    "sha256": "720bd911f1ced98164c357d9470ab588030fce29e7f017f8763229384aaa2eda",
+    "source_preflight": {
+      "capacity": {
+        "all_pairs": 242322,
+        "changed_pairs": 4255,
+        "game_over_pairs": 332,
+        "level_complete_pairs": 19,
+        "moved_pairs": 10369,
+        "neutral_pairs": 224423,
+        "progress_pairs": 2924,
+        "states_with_multiple_actions": 12044
+      },
+      "raw_per_game": {
+        "bp35": {
+          "changed": 8000,
+          "game_over": 231,
+          "level_complete": 17,
+          "moved": 3445,
+          "progress": 828,
+          "rows": 8000
+        },
+        "cd82": {
+          "changed": 6806,
+          "game_over": 98,
+          "level_complete": 13,
+          "moved": 171,
+          "progress": 21,
+          "rows": 8259
+        },
+        "dc22": {
+          "changed": 7327,
+          "game_over": 99,
+          "moved": 4,
+          "progress": 569,
+          "rows": 8259
+        },
+        "g50t": {
+          "changed": 6799,
+          "game_over": 59,
+          "moved": 4447,
+          "progress": 678,
+          "rows": 8258
+        },
+        "ka59": {
+          "changed": 7398,
+          "game_over": 88,
+          "moved": 2663,
+          "progress": 522,
+          "rows": 8258
+        },
+        "lf52": {
+          "changed": 7336,
+          "game_over": 79,
+          "level_complete": 1,
+          "moved": 1166,
+          "progress": 45,
+          "rows": 8000
+        },
+        "lp85": {
+          "changed": 15,
+          "rows": 27
+        },
+        "sp80": {
+          "changed": 5948,
+          "game_over": 319,
+          "level_complete": 13,
+          "moved": 697,
+          "progress": 146,
+          "rows": 5948
+        },
+        "su15": {
+          "changed": 8000,
+          "game_over": 284,
+          "moved": 740,
+          "rows": 8000
+        },
+        "tr87": {
+          "changed": 8258,
+          "game_over": 67,
+          "moved": 355,
+          "progress": 113,
+          "rows": 8258
+        },
+        "tu93": {
+          "changed": 5641,
+          "game_over": 185,
+          "moved": 3202,
+          "rows": 5641
+        }
+      },
+      "selected_pairs": 2748,
+      "selected_per_game": {
+        "bp35": {
+          "changed": 0,
+          "game_over": 69,
+          "level_complete": 8,
+          "moved": 100,
+          "neutral": 40,
+          "progress": 150
+        },
+        "cd82": {
+          "changed": 100,
+          "game_over": 40,
+          "level_complete": 0,
+          "moved": 72,
+          "neutral": 40,
+          "progress": 2
+        },
+        "dc22": {
+          "changed": 100,
+          "game_over": 57,
+          "level_complete": 0,
+          "moved": 0,
+          "neutral": 40,
+          "progress": 150
+        },
+        "g50t": {
+          "changed": 100,
+          "game_over": 30,
+          "level_complete": 0,
+          "moved": 100,
+          "neutral": 40,
+          "progress": 150
+        },
+        "ka59": {
+          "changed": 100,
+          "game_over": 33,
+          "level_complete": 0,
+          "moved": 100,
+          "neutral": 40,
+          "progress": 150
+        },
+        "lf52": {
+          "changed": 100,
+          "game_over": 24,
+          "level_complete": 1,
+          "moved": 100,
+          "neutral": 40,
+          "progress": 50
+        },
+        "lp85": {
+          "changed": 12,
+          "game_over": 0,
+          "level_complete": 0,
+          "moved": 0,
+          "neutral": 9,
+          "progress": 0
+        },
+        "sp80": {
+          "changed": 0,
+          "game_over": 79,
+          "level_complete": 10,
+          "moved": 0,
+          "neutral": 40,
+          "progress": 150
+        },
+        "su15": {
+          "changed": 0,
+          "game_over": 0,
+          "level_complete": 0,
+          "moved": 100,
+          "neutral": 40,
+          "progress": 0
+        },
+        "tr87": {
+          "changed": 0,
+          "game_over": 0,
+          "level_complete": 0,
+          "moved": 1,
+          "neutral": 40,
+          "progress": 1
+        },
+        "tu93": {
+          "changed": 0,
+          "game_over": 0,
+          "level_complete": 0,
+          "moved": 100,
+          "neutral": 40,
+          "progress": 0
+        }
+      }
+    }
+  },
+  "qwen_encoder": {
+    "batch_size": 48,
+    "frozen": true,
+    "maximum_input_tokens": 256,
+    "model_path": "models/qwen2_5_0.5b_instruct",
+    "model_sha256": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+    "representations": [
+      "minimal",
+      "invariant_context"
+    ],
+    "selection": "lowest SAGE11-only LOGO macro Brier; then lower output identity accuracy; then minimal"
+  },
+  "source_fingerprints": {
+    "sage11_source_train": [
+      {
+        "game": "bp35",
+        "rows": 8000,
+        "sha256": "eb092ab83ee79fcf3dbe127e3b946b212349a2b03b4afdc2784ed7b92f6489e0"
+      },
+      {
+        "game": "cd82",
+        "rows": 8259,
+        "sha256": "5f8cdc714447acb1013794d2af11cb7f34e83517608fa3dfd3ee5a23e472a261"
+      },
+      {
+        "game": "dc22",
+        "rows": 8259,
+        "sha256": "bbe31651a8994a14c6fd561963b1224de349258519bd1caffacdc2b3901d7f91"
+      },
+      {
+        "game": "g50t",
+        "rows": 8258,
+        "sha256": "96f18b2fceff2d5fae1f78f6febd16f56f279542a850a3ba47edc4163bc4a2df"
+      },
+      {
+        "game": "ka59",
+        "rows": 8258,
+        "sha256": "d235ccafb24112530da936bb523be4640a3f48fc542695ab330e32296c69e3b9"
+      },
+      {
+        "game": "lf52",
+        "rows": 8000,
+        "sha256": "5869c296d47507467dab899b30783a1e55f97cdcd50f591e1016df56040c7134"
+      },
+      {
+        "game": "lp85",
+        "rows": 27,
+        "sha256": "aa0434d0e752ad49e64e9cc014aec3ad5fa7ab74da2162d614826b7b777d9a98"
+      },
+      {
+        "game": "sp80",
+        "rows": 5948,
+        "sha256": "43cddbf3c7953e2ecf23ae5395f9a561381d05b57b46680d9084a1b0502c19e2"
+      },
+      {
+        "game": "su15",
+        "rows": 8000,
+        "sha256": "2a7cab7cabd89227a53a2af293c812ea8e04a7d7c5338d70d23c19d8e083462f"
+      },
+      {
+        "game": "tr87",
+        "rows": 8258,
+        "sha256": "dd89e25737002ea4682aea87db1281e26cc8e8b759eb0927afa0b34382237ba6"
+      },
+      {
+        "game": "tu93",
+        "rows": 5641,
+        "sha256": "f157ecb0125089e2ebc1f26e1204c858f5c27217f9b5501c9ad4c4eeb3329ec9"
+      }
+    ],
+    "v43_source_train": [
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/bp35.jsonl",
+        "sha256": "2c2d97fe934543f6fc19250c8f73f314120074c0dfbbe442e1704db7bed6c04b"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/cd82.jsonl",
+        "sha256": "eee5871f51cfc58d9e0441784083453629cdb65df2824f2f2013582ba23410ea"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/dc22.jsonl",
+        "sha256": "7e94dfaf7609c45f9d81e8016ed8d246668094e751cc17112651687213af23d6"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/g50t.jsonl",
+        "sha256": "314cceaae603ecc82b339ed99934cc8d6bce4886768939132cdcebbb6fd8acff"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/ka59.jsonl",
+        "sha256": "879fa2c9aa67b317b88ba15e95bd0066b4a9f3b5feff0eede19de126275d0f5d"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/lf52.jsonl",
+        "sha256": "0e1b171ac09f23734f8f8cb8686c176cc0f6ff02b2dfbd4891e8079f9fd24aa9"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/lp85.jsonl",
+        "sha256": "7dee5fa89bace32af5f744c02489a22d4703b96e4dea3fef6d6971c9e1f7461c"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/sp80.jsonl",
+        "sha256": "aab95e73dae8957b70ba32380ac17b9e45e4c70c7786628d3c1b4d73fcdc6db4"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/su15.jsonl",
+        "sha256": "d089568302893ba8e409694919d9c744400d53565d3e6f90ddbd5f1012753224"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/tr87.jsonl",
+        "sha256": "53229b7b0d3584960a86cafbc2e89426e54eaa4c559a5762b383d9da26f5cdfa"
+      },
+      {
+        "path": "training/sage12/bound_mechanic_pilot_v4_3/source_train_shards/tu93.jsonl",
+        "sha256": "0b0d9fede128c1cddb93a0ec95725b5cc29f6fda7512f0e0c5613170185eae49"
+      }
+    ]
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_opened": false
+}
