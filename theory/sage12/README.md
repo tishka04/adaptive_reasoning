@@ -557,3 +557,28 @@ at 85.61%. True annotations again gained +0.3978 over the baseline. The result
 rejects this frozen-Qwen external-adapter route, not the conditional global
 architecture. See
 `reports/SAGE12_PAIRED_SEMANTIC_ADAPTER_V4_8_RESULT.md`.
+
+## Object-relative semantic teacher/student (V4.9)
+
+V4.9 replaces language-model classification with a separated teacher/student
+contract. A deterministic post-transition teacher compiles seven physical and
+ten functional effects with applicability masks. Its student sees only the
+pre-action legal action plus an unordered, identity-free graph rooted at the
+action target. Absolute coordinates, colours/raw values, object IDs, game IDs,
+frames, and future fields are excluded.
+
+The student is a small DeepSets encoder trained with masked imitation,
+same-prestate productive ranking, and an adversarial game-identity objective.
+Every reported prediction is leave-one-source-game-out. Action-only and
+root-only baselines, relation shuffling, neighbor-order invariance, output
+identity, per-game transfer, and completion recall@8 are frozen controls.
+
+```powershell
+python -m theory.sage12.semantic_teacher_v4_9 freeze
+python -m theory.sage12.semantic_teacher_v4_9 compile
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.object_relative_student_v4_9 evaluate --device cuda:0
+```
+
+The design and decision thresholds are frozen in
+`reports/SAGE12_OBJECT_RELATIVE_TEACHER_STUDENT_V4_9_PROTOCOL.md`. At this
+checkpoint no V4.9 result has been observed and no live authority exists.
