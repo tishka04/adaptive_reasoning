@@ -736,6 +736,20 @@ class RootedTargetGraph:
             shuffled[":".join(parts)] += count
         return replace(self, relation_counts=tuple(sorted(shuffled.items())))
 
+    def with_root_from(self, other: RootedTargetGraph) -> RootedTargetGraph:
+        """Swap only target-root semantics while preserving the intervention."""
+
+        return replace(
+            self,
+            root_kind=other.root_kind,
+            relation_counts=other.relation_counts,
+            neighbor_roles=other.neighbor_roles,
+            actor_relation=other.actor_relation,
+            track_interactions=other.track_interactions,
+            last_track_operation=other.last_track_operation,
+            track_recency=other.track_recency,
+        )
+
     def to_dict(self) -> dict[str, Any]:
         return _json_safe(asdict(self))
 
@@ -1010,8 +1024,12 @@ class ObjectCausalExample:
         root_swap: bool = False,
         relation_shuffle: bool = False,
     ) -> dict[str, float]:
-        left_graph = self.right_graph if root_swap else self.left_graph
-        right_graph = self.left_graph if root_swap else self.right_graph
+        if root_swap:
+            left_graph = self.left_graph.with_root_from(self.right_graph)
+            right_graph = self.right_graph.with_root_from(self.left_graph)
+        else:
+            left_graph = self.left_graph
+            right_graph = self.right_graph
         if relation_shuffle:
             left_graph = left_graph.relation_shuffled()
             right_graph = right_graph.relation_shuffled()
@@ -1868,6 +1886,7 @@ def _closed_stage(
     predecessor_checksum_field: str,
     output_path: Path,
     authorized_field: str,
+    closed_status: str,
 ) -> dict[str, Any]:
     predecessor = json.loads(predecessor_path.read_text(encoding="utf-8"))
     authorized = bool(predecessor.get(authorized_field, False))
@@ -1877,7 +1896,7 @@ def _closed_stage(
         )
     payload: dict[str, Any] = {
         "format_version": f"sage12-object-causal-{stage}-closure-v4.5",
-        "status": f"SKIPPED_{predecessor['status']}",
+        "status": closed_status,
         "predecessor_checksum": predecessor[predecessor_checksum_field],
         "source_validation_opened": False,
         "world_model_protocol_authorized": False,
@@ -1885,7 +1904,7 @@ def _closed_stage(
         "ebm_authorized": False,
         "controller_authorized": False,
     }
-    payload[f"{stage}_checksum"] = _checksum(payload)
+    payload[f"{stage.replace('-', '_')}_checksum"] = _checksum(payload)
     _write_json(output_path, payload)
     return payload
 
@@ -1901,6 +1920,7 @@ def run_source_collection(
         predecessor_checksum_field="feasibility_checksum",
         output_path=destination / "source_collection.json",
         authorized_field="fresh_source_collection_authorized",
+        closed_status="SKIPPED_FEASIBILITY",
     )
 
 
@@ -1916,9 +1936,10 @@ def run_source_preflight(
     return _closed_stage(
         stage="source-preflight",
         predecessor_path=source_path,
-        predecessor_checksum_field="source-collection_checksum",
+        predecessor_checksum_field="source_collection_checksum",
         output_path=destination / "source_preflight.json",
         authorized_field="source_preflight_authorized",
+        closed_status="SKIPPED_FEASIBILITY",
     )
 
 
@@ -1930,9 +1951,10 @@ def run_validation_collection(
     return _closed_stage(
         stage="validation-collection",
         predecessor_path=destination / "source_preflight.json",
-        predecessor_checksum_field="source-preflight_checksum",
+        predecessor_checksum_field="source_preflight_checksum",
         output_path=destination / "validation_collection.json",
         authorized_field="validation_collection_authorized",
+        closed_status="SKIPPED_SOURCE_PREFLIGHT",
     )
 
 
@@ -1944,9 +1966,10 @@ def run_final_evaluation(
     return _closed_stage(
         stage="final-evaluation",
         predecessor_path=destination / "validation_collection.json",
-        predecessor_checksum_field="validation-collection_checksum",
+        predecessor_checksum_field="validation_collection_checksum",
         output_path=destination / "final_result.json",
         authorized_field="validation_evaluation_authorized",
+        closed_status="SKIPPED_VALIDATION_COLLECTION",
     )
 
 

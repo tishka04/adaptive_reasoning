@@ -267,7 +267,7 @@ def test_model_view_is_identity_free_and_exactly_antisymmetric() -> None:
         source_split="source_train",
         context=(),
         left_graph=_graph(kind="occupied_object", north=2),
-        right_graph=_graph(kind="virtual_cell", north=1),
+        right_graph=_graph(kind="virtual_cell", north=1, action="ACTION3"),
         outcomes={"direct|appeared|none|any": (True, False)},
     )
     validate_model_view(example, "structured")
@@ -277,7 +277,11 @@ def test_model_view_is_identity_free_and_exactly_antisymmetric() -> None:
     assert model.predict(inverted) == pytest.approx(
         1.0 - model.predict(row), abs=1e-15
     )
-    assert example.model_view("structured", root_swap=True) != row
+    root_swapped = example.model_view("structured", root_swap=True)
+    assert root_swapped != row
+    assert {
+        key: value for key, value in root_swapped.items() if key.startswith("action:")
+    } == {key: value for key, value in row.items() if key.startswith("action:")}
     assert example.model_view("structured", relation_shuffle=True) != row
 
 
@@ -304,6 +308,6 @@ def test_failed_feasibility_mechanically_closes_fresh_collection(
         encoding="utf-8",
     )
     result = run_source_collection(output_dir=tmp_path)
-    assert result["status"] == "SKIPPED_FAIL_CLOSED"
+    assert result["status"] == "SKIPPED_FEASIBILITY"
     assert result["source_validation_opened"] is False
     assert not (tmp_path / "source_train_shards").exists()
