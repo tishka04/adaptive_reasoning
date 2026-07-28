@@ -95,7 +95,13 @@ class HeuristicTrajectoryEnergy:
 class PairwiseTrajectoryEBM:
     """Tiny optional pairwise ranker; never granted authority by construction."""
 
-    def __init__(self, *, hidden_width: int = 16, seed: int = 0) -> None:
+    def __init__(
+        self,
+        *,
+        input_width: int = 6,
+        hidden_width: int = 16,
+        seed: int = 0,
+    ) -> None:
         try:
             import torch
             from torch import nn
@@ -103,8 +109,9 @@ class PairwiseTrajectoryEBM:
             raise RuntimeError("PyTorch is required for the learned EBM") from exc
         torch.manual_seed(int(seed))
         self._torch = torch
+        self.input_width = max(1, int(input_width))
         self.model = nn.Sequential(
-            nn.Linear(6, max(2, int(hidden_width))),
+            nn.Linear(self.input_width, max(2, int(hidden_width))),
             nn.Tanh(),
             nn.Linear(max(2, int(hidden_width)), 1),
         )
@@ -124,6 +131,8 @@ class PairwiseTrajectoryEBM:
     ) -> Tuple[float, ...]:
         if not features:
             return ()
+        if any(len(row) != self.input_width for row in features):
+            raise ValueError("trajectory feature width does not match EBM input")
         torch = self._torch
         with torch.no_grad():
             tensor = torch.tensor(
@@ -145,6 +154,11 @@ class PairwiseTrajectoryEBM:
         """Minimize softplus(E(preferred)-E(rejected))."""
         if len(preferred) != len(rejected) or not preferred:
             raise ValueError("preferred and rejected pairs must be non-empty")
+        if any(
+            len(row) != self.input_width
+            for row in tuple(preferred) + tuple(rejected)
+        ):
+            raise ValueError("trajectory feature width does not match EBM input")
         torch = self._torch
         device = next(self.model.parameters()).device
         positive = torch.tensor(

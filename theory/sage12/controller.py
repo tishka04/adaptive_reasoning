@@ -9,7 +9,12 @@ from typing import Any, Callable, Mapping, Sequence, Tuple
 
 from v3.schemas import GameObservation, TransitionRecord
 
-from .compiler import CompiledSemanticOption, HypothesisCompiler
+from .compiler import (
+    CompiledSemanticOption,
+    HypothesisCompiler,
+    SemanticActionSlot,
+    SlotAnnotation,
+)
 from .dataset import SemanticTraceWriter, SemanticTrajectoryRecord
 from .energy import EnergyBreakdown, HeuristicTrajectoryEnergy
 from .llm import HypothesisGenerationResult, TemplateHypothesisGenerator
@@ -341,6 +346,54 @@ class SemanticPlanningController:
             selected_option_id=selected_option.option_id,
             trajectory_length=selected_trajectory.length,
             energy=selected_energy.total,
+        )
+
+    def select_slot_action(
+        self,
+        *,
+        slots: Sequence[SemanticActionSlot],
+        annotations: Sequence[SlotAnnotation],
+        initial_state: frozenset[str],
+        goal_predicate: str = "level_complete",
+        maximum_depth: int | None = None,
+    ) -> SemanticActionCandidate | None:
+        """Rank candidate-complete slot trajectories and return only step one.
+
+        This offline-facing entry point deliberately does not grant authority
+        or execute an environment action.  Callers retain the normal SAGE12
+        arbitration boundary around the returned receding-horizon candidate.
+        """
+        compilation = self.compiler.compile_slots(
+            slots,
+            annotations=annotations,
+        )
+        trajectories = self.world_model.rollout(
+            initial_state=initial_state,
+            options=compilation.options,
+            maximum_depth=(
+                self.config.maximum_depth
+                if maximum_depth is None
+                else max(1, int(maximum_depth))
+            ),
+            beam_width=self.config.beam_width,
+        )
+        scored = tuple(
+            (
+                trajectory,
+                self.energy.score(
+                    trajectory,
+                    goal_predicate=goal_predicate,
+                ),
+            )
+            for trajectory in trajectories
+        )
+        ranked = self._rank(scored)
+        if not ranked:
+            return None
+        first = ranked[0][0].first_option
+        return SemanticActionCandidate(
+            action_name=first.action_name,
+            action_data=dict(first.action_data),
         )
 
     def observe_transition(self, record: TransitionRecord) -> None:

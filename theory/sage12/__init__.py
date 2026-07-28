@@ -1,6 +1,12 @@
 """SAGE12 guarded high-semantic trajectory planning."""
 
-from .compiler import CompiledSemanticOption, HypothesisCompiler
+from .compiler import (
+    SLOT_EFFECTS,
+    CompiledSemanticOption,
+    HypothesisCompiler,
+    SemanticActionSlot,
+    SlotAnnotation,
+)
 from .controller import (
     HierarchicalSubgoal,
     Sage12Arbitration,
@@ -51,6 +57,7 @@ __all__ = [
     "Sage12Mode",
     "SceneGraph",
     "SemanticActionCandidate",
+    "SemanticActionSlot",
     "SemanticEffect",
     "SemanticHypothesis",
     "SemanticMemory",
@@ -60,6 +67,8 @@ __all__ = [
     "SemanticTrajectory",
     "SemanticTrajectoryRecord",
     "SemanticWorldModel",
+    "SlotAnnotation",
+    "SLOT_EFFECTS",
     "TemplateHypothesisGenerator",
     "TransformersJSONModel",
     "TransformersModelConfig",

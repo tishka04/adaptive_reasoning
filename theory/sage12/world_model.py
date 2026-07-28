@@ -68,6 +68,9 @@ class SemanticWorldModel:
         option: CompiledSemanticOption,
         effect: str,
     ) -> float:
+        effect_name = str(effect).split("|", 1)[0]
+        if effect_name in option.effect_probabilities:
+            return float(option.effect_probabilities[effect_name])
         key = self._effect_key(option, effect)
         support = self._support[key]
         refutations = self._refutations[key]

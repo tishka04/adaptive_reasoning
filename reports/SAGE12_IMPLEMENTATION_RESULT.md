@@ -500,3 +500,26 @@ thread for the 16-unit EBM. These are exact runtime optimizations; frozen
 inputs, scores, training pairs, and decision rules did not change. Final
 focused validation passed 19 tests. Full result:
 `reports/SAGE12_GLOBAL_INTEGRATION_PILOT_V4_6_RESULT.md`.
+
+## V4.7 candidate-complete slot freeze
+
+V4.7 introduces `SemanticActionSlot` and `SlotAnnotation`, extends compiled
+options with semantic keys and effect probabilities, makes candidate coverage
+structural through `compile_slots`, generalizes the pairwise EBM input width,
+and gives the controller an offline slot entry point that returns only the
+first action.
+
+The new factorized runner covers the 340 complete V4.3 roots, 2,380 nodes, and
+4,760 slots. It uses constrained 0/1 token logits from frozen Qwen, nested
+leave-one-game-out world models and calibration, eight-feature depth-three
+trajectory energies, fold-local baseline selection, relation shuffle,
+game-leakage diagnostics, and true-annotation/world/energy oracle
+replacements. The primary future-node topology is explicitly non-deployable.
+
+The data policy and full frozen protocol are in
+`training/SAGE12_DATA_POLICY.md` and
+`reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_PROTOCOL.md`. The result
+will be appended and published after the frozen CUDA generation and complete
+factorial evaluation, whether positive or negative. The pre-result manifest
+checksum is
+`ad08752af3f8b87afd07efd4aa49d9cf1c4f3a81a06d9cb175b11beea4b10ecc`.

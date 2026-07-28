@@ -479,3 +479,28 @@ gain, +0.2287 identity gain, and 0.1087 ECE. Root swapping and relation
 shuffling improved accuracy, while exact complete-arm inversion passed.
 Fresh source and validation collection remained closed. See
 `reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_RESULT.md`.
+
+## Candidate-complete semantic slots (V4.7)
+
+V4.7 replaces free-form proposal coverage with one `SemanticActionSlot` per
+legal action. `SlotAnnotation` carries seven frozen-model probabilities with
+`support=0`; `HypothesisCompiler.compile_slots` cannot discard an all-zero
+slot. Exact execution arguments remain separate from the identity-free
+semantic signature.
+
+The offline pilot in `integration_pilot_v4_7.py` scores 14 constrained Qwen
+bits for both slots at all 2,380 complete-tree nodes, fits nested
+leave-one-game-out effect and utility models, ranks all eight depth-three
+leaves with an eight-feature EBM, and returns only the selected trajectory's
+first action. The V4.3 future-node topology is an explicitly non-deployable
+oracle; root-slot reuse is the deployable control.
+
+```powershell
+python -m theory.sage12.integration_pilot_v4_7 freeze
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.integration_pilot_v4_7 generate-qwen --device cuda:0
+python -m theory.sage12.integration_pilot_v4_7 evaluate
+```
+
+The frozen contract is documented in
+`reports/SAGE12_CANDIDATE_COMPLETE_SLOT_PILOT_V4_7_PROTOCOL.md`. No V4.7
+outcome can grant live authority or open held-out data.

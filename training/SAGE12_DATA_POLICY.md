@@ -365,3 +365,35 @@ and once with the frozen relation shuffle. Raw responses, deterministic
 normalization, folds, per-root decisions, and the final result are immutable
 audit artifacts. The completed negative result grants no downstream
 authority and may be superseded only by a new versioned protocol.
+
+## V4.7 candidate-complete semantic-slot view
+
+V4.7 may read every node belonging to the same 340 complete V4.3 source trees,
+but it may not change, augment, or recollect them. The eligible view is 2,380
+pre-action nodes and both executed legal arms at every node. Incomplete roots
+remain excluded. This permission does not open source validation, historical
+benchmarks, neural holdouts, or live environments.
+
+Every legal arm becomes a slot before model inference. Qwen may assign seven
+effect scores but may not create or remove an action, add evidence support, or
+alter its exact execution key. The model view omits action arguments,
+coordinates, IDs, raw values, hashes, game identity, post-action frames,
+current query effects, and utility. It may use the identity-free binding
+signature and eight preceding observed events. Firewalls reject forbidden
+fields before prompts or world-model features are accepted.
+
+The frozen Qwen run covers all 2,380 original node prompts and 340 additional
+root relation-shuffle prompts. The relation shuffle changes only semantic
+relation fields. The 4,760 original slot annotations are used in 11 outer
+leave-one-game-out folds; calibration and EBM training features require a
+second inner leave-one-game-out exclusion.
+
+Future V4.3 pre-action slot descriptions may be read only by the named oracle
+topology diagnostic. Future outcomes remain hidden from all learned inputs.
+True annotations, true world outputs, and true energy are separately named
+oracle replacements and may not be represented as deployable scores.
+
+All Qwen outputs, fold models, calibration metadata, decisions, checksums, and
+the final result are immutable audit artifacts. V4.7 cannot promote authority
+regardless of verdict. Any later use of its model, topology, thresholds, or
+data requires a separately frozen protocol.
