@@ -828,3 +828,73 @@ completion opportunities, while true-world effects plus the same EBM captured
 neither learned controller completed a level or won a game. See
 `reports/SAGE12_DEMONSTRATION_MILESTONE_POLICY_V4_15_PROTOCOL.md` and
 `reports/SAGE12_DEMONSTRATION_MILESTONE_POLICY_V4_15_RESULT.md`.
+
+## Morpho-topological transformation analogies (V4.16)
+
+V4.16 adds an isolated SAGE-MT lane without changing the frozen V4.15 work.
+Instead of retrieving similar states, it aligns observed before/after
+morpho-topological graphs and learns a normalized latent for the
+transformation itself. A separate causal predictor estimates that latent from
+the current graph and a legal candidate action, so future frames never enter
+the deployable path.
+
+The compiler is palette-free and represents object/free-space components,
+contact, containment, action-relative geometry, holes, Euler characteristic,
+reachability and relation edits. HDBSCAN discovers multi-game transformation
+families. Stable prototypes retain observed productivity and risk evidence;
+aliases such as fusion, separation or growth are post-hoc descriptions only.
+
+```powershell
+python -m theory.sage12.morpho_topological_v4_16 freeze
+python -m theory.sage12.morpho_topological_v4_16 compile
+python -m theory.sage12.morpho_topological_v4_16 train --device cuda:0
+python -m theory.sage12.morpho_topological_v4_16 cluster
+python -m theory.sage12.morpho_topological_v4_16 evaluate --device cuda:0
+python -m theory.sage12.morpho_topological_v4_16 shadow
+```
+
+The optional advisor is off by default and remains shadow-only even after a
+complete gate pass. It can rank legal actions and update prototype evidence
+after the executed transition, but it cannot alter the selected action,
+override danger/protected-competence guards, open active validation or promote
+controller authority.
+
+The completed evaluation returned `SAGE_MT_NOT_YET_SUPPORTED`. Only two
+eligible prototypes emerged, covering 20.40% of training transitions with
+bootstrap ARI 0.618. Cross-game recall@8 was zero, relation removal had no
+effect, causal delta Brier was worse than action-only and only 1/8 completion
+opportunities was captured. The representation firewall, permutation
+invariance and identity-leakage gate passed, but shadow mode remains off. See
+`reports/SAGE12_MORPHO_TOPOLOGICAL_V4_16_PROTOCOL.md` and
+`reports/SAGE12_MORPHO_TOPOLOGICAL_V4_16_RESULT.md`.
+
+## Sequence-conditioned transformation policy (V4.17)
+
+V4.17 combines the V4.15 causal sequence prior, the V4.16 predicted
+transformation value and the V4.14 temporal EBM with a fixed, untuned score:
+
+```text
+z(sequence policy) + 0.5 z(transformation) - 0.5 z(trajectory energy)
+```
+
+```powershell
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.sequence_transformation_policy_v4_17 freeze
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.sequence_transformation_policy_v4_17 prepare --device cuda:0
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.sequence_transformation_policy_v4_17 evaluate --device cuda:0
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.sequence_transformation_policy_v4_17 active --device cuda:0
+```
+
+The hybrid significantly improved offline utility over V4.15 plus EBM by
+`+0.05307`, 95% interval `[+0.02515, +0.08560]`. Removing topological
+relations removed `0.05413` utility with a positive interval—the first SAGE12
+global result with a useful learned relation signal. The full gate still
+failed: the hybrid did not beat transformation-only, was nonnegative on only
+4/8 games and captured 1/8 completion opportunities.
+
+Nine fresh active runs then executed 8,184 actions with zero illegal
+proposals, but completed no level and won no game. Their terminal profile was
+identical to V4.15 plus EBM, while decision latency increased from 0.077 s to
+0.248 s. The final verdict is `TRANSFORMATION_COMPONENT_BOTTLENECK`; the
+holdout and controller authority remain closed. See
+`reports/SAGE12_SEQUENCE_TRANSFORMATION_POLICY_V4_17_PROTOCOL.md` and
+`reports/SAGE12_SEQUENCE_TRANSFORMATION_POLICY_V4_17_RESULT.md`.

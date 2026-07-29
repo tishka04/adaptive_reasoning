@@ -40,6 +40,17 @@ from .llm import (
 )
 from .scene_graph import SceneGraph, SemanticMemory, build_scene_graph
 from .world_model import SemanticTrajectory, SemanticWorldModel
+from .mt import (
+    MTAdvisory,
+    MTModelConfig,
+    MorphoTopologicalAnalogyAdvisor,
+    MorphoTopologicalGraph,
+    SageMTConfig,
+    SageMTMode,
+    TransformationPrototypeMemory,
+    build_mt_graph,
+    compile_mt_transition,
+)
 
 __all__ = [
     "CompiledSemanticOption",
@@ -51,10 +62,16 @@ __all__ = [
     "HierarchicalSubgoal",
     "HypothesisCompiler",
     "LocalHypothesisGenerator",
+    "MTAdvisory",
+    "MTModelConfig",
+    "MorphoTopologicalAnalogyAdvisor",
+    "MorphoTopologicalGraph",
     "PairwiseTrajectoryEBM",
     "Sage12Arbitration",
     "Sage12Config",
     "Sage12Mode",
+    "SageMTConfig",
+    "SageMTMode",
     "SceneGraph",
     "SemanticActionCandidate",
     "SemanticActionSlot",
@@ -72,5 +89,8 @@ __all__ = [
     "TemplateHypothesisGenerator",
     "TransformersJSONModel",
     "TransformersModelConfig",
+    "TransformationPrototypeMemory",
+    "build_mt_graph",
     "build_scene_graph",
+    "compile_mt_transition",
 ]

@@ -1,0 +1,58 @@
+{
+  "checkpoint": "mt_model.pt",
+  "config": {
+    "batch_size": 64,
+    "contrastive_loss_weight": 1.0,
+    "delta_buckets": 128,
+    "delta_loss_weight": 1.0,
+    "embedding_width": 32,
+    "epochs": 50,
+    "hash_buckets": 2048,
+    "hidden_width": 128,
+    "history_width": 8,
+    "identity_loss_weight": 0.1,
+    "invariant_loss_weight": 0.25,
+    "latent_width": 64,
+    "learning_rate": 0.001,
+    "maximum_edges": 256,
+    "maximum_global_tokens": 24,
+    "maximum_node_tokens": 16,
+    "maximum_nodes": 64,
+    "message_passing_layers": 3,
+    "query_loss_weight": 0.5,
+    "seed": 5160,
+    "temperature": 0.1,
+    "variance_loss_weight": 0.1,
+    "weight_decay": 0.0001
+  },
+  "device": "cuda:0",
+  "embedding_rows": 5344,
+  "final_loss": 0.3878646194934845,
+  "format_version": "sage12-mt-model-v4.16",
+  "games": [
+    "ar25",
+    "bp35",
+    "cd82",
+    "cn04",
+    "dc22",
+    "ft09"
+  ],
+  "invariant_keys": [
+    "boundary_connected_free_regions",
+    "contact_edges",
+    "euler_characteristic",
+    "free_regions",
+    "holes",
+    "largest_free_region_bucket",
+    "object_components"
+  ],
+  "losses": {
+    "contrastive": 0.022145178090466792,
+    "delta": 0.21690656909023423,
+    "identity": 1.78306828205844,
+    "invariant": 0.009045683795653552,
+    "query": 0.08682103284511221,
+    "variance": 0.005072027820734733
+  },
+  "records": 5344
+}

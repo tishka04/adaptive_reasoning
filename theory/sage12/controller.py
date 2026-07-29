@@ -80,6 +80,9 @@ class Sage12Arbitration:
     selected_option_id: str = ""
     trajectory_length: int = 0
     energy: float | None = None
+    mt_advisory_id: str = ""
+    mt_suggested_action: str = ""
+    mt_score: float | None = None
 
 
 @dataclass(frozen=True)
@@ -103,6 +106,7 @@ class SemanticPlanningController:
         learned_energy: Any | None = None,
         config: Sage12Config | None = None,
         trace_writer: SemanticTraceWriter | None = None,
+        transformation_advisor: Any | None = None,
     ) -> None:
         self.game_id = str(game_id)
         self.generator = generator or TemplateHypothesisGenerator()
@@ -112,6 +116,7 @@ class SemanticPlanningController:
         self.learned_energy = learned_energy
         self.config = config or Sage12Config()
         self.trace_writer = trace_writer
+        self.transformation_advisor = transformation_advisor
         self.memory = SemanticMemory()
         self._branch_index = 0
         self._step_index = 0
@@ -128,6 +133,7 @@ class SemanticPlanningController:
         self._observed_outcomes = 0
         self._productive_outcomes = 0
         self._unsafe_outcomes = 0
+        self._mt_failures = 0
         self._last_record: SemanticTrajectoryRecord | None = None
 
     @property
@@ -165,6 +171,19 @@ class SemanticPlanningController:
     ) -> Sage12Arbitration:
         configured = self.configured_mode
         effective = self.effective_mode
+        legal_candidates = _normalize_candidates(
+            candidates,
+            include=SemanticActionCandidate(
+                str(symbolic_action_name),
+                dict(symbolic_action_data or {}),
+            ),
+        )
+        mt_advisory = self._advise_transformations(
+            observation=observation,
+            candidates=legal_candidates,
+            executed_action_name=str(symbolic_action_name),
+            executed_action_data=dict(symbolic_action_data or {}),
+        )
         unchanged = Sage12Arbitration(
             action_name=str(symbolic_action_name),
             action_data=dict(symbolic_action_data or {}),
@@ -174,6 +193,18 @@ class SemanticPlanningController:
             applied=False,
             configured_mode=configured.value,
             effective_mode=effective.value,
+            mt_advisory_id=str(
+                getattr(mt_advisory, "advisory_id", "")
+            ),
+            mt_suggested_action=str(
+                getattr(mt_advisory, "suggested_action_name", "")
+            ),
+            mt_score=(
+                float(mt_advisory.score)
+                if mt_advisory is not None
+                and getattr(mt_advisory, "advisory_id", "")
+                else None
+            ),
         )
         if configured == Sage12Mode.OFF:
             return unchanged
@@ -187,13 +218,6 @@ class SemanticPlanningController:
             else build_scene_graph(observation)
         )
         goal = _select_subgoal(subgoals)
-        legal_candidates = _normalize_candidates(
-            candidates,
-            include=SemanticActionCandidate(
-                str(symbolic_action_name),
-                dict(symbolic_action_data or {}),
-            ),
-        )
         try:
             generation: HypothesisGenerationResult = self.generator.generate(
                 graph=graph,
@@ -346,6 +370,9 @@ class SemanticPlanningController:
             selected_option_id=selected_option.option_id,
             trajectory_length=selected_trajectory.length,
             energy=selected_energy.total,
+            mt_advisory_id=unchanged.mt_advisory_id,
+            mt_suggested_action=unchanged.mt_suggested_action,
+            mt_score=unchanged.mt_score,
         )
 
     def select_slot_action(
@@ -397,6 +424,13 @@ class SemanticPlanningController:
         )
 
     def observe_transition(self, record: TransitionRecord) -> None:
+        if self.transformation_advisor is not None:
+            try:
+                self.transformation_advisor.observe_transition(record)
+            except Exception:  # noqa: BLE001 - SAGE-MT is fail-closed
+                # SAGE-MT is advisory-only in V4.16 and must not interfere
+                # with observed evidence updates in the protected planner.
+                self._mt_failures += 1
         pending = self._pending
         self._pending = None
         if pending is None:
@@ -426,6 +460,11 @@ class SemanticPlanningController:
         self._probed_contexts.clear()
         self._pending = None
         self.memory.start_branch()
+        if self.transformation_advisor is not None:
+            try:
+                self.transformation_advisor.start_branch()
+            except Exception:  # noqa: BLE001 - SAGE-MT is fail-closed
+                self._mt_failures += 1
 
     def summary(self) -> Mapping[str, Any]:
         return {
@@ -447,7 +486,40 @@ class SemanticPlanningController:
             "last_record_digest": (
                 self._last_record.digest if self._last_record else ""
             ),
+            "sage_mt": (
+                {
+                    **dict(self.transformation_advisor.summary()),
+                    "controller_failures": self._mt_failures,
+                }
+                if self.transformation_advisor is not None
+                else {
+                    "mode": "off",
+                    "evaluations": 0,
+                    "observations": 0,
+                }
+            ),
         }
+
+    def _advise_transformations(
+        self,
+        *,
+        observation: GameObservation,
+        candidates: Sequence[SemanticActionCandidate],
+        executed_action_name: str,
+        executed_action_data: Mapping[str, Any],
+    ) -> Any | None:
+        if self.transformation_advisor is None:
+            return None
+        try:
+            return self.transformation_advisor.advise(
+                observation=observation,
+                candidates=candidates,
+                executed_action_name=executed_action_name,
+                executed_action_data=executed_action_data,
+            )
+        except Exception:  # noqa: BLE001 - SAGE-MT is fail-closed
+            self._mt_failures += 1
+            return None
 
     def _rank(
         self,

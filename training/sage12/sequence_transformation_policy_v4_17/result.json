@@ -1,0 +1,868 @@
+{
+  "active_validation": {
+    "active_checksum": "6325ef41cc23f5a164080fdfa128dccfc73d15de7ce0415e0bb45f8e1bfe0ef9",
+    "artifact_sha256": {
+      "runs": "0bba1d5840a8e6515e58575664489498dfee3b7ce12798f7af484fd9b9385b34",
+      "traces": "da34a8ec98aec9a416225f8fdd0fa83bc61396104498fe6cbe4f509557be15fe"
+    },
+    "authority_promoted": false,
+    "descriptive_only": true,
+    "elapsed_seconds": 1964.0971702999668,
+    "format_version": "sage12-sequence-transformation-active-v4.17",
+    "fresh_runs": 9,
+    "games": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "holdout_opened": false,
+    "hybrid_active_progress": false,
+    "manifest_checksum": "e5cf3ccfd802231e5ce7c9569fc942d244cb0466ef15d37fb7031541f88ef63a",
+    "metrics": {
+      "action_sequence_only": {
+        "actions": 8184,
+        "game_overs": 72,
+        "illegal_proposals": 0,
+        "levels": 0,
+        "mean_decision_latency_seconds": 0.00024528363258811,
+        "per_game": {
+          "ls20": {
+            "actions": 3000,
+            "game_overs": 0,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "re86": {
+            "actions": 3000,
+            "game_overs": 30,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "sc25": {
+            "actions": 2184,
+            "game_overs": 42,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          }
+        },
+        "runs": 9,
+        "wins": 0
+      },
+      "behavior_policy": {
+        "actions": 8184,
+        "game_overs": 93,
+        "illegal_proposals": 0,
+        "levels": 0,
+        "mean_decision_latency_seconds": 0.043957931729908334,
+        "per_game": {
+          "ls20": {
+            "actions": 3000,
+            "game_overs": 21,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "re86": {
+            "actions": 3000,
+            "game_overs": 30,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "sc25": {
+            "actions": 2184,
+            "game_overs": 42,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          }
+        },
+        "runs": 9,
+        "wins": 0
+      },
+      "milestone_policy_temporal_ebm": {
+        "actions": 8184,
+        "game_overs": 93,
+        "illegal_proposals": 0,
+        "levels": 0,
+        "mean_decision_latency_seconds": 0.0773679526029382,
+        "per_game": {
+          "ls20": {
+            "actions": 3000,
+            "game_overs": 21,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "re86": {
+            "actions": 3000,
+            "game_overs": 30,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "sc25": {
+            "actions": 2184,
+            "game_overs": 42,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          }
+        },
+        "runs": 9,
+        "wins": 0
+      },
+      "v4_17_hybrid": {
+        "actions": 8184,
+        "game_overs": 93,
+        "illegal_proposals": 0,
+        "levels": 0,
+        "mean_decision_latency_seconds": 0.24788282676645945,
+        "per_game": {
+          "ls20": {
+            "actions": 3000,
+            "game_overs": 21,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "re86": {
+            "actions": 3000,
+            "game_overs": 30,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          },
+          "sc25": {
+            "actions": 2184,
+            "game_overs": 42,
+            "levels": 0,
+            "runs": 3,
+            "wins": 0
+          }
+        },
+        "runs": 9,
+        "wins": 0
+      }
+    },
+    "paired_against_v4_15_milestone_ebm": [
+      {
+        "game_id": "re86",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 0,
+        "win_gain": 0
+      },
+      {
+        "game_id": "re86",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 1,
+        "win_gain": 0
+      },
+      {
+        "game_id": "re86",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 2,
+        "win_gain": 0
+      },
+      {
+        "game_id": "ls20",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 0,
+        "win_gain": 0
+      },
+      {
+        "game_id": "ls20",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 1,
+        "win_gain": 0
+      },
+      {
+        "game_id": "ls20",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 2,
+        "win_gain": 0
+      },
+      {
+        "game_id": "sc25",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 0,
+        "win_gain": 0
+      },
+      {
+        "game_id": "sc25",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 1,
+        "win_gain": 0
+      },
+      {
+        "game_id": "sc25",
+        "game_over_delta": 0,
+        "level_gain": 0,
+        "seed": 2,
+        "win_gain": 0
+      }
+    ],
+    "reused_runs": 27,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "status": "COMPLETE",
+    "total_runs": 36
+  },
+  "all_conditions_executed": true,
+  "arms": 2831,
+  "artifact_sha256": {
+    "active_runs": "0bba1d5840a8e6515e58575664489498dfee3b7ce12798f7af484fd9b9385b34",
+    "active_traces": "da34a8ec98aec9a416225f8fdd0fa83bc61396104498fe6cbe4f509557be15fe",
+    "active_validation": "71cbd80e7c6eb55422cdc9d66d2459b78b06e186a33ef13731fa35b99a3defe9",
+    "offline_decisions": "96e3972663de6cd5f4729998b76e32e7b8dacf463c26e7c729673384614e808f",
+    "offline_predictions": "a4126eb50066b5408022879d7d3b5b4f29ca3dbe2db00ab8373b581e53efae56",
+    "v4_16_result": "7e9d23b3b8cf24c82e4143c2fb6686afd33358bb1a3096c0a483b10d41b71b0b"
+  },
+  "authority_promoted": false,
+  "checks": {
+    "all_registered_conditions_executed": true,
+    "completion_absolute_and_fraction": false,
+    "future_outcomes_scoring_only": true,
+    "hybrid_over_transformation_ci_positive": false,
+    "hybrid_over_v4_15_ebm_ci_positive": true,
+    "nonnegative_transfer_games": false,
+    "topological_relations_used": true
+  },
+  "comparisons": {
+    "hybrid_over_transformation_only": {
+      "ci_high": 0.02798795572916665,
+      "ci_low": -0.07098111979166664,
+      "mean_gain": -0.021067708333333324
+    },
+    "hybrid_over_v4_15_ebm": {
+      "ci_high": 0.08560188802083334,
+      "ci_low": 0.025153645833333335,
+      "mean_gain": 0.05307291666666667
+    },
+    "oracle_transformation_headroom": {
+      "ci_high": -0.03297884114583335,
+      "ci_low": -0.08968782552083332,
+      "mean_gain": -0.060169270833333344
+    },
+    "permutation_degradation": {
+      "ci_high": 0.044933593749999945,
+      "ci_low": -0.03874348958333333,
+      "mean_gain": 0.003020833333333329
+    },
+    "relation_degradation": {
+      "ci_high": 0.08192708333333334,
+      "ci_low": 0.02903157552083334,
+      "mean_gain": 0.054127604166666676
+    }
+  },
+  "completion_capture": {
+    "oracle": 8,
+    "required": 4,
+    "selected_by_method": {
+      "exact_oracle": 8,
+      "hybrid_permuted_transform": 1,
+      "hybrid_without_topological_relations": 1,
+      "oracle_transformation_hybrid": 1,
+      "sequence_plus_transformation": 2,
+      "true_world_learned_ebm": 8,
+      "v4_15_learned_policy": 2,
+      "v4_15_policy_temporal_ebm": 1,
+      "v4_16_transformation_only": 1,
+      "v4_17_hybrid": 1
+    }
+  },
+  "component_v4_16_supported": false,
+  "format_version": "sage12-sequence-transformation-result-v4.17",
+  "holdout_opened": false,
+  "hybrid_active_progress": false,
+  "hybrid_offline_supported": false,
+  "manifest_checksum": "e5cf3ccfd802231e5ce7c9569fc942d244cb0466ef15d37fb7031541f88ef63a",
+  "metrics": {
+    "exact_oracle": {
+      "mean_regret": 0.0,
+      "mean_utility": 0.904296875,
+      "oracle_action_accuracy": 1.0,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.0,
+          "mean_utility": 2.1491666666666673,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.0,
+          "mean_utility": 1.2984375000000001,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.0,
+          "mean_utility": 0.27916666666666673,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.0,
+          "mean_utility": 0.5651041666666667,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.0,
+          "mean_utility": 0.11406250000000002,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.0,
+          "mean_utility": 0.09468750000000002,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 0.0,
+          "mean_utility": 2.8473958333333336,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        }
+      }
+    },
+    "hybrid_permuted_transform": {
+      "mean_regret": 0.4796223958333334,
+      "mean_utility": 0.42467447916666673,
+      "oracle_action_accuracy": 0.31640625,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.9689583333333333,
+          "mean_utility": 1.1802083333333335,
+          "oracle_action_accuracy": 0.19791666666666666,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.4372916666666667,
+          "mean_utility": 0.8611458333333335,
+          "oracle_action_accuracy": 0.23958333333333334,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.16802083333333337,
+          "mean_utility": 0.11114583333333335,
+          "oracle_action_accuracy": 0.2708333333333333,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.8541666666666666,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.6749999999999999,
+          "mean_utility": -0.10989583333333335,
+          "oracle_action_accuracy": 0.34375,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.24520833333333333,
+          "mean_utility": -0.13114583333333332,
+          "oracle_action_accuracy": 0.125,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.007083333333333334,
+          "mean_utility": 0.08760416666666666,
+          "oracle_action_accuracy": 0.08333333333333333,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.3354166666666665,
+          "mean_utility": 1.5119791666666667,
+          "oracle_action_accuracy": 0.4166666666666667,
+          "panels": 96
+        }
+      }
+    },
+    "hybrid_without_topological_relations": {
+      "mean_regret": 0.5307291666666668,
+      "mean_utility": 0.37356770833333336,
+      "oracle_action_accuracy": 0.2994791666666667,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.93,
+          "mean_utility": 1.219166666666667,
+          "oracle_action_accuracy": 0.23958333333333334,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.5097916666666668,
+          "mean_utility": 0.7886458333333334,
+          "oracle_action_accuracy": 0.1875,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.16281250000000003,
+          "mean_utility": 0.11635416666666669,
+          "oracle_action_accuracy": 0.2916666666666667,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.8645833333333334,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.70375,
+          "mean_utility": -0.13864583333333338,
+          "oracle_action_accuracy": 0.34375,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.25083333333333335,
+          "mean_utility": -0.13677083333333334,
+          "oracle_action_accuracy": 0.125,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.011250000000000001,
+          "mean_utility": 0.08343750000000001,
+          "oracle_action_accuracy": 0.052083333333333336,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.6773958333333336,
+          "mean_utility": 1.1700000000000002,
+          "oracle_action_accuracy": 0.2916666666666667,
+          "panels": 96
+        }
+      }
+    },
+    "oracle_transformation_hybrid": {
+      "mean_regret": 0.5367708333333333,
+      "mean_utility": 0.36752604166666664,
+      "oracle_action_accuracy": 0.2721354166666667,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.9948958333333334,
+          "mean_utility": 1.1542708333333336,
+          "oracle_action_accuracy": 0.16666666666666666,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.505,
+          "mean_utility": 0.7934375000000001,
+          "oracle_action_accuracy": 0.17708333333333334,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.16645833333333335,
+          "mean_utility": 0.11270833333333334,
+          "oracle_action_accuracy": 0.20833333333333334,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.8645833333333334,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.6837499999999999,
+          "mean_utility": -0.11864583333333334,
+          "oracle_action_accuracy": 0.3229166666666667,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.2354166666666667,
+          "mean_utility": -0.12135416666666667,
+          "oracle_action_accuracy": 0.09375,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.007083333333333334,
+          "mean_utility": 0.08760416666666666,
+          "oracle_action_accuracy": 0.0625,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.7015624999999999,
+          "mean_utility": 1.1458333333333333,
+          "oracle_action_accuracy": 0.28125,
+          "panels": 96
+        }
+      }
+    },
+    "sequence_plus_transformation": {
+      "mean_regret": 0.5386197916666667,
+      "mean_utility": 0.3656770833333334,
+      "oracle_action_accuracy": 0.24348958333333334,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 1.0140624999999999,
+          "mean_utility": 1.135104166666667,
+          "oracle_action_accuracy": 0.15625,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.5911458333333334,
+          "mean_utility": 0.7072916666666668,
+          "oracle_action_accuracy": 0.13541666666666666,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.16302083333333336,
+          "mean_utility": 0.11614583333333335,
+          "oracle_action_accuracy": 0.3020833333333333,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.53125,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.6825000000000001,
+          "mean_utility": -0.11739583333333335,
+          "oracle_action_accuracy": 0.2916666666666667,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.22750000000000004,
+          "mean_utility": -0.11343750000000001,
+          "oracle_action_accuracy": 0.1875,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.019375000000000003,
+          "mean_utility": 0.0753125,
+          "oracle_action_accuracy": 0.041666666666666664,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.6113541666666666,
+          "mean_utility": 1.2360416666666667,
+          "oracle_action_accuracy": 0.3020833333333333,
+          "panels": 96
+        }
+      }
+    },
+    "true_world_learned_ebm": {
+      "mean_regret": 0.39671875,
+      "mean_utility": 0.5075781250000001,
+      "oracle_action_accuracy": 0.71875,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 1.0290625,
+          "mean_utility": 1.120104166666667,
+          "oracle_action_accuracy": 0.125,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.4312500000000001,
+          "mean_utility": 0.8671875000000003,
+          "oracle_action_accuracy": 0.7083333333333334,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.05302083333333334,
+          "mean_utility": 0.22614583333333338,
+          "oracle_action_accuracy": 0.9270833333333334,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 1.0,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.38875,
+          "mean_utility": 0.17635416666666667,
+          "oracle_action_accuracy": 0.7291666666666666,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.01625,
+          "mean_utility": 0.09781250000000004,
+          "oracle_action_accuracy": 0.9479166666666666,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.03145833333333334,
+          "mean_utility": 0.06322916666666667,
+          "oracle_action_accuracy": 0.9583333333333334,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.2239583333333333,
+          "mean_utility": 1.6234375000000003,
+          "oracle_action_accuracy": 0.3541666666666667,
+          "panels": 96
+        }
+      }
+    },
+    "v4_15_learned_policy": {
+      "mean_regret": 0.5111197916666667,
+      "mean_utility": 0.3931770833333334,
+      "oracle_action_accuracy": 0.2734375,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 1.0554166666666667,
+          "mean_utility": 1.0937500000000002,
+          "oracle_action_accuracy": 0.13541666666666666,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.43708333333333343,
+          "mean_utility": 0.8613541666666668,
+          "oracle_action_accuracy": 0.19791666666666666,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.17947916666666672,
+          "mean_utility": 0.09968750000000003,
+          "oracle_action_accuracy": 0.20833333333333334,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.875,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.61375,
+          "mean_utility": -0.04864583333333335,
+          "oracle_action_accuracy": 0.2604166666666667,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.25104166666666666,
+          "mean_utility": -0.13697916666666665,
+          "oracle_action_accuracy": 0.125,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.019375000000000003,
+          "mean_utility": 0.0753125,
+          "oracle_action_accuracy": 0.041666666666666664,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.5328125000000001,
+          "mean_utility": 1.3145833333333334,
+          "oracle_action_accuracy": 0.34375,
+          "panels": 96
+        }
+      }
+    },
+    "v4_15_policy_temporal_ebm": {
+      "mean_regret": 0.5296744791666667,
+      "mean_utility": 0.3746223958333334,
+      "oracle_action_accuracy": 0.2734375,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.9707291666666666,
+          "mean_utility": 1.1784375000000002,
+          "oracle_action_accuracy": 0.17708333333333334,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.45062500000000005,
+          "mean_utility": 0.8478125000000002,
+          "oracle_action_accuracy": 0.22916666666666666,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.1676041666666667,
+          "mean_utility": 0.11156250000000001,
+          "oracle_action_accuracy": 0.19791666666666666,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.8645833333333334,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.6837499999999999,
+          "mean_utility": -0.11864583333333334,
+          "oracle_action_accuracy": 0.3020833333333333,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.25604166666666667,
+          "mean_utility": -0.14197916666666668,
+          "oracle_action_accuracy": 0.07291666666666667,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.007083333333333334,
+          "mean_utility": 0.08760416666666666,
+          "oracle_action_accuracy": 0.0625,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.7015624999999999,
+          "mean_utility": 1.1458333333333333,
+          "oracle_action_accuracy": 0.28125,
+          "panels": 96
+        }
+      }
+    },
+    "v4_16_transformation_only": {
+      "mean_regret": 0.4555338541666667,
+      "mean_utility": 0.44876302083333336,
+      "oracle_action_accuracy": 0.23307291666666666,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.8122916666666667,
+          "mean_utility": 1.3368750000000003,
+          "oracle_action_accuracy": 0.2604166666666667,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.7861458333333334,
+          "mean_utility": 0.5122916666666667,
+          "oracle_action_accuracy": 0.2708333333333333,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.17,
+          "mean_utility": 0.1091666666666667,
+          "oracle_action_accuracy": 0.22916666666666666,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.026041666666666668,
+          "mean_utility": -0.1396875,
+          "oracle_action_accuracy": 0.19791666666666666,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.6141666666666666,
+          "mean_utility": -0.04906250000000001,
+          "oracle_action_accuracy": 0.21875,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.22875,
+          "mean_utility": -0.11468750000000001,
+          "oracle_action_accuracy": 0.17708333333333334,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.033125,
+          "mean_utility": 0.0615625,
+          "oracle_action_accuracy": 0.03125,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 0.9737499999999999,
+          "mean_utility": 1.8736458333333335,
+          "oracle_action_accuracy": 0.4791666666666667,
+          "panels": 96
+        }
+      }
+    },
+    "v4_17_hybrid": {
+      "mean_regret": 0.4766015625,
+      "mean_utility": 0.42769531250000004,
+      "oracle_action_accuracy": 0.2721354166666667,
+      "panels": 768,
+      "per_game": {
+        "g50t": {
+          "mean_regret": 0.7153125000000001,
+          "mean_utility": 1.4338541666666667,
+          "oracle_action_accuracy": 0.3229166666666667,
+          "panels": 96
+        },
+        "ka59": {
+          "mean_regret": 0.46218750000000003,
+          "mean_utility": 0.83625,
+          "oracle_action_accuracy": 0.20833333333333334,
+          "panels": 96
+        },
+        "lf52": {
+          "mean_regret": 0.17937500000000003,
+          "mean_utility": 0.09979166666666668,
+          "oracle_action_accuracy": 0.25,
+          "panels": 96
+        },
+        "lp85": {
+          "mean_regret": 0.0,
+          "mean_utility": -0.11364583333333333,
+          "oracle_action_accuracy": 0.5520833333333334,
+          "panels": 96
+        },
+        "sp80": {
+          "mean_regret": 0.7029166666666669,
+          "mean_utility": -0.1378125,
+          "oracle_action_accuracy": 0.375,
+          "panels": 96
+        },
+        "su15": {
+          "mean_regret": 0.249375,
+          "mean_utility": -0.13531249999999997,
+          "oracle_action_accuracy": 0.10416666666666667,
+          "panels": 96
+        },
+        "tr87": {
+          "mean_regret": 0.011250000000000001,
+          "mean_utility": 0.08343750000000001,
+          "oracle_action_accuracy": 0.052083333333333336,
+          "panels": 96
+        },
+        "tu93": {
+          "mean_regret": 1.4923958333333331,
+          "mean_utility": 1.3549999999999998,
+          "oracle_action_accuracy": 0.3125,
+          "panels": 96
+        }
+      }
+    }
+  },
+  "nonnegative_transfer_games": 4,
+  "panels": 768,
+  "preparation_checksum": "53088166c39351c6603211b83eb5a7d8583be01c42ff739c6172a805a2eb45ee",
+  "result_checksum": "935f8c1c6d0b57f6aef1ffdb6ad735a0f414665d08d1f5067fc9c1b07a6c6faa",
+  "topology": {
+    "future_outcomes_scoring_only": true,
+    "policy_coefficient": 1.0,
+    "teacher_transform_oracle_only": true,
+    "temporal_ebm_coefficient": 0.5,
+    "transformation_coefficient": 0.5
+  },
+  "verdict": "TRANSFORMATION_COMPONENT_BOTTLENECK"
+}

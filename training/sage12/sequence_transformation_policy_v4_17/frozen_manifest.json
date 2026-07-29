@@ -1,0 +1,342 @@
+{
+  "active": {
+    "action_budget": 1000,
+    "fresh_controller": "v4_17_hybrid",
+    "maximum_resets": 14,
+    "reuse_v4_15_runs_by_checksum": true,
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "authority": {
+    "active_descriptive_only": true,
+    "controller_authority_promoted": false,
+    "holdout_opened": false
+  },
+  "composition": {
+    "fit_on_transfer": false,
+    "future_frames_deployable": false,
+    "normalization": "within_candidate_set_zscore",
+    "policy": "v4_15_learned_milestone_score",
+    "policy_coefficient": 1.0,
+    "prototype_updates_during_validation": false,
+    "temporal_ebm_coefficient": 0.5,
+    "trajectory": "v4_14_depth_three_temporal_energy",
+    "transformation": "v4_16_causal_prototype_value",
+    "transformation_coefficient": 0.5
+  },
+  "format_version": "sage12-sequence-transformation-manifest-v4.17",
+  "manifest_checksum": "e5cf3ccfd802231e5ce7c9569fc942d244cb0466ef15d37fb7031541f88ef63a",
+  "offline": {
+    "arms": 2831,
+    "bootstrap_samples": 2000,
+    "completion_absolute_minimum": 1,
+    "completion_fraction_minimum": 0.5,
+    "conditions": [
+      "v4_15_learned_policy",
+      "v4_15_policy_temporal_ebm",
+      "v4_16_transformation_only",
+      "sequence_plus_transformation",
+      "v4_17_hybrid",
+      "hybrid_without_topological_relations",
+      "hybrid_permuted_transform",
+      "oracle_transformation_hybrid",
+      "true_world_learned_ebm",
+      "exact_oracle"
+    ],
+    "minimum_nonnegative_games": 5,
+    "panels": 768
+  },
+  "result_observed_at_freeze": false,
+  "source_fingerprints": {
+    "C:/Users/coudr/OneDrive/projects/adaptive_reasoning/theory/sage12/sequence_transformation_policy_v4_17.py": {
+      "bytes": 46091,
+      "path": "C:/Users/coudr/OneDrive/projects/adaptive_reasoning/theory/sage12/sequence_transformation_policy_v4_17.py",
+      "sha256": "55d6a8322d198b6e6942fa2a41f1acc26aeb15adc2ffa18ecde8f28bb84c51bb"
+    },
+    "human_traces/ar25-e3c63847.20260420-163550.steps.jsonl": {
+      "bytes": 5286576,
+      "path": "human_traces/ar25-e3c63847.20260420-163550.steps.jsonl",
+      "sha256": "88a4f645a7c1935c960bb62a7cdee4f46d97e55e31d5b7b5ddb029532afc79b9"
+    },
+    "human_traces/ar25-e3c63847.20260420-172856.steps.jsonl": {
+      "bytes": 15046818,
+      "path": "human_traces/ar25-e3c63847.20260420-172856.steps.jsonl",
+      "sha256": "50f6fa9748981e095526d8ffad4d0f16e291f18ad1df5c4b212d116a25aade06"
+    },
+    "human_traces/ar25-e3c63847.20260617-160929.steps.jsonl": {
+      "bytes": 640198,
+      "path": "human_traces/ar25-e3c63847.20260617-160929.steps.jsonl",
+      "sha256": "7cba176ded160c67ebf5230f5ddbb439e1745ed3fe08680bdaec382406f7eedf"
+    },
+    "human_traces/bp35-0a0ad940.20260615-174132.steps.jsonl": {
+      "bytes": 155920,
+      "path": "human_traces/bp35-0a0ad940.20260615-174132.steps.jsonl",
+      "sha256": "f7286a0da404ecfb9a833b00120950d8cdeb4d7653ffdf15ecc6738d35676a8a"
+    },
+    "human_traces/bp35-0a0ad940.20260615-174246.steps.jsonl": {
+      "bytes": 4210329,
+      "path": "human_traces/bp35-0a0ad940.20260615-174246.steps.jsonl",
+      "sha256": "feb0af29b7f066e6225a3c80977594cc017c9571e9dc556b6e9368da4b504479"
+    },
+    "human_traces/bp35-0a0ad940.20260615-175552.steps.jsonl": {
+      "bytes": 4947024,
+      "path": "human_traces/bp35-0a0ad940.20260615-175552.steps.jsonl",
+      "sha256": "7ed1ac5989faab5ab914c85d311dd55fcf78f3753660228d39a4d4ba348bbeca"
+    },
+    "human_traces/bp35-0a0ad940.20260615-180542.steps.jsonl": {
+      "bytes": 10172386,
+      "path": "human_traces/bp35-0a0ad940.20260615-180542.steps.jsonl",
+      "sha256": "f2b17ac9b7263b268fa74d96a5fab11bdf104ef8e2928cec2f8b6a192ab983bd"
+    },
+    "human_traces/bp35-0a0ad940.20260618-122730.steps.jsonl": {
+      "bytes": 422594,
+      "path": "human_traces/bp35-0a0ad940.20260618-122730.steps.jsonl",
+      "sha256": "c4716982e98279d2b9746ace4febb4170c9499d319cf6242ca3a79df319c3f24"
+    },
+    "human_traces/cd82-fb555c5d.20260615-211618.steps.jsonl": {
+      "bytes": 7375509,
+      "path": "human_traces/cd82-fb555c5d.20260615-211618.steps.jsonl",
+      "sha256": "303832b140d116fe7c3f1e27178ece42ea2b4e17275a41601b16507c2d66bfca"
+    },
+    "human_traces/cd82-fb555c5d.20260615-213749.steps.jsonl": {
+      "bytes": 5845999,
+      "path": "human_traces/cd82-fb555c5d.20260615-213749.steps.jsonl",
+      "sha256": "ce17fb659b7d435ad95feaca49dad170646641d471686bb6aba8f1d9562433d3"
+    },
+    "human_traces/cn04-65d47d14.20260616-101425.steps.jsonl": {
+      "bytes": 5827946,
+      "path": "human_traces/cn04-65d47d14.20260616-101425.steps.jsonl",
+      "sha256": "8b39fe0f203f80bf359e4010a6e6338b9d2d2f5889002dfe243f8aefec84db34"
+    },
+    "human_traces/cn04-65d47d14.20260616-102926.steps.jsonl": {
+      "bytes": 3347219,
+      "path": "human_traces/cn04-65d47d14.20260616-102926.steps.jsonl",
+      "sha256": "1e90e39f044fd68b1d93ed00550f241a8fa329e6d13ca05b86bbe09d7179aca7"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-134833.steps.jsonl": {
+      "bytes": 7010496,
+      "path": "human_traces/dc22-4c9bff3e.20260616-134833.steps.jsonl",
+      "sha256": "43857ad57dece0a59e5d6c783a4cb33d25dfd2f3a196e18c04720c9c6b5f1905"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-145945.steps.jsonl": {
+      "bytes": 6882710,
+      "path": "human_traces/dc22-4c9bff3e.20260616-145945.steps.jsonl",
+      "sha256": "4ae93fa63bf65c07199437a6218c353d49d27dc9d7425d7e410e3426b3755389"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-150906.steps.jsonl": {
+      "bytes": 19187856,
+      "path": "human_traces/dc22-4c9bff3e.20260616-150906.steps.jsonl",
+      "sha256": "63cfcb075b4469641a08a8351f584a82dee62cbd07027d62465c5f1830b02a7f"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-142254.steps.jsonl": {
+      "bytes": 281867,
+      "path": "human_traces/ft09-0d8bbf25.20260617-142254.steps.jsonl",
+      "sha256": "16c4dbcb018a7cf8e5d934acea6a001995cb1068ea3878f97615aa47c825f5ec"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-142428.steps.jsonl": {
+      "bytes": 5763296,
+      "path": "human_traces/ft09-0d8bbf25.20260617-142428.steps.jsonl",
+      "sha256": "a7c3d9d6866532387c6f2bd58cc39de443c65264aebf382f6fd8d1c098a9a1c8"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-144230.steps.jsonl": {
+      "bytes": 2581703,
+      "path": "human_traces/ft09-0d8bbf25.20260617-144230.steps.jsonl",
+      "sha256": "59bb92a54fffeab1a776fee88b1e7c5146bf84d07a0cdcafc5135571dcd34c63"
+    },
+    "reports/SAGE12_MORPHO_TOPOLOGICAL_V4_16_PROTOCOL.md": {
+      "bytes": 5392,
+      "path": "reports/SAGE12_MORPHO_TOPOLOGICAL_V4_16_PROTOCOL.md",
+      "sha256": "ac0bb7c12dd2dd0a4dc83b979291d85e361fb941a13554af01a783ccef519596"
+    },
+    "reports/SAGE12_SEQUENCE_TRANSFORMATION_POLICY_V4_17_PROTOCOL.md": {
+      "bytes": 5781,
+      "path": "reports/SAGE12_SEQUENCE_TRANSFORMATION_POLICY_V4_17_PROTOCOL.md",
+      "sha256": "7eed7cec15bc2e0ece65c3592fc56beaade2d12952c627110fb167ce06281caa"
+    },
+    "theory/sage12/morpho_topological_v4_16.py": {
+      "bytes": 42628,
+      "path": "theory/sage12/morpho_topological_v4_16.py",
+      "sha256": "4b0cb8f59a5f30a8168c435961eedf45d4ca856bc8e9ca3d74f9097cfa824cf5"
+    },
+    "theory/sage12/mt/__init__.py": {
+      "bytes": 1802,
+      "path": "theory/sage12/mt/__init__.py",
+      "sha256": "2d5ecfad6ffcd1fcfbf2c8b946f09d83d07cb7c033b5c6be8f7f40c3847855df"
+    },
+    "theory/sage12/mt/advisor.py": {
+      "bytes": 16638,
+      "path": "theory/sage12/mt/advisor.py",
+      "sha256": "be96f0d2c4110438bed9a5b0cc342245e16a9103ab961a66e6f7b20790063a0e"
+    },
+    "theory/sage12/mt/clustering.py": {
+      "bytes": 15912,
+      "path": "theory/sage12/mt/clustering.py",
+      "sha256": "10c22b9460b1a8fc01253d41b8b835a0daed73a6a01eda6e7584e0a412626141"
+    },
+    "theory/sage12/mt/graph.py": {
+      "bytes": 21646,
+      "path": "theory/sage12/mt/graph.py",
+      "sha256": "96cef9b18fbe268818655f090c8034785f8cb3768b5508ae4c0029bc8ff7c0d3"
+    },
+    "theory/sage12/mt/model.py": {
+      "bytes": 29866,
+      "path": "theory/sage12/mt/model.py",
+      "sha256": "297f53182c13d9b39857445372fe72ac40411a96a05d5c25d72b50dc81bce688"
+    },
+    "theory/sage12/mt/transition.py": {
+      "bytes": 15415,
+      "path": "theory/sage12/mt/transition.py",
+      "sha256": "e39c2c55a48f006cdffbba4cf65d13e90ff4730fec4cbcac1bb25a82fdb24c39"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json": {
+      "bytes": 3892,
+      "path": "training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json",
+      "sha256": "5dfc6100549ba9ab7047dcea2a0463025a26926ef6ba20a701cc48b57a95b967"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/g50t.jsonl": {
+      "bytes": 31540483,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/g50t.jsonl",
+      "sha256": "437719efa1026396324d18adff52d3a4c79abf14bec462d72aaa7498381c6c20"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/ka59.jsonl": {
+      "bytes": 32683822,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/ka59.jsonl",
+      "sha256": "c277e731823fdd92a39ff20bf8b0b9bd02f4201650efd259604fdc2f16315ace"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/lf52.jsonl": {
+      "bytes": 43929396,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/lf52.jsonl",
+      "sha256": "a5fd112d735fcd7251863ee39f0a93bb12de785db22b4acb69087959b21c8ced"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/lp85.jsonl": {
+      "bytes": 30663685,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/lp85.jsonl",
+      "sha256": "36cad9ef5e37b6f1ad3affd9add5ee7d50c044e0d11f0c7f962602f2831845f8"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/sp80.jsonl": {
+      "bytes": 42829489,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/sp80.jsonl",
+      "sha256": "a064143e485eb27a3c3627976fa40292399179d1f64f7597f64bc8139f5238c7"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/su15.jsonl": {
+      "bytes": 33396678,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/su15.jsonl",
+      "sha256": "0d58b745d066f516893bc97b01d704b7f1b95ec2a331d72dc839f92b90268ea4"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/tr87.jsonl": {
+      "bytes": 35539291,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/tr87.jsonl",
+      "sha256": "7ffacb5e0a4b796d4f02038948adc0785959cf2b0112c753b3804209c9567ae4"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/source_train_shards/tu93.jsonl": {
+      "bytes": 24080761,
+      "path": "training/sage12/counterfactual_semantics_v4_11/source_train_shards/tu93.jsonl",
+      "sha256": "734fba54e7ddb8bc077cff74fa895f3cede1aa90ea273e53097cd7280c47604a"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/active_runs.jsonl": {
+      "bytes": 15083,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/active_runs.jsonl",
+      "sha256": "99f9def2c38bb93362ae36a9b414f08722b691863f73726d6f8d3df358911a6d"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/active_validation.json": {
+      "bytes": 6306,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/active_validation.json",
+      "sha256": "cc0d69bbec0af0406710efdb3ccd2b5fbfe133f8d81ab0a2e1bf865d9b16f1bb"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/checkpoint_metadata.json": {
+      "bytes": 828,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/checkpoint_metadata.json",
+      "sha256": "d8d9c678ed7d5a3ef2155206e7a689b9dbe3989d6a0f66402c63f3f4774d629c"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/demonstration_policy.pt": {
+      "bytes": 941956,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/demonstration_policy.pt",
+      "sha256": "456adc082b2249d2b392789021404cbcdc60890da6ddd5b33463063d1b724d3b"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/frozen_manifest.json": {
+      "bytes": 14626,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/frozen_manifest.json",
+      "sha256": "cfb587f7c7f222850327ac0d10a396b82d149955a941945760a24fe76c274114"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/result.json": {
+      "bytes": 28837,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/result.json",
+      "sha256": "6ee32f7d7fad546f6e99811b295bbad773b228c65adf461a7afe8f2f681c7954"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/semantic_result.json": {
+      "bytes": 16024,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/semantic_result.json",
+      "sha256": "ea7d19914adb9e84d79a98cf63f726bf8a5a50c6a7f99cc8d72ae03624a06f9e"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/teacher_qa.json": {
+      "bytes": 3429,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/teacher_qa.json",
+      "sha256": "981bb081ce48fd3106a00bce4b5d01587a39710bc4196f48ca49cba39bb40eae"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/transfer_decisions.jsonl": {
+      "bytes": 2784775,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/transfer_decisions.jsonl",
+      "sha256": "aaf2a8caf7c00ed1047add3aec246b66c7b4ef0e67b7d3c48d7283cf191a0504"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/transfer_predictions.jsonl": {
+      "bytes": 1347899,
+      "path": "training/sage12/demonstration_milestone_policy_v4_15/transfer_predictions.jsonl",
+      "sha256": "8fa03198e1e07d692a7cae1bd8add3fa89d4151e07f36a96bd6041a9d294b2ee"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/teacher_corpus.jsonl": {
+      "bytes": 29753012,
+      "path": "training/sage12/human_temporal_semantics_v4_14/teacher_corpus.jsonl",
+      "sha256": "c515272bc8e40f7bdc8fd15395a2e8dc2ae093a3c1e2d7dd639582878088efac"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/temporal_student.pt": {
+      "bytes": 786646,
+      "path": "training/sage12/human_temporal_semantics_v4_14/temporal_student.pt",
+      "sha256": "6636caf4cdb374b671f9efc9bbbad6a008291332033b083dbc74dcf73d53ef30"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/trajectory_ebm.pt": {
+      "bytes": 3528,
+      "path": "training/sage12/human_temporal_semantics_v4_14/trajectory_ebm.pt",
+      "sha256": "a3fb7eae366c3bf7ec318709964256ffbb12dc5b1d80a6a5b01f1bb83c113cd5"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/transfer_predictions.jsonl": {
+      "bytes": 2345598,
+      "path": "training/sage12/human_temporal_semantics_v4_14/transfer_predictions.jsonl",
+      "sha256": "aec053b641bd201e25bdd323ae16d589a9c74fc692703ecf7dcd7fc18e6c6644"
+    }
+  },
+  "split": {
+    "active_validation": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "final_confirmation_closed": [
+      "s5i5",
+      "vc33",
+      "m0r0",
+      "sk48",
+      "r11l"
+    ],
+    "human_train": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "offline_transfer": [
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ]
+  }
+}

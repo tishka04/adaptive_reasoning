@@ -1,0 +1,42 @@
+{
+  "boundaries": {
+    "active_validation_opened": false,
+    "controller_authority_promoted": false,
+    "holdout_opened": false,
+    "v4_15_modified": false
+  },
+  "format_version": "sage12-morpho-topological-result-v4.16",
+  "gates": {
+    "augmentation_invariant": true,
+    "clusters_stable": false,
+    "global_utility_supported": false,
+    "identity_leakage_bounded": true,
+    "query_brier_beats_action_only": false,
+    "retrieval_beats_baselines": false,
+    "student_view_safe": true,
+    "topology_is_used": false
+  },
+  "manifest_checksum": "192def1ee931c574e1582ad32fbc48e35b7a6b418a0b1b698eb484c54667fb0c",
+  "metrics": {
+    "action_only_delta_brier": 0.04611308500170708,
+    "analogy_completions": 1,
+    "augmentation_cluster_consistency": 1.0,
+    "augmentation_cosine_median": 1.0000000003783338,
+    "best_baseline_recall_at_8": 0.0,
+    "cluster_stability_ari": 0.6183120611589252,
+    "completion_capture_fraction": 0.125,
+    "cross_game_recall_at_8": 0.0,
+    "eligible_cluster_coverage": 0.20396706586826346,
+    "identity_accuracy": 0.3997017821024309,
+    "identity_majority": 0.33607784431137727,
+    "nonnegative_transfer_games": 7,
+    "oracle_completion_panels": 8,
+    "query_delta_brier": 0.05851324521694056,
+    "recall_gain_bootstrap_lower_95": 0.0,
+    "relation_removed_recall_at_8": 0.0,
+    "utility_gain_bootstrap_lower_95": 0.006510416666666667
+  },
+  "result_checksum": "f11823db5f4bf3f0afeea397d2f82303d16172db6fdeebb9735ec4634556fda4",
+  "shadow_authorized": false,
+  "verdict": "SAGE_MT_NOT_YET_SUPPORTED"
+}

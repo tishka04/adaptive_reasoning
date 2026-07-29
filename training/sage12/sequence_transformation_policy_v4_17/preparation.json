@@ -1,0 +1,166 @@
+{
+  "artifact_sha256": {
+    "cluster_registry.json": "c17d808d2ed01c4fd2f773556b1e6641636f68d85bde0086b9ea452b7fc3004b",
+    "frozen_manifest.json": "dd637d8efcf73e26508730072f3bcc6c4dea821257ef2d49cbd646d9e51d96b1",
+    "mt_model.pt": "37e3a368fce95d66661fea363ed8558eb81563cd5087a28f8aa988ad2ea2f26d",
+    "result.json": "7e9d23b3b8cf24c82e4143c2fb6686afd33358bb1a3096c0a483b10d41b71b0b",
+    "shadow_activation.json": "bee0e9237588e04257f56966dd0d3555616ff208dfffd44163daaa1b3654719a",
+    "teacher_qa.json": "462ebac68e2015e35d30c778714ad172fdfc7374a05e63471bd0917ea1f3856f",
+    "train_embeddings.jsonl": "d40c76db2e5e34a268c93bc6f768243f28717ea2e916671b310b64ee4be7714c",
+    "training_result.json": "498ad225bd028b050dd6285eb2296995f2fe3f4fc87a511ec5b05b67e7caf929"
+  },
+  "clustering": {
+    "eligible_coverage": 0.20396706586826346,
+    "prototype_count": 2,
+    "selected_parameters": {
+      "min_cluster_size": 64,
+      "min_samples": 5
+    },
+    "stability_ari": 0.6183120611589252
+  },
+  "component": "sage_mt_v4_16",
+  "component_result": {
+    "boundaries": {
+      "active_validation_opened": false,
+      "controller_authority_promoted": false,
+      "holdout_opened": false,
+      "v4_15_modified": false
+    },
+    "format_version": "sage12-morpho-topological-result-v4.16",
+    "gates": {
+      "augmentation_invariant": true,
+      "clusters_stable": false,
+      "global_utility_supported": false,
+      "identity_leakage_bounded": true,
+      "query_brier_beats_action_only": false,
+      "retrieval_beats_baselines": false,
+      "student_view_safe": true,
+      "topology_is_used": false
+    },
+    "manifest_checksum": "192def1ee931c574e1582ad32fbc48e35b7a6b418a0b1b698eb484c54667fb0c",
+    "metrics": {
+      "action_only_delta_brier": 0.04611308500170708,
+      "analogy_completions": 1,
+      "augmentation_cluster_consistency": 1.0,
+      "augmentation_cosine_median": 1.0000000003783338,
+      "best_baseline_recall_at_8": 0.0,
+      "cluster_stability_ari": 0.6183120611589252,
+      "completion_capture_fraction": 0.125,
+      "cross_game_recall_at_8": 0.0,
+      "eligible_cluster_coverage": 0.20396706586826346,
+      "identity_accuracy": 0.3997017821024309,
+      "identity_majority": 0.33607784431137727,
+      "nonnegative_transfer_games": 7,
+      "oracle_completion_panels": 8,
+      "query_delta_brier": 0.05851324521694056,
+      "recall_gain_bootstrap_lower_95": 0.0,
+      "relation_removed_recall_at_8": 0.0,
+      "utility_gain_bootstrap_lower_95": 0.006510416666666667
+    },
+    "result_checksum": "f11823db5f4bf3f0afeea397d2f82303d16172db6fdeebb9735ec4634556fda4",
+    "shadow_authorized": false,
+    "verdict": "SAGE_MT_NOT_YET_SUPPORTED"
+  },
+  "device": "cuda:0",
+  "elapsed_seconds": 1338.9829576999182,
+  "format_version": "sage12-sequence-transformation-policy-v4.17",
+  "manifest_checksum": "e5cf3ccfd802231e5ce7c9569fc942d244cb0466ef15d37fb7031541f88ef63a",
+  "preparation_checksum": "53088166c39351c6603211b83eb5a7d8583be01c42ff739c6172a805a2eb45ee",
+  "shadow": {
+    "active_validation_opened": false,
+    "controller_authority": false,
+    "format_version": "sage12-morpho-topological-v4.16",
+    "holdout_opened": false,
+    "mode": "off",
+    "result_checksum": "f11823db5f4bf3f0afeea397d2f82303d16172db6fdeebb9735ec4634556fda4",
+    "shadow_enabled": false
+  },
+  "teacher": {
+    "active_validation_opened": false,
+    "delta_signatures_train": 3891,
+    "delta_signatures_transfer": 862,
+    "forbidden_student_field_hits": [],
+    "format_version": "sage12-morpho-topological-v4.16",
+    "holdout_opened": false,
+    "manifest_checksum": "192def1ee931c574e1582ad32fbc48e35b7a6b418a0b1b698eb484c54667fb0c",
+    "student_view_safe": true,
+    "train_games": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "train_records": 5344,
+    "transfer_games": [
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ],
+    "transfer_records": 2831
+  },
+  "training": {
+    "checkpoint": "mt_model.pt",
+    "config": {
+      "batch_size": 64,
+      "contrastive_loss_weight": 1.0,
+      "delta_buckets": 128,
+      "delta_loss_weight": 1.0,
+      "embedding_width": 32,
+      "epochs": 50,
+      "hash_buckets": 2048,
+      "hidden_width": 128,
+      "history_width": 8,
+      "identity_loss_weight": 0.1,
+      "invariant_loss_weight": 0.25,
+      "latent_width": 64,
+      "learning_rate": 0.001,
+      "maximum_edges": 256,
+      "maximum_global_tokens": 24,
+      "maximum_node_tokens": 16,
+      "maximum_nodes": 64,
+      "message_passing_layers": 3,
+      "query_loss_weight": 0.5,
+      "seed": 5160,
+      "temperature": 0.1,
+      "variance_loss_weight": 0.1,
+      "weight_decay": 0.0001
+    },
+    "device": "cuda:0",
+    "embedding_rows": 5344,
+    "final_loss": 0.3878646194934845,
+    "format_version": "sage12-mt-model-v4.16",
+    "games": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "invariant_keys": [
+      "boundary_connected_free_regions",
+      "contact_edges",
+      "euler_characteristic",
+      "free_regions",
+      "holes",
+      "largest_free_region_bucket",
+      "object_components"
+    ],
+    "losses": {
+      "contrastive": 0.022145178090466792,
+      "delta": 0.21690656909023423,
+      "identity": 1.78306828205844,
+      "invariant": 0.009045683795653552,
+      "query": 0.08682103284511221,
+      "variance": 0.005072027820734733
+    },
+    "records": 5344
+  }
+}
