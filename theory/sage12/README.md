@@ -760,3 +760,45 @@ completion opportunities. Its apparent 86.15% raw bit accuracy concealed only
 deployment stress, confirming that a learned next-state rollout is still
 required before live win-rate claims. See
 `reports/SAGE12_SEMANTIC_BOTTLENECK_CURVE_V4_13_RESULT.md`.
+
+## Human-trajectory temporal semantics (V4.14)
+
+V4.14 uses every game with recorded human play as a separate six-game
+training split. Its causal teacher compiles immediate semantic effects,
+persistent object roles, progress within 4/16/64 actions, censored distance to
+the next level, danger within eight actions, and observed-suffix preferences.
+The student is an identity-free object-relative DeepSets encoder with a GRU.
+It generates a depth-three semantic rollout without reading future frames and
+feeds the existing learned trajectory EBM.
+
+```powershell
+python -m theory.sage12.human_temporal_semantics_v4_14 freeze
+python -m theory.sage12.human_temporal_semantics_v4_14 compile
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.human_temporal_semantics_v4_14 train --device auto
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.human_temporal_semantics_v4_14 evaluate --device auto
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.human_temporal_semantics_v4_14 active --device auto
+```
+
+The compiler retained 5,661 transitions from 41 causal sequences. Temporal
+credit increased the positive progress targets from 74 immediate completions
+to 296/1,139/2,919 prefixes at horizons 4/16/64. CUDA was 28.42× faster than
+CPU on the registered workload, so the RTX 4050 was used.
+
+The completed iteration returned
+`TEMPORAL_SEMANTIC_PREDICTOR_BOTTLENECK`. Offline, the deployable temporal
+rollout gained `+0.07154` over action-sequence with a positive 95% interval,
+but captured only 1/8 completion opportunities where 4/8 were required.
+Relation shuffling performed better than the full model, held-game semantic
+outputs exposed game identity at 100%, and transfer semantic accuracy remained
+at chance.
+
+The bounded Qwen → temporal rollout → EBM → controller panel then ran all 18
+registered active runs on `re86`, `ls20`, and `sc25`. It executed 16,368
+actions with zero illegal proposals and complete constrained-bit/compiler
+coverage, but neither it nor the action-sequence baseline completed a level or
+won a game. The semantic controller produced 93 GAME_OVERs versus 72 for the
+baseline. The true-world offline lane still captured 8/8 completion
+opportunities, so V4.14 rejects this semantic learner and rollout rather than
+the global architecture. See
+`reports/SAGE12_HUMAN_TEMPORAL_SEMANTICS_V4_14_PROTOCOL.md` and
+`reports/SAGE12_HUMAN_TEMPORAL_SEMANTICS_V4_14_RESULT.md`.

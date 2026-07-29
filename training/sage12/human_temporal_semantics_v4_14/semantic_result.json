@@ -1,0 +1,968 @@
+{
+  "artifact_sha256": {
+    "folds": "7bf4c4abab04b12da328924568095c5188d8572f7470e11210edd0fec8f9b3b0",
+    "logo_predictions": "a7f1aa80309315ec4d94338898123a08ee0542837ae6eeb25636051e4bc9e6e6",
+    "teacher_corpus": "c515272bc8e40f7bdc8fd15395a2e8dc2ae093a3c1e2d7dd639582878088efac"
+  },
+  "device_benchmark": {
+    "cuda_available": true,
+    "cuda_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "cuda_speedup": 28.420308178894665,
+    "selected_device": "cuda:0",
+    "timings_seconds": {
+      "cpu": 0.6503816999029368,
+      "cuda:0": 0.022884399979375303
+    }
+  },
+  "final_checkpoint": {
+    "bytes": 786646,
+    "checkpoint_checksum": "38074c24326b0a41f8417e07eefcf50e28fe589cde90fe7d9aa6a741c7bf0348",
+    "format_version": "sage12-human-temporal-checkpoint-v4.14",
+    "games": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "manifest_checksum": "9a6d1f59189e2b84cadd5217cca2da489574e255208fbc9bfd7a73609142e6b1",
+    "path": "training/sage12/human_temporal_semantics_v4_14/temporal_student.pt",
+    "selected_device": "cuda:0",
+    "sha256": "6636caf4cdb374b671f9efc9bbbad6a008291332033b083dbc74dcf73d53ef30",
+    "training": {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.4487931750169614,
+        "distance": 0.002463646118086195,
+        "horizon": 0.29554842671424875,
+        "ranking": 1.0186248580614725,
+        "roles": 0.1982205854728818,
+        "semantic": 0.2348959818482399
+      },
+      "ranking_pairs": 672,
+      "runtime_seconds": 57.54835679999087,
+      "train_games": [
+        "ar25",
+        "bp35",
+        "cd82",
+        "cn04",
+        "dc22",
+        "ft09"
+      ],
+      "train_rows": 5661
+    }
+  },
+  "folds": [
+    {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.5732840295578983,
+        "distance": 0.0037572445218904396,
+        "horizon": 0.4114422677336512,
+        "ranking": 0.7616736968358357,
+        "roles": 0.2707591240571157,
+        "semantic": 0.3245466335399731
+      },
+      "held_out_game": "ar25",
+      "ranking_pairs": 612,
+      "runtime_seconds": 44.92642060003709,
+      "train_games": [
+        "bp35",
+        "cd82",
+        "cn04",
+        "dc22",
+        "ft09"
+      ],
+      "train_rows": 4505,
+      "training_rows": 4505,
+      "validation_rows": 1156
+    },
+    {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.3376974949081029,
+        "distance": 0.004577127717701452,
+        "horizon": 0.33574881231678383,
+        "ranking": 0.8253126240202359,
+        "roles": 0.139748026849702,
+        "semantic": 0.1629487612683858
+      },
+      "held_out_game": "bp35",
+      "ranking_pairs": 471,
+      "runtime_seconds": 46.78051419998519,
+      "train_games": [
+        "ar25",
+        "cd82",
+        "cn04",
+        "dc22",
+        "ft09"
+      ],
+      "train_rows": 4691,
+      "training_rows": 4691,
+      "validation_rows": 970
+    },
+    {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.4195441562915221,
+        "distance": 0.005382755249229376,
+        "horizon": 0.36962363321799785,
+        "ranking": 0.9113758067289989,
+        "roles": 0.2171878979424946,
+        "semantic": 0.24617520323954523
+      },
+      "held_out_game": "cd82",
+      "ranking_pairs": 588,
+      "runtime_seconds": 49.95843760005664,
+      "train_games": [
+        "ar25",
+        "bp35",
+        "cn04",
+        "dc22",
+        "ft09"
+      ],
+      "train_rows": 4910,
+      "training_rows": 4910,
+      "validation_rows": 751
+    },
+    {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.41939095133229304,
+        "distance": 0.004419553844184664,
+        "horizon": 0.3662804879836346,
+        "ranking": 0.9549383083979289,
+        "roles": 0.22778648728700845,
+        "semantic": 0.23883310421124884
+      },
+      "held_out_game": "cn04",
+      "ranking_pairs": 625,
+      "runtime_seconds": 53.36386839998886,
+      "train_games": [
+        "ar25",
+        "bp35",
+        "cd82",
+        "dc22",
+        "ft09"
+      ],
+      "train_rows": 5260,
+      "training_rows": 5260,
+      "validation_rows": 401
+    },
+    {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.4831866766843531,
+        "distance": 0.004844608179862714,
+        "horizon": 0.4426309294584725,
+        "ranking": 0.744441365202268,
+        "roles": 0.2912044281967812,
+        "semantic": 0.32405741254074705
+      },
+      "held_out_game": "dc22",
+      "ranking_pairs": 434,
+      "runtime_seconds": 38.76607540005352,
+      "train_games": [
+        "ar25",
+        "bp35",
+        "cd82",
+        "cn04",
+        "ft09"
+      ],
+      "train_rows": 3741,
+      "training_rows": 3741,
+      "validation_rows": 1920
+    },
+    {
+      "device": "cuda:0",
+      "epochs": 30,
+      "final_losses": {
+        "belief": 0.27199808190412383,
+        "distance": 0.008038794426658355,
+        "horizon": 0.1650083228288328,
+        "ranking": 0.952611643075943,
+        "roles": 0.14160822527757025,
+        "semantic": 0.16362338951405356
+      },
+      "held_out_game": "ft09",
+      "ranking_pairs": 630,
+      "runtime_seconds": 50.97327290009707,
+      "train_games": [
+        "ar25",
+        "bp35",
+        "cd82",
+        "cn04",
+        "dc22"
+      ],
+      "train_rows": 5198,
+      "training_rows": 5198,
+      "validation_rows": 463
+    }
+  ],
+  "format_version": "sage12-human-temporal-semantics-v4.14",
+  "games": [
+    "ar25",
+    "bp35",
+    "cd82",
+    "cn04",
+    "dc22",
+    "ft09"
+  ],
+  "manifest_checksum": "9a6d1f59189e2b84cadd5217cca2da489574e255208fbc9bfd7a73609142e6b1",
+  "metrics": {
+    "action_only_effects": {
+      "macro_balanced_accuracy_at_0_5": 0.47249009999738273,
+      "macro_brier": 0.1194975617103414,
+      "per_label": {
+        "actor_approached_root": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.026856075855289825,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 135,
+          "prevalence": 0.027228720486164093,
+          "rows": 4958
+        },
+        "changed": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.09225866630712509,
+          "negative_recall_at_0_5": 0.0,
+          "positive_recall_at_0_5": 1.0,
+          "positives": 5123,
+          "prevalence": 0.9049637913703918,
+          "rows": 5661
+        },
+        "contact_gained": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.00040674994107875266,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 2,
+          "prevalence": 0.0004033884615637362,
+          "rows": 4958
+        },
+        "contact_lost": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.17305022902745132,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 852,
+          "prevalence": 0.171843484044075,
+          "rows": 4958
+        },
+        "game_over": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.0024819928776350845,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 14,
+          "prevalence": 0.002473061205819249,
+          "rows": 5661
+        },
+        "level_complete": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.013020010338223548,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 74,
+          "prevalence": 0.013071895577013493,
+          "rows": 5661
+        },
+        "local_change": {
+          "balanced_accuracy_at_0_5": 0.3439297600723266,
+          "brier": 0.34655797135321165,
+          "negative_recall_at_0_5": 0.6379494482022072,
+          "positive_recall_at_0_5": 0.049910071942446045,
+          "positives": 2224,
+          "prevalence": 0.44188356399536133,
+          "rows": 5033
+        },
+        "moved": {
+          "balanced_accuracy_at_0_5": 0.4963572868425649,
+          "brier": 0.21680391993094106,
+          "negative_recall_at_0_5": 0.9413849509269356,
+          "positive_recall_at_0_5": 0.051329622758194186,
+          "positives": 1617,
+          "prevalence": 0.3059602677822113,
+          "rows": 5285
+        },
+        "path_closed": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.019245559835523843,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 92,
+          "prevalence": 0.018279356881976128,
+          "rows": 5033
+        },
+        "path_opened": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.11795620540455871,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 560,
+          "prevalence": 0.1112656444311142,
+          "rows": 5033
+        },
+        "productive": {
+          "balanced_accuracy_at_0_5": 0.40637199574471927,
+          "brier": 0.31121708550593924,
+          "negative_recall_at_0_5": 0.8061773873618588,
+          "positive_recall_at_0_5": 0.006566604127579738,
+          "positives": 2132,
+          "prevalence": 0.3766119182109833,
+          "rows": 5661
+        },
+        "reachable_area_decreased": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.042412920192245664,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 228,
+          "prevalence": 0.043140966445207596,
+          "rows": 5285
+        },
+        "reachable_area_increased": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.04792567274832241,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 257,
+          "prevalence": 0.04862819239497185,
+          "rows": 5285
+        },
+        "risk": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.056201448439329386,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 322,
+          "prevalence": 0.0568804107606411,
+          "rows": 5661
+        },
+        "target_created": {
+          "balanced_accuracy_at_0_5": 0.4195852534562212,
+          "brier": 0.14904133559710914,
+          "negative_recall_at_0_5": 0.8391705069124424,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 691,
+          "prevalence": 0.13734844326972961,
+          "rows": 5031
+        },
+        "target_moved": {
+          "balanced_accuracy_at_0_5": 0.4865225117522179,
+          "brier": 0.170153958548078,
+          "negative_recall_at_0_5": 0.9720578566732413,
+          "positive_recall_at_0_5": 0.0009871668311944718,
+          "positives": 1013,
+          "prevalence": 0.24981504678726196,
+          "rows": 4055
+        },
+        "target_removed": {
+          "balanced_accuracy_at_0_5": 0.37956489208745525,
+          "brier": 0.24586874717374094,
+          "negative_recall_at_0_5": 0.75615359369872,
+          "positive_recall_at_0_5": 0.002976190476190476,
+          "positives": 1008,
+          "prevalence": 0.24858199059963226,
+          "rows": 4055
+        }
+      }
+    },
+    "history_shuffle_effects": {
+      "macro_balanced_accuracy_at_0_5": 0.5610289195890158,
+      "macro_brier": 0.13879988438357097,
+      "per_label": {
+        "actor_approached_root": {
+          "balanced_accuracy_at_0_5": 0.6157463081991383,
+          "brier": 0.07537283007631408,
+          "negative_recall_at_0_5": 0.9203815052871657,
+          "positive_recall_at_0_5": 0.3111111111111111,
+          "positives": 135,
+          "prevalence": 0.027228720486164093,
+          "rows": 4958
+        },
+        "changed": {
+          "balanced_accuracy_at_0_5": 0.5329356927392828,
+          "brier": 0.09104218955645797,
+          "negative_recall_at_0_5": 0.07992565055762081,
+          "positive_recall_at_0_5": 0.9859457349209447,
+          "positives": 5123,
+          "prevalence": 0.9049637913703918,
+          "rows": 5661
+        },
+        "contact_gained": {
+          "balanced_accuracy_at_0_5": 0.5,
+          "brier": 0.0007453276172727621,
+          "negative_recall_at_0_5": 1.0,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 2,
+          "prevalence": 0.0004033884615637362,
+          "rows": 4958
+        },
+        "contact_lost": {
+          "balanced_accuracy_at_0_5": 0.6347852907345028,
+          "brier": 0.16451876354492362,
+          "negative_recall_at_0_5": 0.8270823185582075,
+          "positive_recall_at_0_5": 0.4424882629107981,
+          "positives": 852,
+          "prevalence": 0.171843484044075,
+          "rows": 4958
+        },
+        "game_over": {
+          "balanced_accuracy_at_0_5": 0.5313756988540059,
+          "brier": 0.010349996813358507,
+          "negative_recall_at_0_5": 0.9913228262794405,
+          "positive_recall_at_0_5": 0.07142857142857142,
+          "positives": 14,
+          "prevalence": 0.002473061205819249,
+          "rows": 5661
+        },
+        "level_complete": {
+          "balanced_accuracy_at_0_5": 0.4984786110613925,
+          "brier": 0.018618308204781036,
+          "negative_recall_at_0_5": 0.996957222122785,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 74,
+          "prevalence": 0.013071895577013493,
+          "rows": 5661
+        },
+        "local_change": {
+          "balanced_accuracy_at_0_5": 0.5696762365828234,
+          "brier": 0.33216121546914,
+          "negative_recall_at_0_5": 0.6155215379138483,
+          "positive_recall_at_0_5": 0.5238309352517986,
+          "positives": 2224,
+          "prevalence": 0.44188356399536133,
+          "rows": 5033
+        },
+        "moved": {
+          "balanced_accuracy_at_0_5": 0.6436903699717222,
+          "brier": 0.24322832379100137,
+          "negative_recall_at_0_5": 0.7709923664122137,
+          "positive_recall_at_0_5": 0.5163883735312307,
+          "positives": 1617,
+          "prevalence": 0.3059602677822113,
+          "rows": 5285
+        },
+        "path_closed": {
+          "balanced_accuracy_at_0_5": 0.4890710382513661,
+          "brier": 0.0368705677489725,
+          "negative_recall_at_0_5": 0.9781420765027322,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 92,
+          "prevalence": 0.018279356881976128,
+          "rows": 5033
+        },
+        "path_opened": {
+          "balanced_accuracy_at_0_5": 0.5388050525374469,
+          "brier": 0.10687949207934994,
+          "negative_recall_at_0_5": 0.9561815336463224,
+          "positive_recall_at_0_5": 0.12142857142857143,
+          "positives": 560,
+          "prevalence": 0.1112656444311142,
+          "rows": 5033
+        },
+        "productive": {
+          "balanced_accuracy_at_0_5": 0.6216890524344789,
+          "brier": 0.26671307761185714,
+          "negative_recall_at_0_5": 0.7316520260697081,
+          "positive_recall_at_0_5": 0.5117260787992496,
+          "positives": 2132,
+          "prevalence": 0.3766119182109833,
+          "rows": 5661
+        },
+        "reachable_area_decreased": {
+          "balanced_accuracy_at_0_5": 0.5151366526856989,
+          "brier": 0.13409753469308697,
+          "negative_recall_at_0_5": 0.8329048843187661,
+          "positive_recall_at_0_5": 0.19736842105263158,
+          "positives": 228,
+          "prevalence": 0.043140966445207596,
+          "rows": 5285
+        },
+        "reachable_area_increased": {
+          "balanced_accuracy_at_0_5": 0.4994726032273742,
+          "brier": 0.14103314973219525,
+          "negative_recall_at_0_5": 0.8355210819411297,
+          "positive_recall_at_0_5": 0.16342412451361868,
+          "positives": 257,
+          "prevalence": 0.04862819239497185,
+          "rows": 5285
+        },
+        "risk": {
+          "balanced_accuracy_at_0_5": 0.5347510234661387,
+          "brier": 0.1319096732413517,
+          "negative_recall_at_0_5": 0.855216332646563,
+          "positive_recall_at_0_5": 0.21428571428571427,
+          "positives": 322,
+          "prevalence": 0.0568804107606411,
+          "rows": 5661
+        },
+        "target_created": {
+          "balanced_accuracy_at_0_5": 0.5894789492287275,
+          "brier": 0.15039946730245105,
+          "negative_recall_at_0_5": 0.8764976958525346,
+          "positive_recall_at_0_5": 0.3024602026049204,
+          "positives": 691,
+          "prevalence": 0.13734844326972961,
+          "rows": 5031
+        },
+        "target_moved": {
+          "balanced_accuracy_at_0_5": 0.7088875194464077,
+          "brier": 0.19970486837056978,
+          "negative_recall_at_0_5": 0.7938856015779092,
+          "positive_recall_at_0_5": 0.6238894373149062,
+          "positives": 1013,
+          "prevalence": 0.24981504678726196,
+          "rows": 4055
+        },
+        "target_removed": {
+          "balanced_accuracy_at_0_5": 0.513511533592761,
+          "brier": 0.25595324866762253,
+          "negative_recall_at_0_5": 0.794880210042665,
+          "positive_recall_at_0_5": 0.23214285714285715,
+          "positives": 1008,
+          "prevalence": 0.24858199059963226,
+          "rows": 4055
+        }
+      }
+    },
+    "relation_shuffle_effects": {
+      "macro_balanced_accuracy_at_0_5": 0.583169550941155,
+      "macro_brier": 0.12714493754520576,
+      "per_label": {
+        "actor_approached_root": {
+          "balanced_accuracy_at_0_5": 0.6003563173374494,
+          "brier": 0.08112419886022072,
+          "negative_recall_at_0_5": 0.9044163383786026,
+          "positive_recall_at_0_5": 0.2962962962962963,
+          "positives": 135,
+          "prevalence": 0.027228720486164093,
+          "rows": 4958
+        },
+        "changed": {
+          "balanced_accuracy_at_0_5": 0.5244781352701244,
+          "brier": 0.09265806478151709,
+          "negative_recall_at_0_5": 0.06691449814126393,
+          "positive_recall_at_0_5": 0.9820417723989849,
+          "positives": 5123,
+          "prevalence": 0.9049637913703918,
+          "rows": 5661
+        },
+        "contact_gained": {
+          "balanced_accuracy_at_0_5": 0.4998991121872478,
+          "brier": 0.00089906955022165,
+          "negative_recall_at_0_5": 0.9997982243744956,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 2,
+          "prevalence": 0.0004033884615637362,
+          "rows": 4958
+        },
+        "contact_lost": {
+          "balanced_accuracy_at_0_5": 0.7050083011463815,
+          "brier": 0.15062466257814983,
+          "negative_recall_at_0_5": 0.8290306867998052,
+          "positive_recall_at_0_5": 0.5809859154929577,
+          "positives": 852,
+          "prevalence": 0.171843484044075,
+          "rows": 4958
+        },
+        "game_over": {
+          "balanced_accuracy_at_0_5": 0.4860988135293076,
+          "brier": 0.024186159807721392,
+          "negative_recall_at_0_5": 0.9721976270586152,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 14,
+          "prevalence": 0.002473061205819249,
+          "rows": 5661
+        },
+        "level_complete": {
+          "balanced_accuracy_at_0_5": 0.49471988544836226,
+          "brier": 0.022885794836405165,
+          "negative_recall_at_0_5": 0.9894397708967245,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 74,
+          "prevalence": 0.013071895577013493,
+          "rows": 5661
+        },
+        "local_change": {
+          "balanced_accuracy_at_0_5": 0.6403762892142676,
+          "brier": 0.27396213760413907,
+          "negative_recall_at_0_5": 0.6899252402990388,
+          "positive_recall_at_0_5": 0.5908273381294964,
+          "positives": 2224,
+          "prevalence": 0.44188356399536133,
+          "rows": 5033
+        },
+        "moved": {
+          "balanced_accuracy_at_0_5": 0.6895042888772442,
+          "brier": 0.21638987163500323,
+          "negative_recall_at_0_5": 0.7587241003271538,
+          "positive_recall_at_0_5": 0.6202844774273346,
+          "positives": 1617,
+          "prevalence": 0.3059602677822113,
+          "rows": 5285
+        },
+        "path_closed": {
+          "balanced_accuracy_at_0_5": 0.49089253187613846,
+          "brier": 0.03644621132363761,
+          "negative_recall_at_0_5": 0.9817850637522769,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 92,
+          "prevalence": 0.018279356881976128,
+          "rows": 5033
+        },
+        "path_opened": {
+          "balanced_accuracy_at_0_5": 0.6337902414486921,
+          "brier": 0.08448925868023807,
+          "negative_recall_at_0_5": 0.96579476861167,
+          "positive_recall_at_0_5": 0.30178571428571427,
+          "positives": 560,
+          "prevalence": 0.1112656444311142,
+          "rows": 5033
+        },
+        "productive": {
+          "balanced_accuracy_at_0_5": 0.6774650483769697,
+          "brier": 0.22259707989716618,
+          "negative_recall_at_0_5": 0.7747237177670728,
+          "positive_recall_at_0_5": 0.5802063789868668,
+          "positives": 2132,
+          "prevalence": 0.3766119182109833,
+          "rows": 5661
+        },
+        "reachable_area_decreased": {
+          "balanced_accuracy_at_0_5": 0.5058347990799621,
+          "brier": 0.13924831894961323,
+          "negative_recall_at_0_5": 0.8406169665809768,
+          "positive_recall_at_0_5": 0.17105263157894737,
+          "positives": 228,
+          "prevalence": 0.043140966445207596,
+          "rows": 5285
+        },
+        "reachable_area_increased": {
+          "balanced_accuracy_at_0_5": 0.48268451535216017,
+          "brier": 0.15345847510890753,
+          "negative_recall_at_0_5": 0.8214001591089897,
+          "positive_recall_at_0_5": 0.14396887159533073,
+          "positives": 257,
+          "prevalence": 0.04862819239497185,
+          "rows": 5285
+        },
+        "risk": {
+          "balanced_accuracy_at_0_5": 0.4918800366225792,
+          "brier": 0.15338904577088983,
+          "negative_recall_at_0_5": 0.8377973403259037,
+          "positive_recall_at_0_5": 0.14596273291925466,
+          "positives": 322,
+          "prevalence": 0.0568804107606411,
+          "rows": 5661
+        },
+        "target_created": {
+          "balanced_accuracy_at_0_5": 0.6178868200097367,
+          "brier": 0.13560901394744806,
+          "negative_recall_at_0_5": 0.8942396313364055,
+          "positive_recall_at_0_5": 0.341534008683068,
+          "positives": 691,
+          "prevalence": 0.13734844326972961,
+          "rows": 5031
+        },
+        "target_moved": {
+          "balanced_accuracy_at_0_5": 0.8273397508912734,
+          "brier": 0.13753227493066617,
+          "negative_recall_at_0_5": 0.8096646942800789,
+          "positive_recall_at_0_5": 0.8450148075024679,
+          "positives": 1013,
+          "prevalence": 0.24981504678726196,
+          "rows": 4055
+        },
+        "target_removed": {
+          "balanced_accuracy_at_0_5": 0.5456674793317393,
+          "brier": 0.2359643000065531,
+          "negative_recall_at_0_5": 0.8175254348539547,
+          "positive_recall_at_0_5": 0.27380952380952384,
+          "positives": 1008,
+          "prevalence": 0.24858199059963226,
+          "rows": 4055
+        }
+      }
+    },
+    "roles": {
+      "macro_balanced_accuracy_at_0_5": 0.6303959474909417,
+      "macro_brier": 0.17465313394835502,
+      "per_label": {
+        "blocker": {
+          "balanced_accuracy_at_0_5": 0.5516496686332699,
+          "brier": 0.10157608341943748,
+          "negative_recall_at_0_5": 0.9652625274505889,
+          "positive_recall_at_0_5": 0.13803680981595093,
+          "positives": 652,
+          "prevalence": 0.11517399549484253,
+          "rows": 5661
+        },
+        "consumable": {
+          "balanced_accuracy_at_0_5": 0.5489219704645236,
+          "brier": 0.205596863275134,
+          "negative_recall_at_0_5": 0.8220502901353965,
+          "positive_recall_at_0_5": 0.2757936507936508,
+          "positives": 1008,
+          "prevalence": 0.1780604124069214,
+          "rows": 5661
+        },
+        "controllable": {
+          "balanced_accuracy_at_0_5": 0.7054779154715568,
+          "brier": 0.19279792344056812,
+          "negative_recall_at_0_5": 0.8073689416419386,
+          "positive_recall_at_0_5": 0.603586889301175,
+          "positives": 1617,
+          "prevalence": 0.28563857078552246,
+          "rows": 5661
+        },
+        "goal_relevant": {
+          "balanced_accuracy_at_0_5": 0.6016955632013312,
+          "brier": 0.2850443280501007,
+          "negative_recall_at_0_5": 0.6941015089163237,
+          "positive_recall_at_0_5": 0.5092896174863388,
+          "positives": 2745,
+          "prevalence": 0.4848966598510742,
+          "rows": 5661
+        },
+        "hazard": {
+          "balanced_accuracy_at_0_5": 0.5363913814092012,
+          "brier": 0.1520912489854543,
+          "negative_recall_at_0_5": 0.8385258358662614,
+          "positive_recall_at_0_5": 0.23425692695214106,
+          "positives": 397,
+          "prevalence": 0.07012895494699478,
+          "rows": 5661
+        },
+        "movable": {
+          "balanced_accuracy_at_0_5": 0.838239185765768,
+          "brier": 0.11081235651943531,
+          "negative_recall_at_0_5": 0.8689759036144579,
+          "positive_recall_at_0_5": 0.807502467917078,
+          "positives": 1013,
+          "prevalence": 0.17894364893436432,
+          "rows": 5661
+        }
+      }
+    },
+    "temporal_effects": {
+      "macro_balanced_accuracy_at_0_5": 0.5860529402966757,
+      "macro_brier": 0.12388995652724973,
+      "per_label": {
+        "actor_approached_root": {
+          "balanced_accuracy_at_0_5": 0.6407676181261087,
+          "brier": 0.07080186297900116,
+          "negative_recall_at_0_5": 0.9259796806966618,
+          "positive_recall_at_0_5": 0.35555555555555557,
+          "positives": 135,
+          "prevalence": 0.027228720486164093,
+          "rows": 4958
+        },
+        "changed": {
+          "balanced_accuracy_at_0_5": 0.555635275566782,
+          "brier": 0.0875234393715746,
+          "negative_recall_at_0_5": 0.12825278810408922,
+          "positive_recall_at_0_5": 0.983017763029475,
+          "positives": 5123,
+          "prevalence": 0.9049637913703918,
+          "rows": 5661
+        },
+        "contact_gained": {
+          "balanced_accuracy_at_0_5": 0.4998991121872478,
+          "brier": 0.0008662473129043378,
+          "negative_recall_at_0_5": 0.9997982243744956,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 2,
+          "prevalence": 0.0004033884615637362,
+          "rows": 4958
+        },
+        "contact_lost": {
+          "balanced_accuracy_at_0_5": 0.7007551070344784,
+          "brier": 0.15043274029100145,
+          "negative_recall_at_0_5": 0.8404773502191915,
+          "positive_recall_at_0_5": 0.5610328638497653,
+          "positives": 852,
+          "prevalence": 0.171843484044075,
+          "rows": 4958
+        },
+        "game_over": {
+          "balanced_accuracy_at_0_5": 0.530490272964153,
+          "brier": 0.011388472116365109,
+          "negative_recall_at_0_5": 0.9895519744997344,
+          "positive_recall_at_0_5": 0.07142857142857142,
+          "positives": 14,
+          "prevalence": 0.002473061205819249,
+          "rows": 5661
+        },
+        "level_complete": {
+          "balanced_accuracy_at_0_5": 0.4974941829246465,
+          "brier": 0.019352708544096552,
+          "negative_recall_at_0_5": 0.994988365849293,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 74,
+          "prevalence": 0.013071895577013493,
+          "rows": 5661
+        },
+        "local_change": {
+          "balanced_accuracy_at_0_5": 0.6341838508545247,
+          "brier": 0.27800662329099335,
+          "negative_recall_at_0_5": 0.6788892844428622,
+          "positive_recall_at_0_5": 0.5894784172661871,
+          "positives": 2224,
+          "prevalence": 0.44188356399536133,
+          "rows": 5033
+        },
+        "moved": {
+          "balanced_accuracy_at_0_5": 0.7004389194956262,
+          "brier": 0.20038157174430554,
+          "negative_recall_at_0_5": 0.7985278080697928,
+          "positive_recall_at_0_5": 0.6023500309214594,
+          "positives": 1617,
+          "prevalence": 0.3059602677822113,
+          "rows": 5285
+        },
+        "path_closed": {
+          "balanced_accuracy_at_0_5": 0.4922080550495851,
+          "brier": 0.03316075217715273,
+          "negative_recall_at_0_5": 0.9844161100991702,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 92,
+          "prevalence": 0.018279356881976128,
+          "rows": 5033
+        },
+        "path_opened": {
+          "balanced_accuracy_at_0_5": 0.5987466465459423,
+          "brier": 0.08718384336377609,
+          "negative_recall_at_0_5": 0.9671361502347418,
+          "positive_recall_at_0_5": 0.23035714285714284,
+          "positives": 560,
+          "prevalence": 0.1112656444311142,
+          "rows": 5033
+        },
+        "productive": {
+          "balanced_accuracy_at_0_5": 0.6684950134426252,
+          "brier": 0.23369546899540908,
+          "negative_recall_at_0_5": 0.7577217342023236,
+          "positive_recall_at_0_5": 0.5792682926829268,
+          "positives": 2132,
+          "prevalence": 0.3766119182109833,
+          "rows": 5661
+        },
+        "reachable_area_decreased": {
+          "balanced_accuracy_at_0_5": 0.5142290172732603,
+          "brier": 0.12847065815156633,
+          "negative_recall_at_0_5": 0.8354755784061697,
+          "positive_recall_at_0_5": 0.19298245614035087,
+          "positives": 228,
+          "prevalence": 0.043140966445207596,
+          "rows": 5285
+        },
+        "reachable_area_increased": {
+          "balanced_accuracy_at_0_5": 0.47524911081600624,
+          "brier": 0.1336091061826293,
+          "negative_recall_at_0_5": 0.8532219570405728,
+          "positive_recall_at_0_5": 0.09727626459143969,
+          "positives": 257,
+          "prevalence": 0.04862819239497185,
+          "rows": 5285
+        },
+        "risk": {
+          "balanced_accuracy_at_0_5": 0.5246548019437423,
+          "brier": 0.12350115438159466,
+          "negative_recall_at_0_5": 0.8660797902228882,
+          "positive_recall_at_0_5": 0.18322981366459629,
+          "positives": 322,
+          "prevalence": 0.0568804107606411,
+          "rows": 5661
+        },
+        "target_created": {
+          "balanced_accuracy_at_0_5": 0.5941115860937531,
+          "brier": 0.15192483787064165,
+          "negative_recall_at_0_5": 0.8640552995391705,
+          "positive_recall_at_0_5": 0.32416787264833574,
+          "positives": 691,
+          "prevalence": 0.13734844326972961,
+          "rows": 5031
+        },
+        "target_moved": {
+          "balanced_accuracy_at_0_5": 0.8056196467617229,
+          "brier": 0.14538707812903265,
+          "negative_recall_at_0_5": 0.814595660749507,
+          "positive_recall_at_0_5": 0.7966436327739388,
+          "positives": 1013,
+          "prevalence": 0.24981504678726196,
+          "rows": 4055
+        },
+        "target_removed": {
+          "balanced_accuracy_at_0_5": 0.5299217679632842,
+          "brier": 0.2504426960612005,
+          "negative_recall_at_0_5": 0.7840498851329176,
+          "positive_recall_at_0_5": 0.2757936507936508,
+          "positives": 1008,
+          "prevalence": 0.24858199059963226,
+          "rows": 4055
+        }
+      }
+    },
+    "temporal_targets": {
+      "macro_balanced_accuracy_at_0_5": 0.48666869689098363,
+      "macro_brier": 0.15891057014447135,
+      "per_label": {
+        "danger_within_8": {
+          "balanced_accuracy_at_0_5": 0.4673561151079137,
+          "brier": 0.06431066093798049,
+          "negative_recall_at_0_5": 0.9347122302158274,
+          "positive_recall_at_0_5": 0.0,
+          "positives": 101,
+          "prevalence": 0.017841370776295662,
+          "rows": 5661
+        },
+        "within_16": {
+          "balanced_accuracy_at_0_5": 0.5201271396225419,
+          "brier": 0.1883448588557989,
+          "negative_recall_at_0_5": 0.9234851835471031,
+          "positive_recall_at_0_5": 0.11676909569798069,
+          "positives": 1139,
+          "prevalence": 0.2012012004852295,
+          "rows": 5661
+        },
+        "within_4": {
+          "balanced_accuracy_at_0_5": 0.4934878844361603,
+          "brier": 0.06479873889075473,
+          "negative_recall_at_0_5": 0.9835973904939422,
+          "positive_recall_at_0_5": 0.0033783783783783786,
+          "positives": 296,
+          "prevalence": 0.05228758230805397,
+          "rows": 5661
+        },
+        "within_64": {
+          "balanced_accuracy_at_0_5": 0.4657036483973184,
+          "brier": 0.3181880218933514,
+          "negative_recall_at_0_5": 0.7049598832968637,
+          "positive_recall_at_0_5": 0.2264474134977732,
+          "positives": 2919,
+          "prevalence": 0.5156332850456238,
+          "rows": 5661
+        }
+      }
+    },
+    "uncensored_distance_mae": 0.23613589180002983
+  },
+  "records": 5661,
+  "selected_device": "cuda:0",
+  "semantic_output_game_identity_probe": {
+    "accuracy": 1.0,
+    "gain_over_majority": 0.6608373078961314,
+    "majority_accuracy": 0.33916269210386857
+  },
+  "semantic_result_checksum": "aea425506c3e894d2262acd17289d8d9da8c03b997ac9ef6b84f20842fbf881a"
+}

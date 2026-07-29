@@ -1,0 +1,40 @@
+{
+  "bytes": 786646,
+  "checkpoint_checksum": "38074c24326b0a41f8417e07eefcf50e28fe589cde90fe7d9aa6a741c7bf0348",
+  "format_version": "sage12-human-temporal-checkpoint-v4.14",
+  "games": [
+    "ar25",
+    "bp35",
+    "cd82",
+    "cn04",
+    "dc22",
+    "ft09"
+  ],
+  "manifest_checksum": "9a6d1f59189e2b84cadd5217cca2da489574e255208fbc9bfd7a73609142e6b1",
+  "path": "training/sage12/human_temporal_semantics_v4_14/temporal_student.pt",
+  "selected_device": "cuda:0",
+  "sha256": "6636caf4cdb374b671f9efc9bbbad6a008291332033b083dbc74dcf73d53ef30",
+  "training": {
+    "device": "cuda:0",
+    "epochs": 30,
+    "final_losses": {
+      "belief": 0.4487931750169614,
+      "distance": 0.002463646118086195,
+      "horizon": 0.29554842671424875,
+      "ranking": 1.0186248580614725,
+      "roles": 0.1982205854728818,
+      "semantic": 0.2348959818482399
+    },
+    "ranking_pairs": 672,
+    "runtime_seconds": 57.54835679999087,
+    "train_games": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "train_rows": 5661
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "action_budget_per_run": 1000,
+  "active_checksum": "3b5a2ecf467db20a6a42441099806b7819ed69115549fe494b67205651234a6e",
+  "artifact_sha256": {
+    "qwen_outputs": "0ce54d9ca6b0963265566d8ad4515a5d934f65fd0d3c266e5d6e308f2af42828",
+    "runs": "61f74d27cca2777f13c5fca2edcae54c7a6094d907b9908c615ef13c2a41d7e4",
+    "traces": "0b687ceefff5ccff4608059fc0690fc1e89c132dd966b7c6f4fae9efa5a2e02d"
+  },
+  "authority_promoted": false,
+  "controllers": [
+    "action_sequence_only",
+    "qwen_temporal_ebm"
+  ],
+  "descriptive_only": true,
+  "elapsed_seconds": 566.7848906000145,
+  "games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "holdout_opened": false,
+  "maximum_resets_per_run": 14,
+  "mean_paired_level_gain": 0.0,
+  "mean_paired_win_gain": 0.0,
+  "metrics": {
+    "action_sequence_only": {
+      "actions": 8184,
+      "game_overs": 72,
+      "illegal_proposals": 0,
+      "levels": 0,
+      "mean_decision_latency_seconds": 0.00024528363258811,
+      "per_game": {
+        "ls20": {
+          "actions": 3000,
+          "game_overs": 0,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "re86": {
+          "actions": 3000,
+          "game_overs": 30,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "sc25": {
+          "actions": 2184,
+          "game_overs": 42,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        }
+      },
+      "runs": 9,
+      "wins": 0
+    },
+    "qwen_temporal_ebm": {
+      "actions": 8184,
+      "game_overs": 93,
+      "illegal_proposals": 0,
+      "levels": 0,
+      "mean_decision_latency_seconds": 0.07166429695736228,
+      "per_game": {
+        "ls20": {
+          "actions": 3000,
+          "game_overs": 21,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "re86": {
+          "actions": 3000,
+          "game_overs": 30,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "sc25": {
+          "actions": 2184,
+          "game_overs": 42,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        }
+      },
+      "runs": 9,
+      "wins": 0
+    }
+  },
+  "paired": [
+    {
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "game_id": "ls20",
+      "game_over_delta": 7,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "game_id": "ls20",
+      "game_over_delta": 7,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "game_id": "ls20",
+      "game_over_delta": 7,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    }
+  ],
+  "qwen": {
+    "candidates_covered": 876,
+    "compiler_slot_coverage": 1.0,
+    "inference_seconds": 66.14168640039861,
+    "refresh_steps": 128,
+    "requests": 474,
+    "strict_bitstream_validity": 1.0
+  },
+  "runs": 18,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "status": "COMPLETE"
+}
