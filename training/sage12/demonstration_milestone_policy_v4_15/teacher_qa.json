@@ -1,0 +1,134 @@
+{
+  "artifact_sha256": "3aefc5436cf2b0c50a74a5b09d5c487b0533b1e6dd75a72992b77f5e91329fa7",
+  "by_game": {
+    "ar25": {
+      "mean_candidates": 16.0,
+      "milestones": {
+        "level_complete": 23,
+        "none_within_64": 2,
+        "path_opened": 509,
+        "productive": 63,
+        "target_created": 23,
+        "target_moved": 384,
+        "target_removed": 152
+      },
+      "positive_return": 1139,
+      "records": 1156,
+      "sequences": 4,
+      "within_16": 189
+    },
+    "bp35": {
+      "mean_candidates": 16.0,
+      "milestones": {
+        "actor_approached_root": 3,
+        "level_complete": 67,
+        "none_within_64": 10,
+        "path_opened": 248,
+        "productive": 187,
+        "target_created": 70,
+        "target_moved": 28,
+        "target_removed": 357
+      },
+      "positive_return": 927,
+      "records": 970,
+      "sequences": 13,
+      "within_16": 320
+    },
+    "cd82": {
+      "mean_candidates": 15.729693741677764,
+      "milestones": {
+        "actor_approached_root": 19,
+        "level_complete": 187,
+        "none_within_64": 160,
+        "path_opened": 321,
+        "target_moved": 64
+      },
+      "positive_return": 556,
+      "records": 751,
+      "sequences": 9,
+      "within_16": 128
+    },
+    "cn04": {
+      "mean_candidates": 14.306733167082294,
+      "milestones": {
+        "level_complete": 76,
+        "none_within_64": 6,
+        "productive": 16,
+        "target_moved": 78,
+        "target_removed": 225
+      },
+      "positive_return": 395,
+      "records": 401,
+      "sequences": 3,
+      "within_16": 159
+    },
+    "dc22": {
+      "mean_candidates": 16.0,
+      "milestones": {
+        "actor_approached_root": 124,
+        "level_complete": 293,
+        "none_within_64": 537,
+        "productive": 117,
+        "target_created": 56,
+        "target_moved": 777,
+        "target_removed": 16
+      },
+      "positive_return": 1486,
+      "records": 1920,
+      "sequences": 5,
+      "within_16": 224
+    },
+    "ft09": {
+      "mean_candidates": 16.0,
+      "milestones": {
+        "actor_approached_root": 6,
+        "level_complete": 11,
+        "none_within_64": 4,
+        "target_removed": 442
+      },
+      "positive_return": 459,
+      "records": 463,
+      "sequences": 7,
+      "within_16": 119
+    }
+  },
+  "candidate_count": {
+    "maximum": 16,
+    "mean": 15.844197138314785,
+    "minimum": 10,
+    "semantic_aliases_removed": 60231
+  },
+  "continuity": {
+    "fraction": 1.0,
+    "links": 5620,
+    "matches": 5620
+  },
+  "format_version": "sage12-demonstration-milestone-policy-v4.15",
+  "games": [
+    "ar25",
+    "bp35",
+    "cd82",
+    "cn04",
+    "dc22",
+    "ft09"
+  ],
+  "manifest_checksum": "bc9a96fe6642533facad1dc4a11d9b782ec7ed633d4629e4651c6d81b11cdf6a",
+  "milestones": {
+    "actor_approached_root": 152,
+    "level_complete": 657,
+    "none_within_64": 719,
+    "path_opened": 1078,
+    "productive": 383,
+    "target_created": 149,
+    "target_moved": 1331,
+    "target_removed": 1192
+  },
+  "orphan_sequences": 1,
+  "positive_return": 4962,
+  "qa_checksum": "db951fb4259b458fdc9ae04b33c942bc2811f5bec364098422948317982279d5",
+  "records": 5661,
+  "runtime_seconds": 482.4338837999385,
+  "sequences": 41,
+  "student_view_forbidden_fields_absent": true,
+  "teacher_ready": true
+}

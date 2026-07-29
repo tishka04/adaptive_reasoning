@@ -1,0 +1,347 @@
+{
+  "authority_promoted": false,
+  "compiler": {
+    "candidate_order": "identity-free graph checksum",
+    "maximum_candidates": 16,
+    "milestone_horizon": 64,
+    "milestone_labels": [
+      "level_complete",
+      "path_opened",
+      "target_removed",
+      "target_created",
+      "target_moved",
+      "actor_approached_root",
+      "productive",
+      "none_within_64"
+    ],
+    "negative_candidates": "all recorded legal action names plus deterministic object-centre click anchors",
+    "success_weight_cap": 5.0
+  },
+  "evaluation": {
+    "active_action_budget": 1000,
+    "active_maximum_resets": 14,
+    "active_seeds": [
+      0,
+      1,
+      2
+    ],
+    "all_conditions_run_unconditionally": true,
+    "behavior_nonnegative_games_minimum": 4,
+    "bootstrap_samples": 1000,
+    "bootstrap_seed": 5151,
+    "completion_absolute_minimum": 1,
+    "completion_fraction_minimum": 0.5,
+    "ebm_coefficient": 0.5,
+    "global_nonnegative_games_minimum": 5,
+    "identity_gain_maximum": 0.2,
+    "milestone_balanced_gain_minimum": 0.05
+  },
+  "forbidden_student_fields": [
+    "game_id",
+    "episode_id",
+    "source_file",
+    "pre_state_sha256",
+    "post_state_sha256",
+    "frame_before",
+    "frame_after",
+    "row",
+    "col",
+    "x",
+    "y",
+    "object_id",
+    "target_object_id",
+    "intent",
+    "hypothesis",
+    "objective_guess",
+    "game_type_guess",
+    "color",
+    "colour",
+    "value"
+  ],
+  "format_version": "sage12-demonstration-milestone-manifest-v4.15",
+  "holdout_opened": false,
+  "manifest_checksum": "bc9a96fe6642533facad1dc4a11d9b782ec7ed633d4629e4651c6d81b11cdf6a",
+  "model": {
+    "embedding_width": 32,
+    "epochs": 30,
+    "final_fit": "all_six_human_games",
+    "graph_hidden_width": 96,
+    "hash_buckets": 2048,
+    "learning_rate": 0.0015,
+    "loss_weights": {
+      "behavior_cloning": 1.0,
+      "distance": 0.25,
+      "milestone": 0.5,
+      "return": 0.25,
+      "success_conditioned_cloning": 1.0
+    },
+    "maximum_history": 32,
+    "maximum_neighbors": 16,
+    "milestone_embedding_width": 16,
+    "outer_diagnostic": "leave_one_human_game_out",
+    "seed": 5150,
+    "temporal_hidden_width": 128,
+    "weight_decay": 0.0001
+  },
+  "result_observed_at_freeze": false,
+  "source_fingerprints": {
+    "human_traces/ar25-e3c63847.20260420-163550.episodes.jsonl": {
+      "bytes": 793,
+      "path": "human_traces/ar25-e3c63847.20260420-163550.episodes.jsonl",
+      "sha256": "1785d542395daaee7326513197e0724b994555b89d10f96962f6c6e21d3a9460"
+    },
+    "human_traces/ar25-e3c63847.20260420-163550.steps.jsonl": {
+      "bytes": 5286576,
+      "path": "human_traces/ar25-e3c63847.20260420-163550.steps.jsonl",
+      "sha256": "88a4f645a7c1935c960bb62a7cdee4f46d97e55e31d5b7b5ddb029532afc79b9"
+    },
+    "human_traces/ar25-e3c63847.20260420-172856.episodes.jsonl": {
+      "bytes": 976,
+      "path": "human_traces/ar25-e3c63847.20260420-172856.episodes.jsonl",
+      "sha256": "bb660b146df26dc70f8e5108655eb72eb4a42257c9783f4a3c12ea3ce6f7aa0a"
+    },
+    "human_traces/ar25-e3c63847.20260420-172856.steps.jsonl": {
+      "bytes": 15046818,
+      "path": "human_traces/ar25-e3c63847.20260420-172856.steps.jsonl",
+      "sha256": "50f6fa9748981e095526d8ffad4d0f16e291f18ad1df5c4b212d116a25aade06"
+    },
+    "human_traces/ar25-e3c63847.20260617-160929.episodes.jsonl": {
+      "bytes": 310,
+      "path": "human_traces/ar25-e3c63847.20260617-160929.episodes.jsonl",
+      "sha256": "b5f4558556e627b3f49bc8f1bec620c0f36388589895d435bf2a6a9cb02b53be"
+    },
+    "human_traces/ar25-e3c63847.20260617-160929.steps.jsonl": {
+      "bytes": 640198,
+      "path": "human_traces/ar25-e3c63847.20260617-160929.steps.jsonl",
+      "sha256": "7cba176ded160c67ebf5230f5ddbb439e1745ed3fe08680bdaec382406f7eedf"
+    },
+    "human_traces/bp35-0a0ad940.20260615-174132.episodes.jsonl": {
+      "bytes": 309,
+      "path": "human_traces/bp35-0a0ad940.20260615-174132.episodes.jsonl",
+      "sha256": "5cd2e08ce11d15c5b217a458ff0a86c0c89958b3a4c044ae8fc6a1d57ba6de66"
+    },
+    "human_traces/bp35-0a0ad940.20260615-174132.steps.jsonl": {
+      "bytes": 155920,
+      "path": "human_traces/bp35-0a0ad940.20260615-174132.steps.jsonl",
+      "sha256": "f7286a0da404ecfb9a833b00120950d8cdeb4d7653ffdf15ecc6738d35676a8a"
+    },
+    "human_traces/bp35-0a0ad940.20260615-174246.episodes.jsonl": {
+      "bytes": 1649,
+      "path": "human_traces/bp35-0a0ad940.20260615-174246.episodes.jsonl",
+      "sha256": "41696ef2b481ca0612ced250f42a2a20303c55336d6efc1feadf895e8df39db8"
+    },
+    "human_traces/bp35-0a0ad940.20260615-174246.steps.jsonl": {
+      "bytes": 4210329,
+      "path": "human_traces/bp35-0a0ad940.20260615-174246.steps.jsonl",
+      "sha256": "feb0af29b7f066e6225a3c80977594cc017c9571e9dc556b6e9368da4b504479"
+    },
+    "human_traces/bp35-0a0ad940.20260615-175552.episodes.jsonl": {
+      "bytes": 941,
+      "path": "human_traces/bp35-0a0ad940.20260615-175552.episodes.jsonl",
+      "sha256": "a33dd331baf211d3c1e9eb4bbb9f3a0fe8cdc272f6659549f30b6a50031e2574"
+    },
+    "human_traces/bp35-0a0ad940.20260615-175552.steps.jsonl": {
+      "bytes": 4947024,
+      "path": "human_traces/bp35-0a0ad940.20260615-175552.steps.jsonl",
+      "sha256": "7ed1ac5989faab5ab914c85d311dd55fcf78f3753660228d39a4d4ba348bbeca"
+    },
+    "human_traces/bp35-0a0ad940.20260615-180542.episodes.jsonl": {
+      "bytes": 2513,
+      "path": "human_traces/bp35-0a0ad940.20260615-180542.episodes.jsonl",
+      "sha256": "9015c1492d441063d15d3855d3492d13fefde31fb59df350c6fbfd77eb5686ee"
+    },
+    "human_traces/bp35-0a0ad940.20260615-180542.steps.jsonl": {
+      "bytes": 10172386,
+      "path": "human_traces/bp35-0a0ad940.20260615-180542.steps.jsonl",
+      "sha256": "f2b17ac9b7263b268fa74d96a5fab11bdf104ef8e2928cec2f8b6a192ab983bd"
+    },
+    "human_traces/bp35-0a0ad940.20260618-122730.episodes.jsonl": {
+      "bytes": 336,
+      "path": "human_traces/bp35-0a0ad940.20260618-122730.episodes.jsonl",
+      "sha256": "71dc9cfa5d33bb85b473288af4416acc7f083fccb324f88c404515f908c4814f"
+    },
+    "human_traces/bp35-0a0ad940.20260618-122730.steps.jsonl": {
+      "bytes": 422594,
+      "path": "human_traces/bp35-0a0ad940.20260618-122730.steps.jsonl",
+      "sha256": "c4716982e98279d2b9746ace4febb4170c9499d319cf6242ca3a79df319c3f24"
+    },
+    "human_traces/cd82-fb555c5d.20260615-211618.episodes.jsonl": {
+      "bytes": 844,
+      "path": "human_traces/cd82-fb555c5d.20260615-211618.episodes.jsonl",
+      "sha256": "ba70f6d52b6eb5d64b34dcc5616ef53ee7abf0d5eb556b95b0f1b11dae4d4c76"
+    },
+    "human_traces/cd82-fb555c5d.20260615-211618.steps.jsonl": {
+      "bytes": 7375509,
+      "path": "human_traces/cd82-fb555c5d.20260615-211618.steps.jsonl",
+      "sha256": "303832b140d116fe7c3f1e27178ece42ea2b4e17275a41601b16507c2d66bfca"
+    },
+    "human_traces/cd82-fb555c5d.20260615-213749.episodes.jsonl": {
+      "bytes": 1061,
+      "path": "human_traces/cd82-fb555c5d.20260615-213749.episodes.jsonl",
+      "sha256": "5830884534100d35a4f65d571e34fc61aef75b7ac79a6ccf0a97e0f9c4872b6f"
+    },
+    "human_traces/cd82-fb555c5d.20260615-213749.steps.jsonl": {
+      "bytes": 5845999,
+      "path": "human_traces/cd82-fb555c5d.20260615-213749.steps.jsonl",
+      "sha256": "ce17fb659b7d435ad95feaca49dad170646641d471686bb6aba8f1d9562433d3"
+    },
+    "human_traces/cn04-65d47d14.20260616-101425.episodes.jsonl": {
+      "bytes": 977,
+      "path": "human_traces/cn04-65d47d14.20260616-101425.episodes.jsonl",
+      "sha256": "7b458e6c3621804295046221a90b75a6dfd36e761d002df37fec7535399b4324"
+    },
+    "human_traces/cn04-65d47d14.20260616-101425.steps.jsonl": {
+      "bytes": 5827946,
+      "path": "human_traces/cn04-65d47d14.20260616-101425.steps.jsonl",
+      "sha256": "8b39fe0f203f80bf359e4010a6e6338b9d2d2f5889002dfe243f8aefec84db34"
+    },
+    "human_traces/cn04-65d47d14.20260616-102926.episodes.jsonl": {
+      "bytes": 1055,
+      "path": "human_traces/cn04-65d47d14.20260616-102926.episodes.jsonl",
+      "sha256": "068ec4fac8d3d76db2b12626ca7f9aa59b78f7d66b30949641455f10c35fd497"
+    },
+    "human_traces/cn04-65d47d14.20260616-102926.steps.jsonl": {
+      "bytes": 3347219,
+      "path": "human_traces/cn04-65d47d14.20260616-102926.steps.jsonl",
+      "sha256": "1e90e39f044fd68b1d93ed00550f241a8fa329e6d13ca05b86bbe09d7179aca7"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-134833.episodes.jsonl": {
+      "bytes": 1197,
+      "path": "human_traces/dc22-4c9bff3e.20260616-134833.episodes.jsonl",
+      "sha256": "888d07fb7d58cb50cafe356b6fa4efe1b97640c64385ba507b3eda9f4177e0b1"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-134833.steps.jsonl": {
+      "bytes": 7010496,
+      "path": "human_traces/dc22-4c9bff3e.20260616-134833.steps.jsonl",
+      "sha256": "43857ad57dece0a59e5d6c783a4cb33d25dfd2f3a196e18c04720c9c6b5f1905"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-145945.episodes.jsonl": {
+      "bytes": 592,
+      "path": "human_traces/dc22-4c9bff3e.20260616-145945.episodes.jsonl",
+      "sha256": "3adfae5992c7f160708b354d1dedf325955069cb4eb8944309b149d639136652"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-145945.steps.jsonl": {
+      "bytes": 6882710,
+      "path": "human_traces/dc22-4c9bff3e.20260616-145945.steps.jsonl",
+      "sha256": "4ae93fa63bf65c07199437a6218c353d49d27dc9d7425d7e410e3426b3755389"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-150906.episodes.jsonl": {
+      "bytes": 1207,
+      "path": "human_traces/dc22-4c9bff3e.20260616-150906.episodes.jsonl",
+      "sha256": "553a8dfcefe95d262b255003dc1797745f5811b9a3e27593c1f1142812db68b9"
+    },
+    "human_traces/dc22-4c9bff3e.20260616-150906.steps.jsonl": {
+      "bytes": 19187856,
+      "path": "human_traces/dc22-4c9bff3e.20260616-150906.steps.jsonl",
+      "sha256": "63cfcb075b4469641a08a8351f584a82dee62cbd07027d62465c5f1830b02a7f"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-142254.episodes.jsonl": {
+      "bytes": 0,
+      "path": "human_traces/ft09-0d8bbf25.20260617-142254.episodes.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-142254.steps.jsonl": {
+      "bytes": 281867,
+      "path": "human_traces/ft09-0d8bbf25.20260617-142254.steps.jsonl",
+      "sha256": "16c4dbcb018a7cf8e5d934acea6a001995cb1068ea3878f97615aa47c825f5ec"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-142428.episodes.jsonl": {
+      "bytes": 613,
+      "path": "human_traces/ft09-0d8bbf25.20260617-142428.episodes.jsonl",
+      "sha256": "a26f94a5e83b8e3f06f4c5967b5ad7cb51a41a3760880c7fec69950ff7f2d0d8"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-142428.steps.jsonl": {
+      "bytes": 5763296,
+      "path": "human_traces/ft09-0d8bbf25.20260617-142428.steps.jsonl",
+      "sha256": "a7c3d9d6866532387c6f2bd58cc39de443c65264aebf382f6fd8d1c098a9a1c8"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-144230.episodes.jsonl": {
+      "bytes": 833,
+      "path": "human_traces/ft09-0d8bbf25.20260617-144230.episodes.jsonl",
+      "sha256": "78c57af64559703825d5af3fe70093ea8202e95c654d78e7bb5b9526952bc4f3"
+    },
+    "human_traces/ft09-0d8bbf25.20260617-144230.steps.jsonl": {
+      "bytes": 2581703,
+      "path": "human_traces/ft09-0d8bbf25.20260617-144230.steps.jsonl",
+      "sha256": "59bb92a54fffeab1a776fee88b1e7c5146bf84d07a0cdcafc5135571dcd34c63"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/active_runs.jsonl": {
+      "bytes": 11073,
+      "path": "training/sage12/human_temporal_semantics_v4_14/active_runs.jsonl",
+      "sha256": "61f74d27cca2777f13c5fca2edcae54c7a6094d907b9908c615ef13c2a41d7e4"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/active_validation.json": {
+      "bytes": 3774,
+      "path": "training/sage12/human_temporal_semantics_v4_14/active_validation.json",
+      "sha256": "491390ff800251a426a31c95ba29cd10676a644dd87fe08a44151881366016b3"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/checkpoint_metadata.json": {
+      "bytes": 1105,
+      "path": "training/sage12/human_temporal_semantics_v4_14/checkpoint_metadata.json",
+      "sha256": "bba0b05fc527479e75d9e0a16fa25c19dc9c5dd55e896cb83d8e6d6e5e9c04e5"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/frozen_manifest.json": {
+      "bytes": 13948,
+      "path": "training/sage12/human_temporal_semantics_v4_14/frozen_manifest.json",
+      "sha256": "f3e6001417a7b76c503721246ef9c4e288e0aa226695b263b0c7043bbc5b989e"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/result.json": {
+      "bytes": 48313,
+      "path": "training/sage12/human_temporal_semantics_v4_14/result.json",
+      "sha256": "8e406476ca49b50aa357751f3af9f93748617bf352828f0b50fc48f14989f4e5"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/semantic_result.json": {
+      "bytes": 34207,
+      "path": "training/sage12/human_temporal_semantics_v4_14/semantic_result.json",
+      "sha256": "2a66976ec5a8abcbd540837f030e4a3c43cc8371c3888f9a00b7bd8cb2cb8306"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/teacher_qa.json": {
+      "bytes": 6621,
+      "path": "training/sage12/human_temporal_semantics_v4_14/teacher_qa.json",
+      "sha256": "5d71e8efa98af365e1cbc6b82d04a05cca3c92e7333aab06ca0c4c720b7a2a51"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/transfer_decisions.jsonl": {
+      "bytes": 2465826,
+      "path": "training/sage12/human_temporal_semantics_v4_14/transfer_decisions.jsonl",
+      "sha256": "f02ccbfcd49d0c32a0286da8406cfc790c61cc8efdb2495f59276d0cfbd8417b"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/transfer_predictions.jsonl": {
+      "bytes": 2345598,
+      "path": "training/sage12/human_temporal_semantics_v4_14/transfer_predictions.jsonl",
+      "sha256": "aec053b641bd201e25bdd323ae16d589a9c74fc692703ecf7dcd7fc18e6c6644"
+    }
+  },
+  "split": {
+    "active_validation": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "final_confirmation_closed": [
+      "s5i5",
+      "vc33",
+      "m0r0",
+      "sk48",
+      "r11l"
+    ],
+    "human_train": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "legacy_sage11_registry_unchanged": true,
+    "transfer_evaluation": [
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ]
+  }
+}

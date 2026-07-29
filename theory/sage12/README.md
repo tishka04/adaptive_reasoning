@@ -802,3 +802,29 @@ opportunities, so V4.14 rejects this semantic learner and rollout rather than
 the global architecture. See
 `reports/SAGE12_HUMAN_TEMPORAL_SEMANTICS_V4_14_PROTOCOL.md` and
 `reports/SAGE12_HUMAN_TEMPORAL_SEMANTICS_V4_14_RESULT.md`.
+
+## Demonstration-conditioned milestone policy (V4.15)
+
+V4.15 uses all 5,661 human decisions as causal candidate-choice supervision.
+An object-relative DeepSets + GRU policy learns ordinary behavior cloning,
+success-conditioned action scores, the next milestone within 64 actions,
+milestone distance and suffix return. The policy then proposes candidates for
+the unchanged V4.14 temporal world model and trajectory EBM.
+
+```powershell
+python -m theory.sage12.demonstration_milestone_policy_v4_15 freeze
+python -m theory.sage12.demonstration_milestone_policy_v4_15 compile
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.demonstration_milestone_policy_v4_15 train --device auto
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.demonstration_milestone_policy_v4_15 evaluate
+.\ARC-AGI-3-Agents\.venv\Scripts\python.exe -m theory.sage12.demonstration_milestone_policy_v4_15 active --device auto
+```
+
+The complete registered ladder returned `BEHAVIOR_PRIOR_BOTTLENECK`. Held-game
+choice accuracy rose to 43.60%, but relation shuffling was harmless,
+milestone balanced accuracy stayed below majority, and game identity remained
+recoverable at 86.29%. The EBM reduced offline utility and captured only 1/8
+completion opportunities, while true-world effects plus the same EBM captured
+8/8. All 18 fresh active runs completed with zero illegal proposals, but
+neither learned controller completed a level or won a game. See
+`reports/SAGE12_DEMONSTRATION_MILESTONE_POLICY_V4_15_PROTOCOL.md` and
+`reports/SAGE12_DEMONSTRATION_MILESTONE_POLICY_V4_15_RESULT.md`.

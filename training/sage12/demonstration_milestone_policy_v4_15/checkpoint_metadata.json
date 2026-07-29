@@ -1,0 +1,26 @@
+{
+  "bytes": 941956,
+  "checkpoint_checksum": "48bcadbb182d81e0fdb2e7e7a450f9da1da1e2ae0dba0ec9efb8a077779e6645",
+  "device": "cuda:0",
+  "format_version": "sage12-demonstration-policy-checkpoint-v4.15",
+  "manifest_checksum": "bc9a96fe6642533facad1dc4a11d9b782ec7ed633d4629e4651c6d81b11cdf6a",
+  "path": "training/sage12/demonstration_milestone_policy_v4_15/demonstration_policy.pt",
+  "sha256": "456adc082b2249d2b392789021404cbcdc60890da6ddd5b33463063d1b724d3b",
+  "training": {
+    "device": "cuda:0",
+    "epochs": 30,
+    "final_loss": 2.215886354446411,
+    "initial_loss": 12.963260650634766,
+    "runtime_seconds": 15.94929180003237,
+    "train_games": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "train_rows": 5661,
+    "windows": 196
+  }
+}
