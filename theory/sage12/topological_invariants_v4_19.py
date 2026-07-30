@@ -296,6 +296,48 @@ def _event_count(events: Sequence[str], prefix: str) -> int:
     return total
 
 
+def _persistent_relation_changes(
+    transition: MTTransitionRecord,
+    *,
+    relation_kind: str,
+) -> tuple[int, int]:
+    """Compare relations only across grounded one-to-one object matches."""
+
+    mapping = {
+        row.before_ids[0]: row.after_ids[0]
+        for row in transition.correspondences
+        if row.kind == "persist"
+        and len(row.before_ids) == 1
+        and len(row.after_ids) == 1
+        and row.confidence >= CONFIDENT_CORRESPONDENCE
+    }
+    reverse = {after: before for before, after in mapping.items()}
+    before_relations = {
+        tuple(sorted((relation.subject_id, relation.object_id)))
+        for relation in transition.graph_before.relations
+        if relation.kind == relation_kind
+        and relation.subject_id in mapping
+        and relation.object_id in mapping
+        and relation.subject_id != relation.object_id
+    }
+    mapped_before = {
+        tuple(sorted((mapping[left], mapping[right])))
+        for left, right in before_relations
+    }
+    after_relations = {
+        tuple(sorted((relation.subject_id, relation.object_id)))
+        for relation in transition.graph_after.relations
+        if relation.kind == relation_kind
+        and relation.subject_id in reverse
+        and relation.object_id in reverse
+        and relation.subject_id != relation.object_id
+    }
+    return (
+        len(after_relations - mapped_before),
+        len(mapped_before - after_relations),
+    )
+
+
 def causal_factors(
     transition: MTTransitionRecord,
     *,
@@ -308,6 +350,10 @@ def causal_factors(
     after = topological_invariants(transition.graph_after)
     delta = invariant_deltas(before, after)
     events = transition.events
+    contact_added, contact_removed = _persistent_relation_changes(
+        transition,
+        relation_kind="contact",
+    )
     return {
         "birth": _event_count(events, "birth") > 0,
         "death": _event_count(events, "death") > 0,
@@ -317,10 +363,8 @@ def causal_factors(
         "morphology_changed": (
             _event_count(events, "morphology_changed") > 0
         ),
-        "contact_added": _event_count(events, "relation_added:contact") > 0,
-        "contact_removed": (
-            _event_count(events, "relation_removed:contact") > 0
-        ),
+        "contact_added": contact_added > 0,
+        "contact_removed": contact_removed > 0,
         "free_region_increased": delta.get("free_region_count", 0) > 0,
         "free_region_decreased": delta.get("free_region_count", 0) < 0,
         "articulation_added": delta.get("articulation_points", 0) > 0,

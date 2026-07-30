@@ -24,7 +24,7 @@
     "holdout_opened": false
   },
   "format_version": "sage12-topological-causal-manifest-v4.19",
-  "manifest_checksum": "a5987bbc1b56a4744ab7c5857e8f946f3a17bfdeb4d7cf97259bef9bcce95793",
+  "manifest_checksum": "c63e5559c612ddb07a05e9a230452086f1431f726917080b1cd2d355ae917a85",
   "model": {
     "absolute_coordinates": false,
     "batch_size": 256,
@@ -65,6 +65,15 @@
     "uncertainty_coefficient": 0.25,
     "value_coefficient": 0.5
   },
+  "pre_fit_amendments": [
+    {
+      "change": "contact deltas restricted to confident one-to-one persistent object correspondences",
+      "fit_observed_before_amendment": false,
+      "id": "persistent_contact_relations",
+      "thresholds_changed": false,
+      "trigger": "first_compact_corpus_qa_contact_added_on_every_transition"
+    }
+  ],
   "representation_gates": {
     "maximum_fully_ambiguous_fraction": 0.1,
     "maximum_identity_increment": 0.1,
@@ -83,9 +92,9 @@
       "sha256": "541ce1752e0f6316be58e71e69a014467015f50fb567bf8091c69d75c50bdae0"
     },
     "reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md": {
-      "bytes": 7563,
+      "bytes": 8395,
       "path": "C:/Users/coudr/projects/adaptive_reasoning/reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md",
-      "sha256": "b9e007c83103365443f8aeac03e175e7eb5e6f6f61b0dcd8391f4948c40116cc"
+      "sha256": "2b642a946c749f501e64c5701e80a76762915fc0716351f6552a1a5363c4e891"
     },
     "theory/sage12/artifact_budget.py": {
       "bytes": 9084,
@@ -93,14 +102,14 @@
       "sha256": "fea73dd59a681d6ef4056ca072f3f336b73c098d13bd063c437ea20f80df444a"
     },
     "theory/sage12/topological_causal_control_v4_19.py": {
-      "bytes": 72276,
+      "bytes": 72806,
       "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/topological_causal_control_v4_19.py",
-      "sha256": "69f4b1dd4e6b54dda025d031903a718810463c26b0a79f09fa2de7b56ecde098"
+      "sha256": "4574ea5932a4fea4906c947f8d5d4218dd05d06894ce7dbd8d898297424863fb"
     },
     "theory/sage12/topological_invariants_v4_19.py": {
-      "bytes": 18367,
+      "bytes": 19851,
       "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/topological_invariants_v4_19.py",
-      "sha256": "e9316ca99d65be6782bc911541f7708c8ee7951c93699cb12b96f817ca82dde1"
+      "sha256": "c1d1ae12e0d7d87bfa802a568215422c7c01c538a311225e305edff2bed022a5"
     },
     "training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json": {
       "bytes": 3892,

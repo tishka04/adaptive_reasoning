@@ -60,7 +60,8 @@ def test_topological_compiler_factorizes_observed_delta() -> None:
         risk=False,
     )
     assert set(compiled.factors) == set(FACTOR_NAMES)
-    assert compiled.factors["contact_added"]
+    assert compiled.factors["birth"]
+    assert compiled.factors["death"]
     assert compiled.factors["bridge_removed"]
     assert not compiled.factors["risk"]
     assert -1.0 <= compiled.local_value <= 1.0

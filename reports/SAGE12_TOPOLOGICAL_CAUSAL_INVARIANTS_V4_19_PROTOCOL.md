@@ -3,6 +3,19 @@
 Status at freeze: **protocol and implementation specified; no V4.19 model or
 result observed**.
 
+## Pre-fit amendment 1 — persistent contact relations
+
+The first compact-corpus QA, run before any estimator was fitted, reported
+`contact_added` on every transition. Audit showed that the inherited V4.16
+event token compared unmatched free-space nodes against object
+correspondences. V4.19 now measures contact addition/removal only between
+confident one-to-one persistent object matches. The initial corpus is
+superseded and must be regenerated.
+
+This amendment changes no split, target vocabulary, model, coefficient,
+control, threshold or active budget. It is frozen in a separate commit before
+the first fit; the original manifest and QA remain recoverable in Git history.
+
 ## Question
 
 V4.18 showed that a true-future trajectory oracle improves action selection,
@@ -77,6 +90,8 @@ Confidence at or above 0.60 is considered grounded. The corpus report records
 mean confidence, confident-correspondence rate and fully ambiguous
 transitions. Representation support requires at least 90% confident
 structural correspondences and fewer than 10% fully ambiguous transitions.
+Contact-edge deltas use only confident one-to-one persistent object matches;
+birth/death effects represent edges involving created or removed objects.
 
 ## Explicit invariants
 

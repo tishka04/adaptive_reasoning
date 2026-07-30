@@ -291,6 +291,20 @@ def freeze_manifest(
             "controller_authority_promoted": False,
         },
         "result_observed_at_freeze": False,
+        "pre_fit_amendments": [
+            {
+                "id": "persistent_contact_relations",
+                "trigger": (
+                    "first_compact_corpus_qa_contact_added_on_every_transition"
+                ),
+                "fit_observed_before_amendment": False,
+                "change": (
+                    "contact deltas restricted to confident one-to-one "
+                    "persistent object correspondences"
+                ),
+                "thresholds_changed": False,
+            }
+        ],
     }
     manifest["manifest_checksum"] = _checksum(manifest)
     _write_json(destination / "frozen_manifest.json", manifest)
