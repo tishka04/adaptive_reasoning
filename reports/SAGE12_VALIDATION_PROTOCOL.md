@@ -358,3 +358,28 @@ and relation removal. Nine active runs make no progress and propose no illegal
 action. Holdout and authority remain closed. Protocol and result:
 `reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_PROTOCOL.md` and
 `reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_RESULT.md`.
+
+## V4.19 topological-causal-invariant amendment
+
+V4.19 tests V4.18's representation diagnosis with explicit connected
+components, reachability, graph distance, articulation points, bridges,
+cycles, holes and persistent before/after correspondence. It fits 20
+factorized delta targets plus value at horizons 8, 16, 32 and 64 without game
+identity, palette, object identifiers or absolute coordinates.
+
+The registered controls include exact node permutation, relation removal,
+action-root binding swap, static invariants and action-only. Offline
+evaluation runs V4.15, V4.17, V4.18, all V4.19 controls, local and
+multi-horizon topology oracles and the exact oracle on all 768 panels.
+Nine fresh active runs use the same three games, seeds and budgets as V4.18.
+
+The completed result is `TOPOLOGICAL_OBJECTIVE_BOTTLENECK`. Correspondence and
+factor predictability passed their principal gates, but action-binding
+sensitivity, relation effect and identity leakage did not. The multi-horizon
+topology oracle was tied with V4.18, while exact utility retained substantial
+headroom. Active behavior exactly matched V4.18 with zero levels and wins.
+
+All commands used the V4.18 disk guard. No giant V4.16 corpus, raw-frame
+artifact, final holdout or controller authority was opened. See
+`reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md` and
+`reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_RESULT.md`.

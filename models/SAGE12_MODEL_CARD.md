@@ -318,3 +318,29 @@ active runs produce no level or WIN. Verdict:
 `REPRESENTATION_OR_DATA_BOTTLENECK`. The model has no controller authority,
 and neither historical nor final-holdout games were opened. Full result:
 `reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_RESULT.md`.
+
+## V4.19 topological causal predictor
+
+V4.19 uses a compact `512 → 128 → 64` MLP with 20 factor logits and four
+bounded value outputs for horizons 8, 16, 32 and 64. Inputs are canonical
+multisets of object/free-region descriptors, structural relations and
+explicit invariants such as components, reachability, actor-to-action-root
+distance, articulation points and bridges.
+
+The deployable input excludes game identity, palette, local/persistent object
+identifiers, absolute coordinates, seeds and raw action names. Persistent
+correspondence and observed after-state topology are teacher-only. Mean
+Bernoulli entropy over factor predictions supplies the deployed uncertainty
+penalty.
+
+Six LOGO folds produced factor macro-F1 0.2037 versus 0.0045 action-only, but
+binding swap did not degrade prediction, relation removal cost only 0.0370
+and the latent game-identity increment was 0.5257. Offline learned utility was
+effectively tied with V4.18, and the topology oracle itself failed to improve
+utility materially. Nine active runs completed no level and matched V4.18's
+terminal profile at greater latency.
+
+The model is therefore unsupported for authority or larger-scale training.
+Its small checkpoint remains in the ignored bounded local cache; the published
+metadata records its hash and regeneration contract. See
+`reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_RESULT.md`.

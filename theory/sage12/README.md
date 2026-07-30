@@ -952,3 +952,17 @@ three giant V4.16 corpora. Its protocol requires local and multi-horizon
 topology oracles, all learned/control lanes and nine bounded active runs to
 execute regardless of intermediate gates. See
 `reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md`.
+
+The completed experiment returned `TOPOLOGICAL_OBJECTIVE_BOTTLENECK`.
+Correspondence was strong (97.31% confident; 0.247% fully ambiguous), and
+factor macro-F1 improved by 0.1992 over action-only. However, binding swap did
+not hurt prediction, relation removal cost only 0.0370 and game-identity
+leakage remained high. More decisively, the multi-horizon topology oracle
+improved utility over V4.18 by only 0.00012 with an interval spanning zero,
+while the exact utility oracle retained a 0.4669 gain.
+
+Nine fresh active runs exactly matched V4.18: 8,184 actions, zero levels, zero
+wins, 93 `GAME_OVER` and zero illegal proposals. Mean decision latency
+increased from 0.0611 s to 0.2557 s. The result therefore rejects the current
+topological reward objective, not graph correspondence itself. See
+`reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_RESULT.md`.
