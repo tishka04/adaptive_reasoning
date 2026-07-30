@@ -1,0 +1,240 @@
+{
+  "active": {
+    "action_budget": 1000,
+    "fresh_runs": 9,
+    "games": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "maximum_resets": 14,
+    "reused_controllers": [
+      "milestone_policy_temporal_ebm",
+      "v4_17_hybrid",
+      "v4_18_goal_critic"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "authority": {
+    "controller_authority_promoted": false,
+    "holdout_opened": false
+  },
+  "format_version": "sage12-topological-causal-manifest-v4.19",
+  "manifest_checksum": "a5987bbc1b56a4744ab7c5857e8f946f3a17bfdeb4d7cf97259bef9bcce95793",
+  "model": {
+    "absolute_coordinates": false,
+    "batch_size": 256,
+    "epochs": 20,
+    "factor_loss_weight": 0.65,
+    "feature_width": 512,
+    "fold_epochs": 8,
+    "game_identity": false,
+    "hidden_width": 128,
+    "latent_width": 64,
+    "learning_rate": 0.001,
+    "object_identity": false,
+    "palette": false,
+    "raw_action_identity": false,
+    "value_loss_weight": 0.35,
+    "weight_decay": 0.0001
+  },
+  "offline": {
+    "arms": 2831,
+    "bootstrap_samples": 2000,
+    "conditions": [
+      "v4_15_policy",
+      "v4_17_hybrid",
+      "v4_18_learned",
+      "action_only",
+      "static_invariants",
+      "v4_19_learned",
+      "v4_19_without_relations",
+      "v4_19_binding_swapped",
+      "local_topology_oracle",
+      "multi_horizon_topology_oracle",
+      "exact_oracle"
+    ],
+    "minimum_nonnegative_games": 5,
+    "minimum_oracle_gain_capture": 0.3,
+    "panels": 768,
+    "temporal_ebm_coefficient": 0.5,
+    "uncertainty_coefficient": 0.25,
+    "value_coefficient": 0.5
+  },
+  "representation_gates": {
+    "maximum_fully_ambiguous_fraction": 0.1,
+    "maximum_identity_increment": 0.1,
+    "minimum_binding_swap_degradation": 0.05,
+    "minimum_confident_correspondence_fraction": 0.9,
+    "minimum_factor_f1_gain": 0.1,
+    "minimum_nonnegative_human_games": 5,
+    "minimum_relation_degradation": 0.05,
+    "node_permutation_exact": true
+  },
+  "result_observed_at_freeze": false,
+  "source_fingerprints": {
+    ".gitignore": {
+      "bytes": 877,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/.gitignore",
+      "sha256": "541ce1752e0f6316be58e71e69a014467015f50fb567bf8091c69d75c50bdae0"
+    },
+    "reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md": {
+      "bytes": 7563,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md",
+      "sha256": "b9e007c83103365443f8aeac03e175e7eb5e6f6f61b0dcd8391f4948c40116cc"
+    },
+    "theory/sage12/artifact_budget.py": {
+      "bytes": 9084,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/artifact_budget.py",
+      "sha256": "fea73dd59a681d6ef4056ca072f3f336b73c098d13bd063c437ea20f80df444a"
+    },
+    "theory/sage12/topological_causal_control_v4_19.py": {
+      "bytes": 72276,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/topological_causal_control_v4_19.py",
+      "sha256": "69f4b1dd4e6b54dda025d031903a718810463c26b0a79f09fa2de7b56ecde098"
+    },
+    "theory/sage12/topological_invariants_v4_19.py": {
+      "bytes": 18367,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/topological_invariants_v4_19.py",
+      "sha256": "e9316ca99d65be6782bc911541f7708c8ee7951c93699cb12b96f817ca82dde1"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json": {
+      "bytes": 3892,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json",
+      "sha256": "5dfc6100549ba9ab7047dcea2a0463025a26926ef6ba20a701cc48b57a95b967"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/teacher_panels.jsonl": {
+      "bytes": 14774023,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/counterfactual_semantics_v4_11/teacher_panels.jsonl",
+      "sha256": "0642073627de0f61a52c3adc55f984210e9304af56bf1bd1606e69ea2b74adf8"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/demonstration_choices.jsonl": {
+      "bytes": 292774743,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/demonstration_choices.jsonl",
+      "sha256": "3aefc5436cf2b0c50a74a5b09d5c487b0533b1e6dd75a72992b77f5e91329fa7"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/frozen_manifest.json": {
+      "bytes": 14626,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/frozen_manifest.json",
+      "sha256": "cfb587f7c7f222850327ac0d10a396b82d149955a941945760a24fe76c274114"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/teacher_qa.json": {
+      "bytes": 3429,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/teacher_qa.json",
+      "sha256": "981bb081ce48fd3106a00bce4b5d01587a39710bc4196f48ca49cba39bb40eae"
+    },
+    "training/sage12/goal_conditioned_trajectory_value_v4_18/active_runs.jsonl": {
+      "bytes": 14565,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/goal_conditioned_trajectory_value_v4_18/active_runs.jsonl",
+      "sha256": "d9025fbd41e6b191bd31e75f158d4927491a2bb65b26330603c7554d30a29539"
+    },
+    "training/sage12/goal_conditioned_trajectory_value_v4_18/offline_predictions.jsonl": {
+      "bytes": 715204,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/goal_conditioned_trajectory_value_v4_18/offline_predictions.jsonl",
+      "sha256": "15df39403a77a7ebe1c03bc4a3d9afc9f8c864eaf417aaa16efbc658464dd473"
+    },
+    "training/sage12/goal_conditioned_trajectory_value_v4_18/result.json": {
+      "bytes": 25662,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/goal_conditioned_trajectory_value_v4_18/result.json",
+      "sha256": "24c358299317a9ce125e6f97300fa453203d47e61dfb3f1f9debb40e761d919a"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/active_runs.jsonl": {
+      "bytes": 20453,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/active_runs.jsonl",
+      "sha256": "0bba1d5840a8e6515e58575664489498dfee3b7ce12798f7af484fd9b9385b34"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/offline_predictions.jsonl": {
+      "bytes": 1143543,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/offline_predictions.jsonl",
+      "sha256": "a4126eb50066b5408022879d7d3b5b4f29ca3dbe2db00ab8373b581e53efae56"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/result.json": {
+      "bytes": 26562,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/result.json",
+      "sha256": "134f6cae7f3a39e522173a878e4a1a5cac5718e8929a75cda63e41e95aac238c"
+    }
+  },
+  "split": {
+    "active_validation": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "final_confirmation_closed": [
+      "s5i5",
+      "vc33",
+      "m0r0",
+      "sk48",
+      "r11l"
+    ],
+    "human_train": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "offline_transfer": [
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ]
+  },
+  "storage": {
+    "embeddings_persisted": false,
+    "full_graphs_persisted": false,
+    "limits": {
+      "maximum_derived_file_bytes": 536870912,
+      "maximum_local_cache_bytes": 5368709120,
+      "maximum_repository_bytes": 12884901888,
+      "maximum_scratch_bytes": 5368709120,
+      "minimum_free_bytes": 107374182400
+    },
+    "raw_frames_persisted": false,
+    "v4_16_giant_corpora_regenerated": false
+  },
+  "teacher": {
+    "expected_records": 5661,
+    "expected_sequences": 41,
+    "factors": [
+      "birth",
+      "death",
+      "merge",
+      "split",
+      "relative_motion",
+      "morphology_changed",
+      "contact_added",
+      "contact_removed",
+      "free_region_increased",
+      "free_region_decreased",
+      "articulation_added",
+      "articulation_removed",
+      "bridge_added",
+      "bridge_removed",
+      "reachable_increased",
+      "reachable_decreased",
+      "root_distance_decreased",
+      "root_distance_increased",
+      "terminal_progress",
+      "risk"
+    ],
+    "gamma": 0.97,
+    "horizons": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "new_environment_collection": 0
+  }
+}
