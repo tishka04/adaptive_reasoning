@@ -1,0 +1,233 @@
+{
+  "active": {
+    "action_budget": 1000,
+    "fresh_runs": 9,
+    "games": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "maximum_resets": 14,
+    "online_oracle_executed": false,
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "authority": {
+    "controller_authority_promoted": false,
+    "holdout_opened": false
+  },
+  "checkpoint_regeneration": {
+    "components": [
+      "v4_14_temporal_student",
+      "v4_14_temporal_ebm",
+      "v4_15_demonstration_policy"
+    ],
+    "parity_diagnostic_not_gate": true,
+    "tracked_outputs_overwritten": false,
+    "tracked_sources_only": true
+  },
+  "format_version": "sage12-trajectory-value-manifest-v4.18",
+  "manifest_checksum": "3aa75a2e81a76f925221edf2393ccfda4481826362355813ff9937ec999e4194",
+  "model": {
+    "absolute_coordinates": false,
+    "batch_size": 256,
+    "epochs": 20,
+    "factor_loss_weight": 0.2,
+    "feature_width": 512,
+    "fold_epochs": 8,
+    "game_identity": false,
+    "hidden_width": 128,
+    "latent_width": 64,
+    "learning_rate": 0.001,
+    "palette": false,
+    "ranking_loss_weight": 0.1,
+    "raw_action_identity": false,
+    "value_loss_weight": 0.7,
+    "weight_decay": 0.0001
+  },
+  "offline": {
+    "arms": 2831,
+    "bootstrap_samples": 2000,
+    "conditions": [
+      "v4_15_policy",
+      "v4_17_hybrid",
+      "action_only",
+      "v4_18_learned",
+      "v4_18_without_relations",
+      "trajectory_oracle_hybrid",
+      "trajectory_oracle",
+      "exact_oracle"
+    ],
+    "panels": 768,
+    "temporal_ebm_coefficient": 0.5,
+    "value_coefficient": 0.5
+  },
+  "result_observed_at_freeze": false,
+  "source_fingerprints": {
+    ".gitignore": {
+      "bytes": 877,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/.gitignore",
+      "sha256": "541ce1752e0f6316be58e71e69a014467015f50fb567bf8091c69d75c50bdae0"
+    },
+    "reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_PROTOCOL.md": {
+      "bytes": 6246,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_PROTOCOL.md",
+      "sha256": "b7a0d992fb67acda38d4395c6d75d720d57cf32c3e68bce0825df120c4e637aa"
+    },
+    "theory/sage12/artifact_budget.py": {
+      "bytes": 9084,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/artifact_budget.py",
+      "sha256": "fea73dd59a681d6ef4056ca072f3f336b73c098d13bd063c437ea20f80df444a"
+    },
+    "theory/sage12/goal_conditioned_trajectory_value_v4_18.py": {
+      "bytes": 75507,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/theory/sage12/goal_conditioned_trajectory_value_v4_18.py",
+      "sha256": "e7ec5691ad3627e93a74c8f2e22571f830bc17a815563ded65dcca8ec81c54a8"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json": {
+      "bytes": 3892,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/counterfactual_semantics_v4_11/frozen_manifest.json",
+      "sha256": "5dfc6100549ba9ab7047dcea2a0463025a26926ef6ba20a701cc48b57a95b967"
+    },
+    "training/sage12/counterfactual_semantics_v4_11/teacher_panels.jsonl": {
+      "bytes": 14774023,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/counterfactual_semantics_v4_11/teacher_panels.jsonl",
+      "sha256": "0642073627de0f61a52c3adc55f984210e9304af56bf1bd1606e69ea2b74adf8"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/active_runs.jsonl": {
+      "bytes": 15083,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/active_runs.jsonl",
+      "sha256": "99f9def2c38bb93362ae36a9b414f08722b691863f73726d6f8d3df358911a6d"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/demonstration_choices.jsonl": {
+      "bytes": 292774743,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/demonstration_choices.jsonl",
+      "sha256": "3aefc5436cf2b0c50a74a5b09d5c487b0533b1e6dd75a72992b77f5e91329fa7"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/frozen_manifest.json": {
+      "bytes": 14626,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/frozen_manifest.json",
+      "sha256": "cfb587f7c7f222850327ac0d10a396b82d149955a941945760a24fe76c274114"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/logo_predictions.jsonl": {
+      "bytes": 17785960,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/logo_predictions.jsonl",
+      "sha256": "a6899c1f3fbb2fe743db57e1ae50d64c07cf8856704deda40b2a8c0c366f4b41"
+    },
+    "training/sage12/demonstration_milestone_policy_v4_15/teacher_qa.json": {
+      "bytes": 3429,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/demonstration_milestone_policy_v4_15/teacher_qa.json",
+      "sha256": "981bb081ce48fd3106a00bce4b5d01587a39710bc4196f48ca49cba39bb40eae"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/frozen_manifest.json": {
+      "bytes": 13948,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/human_temporal_semantics_v4_14/frozen_manifest.json",
+      "sha256": "f3e6001417a7b76c503721246ef9c4e288e0aa226695b263b0c7043bbc5b989e"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/logo_predictions.jsonl": {
+      "bytes": 17456152,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/human_temporal_semantics_v4_14/logo_predictions.jsonl",
+      "sha256": "a7f1aa80309315ec4d94338898123a08ee0542837ae6eeb25636051e4bc9e6e6"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/teacher_corpus.jsonl": {
+      "bytes": 29753012,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/human_temporal_semantics_v4_14/teacher_corpus.jsonl",
+      "sha256": "c515272bc8e40f7bdc8fd15395a2e8dc2ae093a3c1e2d7dd639582878088efac"
+    },
+    "training/sage12/human_temporal_semantics_v4_14/teacher_qa.json": {
+      "bytes": 6621,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/human_temporal_semantics_v4_14/teacher_qa.json",
+      "sha256": "5d71e8efa98af365e1cbc6b82d04a05cca3c92e7333aab06ca0c4c720b7a2a51"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/active_runs.jsonl": {
+      "bytes": 20453,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/active_runs.jsonl",
+      "sha256": "0bba1d5840a8e6515e58575664489498dfee3b7ce12798f7af484fd9b9385b34"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/offline_decisions.jsonl": {
+      "bytes": 2812962,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/offline_decisions.jsonl",
+      "sha256": "96e3972663de6cd5f4729998b76e32e7b8dacf463c26e7c729673384614e808f"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/offline_predictions.jsonl": {
+      "bytes": 1143543,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/offline_predictions.jsonl",
+      "sha256": "a4126eb50066b5408022879d7d3b5b4f29ca3dbe2db00ab8373b581e53efae56"
+    },
+    "training/sage12/sequence_transformation_policy_v4_17/result.json": {
+      "bytes": 26562,
+      "path": "C:/Users/coudr/projects/adaptive_reasoning/training/sage12/sequence_transformation_policy_v4_17/result.json",
+      "sha256": "134f6cae7f3a39e522173a878e4a1a5cac5718e8929a75cda63e41e95aac238c"
+    }
+  },
+  "split": {
+    "active_validation": [
+      "re86",
+      "ls20",
+      "sc25"
+    ],
+    "final_confirmation_closed": [
+      "s5i5",
+      "vc33",
+      "m0r0",
+      "sk48",
+      "r11l"
+    ],
+    "human_train": [
+      "ar25",
+      "bp35",
+      "cd82",
+      "cn04",
+      "dc22",
+      "ft09"
+    ],
+    "offline_transfer": [
+      "g50t",
+      "ka59",
+      "lf52",
+      "lp85",
+      "sp80",
+      "su15",
+      "tr87",
+      "tu93"
+    ]
+  },
+  "storage": {
+    "cache_dir": ".sage12_cache/v4_18",
+    "maximum_derived_file_bytes": 536870912,
+    "maximum_local_cache_bytes": 5368709120,
+    "maximum_repository_bytes": 12884901888,
+    "maximum_scratch_bytes": 5368709120,
+    "minimum_free_bytes": 107374182400,
+    "regenerable_v4_16_corpora_forbidden": [
+      "train_embeddings.jsonl",
+      "train_transitions.jsonl",
+      "transfer_transitions.jsonl"
+    ]
+  },
+  "teacher": {
+    "gamma": 0.97,
+    "goals": [
+      "motion",
+      "object_change",
+      "topology",
+      "access",
+      "terminal_progress",
+      "risk",
+      "overall"
+    ],
+    "horizons": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "records": 5661,
+    "sequences": 41,
+    "streaming": true,
+    "unexecuted_regression_targets": false
+  }
+}
