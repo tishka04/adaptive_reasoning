@@ -898,3 +898,28 @@ identical to V4.15 plus EBM, while decision latency increased from 0.077 s to
 holdout and controller authority remain closed. See
 `reports/SAGE12_SEQUENCE_TRANSFORMATION_POLICY_V4_17_PROTOCOL.md` and
 `reports/SAGE12_SEQUENCE_TRANSFORMATION_POLICY_V4_17_RESULT.md`.
+
+## Goal-conditioned trajectory value (V4.18)
+
+V4.18 replaces V4.17's two unconditional transformation prototypes with
+retrospective value at horizons 8, 16, 32 and 64. A compact object-relative
+critic predicts motion, object change, topology, access, terminal progress,
+risk and overall suffix value from complete human sequences.
+
+The experiment is protected by strict disk budgets: 5 GiB scratch, 5 GiB
+cache, 512 MiB per derived file, 12 GiB for the repository and a 100 GiB free
+space floor. Six commands completed with no budget error; the final repository
+was 7.522 GiB, the ignored cache 370.9 MiB and every scratch directory was
+removed.
+
+The trajectory-oracle hybrid validated the objective with a `+0.2334` utility
+gain over V4.15, 95% interval `[+0.1834, +0.2870]`. The learned critic gained
+only `+0.0442` over V4.15 and lost `−0.0347` to action-only. Removing relations
+improved utility by `0.0079`, so the relational value did not transfer.
+
+Nine fresh active runs executed 8,184 actions with zero illegal proposals but
+completed no level and won no game. Their outcomes exactly matched V4.15 and
+V4.17. The final verdict is `REPRESENTATION_OR_DATA_BOTTLENECK`; holdout and
+authority remain closed. See
+`reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_PROTOCOL.md` and
+`reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_RESULT.md`.

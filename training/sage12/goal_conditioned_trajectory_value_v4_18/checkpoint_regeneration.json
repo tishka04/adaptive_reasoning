@@ -1,0 +1,44 @@
+{
+  "checkpoints": {
+    "v4_14_temporal_ebm": {
+      "bytes": 4003,
+      "path": ".sage12_cache/v4_18/v4_14/trajectory_ebm.pt",
+      "sha256": "debcc8ecb68e26da24262d88f1e2f67e98c63265655a086184f226f04c5d8064"
+    },
+    "v4_14_temporal_student": {
+      "bytes": 787271,
+      "path": ".sage12_cache/v4_18/v4_14/temporal_student.pt",
+      "sha256": "13d494fac7b5d1ed5d89645ba4b86aa75293bb4947906a178a93ca149ae03363"
+    },
+    "v4_15_policy": {
+      "bytes": 942601,
+      "path": ".sage12_cache/v4_18/v4_15/demonstration_policy.pt",
+      "sha256": "666aef0ae5ef63890633b6bb491a7e1692b8912bc13c128bc2226f47e35491ab"
+    }
+  },
+  "elapsed_seconds": 1217.2654643999413,
+  "format_version": "sage12-goal-conditioned-trajectory-value-v4.18",
+  "manifest_checksum": "3aa75a2e81a76f925221edf2393ccfda4481826362355813ff9937ec999e4194",
+  "result_checksum": "5aa670bc26b9ccd3bb2250358720c487ef122aa5725c23a0103554a9341fe3dc",
+  "tracked_outputs_overwritten": false,
+  "v4_14": {
+    "global_result_checksum": "a78ca095e38f96d9738a2dea1f580b3ea3391d88f1b0ba673a4dd5afc04aa8c3",
+    "parity": {
+      "effect_bit_agreement": 0.8984590126458638,
+      "mean_probability_delta": 0.1012065246888513,
+      "records": 5661
+    },
+    "selected_device": "cpu",
+    "semantic_result_checksum": null
+  },
+  "v4_15": {
+    "parity": {
+      "milestone_agreement": 0.7661190602367073,
+      "records": 5661,
+      "selected_action_agreement": 0.8005652711535064
+    },
+    "result_checksum": null,
+    "selected_device": "cpu"
+  },
+  "v4_16_corpora_regenerated": false
+}

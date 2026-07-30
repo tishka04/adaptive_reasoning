@@ -1,0 +1,277 @@
+{
+  "active_checksum": "f09e04b919b8ebf7447267f5c2c4d02873348b6eab4e071a3bffee274e329635",
+  "active_progress": false,
+  "artifacts": {
+    "runs": {
+      "bytes": 14565,
+      "sha256": "d9025fbd41e6b191bd31e75f158d4927491a2bb65b26330603c7554d30a29539"
+    },
+    "traces": {
+      "bytes": 6178314,
+      "sha256": "99ef229fbb548cb5e65e296f0519592411bc5fd991f447e404ae771afa0f7d4b"
+    }
+  },
+  "authority_promoted": false,
+  "elapsed_seconds": 557.7665869001066,
+  "format_version": "sage12-trajectory-value-active-v4.18",
+  "fresh_runs": 9,
+  "games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "holdout_opened": false,
+  "manifest_checksum": "3aa75a2e81a76f925221edf2393ccfda4481826362355813ff9937ec999e4194",
+  "metrics": {
+    "milestone_policy_temporal_ebm": {
+      "actions": 8184,
+      "game_overs": 93,
+      "illegal_proposals": 0,
+      "levels": 0,
+      "mean_decision_latency_seconds": 0.0773679526029382,
+      "per_game": {
+        "ls20": {
+          "actions": 3000,
+          "game_overs": 21,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "re86": {
+          "actions": 3000,
+          "game_overs": 30,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "sc25": {
+          "actions": 2184,
+          "game_overs": 42,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        }
+      },
+      "runs": 9,
+      "wins": 0
+    },
+    "v4_17_hybrid": {
+      "actions": 8184,
+      "game_overs": 93,
+      "illegal_proposals": 0,
+      "levels": 0,
+      "mean_decision_latency_seconds": 0.24788282676645945,
+      "per_game": {
+        "ls20": {
+          "actions": 3000,
+          "game_overs": 21,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "re86": {
+          "actions": 3000,
+          "game_overs": 30,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "sc25": {
+          "actions": 2184,
+          "game_overs": 42,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        }
+      },
+      "runs": 9,
+      "wins": 0
+    },
+    "v4_18_goal_critic": {
+      "actions": 8184,
+      "game_overs": 93,
+      "illegal_proposals": 0,
+      "levels": 0,
+      "mean_decision_latency_seconds": 0.061123518411996036,
+      "per_game": {
+        "ls20": {
+          "actions": 3000,
+          "game_overs": 21,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "re86": {
+          "actions": 3000,
+          "game_overs": 30,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        },
+        "sc25": {
+          "actions": 2184,
+          "game_overs": 42,
+          "levels": 0,
+          "runs": 3,
+          "wins": 0
+        }
+      },
+      "runs": 9,
+      "wins": 0
+    }
+  },
+  "paired_comparisons": [
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "re86",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "ls20",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "ls20",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "ls20",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "ls20",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "ls20",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "ls20",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 0,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 1,
+      "win_gain": 0
+    },
+    {
+      "baseline": "milestone_policy_temporal_ebm",
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    },
+    {
+      "baseline": "v4_17_hybrid",
+      "game_id": "sc25",
+      "game_over_delta": 0,
+      "level_gain": 0,
+      "seed": 2,
+      "win_gain": 0
+    }
+  ],
+  "reused_runs": 18,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "status": "COMPLETE",
+  "total_runs": 27
+}
