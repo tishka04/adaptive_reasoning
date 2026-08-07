@@ -923,3 +923,46 @@ V4.17. The final verdict is `REPRESENTATION_OR_DATA_BOTTLENECK`; holdout and
 authority remain closed. See
 `reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_PROTOCOL.md` and
 `reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_RESULT.md`.
+
+## Topological causal invariants (V4.19)
+
+V4.19 tests V4.18's representation diagnosis directly. It replaces hashed
+generic relations with explicit graph invariants: components, reachability,
+actor-to-action-root distance, articulation points, bridges, cycles, holes and
+their observed causal deltas. Persistent before/after correspondence remains
+teacher-only and is audited for ambiguity.
+
+The compact predictor learns 20 factorized transformation targets and
+multi-horizon value from the existing 5,661 human decisions. Its student view
+contains no game identity, palette, object identifier or absolute coordinate.
+Node permutations must produce bit-identical features. Registered controls
+remove relations, swap the action-root binding, retain static invariants only
+or reduce the model to action family.
+
+```powershell
+python -m theory.sage12.topological_causal_control_v4_19 freeze
+python -m theory.sage12.topological_causal_control_v4_19 compile
+python -m theory.sage12.topological_causal_control_v4_19 train --device auto
+python -m theory.sage12.topological_causal_control_v4_19 evaluate --device auto
+python -m theory.sage12.topological_causal_control_v4_19 active --device auto
+```
+
+The experiment inherits V4.18's strict disk guard and never regenerates the
+three giant V4.16 corpora. Its protocol requires local and multi-horizon
+topology oracles, all learned/control lanes and nine bounded active runs to
+execute regardless of intermediate gates. See
+`reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_PROTOCOL.md`.
+
+The completed experiment returned `TOPOLOGICAL_OBJECTIVE_BOTTLENECK`.
+Correspondence was strong (97.31% confident; 0.247% fully ambiguous), and
+factor macro-F1 improved by 0.1992 over action-only. However, binding swap did
+not hurt prediction, relation removal cost only 0.0370 and game-identity
+leakage remained high. More decisively, the multi-horizon topology oracle
+improved utility over V4.18 by only 0.00012 with an interval spanning zero,
+while the exact utility oracle retained a 0.4669 gain.
+
+Nine fresh active runs exactly matched V4.18: 8,184 actions, zero levels, zero
+wins, 93 `GAME_OVER` and zero illegal proposals. Mean decision latency
+increased from 0.0611 s to 0.2557 s. The result therefore rejects the current
+topological reward objective, not graph correspondence itself. See
+`reports/SAGE12_TOPOLOGICAL_CAUSAL_INVARIANTS_V4_19_RESULT.md`.
