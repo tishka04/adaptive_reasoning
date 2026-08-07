@@ -1,3 +1,5 @@
+.gitattributes text eol=lf
+.gitignore text eol=lf
 training/*.jsonl filter=lfs diff=lfs merge=lfs -text
 training/**/*.jsonl filter=lfs diff=lfs merge=lfs -text
 models/*.joblib filter=lfs diff=lfs merge=lfs -text
@@ -11,6 +13,10 @@ theory/sage_t/*.json text eol=lf
 theory/sage_t/*.md text eol=lf
 tests/test_sage_t_*.py text eol=lf
 reports/SAGE_T10_1_BASELINE.md text eol=lf
+reports/SAGE_T10_2_*.md text eol=lf
 training/sage_t/progress_witness_v10_0b/report.json text eol=lf
 training/sage_t/progress_witness_v10_1/report.json text eol=lf
 training/sage_t/t10_1_omitted_artifacts_inventory.json text eol=lf
+training/sage_t/t10_2_gauge_posterior/*.json text eol=lf
+training/sage_t/t10_2_omitted_artifacts_inventory.json text eol=lf
+training/sage_t/t10_2_report_inventory_binding.json text eol=lf
