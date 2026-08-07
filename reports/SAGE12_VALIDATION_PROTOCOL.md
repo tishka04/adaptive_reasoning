@@ -338,3 +338,23 @@ negative in two games, and both root/relation controls moved in the wrong
 direction. The fresh-source and validation commands wrote closure artifacts
 and created no shard. Stages B-E remain unauthorized. Full result:
 `reports/SAGE12_OBJECT_CAUSAL_PILOT_V4_5_RESULT.md`.
+
+## V4.18 goal-conditioned trajectory-value amendment
+
+V4.18 is a separately frozen diagnostic over the complete V4.15 human
+sequences and existing V4.11 transfer panels. It assigns retrospective credit
+at horizons 8, 16, 32 and 64, fits a compact object-relative critic and
+compares V4.15, V4.17, action-only, learned, relation-removed, trajectory
+oracle and exact-oracle lanes without a blocking intermediate gate.
+
+The storage contract is part of validation: every command records pre/post
+inventories, limits scratch and local cache to 5 GiB each, rejects derived
+files above 512 MiB, caps the repository at 12 GiB, requires 100 GiB free and
+removes command scratch before success.
+
+The completed result is `REPRESENTATION_OR_DATA_BOTTLENECK`. The trajectory
+oracle validates the objective, while the learned critic loses to action-only
+and relation removal. Nine active runs make no progress and propose no illegal
+action. Holdout and authority remain closed. Protocol and result:
+`reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_PROTOCOL.md` and
+`reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_RESULT.md`.

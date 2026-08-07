@@ -31,6 +31,13 @@ training/sage11/**/base_work/
 training/sage12/semantic_adapter_v4_8/embedding_cache.npz
 training/sage12/semantic_adapter_v4_8/*.log
 
+# Bounded local experiment scratch and regenerable SAGE12 V4.16 corpora.
+.sage12_scratch/
+.sage12_cache/
+training/sage12/morpho_topological_v4_16/train_embeddings.jsonl
+training/sage12/morpho_topological_v4_16/train_transitions.jsonl
+training/sage12/morpho_topological_v4_16/transfer_transitions.jsonl
+
 # Jupyter
 .ipynb_checkpoints/
 

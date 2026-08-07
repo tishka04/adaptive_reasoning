@@ -1,0 +1,35 @@
+{
+  "artifact_bytes": 19829686,
+  "artifact_sha256": "3c563ca501aa55d1c6099272d326077d48e49d44ba34224e7501ea09cb317a6f",
+  "event_counts": {
+    "access": 780,
+    "motion": 1727,
+    "object_change": 5123,
+    "risk": 322,
+    "terminal_progress": 74,
+    "topology": 1295
+  },
+  "format_version": "sage12-goal-conditioned-trajectory-value-v4.18",
+  "games": {
+    "ar25": 1156,
+    "bp35": 970,
+    "cd82": 751,
+    "cn04": 401,
+    "dc22": 1920,
+    "ft09": 463
+  },
+  "manifest_checksum": "3aa75a2e81a76f925221edf2393ccfda4481826362355813ff9937ec999e4194",
+  "positive_overall_by_horizon": {
+    "16": 5453,
+    "32": 5517,
+    "64": 5529,
+    "8": 5324
+  },
+  "qa_checksum": "bc08113b9923a77fc71ced27005d4feb647ef14320b546c0cffab7aab37173ee",
+  "records": 5661,
+  "sequences": 41,
+  "streamed": true,
+  "student_view_safe": true,
+  "teacher_ready": true,
+  "unexecuted_regression_targets": 0
+}

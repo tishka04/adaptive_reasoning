@@ -302,3 +302,19 @@ projections had negative Brier skill, excessive identity gain, failed
 calibration, negative bootstrap lower bounds, and binding swaps that improved
 accuracy. The result rejects the current `BindingSignature` as a transferable
 relative causal discriminator. No validation data or world model was opened.
+
+## V4.18 goal-conditioned trajectory critic
+
+V4.18 fits a compact 512→128→64 MLP with a `7 × 4` value head and six
+immediate-factor outputs. It consumes hashed, palette-free, object-relative
+candidate graphs and receives retrospective supervision at horizons 8, 16,
+32 and 64. The published checkpoint hash is recorded, but the checkpoint
+itself remains in an ignored bounded cache and is regenerable.
+
+The true-future trajectory oracle strongly improves the existing policy, so
+the value objective is useful. The learned critic does not pass: it is worse
+than action-only on transfer, relation removal does not hurt it and nine
+active runs produce no level or WIN. Verdict:
+`REPRESENTATION_OR_DATA_BOTTLENECK`. The model has no controller authority,
+and neither historical nor final-holdout games were opened. Full result:
+`reports/SAGE12_GOAL_CONDITIONED_TRAJECTORY_VALUE_V4_18_RESULT.md`.
