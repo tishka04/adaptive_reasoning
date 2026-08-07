@@ -84,6 +84,10 @@ CONFIRMATION_SEEDS = (3, 4, 5)
 SOURCE_RESETS_PER_GAME_SEED = 4
 SOURCE_ACTIONS_PER_RESET = 64
 SOURCE_MAXIMUM_ACTIONS = 4_608
+SOURCE_PRECOLLECTION_ABORTED_ACTIONS = 1
+SOURCE_MAXIMUM_NEW_ACTIONS = (
+    SOURCE_MAXIMUM_ACTIONS - SOURCE_PRECOLLECTION_ABORTED_ACTIONS
+)
 SOURCE_MAXIMUM_WALL_SECONDS = 5_400
 
 VALIDATION_SEEDS = (2101, 2102, 2103, 2104, 2105)
@@ -715,6 +719,8 @@ def build_manifest(
                 },
             },
             "maximum_actions": SOURCE_MAXIMUM_ACTIONS,
+            "precollection_aborted_actions": SOURCE_PRECOLLECTION_ABORTED_ACTIONS,
+            "maximum_new_actions": SOURCE_MAXIMUM_NEW_ACTIONS,
             "maximum_wall_seconds": SOURCE_MAXIMUM_WALL_SECONDS,
         },
         "validation_plan": {
@@ -857,6 +863,8 @@ def _validate_manifest_constants(manifest: Mapping[str, Any]) -> None:
             },
         },
         "maximum_actions": SOURCE_MAXIMUM_ACTIONS,
+        "precollection_aborted_actions": SOURCE_PRECOLLECTION_ABORTED_ACTIONS,
+        "maximum_new_actions": SOURCE_MAXIMUM_NEW_ACTIONS,
         "maximum_wall_seconds": SOURCE_MAXIMUM_WALL_SECONDS,
     }
     expected_validation_plan = {
@@ -3043,6 +3051,15 @@ def read_cross_fit_audit(
     return audit
 
 
+def _source_lane_action_budget(collected_actions: int) -> int:
+    if isinstance(collected_actions, bool) or collected_actions < 0:
+        raise DataGateError("source collection action accounting is invalid")
+    remaining = SOURCE_MAXIMUM_NEW_ACTIONS - collected_actions
+    if remaining < 0:
+        raise DataGateError("source collection exceeded 4,607 new actions")
+    return min(SOURCE_RESETS_PER_GAME_SEED * SOURCE_ACTIONS_PER_RESET, remaining)
+
+
 def collect_phase(
     *,
     manifest_path: str | Path = DEFAULT_MANIFEST_PATH,
@@ -3105,7 +3122,6 @@ def collect_phase(
         return observed
 
     started = sample_clock("start")
-    maximum_per_lane = SOURCE_RESETS_PER_GAME_SEED * SOURCE_ACTIONS_PER_RESET
     lanes = [
         ("discovery", game_id, seed, None)
         for game_id in selected_games
@@ -3134,6 +3150,7 @@ def collect_phase(
             held_out_game=held_out_game,
         )
         try:
+            total_action_budget = _source_lane_action_budget(len(rows))
             raw_rows = _environment_rows(
                 environment,
                 context={
@@ -3146,6 +3163,7 @@ def collect_phase(
                     ),
                     "resets": SOURCE_RESETS_PER_GAME_SEED,
                     "action_budget": SOURCE_ACTIONS_PER_RESET,
+                    "total_action_budget": total_action_budget,
                     "stop_on_progress": True,
                     "stop_on_game_over": True,
                 },
@@ -3154,7 +3172,7 @@ def collect_phase(
             close = getattr(environment, "close", None)
             if callable(close):
                 close()
-        if len(raw_rows) > maximum_per_lane:
+        if len(raw_rows) > total_action_budget:
             raise DataGateError(f"source lane exceeded action budget: {game_id}/{seed}")
         rows.extend(
             _fresh_source_event(
@@ -3174,8 +3192,8 @@ def collect_phase(
         )
         if sample_clock("lane completion") - started > SOURCE_MAXIMUM_WALL_SECONDS:
             raise ResourceGateError("source collection exceeded 5,400 seconds")
-    if len(rows) > SOURCE_MAXIMUM_ACTIONS:
-        raise DataGateError("source collection exceeded 4,608 actions")
+    if len(rows) > SOURCE_MAXIMUM_NEW_ACTIONS:
+        raise DataGateError("source collection exceeded 4,607 new actions")
     validate_source_events(rows, manifest=manifest, replay=False)
     if sample_clock("ledger preflight") - started > SOURCE_MAXIMUM_WALL_SECONDS:
         raise ResourceGateError("source collection exceeded 5,400 seconds")
@@ -3218,6 +3236,11 @@ def collect_phase(
                 "leave_one_game_out_confirmation": list(CONFIRMATION_SEEDS),
             },
             "event_count": len(rows),
+            "precollection_aborted_actions": (SOURCE_PRECOLLECTION_ABORTED_ACTIONS),
+            "maximum_new_actions": SOURCE_MAXIMUM_NEW_ACTIONS,
+            "accounted_action_count": (
+                SOURCE_PRECOLLECTION_ABORTED_ACTIONS + len(rows)
+            ),
             "wall_seconds": wall_seconds,
             "timing": {
                 "clock": "time.perf_counter",
@@ -3288,8 +3311,21 @@ def compile_phase(
         raise GateRefusalError("source collection is incomplete")
     if collection.get("manifest_checksum") != manifest["manifest_checksum"]:
         raise ManifestDriftError("collection/manifest binding drifted")
+    if (
+        collection.get("precollection_aborted_actions")
+        != SOURCE_PRECOLLECTION_ABORTED_ACTIONS
+        or collection.get("maximum_new_actions") != SOURCE_MAXIMUM_NEW_ACTIONS
+    ):
+        raise ManifestDriftError("collection source action budget binding drifted")
     _verify_artifact_binding(collection, source_path, key="events")
     events = read_event_ledger(source_path)
+    if (
+        collection.get("event_count") != len(events)
+        or len(events) > SOURCE_MAXIMUM_NEW_ACTIONS
+        or collection.get("accounted_action_count")
+        != SOURCE_PRECOLLECTION_ABORTED_ACTIONS + len(events)
+    ):
+        raise ManifestDriftError("collection source action accounting drifted")
     validate_source_events(events, manifest=manifest, replay=False)
     cross_fit_path = destination / CROSS_FIT_AUDIT_FILENAME
     _verify_artifact_binding(collection, cross_fit_path, key="cross_fit_audit")
@@ -3463,6 +3499,8 @@ def build_data_invalid_source_report(
         "status": "DATA_OR_PROVENANCE_INVALID",
         "verdict": "DATA_OR_PROVENANCE_INVALID",
         "manifest_checksum": manifest["manifest_checksum"],
+        "precollection_aborted_actions": SOURCE_PRECOLLECTION_ABORTED_ACTIONS,
+        "maximum_new_actions": SOURCE_MAXIMUM_NEW_ACTIONS,
         "reason": str(reason),
         "checks": {
             "compile_integrity_passed": compile_passed,
@@ -3923,6 +3961,8 @@ def build_source_gate_report(
         "status": "PASS_T10_2_SOURCE_GATE" if passed else "FAIL_T10_2_SOURCE_GATE",
         "verdict": verdict,
         "manifest_checksum": manifest["manifest_checksum"],
+        "precollection_aborted_actions": SOURCE_PRECOLLECTION_ABORTED_ACTIONS,
+        "maximum_new_actions": SOURCE_MAXIMUM_NEW_ACTIONS,
         "metrics": dict(metrics),
         "registered_controls": {
             name: completed_controls.get(name) is True
@@ -5186,6 +5226,8 @@ def _reconstruct_source_report(
                 "status",
                 "verdict",
                 "manifest_checksum",
+                "precollection_aborted_actions",
+                "maximum_new_actions",
                 "checks",
                 "passed",
                 "firewall",
@@ -5232,6 +5274,8 @@ def _reconstruct_source_report(
             "status",
             "verdict",
             "manifest_checksum",
+            "precollection_aborted_actions",
+            "maximum_new_actions",
             "metrics",
             "registered_controls",
             "checks",
@@ -5640,6 +5684,9 @@ __all__ = [
     "REGISTERED_FRAME_ORDER",
     "REGISTERED_SOURCE_CONTROLS",
     "SOURCE_GAMES",
+    "SOURCE_MAXIMUM_ACTIONS",
+    "SOURCE_MAXIMUM_NEW_ACTIONS",
+    "SOURCE_PRECOLLECTION_ABORTED_ACTIONS",
     "VALIDATION_GAMES",
     "VALIDATION_SEEDS",
     "DataGateError",

@@ -673,13 +673,20 @@ def _make_bundle(
         "step_index": step_index,
         "game_id": game_id,
     }
-    raw = (
-        _default_bundle(**context)
-        if builder is None
-        else _invoke(
+    if builder is None:
+        raw = _default_bundle(
+            before=before,
+            after=after,
+            action=action,
+            legal_actions=tuple(legal_actions),
+            event_id=event_id,
+            step_index=step_index,
+            game_id=game_id,
+        )
+    else:
+        raw = _invoke(
             builder, context=context, positional=(before, after, action, event_id)
         )
-    )
     if isinstance(raw, ObservedTransition):
         raw = project_transition_with_frozen_frames(raw, event_id=event_id)
     if not isinstance(raw, PhysicalEventBundle):
@@ -2295,6 +2302,7 @@ class _SourceLaneEnvironment:
         action_budget: int,
         stop_on_progress: bool,
         stop_on_game_over: bool,
+        total_action_budget: int | None = None,
     ) -> list[dict[str, Any]]:
         if (game_id, int(seed), split, held_out_game, tuple(training_games)) != (
             self.game_id,
@@ -2310,6 +2318,16 @@ class _SourceLaneEnvironment:
             raise DataGateError("source resets exceed the registered bound")
         if not 1 <= int(action_budget) <= SOURCE_ACTIONS_PER_RESET:
             raise DataGateError("source action budget exceeds 64")
+        maximum_lane_actions = int(resets) * int(action_budget)
+        if total_action_budget is None:
+            total_action_budget = maximum_lane_actions
+        if (
+            isinstance(total_action_budget, bool)
+            or int(total_action_budget) != total_action_budget
+            or not 0 <= int(total_action_budget) <= maximum_lane_actions
+        ):
+            raise DataGateError("source total action budget exceeds the lane bound")
+        lane_action_budget = int(total_action_budget)
         if stop_on_progress is not True or stop_on_game_over is not True:
             raise DataGateError("source collection must stop on progress and GAME_OVER")
 
@@ -2352,6 +2370,7 @@ class _SourceLaneEnvironment:
                 # every compact control record instead of aborting other lanes.
                 independent_refusal = str(exc)
         events: list[dict[str, Any]] = []
+        lane_action_count = 0
         independent_counts: Counter[tuple[str, int]] = Counter()
         learned_counts: Counter[tuple[str, int]] = Counter()
         grounding_counts: Counter[str] = Counter()
@@ -2413,6 +2432,9 @@ class _SourceLaneEnvironment:
             frame = _reset_runtime(runtime, self._environment)
             before = _snapshot_runtime(runtime, frame)
             for step_index in range(int(action_budget)):
+                if lane_action_count >= lane_action_budget:
+                    stop_reason = "total_action_budget_exhausted"
+                    break
                 if _is_terminal(before):
                     stop_reason = "game_over" if _is_game_over(before) else "terminal"
                     break
@@ -2467,6 +2489,7 @@ class _SourceLaneEnvironment:
                     }
                 )
                 after_frame = _step_runtime(runtime, self._environment, selected)
+                lane_action_count += 1
                 after = _snapshot_runtime(
                     runtime,
                     after_frame,
@@ -2694,6 +2717,8 @@ class _SourceLaneEnvironment:
                     "resets": reset_audit,
                 }
             )
+        if lane_action_count != len(events):
+            raise DataGateError("source action accounting diverged from sealed events")
         return events
 
     def _posterior_decision(

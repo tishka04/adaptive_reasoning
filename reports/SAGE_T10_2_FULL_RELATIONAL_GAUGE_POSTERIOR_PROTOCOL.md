@@ -304,3 +304,29 @@ attempt requires a new version and manifest.
 5. Publish the final report, checksums, latency/resource evidence, all
    negative controls, and an explicit artifact-exclusion inventory in the
    stacked draft PR.
+
+## Amendment A1 - default bundle dispatch before collection
+
+The first invocation of `collect` under manifest `018bff2e...` stopped on the
+first source transition because the internal dispatch passed two
+custom-builder-only keywords to the closed default bundle constructor.  The
+environment step had already executed one legal action on the allowed `bp35`
+source game, but bundle construction failed before an event could be sealed.
+No output directory, ledger, projection, checkpoint, report, QA result, or fit
+was created, and no evidence from that action is available to the learner.
+The invocation is recorded as a technical `DATA_OR_PROVENANCE_INVALID` attempt,
+not as the scientific verdict of the amended T10.2 experiment.
+
+Amendment A1 makes only the following execution correction:
+
+- call the default bundle constructor with its seven declared keyword
+  arguments;
+- retain the enriched context only for injected builders;
+- add a regression test exercising the strict default signature;
+- regenerate and publish the code-bound manifest before retrying `collect`.
+
+The aborted action is included in the source action accounting.  The completed
+collection plus this one action must remain at or below the registered ceiling
+of 4,608.  Frames, splits, seeds, resets, gates, priors, controls, verdicts, and
+validation conditions are unchanged.  This is an implementation amendment,
+not a methodological retuning.

@@ -153,6 +153,55 @@ def _bundle_builder(
     return project_transition_with_frozen_frames(evidence, event_id=event_id)
 
 
+def test_default_bundle_dispatch_excludes_custom_builder_only_keywords(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    captured: dict[str, Any] = {}
+
+    def strict_default_bundle(
+        *,
+        before: FakeSnapshot,
+        after: FakeSnapshot,
+        action: FakeAction,
+        legal_actions: tuple[FakeAction, ...],
+        event_id: str,
+        step_index: int,
+        game_id: str,
+    ) -> PhysicalEventBundle:
+        captured.update(
+            {
+                "legal_actions": legal_actions,
+                "step_index": step_index,
+                "game_id": game_id,
+            }
+        )
+        return _bundle_builder(before, after, action, event_id)
+
+    monkeypatch.setattr(
+        runtime_adapter,
+        "_default_bundle",
+        strict_default_bundle,
+    )
+    action = FakeAction("ACTION1", {})
+    bundle = runtime_adapter._make_bundle(
+        None,
+        before=FakeSnapshot(levels_completed=0),
+        after=FakeSnapshot(levels_completed=1),
+        action=action,
+        legal_actions=(action,),
+        event_id="default-bundle-dispatch",
+        step_index=3,
+        game_id=protocol.SOURCE_GAMES[0],
+    )
+
+    assert bundle.event_id == "default-bundle-dispatch"
+    assert captured == {
+        "legal_actions": (action,),
+        "step_index": 3,
+        "game_id": protocol.SOURCE_GAMES[0],
+    }
+
+
 def _collect(
     factory: T10_2SourceFactory,
     game: str,
@@ -160,6 +209,7 @@ def _collect(
     seed: int,
     split: str,
     held_out: str | None,
+    total_action_budget: int | None = None,
 ) -> list[dict[str, Any]]:
     donors = tuple(item for item in protocol.SOURCE_GAMES if item != held_out)
     environment = factory(
@@ -181,9 +231,33 @@ def _collect(
             action_budget=2,
             stop_on_progress=True,
             stop_on_game_over=True,
+            total_action_budget=total_action_budget,
         )
     finally:
         environment.close()
+
+
+def test_source_lane_total_budget_stops_before_the_next_runtime_step() -> None:
+    factory = T10_2SourceFactory(
+        runtime_loader=lambda: FakeRuntime(progress=False),
+        bundle_builder=_bundle_builder,
+    )
+
+    rows = _collect(
+        factory,
+        protocol.SOURCE_GAMES[0],
+        seed=0,
+        split="discovery",
+        held_out=None,
+        total_action_budget=3,
+    )
+
+    assert len(rows) == 3
+    assert [(row["reset_index"], row["step_index"]) for row in rows] == [
+        (0, 0),
+        (0, 1),
+        (1, 0),
+    ]
 
 
 def _walk_keys(value: Any) -> set[str]:

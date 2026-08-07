@@ -518,6 +518,9 @@ def test_manifest_binds_baseline_code_inputs_runtime_and_source_shards(
         "raw_frames_persisted": False,
         "full_graphs_persisted": False,
     }
+    assert loaded["source_plan"]["maximum_actions"] == 4_608
+    assert loaded["source_plan"]["precollection_aborted_actions"] == 1
+    assert loaded["source_plan"]["maximum_new_actions"] == 4_607
     assert set(loaded["frozen_source_shards"]) == set(protocol.SOURCE_GAMES)
     assert set(loaded["source_environment_metadata"]) == set(protocol.SOURCE_GAMES)
     assert set(loaded["environment"]["runtime_versions"]) == {
@@ -819,6 +822,15 @@ def test_collection_finishes_discovery_before_confirmation_and_marks_holdout_fol
 ) -> None:
     path, _manifest = frozen_manifest
     calls: list[tuple[str, int, str, str | None, tuple[str, ...]]] = []
+    lane_budgets: list[int] = []
+
+    class Environment:
+        def __init__(self, event_id: str) -> None:
+            self.event_id = event_id
+
+        def collect_events(self, *, total_action_budget: int) -> list[dict]:
+            lane_budgets.append(total_action_budget)
+            return [_raw_event(self.event_id)]
 
     def factory(
         game_id: str,
@@ -828,7 +840,7 @@ def test_collection_finishes_discovery_before_confirmation_and_marks_holdout_fol
         training_games: tuple[str, ...],
     ):
         calls.append((game_id, seed, split, held_out_game, training_games))
-        return [_raw_event(f"{split}:{game_id}:{seed}")]
+        return Environment(f"{split}:{game_id}:{seed}")
 
     report = protocol.collect_phase(
         manifest_path=path,
@@ -839,11 +851,54 @@ def test_collection_finishes_discovery_before_confirmation_and_marks_holdout_fol
         _test_only_allow_factory=True,
     )
     assert report["event_count"] == 18
+    assert report["precollection_aborted_actions"] == 1
+    assert report["maximum_new_actions"] == 4_607
+    assert report["accounted_action_count"] == 19
     assert all(call[2] == "discovery" for call in calls[:9])
     assert all(call[3] is None for call in calls[:9])
     assert all(call[2] == "leave_one_game_out_confirmation" for call in calls[9:])
     assert all(call[3] == call[0] for call in calls[9:])
     assert all(call[0] not in call[4] for call in calls[9:])
+    assert lane_budgets == [256] * 18
+
+
+def test_source_lane_budget_reserves_the_aborted_precollection_action() -> None:
+    assert protocol.SOURCE_MAXIMUM_ACTIONS == 4_608
+    assert protocol.SOURCE_PRECOLLECTION_ABORTED_ACTIONS == 1
+    assert protocol.SOURCE_MAXIMUM_NEW_ACTIONS == 4_607
+    assert protocol._source_lane_action_budget(0) == 256
+    assert protocol._source_lane_action_budget(4_352) == 255
+    assert protocol._source_lane_action_budget(4_607) == 0
+    with pytest.raises(protocol.DataGateError, match="4,607"):
+        protocol._source_lane_action_budget(4_608)
+
+
+def test_collection_rejects_a_lane_returning_more_than_its_remaining_budget(
+    frozen_manifest: tuple[Path, dict],
+    tmp_path: Path,
+) -> None:
+    manifest_path, _manifest = frozen_manifest
+    observed_budgets: list[int] = []
+
+    class Environment:
+        def collect_events(self, *, total_action_budget: int) -> list[dict]:
+            observed_budgets.append(total_action_budget)
+            return [
+                _raw_event(f"over-budget-{index}")
+                for index in range(total_action_budget + 1)
+            ]
+
+    with pytest.raises(protocol.DataGateError, match="lane exceeded action budget"):
+        protocol.collect_phase(
+            manifest_path=manifest_path,
+            output_dir=tmp_path / "output",
+            repo_root=REPO_ROOT,
+            env_factory=lambda **_kwargs: Environment(),
+            resource_probe=_roomy,
+            _test_only_allow_factory=True,
+        )
+
+    assert observed_budgets == [256]
 
 
 def test_collection_wall_limit_refuses_before_next_factory_call(
@@ -1245,6 +1300,8 @@ def test_source_gate_requires_every_registered_control_and_causal_utility(
     )
     assert passed["status"] == "PASS_T10_2_SOURCE_GATE"
     assert all(passed["registered_controls"].values())
+    assert passed["precollection_aborted_actions"] == 1
+    assert passed["maximum_new_actions"] == 4_607
 
     incomplete = protocol.build_source_gate_report(
         manifest=manifest,
@@ -1676,6 +1733,10 @@ def test_fresh_statistical_qa_does_not_block_replay_before_combined_gate(
             "phase": "collect",
             "status": "T10_2_SOURCE_COLLECTION_COMPLETE",
             "manifest_checksum": manifest["manifest_checksum"],
+            "event_count": len(fresh),
+            "precollection_aborted_actions": 1,
+            "maximum_new_actions": 4_607,
+            "accounted_action_count": 1 + len(fresh),
             "events": protocol.artifact_descriptor(fresh_path),
             "cross_fit_audit": protocol.artifact_descriptor(cross_fit_path),
         },
