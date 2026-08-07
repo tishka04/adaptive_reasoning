@@ -968,3 +968,34 @@ def test_cli_has_separate_gated_phases_and_returns_refusal(
     assert exit_code == 2
     assert emitted["phase"] == "compile"
     assert emitted["error"].startswith("GateRefusalError:")
+
+
+def test_parent_code_faithful_digests_admits_lf_and_crlf(tmp_path: Path) -> None:
+    source = tmp_path / "module.py"
+    source.write_bytes(b"VALUE = 1\nOTHER = 2\n")
+
+    lf_digest = hashlib.sha256(b"VALUE = 1\nOTHER = 2\n").hexdigest()
+    crlf_digest = hashlib.sha256(b"VALUE = 1\r\nOTHER = 2\r\n").hexdigest()
+
+    digests = protocol._parent_code_faithful_digests(source)
+
+    assert lf_digest in digests
+    assert crlf_digest in digests
+    assert protocol.canonical_file_sha256(source) == lf_digest
+
+
+def test_verify_parent_code_accepts_crlf_frozen_registry_entry() -> None:
+    # The parent T10.2 manifest froze a handful of files from a CRLF working
+    # tree.  This guard must pass against the real repository even though the
+    # in-tree bytes are LF; regression for the T10.2.1 freeze CRLF drift.
+    verified = protocol._verify_parent_code(REPOSITORY_ROOT)
+
+    parent_manifest = json.loads(
+        (REPOSITORY_ROOT / protocol.PARENT_T10_2_MANIFEST_PATH).read_text(
+            encoding="utf-8"
+        )
+    )
+    assert verified == {
+        str(path): str(digest)
+        for path, digest in parent_manifest["code_sha256"].items()
+    }

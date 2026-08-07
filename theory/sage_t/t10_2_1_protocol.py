@@ -418,6 +418,48 @@ def _verify_parent_lineage(root: Path) -> dict[str, Any]:
     return expected
 
 
+_LINE_ENDING_AGNOSTIC_SUFFIXES = {
+    "",
+    ".cfg",
+    ".gitattributes",
+    ".gitignore",
+    ".md",
+    ".py",
+    ".toml",
+    ".txt",
+    ".yaml",
+    ".yml",
+}
+
+
+def _parent_code_faithful_digests(path: Path) -> set[str]:
+    """Digests that verify byte-faithful immutable parent code.
+
+    The parent T10.2 manifest froze ``code_sha256`` from a mixed-line-ending
+    working tree: most files were LF but a handful were saved with CRLF on
+    Windows, so the raw registry entry for those files is the CRLF hash.  The
+    portable identity of a text file is its LF-normalized content, but a file
+    that was frozen with CRLF must still verify without mutating the immutable
+    parent manifest.  We therefore admit both the LF and CRLF renderings of the
+    current content; the only difference tolerated is the line-ending
+    convention, so the content itself is still pinned exactly.
+    """
+
+    lf_digest = canonical_file_sha256(path)
+    digests = {lf_digest}
+    if path.suffix.casefold() not in _LINE_ENDING_AGNOSTIC_SUFFIXES:
+        return digests
+    try:
+        text = path.read_bytes().decode("utf-8")
+    except UnicodeDecodeError:
+        return digests
+    lf = text.replace("\r\n", "\n").replace("\r", "\n")
+    crlf = lf.replace("\n", "\r\n")
+    digests.add(hashlib.sha256(lf.encode("utf-8")).hexdigest())
+    digests.add(hashlib.sha256(crlf.encode("utf-8")).hexdigest())
+    return digests
+
+
 def _verify_parent_code(root: Path) -> dict[str, str]:
     parent_manifest = _read_signed_json(
         _resolve(root, PARENT_T10_2_MANIFEST_PATH),
@@ -426,13 +468,13 @@ def _verify_parent_code(root: Path) -> dict[str, str]:
     registered = parent_manifest.get("code_sha256")
     if not isinstance(registered, Mapping) or not registered:
         raise ManifestDriftError("T10.2 parent code registry is absent")
-    observed = {
-        str(path): canonical_file_sha256(_resolve(root, str(path)))
-        for path in registered
-    }
     expected = {str(path): str(digest) for path, digest in registered.items()}
-    if observed != expected:
-        drifted = sorted(path for path in expected if observed.get(path) != expected[path])
+    drifted = sorted(
+        path
+        for path, digest in expected.items()
+        if digest not in _parent_code_faithful_digests(_resolve(root, path))
+    )
+    if drifted:
         raise ManifestDriftError(
             "T10.2 immutable parent code drifted under LF-normalized hashing: "
             + ",".join(drifted)
