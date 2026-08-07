@@ -1,0 +1,45 @@
+{
+  "code_sha256": {
+    "calibration_gate_v8_6j_r2.py": "b62204b0c924ae1043dc32c3647b231900ad9588674e1de96e6c501770e35da0",
+    "posterior_v10.py": "439876fc7b50d45a078f1fb0a8c6e3127ac85b058053f0730f9e7666b1414436"
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "equivalence_manifest_checksum": "03b3a654ab88299261e57fb79221e73c1e5a323b055ac9f92314f581dfb931c6",
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t8.6j-r2-repair-memo-v1",
+  "frozen_at": "2026-08-06",
+  "gates": {
+    "goal_teacher_shocks_preserved": true,
+    "hidden_log_likelihood_nonnegative_by_game": true,
+    "maximum_storm_seconds": 10.0,
+    "maximum_unique_repairs_in_storm": 1,
+    "offline_repair_v2_confirmation": true,
+    "repair_storm_actions": 100
+  },
+  "manifest_checksum": "2900a96e34b99d27f6916b22392db1cb64d38323e1545ec1bc6d8eea09706c33",
+  "parent_live_report_checksum": "f48f99b551f0789cc11a4b0b65f7693726559716ea91584e4a5d22c5f2ad8296",
+  "repair_budget": "one_attempt_per_context_across_resets",
+  "repair_context": "regime+abstract_state+action_name+observed_packet+events",
+  "selected_policy": "terminal_tempered_20_family_floor_0501_minimum_kl",
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6J_R2_SOURCE_TRAIN_GATE"
+}

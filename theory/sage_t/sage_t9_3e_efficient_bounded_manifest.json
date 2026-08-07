@@ -1,0 +1,80 @@
+{
+  "action_budget_per_reset": 20,
+  "authority": {
+    "maximum_interventions_per_reset": 5,
+    "maximum_interventions_per_unknown_context": 1,
+    "maximum_marginal_terminal_risk": 0.05,
+    "mode": "bounded",
+    "observed_danger_is_absolute": true,
+    "protected_route_is_absolute": true,
+    "strong_surprise_lockout_threshold": 8.0
+  },
+  "code_sha256": {
+    "bounded_live_gate_common.py": "690aae8dd645305fe1d3add4323bc49957f4f656641ee580f02fcc232bec9366",
+    "efficient_bounded_v9_3e.py": "c092487fb9a0891a1d643836727c27ecbfe0284d73305ef574cf53d1094fd438"
+  },
+  "controller_caps": {
+    "maximum_executor_cache_entries": 128,
+    "maximum_particles_per_decision": 2,
+    "maximum_programs": 16,
+    "maximum_sequences": 6,
+    "maximum_structural_macros": 4,
+    "ordinary_horizon": 3
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.3e-efficient-bounded-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_delta": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_peak_executor_cache_entries": 128,
+    "maximum_wall_seconds": 360.0,
+    "minimum_levels_completed": 1,
+    "minimum_real_progress_events": 1,
+    "minimum_total_actions": 120
+  },
+  "manifest_checksum": "8257551c9418326deea6b1a63d9b835a610b4ea2fe2db6ccda991ac1a0079064",
+  "parent_t9_3d_manifest_checksum": "aced5307ac8feab8ddff5f7ae2dc0aefa4bdf2c144f0a166f9e351858e2f9932",
+  "parent_t9_3d_report_checksum": "b8bcab7fee76adec7a4b7ef1e0c515d04abe984eb9823d7921dd921db76f92c9",
+  "registered_changes": [
+    "program cap 32 to 16 after winning-prefix audit",
+    "sequence beam 8 to 6 after 9/9 winning-prefix audit",
+    "decision particles 4 to 2 after 9/9 winning-prefix audit",
+    "structural macro cap 8 to 4 after 9/9 winning-prefix audit",
+    "executor cache 256 to 128 entries"
+  ],
+  "resets": 3,
+  "runtime": {
+    "arc_agi": "0.9.1",
+    "arcengine": "0.9.3",
+    "operation_mode": "offline"
+  },
+  "seeds": [
+    0
+  ],
+  "selected_terminal_policy": "safe_after_3",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T9_3E_EFFICIENT_BOUNDED_SOURCE_TRAIN",
+  "winning_prefix_audit": {
+    "correct_first_action": 9,
+    "decision_p95_ms": 3.382900031283498,
+    "exact_sequence_generated": 9,
+    "exact_sequence_top8": 9,
+    "passed": true,
+    "prefixes": 9
+  }
+}

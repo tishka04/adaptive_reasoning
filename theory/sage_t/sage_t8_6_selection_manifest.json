@@ -1,0 +1,131 @@
+{
+  "base_t7_manifest_checksum": "a2b735c3c3016310715fa516f341d37091fe451dc72cbaf2330b8b5980c578e3",
+  "bootstrap": {
+    "confidence": 0.95,
+    "samples": 10000,
+    "seed": 8606
+  },
+  "checkpoints": [
+    1,
+    3,
+    5
+  ],
+  "code_sha256": {
+    "calibration_gate_v8_6.py": "a6ab1b6931a6eeb060160d2975a1c2c79f16038003d7a6327bdeeb265e4948a6",
+    "live_shadow_pilot_v6.py": "9808ed6c0c29abb3c0ddabfa783bc00d83c25cad08e6b57dedf4e9736785fd55",
+    "posterior_v2.py": "e13e2047d044005384965e46fd8979e5311384c3d75b386a82384e126a30d587"
+  },
+  "confirmation": {
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_false_terminal_rate_at_p80": 0.05,
+    "maximum_latency_tail_ratio": 4.0,
+    "maximum_live_wall_seconds": 100.0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_repairs_per_observation": 1,
+    "maximum_surviving_children_per_observation": 4,
+    "minimum_goal_compatible_generated": 3,
+    "minimum_goal_compatible_top8": 2,
+    "minimum_goal_probability_gain": 0.25,
+    "minimum_prediction_coverage": 1.0,
+    "minimum_terminal_compatible_top8_rate": 0.9
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "data_sha256": {
+    "lp85.jsonl": "7dee5fa89bace32af5f744c02489a22d4703b96e4dea3fef6d6971c9e1f7461c",
+    "su15.jsonl": "d089568302893ba8e409694919d9c744400d53565d3e6f90ddbd5f1012753224"
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "llm_enabled": false,
+    "neural_residual_weight": 0.0,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "forbidden_games": [
+    "ar25",
+    "ls20",
+    "re86",
+    "sc25"
+  ],
+  "format_version": "sage-t8.6-calibrated-posterior-v1",
+  "frozen_at": "2026-07-31",
+  "manifest_checksum": "fa31cd3bfa9f6e0257bce4e0ca5351cd433bdbf7bf1390a372ebd0de97bd4f6f",
+  "policies": {
+    "combined": {
+      "incremental_repair": false,
+      "likelihood_temperature": 0.25,
+      "name": "combined",
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_discount": true,
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "correlation_aware": {
+      "incremental_repair": false,
+      "likelihood_temperature": 1.0,
+      "name": "correlation_aware",
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_discount": true,
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "legacy": {
+      "incremental_repair": false,
+      "likelihood_temperature": 1.0,
+      "name": "legacy",
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_discount": false,
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "tempered": {
+      "incremental_repair": false,
+      "likelihood_temperature": 0.25,
+      "name": "tempered",
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_discount": false,
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    }
+  },
+  "selection": {
+    "hidden_log_likelihood_game_delta_minimum": 0.0,
+    "maximum_semantic_collapse_rate": 0.1,
+    "minimum_collapse_reduction_fraction": 0.5,
+    "paired_interval_lower_must_exceed": 0.0,
+    "tie_breakers": [
+      "terminal_log_loss",
+      "hidden_log_likelihood",
+      "latency"
+    ]
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6_SOURCE_TRAIN_SELECTION"
+}

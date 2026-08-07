@@ -1,0 +1,68 @@
+{
+  "bootstrap": {
+    "confidence": 0.95,
+    "samples": 10000,
+    "seed": 9101,
+    "unit": "reset"
+  },
+  "candidate_policies": {
+    "safe_after_3": {
+      "high_probability_threshold": 0.8,
+      "minimum_safe_observations": 3,
+      "name": "safe_after_3",
+      "prior_safe": 1.0,
+      "prior_terminal": 1.0,
+      "probability_floor": 0.05
+    },
+    "safe_after_5": {
+      "high_probability_threshold": 0.8,
+      "minimum_safe_observations": 5,
+      "name": "safe_after_5",
+      "prior_safe": 1.0,
+      "prior_terminal": 1.0,
+      "probability_floor": 0.05
+    },
+    "safe_after_8": {
+      "high_probability_threshold": 0.8,
+      "minimum_safe_observations": 8,
+      "name": "safe_after_8",
+      "prior_safe": 1.0,
+      "prior_terminal": 1.0,
+      "probability_floor": 0.05
+    }
+  },
+  "code_sha256": {
+    "terminal_calibration_v9.py": "3c8f9a8ce8fe0919c41e6323e648199cd3a8eb1dd59ee0eb08b403d82c7d9a18",
+    "terminal_gate_v9_1.py": "7f86afb488ffa860e18653a01e9d0facc1eaeb3edd8107cd13c8aa393b262477"
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "authority": "shadow",
+    "bounded_authority": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.1-terminal-calibration-v1",
+  "frozen_at": "2026-08-06",
+  "input_rows_sha256": "8cc9229a3171a47c05e9aa40c2fd39ecaa3f62c95c0f9ff2ba6fda0dc66d2306",
+  "manifest_checksum": "76b71ef08ec8db326d93d07d7415617ac1c67c53181ac3a3c3630b6b26f8060a",
+  "parent_t9_0_report_checksum": "11b6a2de222341d52be036391eb351188b4aa958d92e7b0e6d6da1643739bb86",
+  "selection": {
+    "maximum_false_high_terminal_rate_per_game": 0.05,
+    "require_lp85_log_loss_interval_lower_positive": true,
+    "require_observed_danger_preservation": true,
+    "require_su15_log_loss_interval_lower_nonnegative": true,
+    "tie_break": [
+      "lp85_log_loss_delta",
+      "lp85_brier_delta",
+      "minimum_safe_observations"
+    ]
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T9_1_SOURCE_TRAIN_GATE"
+}

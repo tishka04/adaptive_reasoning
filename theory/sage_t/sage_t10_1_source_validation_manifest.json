@@ -1,0 +1,57 @@
+{
+  "code_sha256": {
+    "progress_witness_v10.py": "4322d20798ce3254fe863a391514242f16590be8108237ab4c4599f9ac610966",
+    "source_validation_progress_v10_1.py": "7a938b23c226555f8d0e0808f7873037252009b71faf8c044555e75e73affb0d"
+  },
+  "environment_metadata_sha256": {
+    "ls20-9607627b": "ac19e73140b2e3cbbb6e0441f3d1cd4d8f0d37d14e0961c704a3bca5e51fdc3b",
+    "re86-4e57566e": "4d78532766cc1d1a66902425d65ba9cd9a0001df4e186ead42b17eba856f4072",
+    "sc25-f9b21a2f": "a7a433ef5db8c146af539bb9ed0c1a5073b8855b7110d5e2c196ec58fde06db3"
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "production_authority": false,
+    "source_validation_opened": true
+  },
+  "format_version": "sage-t10.1-source-validation-progress-v1",
+  "frozen_at": "2026-08-07",
+  "gate": {
+    "maximum_errors": 0,
+    "maximum_game_over_events": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_posterior_rank": 8,
+    "maximum_wall_seconds": 300.0,
+    "minimum_progress_games": 2,
+    "minimum_total_levels": 2
+  },
+  "manifest_checksum": "4d1c4dc8b62973187ea5e1c52e698652fdaeb424ae481b56baded0c0b2b9c1a3",
+  "parent_t10_0b_manifest_checksum": "1143b9376c55fd70bcb273d092aa61d9392beed618af1b270ffe1d3a98469dcd",
+  "parent_t10_0b_report_checksum": "a72bff60c6fec8a7fc1d3a7b4ecebabb5d84c39bc80bfc57ed641e0080075fbc",
+  "policy": {
+    "adaptation_after_results": false,
+    "control_family": "repeat_apply_until_progress",
+    "game_source_code_allowed": false,
+    "hidden_counterfactual_arms_allowed": false,
+    "stored_winning_paths_allowed": false,
+    "stop_condition": "first positive level delta"
+  },
+  "search_config": {
+    "chain_link_radius": 6.0,
+    "chain_minimum_nodes": 6,
+    "chain_stride": 2,
+    "maximum_candidate_macros": 40,
+    "maximum_effect_representatives": 32,
+    "maximum_horizon": 16,
+    "maximum_one_step_actions": 512
+  },
+  "source_validation_games": [
+    "re86-4e57566e",
+    "ls20-9607627b",
+    "sc25-f9b21a2f"
+  ],
+  "status": "FROZEN_BEFORE_T10_1_SOURCE_VALIDATION",
+  "test_sha256": {
+    "test_sage_t_source_validation_progress_v10_1.py": "599f96b5809e8b0289617d2efad0501fba28ab86fd334af74358cb7cfa0d309e"
+  }
+}

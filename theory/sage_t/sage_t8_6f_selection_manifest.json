@@ -1,0 +1,223 @@
+{
+  "action_schedules_sha256": "b8fe3a6a9c44ad85b8baeb9435d314ed6e07073e1004625985ad8695b479c088",
+  "bootstrap": {
+    "confidence": 0.95,
+    "samples": 10000,
+    "seed": 8606
+  },
+  "checkpoints": [
+    1,
+    3,
+    5
+  ],
+  "code_sha256": {
+    "calibration_gate_v8_6f.py": "625709e865fe1b91e7fba7e5820a05791a416052475cd21c0b1ce3d4b290fc80",
+    "posterior_v7.py": "783dba2cac11046e20c407fd03ded23e6836744526ee772d710ceb90c85d6498"
+  },
+  "confirmation": {
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_false_terminal_rate_at_p80": 0.05,
+    "maximum_latency_tail_ratio": 4.0,
+    "maximum_live_wall_seconds": 100.0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_repairs_per_observation": 1,
+    "maximum_surviving_children_per_observation": 4,
+    "minimum_goal_compatible_generated": 3,
+    "minimum_goal_compatible_top8": 2,
+    "minimum_goal_probability_gain": 0.25,
+    "minimum_prediction_coverage": 1.0,
+    "minimum_terminal_compatible_top8_rate": 0.9
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "llm_enabled": false,
+    "neural_residual_weight": 0.0,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "forbidden_games": [
+    "ar25",
+    "ls20",
+    "re86",
+    "sc25"
+  ],
+  "format_version": "sage-t8.6f-posterior-conditional-family-v1",
+  "frozen_at": "2026-08-06",
+  "frozen_invariants": {
+    "actions": "exact_t8_6_schedules",
+    "channel_weights": "unchanged",
+    "decision_utility": "unchanged",
+    "dsl": "unchanged",
+    "entropy_floor": 0.0501,
+    "executor": "unchanged",
+    "family_target": "uniform_semantic_family_mass",
+    "maximum_family_mixture": 0.02,
+    "mdl_priors": "unchanged",
+    "only_inference_change": "preserve_posterior_ratios_inside_semantic_families",
+    "other_channel_temperatures": 1.0,
+    "projection_solver": "minimum_mixture_binary_search",
+    "projection_tolerance": 1e-10,
+    "projection_trigger": "normalized_entropy<0.05 and raw_mixture_surprise>3.0",
+    "repeated_context_discount": false,
+    "terminal_temperature": 0.2,
+    "within_family_ratio_invariant": true,
+    "within_family_reference": "current_posterior_conditional_distribution"
+  },
+  "manifest_checksum": "fbbde11282136197c3eab7e47bc7537969be9820fce7d0f85c3a81a90bc5d355",
+  "parent_t8_6e_manifest_checksum": "51196c48ec9b50e4637f744bbaa5aaaf6fdc6326afd2edc55f05c4a678d43ab4",
+  "parent_t8_6e_scientific_checksum": "deba19926bfbd0bb4c7e371b2b8ca1d14ced17692fd883b1f295c46cc451a328",
+  "policies": {
+    "legacy": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          1.0
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "name": "legacy",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "terminal_tempered_20": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          0.2
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "name": "terminal_tempered_20",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "terminal_tempered_20_family_floor_0501_posterior_conditional": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          0.2
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0501,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "name": "terminal_tempered_20_family_floor_0501_posterior_conditional",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    }
+  },
+  "selection": {
+    "hidden_log_likelihood_game_delta_minimum": 0.0,
+    "maximum_semantic_collapse_rate": 0.1,
+    "minimum_collapse_reduction_fraction": 0.5,
+    "paired_interval_lower_must_exceed": 0.0,
+    "tie_breakers": [
+      "terminal_log_loss",
+      "hidden_log_likelihood",
+      "latency"
+    ]
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6F_SOURCE_TRAIN_SELECTION"
+}

@@ -1,0 +1,80 @@
+{
+  "action_budget_per_reset": 20,
+  "authority": {
+    "maximum_interventions_per_reset": 5,
+    "maximum_interventions_per_unknown_context": 1,
+    "maximum_marginal_terminal_risk": 0.05,
+    "mode": "bounded",
+    "observed_danger_is_absolute": true,
+    "protected_route_is_absolute": true,
+    "strong_surprise_lockout_threshold": 8.0
+  },
+  "code_sha256": {
+    "compact_bounded_v9_3c.py": "531814c99199b6295ef2edf9bc2182dfdafc06148b49dd63cfc700d38d9a4454"
+  },
+  "compact_prefix_audit": {
+    "correct_first_action": 9,
+    "decision_p95_ms": 28.867300017736852,
+    "exact_sequence_generated": 9,
+    "exact_sequence_top8": 9,
+    "execution_errors": 0,
+    "maximum_first_action_risk": 0.05000000000000001,
+    "passed": true,
+    "prefixes": 9
+  },
+  "controller_caps": {
+    "maximum_executor_cache_entries": 512,
+    "maximum_particles_per_decision": 8,
+    "maximum_programs": 32,
+    "maximum_sequences": 16,
+    "maximum_structural_macros": 8,
+    "ordinary_horizon": 3
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.3c-compact-bounded-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_delta": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_peak_executor_cache_entries": 512,
+    "maximum_wall_seconds": 360.0,
+    "minimum_levels_completed": 1,
+    "minimum_real_progress_events": 1,
+    "minimum_total_actions": 120
+  },
+  "manifest_checksum": "9f1a4edd7c33af1b06964d3b4317313129295185bbb73ace40e12e1e41527472",
+  "parent_t9_3b_abort_checksum": "21fb540a6f48ddcdde758d0213cc8514a92a66613d3b46752b3100901bec3207",
+  "parent_t9_3b_manifest_checksum": "b3891de26b9e50820ad24f5cb0f8b5d7c8039039637438f91e32acbf5bd4fd7e",
+  "registered_changes": [
+    "sequence beam 32 to 16 after exact winning-prefix equivalence",
+    "executor cache 16384 to 512 entries",
+    "pure executor cache cleared after observation and branch start",
+    "20 actions per reset while retaining 120 bounded actions"
+  ],
+  "resets": 3,
+  "runtime": {
+    "arc_agi": "0.9.1",
+    "arcengine": "0.9.3",
+    "operation_mode": "offline"
+  },
+  "seeds": [
+    0
+  ],
+  "selected_terminal_policy": "safe_after_3",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T9_3C_COMPACT_BOUNDED_SOURCE_TRAIN"
+}

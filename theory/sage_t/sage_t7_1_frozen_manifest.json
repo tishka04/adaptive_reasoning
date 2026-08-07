@@ -1,0 +1,59 @@
+{
+  "audit": {
+    "common_ablation_uses_identical_weights": true,
+    "expected_progress_smoothing_penalty": -0.10258658877510116,
+    "native_ablation_uses_condition_weights": true,
+    "oracle_outcomes_used_for_evaluation_only": true
+  },
+  "base_t7_manifest_checksum": "a2b735c3c3016310715fa516f341d37091fe451dc72cbaf2330b8b5980c578e3",
+  "bootstrap": {
+    "confidence": 0.95,
+    "random_seed": 857,
+    "samples": 2000
+  },
+  "common_evaluation_weights": {
+    "goal": 2.0,
+    "objects": 1.0,
+    "progress": 2.0,
+    "relations": 1.0,
+    "terminal": 4.0,
+    "topology": 1.0
+  },
+  "code_sha256": {
+    "selection_autopsy.py": "7dd0c36b83186255bad3b7ec9af2f15c8c127d2f84f1e474142b2e3ba40c7e0b"
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t7.1-selection-autopsy-v1",
+  "frozen_at": "2026-07-31",
+  "gate": {
+    "common_score_noninferiority_margin": 0.01,
+    "minimum_teleological_positive_arms": 30,
+    "source_validation_requires_sufficient_teleological_support": true
+  },
+  "manifest_checksum": "dd54a59dc2e6efd1cb6895f4edb1d1890bf786fc133e958ef6f797b4b07be495",
+  "observation_checkpoints": [
+    1,
+    3,
+    5
+  ],
+  "panels_per_episode": 5,
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "status": "FROZEN_BEFORE_SOURCE_AUTOPSY"
+}

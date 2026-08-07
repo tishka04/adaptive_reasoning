@@ -1,0 +1,80 @@
+{
+  "action_budget_per_reset": 20,
+  "code_sha256": {
+    "productive_abstention_v9_6.py": "5353ea7b8884fcc3b513aa883120769ae370b96279cc78ffa9b3db9d05f5eb5e"
+  },
+  "controller_caps": {
+    "maximum_executor_cache_entries": 128,
+    "maximum_particles_per_decision": 2,
+    "maximum_programs": 16,
+    "maximum_repair_contexts": 0,
+    "maximum_sequences": 6,
+    "maximum_structural_macros": 4,
+    "ordinary_horizon": 3
+  },
+  "experimental_authority": {
+    "active_gate_passed_for_this_paired_experiment": true,
+    "budget_resets_on_level_change": true,
+    "fallback_after_budget": true,
+    "maximum_marginal_terminal_risk": 0.05,
+    "maximum_unproductive_interventions_per_branch": 5,
+    "mode": "active",
+    "observed_danger_is_absolute": true,
+    "policy_change": "authority_abstention_only",
+    "protected_route_is_absolute": true,
+    "repair_contexts": 0,
+    "strong_surprise_lockout_threshold": 8.0
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "production_active_authority": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.6-productive-abstention-gate-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_delta": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_wall_seconds": 360.0,
+    "minimum_intervention_reduction_fraction": 0.5,
+    "minimum_retained_levels": 3,
+    "minimum_retained_useful_interventions": 9
+  },
+  "manifest_checksum": "c934f182300ecafbf0bde7826072fab5511572097a3550980f122f13180af780",
+  "pairing": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 9606,
+    "bootstrap_unit": "game_seed",
+    "same_game_seed_reset_and_action_budget_as_t9_4": true
+  },
+  "parent_t9_4_manifest_checksum": "92908dd360765309b023af4bd9dd86ab037ccbecf4f2836c7dd316c8c4bec748",
+  "parent_t9_4_report_checksum": "1cb859061b3b8761a1289a04ad2d668f4e5e64fc5fcc8c3a33adbab1c69eeb76",
+  "parent_t9_5_report_checksum": "97804032e9e235c96fc47e8eb4455bc3155d5ef4bf1c365bf0020b781810c912",
+  "reference_t9_4": {
+    "active_levels_completed": 3,
+    "baseline_levels_completed": 0,
+    "game_over_delta": 0,
+    "interventions": 114,
+    "useful_interventions": 9,
+    "wasted_interventions": 105
+  },
+  "resets": 1,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "selected_terminal_policy": "safe_after_3",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T9_6_SOURCE_TRAIN_ABSTENTION"
+}

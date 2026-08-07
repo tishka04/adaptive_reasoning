@@ -1,0 +1,123 @@
+{
+  "code_sha256": {
+    "contracts.py": "d4a6957c3a7aab3c4fb798316acbe42375db42d7997275fecc10126d353dfee9",
+    "decision.py": "fda110efd864fe8036b233d18855bf4ad090bf504cde40955b957be25f5bd595",
+    "executor.py": "1cbe93ecf85da169a45a8c39e9b50ca051671f33589d14e1d5394e5823b4ddf2",
+    "posterior.py": "aedb4dad969517e03d3afd0190b3ad6a509f80b1cdc43a7350c0de0c05036e01",
+    "replay_gate.py": "b2d93abb87f7861477d85e05b7883ae468b623fd5d4c7bb23521383eb5b07bb2",
+    "synthesis.py": "ec8013d1825f144e34bbe43c227e723850f4017de776a73b4df71c040652fdeb"
+  },
+  "decision": {
+    "beta_high_entropy": 1.0,
+    "beta_low_entropy": 0.25,
+    "entropy_switch": 0.5,
+    "goal_weight": 2.0,
+    "maximum_particles": 16,
+    "maximum_sequences": 64,
+    "ordinary_horizon": 3,
+    "sequence_length_penalty": 0.02,
+    "terminal_penalty": 5.0
+  },
+  "episode": {
+    "counterfactual_arms_per_panel": 2,
+    "pair_order": "depth_then_binary_path",
+    "panels_per_episode": 5,
+    "sampling_unit": "v43_replay_verified_root"
+  },
+  "evaluation": {
+    "bootstrap_samples": 2000,
+    "oracle_family_tolerance": 1e-09,
+    "paired_confidence": 0.95,
+    "random_seed": 857,
+    "validation_tuning": false
+  },
+  "executor": {
+    "maximum_cache_entries": 16384,
+    "memory_macro_horizon": 8,
+    "ordinary_rollout_horizon": 3,
+    "predicted_false": 0.05,
+    "predicted_true": 0.95
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "historical_opened": false,
+    "holdout_opened": false,
+    "source_only": true,
+    "source_train_before_validation": true
+  },
+  "format_version": "sage-t7-scientific-replay-v1",
+  "frozen_at": "2026-07-31",
+  "gates": {
+    "checkpoint": 5,
+    "paired_interval_lower_must_exceed": 0.0,
+    "require_all_expected_games": true,
+    "require_discriminative_action_over_random": true,
+    "require_information_over_random": true,
+    "require_joint_over_action_only": true,
+    "require_joint_over_dynamics_only": true,
+    "require_two_of_three_games_non_negative": true,
+    "require_zero_execution_errors": true,
+    "require_zero_illegal_actions": true
+  },
+  "generator": {
+    "maximum_dynamics_beam": 16,
+    "maximum_operator_candidates_per_action": 5,
+    "maximum_programs": 64
+  },
+  "grammar": {
+    "llm_enabled": false,
+    "name": "sage_t_deterministic_dsl_v1",
+    "neural_residual_weight": 0.0,
+    "oracle_is_grammar_relative": true
+  },
+  "likelihood": {
+    "channel_weights": {
+      "goal": 2.0,
+      "objects": 1.0,
+      "progress": 2.0,
+      "relations": 1.0,
+      "terminal": 4.0,
+      "topology": 1.0
+    }
+  },
+  "manifest_checksum": "a2b735c3c3016310715fa516f341d37091fe451dc72cbaf2330b8b5980c578e3",
+  "observation_checkpoints": [
+    1,
+    3,
+    5
+  ],
+  "parent_v43_manifest_checksum": "2376ddd8c9c1c10083dc42ae92b9633ffc55272cf675770908b9467642370cea",
+  "posterior": {
+    "ast_node_log_prior": -0.05,
+    "local_constant_log_prior": -0.25,
+    "maximum_particles": 64,
+    "repair_edit_log_prior": -1.0,
+    "repair_ess_threshold": 2.0,
+    "repair_log_likelihood_threshold": -8.0,
+    "unknown_coverage_penalty": 0.75
+  },
+  "source_train_games": [
+    "bp35",
+    "cd82",
+    "dc22",
+    "g50t",
+    "ka59",
+    "lf52",
+    "lp85",
+    "sp80",
+    "su15",
+    "tr87",
+    "tu93"
+  ],
+  "source_validation_games": [
+    "re86",
+    "ls20",
+    "sc25"
+  ],
+  "status": "FROZEN_BEFORE_REPLAY",
+  "top_k": [
+    1,
+    5,
+    16
+  ]
+}

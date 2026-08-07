@@ -1,0 +1,48 @@
+{
+  "code_sha256": {
+    "reachability_audit_v9.py": "7097ccb75b11c16243a06c002a798be5893dee069b699eee7de225d350e4b0de"
+  },
+  "controller_caps": {
+    "maximum_particles_per_decision": 4,
+    "maximum_programs": 8,
+    "maximum_sequences": 8,
+    "ordinary_horizon": 1
+  },
+  "diagnoses": [
+    "NO_GOAL_CANDIDATE",
+    "GOAL_CANDIDATE_PRUNED",
+    "GOAL_CANDIDATE_UNDERVALUED",
+    "GOAL_CANDIDATE_VETOED",
+    "EXECUTION_MODEL_MISS",
+    "REACHABLE"
+  ],
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "authority": "shadow",
+    "bounded_authority": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_games_executed": false,
+    "source_validation_read_for_parent_gate_only": true
+  },
+  "format_version": "sage-t9.0-reachability-audit-v1",
+  "frozen_at": "2026-08-06",
+  "manifest_checksum": "12bc2289a7a8e9f7f19196328e8159b675ae3ab24990b71565a2c41023d6966b",
+  "parent_t8_7_report_checksum": "043a63083fd09586517f03d07296bbc179c812ac749b0c4f45a0e5aaa4c7a805",
+  "shard_sha256": {
+    "lp85.jsonl": "7dee5fa89bace32af5f744c02489a22d4703b96e4dea3fef6d6971c9e1f7461c",
+    "su15.jsonl": "d089568302893ba8e409694919d9c744400d53565d3e6f90ddbd5f1012753224"
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T9_0_SOURCE_TRAIN_AUDIT",
+  "t8_6j_action_manifest_checksum": "e7b6db47eb451812cf9b5a24708bc6249d5d8b7ad2baa3408ccd247f85635cb0",
+  "terminal_veto_threshold": 0.8,
+  "unpruned_caps": {
+    "maximum_dynamics_beam": 64,
+    "maximum_programs": 512
+  }
+}

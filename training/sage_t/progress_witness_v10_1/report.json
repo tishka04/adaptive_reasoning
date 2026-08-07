@@ -1,0 +1,374 @@
+{
+  "checks": {
+    "all_games_executed": true,
+    "ar25_closed": true,
+    "coordinate_free": true,
+    "game_over_bound": true,
+    "holdout_closed": true,
+    "minimum_progress_games": false,
+    "minimum_total_levels": false,
+    "posterior_top8": true,
+    "wall_time": true,
+    "zero_errors": true,
+    "zero_illegal_actions": true
+  },
+  "config": {
+    "chain_link_radius": 6.0,
+    "chain_minimum_nodes": 6,
+    "chain_stride": 2,
+    "maximum_candidate_macros": 40,
+    "maximum_effect_representatives": 32,
+    "maximum_horizon": 16,
+    "maximum_one_step_actions": 512
+  },
+  "diagnosis_counts": {
+    "SEQUENCE_MISS": 3
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "integration_pilot_authorized": false,
+    "production_authority": false,
+    "source_validation_opened": true
+  },
+  "format_version": "sage-t10.1-source-validation-progress-v1",
+  "manifest_checksum": "4d1c4dc8b62973187ea5e1c52e698652fdaeb424ae481b56baded0c0b2b9c1a3",
+  "metrics": {
+    "actions_executed": 182,
+    "errors": 0,
+    "game_over_events": 0,
+    "illegal_actions": 0,
+    "progress_games": 0,
+    "total_levels": 0
+  },
+  "outcomes": [
+    {
+      "actions_executed": 85,
+      "candidate_macros": 5,
+      "diagnosis": "SEQUENCE_MISS",
+      "effect_groups": 5,
+      "errors": [],
+      "game": "re86-4e57566e",
+      "illegal_actions": 0,
+      "macros_executed": 5,
+      "one_step_scan": [
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION1"
+          },
+          "changed_cells": 61,
+          "effect_key": "ac5dda2b611ea059f456",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.264,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION2"
+          },
+          "changed_cells": 61,
+          "effect_key": "3a6420d104fb0b79619b",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.249,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION3"
+          },
+          "changed_cells": 61,
+          "effect_key": "1fb86cabe5875d25fb5f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.233,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION4"
+          },
+          "changed_cells": 61,
+          "effect_key": "afcb42931c96fc8fea13",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.231,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION5"
+          },
+          "changed_cells": 3,
+          "effect_key": "b7845309d6e7d8931f68",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.271,
+          "level_delta": 0
+        }
+      ],
+      "passed": false,
+      "terminal_events": 0,
+      "wall_seconds": 5.076,
+      "witness": null
+    },
+    {
+      "actions_executed": 68,
+      "candidate_macros": 4,
+      "diagnosis": "SEQUENCE_MISS",
+      "effect_groups": 4,
+      "errors": [],
+      "game": "ls20-9607627b",
+      "illegal_actions": 0,
+      "macros_executed": 4,
+      "one_step_scan": [
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION1"
+          },
+          "changed_cells": 52,
+          "effect_key": "dd271cf74e4da105ce32",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.541,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION2"
+          },
+          "changed_cells": 2,
+          "effect_key": "063cd3d7dfc53daa4320",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.494,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION3"
+          },
+          "changed_cells": 52,
+          "effect_key": "7e22ba07c5179ce779b1",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.486,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION4"
+          },
+          "changed_cells": 52,
+          "effect_key": "3c89a23d434c2e3e1b32",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.525,
+          "level_delta": 0
+        }
+      ],
+      "passed": false,
+      "terminal_events": 0,
+      "wall_seconds": 3.479,
+      "witness": null
+    },
+    {
+      "actions_executed": 29,
+      "candidate_macros": 1,
+      "diagnosis": "SEQUENCE_MISS",
+      "effect_groups": 1,
+      "errors": [],
+      "game": "sc25-f9b21a2f",
+      "illegal_actions": 0,
+      "macros_executed": 1,
+      "one_step_scan": [
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION1"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.515,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION2"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.434,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION3"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.38,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {},
+            "action_name": "ACTION4"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.55,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 25,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.384,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 30,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.553,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 35,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.707,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 25,
+              "y": 55
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.335,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 30,
+              "y": 55
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.454,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 35,
+              "y": 55
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.569,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 25,
+              "y": 60
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.315,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 30,
+              "y": 60
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.5,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 35,
+              "y": 60
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 0,
+          "effect_key": "cd35f6d680ad3140a250",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.76,
+          "level_delta": 0
+        }
+      ],
+      "passed": false,
+      "terminal_events": 0,
+      "wall_seconds": 1.128,
+      "witness": null
+    }
+  ],
+  "passed": false,
+  "phase": "T10.1_SOURCE_VALIDATION",
+  "report_checksum": "167649e5a0e27d63668ca20ae98c57dfd50dd469204ce53a7a5af488fae6348a",
+  "scientific_limit": "T10.1 evaluates active grounding of a transferred control skeleton. It is not a paired controller-level advantage test and cannot open the final holdout.",
+  "source_validation_games": [
+    "re86-4e57566e",
+    "ls20-9607627b",
+    "sc25-f9b21a2f"
+  ],
+  "status": "FAIL_CLOSED",
+  "wall_seconds": 9.702
+}

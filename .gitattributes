@@ -3,3 +3,14 @@ training/**/*.jsonl filter=lfs diff=lfs merge=lfs -text
 models/*.joblib filter=lfs diff=lfs merge=lfs -text
 models/sage11/*.safetensors filter=lfs diff=lfs merge=lfs -text
 models/sage11/*.pt filter=lfs diff=lfs merge=lfs -text
+
+# Frozen SAGE.T manifests hash source bytes; force stable LF checkouts so the
+# published checksums reproduce on Windows as well as Unix.
+theory/sage_t/*.py text eol=lf
+theory/sage_t/*.json text eol=lf
+theory/sage_t/*.md text eol=lf
+tests/test_sage_t_*.py text eol=lf
+reports/SAGE_T10_1_BASELINE.md text eol=lf
+training/sage_t/progress_witness_v10_0b/report.json text eol=lf
+training/sage_t/progress_witness_v10_1/report.json text eol=lf
+training/sage_t/t10_1_omitted_artifacts_inventory.json text eol=lf

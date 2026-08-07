@@ -1,0 +1,227 @@
+{
+  "action_schedules_sha256": "b8fe3a6a9c44ad85b8baeb9435d314ed6e07073e1004625985ad8695b479c088",
+  "bootstrap": {
+    "confidence": 0.95,
+    "samples": 10000,
+    "seed": 8606
+  },
+  "checkpoints": [
+    1,
+    3,
+    5
+  ],
+  "code_sha256": {
+    "calibration_gate_v8_6h.py": "9c92a5b5ed08fc9262170225fdb0101220192d287ceb9fcbe55e766bcd0a9292",
+    "goal_generation_v2.py": "dcbf8d4ccc5c9d922095cd7273a8a5cabecae1850f5f5095e3b0d629038cda3f"
+  },
+  "confirmation": {
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_false_terminal_rate_at_p80": 0.05,
+    "maximum_latency_tail_ratio": 4.0,
+    "maximum_live_wall_seconds": 100.0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_repairs_per_observation": 1,
+    "maximum_surviving_children_per_observation": 4,
+    "minimum_goal_compatible_generated": 3,
+    "minimum_goal_compatible_top8": 2,
+    "minimum_goal_probability_gain": 0.25,
+    "minimum_prediction_coverage": 1.0,
+    "minimum_terminal_compatible_top8_rate": 0.9
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "llm_enabled": false,
+    "neural_residual_weight": 0.0,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "forbidden_games": [
+    "ar25",
+    "ls20",
+    "re86",
+    "sc25"
+  ],
+  "format_version": "sage-t8.6h-goal-generation-v1",
+  "frozen_at": "2026-08-06",
+  "frozen_invariants": {
+    "actions": "exact_t8_6_schedules",
+    "channel_weights": "unchanged",
+    "decision_utility": "unchanged",
+    "dsl": "unchanged",
+    "entropy_floor": 0.0501,
+    "executor": "unchanged",
+    "goal_bridge_goal": "fact:level_complete",
+    "goal_bridge_prior_logprob": -0.05,
+    "goal_bridge_progress": "counter:progress",
+    "goal_bridge_support": 0,
+    "goal_bridge_trigger": "observed_goal>=0.5 and observed_progress>0 and events_include_level_complete_and_progress",
+    "maximum_family_total_variation": 0.02,
+    "maximum_new_goal_bundles": 1,
+    "mdl_priors": "unchanged",
+    "only_inference_change": "deterministic_goal_progress_bridge_generation",
+    "posterior_implementation": "unchanged_from_t8_6g",
+    "repair_requires_full_history_replay": true,
+    "selected_posterior": "terminal_tempered_20_family_floor_0501_minimum_kl",
+    "terminal_temperature": 0.2
+  },
+  "manifest_checksum": "22610e3257f45d505de9858750eeeaf47c00ad6c1440628945364dce8dd10b98",
+  "parent_t8_6g_manifest_checksum": "adcaa7d9fcc17c124075f5c280460861c5b23c4d726385b40b2deb26642581e6",
+  "parent_t8_6g_scientific_checksum": "d125009f84eca41900e55cd4ee2586b96b86580df9668aa7aad77b831950e2e7",
+  "policies": {
+    "legacy": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          1.0
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "maximum_family_total_variation": 0.02,
+      "name": "legacy",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "terminal_tempered_20": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          0.2
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "maximum_family_total_variation": 0.02,
+      "name": "terminal_tempered_20",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "terminal_tempered_20_family_floor_0501_minimum_kl": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          0.2
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0501,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "maximum_family_total_variation": 0.02,
+      "name": "terminal_tempered_20_family_floor_0501_minimum_kl",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    }
+  },
+  "selection": {
+    "hidden_log_likelihood_game_delta_minimum": 0.0,
+    "maximum_semantic_collapse_rate": 0.1,
+    "minimum_collapse_reduction_fraction": 0.5,
+    "paired_interval_lower_must_exceed": 0.0,
+    "tie_breakers": [
+      "terminal_log_loss",
+      "hidden_log_likelihood",
+      "latency"
+    ]
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6H_SOURCE_TRAIN_SELECTION"
+}

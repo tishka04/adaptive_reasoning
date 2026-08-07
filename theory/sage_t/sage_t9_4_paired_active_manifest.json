@@ -1,0 +1,81 @@
+{
+  "action_budget_per_reset": 20,
+  "code_sha256": {
+    "paired_active_gate_v9_4.py": "4ad1683f2d0758130ea29bd824ebc62c348954c8439b5b61d2cd2654d8a1467a"
+  },
+  "controller_caps": {
+    "maximum_executor_cache_entries": 128,
+    "maximum_particles_per_decision": 2,
+    "maximum_programs": 16,
+    "maximum_repair_contexts": 0,
+    "maximum_sequences": 6,
+    "maximum_structural_macros": 4,
+    "ordinary_horizon": 3
+  },
+  "experimental_authority": {
+    "active_gate_passed_for_this_paired_experiment": true,
+    "maximum_marginal_terminal_risk": 0.05,
+    "mode": "active",
+    "observed_danger_is_absolute": true,
+    "protected_route_is_absolute": true,
+    "repair_contexts": 0,
+    "strong_surprise_lockout_threshold": 8.0
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "production_active_authority": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.4-paired-active-gate-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_delta": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_wall_seconds": 360.0,
+    "minimum_nonnegative_games": 2,
+    "minimum_total_active_actions": 120,
+    "minimum_total_level_advantage": 1,
+    "strictly_positive_rate_delta_ci_lower": true
+  },
+  "manifest_checksum": "92908dd360765309b023af4bd9dd86ab037ccbecf4f2836c7dd316c8c4bec748",
+  "pairing": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 9404,
+    "bootstrap_unit": "game_seed",
+    "same_game_seed_reset_and_action_budget": true
+  },
+  "parent_t9_3f_manifest_checksum": "13d006797ff2b46a16b27be00d8e794e72fd9e119b2b279f085c6f861ce6090b",
+  "parent_t9_3f_report_checksum": "592df93fadaf39e67d40ad2093d321a9294f66c3793113adbc90abd543964c37",
+  "resets": 1,
+  "runtime": {
+    "arc_agi": "0.9.1",
+    "arcengine": "0.9.3",
+    "operation_mode": "offline"
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "selected_terminal_policy": "safe_after_3",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T9_4_PAIRED_ACTIVE_SOURCE_TRAIN",
+  "winning_prefix_audit": {
+    "correct_first_action": 9,
+    "decision_p95_ms": 3.392999991774559,
+    "exact_sequence_generated": 9,
+    "exact_sequence_top8": 9,
+    "passed": true,
+    "prefixes": 9
+  }
+}

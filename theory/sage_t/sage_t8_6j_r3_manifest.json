@@ -1,0 +1,42 @@
+{
+  "code_sha256": {
+    "calibration_gate_v8_6j_r3.py": "e50bfc5ebec86249d499d19fc1b797b770256a6f4ef6d66d6921a2ab4a498602",
+    "posterior_v11.py": "82dc74d9b6112bdc60ef36257bc69021f1be6e4bd3a8f8210724f84c814301c6"
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t8.6j-r3-bounded-repair-v1",
+  "frozen_at": "2026-08-06",
+  "gates": {
+    "goal_teacher_shocks_preserved": true,
+    "hidden_log_likelihood_nonnegative_by_game": true,
+    "offline_repair_v2_confirmation": true,
+    "repair_budget_exercised": true
+  },
+  "manifest_checksum": "a20f6b80820e915af315c685f134ebe3442609e46c4d8860ac17c1d8ecc1cb1e",
+  "maximum_repair_contexts_per_game": 16,
+  "parent_live_report_checksum": "b267b905700f17923bfb948870ca71292ad83b39396adc71ab3c4ee3613d5247",
+  "r2_manifest_checksum": "2900a96e34b99d27f6916b22392db1cb64d38323e1545ec1bc6d8eea09706c33",
+  "selected_policy": "terminal_tempered_20_family_floor_0501_minimum_kl",
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6J_R3_SOURCE_TRAIN_GATE"
+}

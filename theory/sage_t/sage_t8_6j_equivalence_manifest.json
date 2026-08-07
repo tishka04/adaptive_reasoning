@@ -1,0 +1,57 @@
+{
+  "action_schedules_sha256": "b8fe3a6a9c44ad85b8baeb9435d314ed6e07073e1004625985ad8695b479c088",
+  "benchmark_actions": 100,
+  "code_sha256": {
+    "calibration_gate_v8_6j.py": "270a5e200c708779c63181eb90748da481a3885c269bf906616c727745bbd1e8",
+    "posterior_v9.py": "ab8d45d29d5bf56b91bc904723dc30aa6bd4a41d3ffe087b66ca3c8734138926"
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t8.6j-incremental-equivalence-v1",
+  "frozen_at": "2026-08-06",
+  "frozen_invariants": {
+    "goal_generator": "unchanged_from_t8_6i",
+    "likelihoods": "unchanged",
+    "minimum_kl_projection": "unchanged",
+    "new_programs": "full_history_equivalent_replay",
+    "repair_v2": "unchanged",
+    "semantic_signatures": "append_latest_transition_only",
+    "structural_executor": "unchanged_from_t8_6i",
+    "unchanged_program_batch": "incremental_likelihood_cache"
+  },
+  "gates": {
+    "exact_checkpoint_rows": true,
+    "exact_hidden_arm_predictions": true,
+    "exact_long_final_posterior": true,
+    "exact_teacher_shocks": true,
+    "exact_update_science": true,
+    "minimum_benchmark_speedup": 2.0
+  },
+  "manifest_checksum": "03b3a654ab88299261e57fb79221e73c1e5a323b055ac9f92314f581dfb931c6",
+  "parent_failure": "latency_tail_ratio_only",
+  "parent_live_report_checksum": "663b6614e96c1ec2795831cae3afe3de9776203ac3ecc8081c84a2d1c45b3419",
+  "selected_policy": "terminal_tempered_20_family_floor_0501_minimum_kl",
+  "selection_manifest_checksum": "c8f09f97dc1e191b4bb9789a985bd4adbb6e9a100279b786493766d433553772",
+  "selection_scientific_checksum": "2c2925cf5fb4bb47af7e90789f2445ba8d7854948f308b814cb625ea909d7d1d",
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6J_EQUIVALENCE"
+}
