@@ -1,0 +1,165 @@
+# SAGE.T — posterior unifié de programmes du monde
+
+SAGE.T est une voie parallèle, fail-closed, du contrôleur cognitif. Son unité de
+croyance est un programme complet : schéma de rôles, sémantique locale des
+actions, dynamique, progression, terminal et but. Les anciens modules
+proposent des fragments ou des gardes ; ils ne fournissent jamais de preuve au
+posterior.
+
+## Composants
+
+- `contracts.py` définit l’état abstrait, la DSL typée et sérialisable, les
+  programmes complets, l’alpha-normalisation et les paquets de prédiction
+  partielle.
+- `compiler.py` convertit les `TransitionRecord` réels avec le scene graph
+  SAGE12 et les événements morpho-topologiques SAGE-MT.
+- `executor.py` est l’unique interpréteur pur et déterministe. Les rollouts
+  ordinaires sont bornés à trois actions ; les macros mémoire à huit.
+- `synthesis.py` adapte les croyances existantes en fragments `support=0`,
+  synthétise une grammaire déterministe et assemble au plus 64 programmes
+  complets.
+- `posterior.py` maintient les particules en log-espace, applique le prior MDL,
+  la pénalité de couverture et rejoue tout l’historique lors d’une réparation.
+- `decision.py` construit la matrice contrefactuelle, mesure les désaccords
+  observationnel, causal, téléologique et planificationnel, puis applique
+  l’utilité bayésienne spécifiée.
+- `controller.py` fournit les modes `off`, `shadow`, `bounded` et `active`,
+  leurs gates, les budgets d’intervention et le journal JSONL.
+- `evaluation.py` fournit le protocole same-prestate source-only, la limite de
+  cinq révélations et le gate contrefactuel explicite.
+
+## Autorité
+
+Le comportement par défaut reste strictement inchangé :
+
+```python
+UnifiedCognitiveConfig(sage_t_authority_mode="off")
+```
+
+Le mode `bounded` est automatiquement dégradé en `shadow` tant que
+`sage_t_counterfactual_gate_passed` est faux. Le mode `active` est dégradé en
+`bounded`, puis en `shadow`, tant que ses gates respectifs ne sont pas passés.
+En mode borné, SAGE.T ne peut intervenir qu’une fois par contexte abstrait
+inconnu, cinq fois par reset, avec un risque marginal maximal de `0.05`.
+
+Les protections historiques restent prioritaires : action illégale, danger
+observé et route protégée empêchent toute intervention. Une seule action est
+exécutée avant reconstruction de l’état et replanification.
+
+## Configuration minimale de shadow
+
+```python
+UnifiedCognitiveConfig(
+    sage_t_authority_mode="shadow",
+    sage_t_trace_path="reports/sage_t_shadow.jsonl",
+)
+```
+
+Chaque décision trace le posterior, les séquences, les prédictions de chaque
+programme, les désaccords, l’utilité, les veto et l’action retenue. Chaque
+transition réelle trace le posterior avant/après et la surprise observée.
+
+## Promotion
+
+Le code ne marque aucun gate scientifique comme passé. La promotion exige
+d’abord le replay contrefactuel, puis la validation active appariée sur `re86`,
+`ls20` et `sc25`. Le holdout SAGE11 reste fermé jusqu’à ce passage.
+
+## Replay scientifique T7
+
+`replay_gate.py` groupe les panels V4.3 par racine vérifiée, mesure les quatre
+conditions après 1, 3 et 5 observations, calcule les intervalles appariés et
+diagnostique séparément la couverture du générateur et la sélection du
+posterior. `sage_t7_frozen_manifest.json` verrouille la grammaire, l’exécuteur,
+les coefficients, les budgets et les hashes du code avant le replay.
+
+```bash
+python -m theory.sage_t.replay_gate all
+```
+
+Les lignes auditables et les rapports agrégés sont écrits dans
+`training/sage_t/replay_scientific_v1/`. Si source-train ne passe pas ses
+comparaisons appariées, ou si les shards de validation manquent,
+source-validation reste fermée et l’autorité active demeure interdite.
+
+La « bonne famille » est un oracle d’évaluation relatif à la grammaire gelée :
+les bras cachés servent uniquement à désigner la famille qui prédit le mieux.
+Ils ne sont jamais fournis au générateur, au posterior, à la réparation ou au
+choix d’action.
+
+## Autopsie de sélection T7.1
+
+`selection_autopsy.py` est une expérience source-train indépendante qui laisse
+le replay T7 gelé intact. Elle sépare le score utilisé pour mettre à jour chaque
+posterior du score commun utilisé pour comparer les ablations. Elle mesure
+également le rang, la masse, l’élagage, le prior et l’évidence de la meilleure
+famille générée.
+
+```bash
+python -m theory.sage_t.selection_autopsy --workers 4
+```
+
+Le manifeste `sage_t7_1_frozen_manifest.json` est lié au checksum du manifeste
+T7 et au hash du code d’autopsie. Le rapport peut être reconstruit à partir des
+lignes brutes sans rejouer les programmes :
+
+```bash
+python -m theory.sage_t.selection_autopsy --rebuild-report
+```
+
+Le gate reste fail-closed si les signaux de progression et de but sont trop
+rares. Un résultat favorable sur un score commun ne suffit donc ni à ouvrir
+source-validation, ni à donner une autorité active à SAGE.T.
+
+## Pilote réel shadow T8
+
+`live_shadow_pilot.py` exécute des trajectoires ARC réelles appariées avec
+SAGE.T successivement désactivé puis en shadow. Il mesure la calibration, la
+surprise, la réduction d'entropie, les signaux de progression/but/terminal, la
+sécurité, la latence, les réparations et la stabilité du posterior. Chaque
+protocole est gelé par un manifeste checksummé avant exécution.
+
+Le SDK peut n'énumérer que quelques clics représentatifs alors que le
+contrôleur historique matérialise un autre clic paramétré. Le challenger T8.5
+ajoute uniquement cette action déjà sélectionnée à l'ensemble contrefactuel et
+lui réserve une séquence. Il reste strictement en shadow :
+
+```bash
+.sage12_cache/v4_18/runtime/Scripts/python.exe \
+  -m theory.sage_t.live_shadow_pilot_v5
+```
+
+La répétition longue gelée exécute 25 actions par jeu :
+
+```bash
+.sage12_cache/v4_18/runtime/Scripts/python.exe \
+  -m theory.sage_t.live_shadow_pilot_v5 \
+  --manifest theory/sage_t/sage_t8_5_long_frozen_manifest.json \
+  --output-dir training/sage_t/live_shadow_pilot_v1_t8_5_long
+```
+
+Les sorties auditables sont écrites dans
+`training/sage_t/live_shadow_pilot_v1_t8_5/`. Le gate d'intégration et le gate
+scientifique sont distincts : une exécution peut être sûre, complète et assez
+rapide tout en restant non identifiable si elle n'observe aucun événement de
+progression, de but ou terminal. Dans ce cas source-validation et toute
+autorité SAGE.T restent fermées.
+
+Le rapport long de référence se trouve dans
+`training/sage_t/live_shadow_pilot_v1_t8_5_long/report.json`. Il ne constitue
+pas un passage de gate : le statut reste fail-closed tant que les canaux
+téléologiques ne contiennent pas de positifs observés.
+
+## Autorité active T9.5–T9.6
+
+T9.5 a évalué sans retouche la politique T9.4 sur quinze paires
+source-validation de 1 008 actions. Le gate a échoué fermé : aucun niveau,
+10 749 interventions sans progrès et une hausse des `GAME_OVER` sur `sc25`.
+Le holdout reste donc fermé.
+
+T9.6 ajoute uniquement une abstention d'autorité : après cinq interventions
+sans changement de niveau dans une branche, SAGE.T rend la main à la baseline.
+Sur le protocole source-train apparié de T9.4, les trois niveaux sont conservés,
+les neuf interventions utiles restent présentes et le nombre total
+d'interventions passe de 114 à 45, sans mort ni erreur. Ce succès autorise un
+futur retest source-validation gelé, pas l'ouverture du holdout.

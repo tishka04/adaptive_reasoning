@@ -1,0 +1,62 @@
+{
+  "action_budget_per_reset": 50,
+  "authority": {
+    "maximum_interventions_per_reset": 5,
+    "maximum_interventions_per_unknown_context": 1,
+    "maximum_marginal_terminal_risk": 0.05,
+    "mode": "bounded",
+    "observed_danger_is_absolute": true,
+    "protected_route_is_absolute": true,
+    "strong_surprise_lockout_threshold": 8.0
+  },
+  "code_sha256": {
+    "bounded_active_v9_3.py": "ca3a965f5e26bb16e3b7f2c7f7ea80777b8a43324c9001972644814c255bca5e"
+  },
+  "controller_caps": {
+    "maximum_particles_per_decision": 8,
+    "maximum_programs": 32,
+    "maximum_sequences": 32,
+    "maximum_structural_macros": 8,
+    "ordinary_horizon": 3
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.3-bounded-active-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_delta": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_wall_seconds": 360.0,
+    "minimum_levels_completed": 1,
+    "minimum_real_progress_events": 1,
+    "minimum_total_actions": 120
+  },
+  "manifest_checksum": "463c3bfdf4c161439ea4dfeb5064ff0cf5f4724de8700bac78ece94c534cdca3",
+  "parent_t9_2_report_checksum": "1062eebfe3df5b8bf538e96cf171ca523f5ebe8477264e329ae600c5506b8646",
+  "resets": 3,
+  "runtime": {
+    "arc_agi": "0.9.1",
+    "arcengine": "0.9.3",
+    "operation_mode": "offline"
+  },
+  "seeds": [
+    0
+  ],
+  "selected_challenger": "balanced_h3",
+  "selected_terminal_policy": "safe_after_3",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T9_3_BOUNDED_SOURCE_TRAIN"
+}

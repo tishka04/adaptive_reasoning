@@ -1,0 +1,6287 @@
+{
+  "checks": {
+    "ar25_closed": true,
+    "both_source_games_progress": true,
+    "holdout_closed": true,
+    "leave_one_game_out": true,
+    "posterior_top8": true,
+    "programs_coordinate_free": true,
+    "source_train_only": true,
+    "zero_errors": true,
+    "zero_illegal_actions": true
+  },
+  "config": {
+    "chain_link_radius": 6.0,
+    "chain_minimum_nodes": 6,
+    "chain_stride": 2,
+    "maximum_candidate_macros": 40,
+    "maximum_effect_representatives": 32,
+    "maximum_horizon": 16,
+    "maximum_one_step_actions": 512
+  },
+  "diagnosis_counts": {
+    "SUCCESS": 2
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_validation_opened": false,
+    "t10_1_authorized": true
+  },
+  "format_version": "sage-t10-progress-witness-v1",
+  "leave_one_game_out": {
+    "folds": [
+      {
+        "no_source_ablation": {
+          "actions_executed": 0,
+          "diagnosis": "GENERATOR_MISS",
+          "enabled_program_families": 0,
+          "levels_completed": 0
+        },
+        "passed": true,
+        "source_family_available": true,
+        "source_game": "lp85-305b61c3",
+        "target": {
+          "actions_executed": 234,
+          "candidate_macros": 14,
+          "diagnosis": "SUCCESS",
+          "effect_groups": 13,
+          "errors": [],
+          "game": "su15-4c352900",
+          "illegal_actions": 0,
+          "macros_executed": 1,
+          "passed": true,
+          "terminal_events": 0,
+          "wall_seconds": 1.06,
+          "witness": {
+            "grounded_evidence": {
+              "actions": [
+                {
+                  "action_data": {
+                    "x": 8,
+                    "y": 54
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 12,
+                    "y": 50
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 16,
+                    "y": 46
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 20,
+                    "y": 42
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 24,
+                    "y": 38
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 28,
+                    "y": 34
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 32,
+                    "y": 30
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 36,
+                    "y": 26
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 40,
+                    "y": 22
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 44,
+                    "y": 18
+                  },
+                  "action_name": "ACTION6"
+                }
+              ],
+              "level_delta": 1,
+              "observed_events": [
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_increased",
+                  "euler_characteristic_decreased",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "moved",
+                  "object_components_decreased",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of",
+                  "removed"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "morphology_changed",
+                  "moved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_increased",
+                  "contact_edges_decreased",
+                  "created",
+                  "euler_characteristic_decreased",
+                  "free_regions_increased",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "level_complete",
+                  "merge",
+                  "moved",
+                  "object_components_decreased",
+                  "persisted",
+                  "progress",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:adjacent",
+                  "relation_removed:aligned",
+                  "relation_removed:contact",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of",
+                  "removed"
+                ]
+              ]
+            },
+            "posterior": {
+              "mass": 0.99999152,
+              "rank": 1
+            },
+            "source_game": "su15-4c352900",
+            "transferable": {
+              "context_signature": "8183d668ed02c8e77369",
+              "control_family": "repeat_apply_until_progress",
+              "format_version": "sage-t10-progress-witness-v1",
+              "macro_schema": "path_successor",
+              "program": {
+                "action_bindings": [
+                  {
+                    "action_name": "ACTION6",
+                    "operator": "apply",
+                    "target_role": "target"
+                  }
+                ],
+                "goal": {
+                  "expression": {
+                    "args": [],
+                    "op": "fact",
+                    "predicate": "level_complete",
+                    "role": "",
+                    "terms": [],
+                    "value": null,
+                    "variable": ""
+                  },
+                  "family": "level_progress"
+                },
+                "object_schema": {
+                  "roles": [
+                    "object",
+                    "target"
+                  ]
+                },
+                "progress": {
+                  "args": [],
+                  "op": "counter",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": "progress",
+                  "variable": ""
+                },
+                "terminal": [
+                  {
+                    "expression": {
+                      "args": [],
+                      "op": "fact",
+                      "predicate": "game_over",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "outcome": "game_over"
+                  }
+                ],
+                "transition_rules": [
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 0.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 1.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 2.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 3.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 4.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 5.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 6.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 7.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 8.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 9.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      },
+                      {
+                        "key": "",
+                        "operation": "progress",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      },
+                      {
+                        "key": "",
+                        "operation": "win",
+                        "predicate": "",
+                        "terms": [],
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              },
+              "program_hash": "3308687661481d60477337c7f9ef608f9b00229fcf118a898915712cce738387",
+              "relation": "successor_toward_enclosure",
+              "steps": [
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                },
+                {
+                  "expected_event": "level_progress",
+                  "operator": "apply",
+                  "relation": "successor_toward_enclosure",
+                  "target_selector": "successor_toward_enclosure"
+                }
+              ],
+              "teleological_effect": "level_progress"
+            }
+          }
+        },
+        "target_game": "su15-4c352900"
+      },
+      {
+        "no_source_ablation": {
+          "actions_executed": 0,
+          "diagnosis": "GENERATOR_MISS",
+          "enabled_program_families": 0,
+          "levels_completed": 0
+        },
+        "passed": true,
+        "source_family_available": true,
+        "source_game": "su15-4c352900",
+        "target": {
+          "actions_executed": 7,
+          "candidate_macros": 2,
+          "diagnosis": "SUCCESS",
+          "effect_groups": 2,
+          "errors": [],
+          "game": "lp85-305b61c3",
+          "illegal_actions": 0,
+          "macros_executed": 1,
+          "passed": true,
+          "terminal_events": 0,
+          "wall_seconds": 0.642,
+          "witness": {
+            "grounded_evidence": {
+              "actions": [
+                {
+                  "action_data": {
+                    "x": 4,
+                    "y": 29
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 4,
+                    "y": 29
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 4,
+                    "y": 29
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 4,
+                    "y": 29
+                  },
+                  "action_name": "ACTION6"
+                },
+                {
+                  "action_data": {
+                    "x": 4,
+                    "y": 29
+                  },
+                  "action_name": "ACTION6"
+                }
+              ],
+              "level_delta": 1,
+              "observed_events": [
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_increased",
+                  "euler_characteristic_increased",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "object_components_increased",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of",
+                  "split"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:encloses",
+                  "relation_added:near"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_decreased",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_preserved",
+                  "euler_characteristic_preserved",
+                  "free_regions_preserved",
+                  "holes_preserved",
+                  "largest_free_region_bucket_preserved",
+                  "object_components_preserved",
+                  "persisted",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of"
+                ],
+                [
+                  "boundary_connected_free_regions_preserved",
+                  "contact_edges_increased",
+                  "created",
+                  "euler_characteristic_decreased",
+                  "free_regions_decreased",
+                  "holes_increased",
+                  "largest_free_region_bucket_preserved",
+                  "level_complete",
+                  "merge",
+                  "object_components_increased",
+                  "persisted",
+                  "progress",
+                  "relation_added:adjacent",
+                  "relation_added:aligned",
+                  "relation_added:contact",
+                  "relation_added:east_of",
+                  "relation_added:encloses",
+                  "relation_added:near",
+                  "relation_added:north_of",
+                  "relation_added:south_of",
+                  "relation_added:west_of",
+                  "relation_removed:aligned",
+                  "relation_removed:east_of",
+                  "relation_removed:near",
+                  "relation_removed:north_of",
+                  "relation_removed:south_of",
+                  "relation_removed:west_of",
+                  "removed"
+                ]
+              ]
+            },
+            "posterior": {
+              "mass": 0.99999152,
+              "rank": 1
+            },
+            "source_game": "lp85-305b61c3",
+            "transferable": {
+              "context_signature": "d3d846f9d91668da9844",
+              "control_family": "repeat_apply_until_progress",
+              "format_version": "sage-t10-progress-witness-v1",
+              "macro_schema": "repeat_target",
+              "program": {
+                "action_bindings": [
+                  {
+                    "action_name": "ACTION6",
+                    "operator": "apply",
+                    "target_role": "target"
+                  }
+                ],
+                "goal": {
+                  "expression": {
+                    "args": [],
+                    "op": "fact",
+                    "predicate": "level_complete",
+                    "role": "",
+                    "terms": [],
+                    "value": null,
+                    "variable": ""
+                  },
+                  "family": "level_progress"
+                },
+                "object_schema": {
+                  "roles": [
+                    "object",
+                    "target"
+                  ]
+                },
+                "progress": {
+                  "args": [],
+                  "op": "counter",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": "progress",
+                  "variable": ""
+                },
+                "terminal": [
+                  {
+                    "expression": {
+                      "args": [],
+                      "op": "fact",
+                      "predicate": "game_over",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "outcome": "game_over"
+                  }
+                ],
+                "transition_rules": [
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 0.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 1.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 2.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 3.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      }
+                    ]
+                  },
+                  {
+                    "action_operator": "apply",
+                    "condition": {
+                      "args": [
+                        {
+                          "args": [],
+                          "op": "counter",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": "witness_step",
+                          "variable": ""
+                        },
+                        {
+                          "args": [],
+                          "op": "const",
+                          "predicate": "",
+                          "role": "",
+                          "terms": [],
+                          "value": 4.0,
+                          "variable": ""
+                        }
+                      ],
+                      "op": "eq",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": null,
+                      "variable": ""
+                    },
+                    "effects": [
+                      {
+                        "key": "",
+                        "operation": "assert",
+                        "predicate": "changed",
+                        "terms": [
+                          "$target"
+                        ],
+                        "value": null
+                      },
+                      {
+                        "key": "witness_step",
+                        "operation": "increment_counter",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      },
+                      {
+                        "key": "",
+                        "operation": "progress",
+                        "predicate": "",
+                        "terms": [],
+                        "value": 1.0
+                      },
+                      {
+                        "key": "",
+                        "operation": "win",
+                        "predicate": "",
+                        "terms": [],
+                        "value": null
+                      }
+                    ]
+                  }
+                ]
+              },
+              "program_hash": "8dd32112126b37500c26d3af574e8ccd0aff957fc690774004dbe8a16f20dcb8",
+              "relation": "identity",
+              "steps": [
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "identity",
+                  "target_selector": "same_effect_distinct_target"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "identity",
+                  "target_selector": "same_effect_distinct_target"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "identity",
+                  "target_selector": "same_effect_distinct_target"
+                },
+                {
+                  "expected_event": "state_change",
+                  "operator": "apply",
+                  "relation": "identity",
+                  "target_selector": "same_effect_distinct_target"
+                },
+                {
+                  "expected_event": "level_progress",
+                  "operator": "apply",
+                  "relation": "identity",
+                  "target_selector": "same_effect_distinct_target"
+                }
+              ],
+              "teleological_effect": "level_progress"
+            }
+          }
+        },
+        "target_game": "lp85-305b61c3"
+      }
+    ],
+    "levels_completed": 2,
+    "passed": true,
+    "protocol": "leave_one_source_game_out_active_grounding",
+    "scientific_scope": "The held-out game contributes only its initial observation, legal actions, and outcomes of actions actually executed. No stored winning path or hidden counterfactual arm is read."
+  },
+  "outcomes": [
+    {
+      "actions_executed": 7,
+      "candidate_macros": 2,
+      "diagnosis": "SUCCESS",
+      "effect_groups": 2,
+      "errors": [],
+      "game": "lp85-305b61c3",
+      "illegal_actions": 0,
+      "macros_executed": 1,
+      "one_step_scan": [
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 29
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 293,
+          "effect_key": "0279d8f65910bfc448b1",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.286,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 29
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 293,
+          "effect_key": "2897f0b76fdc957f9f1c",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.253,
+          "level_delta": 0
+        }
+      ],
+      "passed": true,
+      "terminal_events": 0,
+      "wall_seconds": 1.138,
+      "witness": {
+        "grounded_evidence": {
+          "actions": [
+            {
+              "action_data": {
+                "x": 4,
+                "y": 29
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 4,
+                "y": 29
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 4,
+                "y": 29
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 4,
+                "y": 29
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 4,
+                "y": 29
+              },
+              "action_name": "ACTION6"
+            }
+          ],
+          "level_delta": 1,
+          "observed_events": [
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_increased",
+              "euler_characteristic_increased",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "object_components_increased",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of",
+              "split"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:encloses",
+              "relation_added:near"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_decreased",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_increased",
+              "created",
+              "euler_characteristic_decreased",
+              "free_regions_decreased",
+              "holes_increased",
+              "largest_free_region_bucket_preserved",
+              "level_complete",
+              "merge",
+              "object_components_increased",
+              "persisted",
+              "progress",
+              "relation_added:adjacent",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of",
+              "removed"
+            ]
+          ]
+        },
+        "posterior": {
+          "mass": 0.99999152,
+          "rank": 1
+        },
+        "source_game": "lp85-305b61c3",
+        "transferable": {
+          "context_signature": "d3d846f9d91668da9844",
+          "control_family": "repeat_apply_until_progress",
+          "format_version": "sage-t10-progress-witness-v1",
+          "macro_schema": "repeat_target",
+          "program": {
+            "action_bindings": [
+              {
+                "action_name": "ACTION6",
+                "operator": "apply",
+                "target_role": "target"
+              }
+            ],
+            "goal": {
+              "expression": {
+                "args": [],
+                "op": "fact",
+                "predicate": "level_complete",
+                "role": "",
+                "terms": [],
+                "value": null,
+                "variable": ""
+              },
+              "family": "level_progress"
+            },
+            "object_schema": {
+              "roles": [
+                "object",
+                "target"
+              ]
+            },
+            "progress": {
+              "args": [],
+              "op": "counter",
+              "predicate": "",
+              "role": "",
+              "terms": [],
+              "value": "progress",
+              "variable": ""
+            },
+            "terminal": [
+              {
+                "expression": {
+                  "args": [],
+                  "op": "fact",
+                  "predicate": "game_over",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "outcome": "game_over"
+              }
+            ],
+            "transition_rules": [
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 0.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 1.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 2.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 3.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 4.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  },
+                  {
+                    "key": "",
+                    "operation": "progress",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  },
+                  {
+                    "key": "",
+                    "operation": "win",
+                    "predicate": "",
+                    "terms": [],
+                    "value": null
+                  }
+                ]
+              }
+            ]
+          },
+          "program_hash": "8dd32112126b37500c26d3af574e8ccd0aff957fc690774004dbe8a16f20dcb8",
+          "relation": "identity",
+          "steps": [
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "identity",
+              "target_selector": "same_effect_distinct_target"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "identity",
+              "target_selector": "same_effect_distinct_target"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "identity",
+              "target_selector": "same_effect_distinct_target"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "identity",
+              "target_selector": "same_effect_distinct_target"
+            },
+            {
+              "expected_event": "level_progress",
+              "operator": "apply",
+              "relation": "identity",
+              "target_selector": "same_effect_distinct_target"
+            }
+          ],
+          "teleological_effect": "level_progress"
+        }
+      }
+    },
+    {
+      "actions_executed": 234,
+      "candidate_macros": 14,
+      "diagnosis": "SUCCESS",
+      "effect_groups": 13,
+      "errors": [],
+      "game": "su15-4c352900",
+      "illegal_actions": 0,
+      "macros_executed": 1,
+      "one_step_scan": [
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.591,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.41,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.41,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.447,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.388,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.359,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.387,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.372,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.367,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.365,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.38,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 25,
+          "effect_key": "92bc4a01b29e8c9ac343",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.389,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 25,
+          "effect_key": "5c6ddae59cd0fb1bdb9f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.367,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 0,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 22,
+          "effect_key": "63f5aaae7f1aff5e5022",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.364,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.361,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.367,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.357,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.555,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.431,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.403,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.459,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.382,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 25,
+          "effect_key": "a6ee289b1af8cd19b415",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.477,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 25,
+          "effect_key": "4fbed8892fb15b6ab5b1",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.395,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 13,
+          "effect_key": "33aaf066a26578da00e4",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.389,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 4,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 22,
+          "effect_key": "19aba06450e6deb868b9",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.372,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.509,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.411,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.378,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.581,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.395,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.38,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.423,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.378,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.681,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.676,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 24,
+          "effect_key": "1914fb9ea27cbf6c64f3",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.363,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 25,
+          "effect_key": "943d367ee8a2f9575d06",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.376,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 8,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 22,
+          "effect_key": "78a330ed0253ef22a3e7",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.436,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.373,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.377,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.511,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.409,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.372,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.359,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.581,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.418,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.609,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.409,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.406,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 25,
+          "effect_key": "6e3ff01dc515c8178439",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.478,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 12,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 22,
+          "effect_key": "733d591344dac00dec3b",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.417,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.371,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.379,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.529,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.395,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.424,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.443,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.409,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.365,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.39,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.371,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.371,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.373,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 16,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.576,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.388,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.401,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.943,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.461,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.573,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.416,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.399,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.647,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.456,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.389,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.381,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.448,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 20,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.384,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.408,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.712,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.425,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.401,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.448,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.415,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.363,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.392,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.464,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.408,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.376,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.555,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.465,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 24,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.386,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.425,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.391,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.544,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.429,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.409,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.381,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.411,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.38,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.405,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.975,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 28,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.385,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.406,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.509,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.469,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.393,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.443,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.377,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.379,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.551,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.391,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.389,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.426,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.424,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.398,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 32,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.375,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.433,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.369,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.588,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.443,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.405,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.586,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.434,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.397,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.379,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.413,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.381,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.382,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 36,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.629,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.382,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.375,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.409,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.554,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.389,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.375,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.438,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.377,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.365,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.57,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.405,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.389,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.552,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 40,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.405,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.431,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.467,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.489,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.406,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.411,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.6,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.393,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.361,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.567,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.4,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.402,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 1.029,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.393,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 44,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.41,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.563,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.392,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.377,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.404,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.407,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.418,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.374,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.536,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.37,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.406,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.464,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 48,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.368,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.562,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.398,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.369,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.628,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.399,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.362,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.406,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.509,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.383,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.364,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.657,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.412,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.375,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 52,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.452,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.66,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.409,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.374,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.556,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.427,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.492,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.44,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.402,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.463,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.394,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.393,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 56,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.585,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 10
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.406,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 14
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.471,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 18
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.557,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 22
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.603,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 26
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.452,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 30
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.739,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 34
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.698,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 38
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.726,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 42
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.591,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 46
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.685,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 50
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.965,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 54
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.494,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 58
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.661,
+          "level_delta": 0
+        },
+        {
+          "action": {
+            "action_data": {
+              "x": 60,
+              "y": 62
+            },
+            "action_name": "ACTION6"
+          },
+          "changed_cells": 2,
+          "effect_key": "3894929d90f29558ce4f",
+          "game_state": "NOT_FINISHED",
+          "latency_ms": 0.509,
+          "level_delta": 0
+        }
+      ],
+      "passed": true,
+      "terminal_events": 0,
+      "wall_seconds": 1.043,
+      "witness": {
+        "grounded_evidence": {
+          "actions": [
+            {
+              "action_data": {
+                "x": 8,
+                "y": 54
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 12,
+                "y": 50
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 16,
+                "y": 46
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 20,
+                "y": 42
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 24,
+                "y": 38
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 28,
+                "y": 34
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 32,
+                "y": 30
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 36,
+                "y": 26
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 40,
+                "y": 22
+              },
+              "action_name": "ACTION6"
+            },
+            {
+              "action_data": {
+                "x": 44,
+                "y": 18
+              },
+              "action_name": "ACTION6"
+            }
+          ],
+          "level_delta": 1,
+          "observed_events": [
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_increased",
+              "euler_characteristic_decreased",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "moved",
+              "object_components_decreased",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of",
+              "removed"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_preserved",
+              "contact_edges_preserved",
+              "euler_characteristic_preserved",
+              "free_regions_preserved",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "morphology_changed",
+              "moved",
+              "object_components_preserved",
+              "persisted",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:aligned",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of"
+            ],
+            [
+              "boundary_connected_free_regions_increased",
+              "contact_edges_decreased",
+              "created",
+              "euler_characteristic_decreased",
+              "free_regions_increased",
+              "holes_preserved",
+              "largest_free_region_bucket_preserved",
+              "level_complete",
+              "merge",
+              "moved",
+              "object_components_decreased",
+              "persisted",
+              "progress",
+              "relation_added:aligned",
+              "relation_added:contact",
+              "relation_added:east_of",
+              "relation_added:encloses",
+              "relation_added:near",
+              "relation_added:north_of",
+              "relation_added:south_of",
+              "relation_added:west_of",
+              "relation_removed:adjacent",
+              "relation_removed:aligned",
+              "relation_removed:contact",
+              "relation_removed:east_of",
+              "relation_removed:near",
+              "relation_removed:north_of",
+              "relation_removed:south_of",
+              "relation_removed:west_of",
+              "removed"
+            ]
+          ]
+        },
+        "posterior": {
+          "mass": 0.99999152,
+          "rank": 1
+        },
+        "source_game": "su15-4c352900",
+        "transferable": {
+          "context_signature": "8183d668ed02c8e77369",
+          "control_family": "repeat_apply_until_progress",
+          "format_version": "sage-t10-progress-witness-v1",
+          "macro_schema": "path_successor",
+          "program": {
+            "action_bindings": [
+              {
+                "action_name": "ACTION6",
+                "operator": "apply",
+                "target_role": "target"
+              }
+            ],
+            "goal": {
+              "expression": {
+                "args": [],
+                "op": "fact",
+                "predicate": "level_complete",
+                "role": "",
+                "terms": [],
+                "value": null,
+                "variable": ""
+              },
+              "family": "level_progress"
+            },
+            "object_schema": {
+              "roles": [
+                "object",
+                "target"
+              ]
+            },
+            "progress": {
+              "args": [],
+              "op": "counter",
+              "predicate": "",
+              "role": "",
+              "terms": [],
+              "value": "progress",
+              "variable": ""
+            },
+            "terminal": [
+              {
+                "expression": {
+                  "args": [],
+                  "op": "fact",
+                  "predicate": "game_over",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "outcome": "game_over"
+              }
+            ],
+            "transition_rules": [
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 0.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 1.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 2.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 3.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 4.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 5.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 6.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 7.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 8.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  }
+                ]
+              },
+              {
+                "action_operator": "apply",
+                "condition": {
+                  "args": [
+                    {
+                      "args": [],
+                      "op": "counter",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": "witness_step",
+                      "variable": ""
+                    },
+                    {
+                      "args": [],
+                      "op": "const",
+                      "predicate": "",
+                      "role": "",
+                      "terms": [],
+                      "value": 9.0,
+                      "variable": ""
+                    }
+                  ],
+                  "op": "eq",
+                  "predicate": "",
+                  "role": "",
+                  "terms": [],
+                  "value": null,
+                  "variable": ""
+                },
+                "effects": [
+                  {
+                    "key": "",
+                    "operation": "assert",
+                    "predicate": "changed",
+                    "terms": [
+                      "$target"
+                    ],
+                    "value": null
+                  },
+                  {
+                    "key": "witness_step",
+                    "operation": "increment_counter",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  },
+                  {
+                    "key": "",
+                    "operation": "progress",
+                    "predicate": "",
+                    "terms": [],
+                    "value": 1.0
+                  },
+                  {
+                    "key": "",
+                    "operation": "win",
+                    "predicate": "",
+                    "terms": [],
+                    "value": null
+                  }
+                ]
+              }
+            ]
+          },
+          "program_hash": "3308687661481d60477337c7f9ef608f9b00229fcf118a898915712cce738387",
+          "relation": "successor_toward_enclosure",
+          "steps": [
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "state_change",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            },
+            {
+              "expected_event": "level_progress",
+              "operator": "apply",
+              "relation": "successor_toward_enclosure",
+              "target_selector": "successor_toward_enclosure"
+            }
+          ],
+          "teleological_effect": "level_progress"
+        }
+      }
+    }
+  ],
+  "passed": true,
+  "phase": "T10.0_SOURCE_TRAIN",
+  "report_checksum": "a72bff60c6fec8a7fc1d3a7b4ecebabb5d84c39bc80bfc57ed641e0080075fbc",
+  "source_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "PASS_T10_0_AUTHORIZE_T10_1",
+  "wall_seconds": 3.907
+}

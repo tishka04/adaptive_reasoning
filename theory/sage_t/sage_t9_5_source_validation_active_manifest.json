@@ -1,0 +1,91 @@
+{
+  "actions_per_reset": 72,
+  "code_sha256": {
+    "paired_active_gate_v9_4.py": "4ad1683f2d0758130ea29bd824ebc62c348954c8439b5b61d2cd2654d8a1467a",
+    "source_validation_active_v9_5.py": "1da00735115f597897c1c04c3cbe575d79ebd16aa1f6dfe6e3814634a4d581f0"
+  },
+  "configured_actions_per_pair": 1008,
+  "configured_active_action_budget": 15120,
+  "configured_pairs": 15,
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "production_active_authority": false,
+    "source_train_modified": false,
+    "source_validation_opened": true
+  },
+  "format_version": "sage-t9.5-source-validation-active-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_rate_delta": 0.0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_wall_seconds": 21600.0,
+    "minimum_configured_actions_per_pair": 1000,
+    "minimum_nonnegative_games": 2,
+    "minimum_pairs": 15,
+    "minimum_progress_action_top8_rate": 1.0,
+    "minimum_total_level_advantage": 1,
+    "strictly_positive_level_rate_delta_ci_lower": true
+  },
+  "manifest_checksum": "f056040c99722ac562d658d1b5f5984d97fe943466198088961935ba1dde0f65",
+  "pairing": {
+    "bootstrap_samples": 10000,
+    "bootstrap_seed": 9505,
+    "bootstrap_unit": "game_seed",
+    "same_game_seed_reset_and_action_budget": true
+  },
+  "parent_t8_7_manifest_checksum": "19057dd6ef77a59c276fc5551e31c909bdcff7db49e8c149d34314f640810251",
+  "parent_t8_7_report_checksum": "043a63083fd09586517f03d07296bbc179c812ac749b0c4f45a0e5aaa4c7a805",
+  "parent_t9_4_manifest_checksum": "92908dd360765309b023af4bd9dd86ab037ccbecf4f2836c7dd316c8c4bec748",
+  "parent_t9_4_report_checksum": "1cb859061b3b8761a1289a04ad2d668f4e5e64fc5fcc8c3a33adbab1c69eeb76",
+  "policy": {
+    "controller_caps": {
+      "maximum_executor_cache_entries": 128,
+      "maximum_particles_per_decision": 2,
+      "maximum_programs": 16,
+      "maximum_repair_contexts": 0,
+      "maximum_sequences": 6,
+      "maximum_structural_macros": 4,
+      "ordinary_horizon": 3
+    },
+    "experimental_authority": {
+      "active_gate_passed_for_this_paired_experiment": true,
+      "maximum_marginal_terminal_risk": 0.05,
+      "mode": "active",
+      "observed_danger_is_absolute": true,
+      "protected_route_is_absolute": true,
+      "repair_contexts": 0,
+      "strong_surprise_lockout_threshold": 8.0
+    },
+    "identity": "exact_t9_4_safe_active_no_repair",
+    "retouched_after_t9_4": false,
+    "selected_terminal_policy": "safe_after_3",
+    "winning_prefix_audit": {
+      "correct_first_action": 9,
+      "decision_p95_ms": 3.392999991774559,
+      "exact_sequence_generated": 9,
+      "exact_sequence_top8": 9,
+      "passed": true,
+      "prefixes": 9
+    }
+  },
+  "resets_per_pair": 14,
+  "seeds": [
+    1061,
+    1062,
+    1063,
+    1064,
+    1065
+  ],
+  "source_validation_games": [
+    "re86-4e57566e",
+    "ls20-9607627b",
+    "sc25-f9b21a2f"
+  ],
+  "status": "FROZEN_BEFORE_T9_5_ACTIVE_SOURCE_VALIDATION"
+}

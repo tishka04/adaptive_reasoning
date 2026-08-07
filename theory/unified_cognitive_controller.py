@@ -107,6 +107,10 @@ from .sage12.controller import (
     Sage12Mode,
     SemanticPlanningController,
 )
+from .sage_t.controller import (
+    SageTConfig,
+    SageTController,
+)
 
 
 @dataclass(frozen=True)
@@ -276,6 +280,16 @@ class UnifiedCognitiveConfig:
     sage12_maximum_depth: int = 3
     sage12_beam_width: int = 8
     sage12_maximum_advisory_risk: float = 0.10
+    sage_t_authority_mode: str = "off"
+    sage_t_counterfactual_gate_passed: bool = False
+    sage_t_active_gate_passed: bool = False
+    sage_t_maximum_programs: int = 64
+    sage_t_maximum_sequences: int = 64
+    sage_t_maximum_decision_particles: int = 16
+    sage_t_ordinary_horizon: int = 3
+    sage_t_bounded_interventions_per_reset: int = 5
+    sage_t_bounded_maximum_terminal_risk: float = 0.05
+    sage_t_trace_path: str = ""
 
 
 @dataclass(frozen=True)
@@ -856,6 +870,7 @@ class UnifiedCognitiveController:
         neural_ranker: NeuroSymbolicRanker | None = None,
         neuro_transition_collector: Any | None = None,
         semantic_controller: SemanticPlanningController | None = None,
+        sage_t_controller: SageTController | None = None,
     ) -> None:
         self.game_id = str(game_id)
         self.config = config or UnifiedCognitiveConfig()
@@ -1336,6 +1351,41 @@ class UnifiedCognitiveController:
                         self.config.sage12_maximum_advisory_risk
                     ),
                 ),
+            )
+        )
+        self.sage_t_controller = (
+            sage_t_controller
+            or SageTController(
+                config=SageTConfig(
+                    mode=self.config.sage_t_authority_mode,
+                    counterfactual_gate_passed=(
+                        self.config.sage_t_counterfactual_gate_passed
+                    ),
+                    active_gate_passed=(
+                        self.config.sage_t_active_gate_passed
+                    ),
+                    maximum_programs=(
+                        self.config.sage_t_maximum_programs
+                    ),
+                    maximum_sequences=(
+                        self.config.sage_t_maximum_sequences
+                    ),
+                    maximum_particles_per_decision=(
+                        self.config.sage_t_maximum_decision_particles
+                    ),
+                    ordinary_horizon=(
+                        self.config.sage_t_ordinary_horizon
+                    ),
+                    bounded_maximum_interventions_per_reset=(
+                        self.config
+                        .sage_t_bounded_interventions_per_reset
+                    ),
+                    bounded_maximum_terminal_risk=(
+                        self.config
+                        .sage_t_bounded_maximum_terminal_risk
+                    ),
+                    trace_path=self.config.sage_t_trace_path,
+                )
             )
         )
 
@@ -1976,6 +2026,8 @@ class UnifiedCognitiveController:
         )
         if self.semantic_controller is not None:
             self.semantic_controller.observe_transition(update.record)
+        if self.sage_t_controller is not None:
+            self.sage_t_controller.observe_transition(update.record)
         self._pending_decision = None
         self._pending_action_candidates = ()
         return update
@@ -2292,6 +2344,59 @@ class UnifiedCognitiveController:
                     reason=semantic_arbitration.reason,
                     confidence=semantic_arbitration.confidence,
                 )
+        if self.sage_t_controller is not None:
+            prior_decision = decision
+            sage_t_arbitration = self.sage_t_controller.decide(
+                symbolic_action_name=decision.action_name,
+                symbolic_action_data=decision.action_data,
+                observation=observation,
+                legal_actions=_neural_action_candidates(
+                    safe_actions,
+                    available_action_candidates,
+                    observation=observation,
+                    default_action_data=(
+                        self._neural_candidate_action_data
+                    ),
+                ),
+                mechanic_theory=self.theory,
+                goal_hypotheses=(
+                    self.terminal_objectives.objectives()
+                ),
+                route_memory=self.level_routes,
+                protected_route=protected_competence_available,
+                danger_veto=lambda candidate: (
+                    self._neural_danger_veto(
+                        observation.grid_hash,
+                        candidate.action_name,
+                        candidate.action_data,
+                    )
+                ),
+            )
+            if sage_t_arbitration.applied:
+                if (
+                    prior_decision.action_name
+                    != sage_t_arbitration.action_name
+                    or dict(prior_decision.action_data)
+                    != dict(sage_t_arbitration.action_data)
+                ):
+                    self.neural_ranker.rearm(reason="context_change")
+                self._cancel_unexecuted_symbolic_decision(prior_decision)
+                top_probability = max(
+                    (
+                        particle.probability
+                        for particle in (
+                            self.sage_t_controller.posterior.particles
+                        )
+                    ),
+                    default=0.0,
+                )
+                decision = CognitiveDecision(
+                    action_name=sage_t_arbitration.action_name,
+                    action_data=dict(sage_t_arbitration.action_data),
+                    source="sage_t_joint_program",
+                    reason=sage_t_arbitration.reason,
+                    confidence=float(top_probability),
+                )
         decision = self._annotate_terminal_frontier_suffix(
             decision,
             observation,
@@ -2304,7 +2409,7 @@ class UnifiedCognitiveController:
         self._decision_sources[decision.source] += 1
         return decision
 
-    def on_reset(self) -> None:
+    def on_reset(self, *, _level_change: bool = False) -> None:
         """Start a fresh behavioral branch while retaining learned theory."""
         self._pending_decision = None
         self._pending_action_candidates = ()
@@ -2319,6 +2424,8 @@ class UnifiedCognitiveController:
         self.neural_ranker.start_branch()
         if self.semantic_controller is not None:
             self.semantic_controller.start_branch()
+        if self.sage_t_controller is not None and not _level_change:
+            self.sage_t_controller.start_branch()
         if self.neuro_transition_collector is not None:
             self.neuro_transition_collector.on_reset()
         discarded_frontier_eligibilities = (
@@ -2339,7 +2446,9 @@ class UnifiedCognitiveController:
 
     def on_level_change(self) -> None:
         """Keep transferable mechanics but reset branch-local control state."""
-        self.on_reset()
+        self.on_reset(_level_change=True)
+        if self.sage_t_controller is not None:
+            self.sage_t_controller.note_level_change()
         self.frontier_exploration.note_level_change()
         self.causal_schema_transfer.rearm_demotions(
             reason="level_change"
@@ -2438,6 +2547,14 @@ class UnifiedCognitiveController:
                 if self.semantic_controller is not None
                 else {
                     "configured_mode": "off",
+                    "effective_mode": "off",
+                }
+            ),
+            "sage_t_joint_program_posterior": (
+                self.sage_t_controller.summary()
+                if self.sage_t_controller is not None
+                else {
+                    "requested_mode": "off",
                     "effective_mode": "off",
                 }
             ),

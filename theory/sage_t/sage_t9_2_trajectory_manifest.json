@@ -1,0 +1,74 @@
+{
+  "challengers": {
+    "balanced_h3": {
+      "maximum_particles_per_decision": 8,
+      "maximum_programs": 32,
+      "maximum_sequences": 32,
+      "maximum_structural_macros": 8,
+      "ordinary_horizon": 3
+    },
+    "wide_h3": {
+      "maximum_particles_per_decision": 16,
+      "maximum_programs": 64,
+      "maximum_sequences": 64,
+      "maximum_structural_macros": 8,
+      "ordinary_horizon": 3
+    }
+  },
+  "code_sha256": {
+    "trajectory_planning_v9_2.py": "2cda629eb91d1bfbf52b6a145029ba4284c8852a41c712a786ba4b6fe3808066"
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "authority": "shadow",
+    "bounded_authority": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.2-trajectory-planning-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_execution_errors": 0,
+    "maximum_first_action_terminal_risk": 0.05,
+    "minimum_exact_sequence_generation_rate": 1.0,
+    "minimum_exact_sequence_top8_rate": 1.0,
+    "minimum_first_action_selection_rate": 1.0
+  },
+  "manifest_checksum": "d7cec2d4f11f87439a028d7137e1efa552c63325b1339bc8151e480da7b8a8cd",
+  "parent_t9_1_report_checksum": "3849ecf8cb619bf981e3b2814543075e818784045e2cbff9be48805c7c2102d9",
+  "selected_terminal_policy": "safe_after_3",
+  "selection_order": [
+    "exact_sequence_top8_rate",
+    "first_action_selection_rate",
+    "decision_p95_ms",
+    "maximum_sequences"
+  ],
+  "shard_sha256": {
+    "lp85.jsonl": "7dee5fa89bace32af5f744c02489a22d4703b96e4dea3fef6d6971c9e1f7461c",
+    "su15.jsonl": "d089568302893ba8e409694919d9c744400d53565d3e6f90ddbd5f1012753224"
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T9_2_SOURCE_TRAIN_GATE",
+  "structural_macros": {
+    "coordinates_are_branch_local_not_program_constants": true,
+    "maximum_actions": 8,
+    "repeat_lengths": [
+      3,
+      2
+    ],
+    "roles": [
+      "westmost_target",
+      "eastmost_target"
+    ]
+  },
+  "subgoal_prior": {
+    "description": "persistently apply one transformation to an extremal target",
+    "same_target_repeat_bonus_per_extra_action": 0.35
+  }
+}

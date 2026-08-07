@@ -38,6 +38,17 @@ training/sage12/morpho_topological_v4_16/train_embeddings.jsonl
 training/sage12/morpho_topological_v4_16/train_transitions.jsonl
 training/sage12/morpho_topological_v4_16/transfer_transitions.jsonl
 
+# SAGE.T local experiment outputs are regenerable and stay outside Git.  The
+# T10 baseline explicitly publishes only its compact evidence and inventory.
+training/sage_t/**
+!training/sage_t/progress_witness_v10_0b/
+training/sage_t/progress_witness_v10_0b/**
+!training/sage_t/progress_witness_v10_0b/report.json
+!training/sage_t/progress_witness_v10_1/
+training/sage_t/progress_witness_v10_1/**
+!training/sage_t/progress_witness_v10_1/report.json
+!training/sage_t/t10_1_omitted_artifacts_inventory.json
+
 # Jupyter
 .ipynb_checkpoints/
 

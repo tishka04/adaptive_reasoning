@@ -1,0 +1,83 @@
+{
+  "action_manifest_checksum": "bda7857004e3c5c15c152e0277f00d0c1770afaeb96973fdbbe3d3fbc909e911",
+  "actions": 400,
+  "actions_per_game": 200,
+  "actions_per_reset": 50,
+  "active_authority_authorized": false,
+  "authority": "shadow",
+  "bounded_authority_authorized": false,
+  "code_sha256": {
+    "live_shadow_pilot_v9.py": "0f40cdecd476cb60d2bd41a94c9c47502b2d88561acd15afaa2636aa07c12bdf"
+  },
+  "environment_interactions": 800,
+  "format_version": "sage-t8.6j-r2-long-live-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "latency_window": 20,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_per_game_decision_tail_ratio": 2.0,
+    "maximum_per_game_observation_tail_ratio": 2.0,
+    "maximum_repairs_per_observation": 1,
+    "maximum_surviving_children_per_observation": 4,
+    "maximum_wall_seconds": 720.0,
+    "minimum_prediction_coverage": 1.0,
+    "require_incremental_cache_activity": true
+  },
+  "manifest_checksum": "a5cf9fae23f5418ecde1559e6ee47ba37c4eb2e3b8f1184077220faa13efc2b0",
+  "r2_manifest_checksum": "2900a96e34b99d27f6916b22392db1cb64d38323e1545ec1bc6d8eea09706c33",
+  "r2_report_checksum": "b953e3fd76c7f296db0cb6b01f6c0ce7a7b3eaafa4038ef1b7be253afe1d27f4",
+  "repair_policy": {
+    "channel_temperatures": [
+      [
+        "objects",
+        1.0
+      ],
+      [
+        "relations",
+        1.0
+      ],
+      [
+        "topology",
+        1.0
+      ],
+      [
+        "progress",
+        1.0
+      ],
+      [
+        "terminal",
+        0.2
+      ],
+      [
+        "goal",
+        1.0
+      ]
+    ],
+    "entropy_floor": 0.0501,
+    "family_mixture": 0.0,
+    "incremental_repair": true,
+    "maximum_family_mixture": 0.02,
+    "maximum_family_total_variation": 0.02,
+    "name": "terminal_tempered_20_family_floor_0501_minimum_kl_repair_v2",
+    "projection_tolerance": 1e-10,
+    "repair_child_limit": 8,
+    "repair_minimum_improvement": 1.0,
+    "repair_parent_limit": 2,
+    "repair_survivor_limit": 4,
+    "repeated_context_channels": [],
+    "semantic_collapse_entropy_maximum": 0.05,
+    "semantic_collapse_surprise_minimum": 3.0
+  },
+  "resets": 4,
+  "seeds": [
+    0
+  ],
+  "selected_challenger": "terminal_tempered_20_family_floor_0501_minimum_kl",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "source_validation_authorized": false,
+  "status": "FROZEN_BEFORE_T8_6J_R2_400_ACTION_LIVE"
+}

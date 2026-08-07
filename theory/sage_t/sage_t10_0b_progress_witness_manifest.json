@@ -1,0 +1,68 @@
+{
+  "changes_from_t10_0": [
+    "gap-tolerant chain connectivity with arc-distance successor sampling",
+    "stateful semantic deduplication in a T10-only posterior challenger",
+    "legacy posterior implementation preserved bit-for-bit"
+  ],
+  "code_sha256": {
+    "posterior.py": "aedb4dad969517e03d3afd0190b3ad6a509f80b1cdc43a7350c0de0c05036e01",
+    "progress_witness_v10.py": "4322d20798ce3254fe863a391514242f16590be8108237ab4c4599f9ac610966",
+    "test_sage_t_progress_witness_v10.py": "8bed3e00109ab7f35f7852e9419757abb7dcf06e8151fea3b8e06a3bb9b7ba1e"
+  },
+  "environment_metadata_sha256": {
+    "lp85-305b61c3": "791e58fbbbc2ed605ec938cad6d07602c47bc3be1f1e5a3ddc73a500cccde367",
+    "su15-4c352900": "45b14ad12c8667208c42d36844ce3f063af54a39bd9272f28330c574f35a2267"
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t10b-progress-witness-manifest-v1",
+  "frozen_at": "2026-08-07",
+  "gate": {
+    "both_source_games_must_progress": true,
+    "leave_one_game_out_folds_required": 2,
+    "maximum_controller_or_environment_errors": 0,
+    "maximum_illegal_actions": 0,
+    "minimum_level_delta_per_game": 1,
+    "posterior_maximum_compatible_rank": 8,
+    "transferable_payload_must_be_coordinate_free": true
+  },
+  "manifest_checksum": "1143b9376c55fd70bcb273d092aa61d9392beed618af1b270ffe1d3a98469dcd",
+  "parent_t10_0_manifest_checksum": "634ae1485e9e9926a927762dd763ddb2d0ef9ca59d75cb6012f4b32c79e05c85",
+  "parent_t10_0_report_checksum": "47f76cbf99d7308224246a3ede768b0f0088e57dd254e50ae9f4fc478a880b30",
+  "protocol": {
+    "active_observations_allowed": [
+      "initial_observation",
+      "legal_action_inventory",
+      "effects_of_actions_actually_executed",
+      "level_and_terminal_signals_after_execution"
+    ],
+    "forbidden_inputs": [
+      "game_source_code",
+      "stored_winning_paths",
+      "hidden_counterfactual_arms",
+      "source_validation",
+      "ar25",
+      "holdout"
+    ],
+    "leave_one_game_out": "induce the repeat_apply_until_progress control family on one source game and ground it afresh on the other",
+    "stop_condition": "first positive level delta"
+  },
+  "search_config": {
+    "chain_link_radius": 6.0,
+    "chain_minimum_nodes": 6,
+    "chain_stride": 2,
+    "maximum_candidate_macros": 40,
+    "maximum_effect_representatives": 32,
+    "maximum_horizon": 16,
+    "maximum_one_step_actions": 512
+  },
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T10_0B_SOURCE_TRAIN_AND_LOO"
+}

@@ -1,0 +1,41 @@
+{
+  "action_manifest_checksum": "90a5fd9c59959700a192c336346d97bd39d9c8afb6da05720c9eb97d03a9b75b",
+  "actions_per_reset": 25,
+  "authority": "shadow",
+  "code_sha256": {
+    "live_shadow_pilot_v11.py": "e880d1d6f7cc6ea9ce8c4c3c468404939e72b3fef87e194e2fffab130a6f5a0d"
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "bounded_authority": false,
+    "holdout_opened": false,
+    "source_train_modified": false,
+    "source_validation_opened": true
+  },
+  "format_version": "sage-t8.7-source-validation-live-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "high_terminal_threshold": 0.8,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_repair_contexts_per_game": 16,
+    "maximum_wall_seconds": 300.0,
+    "minimum_actions": 60,
+    "minimum_actions_per_game": 15,
+    "minimum_prediction_coverage": 1.0
+  },
+  "manifest_checksum": "19057dd6ef77a59c276fc5551e31c909bdcff7db49e8c149d34314f640810251",
+  "maximum_actions": 150,
+  "model": "unchanged_t8_6j_r3",
+  "parent_t8_6j_report_checksum": "17736a3aa38228211fed2c1f4b5a70392bbb570e8f08157f981043605f329ac1",
+  "resets": 2,
+  "seed": 1061,
+  "source_validation_games": [
+    "re86-4e57566e",
+    "ls20-9607627b",
+    "sc25-f9b21a2f"
+  ],
+  "status": "FROZEN_BEFORE_T8_7_SOURCE_VALIDATION"
+}

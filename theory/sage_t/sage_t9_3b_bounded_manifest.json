@@ -1,0 +1,68 @@
+{
+  "action_budget_per_reset": 50,
+  "authority": {
+    "maximum_interventions_per_reset": 5,
+    "maximum_interventions_per_unknown_context": 1,
+    "maximum_marginal_terminal_risk": 0.05,
+    "mode": "bounded",
+    "observed_danger_is_absolute": true,
+    "protected_route_is_absolute": true,
+    "strong_surprise_lockout_threshold": 8.0
+  },
+  "code_sha256": {
+    "bounded_active_v9_3b.py": "e58afea521af2b04f1e78cb7e919809f8f9514b0dae3edcab62a343e5d3a892e"
+  },
+  "controller_caps": {
+    "maximum_particles_per_decision": 8,
+    "maximum_programs": 32,
+    "maximum_sequences": 32,
+    "maximum_structural_macros": 8,
+    "ordinary_horizon": 3
+  },
+  "firewall": {
+    "active_authority": false,
+    "ar25_opened": false,
+    "holdout_opened": false,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "format_version": "sage-t9.3b-live-grounded-bounded-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "maximum_controller_errors": 0,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_environment_errors": 0,
+    "maximum_false_high_terminal_rate": 0.05,
+    "maximum_game_over_delta": 0,
+    "maximum_illegal_actions": 0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_wall_seconds": 360.0,
+    "minimum_levels_completed": 1,
+    "minimum_real_progress_events": 1,
+    "minimum_total_actions": 120
+  },
+  "manifest_checksum": "b3891de26b9e50820ad24f5cb0f8b5d7c8039039637438f91e32acbf5bd4fd7e",
+  "parent_t9_2_report_checksum": "1062eebfe3df5b8bf538e96cf171ca523f5ebe8477264e329ae600c5506b8646",
+  "parent_t9_3_report_checksum": "271d230a434aa48c60ebb9543e4a5c8be62985ca62b24331a7351bab6f109e22",
+  "registered_changes": [
+    "fallback repeat macros from materialized spatial legal actions",
+    "westmost tie-break only among equal-utility admissible actions",
+    "false-high metric matched to the action actually executed"
+  ],
+  "resets": 3,
+  "runtime": {
+    "arc_agi": "0.9.1",
+    "arcengine": "0.9.3",
+    "operation_mode": "offline"
+  },
+  "seeds": [
+    0
+  ],
+  "selected_challenger": "balanced_h3",
+  "selected_terminal_policy": "safe_after_3",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "status": "FROZEN_BEFORE_T9_3B_BOUNDED_SOURCE_TRAIN"
+}

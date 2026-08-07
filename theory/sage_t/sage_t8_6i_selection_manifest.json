@@ -1,0 +1,234 @@
+{
+  "action_schedules_sha256": "b8fe3a6a9c44ad85b8baeb9435d314ed6e07073e1004625985ad8695b479c088",
+  "bootstrap": {
+    "confidence": 0.95,
+    "samples": 10000,
+    "seed": 8606
+  },
+  "checkpoints": [
+    1,
+    3,
+    5
+  ],
+  "code_sha256": {
+    "calibration_gate_v8_6i.py": "d58c535d23defffdbcb057744d5c43e6f24b8dc727e45d87a94885591a013309",
+    "goal_generation_v3.py": "34d48a373f3cfddf893e5f16063e0f746af30381bbe4d57eff38e57ac4d903d5",
+    "structural_roles.py": "224e03813f2b8018e0f5b888f5bceaa897ea1f3cae561c4a0d1d2c846a7e750e"
+  },
+  "confirmation": {
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_false_terminal_rate_at_p80": 0.05,
+    "maximum_latency_tail_ratio": 4.0,
+    "maximum_live_wall_seconds": 100.0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_repairs_per_observation": 1,
+    "maximum_surviving_children_per_observation": 4,
+    "minimum_goal_compatible_generated": 3,
+    "minimum_goal_compatible_top8": 2,
+    "minimum_goal_probability_gain": 0.25,
+    "minimum_prediction_coverage": 1.0,
+    "minimum_terminal_compatible_top8_rate": 0.9
+  },
+  "corpus": {
+    "arms": 760,
+    "goal_positive_arms": 3,
+    "goal_positive_roots": 3,
+    "natural_five_panel_roots": 52,
+    "pairs": 380,
+    "roots": 64,
+    "signal_roots": 25,
+    "terminal_positive_arms": 115,
+    "terminal_positive_roots": 23
+  },
+  "firewall": {
+    "ar25_opened": false,
+    "authority": "shadow",
+    "holdout_opened": false,
+    "llm_enabled": false,
+    "neural_residual_weight": 0.0,
+    "source_train_only": true,
+    "source_validation_opened": false
+  },
+  "forbidden_games": [
+    "ar25",
+    "ls20",
+    "re86",
+    "sc25"
+  ],
+  "format_version": "sage-t8.6i-structural-goal-v1",
+  "frozen_at": "2026-08-06",
+  "frozen_invariants": {
+    "actions": "exact_t8_6_schedules",
+    "channel_weights": "unchanged",
+    "decision_utility": "unchanged",
+    "dsl": "unchanged",
+    "forbidden_program_inputs": [
+      "entity_ids",
+      "raw_colors",
+      "absolute_coordinates",
+      "game_ids"
+    ],
+    "goal_bridge": "unchanged_from_t8_6h",
+    "goal_guard": "observed_trigger_action_and_structural_role",
+    "goal_guard_prior_delta": -0.1,
+    "goal_guard_support": 0,
+    "mdl_priors": "unchanged",
+    "only_inference_change": "coordinate_free_ordinal_roles_and_conditional_goal_guard",
+    "posterior_implementation": "unchanged_from_t8_6g",
+    "repair_requires_full_history_replay": true,
+    "role_induction": "unique_horizontal_extrema_by_relative_order",
+    "role_inputs": "target_role_and_relative_center_order_only",
+    "selected_posterior": "terminal_tempered_20_family_floor_0501_minimum_kl",
+    "structural_roles": [
+      "westmost_target",
+      "eastmost_target"
+    ]
+  },
+  "manifest_checksum": "c8f09f97dc1e191b4bb9789a985bd4adbb6e9a100279b786493766d433553772",
+  "parent_t8_6h_manifest_checksum": "22610e3257f45d505de9858750eeeaf47c00ad6c1440628945364dce8dd10b98",
+  "parent_t8_6h_scientific_checksum": "3eb362d8ee1f2cc622b88f20fa71a31cef5aca5d50a505b3a8d3cd4872d35a40",
+  "policies": {
+    "legacy": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          1.0
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "maximum_family_total_variation": 0.02,
+      "name": "legacy",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "terminal_tempered_20": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          0.2
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "maximum_family_total_variation": 0.02,
+      "name": "terminal_tempered_20",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    },
+    "terminal_tempered_20_family_floor_0501_minimum_kl": {
+      "channel_temperatures": [
+        [
+          "objects",
+          1.0
+        ],
+        [
+          "relations",
+          1.0
+        ],
+        [
+          "topology",
+          1.0
+        ],
+        [
+          "progress",
+          1.0
+        ],
+        [
+          "terminal",
+          0.2
+        ],
+        [
+          "goal",
+          1.0
+        ]
+      ],
+      "entropy_floor": 0.0501,
+      "family_mixture": 0.0,
+      "incremental_repair": false,
+      "maximum_family_mixture": 0.02,
+      "maximum_family_total_variation": 0.02,
+      "name": "terminal_tempered_20_family_floor_0501_minimum_kl",
+      "projection_tolerance": 1e-10,
+      "repair_child_limit": 0,
+      "repair_minimum_improvement": 1.0,
+      "repair_parent_limit": 4,
+      "repair_survivor_limit": 0,
+      "repeated_context_channels": [],
+      "semantic_collapse_entropy_maximum": 0.05,
+      "semantic_collapse_surprise_minimum": 3.0
+    }
+  },
+  "selection": {
+    "hidden_log_likelihood_game_delta_minimum": 0.0,
+    "maximum_semantic_collapse_rate": 0.1,
+    "minimum_collapse_reduction_fraction": 0.5,
+    "paired_interval_lower_must_exceed": 0.0,
+    "tie_breakers": [
+      "terminal_log_loss",
+      "hidden_log_likelihood",
+      "latency"
+    ]
+  },
+  "source_train_games": [
+    "lp85",
+    "su15"
+  ],
+  "status": "FROZEN_BEFORE_T8_6I_SOURCE_TRAIN_SELECTION"
+}

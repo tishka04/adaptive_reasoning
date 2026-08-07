@@ -1,0 +1,87 @@
+{
+  "action_manifest_checksum": "e7b6db47eb451812cf9b5a24708bc6249d5d8b7ad2baa3408ccd247f85635cb0",
+  "actions_per_reset": 50,
+  "active_authority_authorized": false,
+  "authority": "shadow",
+  "bounded_authority_authorized": false,
+  "code_sha256": {
+    "live_shadow_pilot_v10.py": "21fda86873b4e5a597436d07285ba8443ae33ba896080d039322097f0333210b"
+  },
+  "format_version": "sage-t8.6j-r3-extended-live-v1",
+  "frozen_at": "2026-08-06",
+  "gate": {
+    "latency_window": 20,
+    "maximum_decision_p95_ms": 2500.0,
+    "maximum_observation_p95_ms": 3000.0,
+    "maximum_per_game_decision_tail_ratio": 2.0,
+    "maximum_per_game_observation_tail_ratio": 2.0,
+    "maximum_repairs_per_observation": 1,
+    "maximum_surviving_children_per_observation": 4,
+    "maximum_wall_seconds": 720.0,
+    "minimum_prediction_coverage": 1.0,
+    "require_incremental_cache_activity": true,
+    "require_repair_budget_exercised": true
+  },
+  "manifest_checksum": "73b211cec22f1e8baea9aa0a90f60218f56daf200aef7a764d0d19f786ad9b47",
+  "maximum_actions": 700,
+  "maximum_actions_per_game": 350,
+  "maximum_environment_interactions": 1400,
+  "maximum_repair_contexts_per_game": 16,
+  "minimum_actions": 400,
+  "minimum_actions_per_game": 200,
+  "r3_manifest_checksum": "a20f6b80820e915af315c685f134ebe3442609e46c4d8860ac17c1d8ecc1cb1e",
+  "r3_report_checksum": "744d1db67f548f03edfbf97db2c1c7e57cf333b4e0fb8fce5e0c66162997b029",
+  "repair_policy": {
+    "channel_temperatures": [
+      [
+        "objects",
+        1.0
+      ],
+      [
+        "relations",
+        1.0
+      ],
+      [
+        "topology",
+        1.0
+      ],
+      [
+        "progress",
+        1.0
+      ],
+      [
+        "terminal",
+        0.2
+      ],
+      [
+        "goal",
+        1.0
+      ]
+    ],
+    "entropy_floor": 0.0501,
+    "family_mixture": 0.0,
+    "incremental_repair": true,
+    "maximum_family_mixture": 0.02,
+    "maximum_family_total_variation": 0.02,
+    "name": "terminal_tempered_20_family_floor_0501_minimum_kl_repair_v2",
+    "projection_tolerance": 1e-10,
+    "repair_child_limit": 8,
+    "repair_minimum_improvement": 1.0,
+    "repair_parent_limit": 2,
+    "repair_survivor_limit": 4,
+    "repeated_context_channels": [],
+    "semantic_collapse_entropy_maximum": 0.05,
+    "semantic_collapse_surprise_minimum": 3.0
+  },
+  "resets": 7,
+  "seeds": [
+    0
+  ],
+  "selected_challenger": "terminal_tempered_20_family_floor_0501_minimum_kl",
+  "source_train_games": [
+    "lp85-305b61c3",
+    "su15-4c352900"
+  ],
+  "source_validation_authorized": false,
+  "status": "FROZEN_BEFORE_T8_6J_R3_EXTENDED_LIVE"
+}

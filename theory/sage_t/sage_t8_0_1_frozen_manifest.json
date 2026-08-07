@@ -1,0 +1,17 @@
+{
+  "base_t8_manifest_checksum": "0a65121fefeccf387cbb7e29d95f2a1469dfc59d6a66da690b7465d787a9b885",
+  "code_sha256": {
+    "live_shadow_checkpoint.py": "d2ce6e2af4e36f6f40b76f510dc2cfc68d21289a253aef1bdbd673072b0f1669"
+  },
+  "condition_timeout_seconds": 180.0,
+  "execution_changes": [
+    "one subprocess per frozen game/seed condition",
+    "atomic checkpoint after each completed condition",
+    "explicit TIMEOUT checkpoint on deadline"
+  ],
+  "format_version": "sage-t8.0.1-live-shadow-checkpoint-v1",
+  "frozen_at": "2026-07-31",
+  "manifest_checksum": "1dbae4fec6a4c26d97cbbe6e53763d4311c8a613d13807905ca253f30d88b53f",
+  "scientific_protocol_changes": [],
+  "status": "FROZEN_BEFORE_CHECKPOINTED_RETRY"
+}
