@@ -8,6 +8,8 @@ import pytest
 
 from theory.sage_t import t10_2_2_protocol as protocol
 
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+
 
 # ---------------------------------------------------------------------------
 # Helpers.
@@ -98,7 +100,9 @@ def test_checkpoint_binding_rejects_checksum_divergence() -> None:
     report = _collection_report(
         manifest_checksum=manifest, checkpoint_checksum="b" * 64
     )
-    with pytest.raises(protocol.ManifestDriftError, match="checkpoint checksum diverged"):
+    with pytest.raises(
+        protocol.ManifestDriftError, match="checkpoint checksum diverged"
+    ):
         protocol.build_checkpoint_binding(
             collection_report=report, checkpoint=checkpoint
         )
@@ -137,7 +141,9 @@ def test_synchronize_report_with_checkpoint_reads_disk(tmp_path: Path) -> None:
 
 def test_synchronize_report_missing_checkpoint_fails(tmp_path: Path) -> None:
     manifest = "m" * 64
-    report = _collection_report(manifest_checksum=manifest, checkpoint_checksum="c" * 64)
+    report = _collection_report(
+        manifest_checksum=manifest, checkpoint_checksum="c" * 64
+    )
     (tmp_path / protocol.COLLECTION_REPORT_FILENAME).write_text(
         protocol.canonical_json(report) + "\n", encoding="utf-8"
     )
@@ -330,10 +336,18 @@ def test_evidence_funnel_rejects_unregistered_reason() -> None:
 
 def test_evidence_funnel_from_reset_reports() -> None:
     reports = [
-        {"issued_intents": 64, "sealed_events": 64, "unresolved_intents": 0,
-         "stop_reason": "registered_collection_deadline"},
-        {"issued_intents": 64, "sealed_events": 60, "unresolved_intents": 4,
-         "stop_reason": "cooperative_reset_deadline"},
+        {
+            "issued_intents": 64,
+            "sealed_events": 64,
+            "unresolved_intents": 0,
+            "stop_reason": "registered_collection_deadline",
+        },
+        {
+            "issued_intents": 64,
+            "sealed_events": 60,
+            "unresolved_intents": 4,
+            "stop_reason": "cooperative_reset_deadline",
+        },
     ]
     funnel = protocol.evidence_funnel_from_reset_reports(reports)
     assert funnel["sealed_events"] == 124
@@ -356,6 +370,60 @@ def test_schema_families_separated_from_grounded_instances() -> None:
     assert evidence["families_are_coordinate_free"] is True
     # Two families but three groundings: grounding must never inflate capacity.
     assert evidence["learned_schema_counts"] == {"move:1": 5, "rotate:0": 2}
+
+
+# ---------------------------------------------------------------------------
+# Point 5: controller-activity semantics.
+# ---------------------------------------------------------------------------
+def test_controller_activity_marks_coverage_as_not_applicable() -> None:
+    reports = [
+        {
+            "work": {"controller": "balanced_discovery", "reset_index": 0},
+            "status": "COMPLETE",
+        },
+        {"work": {"controller": "learned", "reset_index": 0}, "status": "COMPLETE"},
+        {
+            "work": {"controller": "capacity_matched_independent", "reset_index": 1},
+            "status": "COMPLETE",
+        },
+    ]
+    activity = protocol.build_controller_activity(reports)
+    rows = {row["controller"]: row for row in activity["per_reset"]}
+    # Discovery = coverage: posterior counts are NOT applicable here.
+    assert rows["balanced_discovery"]["posterior_applicable"] is False
+    assert rows["balanced_discovery"]["selection_posterior_active"] is False
+    assert rows["balanced_discovery"]["coverage_controller_active"] is True
+    # Both posterior controllers select through the engine.
+    assert rows["learned"]["selection_posterior_active"] is True
+    assert rows["learned"]["eig_evaluated"] is True
+    assert rows["capacity_matched_independent"]["posterior_applicable"] is True
+    assert activity["coverage_reset_count"] == 1
+    assert activity["selection_posterior_reset_count"] == 2
+
+
+def test_controller_posterior_applicable_helper() -> None:
+    assert protocol.controller_posterior_applicable("balanced_discovery") is False
+    assert protocol.controller_posterior_applicable("learned") is True
+
+
+# ---------------------------------------------------------------------------
+# Point 6: event eligibility.
+# ---------------------------------------------------------------------------
+def test_event_eligibility_admits_complete_resets_only() -> None:
+    reports = [
+        {"status": "COMPLETE", "sealed_events": 24},
+        {"status": "COMPLETE", "sealed_events": 24},
+        {"status": "ABORTED", "sealed_events": 23},
+        {"status": "UNATTESTABLE", "sealed_events": 7},
+    ]
+    eligibility = protocol.build_event_eligibility(reports)
+    assert eligibility["sealed_events_total"] == 78
+    assert eligibility["complete_reset_events"] == 48
+    assert eligibility["incomplete_reset_events"] == 30
+    # Downstream fits from complete resets only.
+    assert eligibility["training_eligible_events"] == 48
+    assert eligibility["cross_fit_eligible_events"] == 48
+    assert eligibility["eligibility_rule"] == "complete_resets_only"
 
 
 # ---------------------------------------------------------------------------
@@ -392,16 +460,19 @@ def test_schedule_interleaves_and_covers_all_lanes() -> None:
     schedule = protocol.interleaved_lane_schedule()
     order = schedule["order"]
     assert len(order) == len(protocol.source_lane_registry())
-    # First two lanes should straddle both splits (discovery then confirmation).
-    assert order[0]["split"] == "discovery"
-    assert order[1]["split"] == "leave_one_game_out_confirmation"
+    bootstrap = order[: len(protocol.SOURCE_GAMES)]
+    assert {lane["game_id"] for lane in bootstrap} == set(protocol.SOURCE_GAMES)
+    assert all(lane["split"] == "discovery" for lane in bootstrap)
+    assert order[len(bootstrap)]["split"] == "leave_one_game_out_confirmation"
+    assert schedule["confirmation_donor_safe"] is True
     assert schedule["truncated"] is False
 
 
 def test_reserved_confirmation_capacity_survives_truncation() -> None:
     reserve = protocol.reserved_confirmation_capacity()
     assert reserve >= 1
-    schedule = protocol.interleaved_lane_schedule(lane_budget=reserve + 1)
+    minimum = len(protocol.SOURCE_GAMES) + reserve
+    schedule = protocol.interleaved_lane_schedule(lane_budget=minimum + 1)
     assert schedule["truncated"] is True
     confirmations = [
         lane
@@ -409,6 +480,7 @@ def test_reserved_confirmation_capacity_survives_truncation() -> None:
         if lane["split"] == "leave_one_game_out_confirmation"
     ]
     assert len(confirmations) >= reserve
+    assert schedule["minimum_safe_lane_budget"] == minimum
 
 
 def test_schedule_refuses_budget_below_reserve() -> None:
@@ -422,8 +494,17 @@ def test_schedule_refuses_budget_below_reserve() -> None:
 # ---------------------------------------------------------------------------
 def test_smoke_plan_one_lane_per_split_precedes_matrix() -> None:
     plan = protocol.smoke_lane_plan()
-    assert plan["smoke_lane_count"] == len(protocol.SOURCE_SPLITS)
-    assert plan["one_per_split"] is True
+    assert plan["smoke_lane_count"] == 3
+    assert plan["resets_per_lane"] == 2
+    assert plan["reset_report_count"] == 6
+    assert plan["confirmation_controller_sequence"] == [
+        "capacity_matched_independent",
+        "learned",
+    ]
+    assert plan["learned_controller_exercised"] is True
+    assert plan["confirmation_donor_safe"] is True
+    assert len(plan["donor_prerequisite_lane_ids"]) == 2
+    assert plan["one_primary_lane_per_split"] is True
     assert plan["smoke_precedes_matrix"] is True
     smoke_splits = {lane["split"] for lane in plan["smoke_lanes"]}
     assert smoke_splits == set(protocol.SOURCE_SPLITS)
@@ -489,9 +570,7 @@ def test_transfer_failure_stands_with_qualifying_lane() -> None:
 
 def test_guard_rejects_unregistered_verdict() -> None:
     with pytest.raises(protocol.DataGateError):
-        protocol.guard_transfer_verdict(
-            verdict="NOT_A_VERDICT", lane_intent_counts={}
-        )
+        protocol.guard_transfer_verdict(verdict="NOT_A_VERDICT", lane_intent_counts={})
 
 
 # ---------------------------------------------------------------------------
@@ -576,6 +655,101 @@ def test_orchestration_schema_verdict_needs_green_canary() -> None:
     inputs["induction_canary"] = protocol.run_induction_canary(induct=lambda e: [])
     report = protocol.build_orchestration_report(**inputs)
     assert report["verdict"] == protocol.EVIDENCE_UNMET_VERDICT
+
+
+# ---------------------------------------------------------------------------
+# T10.2.2 manifest.
+# ---------------------------------------------------------------------------
+def _stub_parent_manifest() -> dict[str, Any]:
+    return protocol.signed_payload(
+        {
+            "format_version": "sage-t10.2.1-protocol-v1",
+            "parent_lineage": {"t10_2_verdict": "DATA_OR_PROVENANCE_INVALID"},
+            "firewall": {"production_authority": False},
+            "environment": {"python": "test"},
+            "frozen_source_shards": {"bp35": {"sha256": "x"}},
+        },
+        checksum_key="manifest_checksum",
+    )
+
+
+def test_source_plan_is_action_budget_with_liveness_and_on_fix() -> None:
+    plan = protocol.t10_2_2_source_plan()
+    assert plan["budget_basis"] == "physical_action_count"
+    assert plan["reset_action_budget"] == 64
+    assert plan["wall_clock_role"] == "liveness_watchdog_only"
+    assert plan["reset_liveness_wall_seconds"] == 600.0
+    assert plan["lane_liveness_wall_seconds"] == 2700.0
+    assert plan["collection_liveness_wall_seconds"] == 43200.0
+    # The O(N^2) -> O(N) fix is part of the registered plan.
+    assert plan["incremental_aggregates"] is True
+    assert plan["eliminates_per_reset_history_scan"] is True
+
+
+def test_build_manifest_binds_parent_and_is_self_authenticating() -> None:
+    parent = _stub_parent_manifest()
+    manifest = protocol.build_manifest(
+        repo_root=REPOSITORY_ROOT,
+        parent_manifest=parent,
+        verify_repository=False,
+    )
+    assert manifest["format_version"] == protocol.FORMAT_VERSION
+    assert manifest["status"] == protocol.MANIFEST_STATUS
+    assert manifest["parent_t10_2_1_manifest_checksum"] == parent["manifest_checksum"]
+    # Real implementation files are hashed.
+    assert "theory/sage_t/t10_2_2_runtime.py" in manifest["code_sha256"]
+    assert "theory/sage_t/t10_2_2_protocol.py" in manifest["portable_code_sha256"]
+    assert set(manifest["execution_manifests"]) == {"full", "smoke"}
+    full = manifest["execution_manifests"]["full"]
+    smoke = manifest["execution_manifests"]["smoke"]
+    assert (
+        full["artifact_contract"]["artifact_root"]
+        == protocol.DEFAULT_OUTPUT_DIR.as_posix()
+    )
+    assert (
+        smoke["artifact_contract"]["artifact_root"]
+        == protocol.DEFAULT_SMOKE_OUTPUT_DIR.as_posix()
+    )
+    assert smoke["source_plan"]["smoke_only"] is True
+    assert smoke["source_plan"]["lane_count"] == 3
+    assert smoke["source_plan"]["reset_report_count"] == 6
+    assert smoke["source_plan"]["maximum_actions"] == 384
+    assert manifest["source_plan"]["legacy_t10_2_1_journal_read_only"] is True
+    # Self-authenticating.
+    unsigned = {k: v for k, v in manifest.items() if k != "manifest_checksum"}
+    assert manifest["manifest_checksum"] == protocol.canonical_sha256(unsigned)
+
+
+def test_freeze_and_load_manifest_roundtrip(tmp_path: Path) -> None:
+    parent = _stub_parent_manifest()
+    manifest = protocol.build_manifest(
+        repo_root=REPOSITORY_ROOT, parent_manifest=parent, verify_repository=False
+    )
+    path = tmp_path / "sage_t10_2_2_protocol_manifest.json"
+    protocol.write_compact_json(path, manifest)
+    loaded = protocol.load_manifest(path, verify_repository=False)
+    assert loaded == manifest
+    # Tampering is refused.
+    tampered = dict(manifest)
+    tampered["status"] = "OPENED"
+    path.write_text(protocol.canonical_json(tampered) + "\n", encoding="utf-8")
+    with pytest.raises(protocol.ManifestDriftError):
+        protocol.load_manifest(path, verify_repository=False)
+
+
+def test_kernel_protocol_bindings_restore_parent_constants() -> None:
+    original_output = protocol._t10_2_1.DEFAULT_OUTPUT_DIR
+    original_resets = protocol._t10_2_1.SOURCE_RESETS_PER_GAME_SEED
+    with protocol.kernel_protocol_bindings(
+        artifact_root=protocol.DEFAULT_SMOKE_OUTPUT_DIR,
+        manifest_relative_path=protocol.DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH,
+        mode="smoke",
+    ):
+        assert protocol._t10_2_1.DEFAULT_OUTPUT_DIR == protocol.DEFAULT_SMOKE_OUTPUT_DIR
+        assert protocol._t10_2_1.SOURCE_RESETS_PER_GAME_SEED == 2
+        assert protocol._t10_2_1._source_plan()["maximum_actions"] == 384
+    assert protocol._t10_2_1.DEFAULT_OUTPUT_DIR == original_output
+    assert protocol._t10_2_1.SOURCE_RESETS_PER_GAME_SEED == original_resets
 
 
 # ---------------------------------------------------------------------------

@@ -1,9 +1,10 @@
 """SAGE.T10.2.2 induction-faithful, readiness-gated gauge-posterior retest.
 
-T10.2.2 keeps the frozen T10.2 scientific kernel and the frozen T10.2.1
-durable, time-budgeted acquisition/persistence layer intact.  It changes only
-orchestration, timing accounting, and report synchronization.  The T10.2.1
-protocol module is imported as the frozen kernel and is never mutated here.
+T10.2.2 keeps the frozen T10.2 scientific kernel and append-only T10.2.1 record
+formats.  It owns a new artifact namespace and changes acquisition scheduling,
+budget semantics, incremental accounting, checkpoint persistence, timing
+accounting, and report synchronization.  Compatibility bindings are scoped and
+restored; the partial T10.2.1 journal remains read-only.
 
 Nine orchestration upgrades are implemented, in the registered order:
 
@@ -24,7 +25,12 @@ Nine orchestration upgrades are implemented, in the registered order:
    mechanism actually consumes delivered independent evidence.
 8. Discovery and confirmation lanes are interleaved and a reserved confirmation
    capacity is guaranteed even under lane-budget truncation.
-9. One smoke lane per split is run before the complete matrix is launched.
+9. A donor-safe six-reset smoke (two resets on each donor lane and two on the
+   confirmation lane) exercises both independent and learned posteriors before
+   the complete matrix is launched.
+10. Whole-history aggregates are reconstructed once at resume and maintained
+    incrementally; a compact cursor is written per reset and a full checkpoint
+    only at lane boundaries/finalization.
 
 Two exclusivity invariants are enforced when a negative verdict is proposed:
 
@@ -40,6 +46,7 @@ import json
 import math
 from collections import Counter
 from collections.abc import Callable, Iterable, Mapping, Sequence
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
@@ -51,6 +58,7 @@ from . import t10_2_1_protocol as _t10_2_1
 # ---------------------------------------------------------------------------
 canonical_json = _t10_2_1.canonical_json
 canonical_sha256 = _t10_2_1.canonical_sha256
+canonical_file_sha256 = _t10_2_1.canonical_file_sha256
 signed_payload = _t10_2_1.signed_payload
 write_compact_json = _t10_2_1.write_compact_json
 _read_signed_json = _t10_2_1._read_signed_json
@@ -84,10 +92,13 @@ INDUCTION_CANARY_FORMAT_VERSION = "sage-t10.2.2-induction-canary-v1"
 LANE_SCHEDULE_FORMAT_VERSION = "sage-t10.2.2-lane-schedule-v1"
 SMOKE_PLAN_FORMAT_VERSION = "sage-t10.2.2-smoke-plan-v1"
 ORCHESTRATION_REPORT_FORMAT_VERSION = "sage-t10.2.2-orchestration-report-v1"
+CONTROLLER_ACTIVITY_FORMAT_VERSION = "sage-t10.2.2-controller-activity-v1"
+EVENT_ELIGIBILITY_FORMAT_VERSION = "sage-t10.2.2-event-eligibility-v1"
 
-# T10.2.2 shares the frozen T10.2.1 manifest, so the frozen collect writes into
-# the T10.2.1-registered artifact namespace; the T10.2.2 sidecar lands beside it.
-DEFAULT_OUTPUT_DIR = _t10_2_1.DEFAULT_OUTPUT_DIR
+# T10.2.2 never mutates or resumes the partial T10.2.1 journal.  It has a new
+# namespace and keeps the old journal as read-only diagnostic evidence.
+DEFAULT_OUTPUT_DIR = Path("training") / "sage_t" / "t10_2_2_action_budget_collection"
+DEFAULT_SMOKE_OUTPUT_DIR = Path("training") / "sage_t" / "t10_2_2_action_budget_smoke"
 
 SOURCE_SPLITS = ("discovery", "leave_one_game_out_confirmation")
 
@@ -126,13 +137,71 @@ EVIDENCE_UNMET_VERDICT = "SOURCE_ACQUISITION_OR_RESOURCE_MISS"
 # schema confirmation is never starved by discovery.
 CONFIRMATION_RESERVE_FRACTION = 0.5
 
+# --- Budget-by-actions plan (the registered T10.2.2 acquisition change) ------
+# The experimental budget is the physical-action count per reset; the wall-clock
+# is demoted to a WIDE, finite liveness watchdog (values confirmed with the
+# user).  These live in the protocol layer so they can be frozen into the
+# T10.2.2 manifest without importing the runtime.
+RESET_ACTION_BUDGET = _t10_2_1.SOURCE_ACTIONS_PER_RESET
+RESET_LIVENESS_WALL_SECONDS = 600.0
+RESET_LIVENESS_HARD_GRACE_SECONDS = 30.0
+LANE_LIVENESS_WALL_SECONDS = 2700.0
+# Leave ten minutes inside the hard collection watchdog for durable finalization.
+COLLECTION_STOP_NEW_ACTIONS_SECONDS = 42600.0
+COLLECTION_LIVENESS_WALL_SECONDS = 43200.0
+
+DEFAULT_MANIFEST_RELATIVE_PATH = Path(
+    "theory/sage_t/sage_t10_2_2_protocol_manifest.json"
+)
+DEFAULT_MANIFEST_PATH = Path(__file__).with_name(DEFAULT_MANIFEST_RELATIVE_PATH.name)
+DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH = Path(
+    "theory/sage_t/sage_t10_2_2_kernel_manifest.json"
+)
+DEFAULT_KERNEL_MANIFEST_PATH = Path(__file__).with_name(
+    DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH.name
+)
+DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH = Path(
+    "theory/sage_t/sage_t10_2_2_smoke_kernel_manifest.json"
+)
+DEFAULT_SMOKE_KERNEL_MANIFEST_PATH = Path(__file__).with_name(
+    DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH.name
+)
+MANIFEST_STATUS = "FROZEN_BEFORE_T10_2_2_COLLECTION"
+DEFAULT_CODE_FILES = (
+    "theory/sage_t/t10_2_2_protocol.py",
+    "theory/sage_t/t10_2_2_runtime.py",
+    "theory/sage_t/t10_2_2_latency_harness.py",
+    "tests/test_sage_t_t10_2_2_protocol.py",
+    "tests/test_sage_t_t10_2_2_runtime.py",
+    "tests/test_sage_t_t10_2_2_latency_harness.py",
+)
+DEFAULT_DOCUMENT_FILES = (
+    "reports/SAGE_T10_2_2_ACTION_BUDGET_PROTOCOL.md",
+    "reports/SAGE_T10_2_2_ACTION_BUDGET_RUNBOOK.md",
+)
+KERNEL_CODE_FILES = (
+    *_t10_2_1.DEFAULT_CODE_FILES,
+    "theory/sage_t/t10_2_2_protocol.py",
+    "theory/sage_t/t10_2_2_runtime.py",
+)
+
+# The coverage controller selects actions by count, never through the learned
+# GaugeDecisionEngine; the two posterior controllers do both select and observe.
+COVERAGE_CONTROLLER = "balanced_discovery"
+POSTERIOR_SELECTION_CONTROLLERS = frozenset({"learned", "capacity_matched_independent"})
+# The frozen kernel admits events into fitting from COMPLETE resets only
+# (``all_events(complete_resets_only=True)``); T10.2.2 makes that rule explicit.
+COMPLETE_RESET_STATUS = "COMPLETE"
+
 
 # ---------------------------------------------------------------------------
 # Small numeric guards.
 # ---------------------------------------------------------------------------
 def _finite(value: Any) -> bool:
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and (
-        math.isfinite(float(value))
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and (math.isfinite(float(value)))
     )
 
 
@@ -202,8 +271,9 @@ def _checkpoint_binding_facts(checkpoint: Mapping[str, Any]) -> tuple[int, str]:
         raise ManifestDriftError("checkpoint checksum is missing or malformed")
     # The checkpoint is self-authenticating: its recorded checksum must equal the
     # canonical hash of its unsigned body.  This binds *this exact revision*.
-    unsigned = {key: value for key, value in checkpoint.items()
-                if key != "checkpoint_checksum"}
+    unsigned = {
+        key: value for key, value in checkpoint.items() if key != "checkpoint_checksum"
+    }
     if canonical_sha256(unsigned) != checksum:
         raise ManifestDriftError("checkpoint checksum does not authenticate its body")
     return int(revision), str(checksum)
@@ -246,9 +316,7 @@ def build_checkpoint_binding(
     )
 
 
-def synchronize_report_with_checkpoint(
-    *, output_dir: str | Path
-) -> dict[str, Any]:
+def synchronize_report_with_checkpoint(*, output_dir: str | Path) -> dict[str, Any]:
     """Read the on-disk collection report and checkpoint and bind them."""
 
     destination = Path(output_dir)
@@ -261,9 +329,7 @@ def synchronize_report_with_checkpoint(
     checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
     if not isinstance(checkpoint, Mapping):
         raise ManifestDriftError("collection checkpoint is not a JSON object")
-    return build_checkpoint_binding(
-        collection_report=collection, checkpoint=checkpoint
-    )
+    return build_checkpoint_binding(collection_report=collection, checkpoint=checkpoint)
 
 
 # ===========================================================================
@@ -283,7 +349,9 @@ def compute_lane_startup_timing(
     charge and the lane is flagged as having produced zero committed transitions.
     """
 
-    if not (_finite_nonneg(lane_started_seconds) and _finite_nonneg(lane_finished_seconds)):
+    if not (
+        _finite_nonneg(lane_started_seconds) and _finite_nonneg(lane_finished_seconds)
+    ):
         raise DataGateError("lane wall clock is not a finite non-negative reading")
     if lane_finished_seconds < lane_started_seconds:
         raise DataGateError("lane finished before it started")
@@ -314,9 +382,7 @@ def compute_lane_startup_timing(
     }
 
 
-def build_phase_timing(
-    *, lane_timings: Sequence[Mapping[str, Any]]
-) -> dict[str, Any]:
+def build_phase_timing(*, lane_timings: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     committed = [t for t in lane_timings if t.get("committed_first_transition")]
     startup_values = [
         float(t["startup_latency_seconds"])
@@ -371,7 +437,9 @@ def classify_first_intent(
     lane spawn, so a slow environment open cannot masquerade as a stuck agent.
     """
 
-    if not (_finite_nonneg(controller_ready_at) and _finite_nonneg(environment_ready_at)):
+    if not (
+        _finite_nonneg(controller_ready_at) and _finite_nonneg(environment_ready_at)
+    ):
         raise DataGateError("readiness clocks must be finite and non-negative")
     if not _finite_nonneg(first_intent_budget_seconds):
         raise DataGateError("first-intent budget must be finite and non-negative")
@@ -426,9 +494,14 @@ def readiness_gate(
             "interaction deadline cannot start before controller and environment "
             "readiness"
         )
-    if not (_finite_nonneg(controller_ready_at) and _finite_nonneg(environment_ready_at)):
+    if not (
+        _finite_nonneg(controller_ready_at) and _finite_nonneg(environment_ready_at)
+    ):
         raise DataGateError("readiness clocks must be finite and non-negative")
-    if not _finite_nonneg(interaction_budget_seconds) or interaction_budget_seconds <= 0:
+    if (
+        not _finite_nonneg(interaction_budget_seconds)
+        or interaction_budget_seconds <= 0
+    ):
         raise DataGateError("interaction budget must be a positive finite number")
     interaction_started_at = max(
         float(controller_ready_at), float(environment_ready_at)
@@ -508,7 +581,7 @@ def build_evidence_funnel(
 
 
 def evidence_funnel_from_reset_reports(
-    reset_reports: Sequence[Mapping[str, Any]]
+    reset_reports: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
     """Derive the funnel from reset reports (kernel has no pre-auth drops)."""
 
@@ -517,7 +590,9 @@ def evidence_funnel_from_reset_reports(
     sealed = 0
     rejections: Counter[str] = Counter()
     for report in reset_reports:
-        issued = _require_nonneg_int(report.get("issued_intents"), label="issued_intents")
+        issued = _require_nonneg_int(
+            report.get("issued_intents"), label="issued_intents"
+        )
         report_sealed = _require_nonneg_int(
             report.get("sealed_events"), label="sealed_events"
         )
@@ -593,11 +668,99 @@ def partition_schema_evidence(
             "grounded_instance_count": len(grounded),
             "families_are_coordinate_free": True,
             # A single grounding must never be counted as multiple families.
-            "instance_to_family_collapse_ok": len(grounded)
-            >= len(canonical_families)
+            "instance_to_family_collapse_ok": len(grounded) >= len(canonical_families)
             or not grounded,
         },
         checksum_key="schema_evidence_checksum",
+    )
+
+
+# ===========================================================================
+# Point 5: controller-activity semantics.  A zero particle/class count in a
+# coverage (discovery) reset is NOT_APPLICABLE, not evidence of a degenerate
+# posterior -- the learned decision posterior is simply not active there.
+# ===========================================================================
+def controller_posterior_applicable(controller: str) -> bool:
+    return str(controller) != COVERAGE_CONTROLLER
+
+
+def _controller_activity_row(controller: str) -> dict[str, Any]:
+    controller = str(controller)
+    selection = controller in POSTERIOR_SELECTION_CONTROLLERS
+    return {
+        "controller": controller,
+        "coverage_controller_active": controller == COVERAGE_CONTROLLER,
+        "selection_posterior_active": selection,
+        "observation_posterior_active": selection,
+        "eig_evaluated": selection,
+        "posterior_applicable": controller_posterior_applicable(controller),
+    }
+
+
+def build_controller_activity(
+    reset_reports: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Classify each reset's controller so posterior zeros read as N/A, not fail."""
+
+    per_reset: list[dict[str, Any]] = []
+    counts: Counter[str] = Counter()
+    for report in reset_reports:
+        controller = str((report.get("work") or {}).get("controller", ""))
+        row = _controller_activity_row(controller)
+        work = report.get("work") or {}
+        row["reset_index"] = work.get("reset_index")
+        per_reset.append(row)
+        counts[controller] += 1
+    return signed_payload(
+        {
+            "format_version": CONTROLLER_ACTIVITY_FORMAT_VERSION,
+            "per_reset": per_reset,
+            "coverage_reset_count": sum(
+                1 for row in per_reset if row["coverage_controller_active"]
+            ),
+            "selection_posterior_reset_count": sum(
+                1 for row in per_reset if row["selection_posterior_active"]
+            ),
+            "controller_counts": {name: counts[name] for name in sorted(counts)},
+            # Posterior particle/class counts are meaningful only where a
+            # selection posterior was active; elsewhere they are NOT_APPLICABLE.
+            "posterior_count_semantics": "NOT_APPLICABLE_WHERE_COVERAGE_ACTIVE",
+        },
+        checksum_key="activity_checksum",
+    )
+
+
+# ===========================================================================
+# Point 6: explicit event-eligibility ventilation.  Which sealed events are
+# admissible to fitting/cross-fit must never stay implicit.
+# ===========================================================================
+def build_event_eligibility(
+    reset_reports: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Separate sealed events by the reset status that admits them downstream."""
+
+    sealed_total = 0
+    complete_reset_events = 0
+    incomplete_reset_events = 0
+    for report in reset_reports:
+        sealed = _require_nonneg_int(report.get("sealed_events"), label="sealed_events")
+        sealed_total += sealed
+        if str(report.get("status")) == COMPLETE_RESET_STATUS:
+            complete_reset_events += sealed
+        else:
+            incomplete_reset_events += sealed
+    return signed_payload(
+        {
+            "format_version": EVENT_ELIGIBILITY_FORMAT_VERSION,
+            "sealed_events_total": sealed_total,
+            "complete_reset_events": complete_reset_events,
+            "incomplete_reset_events": incomplete_reset_events,
+            # The frozen kernel fits from COMPLETE resets only.
+            "training_eligible_events": complete_reset_events,
+            "cross_fit_eligible_events": complete_reset_events,
+            "eligibility_rule": "complete_resets_only",
+        },
+        checksum_key="eligibility_checksum",
     )
 
 
@@ -618,9 +781,7 @@ def default_canary_evidence() -> tuple[dict[str, Any], ...]:
     )
 
 
-def _default_induct(
-    evidence: Sequence[Mapping[str, Any]]
-) -> tuple[str, ...]:
+def _default_induct(evidence: Sequence[Mapping[str, Any]]) -> tuple[str, ...]:
     families = {
         _normalize_family_key(row.get("schema"))
         for row in evidence
@@ -642,7 +803,9 @@ def run_induction_canary(
     precondition for ever blaming the learner (see the invariant guards).
     """
 
-    canary_evidence = tuple(evidence) if evidence is not None else default_canary_evidence()
+    canary_evidence = (
+        tuple(evidence) if evidence is not None else default_canary_evidence()
+    )
     induction = induct if induct is not None else _default_induct
     delivered = len(canary_evidence)
     if delivered == 0:
@@ -681,83 +844,78 @@ def reserved_confirmation_capacity(
     return math.ceil(total * CONFIRMATION_RESERVE_FRACTION)
 
 
-def interleaved_lane_schedule(
-    *, lane_budget: int | None = None
-) -> dict[str, Any]:
-    """Round-robin discovery and confirmation, guaranteeing reserved capacity.
+def interleaved_lane_schedule(*, lane_budget: int | None = None) -> dict[str, Any]:
+    """Donor-safe discovery/confirmation schedule with reserved capacity.
 
     Confirmation lanes are the ones that actually test learned transfer, so if a
     ``lane_budget`` forces truncation the reserved confirmation lanes are placed
     first among confirmation and are never dropped before discovery lanes beyond
-    the reserve.
+    the reserve.  One discovery lane per source game is always scheduled first:
+    every confirmation lane then has completed donors from its two other games.
     """
 
     grouped = _lanes_by_split()
     discovery = list(grouped["discovery"])
     confirmation = list(grouped["leave_one_game_out_confirmation"])
-    reserve = reserved_confirmation_capacity(
-        confirmation_lane_count=len(confirmation)
-    )
+    reserve = reserved_confirmation_capacity(confirmation_lane_count=len(confirmation))
 
-    # Round-robin interleave, discovery-first at each step.
-    interleaved: list[dict[str, Any]] = []
+    # Bootstrap donor coverage with one discovery lane per game.  The frozen
+    # registry is grouped by game then seed, so select explicitly by identity.
+    bootstrap: list[dict[str, Any]] = []
+    for game_id in SOURCE_GAMES:
+        bootstrap.append(next(lane for lane in discovery if lane["game_id"] == game_id))
+    bootstrap_ids = {lane["lane_id"] for lane in bootstrap}
+    remaining_discovery = [
+        lane for lane in discovery if lane["lane_id"] not in bootstrap_ids
+    ]
+
+    # Once donor coverage exists, confirmation and remaining discovery can be
+    # interleaved without structurally starving confirmation.
+    interleaved: list[dict[str, Any]] = list(bootstrap)
     di = ci = 0
-    while di < len(discovery) or ci < len(confirmation):
-        if di < len(discovery):
-            interleaved.append(discovery[di])
-            di += 1
+    while di < len(remaining_discovery) or ci < len(confirmation):
         if ci < len(confirmation):
             interleaved.append(confirmation[ci])
             ci += 1
+        if di < len(remaining_discovery):
+            interleaved.append(remaining_discovery[di])
+            di += 1
 
     order = interleaved
     truncated = False
     if lane_budget is not None:
         budget = _require_nonneg_int(lane_budget, label="lane budget")
-        if budget < reserve:
+        minimum_safe_budget = len(bootstrap) + reserve
+        if budget < minimum_safe_budget:
             raise ResourceGateError(
-                "lane budget cannot satisfy the reserved confirmation capacity"
+                "lane budget cannot satisfy donor bootstrap plus reserved "
+                "confirmation capacity"
             )
         if budget < len(interleaved):
             truncated = True
             reserved_lanes = confirmation[:reserve]
-            reserved_ids = {lane["lane_id"] for lane in reserved_lanes}
-            # Fill the remaining budget from the interleaved order, then ensure
-            # every reserved confirmation lane is present.
-            selected: list[dict[str, Any]] = []
+            required = [*bootstrap, *reserved_lanes]
+            required_ids = {lane["lane_id"] for lane in required}
+            selected: list[dict[str, Any]] = list(required)
             for lane in interleaved:
                 if len(selected) >= budget:
                     break
-                selected.append(lane)
-            selected_ids = {lane["lane_id"] for lane in selected}
-            missing = [
-                lane for lane in reserved_lanes if lane["lane_id"] not in selected_ids
-            ]
-            if missing:
-                # Evict non-reserved trailing lanes to make room for the reserve.
-                kept = [
-                    lane
-                    for lane in selected
-                    if lane["lane_id"] in reserved_ids
-                ] + [
-                    lane
-                    for lane in selected
-                    if lane["lane_id"] not in reserved_ids
-                ]
-                kept = kept[: budget - len(missing)] + missing
-                selected = kept[:budget]
+                if lane["lane_id"] not in required_ids:
+                    selected.append(lane)
             order = selected
     confirmation_in_order = [
-        lane
-        for lane in order
-        if lane["split"] == "leave_one_game_out_confirmation"
+        lane for lane in order if lane["split"] == "leave_one_game_out_confirmation"
     ]
     return signed_payload(
         {
             "format_version": LANE_SCHEDULE_FORMAT_VERSION,
             "discovery_lane_count": len(discovery),
             "confirmation_lane_count": len(confirmation),
+            "donor_bootstrap_lane_count": len(bootstrap),
+            "donor_bootstrap_lane_ids": [lane["lane_id"] for lane in bootstrap],
+            "confirmation_donor_safe": True,
             "reserved_confirmation_capacity": reserve,
+            "minimum_safe_lane_budget": len(bootstrap) + reserve,
             "scheduled_confirmation_lane_count": len(confirmation_in_order),
             "truncated": truncated,
             "interleaved": True,
@@ -768,18 +926,28 @@ def interleaved_lane_schedule(
 
 
 # ===========================================================================
-# Item 9: one smoke lane per split before launching the complete matrix.
+# Item 9: donor-safe smoke exercising both confirmation controllers before the
+# complete matrix.
 # ===========================================================================
 def smoke_lane_plan() -> dict[str, Any]:
-    """Pick one representative lane per split to run before the full matrix."""
+    """Minimal real smoke covering independent and learned confirmation.
+
+    A confirmation for the first source game requires discovery evidence from
+    both other games.  Those prerequisite lanes also provide the representative
+    discovery coverage.  Two resets per lane preserve the frozen uniform lane
+    contract and make the odd confirmation seed execute, in order, the
+    capacity-matched-independent and learned controllers.
+    """
 
     grouped = _lanes_by_split()
-    smoke: list[dict[str, Any]] = []
-    for split in SOURCE_SPLITS:
-        lanes = grouped[split]
-        if not lanes:
-            raise ProtocolError(f"split {split} has no lanes to smoke test")
-        smoke.append(lanes[0])
+    confirmation = grouped["leave_one_game_out_confirmation"][0]
+    held_out_game = str(confirmation["game_id"])
+    donor_games = [game for game in SOURCE_GAMES if game != held_out_game]
+    donors = [
+        next(lane for lane in grouped["discovery"] if lane["game_id"] == game_id)
+        for game_id in donor_games
+    ]
+    smoke = [*donors, confirmation]
     smoke_ids = {lane["lane_id"] for lane in smoke}
     full_matrix = list(source_lane_registry())
     remaining = [lane for lane in full_matrix if lane["lane_id"] not in smoke_ids]
@@ -788,10 +956,22 @@ def smoke_lane_plan() -> dict[str, Any]:
             "format_version": SMOKE_PLAN_FORMAT_VERSION,
             "smoke_lanes": [dict(lane) for lane in smoke],
             "smoke_lane_count": len(smoke),
+            "resets_per_lane": 2,
+            "reset_report_count": 2 * len(smoke),
+            "confirmation_controller_sequence": [
+                "capacity_matched_independent",
+                "learned",
+            ],
+            "learned_controller_exercised": True,
+            "donor_prerequisite_lane_ids": [lane["lane_id"] for lane in donors],
+            "confirmation_lane_id": confirmation["lane_id"],
+            "confirmation_held_out_game": held_out_game,
+            "confirmation_donor_games": donor_games,
+            "confirmation_donor_safe": True,
             "remaining_matrix_lane_count": len(remaining),
             "total_lane_count": len(full_matrix),
             "smoke_precedes_matrix": True,
-            "one_per_split": len(smoke) == len(SOURCE_SPLITS),
+            "one_primary_lane_per_split": True,
         },
         checksum_key="smoke_plan_checksum",
     )
@@ -837,9 +1017,7 @@ def guard_schema_learning_verdict(
     }
 
 
-def qualifying_transfer_lanes(
-    lane_intent_counts: Mapping[str, int]
-) -> tuple[str, ...]:
+def qualifying_transfer_lanes(lane_intent_counts: Mapping[str, int]) -> tuple[str, ...]:
     """Lanes that issued at least one intent are the only transfer-eligible ones."""
 
     qualifying: list[str] = []
@@ -914,10 +1092,10 @@ def build_orchestration_report(
     can never yield a learner-blaming verdict.
     """
 
-    independent_generated = bool(
-        schema_evidence.get("independent_schema_counts")
+    independent_generated = bool(schema_evidence.get("independent_schema_counts"))
+    independent_delivered = (
+        bool(induction_canary.get("passed")) and independent_generated
     )
-    independent_delivered = bool(induction_canary.get("passed")) and independent_generated
 
     transfer = guard_transfer_verdict(
         verdict=proposed_verdict, lane_intent_counts=lane_intent_counts
@@ -950,6 +1128,361 @@ def build_orchestration_report(
     )
 
 
+# ===========================================================================
+# T10.2.2 manifest: freezes the budget-by-actions acquisition plan on top of the
+# frozen T10.2.1 kernel (no drift, since T10.2.1's manifest claims 55/250/5400).
+# ===========================================================================
+@contextmanager
+def kernel_protocol_bindings(
+    *, artifact_root: Path, manifest_relative_path: Path, mode: str = "full"
+):
+    """Temporarily expose a T10.2.1-compatible execution manifest vocabulary.
+
+    The compatibility manifest lets the frozen T10.2.1 scientific kernel verify
+    its own byte bindings while T10.2.2 owns the changed acquisition policy and
+    isolated artifact namespace.  Every patched value is restored on exit.
+    """
+
+    if mode not in {"full", "smoke"}:
+        raise ValueError(f"invalid kernel binding mode: {mode}")
+    replacements: dict[str, Any] = {
+        "DEFAULT_OUTPUT_DIR": Path(artifact_root),
+        "DEFAULT_MANIFEST_RELATIVE_PATH": Path(manifest_relative_path),
+        "DEFAULT_MANIFEST_PATH": Path(__file__).with_name(
+            Path(manifest_relative_path).name
+        ),
+        "RESET_COOPERATIVE_STOP_SECONDS": RESET_LIVENESS_WALL_SECONDS,
+        "RESET_HARD_TIMEOUT_SECONDS": (
+            RESET_LIVENESS_WALL_SECONDS + RESET_LIVENESS_HARD_GRACE_SECONDS
+        ),
+        "SOURCE_LANE_TIMEOUT_SECONDS": LANE_LIVENESS_WALL_SECONDS,
+        "SOURCE_STOP_NEW_ACTIONS_SECONDS": COLLECTION_STOP_NEW_ACTIONS_SECONDS,
+        "SOURCE_MAXIMUM_WALL_SECONDS": COLLECTION_LIVENESS_WALL_SECONDS,
+    }
+    if mode == "smoke":
+        smoke = smoke_lane_plan()
+        lane_count = int(smoke["smoke_lane_count"])
+        reset_count = int(smoke["reset_report_count"])
+        maximum_actions = reset_count * RESET_ACTION_BUDGET
+        replacements.update(
+            {
+                "SOURCE_RESETS_PER_GAME_SEED": int(smoke["resets_per_lane"]),
+                "SOURCE_MAXIMUM_ACTIONS": maximum_actions,
+                "SOURCE_MAXIMUM_NEW_ACTIONS": maximum_actions,
+                "SOURCE_LANE_COUNT": lane_count,
+                "SOURCE_RESET_REPORT_COUNT": reset_count,
+            }
+        )
+    originals = {name: getattr(_t10_2_1, name) for name in replacements}
+    original_source_plan = _t10_2_1._source_plan
+    original_load_manifest = _t10_2_1.load_manifest
+    original_factory_binding = _t10_2_1._factory_binding
+    try:
+        for name, value in replacements.items():
+            setattr(_t10_2_1, name, value)
+        if mode == "smoke":
+
+            def smoke_source_plan() -> dict[str, Any]:
+                plan = original_source_plan()
+                smoke = smoke_lane_plan()
+                plan["games"] = list(SOURCE_GAMES)
+                plan["registered_lanes"] = [dict(lane) for lane in smoke["smoke_lanes"]]
+                plan["smoke_only"] = True
+                plan["lane_count"] = smoke["smoke_lane_count"]
+                plan["reset_report_count"] = smoke["reset_report_count"]
+                plan["maximum_actions"] = (
+                    plan["reset_report_count"] * RESET_ACTION_BUDGET
+                )
+                plan["maximum_new_actions"] = plan["maximum_actions"]
+                for split in plan["splits"].values():
+                    split["resets_per_game_seed"] = smoke["resets_per_lane"]
+                return plan
+
+            _t10_2_1._source_plan = smoke_source_plan
+
+        def load_compatibility_manifest(*args: Any, **kwargs: Any) -> dict[str, Any]:
+            # The signed top-level T10.2.2 manifest authenticates the embedded
+            # compatibility payload and exact materialized path.  Keep all
+            # byte/input/environment checks below, but do not require a commit
+            # before the user-authorized smoke run.
+            kwargs.setdefault("verify_repository", False)
+            kwargs.setdefault("code_paths", KERNEL_CODE_FILES)
+            return original_load_manifest(*args, **kwargs)
+
+        _t10_2_1.load_manifest = load_compatibility_manifest
+
+        def action_budget_factory_binding(
+            factory: Any, manifest: Mapping[str, Any]
+        ) -> dict[str, Any]:
+            candidate = type(factory)
+            if not (
+                candidate.__module__ in {"theory.sage_t.t10_2_2_runtime", "__main__"}
+                and candidate.__name__ == "ActionBudgetSourceFactory"
+            ):
+                return original_factory_binding(factory, manifest)
+            relative = "theory/sage_t/t10_2_2_runtime.py"
+            path = Path(__file__).with_name("t10_2_2_runtime.py")
+            expected = manifest.get("portable_code_sha256", {}).get(relative)
+            observed = canonical_file_sha256(path) if path.is_file() else ""
+            return {
+                "module": candidate.__module__,
+                "class": candidate.__name__,
+                "source_sha256": observed,
+                "manifest_checksum": str(getattr(factory, "manifest_checksum", "")),
+                "code_bound": bool(
+                    observed == expected
+                    and getattr(factory, "manifest_checksum", "")
+                    == manifest.get("manifest_checksum")
+                ),
+            }
+
+        _t10_2_1._factory_binding = action_budget_factory_binding
+        yield
+    finally:
+        _t10_2_1._factory_binding = original_factory_binding
+        _t10_2_1.load_manifest = original_load_manifest
+        _t10_2_1._source_plan = original_source_plan
+        for name, value in originals.items():
+            setattr(_t10_2_1, name, value)
+
+
+def _build_kernel_manifest(
+    *,
+    repo_root: Path,
+    artifact_root: Path,
+    manifest_relative_path: Path,
+    mode: str,
+    environment: Mapping[str, Any] | None,
+    verify_repository: bool,
+) -> dict[str, Any]:
+    with kernel_protocol_bindings(
+        artifact_root=artifact_root,
+        manifest_relative_path=manifest_relative_path,
+        mode=mode,
+    ):
+        return _t10_2_1.build_manifest(
+            repo_root=repo_root,
+            code_paths=KERNEL_CODE_FILES,
+            environment=environment,
+            # The top-level T10.2.2 manifest hashes these dirty/untracked bytes
+            # before the user-requested commit step.  The compatibility payload
+            # therefore verifies bytes and inputs but cannot require Git tracking.
+            verify_repository=False,
+        )
+
+
+def _verify_signed_payload(
+    payload: Mapping[str, Any], *, checksum_key: str, label: str
+) -> None:
+    observed = str(payload.get(checksum_key, ""))
+    unsigned = {key: value for key, value in payload.items() if key != checksum_key}
+    if not observed or observed != canonical_sha256(unsigned):
+        raise ManifestDriftError(f"{label} checksum drifted")
+
+
+def t10_2_2_source_plan() -> dict[str, Any]:
+    """The registered budget-by-actions plan (with the O(N) fix declared)."""
+
+    return {
+        "budget_basis": "physical_action_count",
+        "reset_action_budget": RESET_ACTION_BUDGET,
+        "reset_liveness_wall_seconds": RESET_LIVENESS_WALL_SECONDS,
+        "reset_liveness_hard_grace_seconds": RESET_LIVENESS_HARD_GRACE_SECONDS,
+        "lane_liveness_wall_seconds": LANE_LIVENESS_WALL_SECONDS,
+        "collection_stop_new_actions_seconds": (COLLECTION_STOP_NEW_ACTIONS_SECONDS),
+        "collection_liveness_wall_seconds": COLLECTION_LIVENESS_WALL_SECONDS,
+        "wall_clock_role": "liveness_watchdog_only",
+        "games": list(SOURCE_GAMES),
+        "splits": {
+            "discovery": {"seeds": list(DISCOVERY_SEEDS)},
+            "leave_one_game_out_confirmation": {"seeds": list(CONFIRMATION_SEEDS)},
+        },
+        "lane_count": len(source_lane_registry()),
+        "lane_schedule": interleaved_lane_schedule(),
+        "smoke_plan": smoke_lane_plan(),
+        # The manifest registers that per-reset whole-history scans are replaced
+        # by incremental aggregates -- the measured O(N^2) -> O(N) fix.
+        "incremental_aggregates": True,
+        "eliminates_per_reset_history_scan": True,
+        "compact_cursor_per_reset": True,
+        "full_checkpoint_at_lane_boundaries": True,
+        "legacy_t10_2_1_journal_read_only": True,
+    }
+
+
+def t10_2_2_artifact_contract() -> dict[str, Any]:
+    return {
+        "isolated_from_partial_t10_2_1": True,
+        "artifact_root": DEFAULT_OUTPUT_DIR.as_posix(),
+        "smoke_artifact_root": DEFAULT_SMOKE_OUTPUT_DIR.as_posix(),
+        "kernel_manifest": DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH.as_posix(),
+        "smoke_kernel_manifest": (
+            DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH.as_posix()
+        ),
+        "collection_report": "t10_2_2_collection_report.json",
+        "collection_report_format": "sage-t10.2.2-collection-report-v1",
+        "checkpoint_binding_format": CHECKPOINT_BINDING_FORMAT_VERSION,
+        "latency_report_format": "sage-t10.2.2-latency-report-v1",
+        "orchestration_report_format": ORCHESTRATION_REPORT_FORMAT_VERSION,
+    }
+
+
+def build_manifest(
+    *,
+    repo_root: str | Path | None = None,
+    parent_manifest: Mapping[str, Any] | None = None,
+    code_paths: Sequence[str | Path] = DEFAULT_CODE_FILES,
+    environment: Mapping[str, Any] | None = None,
+    verify_repository: bool = True,
+) -> dict[str, Any]:
+    """Freeze the T10.2.2 acquisition plan, binding the frozen T10.2.1 parent."""
+
+    root = Path(repo_root or _t10_2_1._repo_root()).resolve()
+    if parent_manifest is None:
+        parent_manifest = _t10_2_1.load_manifest(
+            _t10_2_1.DEFAULT_MANIFEST_PATH,
+            repo_root=root,
+        )
+    _verify_signed_payload(
+        parent_manifest,
+        checksum_key="manifest_checksum",
+        label="parent T10.2.1 manifest",
+    )
+    full_kernel = _build_kernel_manifest(
+        repo_root=root,
+        artifact_root=DEFAULT_OUTPUT_DIR,
+        manifest_relative_path=DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH,
+        mode="full",
+        environment=environment,
+        verify_repository=verify_repository,
+    )
+    smoke_kernel = _build_kernel_manifest(
+        repo_root=root,
+        artifact_root=DEFAULT_SMOKE_OUTPUT_DIR,
+        manifest_relative_path=DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH,
+        mode="smoke",
+        environment=environment,
+        verify_repository=verify_repository,
+    )
+    payload = {
+        "format_version": FORMAT_VERSION,
+        "status": MANIFEST_STATUS,
+        "hash_algorithm": _t10_2_1.HASH_ALGORITHM,
+        "parent_t10_2_1_manifest_checksum": parent_manifest["manifest_checksum"],
+        "parent_lineage": parent_manifest.get("parent_lineage"),
+        "registered_phases": list(PHASES),
+        "code_sha256": _t10_2_1._hash_paths(root, code_paths, portable=False),
+        "portable_code_sha256": _t10_2_1._hash_paths(root, code_paths, portable=True),
+        "document_sha256": _t10_2_1._hash_paths(
+            root, DEFAULT_DOCUMENT_FILES, portable=True
+        ),
+        "source_plan": t10_2_2_source_plan(),
+        "artifact_contract": t10_2_2_artifact_contract(),
+        "execution_manifests": {
+            "full": full_kernel,
+            "smoke": smoke_kernel,
+        },
+        "firewall": parent_manifest.get("firewall"),
+        "environment": parent_manifest.get("environment"),
+        "inherits_frozen_source_shards": (
+            parent_manifest.get("frozen_source_shards") is not None
+        ),
+    }
+    return signed_payload(payload, checksum_key="manifest_checksum")
+
+
+def freeze_manifest(
+    *,
+    output_path: str | Path = DEFAULT_MANIFEST_PATH,
+    repo_root: str | Path | None = None,
+    environment: Mapping[str, Any] | None = None,
+    verify_repository: bool = True,
+) -> dict[str, Any]:
+    root = Path(repo_root or _t10_2_1._repo_root()).resolve()
+    manifest = build_manifest(
+        repo_root=root,
+        environment=environment,
+        verify_repository=verify_repository,
+    )
+    kernels = manifest["execution_manifests"]
+    write_compact_json(root / DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH, kernels["full"])
+    write_compact_json(
+        root / DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH, kernels["smoke"]
+    )
+    write_compact_json(output_path, manifest)
+    return manifest
+
+
+def load_manifest(
+    path: str | Path = DEFAULT_MANIFEST_PATH,
+    *,
+    repo_root: str | Path | None = None,
+    verify_repository: bool = True,
+) -> dict[str, Any]:
+    manifest = _read_signed_json(Path(path), checksum_key="manifest_checksum")
+    if manifest.get("format_version") != FORMAT_VERSION:
+        raise ManifestDriftError("T10.2.2 manifest format drifted")
+    if manifest.get("status") != MANIFEST_STATUS:
+        raise ManifestDriftError("T10.2.2 manifest status drifted")
+    if manifest.get("source_plan") != t10_2_2_source_plan():
+        raise ManifestDriftError("T10.2.2 source plan drifted")
+    if manifest.get("artifact_contract") != t10_2_2_artifact_contract():
+        raise ManifestDriftError("T10.2.2 artifact contract drifted")
+    kernels = manifest.get("execution_manifests")
+    if not isinstance(kernels, Mapping) or set(kernels) != {"full", "smoke"}:
+        raise ManifestDriftError("T10.2.2 execution manifests are incomplete")
+    for mode in ("full", "smoke"):
+        kernel = kernels.get(mode)
+        if not isinstance(kernel, Mapping):
+            raise ManifestDriftError(f"T10.2.2 {mode} kernel manifest is invalid")
+        _verify_signed_payload(
+            kernel,
+            checksum_key="manifest_checksum",
+            label=f"T10.2.2 {mode} kernel manifest",
+        )
+    if verify_repository:
+        root = Path(repo_root or _t10_2_1._repo_root()).resolve()
+        expected_code = _t10_2_1._hash_paths(root, DEFAULT_CODE_FILES, portable=False)
+        expected_portable = _t10_2_1._hash_paths(
+            root, DEFAULT_CODE_FILES, portable=True
+        )
+        expected_documents = _t10_2_1._hash_paths(
+            root, DEFAULT_DOCUMENT_FILES, portable=True
+        )
+        if manifest.get("code_sha256") != expected_code:
+            raise ManifestDriftError("T10.2.2 code bytes drifted")
+        if manifest.get("portable_code_sha256") != expected_portable:
+            raise ManifestDriftError("T10.2.2 portable code bytes drifted")
+        if manifest.get("document_sha256") != expected_documents:
+            raise ManifestDriftError("T10.2.2 documentation bytes drifted")
+    return manifest
+
+
+def load_kernel_manifest(
+    *,
+    manifest: Mapping[str, Any],
+    mode: str,
+    repo_root: str | Path | None = None,
+) -> tuple[dict[str, Any], Path, Path]:
+    """Verify and return a materialized compatibility manifest and namespace."""
+
+    if mode not in {"full", "smoke"}:
+        raise ValueError(f"invalid T10.2.2 execution mode: {mode}")
+    root = Path(repo_root or _t10_2_1._repo_root()).resolve()
+    relative = (
+        DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH
+        if mode == "full"
+        else DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH
+    )
+    artifact_root = DEFAULT_OUTPUT_DIR if mode == "full" else DEFAULT_SMOKE_OUTPUT_DIR
+    path = root / relative
+    materialized = _read_signed_json(path, checksum_key="manifest_checksum")
+    embedded = manifest["execution_manifests"][mode]
+    if materialized != embedded:
+        raise ManifestDriftError(f"materialized {mode} kernel manifest drifted")
+    return materialized, path, artifact_root
+
+
 # ---------------------------------------------------------------------------
 # CLI: kernel phases delegate to the frozen T10.2.1 module; ``orchestrate`` runs
 # the report/checkpoint synchronization introduced here.
@@ -959,23 +1492,38 @@ PHASES = (*_t10_2_1.PHASES, "orchestrate")
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("phase", choices=PHASES)
+    parser.add_argument("phase", choices=(*PHASES, "freeze-t10-2-2"))
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
+    parser.add_argument("--manifest", default=str(DEFAULT_MANIFEST_PATH))
+    parser.add_argument("--repo-root", default=None)
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    if args.phase != "orchestrate":
-        raise SystemExit(
-            "T10.2.2 delegates kernel phases to theory.sage_t.t10_2_1_protocol; "
-            "run that module for freeze/collect/compile/replay/source-train/"
-            "validate/report."
-        )
     try:
-        payload = synchronize_report_with_checkpoint(output_dir=args.output_dir)
+        if args.phase == "freeze-t10-2-2":
+            payload = freeze_manifest(
+                output_path=args.manifest,
+                repo_root=args.repo_root,
+                verify_repository=True,
+            )
+        elif args.phase == "orchestrate":
+            payload = synchronize_report_with_checkpoint(output_dir=args.output_dir)
+        else:
+            raise SystemExit(
+                "T10.2.2 delegates frozen kernel phases to "
+                "theory.sage_t.t10_2_1_protocol (compile/replay/source-train/"
+                "validate/report) and collection to theory.sage_t.t10_2_2_runtime; "
+                "use 'freeze-t10-2-2' here to freeze the T10.2.2 manifest and "
+                "'orchestrate' to bind the report to the checkpoint."
+            )
     except (ProtocolError, OSError, ValueError, KeyError) as exc:
-        print(canonical_json({"error": f"{type(exc).__name__}:{exc}", "phase": args.phase}))
+        print(
+            canonical_json(
+                {"error": f"{type(exc).__name__}:{exc}", "phase": args.phase}
+            )
+        )
         return 2
     print(canonical_json(payload))
     return 0
@@ -983,8 +1531,22 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 __all__ = [
     "CHECKPOINT_BINDING_FORMAT_VERSION",
+    "COLLECTION_LIVENESS_WALL_SECONDS",
+    "COLLECTION_STOP_NEW_ACTIONS_SECONDS",
     "CONFIRMATION_RESERVE_FRACTION",
     "CONFIRMATION_SEEDS",
+    "DEFAULT_CODE_FILES",
+    "DEFAULT_DOCUMENT_FILES",
+    "DEFAULT_KERNEL_MANIFEST_PATH",
+    "DEFAULT_KERNEL_MANIFEST_RELATIVE_PATH",
+    "DEFAULT_MANIFEST_PATH",
+    "DEFAULT_SMOKE_KERNEL_MANIFEST_PATH",
+    "DEFAULT_SMOKE_KERNEL_MANIFEST_RELATIVE_PATH",
+    "DEFAULT_SMOKE_OUTPUT_DIR",
+    "LANE_LIVENESS_WALL_SECONDS",
+    "MANIFEST_STATUS",
+    "RESET_ACTION_BUDGET",
+    "RESET_LIVENESS_WALL_SECONDS",
     "CROSS_FIT_AUDIT_FILENAME",
     "DEFAULT_OUTPUT_DIR",
     "DISCOVERY_SEEDS",
@@ -1006,12 +1568,22 @@ __all__ = [
     "SOURCE_SPLITS",
     "TRANSFER_FAILURE_VERDICT",
     "build_checkpoint_binding",
+    "build_controller_activity",
+    "build_event_eligibility",
     "build_evidence_funnel",
     "build_orchestration_report",
     "build_phase_timing",
+    "controller_posterior_applicable",
+    "build_manifest",
     "canonical_json",
     "canonical_sha256",
     "classify_first_intent",
+    "freeze_manifest",
+    "load_manifest",
+    "load_kernel_manifest",
+    "kernel_protocol_bindings",
+    "t10_2_2_artifact_contract",
+    "t10_2_2_source_plan",
     "compute_lane_startup_timing",
     "default_canary_evidence",
     "evidence_funnel_from_reset_reports",
