@@ -1,0 +1,428 @@
+{
+  "format_version": "sage-t11-causal-program-registry-v1",
+  "games": {
+    "bp35": {
+      "action_catalog": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "program_hashes": [
+        "0e047ec70348463125fcf72b6fabdf764e1697d70663af5cd099d2adb98f2adb",
+        "4efb636d8dc91bf95d628dbd0fa8b40fed9901a6e99ec01db6582bcedc28c504",
+        "6ece1d2e6c7a93c297e697cc7c1816ffc06856787534a37e529887ddc457fb0c",
+        "ffe92867f37a7cc2df9ccd6be835f60d10d80745419548c2d2f50fe5cb409833"
+      ],
+      "programs": [
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "subgoal_regime": "regime.index"
+          },
+          "description_length": 6.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": null,
+            "progress_predicates": [
+              "counter.levels_completed >= 1"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_regime_persistence_for_level_goal",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "regime.index",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "regime.index"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "level": 2.0,
+              "objects": 0.0,
+              "patch": 0.0,
+              "progress": 2.0,
+              "relations": 0.0,
+              "terminal": 4.0,
+              "variables": 2.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_level_goal_persistence",
+          "provenance": [
+            "goal-hypothesis:level-completion",
+            "proposal:canonical-counter-persistence",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [],
+              "variable_id": "regime.index",
+              "variable_type": "regime"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "subgoal_regime": "regime.index"
+          },
+          "description_length": 7.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": null,
+            "progress_predicates": [
+              "regime.index >= 1"
+            ],
+            "success_predicate": "regime.index >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_level_persistence_for_direct_regime",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_direct_regime_progress",
+              "neural_module_id": null,
+              "operator_type": "set",
+              "output_variable": "regime.index",
+              "parameters": {
+                "value": 1
+              },
+              "parent_variables": [],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "level": 2.0,
+              "objects": 0.0,
+              "patch": 0.0,
+              "progress": 2.0,
+              "relations": 0.0,
+              "terminal": 4.0,
+              "variables": 2.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_direct_regime_progress",
+          "provenance": [
+            "goal-hypothesis:regime-transition",
+            "proposal:falsifiable-one-step-subgoal",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [],
+              "variable_id": "regime.index",
+              "variable_type": "regime"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "subgoal_regime": "regime.index"
+          },
+          "description_length": 6.5,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": null,
+            "progress_predicates": [
+              "regime.index >= 1"
+            ],
+            "success_predicate": "regime.index >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_level_persistence_for_regime_goal",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_regime_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "regime.index",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "regime.index"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "level": 2.0,
+              "objects": 0.0,
+              "patch": 0.0,
+              "progress": 2.0,
+              "relations": 0.0,
+              "terminal": 4.0,
+              "variables": 2.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_regime_goal_persistence",
+          "provenance": [
+            "goal-hypothesis:regime-transition",
+            "proposal:shared-dynamics-alternative-goal",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [],
+              "variable_id": "regime.index",
+              "variable_type": "regime"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "subgoal_regime": "regime.index"
+          },
+          "description_length": 7.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": null,
+            "progress_predicates": [
+              "counter.levels_completed >= 1"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_direct_level_progress",
+              "neural_module_id": null,
+              "operator_type": "set",
+              "output_variable": "counter.levels_completed",
+              "parameters": {
+                "value": 1
+              },
+              "parent_variables": [],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_regime_persistence_for_direct_level",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "regime.index",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "regime.index"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "level": 2.0,
+              "objects": 0.0,
+              "patch": 0.0,
+              "progress": 2.0,
+              "relations": 0.0,
+              "terminal": 4.0,
+              "variables": 2.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_direct_level_progress",
+          "provenance": [
+            "goal-hypothesis:level-completion",
+            "proposal:falsifiable-one-step-progress",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [],
+              "variable_id": "regime.index",
+              "variable_type": "regime"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "protocol_checksum": "d68048383f770a36d01fcb69ffecb54226970a2966cf8d85c0c71ef30100cdd8",
+  "registry_checksum": "b694d3b56dd856ec4b5f0c767f6bcdbcea322a3700ce6aeb5640f70b383fc626"
+}

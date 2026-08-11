@@ -4,17 +4,21 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable, Dict, Mapping, Sequence
+from typing import Any, Protocol
 
 import numpy as np
 
 from theory.m1.polymorphic_a25_adapter import _step_env_action
-from theory.m2.m3_execution_smoke import _make_env, _reset_env
-from theory.non_ar25_active_micro_run import _configure_offline_env, _env_dir, _valid_actions
+from theory.m2.m3_execution_smoke import _make_env
+from theory.non_ar25_active_micro_run import (
+    _configure_offline_env,
+    _env_dir,
+    _valid_actions,
+)
 from theory.real_env_option_adapter import snapshot_frame
-
 
 SAGE1_TRUTH_STATUS = "NOT_EVALUATED_BY_SAGE_1"
 REPLAY_EXACT = "LIVE_PREFIX_REPLAY_EXACT"
@@ -28,9 +32,9 @@ class LivePrefixAction:
     """One action in a live prefix or alternative probe."""
 
     name: str
-    action_args: Dict[str, Any] = field(default_factory=dict)
+    action_args: dict[str, Any] = field(default_factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "name": self.name,
             "action_args": dict(self.action_args),
@@ -46,7 +50,7 @@ class LivePrefixCounterfactualResult:
     target_state_signature: str
     replay_state_signature: str = ""
     alternative_action: str = ""
-    alternative_action_args: Dict[str, Any] = field(default_factory=dict)
+    alternative_action_args: dict[str, Any] = field(default_factory=dict)
     available_actions_source: str = "real_env_live_api"
     synthetic_available_actions_used: bool = False
     real_env_available_actions_used: bool = True
@@ -66,7 +70,7 @@ class LivePrefixCounterfactualResult:
     revision_performed: bool = False
     wrong_confirmations: int = 0
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "game_id": self.game_id,
             "prefix_actions": [action.to_dict() for action in self.prefix_actions],
@@ -100,6 +104,36 @@ class LivePrefixCounterfactualResult:
 EnvFactory = Callable[[str], Any]
 
 
+class EnvironmentReplayAdapter(Protocol):
+    """Environment boundary used by prefix replay.
+
+    Unit tests and offline replayers do not need ``arcengine`` merely to reset
+    an injected environment.  The real adapter resolves the SDK reset action
+    lazily, at the boundary where that optional dependency is actually used.
+    """
+
+    def reset(self, env: Any) -> Any:
+        ...
+
+    def step(self, env: Any, action: Any) -> Any:
+        ...
+
+
+@dataclass(frozen=True)
+class DefaultEnvironmentReplayAdapter:
+    def reset(self, env: Any) -> Any:
+        try:
+            from arcengine import GameAction
+        except ImportError:
+            # Injected deterministic fixtures accept the public action name.
+            # A real ARC environment is created only when arcengine is present.
+            return env.step("RESET")
+        return env.step(GameAction.RESET)
+
+    def step(self, env: Any, action: Any) -> Any:
+        return _step_env_action(env, action)
+
+
 def collect_live_prefix_counterfactual(
     *,
     game_id: str,
@@ -109,6 +143,7 @@ def collect_live_prefix_counterfactual(
     alternative_action_args: Mapping[str, Any] | None = None,
     environments_dir: str | Path | None = None,
     env_factory: EnvFactory | None = None,
+    replay_adapter: EnvironmentReplayAdapter | None = None,
 ) -> LivePrefixCounterfactualResult:
     """Replay a live prefix from RESET and try one alternative action.
 
@@ -116,6 +151,7 @@ def collect_live_prefix_counterfactual(
     alternative action. If replay diverges, no alternative action is sent.
     """
     normalized_prefix = tuple(normalize_prefix_action(action) for action in prefix_actions)
+    adapter = replay_adapter or DefaultEnvironmentReplayAdapter()
     env_actions = 0
     try:
         env = (
@@ -123,8 +159,8 @@ def collect_live_prefix_counterfactual(
             if env_factory is not None
             else _make_real_env(game_id, environments_dir)
         )
-        frame = _reset_env(env)
-    except Exception as exc:  # pragma: no cover - integration failure path
+        frame = adapter.reset(env)
+    except Exception as exc:  # noqa: BLE001  # pragma: no cover - SDK boundary
         return _collector_result(
             game_id=game_id,
             prefix_actions=normalized_prefix,
@@ -155,7 +191,7 @@ def collect_live_prefix_counterfactual(
                 env_actions=env_actions,
                 invalid_action_selected=True,
             )
-        frame = _step_env_action(env, selected)
+        frame = adapter.step(env, selected)
         env_actions += 1
 
     replay_signature = state_signature_from_frame(frame)
@@ -196,7 +232,7 @@ def collect_live_prefix_counterfactual(
         )
 
     before_alt = frame
-    after_alt = _step_env_action(env, selected_alternative)
+    after_alt = adapter.step(env, selected_alternative)
     env_actions += 1
     before_signature = state_signature_from_frame(before_alt)
     after_signature = state_signature_from_frame(after_alt)
@@ -267,8 +303,28 @@ def state_signature_from_frame(frame: Any) -> str:
         "digest": hashlib.sha1(array.tobytes()).hexdigest()[:16],
         "levels_completed": int(snapshot.levels_completed),
         "game_state": str(snapshot.game_state),
+        "available_actions": _available_action_signature(frame),
     }
     return json.dumps(payload, sort_keys=True, separators=(",", ":"))
+
+
+def _available_action_signature(frame: Any) -> tuple[str, ...]:
+    raw_actions = getattr(frame, "available_actions", ()) or ()
+    normalized = []
+    for action in raw_actions:
+        if isinstance(action, Mapping):
+            normalized.append(json.dumps(dict(action), sort_keys=True, default=str))
+        else:
+            name = getattr(action, "name", action)
+            args = dict(getattr(action, "action_args", {}) or {})
+            normalized.append(
+                json.dumps(
+                    {"name": str(name), "args": args},
+                    sort_keys=True,
+                    default=str,
+                )
+            )
+    return tuple(sorted(normalized))
 
 
 def _make_real_env(game_id: str, environments_dir: str | Path | None) -> Any:

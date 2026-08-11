@@ -6,6 +6,34 @@ actions, dynamique, progression, terminal et but. Les anciens modules
 proposent des fragments ou des gardes ; ils ne fournissent jamais de preuve au
 posterior.
 
+## SAGE.T11/T12 - programmes causaux complets
+
+La cible canonique se trouve dans `theory/sage_t/causal/`. Elle ajoute un SCM
+dynamique a deux tranches, un executeur avec semantique `do`, un posterior
+robuste A38T/A39T, une memoire checksummée A40T, les bundles d'intervention par
+replay exact et des mecanismes neuronaux partages masques par leurs parents.
+
+`CausalRuntime` possede l'unique executeur, le registre, le posterior et
+l'arbitre. `CausalSageTController` constitue le controleur cible sans belief
+store historique parallele. Il reste off/shadow par defaut et peut etre injecte
+via le point d'injection `sage_t_controller` existant.
+
+Le manifeste et les gates sont documentes dans
+`reports/SAGE_T11_CAUSAL_PROGRAM_POSTERIOR_PROTOCOL.md`. Aucun gate scientifique
+actif ni holdout n'est ouvert par l'implementation seule.
+
+Le runner expérimental est disponible via :
+
+```bash
+python -m theory.sage_t.causal.experiment_cli --help
+```
+
+Il scelle séparément les programmes rivaux et les plans de branches, gèle une
+matrice appariée, exécute le replay exact avant toute autorité bornée, puis
+compare baseline, posterior complet et ablations avec des receipts liés au
+checksum du protocole. Le runbook complet se trouve dans
+`reports/SAGE_T11_CAUSAL_EXPERIMENT_RUNBOOK.md`.
+
 ## Composants
 
 - `contracts.py` définit l’état abstrait, la DSL typée et sérialisable, les

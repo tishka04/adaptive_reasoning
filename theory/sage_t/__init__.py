@@ -57,6 +57,11 @@ from .synthesis import (
     ProgramAssembler,
     ProgramMutator,
 )
+from .causal.controller import CausalSageTArbitration, CausalSageTController
+from .causal.contracts import CausalProgram, CausalState, TransitionEvidence
+from .causal.executor import CausalExecutor
+from .causal.posterior import CausalPosterior
+from .causal.runtime import CausalRuntime
 
 __all__ = [
     "AbstractEntity",
@@ -71,6 +76,14 @@ __all__ = [
     "ConsolidationEntry",
     "ConsolidationRegistry",
     "CounterfactualDecisionEngine",
+    "CausalRuntime",
+    "CausalExecutor",
+    "CausalPosterior",
+    "CausalProgram",
+    "CausalState",
+    "CausalSageTArbitration",
+    "CausalSageTController",
+    "TransitionEvidence",
     "CounterfactualGateReport",
     "CounterfactualPanel",
     "DeterministicFragmentProposer",

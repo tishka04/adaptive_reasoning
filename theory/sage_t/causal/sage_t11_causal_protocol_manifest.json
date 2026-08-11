@@ -1,0 +1,51 @@
+{
+  "authority": {
+    "active": false,
+    "bounded": false,
+    "default": "shadow",
+    "holdout_opened": false
+  },
+  "base_commit": "d8fd739d2385a049e12d30aafb32c89cf2c98eec",
+  "code_sha256": {
+    "__init__.py": "4bbe12554a7273799c45e36ade71248c832f973d8e6615a09fcf13cde37675ef",
+    "adapters.py": "0211c7b81eaf2f9692d065b7842c949b8de6d299e60f27c0e38840d6c36107f4",
+    "comparison.py": "231fc9159983d917b22afecd4df388e959335cebd12bb6188b14d9ecfd7f5b36",
+    "compiler.py": "b5f56267944f0f7bf0efa8fde370deef9581828110e9b4f11e2e8c7a4b5524a0",
+    "contracts.py": "95d785c4e21a80a8f6ff9d2cff4255fd32780928ec4b371a917c9ffc03d041b3",
+    "controller.py": "2dd2a3fc6cfebe84811a2bcdeacd6f7f2c4452b6c2dc0246bf5bc1bd0d0b2eb8",
+    "decision.py": "04fcb0b55b850b21d22350f53f1e5b18076506c58e0c42b48dd86277cdefcb90",
+    "diagnostics.py": "5cac8fc49940d94ca6f18603749601d6f4df49fa9b18190d8b52a34e867da339",
+    "executor.py": "03783d7615f9aa79c91f65993bed709f7d9dff5d00c3fc8d0b23820e3a96e237",
+    "experiment.py": "f1d349ba861558bea03cda0cbfb8ffac3e150a028137353e85bde8fe867f23e0",
+    "experiment_cli.py": "51e581b64fb697da0d76221140208a5f80345548dafa42b5713ef0b0ecd7f1f2",
+    "experiment_design.py": "76184e2e8cbe147583d610d2e1ae3fb78f1cfba79dd1950c9f98ba92ed78dea8",
+    "mechanisms.py": "851d7dc9e8de7acc205a5101c801fb580a10a75768a998c7554078b556ef6f00",
+    "memory.py": "69aaaade7317d5055ff43412ae8c38f059b18ae31f43b08e59544b6db3084f8c",
+    "neural.py": "becd93d3abc70b965581e8b8b15c4dfbf9295d3b3180466abe6ee042c2e0ab2b",
+    "posterior.py": "ea126fbec13a8952c8f83e648b5e990334e442a2fb1a476448ef28ff8f9c06ce",
+    "protocol.py": "bff982a161e409feef87e9cc87aa7cc2a673ebb55bce4e47a77087c1ab1cf610",
+    "repair.py": "1b613998bc56740c47b91a9fe07ba991b58feced00d65dcc712ed7c9fbf01f57",
+    "replay.py": "70941625bffaf0102ecbdb4bfc96eb5f73133cc051d416cbbc9da08a28a496fb",
+    "runtime.py": "9678eca04fd894bf58aaa5eaed84d7a52ab450870ad3308aa1cbb0c8c820e2d8"
+  },
+  "format_version": "sage-t11-causal-protocol-manifest-v1",
+  "ft09_baseline": {
+    "actions": 1822,
+    "frontier_experiments": 9,
+    "levels": 43,
+    "max_level": 6,
+    "multiform_selections": 20,
+    "protected_route_preemptions": 0,
+    "wins": 3
+  },
+  "limits": {
+    "decision_particles": 16,
+    "maximum_interventions_per_reset": 5,
+    "maximum_particles": 64,
+    "maximum_terminal_probe_risk": 0.05,
+    "ordinary_horizon": 3
+  },
+  "protocol_checksum": "d68048383f770a36d01fcb69ffecb54226970a2966cf8d85c0c71ef30100cdd8",
+  "split_checksum": "22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d",
+  "status": "FROZEN_BEFORE_CAUSAL_ACTIVE_VALIDATION"
+}
