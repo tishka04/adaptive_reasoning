@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from collections import Counter
 from collections.abc import Iterable, Mapping
 
@@ -88,6 +89,126 @@ def compile_observation(
     )
 
 
+def compile_causal_observation(
+    observation: GameObservation,
+    *,
+    topology: Mapping[str, int] | None = None,
+    registers: Mapping[str, str] | None = None,
+    regime_index: int = 0,
+) -> AbstractState:
+    """Build the bounded object-centric state used by causal-program runtime.
+
+    The general SAGE scene graph deliberately contains all pairwise spatial
+    relations.  On dense 64x64 worlds this can exceed eighty thousand facts,
+    even when a causal particle declares only two variables.  The causal
+    runtime instead keeps entities, roles, and player-local relations.  This is
+    linear in the number of objects and preserves the intervention-relevant
+    state without silently turning every particle into a pixel world model.
+    """
+
+    player = observation.best_player
+    player_position = tuple(player.position) if player is not None else None
+    affordances: dict[int, set[str]] = {}
+    for affordance in observation.affordances:
+        if isinstance(affordance.target, int):
+            affordances.setdefault(int(affordance.target), set()).add(
+                str(affordance.kind.value)
+            )
+    entities = []
+    object_pairs = []
+    for index, obj in enumerate(
+        sorted(observation.objects, key=lambda item: (item.center, item.area))
+    ):
+        roles = {"object"}
+        if player_position is not None and player_position in obj.cells:
+            roles.add("player")
+        roles.update(affordances.get(int(obj.object_id), ()))
+        if not roles.intersection({"player", "hazardous", "collectible"}):
+            roles.add("target")
+        r0, c0, r1, c1 = obj.bbox
+        height = max(1, int(r1) - int(r0) + 1)
+        width = max(1, int(c1) - int(c0) + 1)
+        aspect = "square"
+        if width >= 2 * height:
+            aspect = "wide"
+        elif height >= 2 * width:
+            aspect = "tall"
+        area = int(obj.area)
+        area_bucket = (
+            "one" if area <= 1 else "small" if area <= 4 else "medium" if area <= 16 else "large"
+        )
+        entity = AbstractEntity(
+            entity_id=f"e{index}:{area_bucket}:{aspect}",
+            roles=tuple(sorted(roles)),
+            attributes=(("area", area_bucket), ("aspect", aspect)),
+            center=tuple(float(value) for value in obj.center),
+        )
+        entities.append(entity)
+        object_pairs.append((entity, obj))
+    if player_position is not None and not any(
+        entity.has_role("player") for entity in entities
+    ):
+        entities.insert(
+            0,
+            AbstractEntity(
+                "e_player",
+                ("object", "player"),
+                (("area", "one"), ("aspect", "square")),
+                (float(player_position[0]), float(player_position[1])),
+            ),
+        )
+
+    facts: set[GroundFact] = set()
+    for entity in entities:
+        facts.add(GroundFact("exists", (entity.entity_id,)))
+        for role in entity.roles:
+            facts.add(GroundFact("role", (entity.entity_id, role)))
+    player_entity = next(
+        (entity for entity in entities if entity.has_role("player")),
+        None,
+    )
+    if player_entity is not None and player_entity.center is not None:
+        height, width = observation.raw_grid.shape[:2]
+        local_scale = max(1.0, math.hypot(height, width))
+        for target in entities:
+            if target is player_entity or target.center is None:
+                continue
+            dr = target.center[0] - player_entity.center[0]
+            dc = target.center[1] - player_entity.center[1]
+            distance = math.hypot(dr, dc)
+            if distance / local_scale <= 0.25:
+                facts.add(GroundFact("near", (player_entity.entity_id, target.entity_id)))
+            if abs(dr) <= 0.5 or abs(dc) <= 0.5:
+                facts.add(GroundFact("aligned", (player_entity.entity_id, target.entity_id)))
+            if distance <= 1.5:
+                facts.add(GroundFact("contact", (player_entity.entity_id, target.entity_id)))
+                facts.add(GroundFact("adjacent", (player_entity.entity_id, target.entity_id)))
+            if dr < -0.5:
+                facts.add(GroundFact("north_of", (target.entity_id, player_entity.entity_id)))
+            elif dr > 0.5:
+                facts.add(GroundFact("south_of", (target.entity_id, player_entity.entity_id)))
+            if dc < -0.5:
+                facts.add(GroundFact("west_of", (target.entity_id, player_entity.entity_id)))
+            elif dc > 0.5:
+                facts.add(GroundFact("east_of", (target.entity_id, player_entity.entity_id)))
+
+    false_facts: set[GroundFact] = set()
+    if str(observation.game_state).upper() != "GAME_OVER":
+        false_facts.add(GroundFact("game_over"))
+    if str(observation.game_state).upper() not in {"WIN", "WON", "VICTORY"}:
+        false_facts.add(GroundFact("level_complete"))
+    counters = (("levels_completed", float(observation.levels_completed)),)
+    return AbstractState(
+        entities=tuple(entities),
+        true_facts=frozenset(facts),
+        false_facts=frozenset(false_facts - facts),
+        counters=counters,
+        registers=tuple((registers or {}).items()),
+        topology=tuple((topology or {}).items()),
+        regime_index=regime_index,
+    )
+
+
 def _normalize_mt_event(raw: str) -> str:
     base = str(raw).split("#", 1)[0]
     if base.startswith("relation_added:"):
@@ -147,6 +268,7 @@ def compile_transition_record(
     *,
     source_game_id: str = "",
     regime_index: int = 0,
+    compact_causal_state: bool = False,
 ) -> ObservedTransition:
     """Compile one observed before/action/after triple into common evidence."""
 
@@ -195,12 +317,15 @@ def compile_transition_record(
         productive=not record.diff.is_noop,
         risk=bool(record.diff.game_over),
     )
-    before = compile_observation(
+    state_compiler = (
+        compile_causal_observation if compact_causal_state else compile_observation
+    )
+    before = state_compiler(
         record.obs_before,
         topology=mt.graph_before.invariants,
         regime_index=regime_index,
     )
-    after = compile_observation(
+    after = state_compiler(
         record.obs_after,
         topology=mt.graph_after.invariants,
         regime_index=regime_index,
@@ -270,7 +395,7 @@ def observed_event_counts(
 
 
 __all__ = [
-    "compile_observation",
+    "compile_causal_observation", "compile_observation",
     "compile_transition_record",
     "observed_event_counts",
 ]

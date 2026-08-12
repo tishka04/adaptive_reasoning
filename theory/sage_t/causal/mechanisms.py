@@ -133,6 +133,7 @@ class MechanismRegistry:
             "translate_patch": _translate_patch,
             "replace_patch": _set,
             "collision": _collision,
+            "action_position": _action_position,
         }.items():
             self.register_symbolic(name, implementation)
 
@@ -202,6 +203,52 @@ def _move(
     dx = float(context.action.action_data.get("dx", parameters.get("dx", 0.0)))
     dy = float(context.action.action_data.get("dy", parameters.get("dy", 0.0)))
     return ValueDistribution.deterministic([float(raw[0]) + dx, float(raw[1]) + dy])
+
+
+def _action_position(
+    parents: Sequence[ValueDistribution],
+    parameters: Mapping[str, Any],
+    context: MechanismContext,
+) -> ValueDistribution:
+    """Apply one complete action-conditioned transition to a 2-D role center."""
+
+    raw = _first(parents, context).mode
+    if not isinstance(raw, (tuple, list)) or len(raw) != 2:
+        return context.current_output
+    action_name = context.action.action_name
+    row = float(raw[0])
+    column = float(raw[1])
+    positions = parameters.get("positions_by_action", {})
+    if isinstance(positions, Mapping) and action_name in positions:
+        target = positions[action_name]
+        if isinstance(target, (tuple, list)) and len(target) == 2:
+            return ValueDistribution.deterministic(
+                [float(target[0]), float(target[1])]
+            )
+    columns = parameters.get("columns_by_action", {})
+    if isinstance(columns, Mapping) and action_name in columns:
+        return ValueDistribution.deterministic([row, float(columns[action_name])])
+    deltas = parameters.get("deltas_by_action", {})
+    if isinstance(deltas, Mapping) and action_name in deltas:
+        delta = deltas[action_name]
+        if isinstance(delta, (tuple, list)) and len(delta) == 2:
+            return ValueDistribution.deterministic(
+                [row + float(delta[0]), column + float(delta[1])]
+            )
+    if action_name == str(parameters.get("ground_action", "")):
+        row_key = str(parameters.get("row_key", "y"))
+        column_key = str(parameters.get("column_key", "x"))
+        if (
+            row_key in context.action.action_data
+            and column_key in context.action.action_data
+        ):
+            return ValueDistribution.deterministic(
+                [
+                    float(context.action.action_data[row_key]),
+                    float(context.action.action_data[column_key]),
+                ]
+            )
+    return context.current_output
 
 
 def _spawn(

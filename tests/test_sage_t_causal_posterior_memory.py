@@ -145,6 +145,41 @@ def test_a40_roundtrip_restores_posterior_mass(tmp_path):
     assert len(CausalMemoryStore(memory_path).verified_records()) == 1
 
 
+def test_a40_omits_undeclared_world_state_and_reserves_before_write(tmp_path):
+    evidence = matching_evidence()
+    noisy_before = dict(evidence.state_before.variables)
+    noisy_after = dict(evidence.state_after.variables)
+    for index in range(2000):
+        key = f"fact.synthetic.{index}"
+        noisy_before[key] = ValueDistribution.deterministic(False)
+        noisy_after[key] = ValueDistribution.deterministic(True)
+    evidence = replace(
+        evidence,
+        state_before=replace(evidence.state_before, variables=noisy_before),
+        state_after=replace(evidence.state_after, variables=noisy_after),
+    )
+    reservations = []
+    path = tmp_path / "compact.jsonl"
+    executor = CausalExecutor()
+    posterior = CausalPosterior(executor=executor)
+    runtime = CausalRuntime(
+        executor=executor,
+        posterior=posterior,
+        memory_path=path,
+        reserve_memory_bytes=reservations.append,
+    )
+    runtime.seed((causal_program(), causal_program(program_id="rival", color_operator="identity")))
+    runtime.observe(evidence)
+    assert reservations and reservations[0] == path.stat().st_size
+    assert path.stat().st_size < 50_000
+    payload = CausalMemoryStore(path).verified_records()[0].payload
+    assert payload["evidence_compaction"]["declared_variables_only"] is True
+    assert not any(
+        key.startswith("fact.synthetic")
+        for key in payload["evidence"]["state_after"]["variables"]
+    )
+
+
 def test_exact_route_remains_lexicographically_above_causal_probe():
     executor = CausalExecutor()
     posterior = CausalPosterior(executor=executor, mdl_beta=0.0)

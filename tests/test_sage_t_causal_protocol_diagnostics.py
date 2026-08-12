@@ -66,15 +66,16 @@ def test_frozen_protocol_manifest_binds_code_and_split():
         / "theory"
         / "sage_t"
         / "causal"
-        / "sage_t11_causal_protocol_manifest.json"
+        / "sage_t11_1_causal_protocol_manifest.json"
     )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    assert manifest["status"] == "FROZEN_BEFORE_CAUSAL_ACTIVE_VALIDATION"
+    assert manifest["status"] == "FROZEN_BEFORE_CAUSAL_SOURCE_TRAIN"
     assert manifest["protocol_checksum"] == CausalProtocol().checksum
     assert manifest["split_checksum"] == SAGE11_SPLITS.checksum
     for filename, expected in manifest["code_sha256"].items():
-        payload = (manifest_path.parent / filename).read_bytes()
+        payload = (repo_root / filename).read_bytes()
         assert hashlib.sha256(payload).hexdigest() == expected
+    assert manifest["limits"]["maximum_artifact_bytes_per_run"] == 3 * 1024**3
 
 
 def test_runtime_writes_bounded_diagnostics(tmp_path):

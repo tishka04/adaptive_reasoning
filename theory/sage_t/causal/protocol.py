@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from collections.abc import Mapping, Sequence
 from dataclasses import asdict, dataclass, field
 from enum import Enum
+from pathlib import Path
 from typing import Any
 
 from theory.sage11.splits import SAGE11_SPLITS, short_game_id
@@ -21,6 +23,31 @@ FT09_BASELINE: Mapping[str, int] = {
     "multiform_selections": 20,
 }
 
+PROTOCOL_CODE_PATHS = (
+    "theory/sage_t/compiler.py",
+    "theory/sage_t/causal/__init__.py",
+    "theory/sage_t/causal/adapters.py",
+    "theory/sage_t/causal/bp35_iteration_v2.py",
+    "theory/sage_t/causal/comparison.py",
+    "theory/sage_t/causal/compiler.py",
+    "theory/sage_t/causal/contracts.py",
+    "theory/sage_t/causal/controller.py",
+    "theory/sage_t/causal/decision.py",
+    "theory/sage_t/causal/diagnostics.py",
+    "theory/sage_t/causal/executor.py",
+    "theory/sage_t/causal/experiment.py",
+    "theory/sage_t/causal/experiment_cli.py",
+    "theory/sage_t/causal/experiment_design.py",
+    "theory/sage_t/causal/mechanisms.py",
+    "theory/sage_t/causal/memory.py",
+    "theory/sage_t/causal/neural.py",
+    "theory/sage_t/causal/posterior.py",
+    "theory/sage_t/causal/protocol.py",
+    "theory/sage_t/causal/repair.py",
+    "theory/sage_t/causal/replay.py",
+    "theory/sage_t/causal/runtime.py",
+)
+
 
 class CausalProtocolStage(str, Enum):
     SOURCE_TRAIN = "source_train"
@@ -32,12 +59,13 @@ class CausalProtocolStage(str, Enum):
 
 @dataclass(frozen=True)
 class CausalProtocol:
-    format_version: str = "sage-t11-causal-protocol-v1"
+    format_version: str = "sage-t11.1-causal-protocol-v2"
     posterior_cap: int = 64
     decision_particle_cap: int = 16
     ordinary_horizon: int = 3
     maximum_terminal_probe_risk: float = 0.05
     maximum_interventions_per_reset: int = 5
+    maximum_artifact_bytes_per_run: int = 3 * 1024 * 1024 * 1024
     authority_default: str = "shadow"
     split_checksum: str = SAGE11_SPLITS.checksum
     ft09_baseline: Mapping[str, int] = field(default_factory=lambda: dict(FT09_BASELINE))
@@ -155,12 +183,77 @@ def ft09_efficiency_gain(metrics: Mapping[str, Any]) -> bool:
     )
 
 
+def write_protocol_manifest(
+    path: str | Path,
+    *,
+    root: str | Path | None = None,
+) -> dict[str, Any]:
+    """Write an immutable static audit of the current protocol implementation."""
+
+    repo_root = (
+        Path(root).resolve()
+        if root is not None
+        else Path(__file__).resolve().parents[3]
+    )
+    destination = Path(path)
+    if destination.exists():
+        raise FileExistsError(f"refusing to overwrite protocol manifest: {destination}")
+    missing = [item for item in PROTOCOL_CODE_PATHS if not (repo_root / item).is_file()]
+    if missing:
+        raise ValueError(f"protocol code inventory is incomplete: {missing}")
+    protocol = CausalProtocol()
+    commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    payload = {
+        "format_version": "sage-t11.1-causal-protocol-manifest-v2",
+        "status": "FROZEN_BEFORE_CAUSAL_SOURCE_TRAIN",
+        "base_commit": commit,
+        "protocol_checksum": protocol.checksum,
+        "split_checksum": protocol.split_checksum,
+        "code_sha256": {
+            item: hashlib.sha256((repo_root / item).read_bytes()).hexdigest()
+            for item in PROTOCOL_CODE_PATHS
+        },
+        "limits": {
+            "maximum_particles": protocol.posterior_cap,
+            "decision_particles": protocol.decision_particle_cap,
+            "ordinary_horizon": protocol.ordinary_horizon,
+            "maximum_terminal_probe_risk": protocol.maximum_terminal_probe_risk,
+            "maximum_interventions_per_reset": protocol.maximum_interventions_per_reset,
+            "maximum_artifact_bytes_per_run": (
+                protocol.maximum_artifact_bytes_per_run
+            ),
+        },
+        "authority": {
+            "default": protocol.authority_default,
+            "active": False,
+            "bounded": False,
+            "holdout_opened": False,
+        },
+        "ft09_baseline": dict(protocol.ft09_baseline),
+    }
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(
+        json.dumps(payload, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    return payload
+
+
 __all__ = [
     "FT09_BASELINE",
     "CausalEvaluationFirewall",
     "CausalProtocol",
     "CausalProtocolStage",
     "GateReceipt",
+    "PROTOCOL_CODE_PATHS",
     "ft09_efficiency_gain",
     "ft09_non_regression",
+    "write_protocol_manifest",
 ]

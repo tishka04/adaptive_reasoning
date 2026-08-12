@@ -21,6 +21,7 @@ class CausalRuntime:
         posterior: CausalPosterior | None = None,
         decision_engine: CausalDecisionEngine | None = None,
         memory_path: str | Path | None = None,
+        reserve_memory_bytes: Callable[[int], None] | None = None,
         diagnostics: CausalDiagnosticsWriter | None = None,
     ) -> None:
         self.executor = executor or CausalExecutor()
@@ -32,7 +33,11 @@ class CausalRuntime:
             raise ValueError("causal posterior must use the runtime's unique executor")
         if self.decision_engine.executor is not self.executor:
             raise ValueError("causal decision engine must use the runtime's unique executor")
-        self.memory = CausalMemoryStore(memory_path) if memory_path is not None else None
+        self.memory = (
+            CausalMemoryStore(memory_path, reserve_bytes=reserve_memory_bytes)
+            if memory_path is not None
+            else None
+        )
         self.diagnostics = diagnostics
 
     def seed(self, programs: Sequence[CausalProgram]) -> None:

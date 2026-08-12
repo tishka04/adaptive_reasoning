@@ -1,0 +1,54 @@
+{
+  "authority": {
+    "active": false,
+    "bounded": false,
+    "default": "shadow",
+    "holdout_opened": false
+  },
+  "base_commit": "2747da2471bb1d49864db310c25bb1bd38393766",
+  "code_sha256": {
+    "theory/sage_t/causal/__init__.py": "4bbe12554a7273799c45e36ade71248c832f973d8e6615a09fcf13cde37675ef",
+    "theory/sage_t/causal/adapters.py": "fe2c761056277a7db79c1f23a4f8d06d3d78e7df5317ffd009faa560359b6461",
+    "theory/sage_t/causal/bp35_iteration_v2.py": "2984dfb358b130d6a75ae6385812027f9cc68cb55b5ac2b1c510014b32054c0f",
+    "theory/sage_t/causal/comparison.py": "0929e99119c1581e43582c8f00287d3146996e11ec3ebe4e27d8c2bcd72fd8f7",
+    "theory/sage_t/causal/compiler.py": "b5f56267944f0f7bf0efa8fde370deef9581828110e9b4f11e2e8c7a4b5524a0",
+    "theory/sage_t/causal/contracts.py": "95d785c4e21a80a8f6ff9d2cff4255fd32780928ec4b371a917c9ffc03d041b3",
+    "theory/sage_t/causal/controller.py": "a5a8cf6a0866ae8c6b03562b06aa3ca8980888af43c00673b573a417a1733054",
+    "theory/sage_t/causal/decision.py": "04fcb0b55b850b21d22350f53f1e5b18076506c58e0c42b48dd86277cdefcb90",
+    "theory/sage_t/causal/diagnostics.py": "5cac8fc49940d94ca6f18603749601d6f4df49fa9b18190d8b52a34e867da339",
+    "theory/sage_t/causal/executor.py": "03783d7615f9aa79c91f65993bed709f7d9dff5d00c3fc8d0b23820e3a96e237",
+    "theory/sage_t/causal/experiment.py": "5b2e1500fd7ad056a77be9c54b587a25d7b054ae1ee1135103f420440eb4d41b",
+    "theory/sage_t/causal/experiment_cli.py": "51e581b64fb697da0d76221140208a5f80345548dafa42b5713ef0b0ecd7f1f2",
+    "theory/sage_t/causal/experiment_design.py": "76184e2e8cbe147583d610d2e1ae3fb78f1cfba79dd1950c9f98ba92ed78dea8",
+    "theory/sage_t/causal/mechanisms.py": "f30500e093f8928e800fee7d449e7997480415364e14c715dcf7bb080d8a5ffe",
+    "theory/sage_t/causal/memory.py": "1dc0d8ad10a86a41f843821ec0391e5cbe63c519e4153a6361f124b4f218f53b",
+    "theory/sage_t/causal/neural.py": "becd93d3abc70b965581e8b8b15c4dfbf9295d3b3180466abe6ee042c2e0ab2b",
+    "theory/sage_t/causal/posterior.py": "ea126fbec13a8952c8f83e648b5e990334e442a2fb1a476448ef28ff8f9c06ce",
+    "theory/sage_t/causal/protocol.py": "dd158aa0a7093e10d5899e3eb26044994d0818bbc08b4e06dbc475314932e89a",
+    "theory/sage_t/causal/repair.py": "1b613998bc56740c47b91a9fe07ba991b58feced00d65dcc712ed7c9fbf01f57",
+    "theory/sage_t/causal/replay.py": "70941625bffaf0102ecbdb4bfc96eb5f73133cc051d416cbbc9da08a28a496fb",
+    "theory/sage_t/causal/runtime.py": "87a92c2377af60e052ca817a9544b95c8972a97c8f542a9d313c5c4ded98157d",
+    "theory/sage_t/compiler.py": "8442168f3a7899d0cb3cd08c6cf41dc27ab4489d55717718a8efe9df86df6b22"
+  },
+  "format_version": "sage-t11.1-causal-protocol-manifest-v2",
+  "ft09_baseline": {
+    "actions": 1822,
+    "frontier_experiments": 9,
+    "levels": 43,
+    "max_level": 6,
+    "multiform_selections": 20,
+    "protected_route_preemptions": 0,
+    "wins": 3
+  },
+  "limits": {
+    "decision_particles": 16,
+    "maximum_artifact_bytes_per_run": 3221225472,
+    "maximum_interventions_per_reset": 5,
+    "maximum_particles": 64,
+    "maximum_terminal_probe_risk": 0.05,
+    "ordinary_horizon": 3
+  },
+  "protocol_checksum": "242294161dfcf3996014b22c35e5a0245119d4b3a2a6c922a0a3bc1e157ac1d1",
+  "split_checksum": "22de34d38dbd1ce4169fd09694f4449e9ad531f5536dccfb274d2a41de2ce37d",
+  "status": "FROZEN_BEFORE_CAUSAL_SOURCE_TRAIN"
+}

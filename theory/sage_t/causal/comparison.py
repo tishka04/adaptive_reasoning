@@ -50,7 +50,20 @@ def compare_particle(
     prediction = executor.predict_step(program, evidence.state_before, evidence.action)
     weights = dict(DEFAULT_CHANNEL_WEIGHTS)
     weights.update(program.observation_model.channel_weights)
-    errors = _channel_errors(prediction, evidence)
+    declared_variables = tuple(item.variable_id for item in program.variables)
+    available_errors = _channel_errors(
+        prediction,
+        evidence,
+        declared_variables=declared_variables,
+    )
+    declared_channels = set(program.observation_model.channels)
+    if "goal" in declared_channels:
+        declared_channels.add("level")
+    errors = {
+        channel: error
+        for channel, error in available_errors.items()
+        if channel in declared_channels
+    }
     floor = float(program.observation_model.noise_floor)
     log_likelihood = 0.0
     weighted_errors: dict[str, float] = {}
@@ -101,14 +114,13 @@ def compare_particle(
 def _channel_errors(
     prediction: PredictionDistribution,
     evidence: TransitionEvidence,
+    *,
+    declared_variables: Sequence[str],
 ) -> dict[str, float]:
-    predicted = prediction.delta.variable_changes
-    observed = evidence.observed_delta.variable_changes
-    keys = set(predicted) | set(observed)
     variable_errors = []
-    for key in keys:
-        predicted_value = predicted.get(key, evidence.state_before.value(key))
-        observed_value = observed.get(key, evidence.state_before.value(key))
+    for key in declared_variables:
+        predicted_value = prediction.state_after.value(key)
+        observed_value = evidence.state_after.value(key)
         variable_errors.append(predicted_value.total_variation(observed_value))
     errors = {
         "variables": sum(variable_errors) / len(variable_errors) if variable_errors else 0.0,

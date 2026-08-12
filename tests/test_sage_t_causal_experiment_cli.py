@@ -19,6 +19,8 @@ from theory.sage_t.causal.contracts import (
     ParentRef,
 )
 from theory.sage_t.causal.experiment import (
+    ArtifactBudgetExceeded,
+    RunStorageBudget,
     freeze_experiment,
     load_experiment_manifest,
     load_receipt,
@@ -194,6 +196,16 @@ def test_seal_and_freeze_bind_programs_bundles_code_and_protocol(monkeypatch, tm
     assert manifest["program_registry"]["registry_checksum"]
     assert manifest["bundle_plan"]["plan_checksum"]
     assert manifest["code_sha256"]["theory/sage_t/causal/experiment_cli.py"]
+    assert manifest["storage"]["maximum_artifact_bytes_per_run"] == 3 * 1024**3
+    assert manifest["storage"]["hard_fail_before_write"] is True
+
+
+def test_run_storage_budget_fails_before_crossing_limit(tmp_path):
+    budget = RunStorageBudget(tmp_path, 8)
+    budget.reserve(8)
+    (tmp_path / "used.bin").write_bytes(b"12345678")
+    with pytest.raises(ArtifactBudgetExceeded, match="would be exceeded"):
+        budget.reserve(1)
 
 
 def test_replay_preregisters_predictions_and_emits_bound_receipt(monkeypatch, tmp_path):

@@ -6,12 +6,14 @@ import hashlib
 import json
 import math
 import os
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 from .contracts import (
+    CausalState,
+    StructuredDelta,
     TransitionEvidence,
     causal_program_from_dict,
     transition_evidence_from_dict,
@@ -19,7 +21,7 @@ from .contracts import (
 )
 from .posterior import CausalParticle, CausalPosterior, PosteriorUpdate
 
-MEMORY_FORMAT = "sage-t-causal-memory-v1"
+MEMORY_FORMAT = "sage-t-causal-memory-v2"
 
 
 @dataclass(frozen=True)
@@ -29,8 +31,14 @@ class CausalMemoryRecord:
 
 
 class CausalMemoryStore:
-    def __init__(self, path: str | Path) -> None:
+    def __init__(
+        self,
+        path: str | Path,
+        *,
+        reserve_bytes: Callable[[int], None] | None = None,
+    ) -> None:
         self.path = Path(path)
+        self._reserve_bytes = reserve_bytes
 
     def consolidate(
         self,
@@ -51,6 +59,12 @@ class CausalMemoryStore:
             }
             for particle in posterior.top(maximum_programs)
         ]
+        declared_variables = {
+            variable.variable_id
+            for particle in posterior.top(maximum_programs)
+            for variable in particle.program.variables
+        }
+        compact_evidence = _compact_evidence(evidence, declared_variables)
         payload = {
             "format_version": MEMORY_FORMAT,
             "record_type": "posterior_update",
@@ -61,7 +75,13 @@ class CausalMemoryStore:
             "terminal": evidence.terminal,
             "success": evidence.success,
             "level_change": evidence.level_change,
-            "evidence": transition_evidence_to_dict(evidence),
+            "evidence": transition_evidence_to_dict(compact_evidence),
+            "evidence_compaction": {
+                "declared_variables_only": True,
+                "variable_count": len(declared_variables),
+                "entities_omitted": True,
+                "relations_omitted": True,
+            },
             "entropy_before": update.entropy_before,
             "entropy_after": update.entropy_after,
             "effective_sample_size": update.effective_sample_size,
@@ -70,10 +90,12 @@ class CausalMemoryStore:
         checksum = _checksum(payload)
         record = dict(payload)
         record["checksum"] = checksum
+        encoded = json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n"
+        if self._reserve_bytes is not None:
+            self._reserve_bytes(len(encoded.encode("utf-8")))
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("a", encoding="utf-8", newline="\n") as handle:
-            handle.write(json.dumps(record, sort_keys=True, separators=(",", ":")))
-            handle.write("\n")
+            handle.write(encoded)
             handle.flush()
             os.fsync(handle.fileno())
         return CausalMemoryRecord(payload=payload, checksum=checksum)
@@ -155,6 +177,43 @@ class CausalMemoryStore:
 def _checksum(payload: Mapping[str, Any]) -> str:
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
+
+
+def _compact_evidence(
+    evidence: TransitionEvidence,
+    declared_variables: set[str],
+) -> TransitionEvidence:
+    def compact_state(state: CausalState) -> CausalState:
+        return CausalState(
+            variables={
+                key: value
+                for key, value in state.variables.items()
+                if key in declared_variables
+            },
+            observation_hash=state.observation_hash,
+            confidence=state.confidence,
+        )
+
+    return TransitionEvidence(
+        evidence_id=evidence.evidence_id,
+        state_before=compact_state(evidence.state_before),
+        action=evidence.action,
+        state_after=compact_state(evidence.state_after),
+        observed_delta=StructuredDelta(
+            variable_changes={
+                key: value
+                for key, value in evidence.observed_delta.variable_changes.items()
+                if key in declared_variables
+            },
+            progress=evidence.observed_delta.progress,
+        ),
+        terminal=evidence.terminal,
+        success=evidence.success,
+        level_change=evidence.level_change,
+        prefix_hash=evidence.prefix_hash,
+        game_id=evidence.game_id,
+        context_id=evidence.context_id,
+    )
 
 
 __all__ = ["MEMORY_FORMAT", "CausalMemoryRecord", "CausalMemoryStore"]

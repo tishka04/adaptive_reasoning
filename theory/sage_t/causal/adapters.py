@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any
@@ -30,6 +31,10 @@ from .contracts import (
 )
 from .mechanisms import MechanismRegistry, NeuralMechanism, ObservationLikelihoodModel
 from .posterior import CausalPosterior
+
+
+MAXIMUM_FACT_VARIABLES = 512
+MAXIMUM_RELATION_IDENTIFIERS = 512
 
 
 @dataclass(frozen=True)
@@ -245,9 +250,13 @@ def causal_state_from_abstract(
     confidence: float = 1.0,
 ) -> CausalState:
     variables: dict[str, ValueDistribution] = {}
-    for fact in state.true_facts:
+    true_facts = tuple(sorted(state.true_facts, key=lambda item: item.key))
+    false_facts = tuple(sorted(state.false_facts, key=lambda item: item.key))
+    remaining = max(0, MAXIMUM_FACT_VARIABLES - len(false_facts))
+    selected_true_facts = true_facts[:remaining]
+    for fact in selected_true_facts:
         variables[_fact_variable(fact)] = ValueDistribution.deterministic(True)
-    for fact in state.false_facts:
+    for fact in false_facts[:MAXIMUM_FACT_VARIABLES]:
         variables[_fact_variable(fact)] = ValueDistribution.deterministic(False)
     for key, value in state.counters:
         variables[f"counter.{_safe_token(key)}"] = ValueDistribution.deterministic(value)
@@ -256,13 +265,50 @@ def causal_state_from_abstract(
     for key, value in state.topology:
         variables[f"topology.{_safe_token(key)}"] = ValueDistribution.deterministic(value)
     variables["regime.index"] = ValueDistribution.deterministic(state.regime_index)
+
+    variables["summary.entity_count"] = ValueDistribution.deterministic(
+        len(state.entities)
+    )
+    role_entities: dict[str, list[Any]] = defaultdict(list)
+    attribute_counts: Counter[tuple[str, str]] = Counter()
+    for entity in state.entities:
+        for role in entity.roles:
+            role_entities[_safe_token(role)].append(entity)
+        for key, value in entity.attributes:
+            attribute_counts[(_safe_token(key), _safe_token(value))] += 1
+    for role, members in sorted(role_entities.items()):
+        variables[f"summary.role.{role}.count"] = ValueDistribution.deterministic(
+            len(members)
+        )
+        centers = [entity.center for entity in members if entity.center is not None]
+        if centers:
+            row = round(sum(center[0] for center in centers) / len(centers), 6)
+            column = round(sum(center[1] for center in centers) / len(centers), 6)
+            variables[f"summary.role.{role}.center"] = ValueDistribution.deterministic(
+                [row, column]
+            )
+            variables[f"summary.role.{role}.center_row"] = (
+                ValueDistribution.deterministic(row)
+            )
+            variables[f"summary.role.{role}.center_column"] = (
+                ValueDistribution.deterministic(column)
+            )
+    for (key, value), count in sorted(attribute_counts.items()):
+        variables[f"summary.attribute.{key}.{value}.count"] = (
+            ValueDistribution.deterministic(count)
+        )
+    predicate_counts = Counter(fact.predicate for fact in state.true_facts)
+    for predicate, count in sorted(predicate_counts.items()):
+        variables[f"summary.predicate.{_safe_token(predicate)}.count"] = (
+            ValueDistribution.deterministic(count)
+        )
     entities = tuple(str(entity.entity_id) for entity in state.entities)
     relations = tuple(
         sorted(
             _fact_variable(fact)
-            for fact in state.true_facts
+            for fact in selected_true_facts
             if len(_fact_arguments(fact)) >= 2
-        )
+        )[:MAXIMUM_RELATION_IDENTIFIERS]
     )
     return CausalState(
         variables=variables,
@@ -350,6 +396,7 @@ __all__ = [
     "ArcLeWMProposalAdapter", "CausalFamilyProposalAdapter", "CausalProgramProposal",
     "CausalProposalCoordinator",
     "M2ProgramAdapter", "RouteReplayProposalAdapter", "Sage9pProgramAdapter",
+    "MAXIMUM_FACT_VARIABLES", "MAXIMUM_RELATION_IDENTIFIERS",
     "Sage9pRelationProposal", "causal_state_from_abstract",
     "grounded_action_from_legacy", "transition_evidence_from_observed",
 ]

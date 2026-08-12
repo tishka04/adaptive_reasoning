@@ -37,7 +37,7 @@ from theory.unified_cognitive_controller import (
     UnifiedCognitiveController,
 )
 
-from ..compiler import compile_observation, compile_transition_record
+from ..compiler import compile_causal_observation, compile_transition_record
 from ..controller import SageTConfig
 from .adapters import causal_state_from_abstract, transition_evidence_from_observed
 from .comparison import compare_particle
@@ -83,6 +83,8 @@ SUPPORTED_ARMS = frozenset(
     (*DEFAULT_ARMS, "no_intergame_mechanisms", "symbolic_only")
 )
 CORE_CODE_PATHS = (
+    "theory/sage_t/compiler.py",
+    "theory/sage_t/causal/bp35_iteration_v2.py",
     "theory/sage_t/causal/adapters.py",
     "theory/sage_t/causal/comparison.py",
     "theory/sage_t/causal/compiler.py",
@@ -93,6 +95,7 @@ CORE_CODE_PATHS = (
     "theory/sage_t/causal/experiment.py",
     "theory/sage_t/causal/experiment_cli.py",
     "theory/sage_t/causal/memory.py",
+    "theory/sage_t/causal/mechanisms.py",
     "theory/sage_t/causal/posterior.py",
     "theory/sage_t/causal/protocol.py",
     "theory/sage_t/causal/replay.py",
@@ -103,6 +106,46 @@ CORE_CODE_PATHS = (
 )
 
 EnvFactory = Callable[[str], Any]
+
+
+class ArtifactBudgetExceeded(RuntimeError):
+    """Fail-closed signal raised before a run can exceed its signed budget."""
+
+
+class RunStorageBudget:
+    def __init__(self, root: str | Path, maximum_bytes: int) -> None:
+        self.root = Path(root)
+        self.maximum_bytes = int(maximum_bytes)
+        if self.maximum_bytes <= 0:
+            raise ValueError("artifact budget must be positive")
+
+    @property
+    def used_bytes(self) -> int:
+        if not self.root.exists():
+            return 0
+        return sum(
+            path.stat().st_size
+            for path in self.root.rglob("*")
+            if path.is_file()
+        )
+
+    def reserve(self, additional_bytes: int) -> None:
+        additional = max(0, int(additional_bytes))
+        used = self.used_bytes
+        if used + additional > self.maximum_bytes:
+            raise ArtifactBudgetExceeded(
+                "run artifact budget would be exceeded: "
+                f"used={used} additional={additional} maximum={self.maximum_bytes}"
+            )
+
+    def snapshot(self) -> dict[str, Any]:
+        used = self.used_bytes
+        return {
+            "maximum_artifact_bytes": self.maximum_bytes,
+            "used_artifact_bytes": used,
+            "remaining_artifact_bytes": max(0, self.maximum_bytes - used),
+            "within_budget": used <= self.maximum_bytes,
+        }
 
 
 def _canonical(payload: Any) -> str:
@@ -141,27 +184,41 @@ def _verify_signed(payload: Mapping[str, Any], field: str) -> None:
         raise ValueError(f"{field} mismatch")
 
 
-def _write_json_once(path: str | Path, payload: Mapping[str, Any]) -> None:
+def _write_json_once(
+    path: str | Path,
+    payload: Mapping[str, Any],
+    *,
+    storage_budget: RunStorageBudget | None = None,
+) -> None:
     destination = Path(path)
     if destination.exists():
         raise FileExistsError(f"refusing to overwrite immutable artifact: {destination}")
+    encoded = json.dumps(dict(payload), indent=2, sort_keys=True, default=str) + "\n"
+    if storage_budget is not None:
+        storage_budget.reserve(len(encoded.encode("utf-8")))
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(
-        json.dumps(dict(payload), indent=2, sort_keys=True, default=str) + "\n",
+        encoded,
         encoding="utf-8",
         newline="\n",
     )
 
 
-def _write_jsonl_once(path: str | Path, rows: Sequence[Mapping[str, Any]]) -> None:
+def _write_jsonl_once(
+    path: str | Path,
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    storage_budget: RunStorageBudget | None = None,
+) -> None:
     destination = Path(path)
     if destination.exists():
         raise FileExistsError(f"refusing to overwrite immutable artifact: {destination}")
+    encoded_rows = tuple(_canonical(dict(row)) + "\n" for row in rows)
+    if storage_budget is not None:
+        storage_budget.reserve(sum(len(row.encode("utf-8")) for row in encoded_rows))
     destination.parent.mkdir(parents=True, exist_ok=True)
     with destination.open("x", encoding="utf-8", newline="\n") as handle:
-        for row in rows:
-            handle.write(_canonical(dict(row)))
-            handle.write("\n")
+        handle.writelines(encoded_rows)
 
 
 def _read_json(path: str | Path) -> dict[str, Any]:
@@ -509,6 +566,13 @@ def freeze_experiment(
             "a40_reload_between_resets": True,
             "memory_reset_between_validation_games": True,
         },
+        "storage": {
+            "maximum_artifact_bytes_per_run": (
+                protocol.maximum_artifact_bytes_per_run
+            ),
+            "hard_fail_before_write": True,
+            "a40_declared_variables_only": True,
+        },
         "parent_receipt": (
             None
             if parent_receipt is None
@@ -558,6 +622,13 @@ def load_experiment_manifest(
         raise ValueError("unsupported causal experiment manifest")
     if payload.get("protocol_checksum") != CausalProtocol().checksum:
         raise ValueError("experiment protocol checksum mismatch")
+    storage = dict(payload.get("storage", {}) or {})
+    if int(storage.get("maximum_artifact_bytes_per_run", 0)) != (
+        CausalProtocol().maximum_artifact_bytes_per_run
+    ):
+        raise ValueError("experiment artifact budget mismatch")
+    if storage.get("hard_fail_before_write") is not True:
+        raise ValueError("experiment artifact budget is not fail-closed")
     if verify_code and payload.get("code_sha256") != _core_code_hashes(repo_root):
         raise ValueError("causal experiment code drifted after freeze")
     for field, checksum_field in (
@@ -668,7 +739,7 @@ def _causal_state_from_frame(frame: Any, *, prefix_hash: str):
         levels_completed=snapshot.levels_completed,
     )
     return causal_state_from_abstract(
-        compile_observation(observation),
+        compile_causal_observation(observation),
         observation_hash=prefix_hash,
     )
 
@@ -699,7 +770,7 @@ def _evidence_builder(
             timestamp=index,
         )
         return transition_evidence_from_observed(
-            compile_transition_record(record),
+            compile_transition_record(record, compact_causal_state=True),
             game_id=game_id,
             prefix_hash=prefix_hash,
         )
@@ -761,6 +832,14 @@ def run_replay(
     runtime_status["versions_match"] = versions_match
     runtime_status["ready"] = bool(runtime_status["ready"] and versions_match)
     destination = Path(output_dir)
+    if destination.exists() and any(destination.rglob("*")):
+        raise FileExistsError(
+            f"refusing to append to immutable run directory: {destination}"
+        )
+    storage_budget = RunStorageBudget(
+        destination,
+        int(manifest["storage"]["maximum_artifact_bytes_per_run"]),
+    )
     results = []
     if runtime_status["ready"]:
         for item in plan["bundles"]:
@@ -865,6 +944,7 @@ def run_replay(
             "total_entropy_reduction": total_entropy_reduction,
         },
         "bundles": results,
+        "storage": storage_budget.snapshot(),
         "passed": passed,
     }
     report = _signed(report_core, "report_checksum")
@@ -878,13 +958,22 @@ def run_replay(
             "experiment_manifest_checksum": manifest["manifest_checksum"],
             "report_checksum": report["report_checksum"],
             "metrics": report["metrics"],
+            "maximum_artifact_bytes": storage_budget.maximum_bytes,
             "reason": report["status"],
         },
         "receipt_checksum",
     )
-    _write_jsonl_once(destination / "intervention_bundles.jsonl", results)
-    _write_json_once(destination / "replay_report.json", report)
-    _write_json_once(destination / "replay_receipt.json", receipt)
+    _write_jsonl_once(
+        destination / "intervention_bundles.jsonl",
+        results,
+        storage_budget=storage_budget,
+    )
+    _write_json_once(
+        destination / "replay_report.json", report, storage_budget=storage_budget
+    )
+    _write_json_once(
+        destination / "replay_receipt.json", receipt, storage_budget=storage_budget
+    )
     return report
 
 
@@ -991,6 +1080,7 @@ def _build_controller(
     programs: Sequence[CausalProgram],
     authority: str,
     memory_path: Path | None,
+    reserve_memory_bytes: Callable[[int], None] | None,
     replay_gate_passed: bool,
 ) -> tuple[UnifiedCognitiveController, ExperimentalCausalController | None]:
     if arm == "baseline":
@@ -1022,6 +1112,7 @@ def _build_controller(
         posterior=posterior,
         decision_engine=decision_engine,
         memory_path=durable_memory,
+        reserve_memory_bytes=reserve_memory_bytes,
     )
     runtime.seed(selected_programs)
     if durable_memory is not None and durable_memory.exists():
@@ -1062,6 +1153,7 @@ def _run_arm_restarting(
     action_budget: int,
     environments_dir: str | Path,
     memory_path: Path | None,
+    reserve_memory_bytes: Callable[[int], None] | None,
     env_factory: EnvFactory | None,
 ) -> dict[str, Any]:
     attempts = []
@@ -1075,6 +1167,7 @@ def _run_arm_restarting(
             programs=programs,
             authority=authority,
             memory_path=memory_path,
+            reserve_memory_bytes=reserve_memory_bytes,
             replay_gate_passed=replay_gate_passed,
         )
         controller.on_reset()
@@ -1274,6 +1367,14 @@ def run_experiment(
     runtime_status["versions_match"] = versions_match
     runtime_status["ready"] = bool(runtime_status["ready"] and versions_match)
     destination = Path(output_dir)
+    if destination.exists() and any(destination.rglob("*")):
+        raise FileExistsError(
+            f"refusing to append to immutable run directory: {destination}"
+        )
+    storage_budget = RunStorageBudget(
+        destination,
+        int(manifest["storage"]["maximum_artifact_bytes_per_run"]),
+    )
     if not runtime_status["ready"]:
         conditions: list[dict[str, Any]] = []
     else:
@@ -1302,8 +1403,10 @@ def run_experiment(
                         action_budget=int(manifest["action_budget_per_reset"]),
                         environments_dir=environments_dir,
                         memory_path=(None if arm == "baseline" else memory_path),
+                        reserve_memory_bytes=storage_budget.reserve,
                         env_factory=env_factory,
                     )
+                    storage_budget.reserve(0)
                     arm_results[str(arm)] = {
                         "metrics": _arm_metrics(raw),
                         "attempts": raw["attempts"],
@@ -1393,6 +1496,7 @@ def run_experiment(
         "scientific_claims_authorized": bool(
             manifest["scientific_claims_authorized"]
         ),
+        "storage_budget_enforced": storage_budget.snapshot()["within_budget"],
     }
     full_metrics = [
         condition["arms"]["posterior_full"]["metrics"] for condition in conditions
@@ -1451,6 +1555,7 @@ def run_experiment(
         "checks": checks,
         "metrics": aggregate_metrics,
         "conditions": conditions,
+        "storage": storage_budget.snapshot(),
         "passed": passed,
         "holdout_opened": False,
         "production_authority": False,
@@ -1467,6 +1572,7 @@ def run_experiment(
             "replay_receipt_checksum": replay_receipt["receipt_checksum"],
             "report_checksum": report["report_checksum"],
             "metrics": aggregate_metrics,
+            "maximum_artifact_bytes": storage_budget.maximum_bytes,
             "reason": report["status"],
         },
         "receipt_checksum",
@@ -1482,9 +1588,17 @@ def run_experiment(
         }
         for condition in conditions
     ]
-    _write_jsonl_once(destination / "conditions.jsonl", condition_rows)
-    _write_json_once(destination / "paired_report.json", report)
-    _write_json_once(destination / "gate_receipt.json", receipt)
+    _write_jsonl_once(
+        destination / "conditions.jsonl",
+        condition_rows,
+        storage_budget=storage_budget,
+    )
+    _write_json_once(
+        destination / "paired_report.json", report, storage_budget=storage_budget
+    )
+    _write_json_once(
+        destination / "gate_receipt.json", receipt, storage_budget=storage_budget
+    )
     return report
 
 

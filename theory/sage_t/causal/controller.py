@@ -8,7 +8,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from theory.sage_t.compiler import compile_observation, compile_transition_record
+from theory.sage_t.compiler import (
+    compile_causal_observation,
+    compile_transition_record,
+)
 from theory.sage_t.contracts import normalized_action_candidates
 from theory.sage_t.controller import SageTConfig, SageTMode
 from v3.schemas import GameObservation, TransitionRecord
@@ -113,7 +116,7 @@ class CausalSageTController:
         if not self.runtime.posterior.particles:
             return self._fallback(symbolic_name, symbolic_data, "empty_causal_posterior")
         try:
-            abstract = compile_observation(observation)
+            abstract = compile_causal_observation(observation)
             state = causal_state_from_abstract(abstract)
             normalized = normalized_action_candidates(legal_actions)
             programs = []
@@ -204,7 +207,7 @@ class CausalSageTController:
         if self.effective_mode is SageTMode.OFF or not self.runtime.posterior.particles:
             return
         try:
-            observed = compile_transition_record(record)
+            observed = compile_transition_record(record, compact_causal_state=True)
             evidence = transition_evidence_from_observed(
                 observed,
                 game_id=str(getattr(record, "game_id", "")),

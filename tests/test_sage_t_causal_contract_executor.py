@@ -171,3 +171,32 @@ def test_neural_mechanism_requires_registered_module_or_explicit_fallback():
     assert CausalExecutor().predict_step(
         fallback, initial_state(), GroundedAction("CLICK")
     ).state_after.value("object.color").mode == "blue"
+
+
+def test_action_position_mechanism_uses_complete_action_and_coordinates():
+    registry = MechanismRegistry()
+    spec = replace(
+        causal_program().mechanisms[0],
+        operator_type="action_position",
+        parameters={
+            "deltas_by_action": {"ACTION3": [0, -8], "ACTION4": [0, 6]},
+            "ground_action": "ACTION6",
+            "row_key": "y",
+            "column_key": "x",
+        },
+    )
+    current = ValueDistribution.deterministic([38, 22])
+    left = registry.evaluate(
+        spec,
+        (current,),
+        action=GroundedAction("ACTION3"),
+        current_output=current,
+    )
+    click = registry.evaluate(
+        spec,
+        (current,),
+        action=GroundedAction("ACTION6", {"x": 30, "y": 12}),
+        current_output=current,
+    )
+    assert left.mode == [38.0, 14.0]
+    assert click.mode == [12.0, 30.0]

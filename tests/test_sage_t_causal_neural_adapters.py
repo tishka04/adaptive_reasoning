@@ -12,6 +12,7 @@ from theory.sage_t.causal.adapters import (
     RouteReplayProposalAdapter,
     Sage9pProgramAdapter,
     Sage9pRelationProposal,
+    causal_state_from_abstract,
 )
 from theory.sage_t.causal.contracts import GroundedAction
 from theory.sage_t.causal.executor import CausalExecutor
@@ -24,6 +25,7 @@ from theory.sage_t.causal.neural import (
     module_content_hash,
 )
 from theory.sage_t.causal.posterior import CausalPosterior
+from theory.sage_t.contracts import AbstractEntity, AbstractState, GroundFact
 
 
 def test_sage9p_and_route_adapters_are_proposal_only():
@@ -132,3 +134,21 @@ def test_causal_neural_loss_contains_branch_invariance_sparsity_and_calibration(
     losses.total.backward()
     assert logits.grad is not None
     assert parent_gate.grad is not None
+
+
+def test_causal_state_is_bounded_and_exposes_role_centers():
+    player = AbstractEntity(
+        "player_local",
+        ("object", "player"),
+        center=(38.0, 22.0),
+    )
+    facts = frozenset(
+        GroundFact("exists", (f"entity_{index}",)) for index in range(2000)
+    )
+    state = causal_state_from_abstract(
+        AbstractState(entities=(player,), true_facts=facts)
+    )
+    fact_variables = [key for key in state.variables if key.startswith("fact.")]
+    assert len(fact_variables) <= 512
+    assert state.value("summary.role.player.center").mode == [38.0, 22.0]
+    assert state.value("summary.role.player.count").mode == 1
