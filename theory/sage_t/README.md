@@ -256,3 +256,14 @@ lineage-preserving archives on fresh seeds 7401–7403. A pass authorizes only a
 new child terminal-shield experiment. See
 `reports/SAGE_T12_3D_CONFIRMED_CONTROL_PROTOCOL.md` and
 `reports/SAGE_T12_3D_CONFIRMED_CONTROL_RUNBOOK.md`.
+
+T12.3d passed its confirmed-control gate and authorizes exactly one corrected
+terminal-shield child. T12.3e reloads the original 12 confirmed terminal traces,
+99 progress-protected state/action pairs and two T12.3a witnesses without
+relearning them. On fresh seeds 7701–7703 it compares two lineage-preserving
+archives, differing only by the terminal shield. The paired gate requires a
+terminal-rate reduction, per-seed coverage and progress non-regression, exact
+replay, real shield vetoes and zero lineage rebasing. A pass authorizes only the
+freeze of T12.4; neural training, option extraction, validation and production
+remain closed. See `reports/SAGE_T12_3E_LINEAGE_SHIELD_PROTOCOL.md` and
+`reports/SAGE_T12_3E_LINEAGE_SHIELD_RUNBOOK.md`.
