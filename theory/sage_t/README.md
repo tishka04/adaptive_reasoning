@@ -292,3 +292,14 @@ and relation ablation. T12.4a has no active or option-extraction phase. A pass
 may only freeze T12.4b. See
 `reports/SAGE_T12_4A_REPRESENTATION_PROTOCOL.md` and
 `reports/SAGE_T12_4A_REPRESENTATION_RUNBOOK.md`.
+
+T12.4a passed every registered predictive and causal representation control,
+but remained a negative result because its maximum ECE was 0.1459. T12.4a.1
+tests calibration transport without changing the representation or policy. It
+uses three unopened training seeds, one calibration-only seed and two untouched
+confirmation seeds. A four-parameter monotone Platt layer must improve ECE
+without losing Brier score, while all state/context/relation controls must pass
+again. The CLI exposes no active-evaluation or option-extraction phase; a pass
+may only freeze T12.4b. See
+`reports/SAGE_T12_4A_1_CALIBRATION_PROTOCOL.md` and
+`reports/SAGE_T12_4A_1_CALIBRATION_RUNBOOK.md`.
