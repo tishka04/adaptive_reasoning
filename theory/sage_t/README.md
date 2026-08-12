@@ -246,3 +246,13 @@ only a new child terminal-shield experiment, never neural training, option
 extraction, validation or production authority. See
 `reports/SAGE_T12_3C_REPLAY_LINEAGE_PROTOCOL.md` and
 `reports/SAGE_T12_3C_REPLAY_LINEAGE_RUNBOOK.md`.
+
+T12.3c reached 100% exact replay in every lineage-preserving arm, but its gate
+failed because controls selected only by `replay_failures == 0` were neither
+confirmed nor unique. T12.3d corrects only that provenance error. It seals the
+two checksum-distinct T12.3a progress routes already confirmed three times,
+replays each three more times, and evaluates shortest-prefix versus
+lineage-preserving archives on fresh seeds 7401–7403. A pass authorizes only a
+new child terminal-shield experiment. See
+`reports/SAGE_T12_3D_CONFIRMED_CONTROL_PROTOCOL.md` and
+`reports/SAGE_T12_3D_CONFIRMED_CONTROL_RUNBOOK.md`.
