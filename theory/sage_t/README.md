@@ -280,3 +280,15 @@ requires a 10% coverage gain with no replay, progress or terminal regression.
 Only an active pass may freeze T12.5 option extraction. See
 `reports/SAGE_T12_4_NEURAL_NOVELTY_PROTOCOL.md` and
 `reports/SAGE_T12_4_NEURAL_NOVELTY_RUNBOOK.md`.
+
+T12.4 failed its offline fit gate: its aggregate Brier gain cleared the frozen
+threshold, but state shuffling improved rather than degraded predictions and
+maximum ECE reached 0.158. T12.4a preserves that result and repairs the tested
+mechanism, not the thresholds. It excludes the opened seed 7703, collects new
+shielded lineage-control data on seeds 8401–8403, adds explicit action-to-object
+relations and strictly pre-action archive history, and compares against the
+action-only prior, a freshly trained T12.4 legacy model, state/context shuffles
+and relation ablation. T12.4a has no active or option-extraction phase. A pass
+may only freeze T12.4b. See
+`reports/SAGE_T12_4A_REPRESENTATION_PROTOCOL.md` and
+`reports/SAGE_T12_4A_REPRESENTATION_RUNBOOK.md`.
