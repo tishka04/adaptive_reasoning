@@ -32,6 +32,7 @@ from .decision import CausalDecision, CausalDecisionEngine
 from .diagnostics import CausalDiagnosticsWriter
 from .executor import CausalExecutor
 from .experiment_design import CausalCandidateGenerator
+from .lineage_archive import LineagePreservingArchive
 from .mechanisms import MechanismRegistry
 from .memory import CausalMemoryStore
 from .posterior import CausalParticle, CausalPosterior, PosteriorUpdate
@@ -68,6 +69,7 @@ __all__ = [
     "InterventionBranch",
     "InterventionBundle",
     "InterventionBundleRunner",
+    "LineagePreservingArchive",
     "MechanismRegistry",
     "MechanismSpec",
     "ObservationModelSpec",

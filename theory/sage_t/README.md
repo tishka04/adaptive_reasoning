@@ -234,3 +234,15 @@ coverage or any known/prospective progress. Neural training, option extraction,
 validation and holdout remain closed. See
 `reports/SAGE_T12_3B_TERMINAL_SHIELD_PROTOCOL.md` and
 `reports/SAGE_T12_3B_TERMINAL_SHIELD_RUNBOOK.md`.
+
+T12.3b reduced the aggregate terminal rate and preserved coverage/progress, but
+failed closed because the minimum exact-replay rate was 0.9123 instead of 0.95.
+T12.3c keeps that negative result immutable. It seals the failing prefixes,
+locates the first divergent action with per-step hashes, and compares the
+historical shortest-prefix attachment against a treatment that attaches every
+transition to the lineage actually executed inside the burst. Seed 6803 is the
+known regression case; 7101 and 7102 are prospective. Passing T12.3c authorizes
+only a new child terminal-shield experiment, never neural training, option
+extraction, validation or production authority. See
+`reports/SAGE_T12_3C_REPLAY_LINEAGE_PROTOCOL.md` and
+`reports/SAGE_T12_3C_REPLAY_LINEAGE_RUNBOOK.md`.
