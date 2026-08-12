@@ -215,3 +215,12 @@ each exact restoration. The child manifest must bind the failed T12.1 receipt;
 the new gate still requires real progression, not coverage alone. See
 `reports/SAGE_T12_2_BURST_GO_EXPLORE_PROTOCOL.md` and
 `reports/SAGE_T12_2_BURST_GO_EXPLORE_RUNBOOK.md`.
+
+T12.2 also failed its aggregate gate, but left two progress witnesses: distinct
+36- and 63-action routes from the same exact initial state to the same exact
+level-1 state, with a common `ACTION3 x3` suffix. T12.3a does not retune search.
+It seals those routes, replays each one three times with per-step exact hashes,
+and pairs the common suffix with a deletion control. Shield learning, neural
+training, option extraction and all validation remain closed until this narrow
+gate passes. See `reports/SAGE_T12_3A_PROGRESS_WITNESS_PROTOCOL.md` and
+`reports/SAGE_T12_3A_PROGRESS_WITNESS_RUNBOOK.md`.
