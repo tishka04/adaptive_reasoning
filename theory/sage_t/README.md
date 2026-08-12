@@ -191,3 +191,18 @@ Sur le protocole source-train apparié de T9.4, les trois niveaux sont conservé
 les neuf interventions utiles restent présentes et le nombre total
 d'interventions passe de 114 à 45, sans mort ni erreur. Ce succès autorise un
 futur retest source-validation gelé, pas l'ouverture du holdout.
+
+## SAGE.T12.1 graph exploration and causal options
+
+`causal/graph_experiment_cli.py` implements the gated sequence: pure symbolic
+Go-Explore, a replay-confirmed 64-step terminal shield, a small symbolic
+state/action change-novelty predictor, minimal successful-option extraction,
+compilation into complete causal-program posterior particles, and paired
+three-level transfer. Every phase emits an immutable checksummed receipt and
+refuses a failed upstream gate. Each run is capped at 3 GiB and raw frames are
+not persisted. Use one manifest per game so no archive, model, posterior or
+memory can leak between validation games.
+
+The scientific protocol and PowerShell commands are documented in
+`reports/SAGE_T12_1_GRAPH_EXPLORE_PROTOCOL.md` and
+`reports/SAGE_T12_1_GRAPH_EXPLORE_RUNBOOK.md`.
