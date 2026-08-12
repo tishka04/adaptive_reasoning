@@ -224,3 +224,13 @@ and pairs the common suffix with a deletion control. Shield learning, neural
 training, option extraction and all validation remain closed until this narrow
 gate passes. See `reports/SAGE_T12_3A_PROGRESS_WITNESS_PROTOCOL.md` and
 `reports/SAGE_T12_3A_PROGRESS_WITNESS_RUNBOOK.md`.
+
+T12.3a passed with 903/903 exact step comparisons and six of six paired causal
+contrasts. T12.3b is its checksummed child: it confirms a balanced set of 12
+terminal traces from the immutable T12.2 archives, propagates risk for up to 64
+steps, and protects all 99 state/action pairs in the two successful routes. A
+three-seed paired burst experiment must reduce terminal failures without losing
+coverage or any known/prospective progress. Neural training, option extraction,
+validation and holdout remain closed. See
+`reports/SAGE_T12_3B_TERMINAL_SHIELD_PROTOCOL.md` and
+`reports/SAGE_T12_3B_TERMINAL_SHIELD_RUNBOOK.md`.
