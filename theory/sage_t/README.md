@@ -267,3 +267,16 @@ replay, real shield vetoes and zero lineage rebasing. A pass authorizes only the
 freeze of T12.4; neural training, option extraction, validation and production
 remain closed. See `reports/SAGE_T12_3E_LINEAGE_SHIELD_PROTOCOL.md` and
 `reports/SAGE_T12_3E_LINEAGE_SHIELD_RUNBOOK.md`.
+
+T12.3e passed narrowly and authorizes the preregistered T12.4 freeze. T12.4
+trains a sub-15k-parameter CPU MLP on symbolic state/action inputs only. Dataset
+QA rejected the legacy pixel-hash `changed` target because it was positive for
+all 1,468 source transitions; the sealed replacement is an abstract-state
+signature change, paired with first-cell novelty. Seeds 7701–7702 train, 7703
+validates, and prospective seeds 8101–8103 compare the same lineage archive and
+terminal shield with and without fixed neural reranking. Offline prediction
+cannot pass without state dependence and calibration, and active authority
+requires a 10% coverage gain with no replay, progress or terminal regression.
+Only an active pass may freeze T12.5 option extraction. See
+`reports/SAGE_T12_4_NEURAL_NOVELTY_PROTOCOL.md` and
+`reports/SAGE_T12_4_NEURAL_NOVELTY_RUNBOOK.md`.
