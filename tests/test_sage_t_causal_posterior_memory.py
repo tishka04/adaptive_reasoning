@@ -94,6 +94,67 @@ def test_posterior_concentrates_without_history_only_deduplication():
     }
 
 
+def test_program_local_progress_witness_is_not_level_delta():
+    executor = CausalExecutor()
+    evidence = replace(
+        matching_evidence(),
+        observed_delta=replace(matching_evidence().observed_delta, progress=0.0),
+        success=None,
+        level_change=0,
+    )
+    correct = compare_particle(
+        program=causal_program(
+            program_id="cycle",
+            color_operator="cycle_attribute",
+        ),
+        evidence=evidence,
+        executor=executor,
+    )
+    incompatible = compare_particle(
+        program=causal_program(
+            program_id="identity",
+            color_operator="identity",
+        ),
+        evidence=evidence,
+        executor=executor,
+    )
+    assert correct.channel_errors["progress"] == 0.0
+    assert incompatible.channel_errors["progress"] == 1.0
+
+
+def test_intervention_support_matches_declared_state_action_and_terminal_failure():
+    executor = CausalExecutor()
+    posterior = CausalPosterior(executor=executor, mdl_beta=0.0)
+    posterior.seed((causal_program(),))
+    posterior.update(matching_evidence())
+
+    supported = posterior.intervention_support(
+        initial_state(),
+        GroundedAction("CLICK"),
+    )
+    unsupported = posterior.intervention_support(
+        initial_state(),
+        GroundedAction("CLICK", {"other": True}),
+    )
+    assert supported.trials == 1
+    assert supported.terminal_failures == 0
+    assert supported.safe is True
+    assert unsupported.trials == 0
+
+    terminal_failure = replace(
+        matching_evidence(evidence_id="terminal-failure"),
+        success=False,
+    )
+    posterior.update(terminal_failure)
+    failed = posterior.intervention_support(
+        initial_state(),
+        GroundedAction("CLICK"),
+    )
+    assert failed.trials == 2
+    assert failed.terminal_failures == 1
+    assert failed.safe is False
+
+
 def test_exact_duplicate_mass_is_merged_but_rivals_are_retained():
     executor = CausalExecutor()
     posterior = CausalPosterior(executor=executor, mdl_beta=0.0)
@@ -143,6 +204,9 @@ def test_a40_roundtrip_restores_posterior_mass(tmp_path):
     assert len(restored.posterior.evidence) == 1
     assert restored.posterior.evidence[0].evidence_id == "evidence-1"
     assert len(CausalMemoryStore(memory_path).verified_records()) == 1
+    assert CausalMemoryStore(memory_path).evidence_history()[0].evidence_id == (
+        "evidence-1"
+    )
 
 
 def test_a40_omits_undeclared_world_state_and_reserves_before_write(tmp_path):

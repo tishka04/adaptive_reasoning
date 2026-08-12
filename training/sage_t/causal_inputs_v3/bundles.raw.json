@@ -1,0 +1,104 @@
+{
+  "bundles": [
+    {
+      "branches": [
+        {
+          "action_data": {},
+          "action_name": "ACTION3"
+        },
+        {
+          "action_data": {},
+          "action_name": "ACTION4"
+        },
+        {
+          "action_data": {
+            "x": 12,
+            "y": 0
+          },
+          "action_name": "ACTION6"
+        }
+      ],
+      "bundle_id": "bp35-after-action4-move-vs-local-click",
+      "game_id": "bp35",
+      "prefix": [
+        {
+          "action_data": {},
+          "action_name": "ACTION4"
+        }
+      ],
+      "prefix_hash": "{\"available_actions\":[\"{\\\"args\\\": {}, \\\"name\\\": \\\"3\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"4\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"6\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"7\\\"}\"],\"digest\":\"34a7868ce9044615\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+    },
+    {
+      "branches": [
+        {
+          "action_data": {},
+          "action_name": "ACTION3"
+        },
+        {
+          "action_data": {},
+          "action_name": "ACTION4"
+        },
+        {
+          "action_data": {
+            "x": 30,
+            "y": 12
+          },
+          "action_name": "ACTION6"
+        }
+      ],
+      "bundle_id": "bp35-after-action3-move-vs-local-click",
+      "game_id": "bp35",
+      "prefix": [
+        {
+          "action_data": {},
+          "action_name": "ACTION3"
+        }
+      ],
+      "prefix_hash": "{\"available_actions\":[\"{\\\"args\\\": {}, \\\"name\\\": \\\"3\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"4\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"6\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"7\\\"}\"],\"digest\":\"f71d7a95f22aff22\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+    },
+    {
+      "branches": [
+        {
+          "action_data": {},
+          "action_name": "ACTION3"
+        },
+        {
+          "action_data": {},
+          "action_name": "ACTION4"
+        },
+        {
+          "action_data": {
+            "x": 30,
+            "y": 12
+          },
+          "action_name": "ACTION6"
+        }
+      ],
+      "bundle_id": "bp35-after-local-click-move-vs-local-click",
+      "game_id": "bp35",
+      "prefix": [
+        {
+          "action_data": {
+            "x": 12,
+            "y": 0
+          },
+          "action_name": "ACTION6"
+        }
+      ],
+      "prefix_hash": "{\"available_actions\":[\"{\\\"args\\\": {}, \\\"name\\\": \\\"3\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"4\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"6\\\"}\",\"{\\\"args\\\": {}, \\\"name\\\": \\\"7\\\"}\"],\"digest\":\"45a42de9c249e57b\",\"game_state\":\"NOT_FINISHED\",\"levels_completed\":0,\"shape\":[64,64]}"
+    }
+  ],
+  "design_metadata": {
+    "branch_outcomes_observed": false,
+    "branch_policy": "unchanged exact T11.1 ACTION3/ACTION4/ACTION6 branches",
+    "created_at": "2026-08-12",
+    "game_build": "bp35-0a0ad940",
+    "prefixes_exact_on_previous_replay": true,
+    "prefixes_reused_from": "training/sage_t/causal_inputs_v2/bundles.raw.json",
+    "provenance": [
+      "reports/SAGE_T11_2_REPLAY_PRIOR_PROGRESS_WITNESS_PROTOCOL.md",
+      "training/sage_t/causal_inputs_v2/bundles.raw.json"
+    ],
+    "source_split": "source_train"
+  }
+}

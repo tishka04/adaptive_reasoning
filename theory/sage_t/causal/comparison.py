@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from types import MappingProxyType
 
 from .contracts import PredictionDistribution, TransitionEvidence
-from .executor import CausalExecutor
+from .executor import CausalExecutor, evaluate_predicate
 
 DEFAULT_CHANNEL_WEIGHTS: Mapping[str, float] = {
     "variables": 1.0,
@@ -51,10 +51,26 @@ def compare_particle(
     weights = dict(DEFAULT_CHANNEL_WEIGHTS)
     weights.update(program.observation_model.channel_weights)
     declared_variables = tuple(item.variable_id for item in program.variables)
+    progress_predicates = tuple(program.goal.progress_predicates)
+    observed_progress_values = [
+        float(evaluate_predicate(predicate, evidence.state_after))
+        for predicate in progress_predicates
+    ]
+    observed_progress = (
+        sum(observed_progress_values) / len(observed_progress_values)
+        if observed_progress_values
+        else float(
+            evaluate_predicate(
+                program.goal.success_predicate,
+                evidence.state_after,
+            )
+        )
+    )
     available_errors = _channel_errors(
         prediction,
         evidence,
         declared_variables=declared_variables,
+        observed_progress=observed_progress,
     )
     declared_channels = set(program.observation_model.channels)
     if "goal" in declared_channels:
@@ -116,6 +132,7 @@ def _channel_errors(
     evidence: TransitionEvidence,
     *,
     declared_variables: Sequence[str],
+    observed_progress: float,
 ) -> dict[str, float]:
     variable_errors = []
     for key in declared_variables:
@@ -134,7 +151,7 @@ def _channel_errors(
         ),
         "progress": abs(
             float(prediction.progress_probability)
-            - min(1.0, max(0.0, float(evidence.observed_delta.progress)))
+            - min(1.0, max(0.0, float(observed_progress)))
         ),
         "terminal": abs(float(prediction.terminal_probability) - float(evidence.terminal)),
         "level": abs(float(prediction.goal_probability) - float(evidence.level_change > 0)),

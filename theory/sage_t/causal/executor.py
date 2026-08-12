@@ -159,9 +159,11 @@ class CausalExecutor:
             for variable_id, value in next_values.items()
             if value.total_variation(state.value(variable_id)) > 1e-12
         }
-        goal_probability = float(_predicate(compiled.program.goal.success_predicate, state_after))
+        goal_probability = float(
+            evaluate_predicate(compiled.program.goal.success_predicate, state_after)
+        )
         progress_values = [
-            float(_predicate(predicate, state_after))
+            float(evaluate_predicate(predicate, state_after))
             for predicate in compiled.program.goal.progress_predicates
         ]
         progress_probability = (
@@ -170,7 +172,12 @@ class CausalExecutor:
         failure_probability = (
             0.0
             if compiled.program.goal.failure_predicate is None
-            else float(_predicate(compiled.program.goal.failure_predicate, state_after))
+            else float(
+                evaluate_predicate(
+                    compiled.program.goal.failure_predicate,
+                    state_after,
+                )
+            )
         )
         terminal_probability = max(goal_probability, failure_probability)
         affected_objects = tuple(
@@ -202,17 +209,25 @@ class CausalExecutor:
         cache[key] = value
 
 
-def _predicate(expression: str, state: CausalState) -> bool:
+def evaluate_predicate(expression: str, state: CausalState) -> bool:
+    """Evaluate one typed causal predicate against a concrete state."""
+
     text = str(expression).strip()
     lowered = text.lower()
     if lowered in {"true", "false"}:
         return lowered == "true"
     if lowered.startswith("not "):
-        return not _predicate(text[4:], state)
+        return not evaluate_predicate(text[4:], state)
     if lowered.startswith("all(") and text.endswith(")"):
-        return all(_predicate(item, state) for item in _split_arguments(text[4:-1]))
+        return all(
+            evaluate_predicate(item, state)
+            for item in _split_arguments(text[4:-1])
+        )
     if lowered.startswith("any(") and text.endswith(")"):
-        return any(_predicate(item, state) for item in _split_arguments(text[4:-1]))
+        return any(
+            evaluate_predicate(item, state)
+            for item in _split_arguments(text[4:-1])
+        )
     match = _COMPARISON.fullmatch(text)
     if match:
         left = _operand(match.group(1), state)
@@ -250,4 +265,4 @@ def _operand(payload: str, state: CausalState) -> Any:
         return value.strip("'\"")
 
 
-__all__ = ["CausalExecutor"]
+__all__ = ["CausalExecutor", "evaluate_predicate"]

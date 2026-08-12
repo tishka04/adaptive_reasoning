@@ -27,7 +27,7 @@ PROTOCOL_CODE_PATHS = (
     "theory/sage_t/compiler.py",
     "theory/sage_t/causal/__init__.py",
     "theory/sage_t/causal/adapters.py",
-    "theory/sage_t/causal/bp35_iteration_v2.py",
+    "theory/sage_t/causal/bp35_iteration_v3.py",
     "theory/sage_t/causal/comparison.py",
     "theory/sage_t/causal/compiler.py",
     "theory/sage_t/causal/contracts.py",
@@ -59,12 +59,15 @@ class CausalProtocolStage(str, Enum):
 
 @dataclass(frozen=True)
 class CausalProtocol:
-    format_version: str = "sage-t11.1-causal-protocol-v2"
+    format_version: str = "sage-t11.2-causal-protocol-v3"
     posterior_cap: int = 64
     decision_particle_cap: int = 16
     ordinary_horizon: int = 3
     maximum_terminal_probe_risk: float = 0.05
-    maximum_interventions_per_reset: int = 5
+    maximum_interventions_per_reset: int = 1
+    minimum_bounded_intervention_support: int = 1
+    minimum_bounded_top_probability: float = 0.8
+    replay_prior_required_for_bounded: bool = True
     maximum_artifact_bytes_per_run: int = 3 * 1024 * 1024 * 1024
     authority_default: str = "shadow"
     split_checksum: str = SAGE11_SPLITS.checksum
@@ -210,7 +213,7 @@ def write_protocol_manifest(
         text=True,
     ).stdout.strip()
     payload = {
-        "format_version": "sage-t11.1-causal-protocol-manifest-v2",
+        "format_version": "sage-t11.2-causal-protocol-manifest-v3",
         "status": "FROZEN_BEFORE_CAUSAL_SOURCE_TRAIN",
         "base_commit": commit,
         "protocol_checksum": protocol.checksum,
@@ -225,6 +228,15 @@ def write_protocol_manifest(
             "ordinary_horizon": protocol.ordinary_horizon,
             "maximum_terminal_probe_risk": protocol.maximum_terminal_probe_risk,
             "maximum_interventions_per_reset": protocol.maximum_interventions_per_reset,
+            "minimum_bounded_intervention_support": (
+                protocol.minimum_bounded_intervention_support
+            ),
+            "minimum_bounded_top_probability": (
+                protocol.minimum_bounded_top_probability
+            ),
+            "replay_prior_required_for_bounded": (
+                protocol.replay_prior_required_for_bounded
+            ),
             "maximum_artifact_bytes_per_run": (
                 protocol.maximum_artifact_bytes_per_run
             ),

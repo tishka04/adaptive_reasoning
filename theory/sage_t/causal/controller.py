@@ -161,14 +161,39 @@ class CausalSageTController:
             differs = action.action_name != symbolic_name or dict(action.action_data) != symbolic_data
             if self.effective_mode is SageTMode.BOUNDED:
                 context = state.abstract_signature
-                if chosen.terminal_risk > self.config.bounded_maximum_terminal_risk:
+                top_probability = max(
+                    (
+                        particle.probability
+                        for particle in self.runtime.posterior.particles
+                    ),
+                    default=0.0,
+                )
+                support = self.runtime.posterior.intervention_support(state, action)
+                if not differs:
+                    reason = "bounded_agreement"
+                elif chosen.terminal_risk > self.config.bounded_maximum_terminal_risk:
                     reason = "bounded_risk_veto"
+                    self._vetoes += 1
+                elif (
+                    top_probability
+                    < self.config.bounded_minimum_top_probability
+                ):
+                    reason = "bounded_confidence_veto"
+                    self._vetoes += 1
+                elif support.terminal_failures > 0:
+                    reason = "bounded_observed_terminal_veto"
+                    self._vetoes += 1
+                elif (
+                    support.trials
+                    < self.config.bounded_minimum_intervention_support
+                ):
+                    reason = "bounded_support_veto"
                     self._vetoes += 1
                 elif context in self._intervened_contexts:
                     reason = "bounded_context_budget"
                 elif self._interventions_this_reset >= self.config.bounded_maximum_interventions_per_reset:
                     reason = "bounded_reset_budget"
-                elif differs:
+                else:
                     self._intervened_contexts.add(context)
                     self._interventions_this_reset += 1
                     applied = True

@@ -53,6 +53,7 @@ from .contracts import (
 from .controller import CausalSageTController
 from .decision import CausalDecisionEngine
 from .executor import CausalExecutor
+from .memory import CausalMemoryStore
 from .posterior import CausalPosterior, PosteriorUpdate
 from .protocol import (
     CausalEvaluationFirewall,
@@ -74,6 +75,7 @@ RECEIPT_FORMAT = "sage-t11-causal-gate-receipt-v1"
 DEFAULT_ARMS = (
     "baseline",
     "posterior_full",
+    "no_replay_prior",
     "no_posterior_update",
     "no_information_gain",
     "no_a40_memory",
@@ -84,7 +86,7 @@ SUPPORTED_ARMS = frozenset(
 )
 CORE_CODE_PATHS = (
     "theory/sage_t/compiler.py",
-    "theory/sage_t/causal/bp35_iteration_v2.py",
+    "theory/sage_t/causal/bp35_iteration_v3.py",
     "theory/sage_t/causal/adapters.py",
     "theory/sage_t/causal/comparison.py",
     "theory/sage_t/causal/compiler.py",
@@ -558,6 +560,13 @@ def freeze_experiment(
             "production_authority": False,
             "maximum_interventions_per_reset": protocol.maximum_interventions_per_reset,
             "maximum_terminal_probe_risk": protocol.maximum_terminal_probe_risk,
+            "minimum_intervention_support": (
+                protocol.minimum_bounded_intervention_support
+            ),
+            "minimum_top_particle_probability": (
+                protocol.minimum_bounded_top_probability
+            ),
+            "replay_prior_required": protocol.replay_prior_required_for_bounded,
         },
         "pairing": {
             "same_game_seed_reset_budget": True,
@@ -841,6 +850,7 @@ def run_replay(
         int(manifest["storage"]["maximum_artifact_bytes_per_run"]),
     )
     results = []
+    replay_evidence: dict[str, list[TransitionEvidence]] = {}
     if runtime_status["ready"]:
         for item in plan["bundles"]:
             game_id = str(item["game_id"])
@@ -894,6 +904,10 @@ def run_replay(
                     prefix_hash=str(item["prefix_hash"]),
                 ),
             )
+            if result.status == "BUNDLE_COMPLETE":
+                replay_evidence.setdefault(game_id, []).extend(
+                    runtime.posterior.evidence
+                )
             results.append(
                 {
                     "bundle_id": item["bundle_id"],
@@ -918,6 +932,35 @@ def run_replay(
                     ],
                 }
             )
+    replay_memory: dict[str, dict[str, Any]] = {}
+    if runtime_status["ready"]:
+        for game_id in manifest["games"]:
+            evidence_rows = tuple(replay_evidence.get(str(game_id), ()))
+            if not evidence_rows:
+                continue
+            programs = _programs_for_game(registry, str(game_id))
+            executor = CausalExecutor()
+            memory_path = destination / "replay_prior" / f"{game_id}.jsonl"
+            replay_runtime = CausalRuntime(
+                executor=executor,
+                posterior=CausalPosterior(
+                    executor=executor,
+                    maximum_repair_parents=0,
+                ),
+                memory_path=memory_path,
+                reserve_memory_bytes=storage_budget.reserve,
+            )
+            replay_runtime.seed(programs)
+            for evidence in evidence_rows:
+                replay_runtime.observe(evidence)
+            store = CausalMemoryStore(memory_path)
+            verified_records = store.verified_records()
+            replay_memory[str(game_id)] = {
+                "path": str(memory_path.relative_to(destination).as_posix()),
+                "sha256": _file_sha256(memory_path),
+                "record_count": len(verified_records),
+                "evidence_count": len(store.evidence_history()),
+            }
     all_complete = bool(results) and all(
         row["status"] == "BUNDLE_COMPLETE"
         and row["predictions_registered_before_execution"]
@@ -926,10 +969,16 @@ def run_replay(
         for row in results
     )
     total_entropy_reduction = sum(float(row["entropy_reduction"]) for row in results)
+    replay_memory_complete = bool(replay_memory) and all(
+        int(item["record_count"]) == int(item["evidence_count"])
+        and int(item["evidence_count"]) >= 2
+        for item in replay_memory.values()
+    )
     passed = bool(
         runtime_status["ready"]
         and all_complete
         and total_entropy_reduction > 1e-9
+        and replay_memory_complete
         and manifest["scientific_claims_authorized"]
     )
     report_core = {
@@ -942,8 +991,15 @@ def run_replay(
             "bundles": len(results),
             "complete_bundles": sum(row["status"] == "BUNDLE_COMPLETE" for row in results),
             "total_entropy_reduction": total_entropy_reduction,
+            "replay_memory_records": sum(
+                int(item["record_count"]) for item in replay_memory.values()
+            ),
+            "replay_memory_evidence": sum(
+                int(item["evidence_count"]) for item in replay_memory.values()
+            ),
         },
         "bundles": results,
+        "replay_memory": replay_memory,
         "storage": storage_budget.snapshot(),
         "passed": passed,
     }
@@ -958,6 +1014,7 @@ def run_replay(
             "experiment_manifest_checksum": manifest["manifest_checksum"],
             "report_checksum": report["report_checksum"],
             "metrics": report["metrics"],
+            "replay_memory": replay_memory,
             "maximum_artifact_bytes": storage_budget.maximum_bytes,
             "reason": report["status"],
         },
@@ -1005,6 +1062,8 @@ class ExperimentalCausalController(CausalSageTController):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.initial_particle_count = len(self.posterior.particles)
+        self.initial_evidence_count = len(self.posterior.evidence)
+        self.replay_prior_evidence_count = 0
         self.decision_latencies_ms: list[float] = []
         self.observation_latencies_ms: list[float] = []
         self.compact_records: list[dict[str, Any]] = []
@@ -1041,6 +1100,8 @@ class ExperimentalCausalController(CausalSageTController):
         result = dict(super().summary())
         result["instrumentation"] = {
             "initial_particle_count": self.initial_particle_count,
+            "initial_evidence_count": self.initial_evidence_count,
+            "replay_prior_evidence_count": self.replay_prior_evidence_count,
             "decision_latencies_ms": tuple(self.decision_latencies_ms),
             "observation_latencies_ms": tuple(self.observation_latencies_ms),
             "records": tuple(self.compact_records),
@@ -1082,6 +1143,7 @@ def _build_controller(
     memory_path: Path | None,
     reserve_memory_bytes: Callable[[int], None] | None,
     replay_gate_passed: bool,
+    replay_evidence: Sequence[TransitionEvidence] = (),
 ) -> tuple[UnifiedCognitiveController, ExperimentalCausalController | None]:
     if arm == "baseline":
         return (
@@ -1115,8 +1177,14 @@ def _build_controller(
         reserve_memory_bytes=reserve_memory_bytes,
     )
     runtime.seed(selected_programs)
+    loaded_replay_evidence = (
+        () if arm == "no_replay_prior" else tuple(replay_evidence)
+    )
+    for evidence in loaded_replay_evidence:
+        posterior.update(evidence)
     if durable_memory is not None and durable_memory.exists():
-        runtime.reload_memory()
+        for evidence in CausalMemoryStore(durable_memory).evidence_history():
+            posterior.update(evidence)
     config = SageTConfig(
         mode=authority,
         counterfactual_gate_passed=replay_gate_passed,
@@ -1125,8 +1193,15 @@ def _build_controller(
             CausalProtocol().maximum_interventions_per_reset
         ),
         bounded_maximum_terminal_risk=CausalProtocol().maximum_terminal_probe_risk,
+        bounded_minimum_intervention_support=(
+            CausalProtocol().minimum_bounded_intervention_support
+        ),
+        bounded_minimum_top_probability=(
+            CausalProtocol().minimum_bounded_top_probability
+        ),
     )
     causal = ExperimentalCausalController(config=config, runtime=runtime)
+    causal.replay_prior_evidence_count = len(loaded_replay_evidence)
     if causal.initial_particle_count < 2:
         raise ValueError("rival programs were not initialized before first choice")
     unified = UnifiedCognitiveController(
@@ -1155,6 +1230,7 @@ def _run_arm_restarting(
     memory_path: Path | None,
     reserve_memory_bytes: Callable[[int], None] | None,
     env_factory: EnvFactory | None,
+    replay_evidence: Sequence[TransitionEvidence] = (),
 ) -> dict[str, Any]:
     attempts = []
     controller_errors: list[str] = []
@@ -1169,6 +1245,7 @@ def _run_arm_restarting(
             memory_path=memory_path,
             reserve_memory_bytes=reserve_memory_bytes,
             replay_gate_passed=replay_gate_passed,
+            replay_evidence=replay_evidence,
         )
         controller.on_reset()
         policy = SharedLegacyProposalPolicy(
@@ -1267,6 +1344,14 @@ def _arm_metrics(result: Mapping[str, Any]) -> dict[str, Any]:
         "initial_particle_counts": [
             int(item.get("initial_particle_count", 0)) for item in instrumentations
         ],
+        "initial_evidence_counts": [
+            int(item.get("initial_evidence_count", 0))
+            for item in instrumentations
+        ],
+        "replay_prior_evidence_counts": [
+            int(item.get("replay_prior_evidence_count", 0))
+            for item in instrumentations
+        ],
         "decision_latency_ms": [
             float(value)
             for item in instrumentations
@@ -1303,6 +1388,42 @@ def _load_replay_receipt(
     if receipt.get("experiment_manifest_checksum") != manifest.get("manifest_checksum"):
         raise ValueError("replay receipt belongs to another experiment")
     return receipt
+
+
+def _load_replay_prior_evidence(
+    receipt_path: str | Path,
+    *,
+    receipt: Mapping[str, Any],
+    game_ids: Sequence[str],
+) -> dict[str, tuple[TransitionEvidence, ...]]:
+    receipt_file = Path(receipt_path).resolve()
+    replay_root = receipt_file.parent
+    metadata = dict(receipt.get("replay_memory", {}) or {})
+    loaded: dict[str, tuple[TransitionEvidence, ...]] = {}
+    for game_id in game_ids:
+        item = dict(metadata.get(str(game_id), {}) or {})
+        if not item:
+            raise ValueError(f"replay receipt lacks causal memory for {game_id}")
+        memory_path = (replay_root / str(item.get("path", ""))).resolve()
+        try:
+            memory_path.relative_to(replay_root)
+        except ValueError as exc:
+            raise ValueError("replay memory path escapes replay directory") from exc
+        if not memory_path.is_file():
+            raise ValueError(f"replay causal memory is missing for {game_id}")
+        if _file_sha256(memory_path) != str(item.get("sha256", "")):
+            raise ValueError(f"replay causal memory checksum mismatch for {game_id}")
+        store = CausalMemoryStore(memory_path)
+        records = store.verified_records()
+        evidence = store.evidence_history()
+        if len(records) != int(item.get("record_count", -1)):
+            raise ValueError(f"replay causal memory record count mismatch for {game_id}")
+        if len(evidence) != int(item.get("evidence_count", -1)):
+            raise ValueError(f"replay causal memory evidence count mismatch for {game_id}")
+        if len(evidence) < 2:
+            raise ValueError(f"replay causal memory is insufficient for {game_id}")
+        loaded[str(game_id)] = evidence
+    return loaded
 
 
 def _posterior_advantage(conditions: Sequence[Mapping[str, Any]]) -> bool:
@@ -1346,6 +1467,11 @@ def run_experiment(
     manifest = load_experiment_manifest(manifest_path, root=repo_root)
     replay_receipt = _load_replay_receipt(replay_receipt_path, manifest=manifest)
     replay_passed = replay_receipt.get("passed") is True
+    replay_prior_evidence = _load_replay_prior_evidence(
+        replay_receipt_path,
+        receipt=replay_receipt,
+        game_ids=tuple(str(game) for game in manifest["games"]),
+    )
     authority = str(manifest["authority"]["requested"])
     if authority == "bounded" and not replay_passed:
         raise ValueError("bounded authority remains closed without replay gate")
@@ -1405,6 +1531,7 @@ def run_experiment(
                         memory_path=(None if arm == "baseline" else memory_path),
                         reserve_memory_bytes=storage_budget.reserve,
                         env_factory=env_factory,
+                        replay_evidence=replay_prior_evidence[str(game_id)],
                     )
                     storage_budget.reserve(0)
                     arm_results[str(arm)] = {
@@ -1462,6 +1589,22 @@ def run_experiment(
             metrics["initial_particle_counts"]
             and min(metrics["initial_particle_counts"]) >= 2
             for metrics in (arm["metrics"] for arm in nonbaseline)
+        ),
+        "replay_prior_loaded_before_first_choice": bool(nonbaseline)
+        and all(
+            (
+                metrics["replay_prior_evidence_counts"]
+                and min(metrics["replay_prior_evidence_counts"]) >= 2
+            )
+            if name != "no_replay_prior"
+            else (
+                metrics["replay_prior_evidence_counts"]
+                and max(metrics["replay_prior_evidence_counts"]) == 0
+            )
+            for condition in conditions
+            for name, arm in condition["arms"].items()
+            if name != "baseline"
+            for metrics in (arm["metrics"],)
         ),
         "zero_controller_errors": all(
             arm["metrics"]["controller_errors"] == 0 for arm in nonbaseline

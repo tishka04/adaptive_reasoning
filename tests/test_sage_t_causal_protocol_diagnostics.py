@@ -66,7 +66,7 @@ def test_frozen_protocol_manifest_binds_code_and_split():
         / "theory"
         / "sage_t"
         / "causal"
-        / "sage_t11_1_causal_protocol_manifest.json"
+        / "sage_t11_2_causal_protocol_manifest.json"
     )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert manifest["status"] == "FROZEN_BEFORE_CAUSAL_SOURCE_TRAIN"
@@ -76,6 +76,9 @@ def test_frozen_protocol_manifest_binds_code_and_split():
         payload = (repo_root / filename).read_bytes()
         assert hashlib.sha256(payload).hexdigest() == expected
     assert manifest["limits"]["maximum_artifact_bytes_per_run"] == 3 * 1024**3
+    assert manifest["limits"]["maximum_interventions_per_reset"] == 1
+    assert manifest["limits"]["minimum_bounded_intervention_support"] == 1
+    assert manifest["limits"]["minimum_bounded_top_probability"] == 0.8
 
 
 def test_runtime_writes_bounded_diagnostics(tmp_path):

@@ -7,7 +7,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, replace
 
 from .comparison import ParticleComparison, compare_particle
-from .contracts import CausalProgram, TransitionEvidence
+from .contracts import CausalProgram, CausalState, GroundedAction, TransitionEvidence
 from .executor import CausalExecutor
 from .repair import CausalProgramRepairer
 
@@ -40,6 +40,16 @@ class PosteriorUpdate:
     @property
     def entropy_reduction(self) -> float:
         return self.entropy_before - self.entropy_after
+
+
+@dataclass(frozen=True)
+class InterventionSupport:
+    trials: int = 0
+    terminal_failures: int = 0
+
+    @property
+    def safe(self) -> bool:
+        return self.trials > 0 and self.terminal_failures == 0
 
 
 class CausalPosterior:
@@ -290,6 +300,47 @@ class CausalPosterior:
             ],
         }
 
+    def intervention_support(
+        self,
+        state: CausalState,
+        action: GroundedAction,
+        *,
+        tolerance: float = 1e-9,
+    ) -> InterventionSupport:
+        """Count exact-action evidence at the current declared-state projection."""
+
+        declared_variables = tuple(
+            sorted(
+                {
+                    variable.variable_id
+                    for particle in self._particles
+                    for variable in particle.program.variables
+                }
+            )
+        )
+        trials = 0
+        terminal_failures = 0
+        for evidence in self._evidence:
+            if evidence.action.key != action.key:
+                continue
+            if not declared_variables or any(
+                variable_id not in state.variables
+                or variable_id not in evidence.state_before.variables
+                or state.value(variable_id).total_variation(
+                    evidence.state_before.value(variable_id)
+                )
+                > tolerance
+                for variable_id in declared_variables
+            ):
+                continue
+            trials += 1
+            if evidence.terminal and evidence.success is not True:
+                terminal_failures += 1
+        return InterventionSupport(
+            trials=trials,
+            terminal_failures=terminal_failures,
+        )
+
     def _deduplicate(
         self, particles: Sequence[CausalParticle]
     ) -> tuple[list[CausalParticle], tuple[str, ...]]:
@@ -351,4 +402,9 @@ def _logsumexp(values: Sequence[float]) -> float:
     return maximum + math.log(sum(math.exp(value - maximum) for value in materialized))
 
 
-__all__ = ["CausalParticle", "CausalPosterior", "PosteriorUpdate"]
+__all__ = [
+    "CausalParticle",
+    "CausalPosterior",
+    "InterventionSupport",
+    "PosteriorUpdate",
+]

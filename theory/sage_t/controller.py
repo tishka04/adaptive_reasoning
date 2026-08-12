@@ -47,6 +47,8 @@ class SageTConfig:
     ordinary_horizon: int = 3
     bounded_maximum_interventions_per_reset: int = 5
     bounded_maximum_terminal_risk: float = 0.05
+    bounded_minimum_intervention_support: int = 0
+    bounded_minimum_top_probability: float = 0.0
     trace_path: str = ""
 
     def __post_init__(self) -> None:
@@ -61,8 +63,12 @@ class SageTConfig:
             raise ValueError("ordinary SAGE.T rollouts use horizon 1-3")
         if int(self.bounded_maximum_interventions_per_reset) < 0:
             raise ValueError("bounded intervention budget cannot be negative")
+        if int(self.bounded_minimum_intervention_support) < 0:
+            raise ValueError("bounded intervention support cannot be negative")
         if not 0.0 <= float(self.bounded_maximum_terminal_risk) <= 0.05:
             raise ValueError("bounded SAGE.T risk must be in [0, 0.05]")
+        if not 0.0 <= float(self.bounded_minimum_top_probability) <= 1.0:
+            raise ValueError("bounded top probability must be in [0, 1]")
 
     @property
     def requested_mode(self) -> SageTMode:

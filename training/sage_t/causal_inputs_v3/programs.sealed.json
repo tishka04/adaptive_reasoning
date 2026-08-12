@@ -1,0 +1,1043 @@
+{
+  "format_version": "sage-t11-causal-program-registry-v1",
+  "games": {
+    "bp35": {
+      "action_catalog": [
+        "ACTION3",
+        "ACTION4",
+        "ACTION6"
+      ],
+      "program_hashes": [
+        "07331905c3c223b767ee200236820572038cf1cb98e999e7e293be12e72173f9",
+        "1d9bec43ef1982c25dc87ca9edce6acf4821e2a2e3321f3ab7fac8f6ccfc978e",
+        "29b40b86708d0d10e1eac7928db9cf66c4a54f041be7ce4ae56fcff34b8ea511",
+        "79c85395b3d9ab6fe495d76376852efa9effe03f9b5af1c4681460b3ac727f23",
+        "82a37a15d6cb699cccde228d43a7aa3d9232acf3c26b90fc785c6848c060ddcd",
+        "852bd039ec40d6a721351a227255ea768f432ba6fdf6dec773ee4750256e5238",
+        "c7286889e965e3e23f9f59db7f83d652d90608883851aeed5de7fe73aa8408a3",
+        "e0e04f51aea1e6f2036d1996e680363661d30a0d868bdf043ed8c5a3ad09f5a7"
+      ],
+      "programs": [
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 8.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,14]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_click_grounding_left_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_click_grounding_left_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_click_grounding_left_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "column_key": "x",
+                "ground_action": "ACTION6",
+                "row_key": "y"
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_click_grounding_left_goal",
+          "provenance": [
+            "hypothesis:bp35_click_grounding_left_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 6.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,14]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_source_columns_left_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_columns_left_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_columns_left_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "columns_by_action": {
+                  "ACTION3": 14,
+                  "ACTION4": 28
+                }
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_source_columns_left_goal",
+          "provenance": [
+            "hypothesis:bp35_source_columns_left_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 5.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,14]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_player_persistence_left_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_player_persistence_left_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_player_persistence_left_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_player_persistence_left_goal",
+          "provenance": [
+            "hypothesis:bp35_player_persistence_left_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 7.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,14]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_source_displacement_left_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_displacement_left_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_displacement_left_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "deltas_by_action": {
+                  "ACTION3": [
+                    0,
+                    -8
+                  ],
+                  "ACTION4": [
+                    0,
+                    6
+                  ]
+                }
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_source_displacement_left_goal",
+          "provenance": [
+            "hypothesis:bp35_source_displacement_left_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 6.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,28]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_source_columns_right_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_columns_right_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_columns_right_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "columns_by_action": {
+                  "ACTION3": 14,
+                  "ACTION4": 28
+                }
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_source_columns_right_goal",
+          "provenance": [
+            "hypothesis:bp35_source_columns_right_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 8.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,28]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_reversed_displacement_right_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_reversed_displacement_right_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_reversed_displacement_right_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "deltas_by_action": {
+                  "ACTION3": [
+                    0,
+                    8
+                  ],
+                  "ACTION4": [
+                    0,
+                    -6
+                  ]
+                }
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_reversed_displacement_right_goal",
+          "provenance": [
+            "hypothesis:bp35_reversed_displacement_right_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 9.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,28]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_source_columns_click_grounding_right_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_columns_click_grounding_right_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_source_columns_click_grounding_right_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "column_key": "x",
+                "columns_by_action": {
+                  "ACTION3": 14,
+                  "ACTION4": 28
+                },
+                "ground_action": "ACTION6",
+                "row_key": "y"
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_source_columns_click_grounding_right_goal",
+          "provenance": [
+            "hypothesis:bp35_source_columns_click_grounding_right_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        },
+        {
+          "action_model": [
+            {
+              "action_name": "ACTION3",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION4",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            },
+            {
+              "action_name": "ACTION6",
+              "intervention_type": "do_action",
+              "parameters": {},
+              "target_variable": null
+            }
+          ],
+          "bindings": {
+            "level_progress": "counter.levels_completed",
+            "player": "role:player"
+          },
+          "description_length": 7.0,
+          "format_version": "sage-t-causal-program-v1",
+          "goal": {
+            "failure_predicate": "fact.game_over == true",
+            "progress_predicates": [
+              "summary.role.player.center == [38.5,28]"
+            ],
+            "success_predicate": "counter.levels_completed >= 1"
+          },
+          "mechanisms": [
+            {
+              "mechanism_id": "bp35_reversed_columns_right_goal_level_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "counter.levels_completed",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "counter.levels_completed"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_reversed_columns_right_goal_failure_persistence",
+              "neural_module_id": null,
+              "operator_type": "identity",
+              "output_variable": "fact.game_over",
+              "parameters": {},
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "fact.game_over"
+                }
+              ],
+              "symbolic_fallback": null
+            },
+            {
+              "mechanism_id": "bp35_reversed_columns_right_goal_player_transition",
+              "neural_module_id": null,
+              "operator_type": "action_position",
+              "output_variable": "summary.role.player.center",
+              "parameters": {
+                "columns_by_action": {
+                  "ACTION3": 28,
+                  "ACTION4": 14
+                }
+              },
+              "parent_variables": [
+                {
+                  "time_slice": "current",
+                  "variable_id": "summary.role.player.center"
+                }
+              ],
+              "symbolic_fallback": null
+            }
+          ],
+          "observation_model": {
+            "channel_weights": {
+              "goal": 2.0,
+              "progress": 2.0,
+              "terminal": 4.0,
+              "variables": 3.0
+            },
+            "channels": [
+              "variables",
+              "terminal",
+              "goal",
+              "progress"
+            ],
+            "neural_module_id": null,
+            "noise_floor": 0.05
+          },
+          "program_id": "bp35_reversed_columns_right_goal",
+          "provenance": [
+            "hypothesis:bp35_reversed_columns_right_goal",
+            "iteration:sage-t11.2-replay-prior-progress-witness",
+            "source:bp35-source-train"
+          ],
+          "variables": [
+            {
+              "domain": [],
+              "variable_id": "counter.levels_completed",
+              "variable_type": "counter"
+            },
+            {
+              "domain": [
+                false,
+                true
+              ],
+              "variable_id": "fact.game_over",
+              "variable_type": "terminal"
+            },
+            {
+              "domain": [],
+              "variable_id": "summary.role.player.center",
+              "variable_type": "position"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "protocol_checksum": "61e31120f305d27249dca338956653a6b750051a18e8b57b4d6ece4ebe6443a0",
+  "registry_checksum": "278a68159de25a57aba7ed08953af708193ba1d65e68efeeffc15ef9c911387f"
+}

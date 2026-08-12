@@ -143,6 +143,15 @@ class CausalMemoryStore:
         posterior.restore(particles, evidence=evidence_history)
         return len(particles)
 
+    def evidence_history(self) -> tuple[TransitionEvidence, ...]:
+        """Return checksum-verified evidence without restoring stored weights."""
+
+        return tuple(
+            transition_evidence_from_dict(record.payload["evidence"])
+            for record in self.verified_records()
+            if "evidence" in record.payload
+        )
+
     def promotable_mechanism_ids(
         self,
         *,

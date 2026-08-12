@@ -226,6 +226,11 @@ def test_replay_preregisters_predictions_and_emits_bound_receipt(monkeypatch, tm
         "experiment_manifest_checksum"
     ]
     assert receipt["report_checksum"] == report["report_checksum"]
+    memory = report["replay_memory"]["bp35"]
+    memory_path = output / memory["path"]
+    assert memory_path.is_file()
+    assert memory["record_count"] == memory["evidence_count"] == 2
+    assert receipt["replay_memory"]["bp35"] == memory
 
 
 def test_paired_runner_builds_fresh_rivals_and_a40_ablation(monkeypatch, tmp_path):
@@ -251,6 +256,11 @@ def test_paired_runner_builds_fresh_rivals_and_a40_ablation(monkeypatch, tmp_pat
     for name, arm in condition["arms"].items():
         if name != "baseline":
             assert min(arm["metrics"]["initial_particle_counts"]) >= 2
+            replay_counts = arm["metrics"]["replay_prior_evidence_counts"]
+            if name == "no_replay_prior":
+                assert max(replay_counts) == 0
+            else:
+                assert min(replay_counts) == 2
     assert condition["arms"]["posterior_full"]["metrics"]["memory_records"] > 0
     assert condition["arms"]["no_a40_memory"]["metrics"]["memory_records"] == 0
     assert condition["arms"]["posterior_full"]["metrics"]["controller_errors"] == 0
@@ -263,6 +273,7 @@ def test_paired_runner_builds_fresh_rivals_and_a40_ablation(monkeypatch, tmp_pat
     ]
     assert report["holdout_opened"] is False
     assert report["production_authority"] is False
+    assert report["checks"]["replay_prior_loaded_before_first_choice"] is True
 
 
 def test_source_validation_freeze_requires_passing_parent_receipt(tmp_path):
