@@ -206,3 +206,12 @@ memory can leak between validation games.
 The scientific protocol and PowerShell commands are documented in
 `reports/SAGE_T12_1_GRAPH_EXPLORE_PROTOCOL.md` and
 `reports/SAGE_T12_1_GRAPH_EXPLORE_RUNBOOK.md`.
+
+T12.1 ultimately failed its archive gate despite a large coverage gain because
+it observed no progress and spent most SDK calls restoring a prefix before a
+single exploratory action. T12.2 keeps that result immutable and tests a
+strictly symbolic correction: deterministic 4/8/16-action excursions after
+each exact restoration. The child manifest must bind the failed T12.1 receipt;
+the new gate still requires real progression, not coverage alone. See
+`reports/SAGE_T12_2_BURST_GO_EXPLORE_PROTOCOL.md` and
+`reports/SAGE_T12_2_BURST_GO_EXPLORE_RUNBOOK.md`.
