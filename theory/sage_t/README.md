@@ -360,3 +360,18 @@ authorizes only the matching child freeze; policy, validation, holdout, neural
 training and production authority remain closed. See
 `reports/SAGE_T12_4A_4B_OPTION_APPLICABILITY_PROTOCOL.md` and
 `reports/SAGE_T12_4A_4B_OPTION_APPLICABILITY_RUNBOOK.md`.
+
+T12.4a.4b passed and classified the miss as
+`INITIATION_AND_DYNAMICS_SHIFT`: the anchor structures differ, the first
+mechanism delta already diverges and none of the 20 paired step deltas match.
+T12.4a.4c therefore compiles the sequence as a guarded option rather than a
+universal one. It retains up to six sparse initiation hypotheses as rival
+particles, adds one typed effect contract per step, and crosses them with the
+four complete dynamics-plus-goal programs under a 24-particle bound. The phase
+is fully offline, forbids hashes, level identity, pixels and grounded entities
+inside the new contracts, preserves aggregate parent posterior mass, and tests
+guard/effect, deletion, reverse and shuffle ablations. A pass only authorizes a
+separate target-local re-grounding/search freeze; all active and external
+authority remains closed. See
+`reports/SAGE_T12_4A_4C_OPTION_CONTRACT_PROTOCOL.md` and
+`reports/SAGE_T12_4A_4C_OPTION_CONTRACT_RUNBOOK.md`.
