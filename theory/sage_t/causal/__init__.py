@@ -40,6 +40,14 @@ from .lineage_archive import LineagePreservingArchive
 from .mechanisms import MechanismRegistry
 from .memory import CausalMemoryStore
 from .posterior import CausalParticle, CausalPosterior, PosteriorUpdate
+from .progress import (
+    CausalProgressActionEvaluator,
+    CausalProgressExecutor,
+    CausalProgressProgram,
+    JointCausalProgressPosterior,
+    ProgressEvidence,
+    ProgressMilestone,
+)
 from .protocol import CausalEvaluationFirewall, CausalProtocol
 from .replay import InterventionBundleRunner
 from .runtime import CausalRuntime
@@ -58,6 +66,9 @@ __all__ = [
     "CausalMemoryStore",
     "CausalParticle",
     "CausalPosterior",
+    "CausalProgressActionEvaluator",
+    "CausalProgressExecutor",
+    "CausalProgressProgram",
     "CausalProgram",
     "CausalProgramProposal",
     "CausalProposalCoordinator",
@@ -74,6 +85,7 @@ __all__ = [
     "InterventionBranch",
     "InterventionBundle",
     "InterventionBundleRunner",
+    "JointCausalProgressPosterior",
     "LineagePreservingArchive",
     "MechanismRegistry",
     "MechanismSpec",
@@ -81,6 +93,8 @@ __all__ = [
     "ParentRef",
     "ParticleComparison",
     "PosteriorUpdate",
+    "ProgressEvidence",
+    "ProgressMilestone",
     "PredictedTrace",
     "PredictionDistribution",
     "ProgramCompiler",

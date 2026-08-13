@@ -403,3 +403,18 @@ and 3 GiB; T12.4a.4e, validation, holdout, neural and production authority stay
 closed until an exact cross-lineage witness passes. See
 `reports/SAGE_T12_4A_4D_1_HAZARD_DIVERSITY_PROTOCOL.md` and
 `reports/SAGE_T12_4A_4D_1_HAZARD_DIVERSITY_RUNBOOK.md`.
+
+The next scientific bifurcation is T12.5: recognize whether a trajectory is
+closer to its causal goal, rather than add another archive or hazard heuristic.
+It binds the five typed T12.4a.4c effects to four rival progress programs:
+terminal-only, change count, unordered milestones and ordered milestones. The
+programs are crossed by reference with all 24 complete dynamics-plus-goal
+owners, producing a common 96-particle joint posterior. Ordering is induced on
+lineage 8701, measured on lineage 8705 before any update, then consolidated.
+The gate requires perfect replication, ordered posterior mass at least 0.95,
+strictly increasing successful-prefix value, a flat same-action failed trace,
+action-label invariance, correct next-effect ranking and superiority over
+terminal, novelty/count, unordered, action-only and state-only baselines. The
+phase is fully offline, capped at 3 GiB and grants only a future shadow-ranking
+freeze. See `reports/SAGE_T12_5_CAUSAL_PROGRESS_PROTOCOL.md` and
+`reports/SAGE_T12_5_CAUSAL_PROGRESS_RUNBOOK.md`.
