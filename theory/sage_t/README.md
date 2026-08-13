@@ -314,3 +314,16 @@ contrasts per witness. Neural fitting, active evaluation and option extraction
 remain disabled; a pass may only freeze T12.4a.3 option extraction. See
 `reports/SAGE_T12_4A_2_WITNESS_RECONFIRMATION_PROTOCOL.md` and
 `reports/SAGE_T12_4A_2_WITNESS_RECONFIRMATION_RUNBOOK.md`.
+
+T12.4a.2 then passed with 1,137/1,137 exact transition comparisons and all
+route, suffix, deletion and paired-contrast confirmations. T12.4a.3 seals its
+two contexts and exhaustively evaluates all 64 ordered subsequences of the
+shared six-action suffix, three times per context, plus reversed controls. A
+unique minimal sequence must reach the same exact target in both contexts,
+with no off-target progression. Only a passed ablation may be compiled into
+the four complete causal-program particles, and that compilation remains
+strictly shadow. The 390-branch run is capped at 24,000 SDK calls and 3 GiB. A
+full shadow-compile pass may only freeze a separate level-transfer experiment;
+it grants no active, validation, holdout or production authority. See
+`reports/SAGE_T12_4A_3_OPTION_MINIMIZATION_PROTOCOL.md` and
+`reports/SAGE_T12_4A_3_OPTION_MINIMIZATION_RUNBOOK.md`.
