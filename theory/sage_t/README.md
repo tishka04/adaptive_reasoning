@@ -327,3 +327,10 @@ full shadow-compile pass may only freeze a separate level-transfer experiment;
 it grants no active, validation, holdout or production authority. See
 `reports/SAGE_T12_4A_3_OPTION_MINIMIZATION_PROTOCOL.md` and
 `reports/SAGE_T12_4A_3_OPTION_MINIMIZATION_RUNBOOK.md`.
+
+The first T12.4a.3 ablation invocation stopped before any ARC call because its
+context loader read candidate length and source seeds from obsolete top-level
+manifest fields. Amendment 1 moves those reads to the sealed protocol and uses
+the canonical `ProgressWitness.source_seed` contract. The original manifest is
+retained; scientific execution must freeze a new `T12.4a.3r1` manifest. See
+`reports/SAGE_T12_4A_3_OPTION_MINIMIZATION_AMENDMENT_1.md`.

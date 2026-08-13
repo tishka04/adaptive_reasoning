@@ -143,9 +143,10 @@ def _load_contexts(
         int(item["seed"]): item for item in manifest["source_archives"]
     }
     contexts: list[tuple[AblationContext, GoExploreArchive]] = []
-    suffix_length = int(manifest["candidate"]["length"])
-    for seed in manifest["source_seeds"]:
-        witness = next(item for item in witnesses if item.seed == int(seed))
+    protocol = OptionMinimizationProtocol(**dict(manifest["protocol"]))
+    suffix_length = protocol.candidate_action_count
+    for seed in protocol.source_seeds:
+        witness = next(item for item in witnesses if item.source_seed == int(seed))
         prefix = tuple(witness.steps[:-suffix_length])
         candidate = tuple(witness.steps[-suffix_length:])
         source = source_by_seed[int(seed)]

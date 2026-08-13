@@ -1,5 +1,10 @@
 # Runbook PowerShell — SAGE.T12.4a.3
 
+> Amendement 1 : le premier manifeste a rencontré `KeyError:'candidate'`
+> avant tout appel ARC. Après correction, utiliser un nouveau répertoire
+> `option_minimization_t12_4a_3r1_bp35`; voir
+> `SAGE_T12_4A_3_OPTION_MINIMIZATION_AMENDMENT_1.md`.
+
 Exécuter depuis la racine de `adaptive_reasoning`, avec un worktree propre
 avant le freeze.
 
@@ -72,4 +77,3 @@ Seul `PASS_T12_4A_3_SHADOW_COMPILE_GATE` avec
 `t12_4a_4_transfer_freeze_authorized: true` permet de préparer T12.4a.4. Les
 champs `option_control_authorized`, `source_validation_opened`,
 `holdout_opened` et `production_authority` doivent rester `false`.
-

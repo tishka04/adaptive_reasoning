@@ -107,6 +107,62 @@ def test_protocol_is_exhaustive_bounded_and_shadow_only() -> None:
         parser.parse_args(["activate"])
 
 
+def test_context_loader_reads_candidate_length_from_frozen_protocol(
+    monkeypatch,
+) -> None:
+    protocol = OptionMinimizationProtocol()
+    steps = tuple(
+        WitnessStep(
+            expected_source_hash=f"source-{index}",
+            action=GroundedAction(f"ACTION{action}"),
+            expected_target_hash=f"target-{index}",
+        )
+        for index, action in enumerate((1, 2, *ExactSequenceEnv.sequence))
+    )
+    witnesses = tuple(
+        SimpleNamespace(
+            source_seed=seed,
+            witness_id=f"witness-{seed}",
+            steps=steps,
+            initial_exact_hash="initial",
+            target_exact_hash="target",
+            target_level=1,
+        )
+        for seed in protocol.source_seeds
+    )
+    manifest = {
+        "parent": {"witness_registry": {"path": "registry.json"}},
+        "protocol": protocol_module.asdict(protocol),
+        "source_archives": [
+            {"path": f"archive-{seed}.json", "seed": seed, "sha256": str(seed)}
+            for seed in protocol.source_seeds
+        ],
+    }
+    monkeypatch.setattr(
+        experiment,
+        "load_reconfirmation_registry",
+        lambda path: ({}, witnesses),
+    )
+    monkeypatch.setattr(experiment, "_read_json", lambda path: {})
+    monkeypatch.setattr(
+        experiment.GoExploreArchive,
+        "from_dict",
+        lambda payload: SimpleNamespace(),
+    )
+    monkeypatch.setattr(
+        experiment,
+        "_archive_state_for_exact_hash",
+        lambda archive, exact_hash: AbstractState(),
+    )
+    contexts = experiment._load_contexts(manifest)
+    assert len(contexts) == 2
+    assert [len(context.candidate) for context, _ in contexts] == [6, 6]
+    assert [len(context.prefix) for context, _ in contexts] == [2, 2]
+    assert [
+        step.action.action_name for step in contexts[0][0].candidate
+    ] == list(OptionMinimizationProtocol().expected_common_suffix)
+
+
 def test_freeze_binds_passed_witnesses_and_keeps_control_closed(
     monkeypatch,
     tmp_path,
