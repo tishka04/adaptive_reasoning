@@ -375,3 +375,16 @@ separate target-local re-grounding/search freeze; all active and external
 authority remains closed. See
 `reports/SAGE_T12_4A_4C_OPTION_CONTRACT_PROTOCOL.md` and
 `reports/SAGE_T12_4A_4C_OPTION_CONTRACT_RUNBOOK.md`.
+
+T12.4a.4c passed its fully offline contract gate and authorizes the bounded
+T12.4a.4d source-train search. From each of the two exact level-1 route
+lineages, fresh seeds 9101–9103 compare generic symbolic Go-Explore against the
+same archive reranked only by guard mismatch and target-local object roles.
+Both arms share their grounded candidates, 4/8/16 burst schedule, terminal
+shield and 2,048-call budget; the entire run is capped at 26,000 SDK calls and
+3 GiB. The old option must remain blocked. A new level-1-to-level-2 suffix must
+be confirmed twice from both lineages before a separate option-extraction
+freeze can open. Generic discovery and causal-guidance advantage are reported
+as distinct claims. See
+`reports/SAGE_T12_4A_4D_TARGET_REGROUNDING_PROTOCOL.md` and
+`reports/SAGE_T12_4A_4D_TARGET_REGROUNDING_RUNBOOK.md`.
