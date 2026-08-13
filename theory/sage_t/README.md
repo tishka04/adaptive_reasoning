@@ -388,3 +388,18 @@ freeze can open. Generic discovery and causal-guidance advantage are reported
 as distinct claims. See
 `reports/SAGE_T12_4A_4D_TARGET_REGROUNDING_PROTOCOL.md` and
 `reports/SAGE_T12_4A_4D_TARGET_REGROUNDING_RUNBOOK.md`.
+
+T12.4a.4d completed as an integrity-clean negative result: all exact replay,
+catalogue and budget checks passed, but neither arm found progress and terminal
+rates were 18.10% for the local control and 16.75% for contract re-grounding.
+The treatment also collapsed onto `ACTION6` for all 615 explored transitions,
+while its exact-cell shield had no support for the target-local hazards.
+T12.4a.4d.1 therefore remains symbolic and separates two repairs. It first
+cross-fits a translation-invariant seven-cell hazard signature on the sealed
+4d archives. Only a passed offline gate may run a prospective three-arm design
+on fresh seeds 9201–9203: unchanged local archive, diversity-only control, and
+diversity plus abstract hazard vetoes. The run is capped at 38,000 SDK calls
+and 3 GiB; T12.4a.4e, validation, holdout, neural and production authority stay
+closed until an exact cross-lineage witness passes. See
+`reports/SAGE_T12_4A_4D_1_HAZARD_DIVERSITY_PROTOCOL.md` and
+`reports/SAGE_T12_4A_4D_1_HAZARD_DIVERSITY_RUNBOOK.md`.

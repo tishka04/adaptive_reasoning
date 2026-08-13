@@ -32,6 +32,10 @@ from .decision import CausalDecision, CausalDecisionEngine
 from .diagnostics import CausalDiagnosticsWriter
 from .executor import CausalExecutor
 from .experiment_design import CausalCandidateGenerator
+from .hazard_diversity_model import (
+    AbstractHazardModel,
+    StructuralActionDiversityPolicy,
+)
 from .lineage_archive import LineagePreservingArchive
 from .mechanisms import MechanismRegistry
 from .memory import CausalMemoryStore
@@ -43,6 +47,7 @@ from .runtime import CausalRuntime
 __all__ = [
     "ActionInterventionSpec",
     "ActionProgram",
+    "AbstractHazardModel",
     "BindingSpec",
     "CausalCandidateGenerator",
     "CausalDecision",
@@ -80,6 +85,7 @@ __all__ = [
     "PredictionDistribution",
     "ProgramCompiler",
     "StructuredDelta",
+    "StructuralActionDiversityPolicy",
     "TransitionEvidence",
     "ValueDistribution",
     "causal_program_from_dict",
