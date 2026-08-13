@@ -334,3 +334,16 @@ manifest fields. Amendment 1 moves those reads to the sealed protocol and uses
 the canonical `ProgressWitness.source_seed` contract. The original manifest is
 retained; scientific execution must freeze a new `T12.4a.3r1` manifest. See
 `reports/SAGE_T12_4A_3_OPTION_MINIMIZATION_AMENDMENT_1.md`.
+
+The corrected T12.4a.3r1 run passed both gates. All 390 exact-prefix branches
+were available and exact; exhaustive minimization removed the leading
+`ACTION3`, yielding `ACTION4 x3, ACTION3 x2`. The option was compiled into all
+four posterior particles with owner mass effectively 1. T12.4a.4 now tests
+that frozen five-action option prospectively from subsequent levels. At each
+level, full, two typed-deletion, reversed and null branches are repeated across
+both exact route lineages. At least two transferred levels are required, with
+three attempted at most, 4,500 SDK calls and 3 GiB. A pass may only freeze a
+separate paired option-control experiment; active, validation, holdout and
+production authority remain closed. See
+`reports/SAGE_T12_4A_4_OPTION_TRANSFER_PROTOCOL.md` and
+`reports/SAGE_T12_4A_4_OPTION_TRANSFER_RUNBOOK.md`.
