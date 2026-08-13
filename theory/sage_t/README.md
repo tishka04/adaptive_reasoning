@@ -347,3 +347,16 @@ separate paired option-control experiment; active, validation, holdout and
 production authority remain closed. See
 `reports/SAGE_T12_4A_4_OPTION_TRANSFER_PROTOCOL.md` and
 `reports/SAGE_T12_4A_4_OPTION_TRANSFER_RUNBOOK.md`.
+
+T12.4a.4 then produced a clean negative transfer result. All 20 level-1
+prefixes were exact, every branch was available and deterministic, and no
+terminal failure occurred, but the complete option progressed in 0/4 trials.
+T12.4a.4b diagnoses that miss without retuning or adding a network. It compares
+object-centric transition deltas from the two sealed level-0 success contexts
+against the common level-1 failure context, using two lineages, null controls
+and 16 exact-prefix trials. Its mutually exclusive result separates initiation,
+dynamics, goal/termination and representation failures. A passed diagnostic
+authorizes only the matching child freeze; policy, validation, holdout, neural
+training and production authority remain closed. See
+`reports/SAGE_T12_4A_4B_OPTION_APPLICABILITY_PROTOCOL.md` and
+`reports/SAGE_T12_4A_4B_OPTION_APPLICABILITY_RUNBOOK.md`.
