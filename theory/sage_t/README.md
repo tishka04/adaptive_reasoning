@@ -303,3 +303,14 @@ again. The CLI exposes no active-evaluation or option-extraction phase; a pass
 may only freeze T12.4b. See
 `reports/SAGE_T12_4A_1_CALIBRATION_PROTOCOL.md` and
 `reports/SAGE_T12_4A_1_CALIBRATION_RUNBOOK.md`.
+
+T12.4a.1 failed because a global four-parameter calibrator transported from a
+short high-prevalence archive to one confirmation seed but strongly degraded a
+longer archive. Its control collection nevertheless found two neural-free
+level-1 progress routes on seeds 8701 and 8705. T12.4a.2 seals their 64/61
+actions, common initial and target hashes, and six-action common suffix. It
+requires three exact full-route replays plus three paired suffix/deletion
+contrasts per witness. Neural fitting, active evaluation and option extraction
+remain disabled; a pass may only freeze T12.4a.3 option extraction. See
+`reports/SAGE_T12_4A_2_WITNESS_RECONFIRMATION_PROTOCOL.md` and
+`reports/SAGE_T12_4A_2_WITNESS_RECONFIRMATION_RUNBOOK.md`.
