@@ -418,3 +418,17 @@ terminal, novelty/count, unordered, action-only and state-only baselines. The
 phase is fully offline, capped at 3 GiB and grants only a future shadow-ranking
 freeze. See `reports/SAGE_T12_5_CAUSAL_PROGRESS_PROTOCOL.md` and
 `reports/SAGE_T12_5_CAUSAL_PROGRESS_RUNBOOK.md`.
+
+T12.5 passed its offline causal-progress gate but retained one explicit evidence
+gap: the deletion branches established ordering without persisting an observed
+typed delta for every candidate. T12.5b closes only that gap. At each of five
+known progress stages it executes `ACTION3`, `ACTION4`, `ACTION6` and `ACTION7`
+twice from both exact route lineages. An empirical stage/action-to-effect table
+is fitted on 8701, frozen before 8705 confirmation, and scored through the
+unchanged T12.5 posterior. The causal ranking must place the known next effect
+first at every stage and beat change-only, effect-magnitude and lexicographic
+baselines. All 80 branches are fixed independently of the ranking, capped at
+5,000 SDK calls and 3 GiB. A pass authorizes only a separately frozen paired
+control experiment; live policy, validation, holdout, neural and production
+authority remain closed. See `reports/SAGE_T12_5B_PROGRESS_SHADOW_PROTOCOL.md`
+and `reports/SAGE_T12_5B_PROGRESS_SHADOW_RUNBOOK.md`.
