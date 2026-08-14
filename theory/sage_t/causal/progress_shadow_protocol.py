@@ -23,9 +23,9 @@ from .progress_protocol import (
     load_causal_progress_receipt,
 )
 
-SHADOW_PROTOCOL_FORMAT = "sage-t12.5b-progress-shadow-protocol-v1"
-SHADOW_MANIFEST_FORMAT = "sage-t12.5b-progress-shadow-manifest-v1"
-SHADOW_RECEIPT_FORMAT = "sage-t12.5b-progress-shadow-receipt-v1"
+SHADOW_PROTOCOL_FORMAT = "sage-t12.5b-progress-shadow-protocol-v2"
+SHADOW_MANIFEST_FORMAT = "sage-t12.5b-progress-shadow-manifest-v2"
+SHADOW_RECEIPT_FORMAT = "sage-t12.5b-progress-shadow-receipt-v2"
 
 SHADOW_CODE_PATHS = (
     "theory/sage_t/causal/__init__.py",
@@ -67,8 +67,8 @@ class ProgressShadowProtocol:
         "ACTION3",
         "ACTION4",
         "ACTION6",
-        "ACTION7",
     )
+    excluded_non_executable_actions: tuple[str, ...] = ("ACTION7",)
     expected_actions: tuple[str, ...] = (
         "ACTION4",
         "ACTION4",
@@ -102,6 +102,7 @@ class ProgressShadowProtocol:
             ("lineage_seeds", int),
             ("stages", int),
             ("candidate_actions", str),
+            ("excluded_non_executable_actions", str),
             ("expected_actions", str),
             ("allowed_effect_features", str),
         ):
@@ -114,7 +115,8 @@ class ProgressShadowProtocol:
             "induction_lineage_seed": 8_701,
             "confirmation_lineage_seed": 8_705,
             "stages": (0, 1, 2, 3, 4),
-            "candidate_actions": ("ACTION3", "ACTION4", "ACTION6", "ACTION7"),
+            "candidate_actions": ("ACTION3", "ACTION4", "ACTION6"),
+            "excluded_non_executable_actions": ("ACTION7",),
             "expected_actions": (
                 "ACTION4",
                 "ACTION4",
@@ -290,6 +292,14 @@ def freeze_progress_shadow(
         },
         "design": {
             "candidate_actions_are_fixed_before_collection": True,
+            "candidate_actions_are_sdk_executable_at_every_stage": True,
+            "excluded_non_executable_actions": list(
+                selected.excluded_non_executable_actions
+            ),
+            "exclusion_reason": (
+                "ACTION7 is advertised in the frame signature but is absent from "
+                "the SDK executable action set at all five sealed stage anchors"
+            ),
             "every_candidate_executes_from_the_same_exact_stage_prefix": True,
             "effect_model_fit_lineage": selected.induction_lineage_seed,
             "effect_model_confirmation_lineage": selected.confirmation_lineage_seed,

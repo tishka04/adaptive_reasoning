@@ -25,15 +25,28 @@ uses only source-train game `bp35` and its two already confirmed lineages:
 - 8701: effect-model induction;
 - 8705: confirmation, never used to fit the model.
 
-There are five causal stages. At each stage, each of `ACTION3`, `ACTION4`,
-`ACTION6` and `ACTION7` is executed twice from the same expected exact hash.
-This yields 80 branches:
+There are five causal stages. At each stage, each executable candidate
+`ACTION3`, `ACTION4` and `ACTION6` is executed twice from the same expected
+exact hash. This yields 60 branches:
 
-`2 lineages × 5 stages × 4 actions × 2 repetitions`.
+`2 lineages × 5 stages × 3 actions × 2 repetitions`.
+
+### Integrity amendment r1
+
+The first frozen attempt failed closed before fitting. A bounded diagnostic
+showed that all five exact prefixes replayed correctly, while `ACTION7` was
+absent from the SDK executable-action set at every sealed stage. The frame
+signature still advertised `ACTION7`; using that signature as an executability
+contract was therefore incorrect. No model score or outcome was inspected.
+
+Revision r1 excludes `ACTION7` from the intervention matrix and records it as
+`excluded_non_executable_actions`. This is an action-validity amendment, not a
+gate or threshold change. `ACTION7` is not treated as a negative transition:
+an unavailable action produces no interventional evidence.
 
 The schedule is fixed before collection. It does not depend on a model score.
-The SDK budget is 5,000 calls; the exact planned replay load is approximately
-4,840 calls. Raw frames are not persisted, and all artifacts together are
+The SDK budget is 5,000 calls; the exact planned replay load is 3,630 calls.
+Raw frames are not persisted, and all artifacts together are
 limited to 3 GiB.
 
 ## State and effect representation
@@ -95,8 +108,8 @@ lexicographic ranking by at least 0.05 mean reciprocal rank.
 
 T12.5b passes only if:
 
-- all 80 stage prefixes replay exactly;
-- all 80 branch actions are available;
+- all 60 stage prefixes replay exactly;
+- all 60 branch actions are available;
 - typed effects are deterministic across both repetitions within each lineage;
 - predicted and observed milestone signatures agree on every confirmation
   branch;
@@ -114,4 +127,3 @@ gap and may authorize only a separately frozen T12.5c paired control experiment.
 It does not show policy improvement, target transfer or holdout performance.
 Environment control, source validation, holdout, neural training and production
 authority remain closed.
-

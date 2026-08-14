@@ -44,9 +44,9 @@ from .witness_protocol import ProgressWitness
 from .witness_reconfirmation_protocol import load_reconfirmation_registry
 
 EnvFactory = Callable[[str], Any]
-SHADOW_TRIALS_FORMAT = "sage-t12.5b-progress-shadow-trials-v1"
-SHADOW_REPORT_FORMAT = "sage-t12.5b-progress-shadow-report-v1"
-SHADOW_RANKINGS_FORMAT = "sage-t12.5b-progress-shadow-rankings-v1"
+SHADOW_TRIALS_FORMAT = "sage-t12.5b-progress-shadow-trials-v2"
+SHADOW_REPORT_FORMAT = "sage-t12.5b-progress-shadow-report-v2"
+SHADOW_RANKINGS_FORMAT = "sage-t12.5b-progress-shadow-rankings-v2"
 
 
 @dataclass
@@ -757,7 +757,7 @@ def progress_shadow_status(
             "t12_6_freeze_authorized": False,
             "terminal_shield_production_authority": False,
         },
-        "format_version": "sage-t12.5b-progress-shadow-status-v1",
+        "format_version": "sage-t12.5b-progress-shadow-status-v2",
         "manifest_checksum": manifest["manifest_checksum"],
         "next_phase_authorized": passed,
         "parent_t12_5_status": manifest["parent"]["receipt"]["status"],

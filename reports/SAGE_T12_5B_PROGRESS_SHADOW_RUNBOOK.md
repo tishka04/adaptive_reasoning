@@ -6,7 +6,7 @@ worktree. Then run from the repository root in PowerShell.
 ```powershell
 $Py = (Resolve-Path .\ARC-AGI-3-Agents\.venv\Scripts\python.exe).Path
 $Parent = ".\training\sage_t\causal_progress_t12_5_bp35"
-$Root = ".\training\sage_t\progress_shadow_t12_5b_bp35"
+$Root = ".\training\sage_t\progress_shadow_t12_5b_r1_bp35"
 
 & $Py -m theory.sage_t.causal.progress_shadow_cli freeze `
   --parent-manifest "$Parent\manifest.json" `
@@ -41,7 +41,8 @@ all entries under `metrics.checks` to be true. In particular, inspect:
 below one because non-contract aggregate relations differ across the two sealed
 contexts. Do not change the protocol after seeing the new run.
 
-The command executes the fixed 80-branch source-train collection. Rankings do
-not influence those actions. Do not reuse a non-empty output directory and do
-not use `--allow-dirty` for a scientific freeze.
-
+The command executes the amended fixed 60-branch source-train collection.
+`ACTION7` is explicitly excluded because it is advertised by the frame but is
+not executable through the SDK at any sealed stage. Rankings do not influence
+those actions. Do not reuse a non-empty output directory and do not use
+`--allow-dirty` for a scientific freeze.

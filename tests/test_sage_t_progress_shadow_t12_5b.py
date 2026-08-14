@@ -112,7 +112,9 @@ def _synthetic_trials(
 
 def test_protocol_is_paired_bounded_and_shadow_only() -> None:
     protocol = ProgressShadowProtocol()
-    assert protocol.expected_trial_count == 80
+    assert protocol.expected_trial_count == 60
+    assert protocol.candidate_actions == ("ACTION3", "ACTION4", "ACTION6")
+    assert protocol.excluded_non_executable_actions == ("ACTION7",)
     assert protocol.maximum_sdk_calls == 5_000
     assert protocol.maximum_artifact_bytes_per_run == 3 * 1024**3
     assert protocol.induction_lineage_seed != protocol.confirmation_lineage_seed
@@ -255,7 +257,7 @@ def test_synthetic_paired_shadow_run_passes_without_policy_authority(
     assert receipt["passed"] is True
     assert receipt["status"] == "PASS_T12_5B_PROGRESS_SHADOW_GATE"
     metrics = receipt["metrics"]
-    assert metrics["trial_count"] == 80
+    assert metrics["trial_count"] == 60
     assert metrics["exact_prefix_rate"] == 1.0
     assert metrics["effect_transport"]["exact_projection_transport_rate"] == 1.0
     assert metrics["ranking"]["per_method"]["causal_progress"][

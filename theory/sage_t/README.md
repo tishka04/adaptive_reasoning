@@ -421,13 +421,16 @@ freeze. See `reports/SAGE_T12_5_CAUSAL_PROGRESS_PROTOCOL.md` and
 
 T12.5 passed its offline causal-progress gate but retained one explicit evidence
 gap: the deletion branches established ordering without persisting an observed
-typed delta for every candidate. T12.5b closes only that gap. At each of five
-known progress stages it executes `ACTION3`, `ACTION4`, `ACTION6` and `ACTION7`
-twice from both exact route lineages. An empirical stage/action-to-effect table
+typed delta for every executable candidate. T12.5b closes only that gap. At
+each of five known progress stages it executes `ACTION3`, `ACTION4` and
+`ACTION6` twice from both exact route lineages. `ACTION7` is advertised in the
+frame signature but was found absent from the SDK executable-action set at all
+five anchors; integrity amendment r1 excludes it without treating
+unavailability as a causal effect. An empirical stage/action-to-effect table
 is fitted on 8701, frozen before 8705 confirmation, and scored through the
 unchanged T12.5 posterior. The causal ranking must place the known next effect
 first at every stage and beat change-only, effect-magnitude and lexicographic
-baselines. All 80 branches are fixed independently of the ranking, capped at
+baselines. All 60 branches are fixed independently of the ranking, capped at
 5,000 SDK calls and 3 GiB. A pass authorizes only a separately frozen paired
 control experiment; live policy, validation, holdout, neural and production
 authority remain closed. See `reports/SAGE_T12_5B_PROGRESS_SHADOW_PROTOCOL.md`

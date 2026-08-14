@@ -11,7 +11,9 @@ from .progress_shadow_experiment import progress_shadow_status, run_progress_sha
 from .progress_shadow_protocol import freeze_progress_shadow
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[3]
-DEFAULT_OUTPUT = DEFAULT_ROOT / "training" / "sage_t" / "progress_shadow_t12_5b_bp35"
+DEFAULT_OUTPUT = (
+    DEFAULT_ROOT / "training" / "sage_t" / "progress_shadow_t12_5b_r1_bp35"
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -73,7 +75,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         ValueError,
     ) as exc:
         result = {
-            "format_version": "sage-t12.5b-progress-shadow-cli-error-v1",
+            "format_version": "sage-t12.5b-progress-shadow-cli-error-v2",
             "phase": args.phase,
             "reason": f"{type(exc).__name__}:{exc}",
             "status": "FAILED_CLOSED",

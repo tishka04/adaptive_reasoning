@@ -191,7 +191,14 @@ class EmpiricalActionEffectModel:
             if int(record.get("lineage_seed", -1)) != int(induction_lineage_seed):
                 continue
             if not record.get("prefix_exact") or not record.get("branch_available"):
-                raise ValueError("cannot fit effects from inexact or unavailable branches")
+                raise ValueError(
+                    "cannot fit effects from inexact or unavailable branches: "
+                    f"trial_id={record.get('trial_id')} "
+                    f"stage={record.get('stage')} "
+                    f"action={record.get('action_name')} "
+                    f"prefix_exact={record.get('prefix_exact')} "
+                    f"branch_available={record.get('branch_available')}"
+                )
             key = (int(record["stage"]), str(record["action_name"]).upper())
             vector = projection_vector(
                 dict(record["candidate_step"]), features=features
