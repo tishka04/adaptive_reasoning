@@ -435,3 +435,16 @@ baselines. All 60 branches are fixed independently of the ranking, capped at
 control experiment; live policy, validation, holdout, neural and production
 authority remain closed. See `reports/SAGE_T12_5B_PROGRESS_SHADOW_PROTOCOL.md`
 and `reports/SAGE_T12_5B_PROGRESS_SHADOW_RUNBOOK.md`.
+
+T12.5b-r1 completed as a sealed scientific miss: causal progress ranked the
+known next action perfectly, but effect magnitude did too, and `ACTION6` was
+executable only on lineage 8701. T12.5b.2 is the zero-SDK offline diagnostic
+for that exact failure class. It reconstructs the executable candidate set
+inside each exact context, treats unavailable actions as missing interventions
+rather than zero effects, and binds progress affordances across lineages using
+only the milestone signature. Its hard-contrast gate requires an observed
+same-prefix distractor with larger magnitude and lower progress in both
+lineages. If the sealed data contain no such contrast, T12.5b.2 authorizes only
+a future T12.5b.3 collection freeze; T12.5c and all production authority remain
+closed. See `reports/SAGE_T12_5B_2_PROGRESS_DISCRIMINATION_PROTOCOL.md` and
+`reports/SAGE_T12_5B_2_PROGRESS_DISCRIMINATION_RUNBOOK.md`.
