@@ -467,6 +467,16 @@ Kaggle constraints: CPU/GPU ≤ 6 hrs, no internet, pre-trained models OK.
 - **Sceptical cross-game transfer**: Persistent memory acts as hypothesis proposer (trust=0.3), not action governor; failure patterns, overpredicted goals, and contradicted priors are persisted alongside successes
 - **Dev/competition separation**: Development mode uses full persistence; competition mode halves trust (0.15) to preserve adaptation to novel games
 
+### SAGE.T12.5b.4 target-local short-program utility
+
+T12.5b.4 is a separately frozen, two-phase source-train experiment following
+the negative T12.5b.3 result. It calibrates all fixed length-2/3 programs from
+one exact non-terminal detour context on lineage 8701, treats candidate
+terminal outcomes as risk evidence, and permits a four-trial lineage-8705
+evaluation only after a signed calibration pass. See
+`reports/SAGE_T12_5B_4_LOCAL_PROGRAM_UTILITY_PROTOCOL.md` and
+`reports/SAGE_T12_5B_4_LOCAL_PROGRAM_UTILITY_RUNBOOK.md`.
+
 ## License
 
 MIT
