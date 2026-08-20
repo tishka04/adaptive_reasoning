@@ -448,3 +448,16 @@ lineages. If the sealed data contain no such contrast, T12.5b.2 authorizes only
 a future T12.5b.3 collection freeze; T12.5c and all production authority remain
 closed. See `reports/SAGE_T12_5B_2_PROGRESS_DISCRIMINATION_PROTOCOL.md` and
 `reports/SAGE_T12_5B_2_PROGRESS_DISCRIMINATION_RUNBOOK.md`.
+
+T12.5b.2 confirmed that the sealed corpus contains zero hard contrasts and
+authorized only a separately frozen prospective collection. T12.5b.3 targets
+the unique nearest magnitude contest at stage 3 without consulting the causal
+score: from both exact lineages it executes fixed `ACTION4` detours of depth
+1–3, then branches `ACTION3`, `ACTION4`, and `ACTION6` twice from every exact
+detour context. Unavailable actions remain missing interventions and progress
+affordances bind across lineages only by `(stage, milestone_signature)`. The
+36-trial source-train matrix is capped at 3,500 SDK calls, two hours, and 3 GiB.
+A pass may authorize only a separate T12.5c control freeze; collection remains
+manual, and control, validation, holdout, neural, and production authority stay
+closed. See `reports/SAGE_T12_5B_3_PROGRESS_CONTRAST_PROTOCOL.md` and
+`reports/SAGE_T12_5B_3_PROGRESS_CONTRAST_RUNBOOK.md`.
