@@ -1,4 +1,4 @@
-"""Frozen prospective confirmation protocol for SAGE.T12.6.1d."""
+"""Frozen r1 prospective confirmation protocol for SAGE.T12.6.1d."""
 
 from __future__ import annotations
 
@@ -30,9 +30,12 @@ from .hazard_diversity_protocol import (
     load_hazard_diversity_receipt,
 )
 
-PROSPECTIVE_PROTOCOL_FORMAT = "sage-t12.6.1d-future-viability-confirmation-protocol-v1"
-PROSPECTIVE_MANIFEST_FORMAT = "sage-t12.6.1d-future-viability-confirmation-manifest-v1"
-PROSPECTIVE_RECEIPT_FORMAT = "sage-t12.6.1d-future-viability-confirmation-receipt-v1"
+PROSPECTIVE_PROTOCOL_FORMAT = "sage-t12.6.1d-future-viability-confirmation-protocol-v2"
+PROSPECTIVE_MANIFEST_FORMAT = "sage-t12.6.1d-future-viability-confirmation-manifest-v2"
+PROSPECTIVE_RECEIPT_FORMAT = "sage-t12.6.1d-future-viability-confirmation-receipt-v2"
+PARENT_PROTOCOL_FORMAT = "sage-t12.6.1d-future-viability-confirmation-protocol-v1"
+PARENT_MANIFEST_FORMAT = "sage-t12.6.1d-future-viability-confirmation-manifest-v1"
+PARENT_RECEIPT_FORMAT = "sage-t12.6.1d-future-viability-confirmation-receipt-v1"
 
 PROSPECTIVE_CODE_PATHS = (
     "theory/sage_t/causal/experiment.py",
@@ -77,17 +80,107 @@ def _artifact_meta(path: Path, *, root: Path, **extra: Any) -> dict[str, Any]:
     }
 
 
+def _load_r1_amendment_parent(
+    *,
+    parent_manifest_path: Path,
+    parent_preflight_receipt_path: Path,
+    aborted_archive_path: Path,
+    root: Path,
+) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
+    parent = _read_json(parent_manifest_path)
+    _verify_signed(parent, "manifest_checksum")
+    if parent.get("format_version") != PARENT_MANIFEST_FORMAT:
+        raise ValueError("T12.6.1d-r1 requires the frozen v1 parent manifest")
+    parent_protocol = dict(parent.get("protocol", {}))
+    if (
+        parent_protocol.get("format_version") != PARENT_PROTOCOL_FORMAT
+        or _checksum(parent_protocol) != parent.get("protocol_checksum")
+        or tuple(parent_protocol.get("prospective_search_seeds", ()))
+        != (9_301, 9_302, 9_303)
+        or parent_protocol.get("reliability_selected_candidate") != "exact_span2_range0"
+    ):
+        raise ValueError("T12.6.1d-r1 parent protocol binding changed")
+    if parent.get("status") != "FROZEN_BEFORE_T12_6_1D_PREFLIGHT":
+        raise ValueError("T12.6.1d-r1 parent was not frozen before collection")
+    for meta in parent.get("parents", {}).values():
+        _verify_meta(meta, root=root)
+
+    preflight = _read_json(parent_preflight_receipt_path)
+    _verify_signed(preflight, "receipt_checksum")
+    if (
+        preflight.get("format_version") != PARENT_RECEIPT_FORMAT
+        or preflight.get("manifest_checksum") != parent.get("manifest_checksum")
+        or preflight.get("protocol_checksum") != parent.get("protocol_checksum")
+        or preflight.get("phase") != "preflight"
+        or preflight.get("passed") is not True
+        or preflight.get("status") != "PASS_T12_6_1D_PREFLIGHT"
+        or int(preflight.get("metrics", {}).get("sdk_calls_used", -1)) != 0
+        or preflight.get("metrics", {}).get("environment_collection_executed")
+        is not False
+    ):
+        raise ValueError("T12.6.1d-r1 requires the passed zero-SDK v1 preflight")
+    _verify_artifact_tree(preflight.get("artifacts", {}), root=root)
+
+    expected_archive = (
+        parent_manifest_path.parent
+        / "collection"
+        / "pilot"
+        / "bp35"
+        / "9301"
+        / "8701"
+        / "local_archive_control.json"
+    ).resolve()
+    if aborted_archive_path.resolve() != expected_archive:
+        raise ValueError("T12.6.1d-r1 aborted archive condition changed")
+    pilot_root = parent_manifest_path.parent / "collection" / "pilot"
+    pilot_files = {
+        path.resolve() for path in pilot_root.rglob("*.json") if path.is_file()
+    }
+    if pilot_files != {expected_archive}:
+        raise ValueError("T12.6.1d-r1 parent pilot is not a single partial archive")
+    if (pilot_root / "collection_receipt.json").exists():
+        raise ValueError("T12.6.1d-r1 parent unexpectedly has a pilot receipt")
+    archive = _read_json(aborted_archive_path)
+    if (
+        archive.get("format_version") != "sage-t12.1-symbolic-archive-v1"
+        or int(archive.get("seed", -1)) != 9_301
+        or int(archive.get("maximum_cells", -1)) != 10_000
+        or int(archive.get("sdk_calls", -1)) != 2_048
+        or int(archive.get("replay_attempts", -1))
+        != int(archive.get("replay_successes", -2))
+        or len(archive.get("cells", ())) > 10_000
+    ):
+        raise ValueError("T12.6.1d-r1 partial archive integrity changed")
+    aborted = _artifact_meta(
+        aborted_archive_path,
+        root=root,
+        arm="local_archive_control",
+        edge_count=len(archive.get("edges", ())),
+        failure_classification="INSTRUMENTATION_SCHEMA_MISMATCH",
+        lineage_seed=8_701,
+        replay_attempts=int(archive["replay_attempts"]),
+        replay_successes=int(archive["replay_successes"]),
+        sdk_calls=int(archive["sdk_calls"]),
+        search_seed=9_301,
+        symbolic_cells=len(archive.get("cells", ())),
+    )
+    return parent, preflight, aborted
+
+
 @dataclass(frozen=True)
 class FutureViabilityProspectiveProtocol:
     """Immutable collection matrix, evaluator and superiority gates."""
 
     format_version: str = PROSPECTIVE_PROTOCOL_FORMAT
+    amendment_revision: str = "r1"
+    instrumentation_cell_metric: str = "symbolic_cells"
     reliability_compile_status: str = "PASS_T12_6_1C_SOURCE_TRAIN_COMPILE_GATE"
     reliability_selected_candidate: str = "exact_span2_range0"
     hazard_compile_status: str = "PASS_T12_4A_4D_1_HAZARD_COMPILE_GATE"
-    prospective_search_seeds: tuple[int, ...] = (9_301, 9_302, 9_303)
-    pilot_search_seeds: tuple[int, ...] = (9_301,)
-    completion_search_seeds: tuple[int, ...] = (9_302, 9_303)
+    retired_search_seeds: tuple[int, ...] = (9_301, 9_302, 9_303)
+    prospective_search_seeds: tuple[int, ...] = (9_401, 9_402, 9_403)
+    pilot_search_seeds: tuple[int, ...] = (9_401,)
+    completion_search_seeds: tuple[int, ...] = (9_402, 9_403)
     source_lineages: tuple[int, ...] = (8_701, 8_705)
     search_arms: tuple[str, ...] = (
         "local_archive_control",
@@ -100,6 +193,8 @@ class FutureViabilityProspectiveProtocol:
     binding_shift: int = 1
     sdk_calls_per_archive: int = 2_048
     maximum_total_sdk_calls: int = 38_000
+    parent_aborted_sdk_calls: int = 2_048
+    maximum_cumulative_sdk_calls: int = 40_048
     maximum_excursions_per_archive: int = 64
     maximum_cells_per_archive: int = 10_000
     expected_archive_count: int = 18
@@ -121,6 +216,8 @@ class FutureViabilityProspectiveProtocol:
     bootstrap_lower_quantile: float = 0.05
     minimum_bootstrap_gain_lower_bound: float = 0.0
     maximum_artifact_bytes: int = 1024 * 1024 * 1024
+    parent_aborted_artifact_bytes: int = 20_911_530
+    maximum_cumulative_artifact_bytes: int = 1_094_653_354
     maximum_wall_seconds_per_batch: int = 14_400
     maximum_offline_wall_seconds: int = 1_800
     persist_raw_frames: bool = False
@@ -135,6 +232,7 @@ class FutureViabilityProspectiveProtocol:
             "prospective_search_seeds",
             "pilot_search_seeds",
             "completion_search_seeds",
+            "retired_search_seeds",
             "source_lineages",
             "burst_schedule",
         ):
@@ -146,12 +244,15 @@ class FutureViabilityProspectiveProtocol:
         )
         expected = {
             "format_version": PROSPECTIVE_PROTOCOL_FORMAT,
+            "amendment_revision": "r1",
+            "instrumentation_cell_metric": "symbolic_cells",
             "reliability_compile_status": ("PASS_T12_6_1C_SOURCE_TRAIN_COMPILE_GATE"),
             "reliability_selected_candidate": "exact_span2_range0",
             "hazard_compile_status": "PASS_T12_4A_4D_1_HAZARD_COMPILE_GATE",
-            "prospective_search_seeds": (9_301, 9_302, 9_303),
-            "pilot_search_seeds": (9_301,),
-            "completion_search_seeds": (9_302, 9_303),
+            "retired_search_seeds": (9_301, 9_302, 9_303),
+            "prospective_search_seeds": (9_401, 9_402, 9_403),
+            "pilot_search_seeds": (9_401,),
+            "completion_search_seeds": (9_402, 9_403),
             "source_lineages": (8_701, 8_705),
             "search_arms": (
                 "local_archive_control",
@@ -164,6 +265,8 @@ class FutureViabilityProspectiveProtocol:
             "binding_shift": 1,
             "sdk_calls_per_archive": 2_048,
             "maximum_total_sdk_calls": 38_000,
+            "parent_aborted_sdk_calls": 2_048,
+            "maximum_cumulative_sdk_calls": 40_048,
             "maximum_excursions_per_archive": 64,
             "maximum_cells_per_archive": 10_000,
             "expected_archive_count": 18,
@@ -185,6 +288,8 @@ class FutureViabilityProspectiveProtocol:
             "bootstrap_lower_quantile": 0.05,
             "minimum_bootstrap_gain_lower_bound": 0.0,
             "maximum_artifact_bytes": 1024 * 1024 * 1024,
+            "parent_aborted_artifact_bytes": 20_911_530,
+            "maximum_cumulative_artifact_bytes": 1_094_653_354,
             "maximum_wall_seconds_per_batch": 14_400,
             "maximum_offline_wall_seconds": 1_800,
             "persist_raw_frames": False,
@@ -203,6 +308,8 @@ class FutureViabilityProspectiveProtocol:
             self.prospective_search_seeds
         ):
             raise ValueError("T12.6.1d collection batches are incomplete")
+        if set(self.retired_search_seeds) & set(self.prospective_search_seeds):
+            raise ValueError("T12.6.1d-r1 reused a retired search seed")
 
     @property
     def checksum(self) -> str:
@@ -212,6 +319,9 @@ class FutureViabilityProspectiveProtocol:
 def freeze_future_viability_prospective_confirmation(
     *,
     output_path: str | Path,
+    parent_manifest_path: str | Path,
+    parent_preflight_receipt_path: str | Path,
+    aborted_archive_path: str | Path,
     reliability_manifest_path: str | Path,
     reliability_compile_receipt_path: str | Path,
     hazard_manifest_path: str | Path,
@@ -222,10 +332,38 @@ def freeze_future_viability_prospective_confirmation(
 ) -> dict[str, Any]:
     repo_root = Path(root).resolve() if root else Path(__file__).resolve().parents[3]
     selected = protocol or FutureViabilityProspectiveProtocol()
+    parent_manifest_path = Path(parent_manifest_path).resolve()
+    parent_preflight_receipt_path = Path(parent_preflight_receipt_path).resolve()
+    aborted_archive_path = Path(aborted_archive_path).resolve()
     reliability_manifest_path = Path(reliability_manifest_path).resolve()
     reliability_compile_receipt_path = Path(reliability_compile_receipt_path).resolve()
     hazard_manifest_path = Path(hazard_manifest_path).resolve()
     hazard_compile_receipt_path = Path(hazard_compile_receipt_path).resolve()
+
+    amendment_parent, parent_preflight, aborted_archive = _load_r1_amendment_parent(
+        parent_manifest_path=parent_manifest_path,
+        parent_preflight_receipt_path=parent_preflight_receipt_path,
+        aborted_archive_path=aborted_archive_path,
+        root=repo_root,
+    )
+    if tuple(amendment_parent["protocol"]["prospective_search_seeds"]) != tuple(
+        selected.retired_search_seeds
+    ):
+        raise ValueError("T12.6.1d-r1 retired seed registry changed")
+    if int(aborted_archive["sdk_calls"]) != selected.parent_aborted_sdk_calls:
+        raise ValueError("T12.6.1d-r1 aborted SDK ledger changed")
+    if aborted_archive_path.stat().st_size != selected.parent_aborted_artifact_bytes:
+        raise ValueError("T12.6.1d-r1 aborted artifact ledger changed")
+    if (
+        selected.parent_aborted_sdk_calls + selected.maximum_total_sdk_calls
+        != selected.maximum_cumulative_sdk_calls
+    ):
+        raise ValueError("T12.6.1d-r1 cumulative SDK bound is inconsistent")
+    if (
+        selected.parent_aborted_artifact_bytes + selected.maximum_artifact_bytes
+        != selected.maximum_cumulative_artifact_bytes
+    ):
+        raise ValueError("T12.6.1d-r1 cumulative artifact bound is inconsistent")
 
     reliability_manifest = load_future_viability_reliability_manifest(
         reliability_manifest_path, root=repo_root
@@ -280,8 +418,35 @@ def freeze_future_viability_prospective_confirmation(
         set(reliability_protocol.training_search_seeds)
         | set(hazard_protocol.active_search_seeds)
         | set(hazard_protocol.compile_search_seeds)
+        | set(selected.retired_search_seeds)
     ):
         raise ValueError("T12.6.1d prospective seeds are not fresh")
+    expected_parent_bindings = {
+        "hazard_compile_receipt": hazard_receipt["receipt_checksum"],
+        "hazard_manifest": hazard_manifest["manifest_checksum"],
+        "reliability_compile_receipt": reliability_receipt["receipt_checksum"],
+        "reliability_manifest": reliability_manifest["manifest_checksum"],
+        "reliability_model_bundle": model_bundle_checksum,
+    }
+    actual_parent_bindings = {
+        "hazard_compile_receipt": amendment_parent["parents"]["hazard_compile_receipt"][
+            "receipt_checksum"
+        ],
+        "hazard_manifest": amendment_parent["parents"]["hazard_manifest"][
+            "manifest_checksum"
+        ],
+        "reliability_compile_receipt": amendment_parent["parents"][
+            "reliability_compile_receipt"
+        ]["receipt_checksum"],
+        "reliability_manifest": amendment_parent["parents"]["reliability_manifest"][
+            "manifest_checksum"
+        ],
+        "reliability_model_bundle": amendment_parent["parents"][
+            "reliability_model_bundle"
+        ]["bundle_checksum"],
+    }
+    if actual_parent_bindings != expected_parent_bindings:
+        raise ValueError("T12.6.1d-r1 changed the frozen scientific parents")
 
     missing = [
         path for path in PROSPECTIVE_CODE_PATHS if not (repo_root / path).is_file()
@@ -295,11 +460,13 @@ def freeze_future_viability_prospective_confirmation(
     payload = {
         "claim_boundary": {
             "authorized": (
-                "fresh-seed bp35 prospective confirmation of the frozen "
-                "T12.6.1c reliability-gated future-viability hierarchy"
+                "r1 instrumentation-only restart on fresh bp35 seeds of the "
+                "frozen T12.6.1c reliability-gated hierarchy"
             ),
             "not_authorized": [
                 "reuse of 9201-9203",
+                "reuse of retired 9301-9303",
+                "use of the aborted 9301 archive for scoring",
                 "model refit or recalibration",
                 "target-game generalization",
                 "generic ARC-AGI improvement",
@@ -314,7 +481,9 @@ def freeze_future_viability_prospective_confirmation(
             path: _file_sha256(repo_root / path) for path in PROSPECTIVE_CODE_PATHS
         },
         "design": {
+            "aborted_parent_archive_excluded_from_scoring": True,
             "archive_content_deduplicated_before_scoring": True,
+            "canonical_cell_metric": selected.instrumentation_cell_metric,
             "collection_batches_are_outcome_blind": True,
             "exact_state_is_decision_unit": True,
             "exact_state_future_graph_is_label_source": True,
@@ -324,6 +493,7 @@ def freeze_future_viability_prospective_confirmation(
             "same_model_bundle_reused_without_refit": True,
             "seed_blocked_bootstrap": True,
             "staged_collection_without_intermediate_scoring": True,
+            "thresholds_models_and_descriptors_unchanged": True,
         },
         "firewall": {
             "preflight_authorized": authorized,
@@ -342,6 +512,25 @@ def freeze_future_viability_prospective_confirmation(
         "format_version": PROSPECTIVE_MANIFEST_FORMAT,
         "game_id": reliability_manifest["game_id"],
         "git": git,
+        "integrity_amendment": {
+            "aborted_archive": aborted_archive,
+            "classification": "INSTRUMENTATION_SCHEMA_MISMATCH",
+            "parent_manifest": _artifact_meta(
+                parent_manifest_path,
+                root=repo_root,
+                manifest_checksum=amendment_parent["manifest_checksum"],
+            ),
+            "parent_preflight_receipt": _artifact_meta(
+                parent_preflight_receipt_path,
+                root=repo_root,
+                receipt_checksum=parent_preflight["receipt_checksum"],
+                status=parent_preflight["status"],
+            ),
+            "reported_failure": "KeyError:'cells'",
+            "replacement_metric": "symbolic_cells",
+            "retired_search_seeds": list(selected.retired_search_seeds),
+            "revision": selected.amendment_revision,
+        },
         "parents": {
             "hazard_compile_receipt": _artifact_meta(
                 hazard_compile_receipt_path,
@@ -374,11 +563,17 @@ def freeze_future_viability_prospective_confirmation(
         "protocol": asdict(selected),
         "protocol_checksum": selected.checksum,
         "scientific_claims_authorized": False,
-        "stage": "fresh_seed_source_train_prospective_confirmation",
+        "stage": "fresh_seed_source_train_prospective_confirmation_r1",
         "status": "FROZEN_BEFORE_T12_6_1D_PREFLIGHT",
         "storage": {
             "maximum_artifact_bytes": selected.maximum_artifact_bytes,
+            "maximum_cumulative_artifact_bytes": (
+                selected.maximum_cumulative_artifact_bytes
+            ),
+            "maximum_cumulative_sdk_calls": selected.maximum_cumulative_sdk_calls,
             "maximum_sdk_calls": selected.maximum_total_sdk_calls,
+            "parent_aborted_artifact_bytes": selected.parent_aborted_artifact_bytes,
+            "parent_aborted_sdk_calls": selected.parent_aborted_sdk_calls,
             "persist_raw_frames": False,
         },
     }
@@ -390,8 +585,15 @@ def freeze_future_viability_prospective_confirmation(
         passed=authorized,
         status="PASS_T12_6_1D_FREEZE" if authorized else "DIRTY_SMOKE_ONLY",
         metrics={
+            "aborted_parent_archive_count": 1,
+            "maximum_cumulative_sdk_calls": selected.maximum_cumulative_sdk_calls,
+            "maximum_cumulative_artifact_bytes": (
+                selected.maximum_cumulative_artifact_bytes
+            ),
             "old_evaluation_archive_count": 0,
+            "parent_aborted_sdk_calls": selected.parent_aborted_sdk_calls,
             "prospective_search_seeds": list(selected.prospective_search_seeds),
+            "retired_search_seeds": list(selected.retired_search_seeds),
             "sdk_calls_used": 0,
         },
     )
@@ -417,6 +619,25 @@ def load_future_viability_prospective_manifest(
         raise ValueError("T12.6.1d freeze imported prospective archives")
     for meta in manifest["parents"].values():
         _verify_meta(meta, root=repo_root)
+    amendment = manifest.get("integrity_amendment", {})
+    if (
+        amendment.get("revision") != "r1"
+        or amendment.get("classification") != "INSTRUMENTATION_SCHEMA_MISMATCH"
+        or amendment.get("replacement_metric") != "symbolic_cells"
+        or tuple(amendment.get("retired_search_seeds", ()))
+        != protocol.retired_search_seeds
+    ):
+        raise ValueError("T12.6.1d-r1 integrity amendment binding changed")
+    for name in (
+        "aborted_archive",
+        "parent_manifest",
+        "parent_preflight_receipt",
+    ):
+        _verify_meta(amendment[name], root=repo_root)
+    if int(amendment["aborted_archive"].get("search_seed", -1)) not in set(
+        protocol.retired_search_seeds
+    ):
+        raise ValueError("T12.6.1d-r1 aborted archive is not retired")
     if verify_code:
         for relative, expected in manifest["code_sha256"].items():
             candidate = repo_root / relative
@@ -440,6 +661,15 @@ def prospective_receipt(
             "format_version": PROSPECTIVE_RECEIPT_FORMAT,
             "manifest_checksum": manifest["manifest_checksum"],
             "metrics": dict(metrics),
+            "parent_aborted_archive_sha256": manifest["integrity_amendment"][
+                "aborted_archive"
+            ]["sha256"],
+            "parent_v1_manifest_checksum": manifest["integrity_amendment"][
+                "parent_manifest"
+            ]["manifest_checksum"],
+            "parent_aborted_sdk_calls": manifest["protocol"][
+                "parent_aborted_sdk_calls"
+            ],
             "parent_hazard_compile_receipt_checksum": manifest["parents"][
                 "hazard_compile_receipt"
             ]["receipt_checksum"],

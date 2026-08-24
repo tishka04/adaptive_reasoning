@@ -1,5 +1,10 @@
 # SAGE.T12.6.1d — Confirmation prospective de la hiérarchie fiable
 
+> Le protocole v1 ci-dessous est conservé pour audit. Sa collecte pilote a été
+> interrompue après une archive par une incompatibilité de nom de métrique,
+> avant tout reçu ou score. Les seeds 9301–9303 sont retirées. Toute nouvelle
+> exécution doit suivre l’amendement r1.
+
 ## Question scientifique
 
 T12.6.1d demande si la règle gelée `exact_span2_range0`, sélectionnée sur les

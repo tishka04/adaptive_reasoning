@@ -23,7 +23,7 @@ from .future_viability_reliability_hierarchy import (
     ReliabilityGatedFutureViabilityModel,
 )
 
-PROSPECTIVE_PREDICTION_FORMAT = "sage-t12.6.1d-label-blind-prediction-commitment-v1"
+PROSPECTIVE_PREDICTION_FORMAT = "sage-t12.6.1d-label-blind-prediction-commitment-v2"
 
 
 def _canonical(payload: Any) -> str:

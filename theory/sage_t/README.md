@@ -560,3 +560,11 @@ arm archives, and requires at least a two-point gain over exact-first with
 noninferiority on every seed. A pass authorizes only a separate T12.6.2 freeze.
 See `reports/SAGE_T12_6_1D_PROSPECTIVE_CONFIRMATION_PROTOCOL.md` and
 `reports/SAGE_T12_6_1D_PROSPECTIVE_CONFIRMATION_RUNBOOK.md`.
+
+The first T12.6.1d physical command completed one 9301 archive but failed before
+its pilot receipt because the adapter requested `cells` from a metrics contract
+that exposes `symbolic_cells`. T12.6.1d-r1 is an instrumentation-only v2: it
+preserves and excludes that partial archive, retires 9301–9303, and restarts the
+unchanged experiment on fresh seeds 9401–9403. See
+`reports/SAGE_T12_6_1D_R1_INTEGRITY_AMENDMENT.md` and
+`reports/SAGE_T12_6_1D_R1_RUNBOOK.md`.

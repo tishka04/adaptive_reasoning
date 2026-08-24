@@ -46,7 +46,7 @@ from .hazard_diversity_protocol import (
     load_hazard_diversity_receipt,
 )
 
-PREDICTION_ARTIFACT_FORMAT = "sage-t12.6.1d-bound-label-blind-prediction-artifact-v1"
+PREDICTION_ARTIFACT_FORMAT = "sage-t12.6.1d-bound-label-blind-prediction-artifact-v2"
 
 EnvFactory = Callable[[str], Any]
 
@@ -170,9 +170,14 @@ def preflight_future_viability_confirmation(
         "old_evaluation_archives_excluded": (
             protocol.old_evaluation_archives_authorized is False
             and "inputs" not in manifest
+            and manifest["design"].get(
+                "aborted_parent_archive_excluded_from_scoring", False
+            )
         ),
         "prospective_seed_matrix_fresh": set(protocol.prospective_search_seeds)
-        == {9_301, 9_302, 9_303},
+        == {9_401, 9_402, 9_403}
+        and not set(protocol.prospective_search_seeds)
+        & set(protocol.retired_search_seeds),
         "reliability_model_is_strict": (
             future.minimum_exact_seed_span == 2
             and future.maximum_exact_label_range == 0.0
@@ -183,6 +188,14 @@ def preflight_future_viability_confirmation(
         ),
         "collection_not_executed": True,
         "sdk_budget_frozen": protocol.maximum_total_sdk_calls == 38_000,
+        "cumulative_sdk_ledger_frozen": (
+            protocol.parent_aborted_sdk_calls == 2_048
+            and protocol.maximum_cumulative_sdk_calls == 40_048
+        ),
+        "cumulative_artifact_ledger_frozen": (
+            protocol.parent_aborted_artifact_bytes == 20_911_530
+            and protocol.maximum_cumulative_artifact_bytes == 1_094_653_354
+        ),
         "wall_time_respected": elapsed <= protocol.maximum_offline_wall_seconds,
     }
     passed = all(checks.values())
@@ -197,6 +210,12 @@ def preflight_future_viability_confirmation(
         "elapsed_seconds": elapsed,
         "environment_collection_executed": False,
         "model_bundle_checksum": bundle["bundle_checksum"],
+        "maximum_cumulative_artifact_bytes": (
+            protocol.maximum_cumulative_artifact_bytes
+        ),
+        "maximum_cumulative_sdk_calls": protocol.maximum_cumulative_sdk_calls,
+        "parent_aborted_sdk_calls": protocol.parent_aborted_sdk_calls,
+        "parent_aborted_artifact_bytes": protocol.parent_aborted_artifact_bytes,
         "pilot_collection_authorized": passed,
         "sdk_calls_used": 0,
         "witness_count": len(witnesses),
@@ -204,7 +223,7 @@ def preflight_future_viability_confirmation(
     _write_json_once(
         report_path,
         {
-            "format_version": "sage-t12.6.1d-preflight-report-v1",
+            "format_version": "sage-t12.6.1d-preflight-report-v2",
             "manifest_checksum": manifest["manifest_checksum"],
             "metrics": metrics,
             "passed": passed,
@@ -236,6 +255,20 @@ def _batch_seeds(
     if batch == "completion":
         return protocol.completion_search_seeds
     raise ValueError("T12.6.1d batch must be pilot or completion")
+
+
+def _collection_integrity_metrics(run: Any, *, arm: str) -> dict[str, Any]:
+    """Project the canonical archive metrics without opening outcomes."""
+
+    raw_metrics = run.metrics()
+    return {
+        "arm": str(arm),
+        "candidate_catalog_checksum": str(run.candidate_catalog_checksum),
+        "entry_exact": bool(run.entry_exact),
+        "replay_exact_rate": float(raw_metrics["replay_exact_rate"]),
+        "sdk_calls": int(raw_metrics["sdk_calls"]),
+        "symbolic_cells": int(raw_metrics["symbolic_cells"]),
+    }
 
 
 def collect_future_viability_batch(
@@ -328,15 +361,7 @@ def collect_future_viability_batch(
                     }
                 )
                 archives.append(artifact)
-                raw_metrics = run.metrics()
-                allowed_metrics = {
-                    "arm": arm,
-                    "candidate_catalog_checksum": run.candidate_catalog_checksum,
-                    "cells": int(raw_metrics["cells"]),
-                    "entry_exact": bool(run.entry_exact),
-                    "replay_exact_rate": float(raw_metrics["replay_exact_rate"]),
-                    "sdk_calls": int(raw_metrics["sdk_calls"]),
-                }
+                allowed_metrics = _collection_integrity_metrics(run, arm=arm)
                 total_sdk_calls += allowed_metrics["sdk_calls"]
                 arms[arm] = allowed_metrics
             conditions.append(
@@ -351,6 +376,17 @@ def collect_future_viability_batch(
         len(seeds) * len(protocol.source_lineages) * len(protocol.search_arms)
     )
     all_arms = [arm for condition in conditions for arm in condition["arms"].values()]
+    prior_r1_sdk_calls = 0 if pilot is None else int(pilot["metrics"]["sdk_calls_used"])
+    r1_sdk_calls_to_date = prior_r1_sdk_calls + total_sdk_calls
+    cumulative_sdk_calls = protocol.parent_aborted_sdk_calls + r1_sdk_calls_to_date
+    batch_archive_bytes = sum(
+        _resolve(str(row["path"]), root=repo_root).stat().st_size for row in archives
+    )
+    prior_r1_archive_bytes = (
+        0 if pilot is None else int(pilot["metrics"]["r1_archive_bytes_used"])
+    )
+    r1_archive_bytes = prior_r1_archive_bytes + batch_archive_bytes
+    cumulative_archive_bytes = protocol.parent_aborted_artifact_bytes + r1_archive_bytes
     checks = {
         "all_anchor_replays_exact": all(bool(arm["entry_exact"]) for arm in all_arms),
         "all_archive_replays_exact": all(
@@ -360,7 +396,8 @@ def collect_future_viability_batch(
         "batch_seed_registry_exact": {int(row["search_seed"]) for row in conditions}
         == set(seeds),
         "cell_budget_respected": all(
-            int(arm["cells"]) <= protocol.maximum_cells_per_archive for arm in all_arms
+            int(arm["symbolic_cells"]) <= protocol.maximum_cells_per_archive
+            for arm in all_arms
         ),
         "no_scores_or_labels_computed": True,
         "paired_candidate_catalogs_identical": all(
@@ -376,6 +413,14 @@ def collect_future_viability_batch(
         "per_archive_sdk_budget_respected": all(
             int(arm["sdk_calls"]) <= protocol.sdk_calls_per_archive for arm in all_arms
         ),
+        "r1_total_sdk_budget_respected": r1_sdk_calls_to_date
+        <= protocol.maximum_total_sdk_calls,
+        "cumulative_sdk_budget_respected": cumulative_sdk_calls
+        <= protocol.maximum_cumulative_sdk_calls,
+        "r1_artifact_budget_respected": r1_archive_bytes
+        <= protocol.maximum_artifact_bytes,
+        "cumulative_artifact_budget_respected": cumulative_archive_bytes
+        <= protocol.maximum_cumulative_artifact_bytes,
         "storage_budget_respected": bool(storage.snapshot()["within_budget"]),
         "wall_time_respected": elapsed <= protocol.maximum_wall_seconds_per_batch,
     }
@@ -396,9 +441,15 @@ def collect_future_viability_batch(
         "batch": batch,
         "checks": checks,
         "completion_collection_authorized": bool(passed and batch == "pilot"),
+        "batch_archive_bytes_used": batch_archive_bytes,
+        "cumulative_artifact_bytes_used": cumulative_archive_bytes,
+        "cumulative_sdk_calls_used": cumulative_sdk_calls,
         "elapsed_seconds": elapsed,
         "model_scores_computed": False,
+        "parent_aborted_sdk_calls": protocol.parent_aborted_sdk_calls,
+        "parent_aborted_artifact_bytes": protocol.parent_aborted_artifact_bytes,
         "productive_reach_labels_computed": False,
+        "r1_archive_bytes_used": r1_archive_bytes,
         "sdk_calls_used": total_sdk_calls,
         "search_seeds": list(seeds),
         "storage": storage.snapshot(),
@@ -407,7 +458,7 @@ def collect_future_viability_batch(
         report_path,
         {
             "conditions": conditions,
-            "format_version": f"sage-t12.6.1d-{batch}-collection-report-v1",
+            "format_version": f"sage-t12.6.1d-{batch}-collection-report-v2",
             "manifest_checksum": manifest["manifest_checksum"],
             "metrics": metrics,
             "passed": passed,
@@ -510,8 +561,16 @@ def seal_future_viability_collection(
             and completion["metrics"].get("productive_reach_labels_computed") is False
         ),
         "sdk_budget_respected": total_sdk_calls <= protocol.maximum_total_sdk_calls,
+        "cumulative_sdk_budget_respected": (
+            protocol.parent_aborted_sdk_calls + total_sdk_calls
+            <= protocol.maximum_cumulative_sdk_calls
+        ),
         "storage_budget_respected": total_archive_bytes
         <= protocol.maximum_artifact_bytes,
+        "cumulative_artifact_budget_respected": (
+            protocol.parent_aborted_artifact_bytes + total_archive_bytes
+            <= protocol.maximum_cumulative_artifact_bytes
+        ),
     }
     support = {
         "unique_archive_support_sufficient": len(unique_hashes)
@@ -533,6 +592,10 @@ def seal_future_viability_collection(
         "archive_count": len(archives),
         "checks": {**integrity, **support},
         "classification": classification,
+        "cumulative_sdk_calls_used": protocol.parent_aborted_sdk_calls
+        + total_sdk_calls,
+        "cumulative_artifact_bytes_used": protocol.parent_aborted_artifact_bytes
+        + total_archive_bytes,
         "prediction_authorized": passed,
         "productive_reach_labels_computed": False,
         "sdk_calls_used": total_sdk_calls,
@@ -542,7 +605,7 @@ def seal_future_viability_collection(
     _write_json_once(
         report_path,
         {
-            "format_version": "sage-t12.6.1d-collection-seal-report-v1",
+            "format_version": "sage-t12.6.1d-collection-seal-report-v2",
             "manifest_checksum": manifest["manifest_checksum"],
             "metrics": metrics,
             "passed": passed,
@@ -676,7 +739,7 @@ def commit_future_viability_predictions(
     _write_json_once(
         report_path,
         {
-            "format_version": "sage-t12.6.1d-prediction-report-v1",
+            "format_version": "sage-t12.6.1d-prediction-report-v2",
             "manifest_checksum": manifest["manifest_checksum"],
             "metrics": metrics,
             "passed": passed,
@@ -904,7 +967,7 @@ def adjudicate_future_viability_confirmation(
         rankings_path,
         {
             "cells": result["cells"],
-            "format_version": "sage-t12.6.1d-adjudicated-rankings-v1",
+            "format_version": "sage-t12.6.1d-adjudicated-rankings-v2",
             "manifest_checksum": manifest["manifest_checksum"],
             "prediction_checksum": bound["commitment"]["prediction_checksum"],
             "protocol_checksum": manifest["protocol_checksum"],
@@ -928,7 +991,7 @@ def adjudicate_future_viability_confirmation(
         report_path,
         {
             "claim_boundary": manifest["claim_boundary"],
-            "format_version": "sage-t12.6.1d-adjudication-report-v1",
+            "format_version": "sage-t12.6.1d-adjudication-report-v2",
             "manifest_checksum": manifest["manifest_checksum"],
             "metrics": metrics,
             "passed": passed,
@@ -1053,7 +1116,7 @@ def future_viability_prospective_status(
             "neural_training_authorized": False,
             "production_authority": False,
         },
-        "format_version": "sage-t12.6.1d-prospective-status-v1",
+        "format_version": "sage-t12.6.1d-prospective-status-v2",
         "manifest_checksum": manifest["manifest_checksum"],
         "next_phase_authorized": any(
             (
@@ -1076,6 +1139,7 @@ def future_viability_prospective_status(
 
 __all__ = [
     "PREDICTION_ARTIFACT_FORMAT",
+    "_collection_integrity_metrics",
     "adjudicate_future_viability_confirmation",
     "classify_prospective_adjudication",
     "collect_future_viability_batch",

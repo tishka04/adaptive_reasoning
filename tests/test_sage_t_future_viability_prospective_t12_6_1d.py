@@ -14,7 +14,7 @@ from theory.sage_t.causal import (
 from theory.sage_t.causal import (
     future_viability_prospective_protocol as protocol_module,
 )
-from theory.sage_t.causal.archive import abstract_state_to_payload
+from theory.sage_t.causal.archive import GoExploreArchive, abstract_state_to_payload
 from theory.sage_t.causal.future_viability_prospective_cli import build_parser
 from theory.sage_t.causal.future_viability_prospective_confirmation import (
     ExactStateExtraction,
@@ -25,6 +25,7 @@ from theory.sage_t.causal.future_viability_prospective_confirmation import (
     verify_prediction_commitment,
 )
 from theory.sage_t.causal.future_viability_prospective_experiment import (
+    _collection_integrity_metrics,
     adjudicate_future_viability_confirmation,
     classify_prospective_adjudication,
     collect_future_viability_batch,
@@ -51,6 +52,12 @@ def _reliability_parent() -> Path:
 
 def _hazard_parent() -> Path:
     return _repo() / "training" / "sage_t" / "hazard_diversity_t12_4a_4d_1_bp35"
+
+
+def _v1_parent() -> Path:
+    return (
+        _repo() / "training" / "sage_t" / "future_viability_confirmation_t12_6_1d_bp35"
+    )
 
 
 def _sha(path: Path) -> str:
@@ -105,7 +112,7 @@ def _archive(path: Path, edges: list[dict[str, object]]) -> None:
     path.write_text(json.dumps(payload, sort_keys=True), encoding="utf-8")
 
 
-def _metas(path: Path, *, seed: int = 9301) -> tuple[dict[str, object], ...]:
+def _metas(path: Path, *, seed: int = 9401) -> tuple[dict[str, object], ...]:
     checksum = _sha(path)
     return tuple(
         {
@@ -122,13 +129,13 @@ def _metas(path: Path, *, seed: int = 9301) -> tuple[dict[str, object], ...]:
 def _extract(
     path: Path,
     *,
-    seed: int = 9301,
+    seed: int = 9401,
     include_labels: bool = True,
 ) -> ExactStateExtraction:
     return extract_exact_state_candidates(
         archive_metas=_metas(path, seed=seed),
         root=path.parent,
-        expected_search_seeds=(9301,),
+        expected_search_seeds=(9401,),
         expected_lineages=(8701,),
         expected_arms=FutureViabilityProspectiveProtocol().search_arms,
         future_horizon=4,
@@ -139,15 +146,22 @@ def _extract(
 
 def test_protocol_and_cli_freeze_the_full_staged_design() -> None:
     protocol = FutureViabilityProspectiveProtocol()
-    assert protocol.prospective_search_seeds == (9301, 9302, 9303)
-    assert protocol.pilot_search_seeds == (9301,)
-    assert protocol.completion_search_seeds == (9302, 9303)
+    assert protocol.amendment_revision == "r1"
+    assert protocol.instrumentation_cell_metric == "symbolic_cells"
+    assert protocol.retired_search_seeds == (9301, 9302, 9303)
+    assert protocol.prospective_search_seeds == (9401, 9402, 9403)
+    assert protocol.pilot_search_seeds == (9401,)
+    assert protocol.completion_search_seeds == (9402, 9403)
     assert protocol.expected_archive_count == 18
     assert protocol.minimum_unique_archive_count == 12
     assert protocol.sdk_calls_per_archive == 2048
     assert protocol.maximum_total_sdk_calls == 38_000
+    assert protocol.parent_aborted_sdk_calls == 2_048
+    assert protocol.maximum_cumulative_sdk_calls == 40_048
     assert protocol.maximum_cells_per_archive == 10_000
     assert protocol.maximum_artifact_bytes == 1024**3
+    assert protocol.parent_aborted_artifact_bytes == 20_911_530
+    assert protocol.maximum_cumulative_artifact_bytes == 1_094_653_354
     assert protocol.minimum_gain_over_exact_first == 0.02
     parser = build_parser()
     for phase in (
@@ -161,7 +175,7 @@ def test_protocol_and_cli_freeze_the_full_staged_design() -> None:
     ):
         assert phase in parser._subparsers._group_actions[0].choices
     with pytest.raises(ValueError, match="preregistered value changed"):
-        FutureViabilityProspectiveProtocol(prospective_search_seeds=(9201, 9202, 9203))
+        FutureViabilityProspectiveProtocol(prospective_search_seeds=(9301, 9302, 9303))
     with pytest.raises(ValueError, match="preregistered value changed"):
         FutureViabilityProspectiveProtocol(minimum_gain_over_exact_first=0.019)
 
@@ -358,7 +372,7 @@ def test_exact_decision_group_is_consolidated_across_distinct_arm_archives(
             "arm": arm,
             "lineage_seed": 8701,
             "path": str(path),
-            "search_seed": 9301,
+            "search_seed": 9401,
             "sha256": _sha(path),
         }
         for arm, path in zip(
@@ -370,7 +384,7 @@ def test_exact_decision_group_is_consolidated_across_distinct_arm_archives(
     extraction = extract_exact_state_candidates(
         archive_metas=metas,
         root=tmp_path,
-        expected_search_seeds=(9301,),
+        expected_search_seeds=(9401,),
         expected_lineages=(8701,),
         expected_arms=FutureViabilityProspectiveProtocol().search_arms,
         future_horizon=4,
@@ -410,7 +424,7 @@ def test_cross_archive_exact_transition_conflict_is_detected(tmp_path: Path) -> 
             "arm": arm,
             "lineage_seed": 8701,
             "path": str(path),
-            "search_seed": 9301,
+            "search_seed": 9401,
             "sha256": _sha(path),
         }
         for arm, path in zip(
@@ -422,7 +436,7 @@ def test_cross_archive_exact_transition_conflict_is_detected(tmp_path: Path) -> 
     extraction = extract_exact_state_candidates(
         archive_metas=metas,
         root=tmp_path,
-        expected_search_seeds=(9301,),
+        expected_search_seeds=(9401,),
         expected_lineages=(8701,),
         expected_arms=FutureViabilityProspectiveProtocol().search_arms,
         future_horizon=4,
@@ -575,9 +589,9 @@ def _passing_metrics() -> tuple[dict[str, object], dict[str, object]]:
         "unique_archive_count": 12,
     }
     seed = {
-        "9301": {"future_gain_over_incumbent": 0.02},
-        "9302": {"future_gain_over_incumbent": 0.03},
-        "9303": {"future_gain_over_incumbent": 0.0},
+        "9401": {"future_gain_over_incumbent": 0.02},
+        "9402": {"future_gain_over_incumbent": 0.03},
+        "9403": {"future_gain_over_incumbent": 0.0},
     }
     ranked = {
         "binding_swap_top1_accuracy": 0.45,
@@ -620,7 +634,7 @@ def test_frozen_verdict_boundaries(
     if mutation == "gain_at_1_9_points":
         ranked["future_gain_over_incumbent"] = 0.019
     elif mutation == "negative_seed":
-        ranked["per_search_seed"]["9303"]["future_gain_over_incumbent"] = -0.001
+        ranked["per_search_seed"]["9403"]["future_gain_over_incumbent"] = -0.001
     elif mutation == "insufficient_support":
         ranked["eligible_groups"] = 249
     elif mutation == "exact_conflict":
@@ -638,6 +652,10 @@ def test_frozen_verdict_boundaries(
 def _manifest() -> dict[str, object]:
     return {
         "game_id": "bp35",
+        "integrity_amendment": {
+            "aborted_archive": {"sha256": "a" * 64},
+            "parent_manifest": {"manifest_checksum": "p" * 64},
+        },
         "manifest_checksum": "m" * 64,
         "parents": {
             "hazard_compile_receipt": {"receipt_checksum": "h" * 64},
@@ -646,6 +664,19 @@ def _manifest() -> dict[str, object]:
         "protocol": asdict(FutureViabilityProspectiveProtocol()),
         "protocol_checksum": FutureViabilityProspectiveProtocol().checksum,
     }
+
+
+def test_collection_integrity_projection_uses_real_archive_metric_schema() -> None:
+    archive = GoExploreArchive(maximum_cells=10_000, seed=9401)
+    run = SimpleNamespace(
+        candidate_catalog_checksum="catalog",
+        entry_exact=True,
+        metrics=archive.metrics,
+    )
+    metrics = _collection_integrity_metrics(run, arm="local_archive_control")
+    assert metrics["symbolic_cells"] == 0
+    assert "cells" not in metrics
+    assert metrics["sdk_calls"] == 0
 
 
 def test_fake_environment_runs_full_three_by_two_by_three_matrix_within_budgets(
@@ -663,9 +694,10 @@ def test_fake_environment_runs_full_three_by_two_by_three_matrix_within_budgets(
 
     def fake_receipt(*args, **kwargs):
         phase = kwargs["expected_phase"]
+        if phase == "collection_pilot":
+            return json.loads(Path(args[0]).read_text(encoding="utf-8"))
         status = {
             "preflight": "PASS_T12_6_1D_PREFLIGHT",
-            "collection_pilot": "PASS_T12_6_1D_PILOT_COLLECTION_INTEGRITY",
         }[phase]
         return {"passed": True, "status": status}
 
@@ -687,7 +719,7 @@ def test_fake_environment_runs_full_three_by_two_by_three_matrix_within_budgets(
             candidate_catalog_checksum=catalog,
             entry_exact=True,
             metrics=lambda: {
-                "cells": 10_000,
+                "symbolic_cells": 10_000,
                 "replay_exact_rate": 1.0,
                 "sdk_calls": 2_048,
             },
@@ -724,8 +756,14 @@ def test_fake_environment_runs_full_three_by_two_by_three_matrix_within_budgets(
     assert completion["metrics"]["archive_count"] == 12
     assert pilot["metrics"]["sdk_calls_used"] == 6 * 2048
     assert completion["metrics"]["sdk_calls_used"] == 12 * 2048
+    assert pilot["metrics"]["cumulative_sdk_calls_used"] == 14_336
+    assert completion["metrics"]["cumulative_sdk_calls_used"] == 38_912
+    assert pilot["metrics"]["r1_archive_bytes_used"] == 12
+    assert completion["metrics"]["r1_archive_bytes_used"] == 36
+    assert pilot["metrics"]["cumulative_artifact_bytes_used"] == 20_911_542
+    assert completion["metrics"]["cumulative_artifact_bytes_used"] == 20_911_566
     assert len(calls) == 18
-    assert {call["search_seed"] for call in calls} == {9301, 9302, 9303}
+    assert {call["search_seed"] for call in calls} == {9401, 9402, 9403}
     assert {call["witness"].source_seed for call in calls} == {8701, 8705}
     assert {call["arm"] for call in calls} == set(
         FutureViabilityProspectiveProtocol().search_arms
@@ -827,7 +865,7 @@ def test_prediction_and_adjudication_firewalls_require_prior_commitments(
         )
 
 
-def test_freeze_binds_real_parents_without_old_archives(
+def test_r1_freeze_binds_aborted_v1_parent_and_excludes_its_archive(
     monkeypatch: pytest.MonkeyPatch,
     tmp_path: Path,
 ) -> None:
@@ -839,6 +877,19 @@ def test_freeze_binds_real_parents_without_old_archives(
     manifest_path = tmp_path / "manifest.json"
     manifest = freeze_future_viability_prospective_confirmation(
         output_path=manifest_path,
+        parent_manifest_path=_v1_parent() / "manifest.json",
+        parent_preflight_receipt_path=(
+            _v1_parent() / "preflight" / "preflight_receipt.json"
+        ),
+        aborted_archive_path=(
+            _v1_parent()
+            / "collection"
+            / "pilot"
+            / "bp35"
+            / "9301"
+            / "8701"
+            / "local_archive_control.json"
+        ),
         reliability_manifest_path=_reliability_parent() / "manifest.json",
         reliability_compile_receipt_path=(
             _reliability_parent() / "compile" / "compile_receipt.json"
@@ -852,6 +903,11 @@ def test_freeze_binds_real_parents_without_old_archives(
     loaded = load_future_viability_prospective_manifest(manifest_path, root=_repo())
     assert loaded["manifest_checksum"] == manifest["manifest_checksum"]
     assert "inputs" not in loaded
+    assert loaded["integrity_amendment"]["revision"] == "r1"
+    assert loaded["integrity_amendment"]["aborted_archive"]["search_seed"] == 9301
+    assert loaded["integrity_amendment"]["aborted_archive"]["sdk_calls"] == 2048
+    assert loaded["protocol"]["prospective_search_seeds"] == [9401, 9402, 9403]
+    assert loaded["design"]["aborted_parent_archive_excluded_from_scoring"] is True
     assert loaded["parents"]["reliability_model_bundle"]["bundle_checksum"]
     assert loaded["firewall"]["preflight_authorized"] is True
     assert loaded["firewall"]["pilot_collection_authorized"] is False
@@ -863,6 +919,10 @@ def test_freeze_binds_real_parents_without_old_archives(
     )
     assert preflight["status"] == "PASS_T12_6_1D_PREFLIGHT"
     assert preflight["metrics"]["sdk_calls_used"] == 0
+    assert preflight["metrics"]["parent_aborted_sdk_calls"] == 2048
+    assert preflight["metrics"]["maximum_cumulative_sdk_calls"] == 40_048
+    assert preflight["metrics"]["parent_aborted_artifact_bytes"] == 20_911_530
+    assert preflight["metrics"]["maximum_cumulative_artifact_bytes"] == 1_094_653_354
     assert preflight["metrics"]["environment_collection_executed"] is False
 
 
@@ -882,4 +942,4 @@ def test_extractor_rejects_old_evaluation_seed(tmp_path: Path) -> None:
         ],
     )
     with pytest.raises(ValueError, match="unregistered search seed"):
-        _extract(path, seed=9201)
+        _extract(path, seed=9301)

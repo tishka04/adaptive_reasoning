@@ -1,4 +1,4 @@
-"""Fail-closed CLI for SAGE.T12.6.1d prospective confirmation."""
+"""Fail-closed CLI for SAGE.T12.6.1d-r1 prospective confirmation."""
 
 from __future__ import annotations
 
@@ -20,14 +20,17 @@ from .future_viability_prospective_protocol import (
 )
 
 DEFAULT_OUTPUT = (
-    Path("training") / "sage_t" / "future_viability_confirmation_t12_6_1d_bp35"
+    Path("training") / "sage_t" / "future_viability_confirmation_t12_6_1d_r1_bp35"
 )
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     phases = parser.add_subparsers(dest="phase", required=True)
-    freeze = phases.add_parser("freeze", help="freeze the fresh-seed protocol")
+    freeze = phases.add_parser("freeze", help="freeze the r1 fresh-seed protocol")
+    freeze.add_argument("--parent-manifest", required=True)
+    freeze.add_argument("--parent-preflight-receipt", required=True)
+    freeze.add_argument("--aborted-archive", required=True)
     freeze.add_argument("--reliability-manifest", required=True)
     freeze.add_argument("--reliability-compile-receipt", required=True)
     freeze.add_argument("--hazard-manifest", required=True)
@@ -92,6 +95,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.phase == "freeze":
             result = freeze_future_viability_prospective_confirmation(
                 output_path=args.manifest,
+                parent_manifest_path=args.parent_manifest,
+                parent_preflight_receipt_path=args.parent_preflight_receipt,
+                aborted_archive_path=args.aborted_archive,
                 reliability_manifest_path=args.reliability_manifest,
                 reliability_compile_receipt_path=args.reliability_compile_receipt,
                 hazard_manifest_path=args.hazard_manifest,
@@ -158,7 +164,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         ValueError,
     ) as exc:
         result = {
-            "format_version": "sage-t12.6.1d-prospective-cli-error-v1",
+            "format_version": "sage-t12.6.1d-prospective-cli-error-v2",
             "phase": args.phase,
             "reason": f"{type(exc).__name__}:{exc}",
             "status": "FAILED_CLOSED",

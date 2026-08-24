@@ -1,27 +1,23 @@
-# SAGE.T12.6.1d — Runbook
+# SAGE.T12.6.1d-r1 — Runbook
 
-> Runbook historique v1 : ne pas relancer. L’exécution 9301 a été interrompue
-> sans reçu par une incompatibilité `cells`/`symbolic_cells`. Utiliser le
-> runbook r1 et préserver le dossier v1 intact.
-
-Toutes les commandes partent de la racine du dépôt. Le gel et le preflight sont
-hors ligne. Les deux commandes `collect-batch` sont les seules qui déclenchent
-la collecte physique ; elles doivent être lancées manuellement.
+Le dossier v1 ne doit être ni supprimé, ni modifié, ni réutilisé comme dossier
+de sortie. Toutes les commandes partent de la racine du dépôt.
 
 ```powershell
 $Py = ".\ARC-AGI-3-Agents\.venv\Scripts\python.exe"
-$Root = ".\training\sage_t\future_viability_confirmation_t12_6_1d_bp35"
+$Parent = ".\training\sage_t\future_viability_confirmation_t12_6_1d_bp35"
+$Root = ".\training\sage_t\future_viability_confirmation_t12_6_1d_r1_bp35"
 $Reliable = ".\training\sage_t\future_viability_reliability_t12_6_1c_bp35"
 $Hazard = ".\training\sage_t\hazard_diversity_t12_4a_4d_1_bp35"
 ```
 
-## 1. Gel et preflight hors ligne
-
-Le gel exige un worktree propre et lie le commit courant. Le preflight ne fait
-aucun appel SDK.
+## 1. Gel r1 et preflight hors ligne
 
 ```powershell
 & $Py -m theory.sage_t.causal.future_viability_prospective_cli freeze `
+  --parent-manifest "$Parent\manifest.json" `
+  --parent-preflight-receipt "$Parent\preflight\preflight_receipt.json" `
+  --aborted-archive "$Parent\collection\pilot\bp35\9301\8701\local_archive_control.json" `
   --reliability-manifest "$Reliable\manifest.json" `
   --reliability-compile-receipt "$Reliable\compile\compile_receipt.json" `
   --hazard-manifest "$Hazard\manifest.json" `
@@ -36,10 +32,10 @@ $FreezeCode = $LASTEXITCODE
 $PreflightCode = $LASTEXITCODE
 ```
 
-Continuer seulement si les deux codes valent `0` et si le statut autorise
-uniquement `pilot_collection_authorized`.
+Continuer uniquement si les deux codes valent `0` et si le statut ouvre
+seulement `pilot_collection_authorized`.
 
-## 2. Lot pilote 9301 — collecte manuelle
+## 2. Nouveau lot pilote 9401 — collecte manuelle
 
 ```powershell
 & $Py -m theory.sage_t.causal.future_viability_prospective_cli collect-batch `
@@ -51,14 +47,12 @@ uniquement `pilot_collection_authorized`.
 $PilotCode = $LASTEXITCODE
 ```
 
-Un code `3` est un miss scientifique : conserver les artefacts et arrêter. Un
-code `2` est un échec fermé d’exécution. Aucun `predict` ou `adjudicate` ne doit
-être lancé ici.
+Ne pas calculer de score après ce lot. Un code `2` conserve le dossier comme
+exécution avortée ; un code `3` conserve le reçu comme échec du gate pilote.
 
-## 3. Lot 9302–9303 — collecte manuelle
+## 3. Lot 9402–9403 — collecte manuelle
 
-Cette commande est autorisée uniquement par
-`PASS_T12_6_1D_PILOT_COLLECTION_INTEGRITY`.
+Cette commande exige `PASS_T12_6_1D_PILOT_COLLECTION_INTEGRITY`.
 
 ```powershell
 & $Py -m theory.sage_t.causal.future_viability_prospective_cli collect-batch `
@@ -71,10 +65,9 @@ Cette commande est autorisée uniquement par
 $CompletionCode = $LASTEXITCODE
 ```
 
-## 4. Scellement, engagement et adjudication
+## 4. Scellement, prédiction et adjudication
 
-Les labels ne sont ouverts qu’à la dernière commande, après l’engagement signé
-des prédictions.
+Les commandes sont identiques à v1, avec `$Root` pointant vers le dossier r1 :
 
 ```powershell
 & $Py -m theory.sage_t.causal.future_viability_prospective_cli seal-collection `
@@ -82,35 +75,15 @@ des prédictions.
   --pilot-receipt "$Root\collection\pilot\collection_receipt.json" `
   --completion-receipt "$Root\collection\completion\collection_receipt.json" `
   --output-dir "$Root\collection\sealed"
-$SealCode = $LASTEXITCODE
 
 & $Py -m theory.sage_t.causal.future_viability_prospective_cli predict `
   --manifest "$Root\manifest.json" `
   --collection-seal-receipt "$Root\collection\sealed\collection_seal_receipt.json" `
   --output-dir "$Root\prediction"
-$PredictCode = $LASTEXITCODE
 
 & $Py -m theory.sage_t.causal.future_viability_prospective_cli adjudicate `
   --manifest "$Root\manifest.json" `
   --collection-seal-receipt "$Root\collection\sealed\collection_seal_receipt.json" `
   --prediction-receipt "$Root\prediction\prediction_receipt.json" `
   --output-dir "$Root\adjudication"
-$AdjudicationCode = $LASTEXITCODE
 ```
-
-## 5. Statut vérifiable
-
-```powershell
-& $Py -m theory.sage_t.causal.future_viability_prospective_cli status `
-  --manifest "$Root\manifest.json" `
-  --preflight-receipt "$Root\preflight\preflight_receipt.json" `
-  --pilot-receipt "$Root\collection\pilot\collection_receipt.json" `
-  --completion-receipt "$Root\collection\completion\collection_receipt.json" `
-  --collection-seal-receipt "$Root\collection\sealed\collection_seal_receipt.json" `
-  --prediction-receipt "$Root\prediction\prediction_receipt.json" `
-  --adjudication-receipt "$Root\adjudication\adjudication_receipt.json"
-```
-
-Chaque phase écrit dans un dossier neuf et immuable. Ne pas relancer dans un
-dossier déjà rempli ; préserver le reçu négatif et choisir un nouveau protocole
-si une correction scientifique est nécessaire.
