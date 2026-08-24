@@ -511,3 +511,10 @@ controls. The CLI has only freeze, compile, evaluate and status; a pass may
 authorize only a separate T12.6b prospective-control freeze. See
 `reports/SAGE_T12_6_FUTURE_VIABILITY_PROTOCOL.md` and
 `reports/SAGE_T12_6_FUTURE_VIABILITY_RUNBOOK.md`.
+
+T12.6a is the fail-closed, source-train-only autopsy used when the T12.6
+compile lineage gate misses. It freezes support, tie, signature-heterogeneity,
+lineage and archive-arm axes before inspecting individual errors; it excludes
+the sealed evaluation archive payloads and carries no validation or collection
+authority. See
+`reports/SAGE_T12_6A_FUTURE_VIABILITY_DIAGNOSTIC_PROTOCOL.md`.

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from dataclasses import asdict
 from pathlib import Path
 
@@ -259,6 +260,9 @@ def test_synthetic_compile_and_evaluation_pass_only_to_t12_6b_freeze(
     parent_receipt = (
         _evaluation_parent() / "paired" / "hazard_diversity_receipt.json"
     )
+    parent_receipt_checksum = json.loads(
+        parent_receipt.read_text(encoding="utf-8")
+    )["receipt_checksum"]
     manifest = {
         "claim_boundary": {
             "authorized": "offline target-local future viability",
@@ -270,7 +274,12 @@ def test_synthetic_compile_and_evaluation_pass_only_to_t12_6b_freeze(
         "protocol": asdict(protocol),
         "protocol_checksum": protocol.checksum,
         "authority_parent": {"receipt": {"receipt_checksum": "a" * 64}},
-        "evaluation_parent": {"receipt": {"path": str(parent_receipt)}},
+        "evaluation_parent": {
+            "receipt": {
+                "path": str(parent_receipt),
+                "receipt_checksum": parent_receipt_checksum,
+            }
+        },
     }
     monkeypatch.setattr(
         experiment,
