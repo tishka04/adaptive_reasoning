@@ -518,3 +518,10 @@ lineage and archive-arm axes before inspecting individual errors; it excludes
 the sealed evaluation archive payloads and carries no validation or collection
 authority. See
 `reports/SAGE_T12_6A_FUTURE_VIABILITY_DIAGNOSTIC_PROTOCOL.md`.
+
+T12.6.1 is the separately frozen response to that diagnostic. It keeps the
+exact target-local signature, adds a typed local-composition tier before the
+action-family fallback, and compares it with the T12.6 incumbent plus the
+immediate and binding-swap controls. Development remains restricted to
+9101–9103; the later 9201–9203 archives may be opened only by a passed compile
+receipt. See `reports/SAGE_T12_6_1_HIERARCHICAL_VIABILITY_PROTOCOL.md`.
