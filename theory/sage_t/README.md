@@ -484,3 +484,17 @@ receipt authorizes four lineage-8705 evaluation trials. The total bound is
 of a separate T12.5c control freeze. See
 `reports/SAGE_T12_5B_5_GOAL_VIABILITY_PROTOCOL.md` and
 `reports/SAGE_T12_5B_5_GOAL_VIABILITY_RUNBOOK.md`.
+
+T12.5b.5 then passed on both confirmed route lineages: the cursor-advance
+`ACTION3>ACTION3` continuation produced safe level progress, while the
+milestone-neutral `ACTION4>ACTION3>ACTION3` mismatch did not. T12.5c is the
+separately frozen causal control for that result. From the same exact stage-3
+anchors it compares `ACTION3>ACTION3` with a two-slot binding swap
+`ACTION4>ACTION3`; both arms have identical maximum horizon, live-action
+grounding, resets and repetitions. The eight-trial order is counterbalanced
+across lineages 8701 and 8705 and capped at 1,000 SDK calls and 3 GiB. A pass
+would show only that the correct local goal-cursor binding is necessary for
+the observed source-context progress advantage, and may authorize only a
+separate T12.6 freeze. See
+`reports/SAGE_T12_5C_GOAL_CURSOR_CONTROL_PROTOCOL.md` and
+`reports/SAGE_T12_5C_GOAL_CURSOR_CONTROL_RUNBOOK.md`.
