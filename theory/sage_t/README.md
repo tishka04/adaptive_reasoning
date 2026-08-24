@@ -461,3 +461,26 @@ A pass may authorize only a separate T12.5c control freeze; collection remains
 manual, and control, validation, holdout, neural, and production authority stay
 closed. See `reports/SAGE_T12_5B_3_PROGRESS_CONTRAST_PROTOCOL.md` and
 `reports/SAGE_T12_5B_3_PROGRESS_CONTRAST_RUNBOOK.md`.
+
+T12.5b.3 completed its fixed schedule but failed the preregistered zero-terminal
+integrity gate; it also produced no transported progress affordance and no hard
+one-step contrast. T12.5b.4 preserved that result and tested every length-2/3
+program over `ACTION3/ACTION4/ACTION6` after the shallowest common neutral
+detour. Its 72-trial calibration was exact, deterministic and within budget,
+but 64 trials ended in `GAME_OVER`, the remaining eight became incomplete, and
+no safe progress program existed. Evaluation therefore remained closed. See
+`reports/SAGE_T12_5B_4_LOCAL_PROGRAM_UTILITY_PROTOCOL.md` and
+`reports/SAGE_T12_5B_4_LOCAL_PROGRAM_UTILITY_RUNBOOK.md`.
+
+T12.5b.5 tests the mechanism exposed by that miss: milestone neutrality did not
+preserve future goal viability. From the exact pre-detour stage-3 state, it
+branches `ACTION3`, `ACTION4`, and calibration-only `ACTION6`, then re-grounds
+the remaining confirmed `ACTION3>ACTION3` continuation from the live legal
+inventory. The cursor-advance branch and milestone-neutral cursor-mismatch
+control are labelled only by observed level progress and terminal risk. Six
+lineage-8701 calibration trials can seal a two-branch registry; only a passed
+receipt authorizes four lineage-8705 evaluation trials. The total bound is
+1,750 SDK calls and 3 GiB per phase. A final pass may authorize only preparation
+of a separate T12.5c control freeze. See
+`reports/SAGE_T12_5B_5_GOAL_VIABILITY_PROTOCOL.md` and
+`reports/SAGE_T12_5B_5_GOAL_VIABILITY_RUNBOOK.md`.
