@@ -549,3 +549,14 @@ uses leave-one-seed-out results from 9101–9103 only. The CLI cannot evaluate o
 collect, and a pass authorizes only a separate prospective protocol on new
 archives. See
 `reports/SAGE_T12_6_1C_RELIABILITY_HIERARCHY_PROTOCOL.md`.
+
+T12.6.1d is that separately frozen prospective confirmation. It reuses the
+unchanged `exact_span2_range0` bundle on fresh seeds 9301–9303, two known bp35
+lineages and the three existing collection arms. Seed 9301 is collected first;
+only archive integrity may authorize 9302–9303, and all 18 archives are sealed
+before a label-blind score commitment. Adjudication uses exact-state graph
+reach at horizon four, ignores archive-order novelty, deduplicates identical
+arm archives, and requires at least a two-point gain over exact-first with
+noninferiority on every seed. A pass authorizes only a separate T12.6.2 freeze.
+See `reports/SAGE_T12_6_1D_PROSPECTIVE_CONFIRMATION_PROTOCOL.md` and
+`reports/SAGE_T12_6_1D_PROSPECTIVE_CONFIRMATION_RUNBOOK.md`.
