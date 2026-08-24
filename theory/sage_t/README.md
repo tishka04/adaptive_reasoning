@@ -498,3 +498,16 @@ the observed source-context progress advantage, and may authorize only a
 separate T12.6 freeze. See
 `reports/SAGE_T12_5C_GOAL_CURSOR_CONTROL_PROTOCOL.md` and
 `reports/SAGE_T12_5C_GOAL_CURSOR_CONTROL_RUNBOOK.md`.
+
+T12.5c passed its equal-capacity causal control: all four correctly bound
+two-step programs progressed, all four binding swaps did not, and neither arm
+terminated. T12.6 asks whether the same binding principle exposes a useful
+target-local signal at the already difficult level-1 anchor without spending
+another SDK action. It cross-fits a four-step future productive-reach table on
+the signed T12.4a.4d archives from seeds 9101–9103, then evaluates the frozen
+table on the later T12.4a.4d.1 archives from seeds 9201–9203. An
+immediate-effect table and a score-preserving binding permutation are fixed
+controls. The CLI has only freeze, compile, evaluate and status; a pass may
+authorize only a separate T12.6b prospective-control freeze. See
+`reports/SAGE_T12_6_FUTURE_VIABILITY_PROTOCOL.md` and
+`reports/SAGE_T12_6_FUTURE_VIABILITY_RUNBOOK.md`.
