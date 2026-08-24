@@ -540,3 +540,12 @@ through support tier, training-label heterogeneity, pairwise rank concordance,
 leave-one-training-seed-out stability, lineage and archive-arm axes. It cannot
 select a descriptor or authorize collection. See
 `reports/SAGE_T12_6_1B_SEED_SHIFT_DIAGNOSTIC_PROTOCOL.md`.
+
+T12.6.1c is the source-train-only response to that attribution. It accepts an
+exact signature only when its support spans at least two training seeds and
+its productive-reach labels satisfy a frozen stability bound; otherwise it
+falls back to typed local composition, then action family. Candidate selection
+uses leave-one-seed-out results from 9101–9103 only. The CLI cannot evaluate or
+collect, and a pass authorizes only a separate prospective protocol on new
+archives. See
+`reports/SAGE_T12_6_1C_RELIABILITY_HIERARCHY_PROTOCOL.md`.
