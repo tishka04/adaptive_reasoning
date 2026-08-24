@@ -533,3 +533,10 @@ six fixed consolidation sensitivities with the frozen T12.6.1 models. The
 already-open 9201–9203 archives cannot become a new confirmation set; all
 collection and authority remain closed. See
 `reports/SAGE_T12_6_1A_CONFLICT_DIAGNOSTIC_PROTOCOL.md`.
+
+T12.6.1b is the next post-hoc-only attribution step. It keeps the frozen model
+and parent-order consolidation, then explains the seed-9202 ranking collapse
+through support tier, training-label heterogeneity, pairwise rank concordance,
+leave-one-training-seed-out stability, lineage and archive-arm axes. It cannot
+select a descriptor or authorize collection. See
+`reports/SAGE_T12_6_1B_SEED_SHIFT_DIAGNOSTIC_PROTOCOL.md`.
