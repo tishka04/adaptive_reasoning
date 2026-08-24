@@ -525,3 +525,11 @@ action-family fallback, and compares it with the T12.6 incumbent plus the
 immediate and binding-swap controls. Development remains restricted to
 9101–9103; the later 9201–9203 archives may be opened only by a passed compile
 receipt. See `reports/SAGE_T12_6_1_HIERARCHICAL_VIABILITY_PROTOCOL.md`.
+
+T12.6.1a is the post-hoc-only response to the T12.6.1 evaluation integrity
+failure. It reproduces the 37 repeated action conflicts, separates
+order-dependent novelty from six future-label disagreements, and evaluates
+six fixed consolidation sensitivities with the frozen T12.6.1 models. The
+already-open 9201–9203 archives cannot become a new confirmation set; all
+collection and authority remain closed. See
+`reports/SAGE_T12_6_1A_CONFLICT_DIAGNOSTIC_PROTOCOL.md`.
